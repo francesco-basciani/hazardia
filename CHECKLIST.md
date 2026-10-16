@@ -639,3 +639,24 @@ Finalcatalogforecastmodes/hash/readers PASS, original145enginehashes unchanged,8
 | Responsive/keyboard/weather regressions | PASS |56design+38weather=94checks,8viewport/orientations320–1920,9axe scans0violations; raw incomplete checks retained |
 | VM deployment / state preservation | PASS |5staticSHA256, 816priorstateJSONunchanged, no backend restart; reports/weather/transparent-verification.json; reviewer Codex self-check |
 | New physics / regional grid / soak100k / real devices | NOT RUN |Presentation-only; existing qualification blockers unchanged |
+
+
+## Regional animated real wind — regional-wind-20261016T071443Z
+
+| Check | Outcome | Evidence / limits |
+|---|---|---|
+| FR-WX-REGIONAL-01 real regional acquisition/representation | PASS |315nodes/96h/940016B, IDW actualcoords/bilinearU/V, immutable raw/receipt; reports/VENTO-REGIONALE.md |
+| Cache/quota/negative contracts and regressions | PASS |110VMsoftware tests, max8/day/3h/315equivalents; scientific skill not implied |
+| Wind UI/animation/responsive/accessibility | PASS |164browserchecks,24axe0violations,8viewport/orientations, pause/hide/reducedmotion/mobilefit; reports/weather/regional-verification.json |
+| Frozen vector/engine integrity | PASS |1890comparisons with rounding tolerance0.000051m/s;145source/binarypinsunchanged; native-verification.json |
+| First unit classification / provider requests | FAIL |Initial expected error mismatch; firstHTTPError lackingcode/body; diagnosticHTTP400elevationarity; allraw retained, corrected acquisitionPASS |
+| Deployment / sameVM / state preservation | PASS |9file+contextdeploys/backups,823priorJSONpreserved excludingtrafficcounters, loopbackhealth, source74bd696867fa88cffd3f9ae498d57a71b19b568b; reviewer Codex self-check |
+| Full forcing/CIMA reruns/forecastskill/soak100k/realdevices | NOT RUN |Display-only increment, prior complete-release gates BLOCKED |
+
+
+| Regional wind closure check | Outcome | Evidence / limit |
+|---|---|---|
+| Guest wall-clock skew found | FAIL |Host12:44:25/guest07:48:55UTC; initial synced flag insufficient, original outputs retained |
+| Existing NTP service resync on idle queue | PASS |sudo -n systemctl restart systemd-timesyncd, no install/config change; host/guest<3s final-runtime.json |
+| UI clock/expiry downgrade and updated cache | PASS |2newclockchecks,166browserchecks total/24axe0violations; automatic second real dataset verified1890components;145enginepins unchanged |
+| Direct API/CLI clock certification | NOT RUN |Correct OS time remains prerequisite; browser gate is conservative UI behavior, not independent operational clock authority |

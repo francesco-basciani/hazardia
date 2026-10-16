@@ -1,0 +1,343 @@
+{
+  "run_id": "regional-wind-20261016T071443Z",
+  "source_commit": "dc7c9d474e5ec3adcf0791cf528032e429c51c02",
+  "reviewer": "Codex self-check",
+  "status": "PASS",
+  "native": {
+    "status": "PASS",
+    "source_sha256": "fba446622ae6fb3410604fa0e11224bca76fccf92add73d948a13da516715e20",
+    "field_id": "openmeteo-wind-fba446622ae6fb3410604fa0",
+    "available_at": "2026-10-16T12:48:01.473900Z",
+    "nodes": 315,
+    "hours": 96,
+    "component_comparisons": 1890,
+    "max_rounding_error_ms": 4.9994972451283815e-05,
+    "requested_to_returned_max_offset_m": 3465.087268629662,
+    "unchanged_engine_files": 145,
+    "total_reserved_attempts": 4,
+    "raw_bytes": 940751,
+    "limits": "Engineering transformations/checksums only, not forecast skill or observational validation",
+    "platform": "Linux-5.15.0-198-generic-aarch64-with-glibc2.35",
+    "python": "3.10.12"
+  },
+  "software_tests": 110,
+  "software_breakdown": {
+    "unit": 63,
+    "domain": 19,
+    "decision": 14,
+    "web": 14
+  },
+  "browser_checks": 166,
+  "browser_breakdown": {
+    "regional": 28,
+    "weather": 38,
+    "design": 56,
+    "monitoring": 44
+  },
+  "axe_scans": 24,
+  "axe_violations": 0,
+  "animation_performance": {
+    "n": 87,
+    "p95_interval_ms": 33.40000000000009,
+    "p95_draw_ms": 0.20000001788139343,
+    "particles": 650
+  },
+  "deployment": {
+    "status": "PASS",
+    "old_pid": 130719,
+    "new_pid": 154283,
+    "hashes": {
+      "src/hazardia/ingest/forecast.py": "43ae1c91382fca4fabb04cb37a234a86a7378b48850aa9b68a15ea84934a5acc",
+      "src/hazardia/ingest/wind.py": "65dbc4274ec90385bf748a0d9d32edaec6f5a4c3a978717173febc6e0ea27184",
+      "src/hazardia/web/server.py": "3e5a2432653865c514cbf24481f74bdb38a2de571d87ab57e6fee0c25a0e3641",
+      "src/hazardia/web/maps.py": "e663e0d566a212cd6b50c4925ef6949364736cde07937d66d7f47da4485d99a6",
+      "src/hazardia/web/static/wind-particles.js": "f121a40968487325e014c70b3b44c97ca70622a1a39bc305c070b6fb2431dce6",
+      "src/hazardia/web/static/monitoring.js": "9ce9cca9d6375309949066d80a5fa7d41c38c49fa4aba4e83d29260951cdb21b",
+      "src/hazardia/web/static/index.html": "a1ff307a483d05a9a5bce31d94cb949f167af148211ee3a0e8a8293511a18b03",
+      "src/hazardia/web/static/app.js": "afb5dd3e989ab78899edeacc95be9ad8baabcf3af85ac814b8f47d2fab1c1119",
+      "src/hazardia/web/static/design.css": "735e43cfe67f69a9f9ecd746b477072c9b62caf874e29b48d6a39e8d54395e94"
+    },
+    "preserved_json": 823,
+    "mutable_traffic_counters_excluded": [
+      "map-traffic.json",
+      "regional-satellite-traffic.json"
+    ],
+    "engine_files_unchanged": 145,
+    "wind_id": "openmeteo-wind-1f3c8ec8c0506262853afda2",
+    "wind_quota": {
+      "attempts_today": 3,
+      "local_daily_limit": 8,
+      "refresh_s": 10800,
+      "scope": "Abruzzo rectangle315nodes/2variables/4days; free noncommercial; up to2520 location-call equivalents/day plus separate point forecast\u226448/day",
+      "location_equivalents_per_refresh": 315,
+      "max_location_equivalents_daily": 2520
+    },
+    "point_quota": {
+      "attempts_today": 3,
+      "local_daily_limit": 48,
+      "refresh_s": 1800,
+      "scope": "single fixed point;7variables4days; free noncommercial endpoint"
+    },
+    "free_disk_bytes": 9269129216
+  },
+  "satellite_context_deployment": {
+    "status": "PASS",
+    "old_pid": 154283,
+    "new_pid": 155283,
+    "hashes": {
+      "src/hazardia/web/maps.py": "dc4b8e7ab4630a445526452cdfae6e4432f63602137e9e46e6c8aa24359290bc",
+      "src/hazardia/web/static/monitoring.js": "500ad7cccdfef20677aa035c8c08655ca6ed72376fdd8eb7cd29560ef00c011f"
+    },
+    "preserved_json": 823,
+    "traffic_counters_excluded": true
+  },
+  "resource_checkpoint": {
+    "cpu_count": 4,
+    "platform": "Linux-5.15.0-198-generic-aarch64-with-glibc2.35",
+    "free_disk_bytes": 9269063680,
+    "stores": {
+      "original_maps": {
+        "source": "Regione Abruzzo \u00b7 ortofoto 2018\u20132019 \u00b7 20 cm/px dichiarati",
+        "downloaded_bytes": 8401597,
+        "download_limit_bytes": 268435456,
+        "cache_bytes": 0,
+        "cache_limit_bytes": 16777216,
+        "tiles": 0,
+        "upstream_requests": 0,
+        "errors": 0,
+        "mode": "Live consultation; bounded RAM cache, no persistent imagery archive"
+      },
+      "test_maps": {
+        "source": "Regione Abruzzo \u00b7 ortofoto 2018\u20132019 \u00b7 20 cm/px dichiarati",
+        "downloaded_bytes": 11184471,
+        "download_limit_bytes": 268435456,
+        "cache_bytes": 603098,
+        "cache_limit_bytes": 16777216,
+        "tiles": 25,
+        "upstream_requests": 25,
+        "errors": 0,
+        "mode": "Live consultation; bounded RAM cache, no persistent imagery archive"
+      },
+      "original_satellite": {
+        "source": "Sentinel-2 cloudless2024 by EOX; Contains modified Copernicus Sentinel data2024",
+        "downloaded_bytes": 76920,
+        "download_limit_bytes": 16777216,
+        "cache_bytes": 0,
+        "cache_limit_bytes": 8388608,
+        "tiles": 0,
+        "upstream_requests": 0,
+        "errors": 0,
+        "mode": "Live consultation; bounded RAM cache, no persistent imagery archive",
+        "license": "CC-BY-NC-SA-4.0",
+        "license_url": "https://www.eox.at/2025/03/sentinel-2-cloudless-2024/"
+      },
+      "test_satellite": {
+        "source": "Sentinel-2 cloudless2024 by EOX; Contains modified Copernicus Sentinel data2024",
+        "downloaded_bytes": 362234,
+        "download_limit_bytes": 16777216,
+        "cache_bytes": 285314,
+        "cache_limit_bytes": 8388608,
+        "tiles": 23,
+        "upstream_requests": 23,
+        "errors": 0,
+        "mode": "Live consultation; bounded RAM cache, no persistent imagery archive",
+        "license": "CC-BY-NC-SA-4.0",
+        "license_url": "https://www.eox.at/2025/03/sentinel-2-cloudless-2024/"
+      },
+      "regional_wind": {
+        "status": "FRESH",
+        "error": null,
+        "age_s": 1031.4440014362335,
+        "quota": {
+          "attempts_today": 3,
+          "local_daily_limit": 8,
+          "refresh_s": 10800,
+          "scope": "Abruzzo rectangle315nodes/2variables/4days; free noncommercial; up to2520 location-call equivalents/day plus separate point forecast\u226448/day",
+          "location_equivalents_per_refresh": 315,
+          "max_location_equivalents_daily": 2520
+        },
+        "fetching": false
+      },
+      "point_weather": {
+        "status": "FRESH",
+        "error": null,
+        "age_s": 1658.515516281128,
+        "quota": {
+          "attempts_today": 3,
+          "local_daily_limit": 48,
+          "refresh_s": 1800,
+          "scope": "single fixed point;7variables4days; free noncommercial endpoint"
+        },
+        "fetching": false
+      }
+    },
+    "point_raw_bytes": 16391,
+    "conservative_cumulative_download_bytes": 3667191971,
+    "limit_bytes": 5368709120
+  },
+  "negative_attempts": [
+    "Initial unit test expected wrong error class: SOURCE_TIME not SOURCE_MISSING; fixed harness, all110pass",
+    "First provider request failed HTTPError; status/body not captured then, evidence retained",
+    "Diagnostic HTTP400: elevation count differs from315 coordinates; fixed per-location nan values",
+    "Two explicit diagnostic retries spaced>65s; three conservative315-location reservations retained; ordinary3h throttle unchanged",
+    "Initial regional orthophoto view blank at coarse scale; EOX satellite added; bounded wider context repairs gray margins"
+  ],
+  "limits": [
+    "Forecast not observations/operational certification",
+    "0.1deg sampled display with IDW4/bilinear U/V; not native-grid precision or distributed simulator forcing",
+    "Unknown model initialization; availability is actual first-seen",
+    "Viewport/Chromium client QA, not physical-device/cross-browser proof",
+    "New30minsoak/100k/nativeCIMA reruns/forecastskill NOT RUN"
+  ],
+  "raw_evidence": "experiments/runs/regional-wind-20261016T071443Z",
+  "native_before_clock_resync": {
+    "status": "PASS",
+    "source_sha256": "1f3c8ec8c0506262853afda252ae3bb8d24d131c8246b18eb49d20ca78ab02a1",
+    "field_id": "openmeteo-wind-1f3c8ec8c0506262853afda2",
+    "available_at": "2026-10-16T07:18:21.304127Z",
+    "nodes": 315,
+    "hours": 96,
+    "component_comparisons": 1890,
+    "max_rounding_error_ms": 4.9997127505196914e-05,
+    "requested_to_returned_max_offset_m": 3465.087268629662,
+    "unchanged_engine_files": 145,
+    "total_reserved_attempts": 3,
+    "raw_bytes": 940016,
+    "limits": "Engineering transformations/checksums only, not forecast skill or observational validation",
+    "platform": "Linux-5.15.0-198-generic-aarch64-with-glibc2.35",
+    "python": "3.10.12"
+  },
+  "final_runtime": {
+    "hashes": {
+      "src/hazardia/ingest/forecast.py": "43ae1c91382fca4fabb04cb37a234a86a7378b48850aa9b68a15ea84934a5acc",
+      "src/hazardia/ingest/wind.py": "65dbc4274ec90385bf748a0d9d32edaec6f5a4c3a978717173febc6e0ea27184",
+      "src/hazardia/web/server.py": "3e5a2432653865c514cbf24481f74bdb38a2de571d87ab57e6fee0c25a0e3641",
+      "src/hazardia/web/maps.py": "dc4b8e7ab4630a445526452cdfae6e4432f63602137e9e46e6c8aa24359290bc",
+      "src/hazardia/web/static/wind-particles.js": "3512bf45dd863e40752420fe838fac4479f16d91070ba77348d2ffe08fa281a3",
+      "src/hazardia/web/static/monitoring.js": "500ad7cccdfef20677aa035c8c08655ca6ed72376fdd8eb7cd29560ef00c011f",
+      "src/hazardia/web/static/index.html": "a1ff307a483d05a9a5bce31d94cb949f167af148211ee3a0e8a8293511a18b03",
+      "src/hazardia/web/static/app.js": "afb5dd3e989ab78899edeacc95be9ad8baabcf3af85ac814b8f47d2fab1c1119",
+      "src/hazardia/web/static/design.css": "735e43cfe67f69a9f9ecd746b477072c9b62caf874e29b48d6a39e8d54395e94",
+      "src/hazardia/web/static/weather.js": "d81d693e7f4aeb60ff612d6a41bae1bba5f0334d842006ee2e4423f4e70d2334",
+      "src/hazardia/web/static/weather-clock.js": "08ffaa8080f6ebaa53f3b93ebd93634a97423e3033792929a719b6102a75ae84",
+      "scripts/verify_regional_wind.py": "34a30d022fcdbec7964fa67ecc11cb6f66c5fa634fdf115a96f965148caf16e2"
+    },
+    "stores": {
+      "original_maps": {
+        "source": "Regione Abruzzo \u00b7 ortofoto 2018\u20132019 \u00b7 20 cm/px dichiarati",
+        "downloaded_bytes": 9220945,
+        "download_limit_bytes": 268435456,
+        "cache_bytes": 819348,
+        "cache_limit_bytes": 16777216,
+        "tiles": 34,
+        "upstream_requests": 34,
+        "errors": 0,
+        "mode": "Live consultation; bounded RAM cache, no persistent imagery archive"
+      },
+      "test_maps": {
+        "source": "Regione Abruzzo \u00b7 ortofoto 2018\u20132019 \u00b7 20 cm/px dichiarati",
+        "downloaded_bytes": 12253046,
+        "download_limit_bytes": 268435456,
+        "cache_bytes": 1632003,
+        "cache_limit_bytes": 16777216,
+        "tiles": 67,
+        "upstream_requests": 69,
+        "errors": 0,
+        "mode": "Live consultation; bounded RAM cache, no persistent imagery archive"
+      },
+      "original_satellite": {
+        "source": "Sentinel-2 cloudless2024 by EOX; Contains modified Copernicus Sentinel data2024",
+        "downloaded_bytes": 337554,
+        "download_limit_bytes": 16777216,
+        "cache_bytes": 260634,
+        "cache_limit_bytes": 8388608,
+        "tiles": 20,
+        "upstream_requests": 20,
+        "errors": 0,
+        "mode": "Live consultation; bounded RAM cache, no persistent imagery archive",
+        "license": "CC-BY-NC-SA-4.0",
+        "license_url": "https://www.eox.at/2025/03/sentinel-2-cloudless-2024/"
+      },
+      "test_satellite": {
+        "source": "Sentinel-2 cloudless2024 by EOX; Contains modified Copernicus Sentinel data2024",
+        "downloaded_bytes": 362234,
+        "download_limit_bytes": 16777216,
+        "cache_bytes": 285314,
+        "cache_limit_bytes": 8388608,
+        "tiles": 23,
+        "upstream_requests": 23,
+        "errors": 0,
+        "mode": "Live consultation; bounded RAM cache, no persistent imagery archive",
+        "license": "CC-BY-NC-SA-4.0",
+        "license_url": "https://www.eox.at/2025/03/sentinel-2-cloudless-2024/"
+      },
+      "wind": {
+        "status": "FRESH",
+        "error": null,
+        "age_s": 334.4733774662018,
+        "quota": {
+          "attempts_today": 4,
+          "local_daily_limit": 8,
+          "refresh_s": 10800,
+          "scope": "Abruzzo rectangle315nodes/2variables/4days; free noncommercial; up to2520 location-call equivalents/day plus separate point forecast\u226448/day",
+          "location_equivalents_per_refresh": 315,
+          "max_location_equivalents_daily": 2520
+        },
+        "fetching": false,
+        "forecast_summary": {
+          "id": "openmeteo-wind-fba446622ae6fb3410604fa0",
+          "available_at": "2026-10-16T12:48:01.473900Z",
+          "source": {
+            "available_at": "2026-10-16T12:48:01.473900Z",
+            "bytes": 940751,
+            "license_url": "https://open-meteo.com/en/terms",
+            "model_initialization": "NOT_SUPPLIED",
+            "provider": "Open-Meteo",
+            "sha256": "fba446622ae6fb3410604fa0e11224bca76fccf92add73d948a13da516715e20",
+            "url": "https://api.open-meteo.com/v1/forecast?latitude=41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.6,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.7,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.8,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,41.9,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.1,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.2,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.3,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.4,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.6,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.7,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.8,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,42.9,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0&longitude=12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9,12.9,13.0,13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14.0,14.1,14.2,14.3,14.4,14.5,14.6,14.7,14.8,14.9&hourly=wind_speed_10m,wind_direction_10m&timezone=UTC&wind_speed_unit=ms&forecast_days=4&models=icon_eu&cell_selection=nearest&elevation=nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan"
+          }
+        }
+      },
+      "point": {
+        "status": "FRESH",
+        "error": null,
+        "age_s": 385.65133833885193,
+        "quota": {
+          "attempts_today": 5,
+          "local_daily_limit": 48,
+          "refresh_s": 1800,
+          "scope": "single fixed point;7variables4days; free noncommercial endpoint"
+        },
+        "fetching": false,
+        "forecast_summary": {
+          "id": "openmeteo-681b51fcdc192d2b093a5045",
+          "available_at": "2026-10-16T12:47:10.970477Z",
+          "source": {
+            "available_at": "2026-10-16T12:47:10.970477Z",
+            "bytes": 5466,
+            "license_url": "https://open-meteo.com/en/terms",
+            "model_initialization": "NOT_SUPPLIED",
+            "provider": "Open-Meteo",
+            "sha256": "681b51fcdc192d2b093a5045a167713df5d32c0ef7b89dd7f2edd0f6bb3fa225",
+            "url": "https://api.open-meteo.com/v1/forecast?latitude=42.35&longitude=13.38&hourly=temperature_2m%2Crelative_humidity_2m%2Cprecipitation%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure%2Cshortwave_radiation&timezone=UTC&wind_speed_unit=ms&forecast_days=4&models=icon_eu"
+          }
+        }
+      }
+    },
+    "guest_unix": 1792155216.6364975,
+    "free_disk_bytes": 9266958336,
+    "host_minus_guest_s_at_return": -0.006739616394042969,
+    "conservative_download_bytes": 3688198505,
+    "download_limit_bytes": 5368709120
+  },
+  "clock_repair": {
+    "observed_before_host_utc": "2026-10-16T12:44:25Z",
+    "observed_before_guest_utc": "2026-10-16T07:48:55Z",
+    "approx_skew_s": 17730,
+    "cause": "Guest wall clock lag observed after suspension; exact hypervisor root cause not isolated",
+    "action": "sudo -n systemctl restart systemd-timesyncd (existing service, idle jobs, no installation/config change)",
+    "result": "PASS, current host/guest difference <3s measured",
+    "gui_guard": "Clock disagreement >120s or browser-expired cache downgrades FRESH to STALE, point forecast job-builder disabled",
+    "scope_limit": "Conservative browser gate; OS time remains prerequisite for direct API/CLI, not operational clock certification"
+  }
+}

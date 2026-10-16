@@ -83,3 +83,6 @@ Historical M0 reports: [single VM](reports/M0-unified-vm.md), [contract examples
 
 
 Final local supplement:3,275files verified inVM and after host transport; source998b934, integrity record [transport verification](reports/dashboard-evidence/transport-verification.json). The packaged-source replay agrees exactly on the pinned decision. This is a research supplement relying on retained M1parent assets/environments, not a completed independent full installation. The dashboard remains running for user trials; full research gates remain blocked.
+
+
+[Vento regionale animato](reports/VENTO-REGIONALE.md):315punti ICON-EU reali su tutto il rettangolo Abruzzo,96ore, particelle trasparenti/ora/pausa, piano gratuito non commerciale con cacheVM3h/max8acquisizioni al giorno. Sfondo satellitare regionale e ortofoto al dettaglio; il campo è di visualizzazione, non nuove forzanti distribuite nei simulatori.

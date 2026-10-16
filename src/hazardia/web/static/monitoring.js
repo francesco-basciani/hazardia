@@ -1,3 +1,4 @@
+import {regionalWind} from '/wind-particles.js?v=regional1';
 /* Read-only hazard overview: one chosen product per hazard, never a fused forecast. */
 const $=id=>document.getElementById(id);
 const escape=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -11,13 +12,15 @@ export function monitoringMap(initial,feedback){
  const satellite=L.imageOverlay('/assets/satellite.png',[[42.30,13.32],[42.40,13.44]],{opacity:1,pane:'monitorSatellite',attribution:'Contains modified Copernicus Sentinel data2024'}).addTo(map);
  // Keep flood below fire independent of filter/case toggle order.
  for(const [name,z] of [['monitorFlood',410],['monitorFire',420],['monitorNames',610]]){map.createPane(name);map.getPane(name).style.zIndex=z;}
- const ortho=L.tileLayer('/api/maps/ortho/{z}/{x}/{y}',{minZoom:8,maxZoom:20,maxNativeZoom:19,keepBuffer:1,updateWhenIdle:true,updateWhenZooming:false,bounds:[[41.6607,12.9714],[42.9053,14.7922]],attribution:'Ortofoto Regione Abruzzo 2018–2019 · 20 cm/px dichiarati'}).addTo(map);
+ const ortho=L.tileLayer('/api/maps/ortho/{z}/{x}/{y}',{minZoom:12,maxZoom:20,maxNativeZoom:19,keepBuffer:1,updateWhenIdle:true,updateWhenZooming:false,bounds:[[41.6607,12.9714],[42.9053,14.7922]],attribution:'Ortofoto Regione Abruzzo 2018–2019 · 20 cm/px dichiarati'}).addTo(map);
+ const regional=L.tileLayer('/api/maps/regional/{z}/{x}/{y}',{minZoom:8,maxZoom:11,keepBuffer:1,updateWhenIdle:true,updateWhenZooming:false,bounds:[[40.5,10.0],[44.0,18.0]],attribution:'<a href="https://s2maps.eu">Sentinel-2 cloudless</a> by EOX IT Services GmbH (Contains modified Copernicus Sentinel data 2024) · CC BY-NC-SA4.0'}).addTo(map);
+ const wind=regionalWind(map);
  const weatherLayer=L.layerGroup().addTo(map);
  const labels=L.layerGroup().addTo(map),roads=L.layerGroup().addTo(map),point=L.layerGroup().addTo(map),products={FIRE:L.layerGroup().addTo(map),FLOOD:L.layerGroup().addTo(map)};
  L.control.scale({imperial:false,maxWidth:120}).addTo(map);
  map.attributionControl.addAttribution('© OpenStreetMap contributors · ODbL · GeoNames CC BY4.0 · <a href="https://open-meteo.com/">Open-Meteo</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY4.0</a>');
- function source(){const online=$('monitor-basemap').value==='ortho';$('monitor-source').textContent=online?'Ortofoto aeree 2018–2019 · 20 cm/px dichiarati · online.'+(failures?' Alcune tessere non disponibili: scegli Sentinel offline.':''):'Sentinel-2 · 13/07/2024 · pixel10m · ritaglio offline. Fuori dal ritaglio lo sfondo non è disponibile.';}
- ortho.on('tileerror',()=>{failures++;source()});source();
+ function source(){const online=$('monitor-basemap').value==='ortho';$('monitor-source').textContent=online?(map.getZoom()<=11?'Sentinel-2 cloudless2024 · EOX · mosaico regionale online · CC BY-NC-SA4.0.':'Ortofoto aeree 2018–2019 · 20 cm/px dichiarati · online.')+(failures?' Alcune tessere non disponibili: scegli Sentinel offline.':''):'Sentinel-2 · 13/07/2024 · pixel10m · ritaglio offline. Fuori dal ritaglio lo sfondo non è disponibile.';}
+ ortho.on('tileerror',()=>{failures++;source()});regional.on('tileerror',()=>{failures++;source()});map.on('zoomend',source);source();
  function chosen(kind){return catalog.scenarios.find(s=>s.hazard===kind&&s.id===$('monitor-'+kind.toLowerCase()+'-case').value);}
  function shown(){return ['FIRE','FLOOD'].filter(k=>$('monitor-'+k.toLowerCase()).checked).map(chosen).filter(Boolean);}
  function draw(){
@@ -34,7 +37,7 @@ export function monitoringMap(initial,feedback){
   $('monitor-map').dataset.hazards=active.map(s=>s.hazard).join(',');$('monitor-map').dataset.products=active.map(s=>s.id).join(',');
  }
  function weather(forecast,record){
-  weatherForecast=forecast;weatherRecord=record;weatherLayer.clearLayers();
+  const timeChanged=weatherRecord?.at!==record?.at;weatherForecast=forecast;weatherRecord=record;weatherLayer.clearLayers();if(record&&timeChanged)wind.hour(record.at);wind.toggle();
   const enabled=$('monitor-weather').checked,fields=['wind','temperature','rain'].filter(k=>$('weather-layer-'+k).checked),legend=$('weather-map-legend');
   $('monitor-map').dataset.weatherFields=enabled&&forecast&&record?fields.join(','):'';
   legend.hidden=!enabled||!forecast||!record||!fields.length;
@@ -56,7 +59,7 @@ export function monitoringMap(initial,feedback){
  $('monitor-all').onclick=()=>{const t=performance.now();$('monitor-fire').checked=true;$('monitor-flood').checked=true;draw();feedback(t,'monitor-filter');};
  $('monitor-opacity').oninput=()=>{const t=performance.now();$('monitor-opacity-value').textContent=$('monitor-opacity').value+'%';const opacity=Number($('monitor-opacity').value)/100;Object.values(products).forEach(g=>g.eachLayer(l=>{if(l.setOpacity)l.setOpacity(opacity);else if(l.setStyle)l.setStyle({fillOpacity:opacity});}));feedback(t,'monitor-opacity');};
  $('monitor-fit').onclick=fit;
- $('monitor-basemap').onchange=()=>{const t=performance.now();if($('monitor-basemap').value==='ortho'&&visible)ortho.addTo(map);else ortho.remove();source();feedback(t,'monitor-basemap');};
+ $('monitor-basemap').onchange=()=>{const t=performance.now();if($('monitor-basemap').value==='ortho'&&visible){ortho.addTo(map);regional.addTo(map);}else{ortho.remove();regional.remove();}source();feedback(t,'monitor-basemap');};
  function renderLabels(){labels.clearLayers();roads.clearLayers();if(!$('monitor-labels').checked||!visible)return;const bounds=map.getBounds(),z=map.getZoom(),occupied=[];let roadCount=0;
   for(const f of context){if(f.kind==='place'&&bounds.contains([f.lat,f.lon])&&(z>=13||['city','town','capoluogo amministrativo'].includes(f.type))&&occupied.length<80){const px=map.latLngToContainerPoint([f.lat,f.lon]);if(occupied.some(p=>Math.abs(px.x-p.x)<100&&Math.abs(px.y-p.y)<24))continue;occupied.push(px);L.marker([f.lat,f.lon],{pane:'monitorNames',interactive:false,keyboard:false,icon:L.divIcon({className:'geo-label place',html:escape(f.name),iconSize:[140,22],iconAnchor:[70,11]})}).addTo(labels);}
    if(z>=14&&f.kind==='road'&&roadCount<150&&f.geometry.some(p=>bounds.contains([p[1],p[0]]))){roadCount++;L.polyline(f.geometry.map(p=>[p[1],p[0]]),{color:'#fff',weight:2,opacity:.65,interactive:false}).addTo(roads);}}
@@ -68,5 +71,5 @@ export function monitoringMap(initial,feedback){
   if(!p||p[0]<41.60||p[0]>42.97||p[1]<12.90||p[1]>14.86){$('monitor-search-status').textContent='Luogo non trovato nella copertura disponibile. Inserisci coordinate in Abruzzo.';return;}map.setView(p,16,{animate:false});inspect(L.latLng(p));$('monitor-search-status').textContent='Posizione trovata · riferimenti di contesto disponibili.';};
  fetch('/assets/map-context.json').then(r=>{if(!r.ok)throw Error();return r.json()}).then(v=>{context=v.features;const places=[...new Set(context.filter(f=>f.kind==='place').map(f=>f.name))];$('monitor-places').innerHTML=places.map(n=>'<option value="'+escape(n)+'"></option>').join('');renderLabels();}).catch(()=>{$('monitor-search-status').textContent='Nomi geografici non disponibili. Ricerca per coordinate attiva.';});
  update(initial);fit();
- return {update,weather,visible(on){visible=on;if(!on)ortho.remove();else if($('monitor-basemap').value==='ortho')ortho.addTo(map);requestAnimationFrame(()=>{map.invalidateSize({pan:false});if(on)renderLabels();});}};
+ return {update,weather,visible(on){visible=on;wind.visible(on);if(!on){ortho.remove();regional.remove();}else if($('monitor-basemap').value==='ortho'){ortho.addTo(map);regional.addTo(map);}requestAnimationFrame(()=>{map.invalidateSize({pan:false});if(on)renderLabels();});}};
 }

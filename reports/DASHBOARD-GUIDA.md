@@ -93,3 +93,8 @@ Apri http://127.0.0.1:8080/physical-fire.html oppure il link **Apri il confronto
 
 ## Aggiornamento interfaccia — 16 ottobre 2026
 La pagina iniziale ora mette al centro una mappa singola. «Affianca A / B» apre il confronto; «Risultati» contiene numeri e piano, «Dati e fonti» provenienza e laboratorio avanzato, «Guida» spiega i termini. Su telefono apri «Scenario e interventi» per i comandi laterali. Nuovi strumenti: misura, area, nota, viste e casi salvati nella VM, esportazione annotazioni GeoJSON. Disegni e note non modificano i simulatori. I casi salvati richiedono un nuovo calcolo del piano; confronto fisico incendio resta nell’apposita pagina su 1–3 giorni. Dettagli, limiti e distanza dai riferimenti commerciali: [UI-CONTROL-ROOM.md](UI-CONTROL-ROOM.md).
+
+
+## Vento animato sull’Abruzzo
+
+Nel pannello «Vento sull’Abruzzo» attiva le particelle e premi «Inquadra Abruzzo». Cambia «Ora del vento regionale» per vedere la previsione oraria e usa Pausa/Riprendi. «Meteo» spegne anche questo livello. Il colore rappresenta la velocità inm/s; le scie la direzione, con movimento amplificato. La previsione è campionata su315punti, non una misura live né un trasporto reale di particelle. Le etichette meteo del singolo punto restano opzionali, spente inizialmente. [Dettagli e prove](VENTO-REGIONALE.md).

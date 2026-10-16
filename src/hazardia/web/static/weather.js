@@ -1,3 +1,4 @@
+import {checkedForecastTime} from '/weather-clock.js?v=1';
 /* Local polling reads one VM cache. Only the VM contacts Open-Meteo. */
 const $=id=>document.getElementById(id),escape=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const time=t=>new Date(t).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})+' Roma';
@@ -5,7 +6,7 @@ export function weatherPanel(monitor){
  let snapshot=null,busy=false;
  function selected(){return snapshot?.forecast?.records.find(r=>r.at===$('weather-hour').value);}
  function draw(){const f=snapshot?.forecast,r=selected();if(!f||!r)return;const v=r.values;$('weather-values').innerHTML=[['Temperatura',v.temperature_2m+' °C'],['Vento',v.wind_speed_10m+' m/s · da '+v.wind_direction_10m+'°'],['Pioggia nell’ora',v.precipitation+' mm'],['Umidità aria',v.relative_humidity_2m+'%'],['Pressione superficie',v.surface_pressure+' hPa'],['Radiazione media',v.shortwave_radiation+' W/m²']].map(([k,v])=>'<div><span>'+escape(k)+'</span><strong>'+escape(v)+'</strong></div>').join('');monitor.weather(f,r);}
- function render(s){const previous=snapshot?.forecast?.id;snapshot=s;const f=s.forecast,fresh=s.status==='FRESH';$('weather-status').textContent=s.status==='EMPTY'?'Previsioni non ancora disponibili. '+(s.error||'Acquisizione nella VM…'):fresh?'Previsione reale disponibile · cache VM condivisa':'Previsione in cache scaduta: consultabile, non utilizzabile per nuovi calcoli.';if(s.error)$('weather-status').textContent+=' · '+s.error;
+ function render(s){s=checkedForecastTime(s,1800);const previous=snapshot?.forecast?.id;snapshot=s;const f=s.forecast,fresh=s.status==='FRESH';$('weather-status').textContent=s.status==='EMPTY'?'Previsioni non ancora disponibili. '+(s.error||'Acquisizione nella VM…'):fresh?'Previsione reale disponibile · cache VM condivisa':'Previsione in cache scaduta: consultabile, non utilizzabile per nuovi calcoli.';if(s.error)$('weather-status').textContent+=' · '+s.error;if(s.clock_warning)$('weather-status').textContent+=' · '+s.clock_warning;
   $('weather-use').disabled=!fresh;$('simulation-start').disabled=!fresh||$('simulation-weather').value!=='FORECAST';
   if(!f){$('weather-meta').textContent='Endpoint gratuito non commerciale; nessuna chiave o pagamento. Riprova dopo il limite della cache.';return;}
   if(previous!==f.id){const old=$('weather-hour').value,records=f.records.filter(r=>Date.parse(r.at)+3600000>Date.now()),options=records.slice(0,73).map(r=>'<option value="'+r.at+'">'+time(r.at)+'</option>').join('');$('weather-hour').innerHTML=options;$('weather-hour').disabled=false;if(records.some(r=>r.at===old))$('weather-hour').value=old;

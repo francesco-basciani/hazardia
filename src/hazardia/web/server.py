@@ -5,18 +5,19 @@ from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
 from hazardia.io import load,loads,write_new,utcnow,HazardError,sha256
 from hazardia.jobs import JobStore
-from hazardia.web.maps import Orthophotos
+from hazardia.web.maps import Orthophotos,RegionalSatellite
 from hazardia.web.notebook import Notebook
 from hazardia.decision.research_fixture import problem
 from hazardia.decision.supervisor import bounded_decide
 from hazardia.adaptation.control import ResearchControl
 from hazardia.decision.rolling import advance
 from hazardia.ingest.forecast import ForecastStore
+from hazardia.ingest.wind import WindStore
 from hazardia.adapters.forecast import stage as stage_forecast
 
 class App:
     def __init__(self,root):
-        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',self.root/'runtime-v2.json');self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.notebook=Notebook(self.state/"notebook");self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock()
+        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',self.root/'runtime-v2.json');self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock()
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
     def models(self):
@@ -56,6 +57,15 @@ class App:
                 finally:self.weather_lock.release()
             threading.Thread(target=fetch,daemon=True).start()
         return dict(status='ACCEPTED',scope='Shared bounded VM cache; existing forecast remains readable')
+    def refresh_wind(self):
+        if self.wind_lock.acquire(False):
+            def fetch():
+                try:self.wind.refresh()
+                except HazardError as e:
+                    with self.wind.connect() as db:db.execute('UPDATE state SET error=? WHERE id=1',(e.code+': '+str(e),))
+                finally:self.wind_lock.release()
+            threading.Thread(target=fetch,daemon=True).start()
+        return dict(status='ACCEPTED',scope='Fixed regional grid; shared three-hour VM cache')
     def submit_decision(self,body):
         if set(body)-{'hazard','resources','robust','road_open','transfer','disabled','scenario_ids','rolling_from','preparedness'}:raise HazardError('INVALID_INPUT','Unknown decision fields')
         hazard=body.get('hazard','FIRE');count=body.get('resources',3);risk=body.get('robust',.5)
@@ -145,6 +155,9 @@ class Handler(BaseHTTPRequestHandler):
                 if path=='/api/research':
                     with app.lock:result=app.replay.action(body)
                     return self.send(200,result)
+                if path=='/api/weather/wind/refresh':
+                    if body:raise HazardError('INVALID_INPUT','Fixed regional wind grid; arbitrary queries not allowed')
+                    return self.send(202,app.refresh_wind())
                 if path=='/api/weather/refresh':
                     if body:raise HazardError('INVALID_INPUT','Fixed research forecast point; no arbitrary provider queries')
                     return self.send(202,app.refresh_weather())
@@ -164,9 +177,13 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/research':
                 with app.lock:result=app.replay.snapshot()
                 return self.send(200,result)
+            if path=='/api/maps/regional/status':return self.send(200,app.regional_satellite.status())
+            regional=re.fullmatch(r'/api/maps/regional/(\d{1,2})/(\d{1,6})/(\d{1,6})',path)
+            if regional:return self.send(200,app.regional_satellite.tile(*map(int,regional.groups())),'image/jpeg')
             if path=='/api/maps/status':return self.send(200,app.orthophotos.status())
             tile=re.fullmatch(r'/api/maps/ortho/(\d{1,2})/(\d{1,6})/(\d{1,6})',path)
             if tile:return self.send(200,app.orthophotos.tile(*map(int,tile.groups())),'image/jpeg')
+            if path=='/api/weather/wind':return self.send(200,app.wind.snapshot())
             if path=='/api/weather':return self.send(200,app.weather.snapshot())
             if path=='/api/catalog':return self.send(200,app.catalog())
             if path=='/api/jobs':return self.send(200,app.jobs())

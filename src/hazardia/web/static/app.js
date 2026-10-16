@@ -1,6 +1,6 @@
-import {weatherPanel} from '/weather.js?v=weatherglass1';
-import {monitoringMap} from '/monitoring.js?v=weatherglass1';
-import {workbench} from '/workbench.js?v=weatherglass1';
+import {weatherPanel} from '/weather.js?v=regional1';
+import {monitoringMap} from '/monitoring.js?v=regional1';
+import {workbench} from '/workbench.js?v=regional1';
 import {geographicMaps} from '/map-detail.js?v=regional' ;
 const fmt=v=>typeof v==='number'?Number(v.toFixed(3)).toLocaleString('it-IT'):String(v);const $=id=>document.getElementById(id);const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let catalog=null,current=[],maps=[],layers=[],pointLayers=[],unitLayers=[],decision=null,generation=0,syncing=false,playing=null,knownCatalog='',lastJobJSON='',research=null,lastCatalogPoll=0;
