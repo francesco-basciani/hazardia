@@ -1,0 +1,374 @@
+{
+  "run_id": "fire-studio-20261016",
+  "status": "PASS",
+  "scope": "Native interactive research fire comparison and visible partial degradation; not full scientific readiness",
+  "base_git_sha": "0870880ccb91b3ad7619624fd80361e8ffbc45eb",
+  "software_tests": 129,
+  "ui_workflow_checks_pass": 19,
+  "ui_final_checks_pass": 15,
+  "axe_final_scans": 3,
+  "axe_final_violations": 0,
+  "viewports": [
+    375,
+    724,
+    1440
+  ],
+  "native_noop": {
+    "A": {
+      "expected_area_ha": 7.29,
+      "hour": 3,
+      "path": "frame-003.npz",
+      "png_sha256": "6b5c1ddd06278e128a6ca6de00523f22cf62bd50895714a9795e486c289a202a",
+      "positive_cells": 134,
+      "sha256": "79bdce78f0c68235472dd4d0e5da4f4bf886590ba884b41f815b75f796fb584a",
+      "url": "/api/firelab/job-aac5584078df430f887c098fa1d117a1/frame-003.png"
+    },
+    "B": {
+      "expected_area_ha": 7.29,
+      "hour": 3,
+      "path": "frame-003.npz",
+      "png_sha256": "6b5c1ddd06278e128a6ca6de00523f22cf62bd50895714a9795e486c289a202a",
+      "positive_cells": 134,
+      "sha256": "79bdce78f0c68235472dd4d0e5da4f4bf886590ba884b41f815b75f796fb584a",
+      "url": "/api/firelab/job-5ca2e73d42e74dfe8a433b5c0a85e486/frame-003.png"
+    },
+    "consumed": [
+      {
+        "moisture_changed_cells": 0,
+        "time": 0,
+        "vegetation_changed_cells": 0,
+        "wind_from_deg": 235,
+        "wind_kmh": 7.884
+      },
+      {
+        "moisture_changed_cells": 0,
+        "time": 3600,
+        "vegetation_changed_cells": 0,
+        "wind_from_deg": 232,
+        "wind_kmh": 8.208
+      },
+      {
+        "moisture_changed_cells": 0,
+        "time": 7200,
+        "vegetation_changed_cells": 0,
+        "wind_from_deg": 238,
+        "wind_kmh": 9.395999999999999
+      }
+    ],
+    "label": "noop",
+    "same_native_frame": true
+  },
+  "native_wind": {
+    "A": {
+      "expected_area_ha": 7.29,
+      "hour": 3,
+      "path": "frame-003.npz",
+      "png_sha256": "6b5c1ddd06278e128a6ca6de00523f22cf62bd50895714a9795e486c289a202a",
+      "positive_cells": 134,
+      "sha256": "79bdce78f0c68235472dd4d0e5da4f4bf886590ba884b41f815b75f796fb584a",
+      "url": "/api/firelab/job-b3950bc2277d4ada91934f674723159e/frame-003.png"
+    },
+    "B": {
+      "expected_area_ha": 41.31,
+      "hour": 3,
+      "path": "frame-003.npz",
+      "png_sha256": "69aaf6f515cd273eae6dfc536f2f36b31dfab06ee0e6097cf48b2762c470be63",
+      "positive_cells": 730,
+      "sha256": "789380696286482042c566d7bc3c94969d7e9f8fcdb7bcb06a2a36c6fcdffe60",
+      "url": "/api/firelab/job-e5baa2a25e45414f9fddfbd621b9ea9e/frame-003.png"
+    },
+    "consumed": [
+      {
+        "moisture_changed_cells": 0,
+        "time": 0,
+        "vegetation_changed_cells": 0,
+        "wind_from_deg": 270,
+        "wind_kmh": 28.8
+      },
+      {
+        "moisture_changed_cells": 0,
+        "time": 3600,
+        "vegetation_changed_cells": 0,
+        "wind_from_deg": 270,
+        "wind_kmh": 28.8
+      },
+      {
+        "moisture_changed_cells": 0,
+        "time": 7200,
+        "vegetation_changed_cells": 0,
+        "wind_from_deg": 270,
+        "wind_kmh": 28.8
+      }
+    ],
+    "label": "wind",
+    "same_native_frame": false
+  },
+  "native_heavy": {
+    "results": [
+      {
+        "A": {
+          "expected_area_ha": 7.29,
+          "hour": 3,
+          "path": "frame-003.npz",
+          "png_sha256": "6b5c1ddd06278e128a6ca6de00523f22cf62bd50895714a9795e486c289a202a",
+          "positive_cells": 134,
+          "sha256": "79bdce78f0c68235472dd4d0e5da4f4bf886590ba884b41f815b75f796fb584a",
+          "url": "/api/firelab/job-e2287d2dcaf44aabbe03b126096b3b91/frame-003.png"
+        },
+        "B": {
+          "expected_area_ha": 1.89,
+          "hour": 3,
+          "path": "frame-003.npz",
+          "png_sha256": "297abf00027d81125c1f752d023f9e0daf2f84c25a7df68877fcdf227708c2de",
+          "positive_cells": 39,
+          "sha256": "8d8644fe6fc030b99e344604f1785964727a244d3e356ea89c87786751b6e360",
+          "url": "/api/firelab/job-d03c86c584ef40fd81ff245da28643d9/frame-003.png"
+        },
+        "consumed": [
+          {
+            "moisture_changed_cells": 0,
+            "time": 0,
+            "vegetation_changed_cells": 50,
+            "wind_from_deg": 235,
+            "wind_kmh": 7.884
+          },
+          {
+            "moisture_changed_cells": 0,
+            "time": 3600,
+            "vegetation_changed_cells": 0,
+            "wind_from_deg": 232,
+            "wind_kmh": 8.208
+          },
+          {
+            "moisture_changed_cells": 0,
+            "time": 7200,
+            "vegetation_changed_cells": 0,
+            "wind_from_deg": 238,
+            "wind_kmh": 9.395999999999999
+          }
+        ],
+        "label": "heavy",
+        "same_native_frame": false
+      }
+    ],
+    "status": "PASS"
+  },
+  "native_extended": {
+    "results": [
+      {
+        "area_ha": 5.625,
+        "baseline": "job-e2287d2dcaf44aabbe03b126096b3b91",
+        "category": "waterline_action",
+        "different_native_frame": true,
+        "events": [
+          {
+            "moisture_changed_cells": 50,
+            "time": 0,
+            "vegetation_changed_cells": 0,
+            "wind_from_deg": 235,
+            "wind_kmh": 7.884
+          },
+          {
+            "moisture_changed_cells": 0,
+            "time": 3600,
+            "vegetation_changed_cells": 0,
+            "wind_from_deg": 232,
+            "wind_kmh": 8.208
+          },
+          {
+            "moisture_changed_cells": 0,
+            "time": 7200,
+            "vegetation_changed_cells": 0,
+            "wind_from_deg": 238,
+            "wind_kmh": 9.395999999999999
+          }
+        ],
+        "job": "job-8e5e67bdb03d4c91b22ca0f4be690568"
+      },
+      {
+        "area_ha": 5.625,
+        "baseline": "job-e2287d2dcaf44aabbe03b126096b3b91",
+        "category": "canadair",
+        "different_native_frame": true,
+        "events": [
+          {
+            "moisture_changed_cells": 50,
+            "time": 0,
+            "vegetation_changed_cells": 0,
+            "wind_from_deg": 235,
+            "wind_kmh": 7.884
+          },
+          {
+            "moisture_changed_cells": 0,
+            "time": 3600,
+            "vegetation_changed_cells": 0,
+            "wind_from_deg": 232,
+            "wind_kmh": 8.208
+          },
+          {
+            "moisture_changed_cells": 0,
+            "time": 7200,
+            "vegetation_changed_cells": 0,
+            "wind_from_deg": 238,
+            "wind_kmh": 9.395999999999999
+          }
+        ],
+        "job": "job-3289659b71e94ce38d25c847d3129dd5"
+      },
+      {
+        "area_ha": 5.625,
+        "baseline": "job-e2287d2dcaf44aabbe03b126096b3b91",
+        "category": "helicopter",
+        "different_native_frame": true,
+        "events": [
+          {
+            "moisture_changed_cells": 55,
+            "time": 0,
+            "vegetation_changed_cells": 0,
+            "wind_from_deg": 235,
+            "wind_kmh": 7.884
+          },
+          {
+            "moisture_changed_cells": 0,
+            "time": 3600,
+            "vegetation_changed_cells": 0,
+            "wind_from_deg": 232,
+            "wind_kmh": 8.208
+          },
+          {
+            "moisture_changed_cells": 0,
+            "time": 7200,
+            "vegetation_changed_cells": 0,
+            "wind_from_deg": 238,
+            "wind_kmh": 9.395999999999999
+          }
+        ],
+        "job": "job-497da3b8b16345eea3c8ca7426bc2065"
+      },
+      {
+        "area_ha": 5732.64,
+        "category": "72-hour-baseline",
+        "frames": 72,
+        "job": "job-116faeb266764054909bde702ee96ec2"
+      }
+    ],
+    "status": "PASS"
+  },
+  "native_direction": {
+    "qualification": "One paired directional sensitivity fixture; not field skill",
+    "records": [
+      {
+        "centroid_east_m": 550.0,
+        "centroid_north_m": 28.03921568627451,
+        "job": "job-e5baa2a25e45414f9fddfbd621b9ea9e",
+        "speed_ms": 8,
+        "wind_from_deg": 270
+      },
+      {
+        "centroid_east_m": -502.2937771345876,
+        "centroid_north_m": -213.29956584659914,
+        "job": "job-a4049396ff284c58855ed0db1306cff5",
+        "speed_ms": 8,
+        "wind_from_deg": 90
+      }
+    ],
+    "status": "PASS"
+  },
+  "native_gui_pair": [
+    {
+      "job": "job-b648439b325243f4bbdabada1b973408",
+      "status": "SUCCEEDED",
+      "metrics": {
+        "artifact_bytes": 7718329,
+        "child_cpu_system_s": 3.5418499999999997,
+        "child_cpu_user_s": 37.843472,
+        "execution_s": 41.74578046699753,
+        "queue_s": 0.121284,
+        "rss_samples": 221,
+        "rss_sampling_interval_s": 0.1,
+        "sampled_peak_process_group_rss_bytes": 1218048000
+      },
+      "code_stable_during_job": true
+    },
+    {
+      "job": "job-7a2a49f4bd044e308928c3b14eaef6e2",
+      "status": "SUCCEEDED",
+      "metrics": {
+        "artifact_bytes": 7585625,
+        "child_cpu_system_s": 2.628723,
+        "child_cpu_user_s": 37.484548000000004,
+        "execution_s": 40.44510442299361,
+        "queue_s": 41.850815,
+        "rss_samples": 216,
+        "rss_sampling_interval_s": 0.1,
+        "sampled_peak_process_group_rss_bytes": 1233006592
+      },
+      "code_stable_during_job": true
+    }
+  ],
+  "runtime_source_sha256": {
+    "requirements/fire.txt": "692bf9e3a800085b05f0f2d22933438542101b4f7175433bc0d0732c7d0d12a7",
+    "scripts/build_dashboard_data.py": "4de142f74f531bd9913e7a870aef6861ba976897e6e0a65d2cd600bb33beb25e",
+    "src/hazardia/adapters/workers/fire.py": "2872f19f3b290c8526c4c6d04199813c97d36783f50bd586a151db271e8d2e2b",
+    "src/hazardia/adapters/workers/product.py": "92fed409480a391a190da448b1a34440477f4e2526f0662d95f258dcfb1fe382",
+    "src/hazardia/contracts.py": "e948ce5db7f61cbc4da483745e78c4fbdda67af122e2d7aa27b8fd3eede605af",
+    "src/hazardia/schemas/simulation_request.schema.json": "eb0293d7dd590594feaec364ff6e1f4ea49403ccb73ff1eac81974af3840951a",
+    "src/hazardia/web/server.py": "ddbcaf56a7a8a93f0f53491152f636538ca2c90b541b6b168b61288dbc3e051f",
+    "src/hazardia/web/static/ui-layout.js": "f1518e9504b464f2f86837ed8330add1b94a37faa2642b460f41be5b7fd6559b",
+    "src/hazardia/web/static/workspace.css": "894b8c29e4dc90fc67946e16136825629bebefb912e82a6a9b8601ce56f549f4",
+    "src/hazardia/firelab.py": "bfc8e6a713269e0591837f2f194270b537935e205f3e4eb2aa02f4b64eec157c",
+    "src/hazardia/adapters/workers/fire_studio.py": "c6008263c4449b231bb7cecf709d1b1b5f01e4e3bca8f2f892cf1f30ff736008",
+    "src/hazardia/adapters/workers/studio_render.py": "46701776fc2a7c8fbdb395cdedbef8ffaae426e343f2d3d29e60b39ebd0144df",
+    "src/hazardia/web/static/fire-studio.html": "0e6f4c16e6632fea68b975cc7fefb3300a89773164a35d4feedcd98aeff58752",
+    "src/hazardia/web/static/fire-studio.js": "a01457bb32344c4eae56fa02b46d8abaac0ec969b59d68cca6c75d9e30d7a2ef",
+    "src/hazardia/web/static/fire-studio.css": "dca8f966eb4f5cd9e2bfdf8eb33e6135bb11691ce22baa2359e2247118ab22f4",
+    "tests/unit/test_firelab.py": "44ec8b96323ab9c98b6d447f2e90e84e0bfc500a9d900db9ef408582eac15a49"
+  },
+  "engine_pins_unchanged": 145,
+  "prior_state": {
+    "count": 922,
+    "unchanged": 920,
+    "changed_traffic_counters": [
+      "web-state/map-traffic.json",
+      "web-state/regional-satellite-traffic.json"
+    ]
+  },
+  "degradation_api": [
+    {
+      "fault": "safety_unknown",
+      "status": "PASS",
+      "proposal_code": "SAFETY_UNVERIFIED",
+      "catalog_available": true,
+      "native_previous_result_available": true
+    },
+    {
+      "fault": "solver_down",
+      "status": "PASS",
+      "proposal_code": "DEPENDENCY_UNAVAILABLE",
+      "catalog_available": true,
+      "native_previous_result_available": true
+    }
+  ],
+  "negative_api": {
+    "status": "ERROR",
+    "code": "INVALID_INPUT",
+    "detail": "Action line must be1..2000m: draw a shorter line or zoom in"
+  },
+  "blocked": [
+    "qualified real vegetation/fuel mapping",
+    "atmospheric weather to fuel-moisture estimator coupling",
+    "operational resource capabilities/logistics",
+    "full capability-optimized graceful degradation",
+    "full M5-M7 research gates"
+  ],
+  "not_run": [
+    "72h paired intervention comparison in new studio",
+    "real geographic transfer",
+    "real devices/cross-browser",
+    "new 30min soak/100k load",
+    "H1-H3 scientific validation"
+  ],
+  "reviewer": "Codex self-check",
+  "ui_final_artifact": "experiments/runs/fire-studio-20261016/browser-delivery/results.json",
+  "ui_final_artifact_sha256": "3220ce5070cdd6e30ce05f35799e55bbbdd3e153cfea6c7da48bfc626dcc4a2c"
+}

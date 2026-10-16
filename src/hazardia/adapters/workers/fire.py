@@ -23,6 +23,10 @@ def run(root):
     row,col=opt['ignition']
     if not (0<=row<expected[0] and 0<=col<expected[1]):raise HazardError('INVALID_INPUT','Ignition outside grid')
     if get_num_threads()!=1:raise HazardError('UNSUPPORTED_CONFIGURATION','Only tested one-thread RNG policy enabled')
+    plan_asset=next((a for a in req['assets'] if a['role']=='fire_plan'),None)
+    if plan_asset:
+        from hazardia.adapters.workers.fire_studio import run_studio
+        return run_studio(root,req,dem,veg,load(verify_asset(root,plan_asset)))
     def model(seconds,prime=False):
         m=Propagator(dem=dem,veg=veg,cellsize=req['grid']['transform'][0],realizations=opt['realizations'],fuels=FUEL_SYSTEM_LEGACY,do_spotting=False,out_of_bounds_mode='raise')
         m.set_boundary_conditions(BoundaryConditions(time=0,ignitions=[(row,col)],wind_speed=speed,wind_dir=direction,moisture=np.full_like(dem,opt['moisture_percent'])))

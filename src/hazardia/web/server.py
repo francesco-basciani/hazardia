@@ -16,10 +16,11 @@ from hazardia.ingest.forecast import ForecastStore
 from hazardia.ingest.wind import WindStore
 from hazardia.ingest.map_weather import MapWeatherStore,grid as map_weather_grid
 from hazardia.adapters.forecast import stage as stage_forecast
+from hazardia.firelab import stage as stage_firelab,validate as validate_firelab
 
 class App:
     def __init__(self,root):
-        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',self.root/'runtime-v2.json');self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock()
+        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock()
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
     def models(self):
@@ -27,6 +28,7 @@ class App:
             try:
                 res=self.store.work_once()
                 if res and res['state']=='SUCCEEDED':
+                    if (self.root/'jobs'/res['id']/'fire-series.json').exists():continue
                     cfg=load(self.root/'runtime-v2.json');env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[2]),PROJ_LIB='/usr/share/proj');subprocess.run([cfg['geo_python'],str(Path(__file__).resolve().parents[3]/'scripts/build_dashboard_data.py'),'--runtime',str(self.root)],env=env,timeout=60,check=True)
                 if res:continue
             except Exception as e:
@@ -35,6 +37,21 @@ class App:
     def jobs(self):
         with self.store.connect() as db:rows=db.execute('SELECT * FROM jobs ORDER BY rowid DESC LIMIT 25').fetchall()
         return [dict(dict(r),usable_product=r['state']=='SUCCEEDED') for r in rows]
+    def submit_firelab(self,body):
+        validate_firelab(body)
+        if body['weather_source']=='FORECAST' and 'source_stale' in self.replay.state['faults']:raise HazardError('STALE_FORECAST','Controlled source loss: new forecast blocked; historical replay remains available')
+        forecast=self.weather.fresh(body.get('forecast_id')) if body['weather_source']=='FORECAST' else None
+        # Reserve both places before staging; no partial pair accepted on a full queue.
+        with self.lock:
+            with self.store.connect() as db:
+                if db.execute("SELECT count(*) FROM jobs WHERE state='QUEUED'").fetchone()[0]>self.store.capacity-2:raise HazardError('QUEUE_FULL','Two queue places required for a matched native comparison')
+            folder,requests=stage_firelab(self.root,body,forecast);jobs={}
+            try:
+                for case,req in requests.items():jobs[case]=self.store.submit(req,folder)
+            except Exception:
+                for job in jobs.values():self.store.cancel(job)
+                raise
+        write_new(folder/'jobs.json',jobs);return dict(jobs=jobs,qualification='UNQUALIFIED_RESEARCH',configuration_id=folder.name)
     def submit_model(self,body):
         allowed={'hazard','seed','minutes','row','col','weather_source','forecast_id','start_at'}
         if set(body)-allowed:raise HazardError('INVALID_INPUT','Unknown simulation fields')
@@ -178,6 +195,7 @@ class Handler(BaseHTTPRequestHandler):
                     if body:raise HazardError('INVALID_INPUT','Fixed research forecast point; no arbitrary provider queries')
                     return self.send(202,app.refresh_weather())
                 if path=='/api/jobs':return self.send(202,app.submit_model(body))
+                if path=='/api/firelab':return self.send(202,app.submit_firelab(body))
                 if path=='/api/decisions':return self.send(202,app.submit_decision(body))
                 match=re.fullmatch('/api/jobs/(job-[a-f0-9]{32})/(cancel|retry)',path)
                 if match:
@@ -204,6 +222,16 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/weather':return self.send(200,app.weather.snapshot())
             if path=='/api/catalog':return self.send(200,app.catalog())
             if path=='/api/jobs':return self.send(200,app.jobs())
+            studio=re.fullmatch('/api/firelab/(job-[a-f0-9]{32})(?:/(frame-[0-9]{3}\\.png))?',path)
+            if studio:
+                job,frame=studio.groups();state=app.store.get(job)
+                if state['state']!='SUCCEEDED':return self.send(200,state)
+                folder=app.root/'jobs'/job
+                if frame:
+                    series=load(folder/'fire-series.json');entry=next((f for f in series['frames'] if f['url'].endswith('/'+frame)),None)
+                    if entry is None or sha256(folder/'products'/frame)!=entry['png_sha256']:raise HazardError('CHECKSUM','Frame not verified')
+                    return self.send(200,(folder/'products'/frame).read_bytes(),'image/png')
+                return self.send(200,dict(state,series=load(folder/'fire-series.json')))
             match=re.fullmatch('/api/decisions/(decision-[a-f0-9]{32})/problem',path)
             if match:
                 app.decision(match.group(1));return self.send(200,load(app.state/match.group(1)/'problem.json'))

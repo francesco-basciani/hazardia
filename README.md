@@ -5,6 +5,10 @@
 
 Satellite-first, weather-aware, geographically configurable multi-hazard decision support for wildfires and floods. HAZARDIA is a research framework comprising replaceable satellite/data connectors, CIMA physical simulators (PROPAGATOR and HMC + REFlEx, executed on declared unqualified research fixtures), impact/exposure models, a solver-pluggable robust rolling-horizon decision engine, capability-aware graceful degradation, predictive alerts, and a local web UI for side-by-side scenario comparisons. All real dispatch decisions require human authorization.
 
+## Innesco e squadre antincendio
+
+Nella dashboard apri **Innesco e squadre** (`/fire-studio.html`): scegli l’innesco sulla mappa, disegna le linee di intervento per squadra a terra/Canadair/elicottero/mezzo pesante e indica quando iniziano. Confronta due esecuzioni PROPAGATOR con vento orario e variazioni ipotetiche, frame su1–3giorni e risultati riapribili. Prima prepara il terreno dimostrativo con `bootstrap.py days`. Il [report di verifica](reports/INNESCO-SQUADRE-E-DEGRADAZIONE.md) distingue prove eseguite, azioni ideali e limiti: vegetazione uniforme e umidità del combustibile manuale; T/RH/pioggia visibili ma non ancora accoppiate tramite un estimator qualificato. La sezione continuità rende accessibili i guasti controllati, separati dalla salute reale.
+
 ## Installazione completa e ricostruzione della VM
 
 Repository: **[francesco-basciani/hazardia](https://github.com/francesco-basciani/hazardia)**. Parti dalla **[guida completa in italiano](docs/INSTALLAZIONE.md)**: creazione UTM/Ubuntu, chiavi proprie, dipendenze, tutti e tre i simulatori, dati Abruzzo, dashboard e test. Il [documento di riproducibilità](docs/RIPRODUCIBILITA.md) distingue sorgenti pubblicati, dati rigenerabili e verifiche effettivamente eseguite.

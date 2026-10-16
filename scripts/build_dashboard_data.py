@@ -27,7 +27,9 @@ def main():
     for (job,) in jobs:
         directory=root/'jobs'/job
         if not (directory/'product.json').exists():continue
-        p=load(directory/'product.json');req=load(directory/'request.json');hazard=p['hazard'];layer=p['layers'][0];target=out/'products'/job;target.mkdir(exist_ok=True)
+        p=load(directory/'product.json');req=load(directory/'request.json');
+        if any(a['role']=='fire_plan' for a in req['assets']):continue
+        hazard=p['hazard'];layer=p['layers'][0];target=out/'products'/job;target.mkdir(exist_ok=True)
         with rasterio.open(directory/layer['path']) as src:
             data=src.read(1,masked=True);bounds=transform_bounds(src.crs,'EPSG:4326',*src.bounds);positive=np.argwhere(data.filled(0)>0);points=[];cells=[]
             for i,(row,col) in enumerate(positive[:3]):

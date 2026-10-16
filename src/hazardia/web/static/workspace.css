@@ -12,3 +12,5 @@
 
 /* Official project expansion replaces redundant monitoring copy. */
 .monitor-heading #monitor-heading{font-size:12px;font-weight:500;line-height:1.5;color:#52637a;margin:0;letter-spacing:.01em}.monitor-heading{margin:0 0 10px;min-height:0}
+
+.main-nav .studio-nav{display:flex;align-items:center;color:#e3edfa;padding:12px 14px;font-size:12px;font-weight:650;text-decoration:underline;min-height:44px}

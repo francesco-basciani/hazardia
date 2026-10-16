@@ -188,3 +188,12 @@ Nel **Monitoraggio → Meteo sulla mappa** scegli ora e vento, poi **Colore tras
 
 ### Confini regionali nella vista d’insieme
 Dopo install/demo esegui nellaVM `python3 scripts/bootstrap.py regions --runtime ~/hazardia-runtime`. Scarica una sola volta10,45MB di confiniIstat2026 generalizzati, con hash fissato e licenzaCC-BY4; genera `web-assets/administrative-regions.json`. Nessun pacchetto aggiuntivo. Il controllo **Confini regionali** compare su ciascuna mappa, visibile nella vista8–11 e nascosto nel dettaglio>=12; Abruzzo evidenziato. Se manca l’asset il controllo segnala indisponibilità e gli altri livelli restano utilizzabili. Archivio/ricevuta in downloads/istat-regions2026: conservarli per replay; la distribuzione contiene script, non dati cartografici generati. [Fonte, esiti e limiti](../reports/CONFINI-REGIONALI.md).
+
+
+## Studio fisico: innesco, categorie e vento nel tempo
+
+La versione corrente richiede anche gli import IO nativi PROPAGATOR: il lock `requirements/fire.txt` comprende rasterio/pyproj/shapely/pydantic/utm/geopandas e transitivi per l'env FIRE isolato. L'installazione nuova li installa tramite il normale bootstrap. Per un ambiente già esistente, dentro la VM installa il lock con il Python FIRE dichiarato nel tuo runtime e rigenera una nuova configurazione con `scripts/configure_runtime.py` (stessi parametri della guida, nuovo nome di output); non riscrivere la configurazione congelata dei job precedenti. Il servizio usa `runtime-fire-studio.json` se presente, altrimenti `runtime-v2.json` della nuova installazione.
+
+Esegui `python3 scripts/bootstrap.py days --runtime "$HOME/hazardia-runtime"` per predisporre il DEM esteso e la serie storica. Apri `/fire-studio.html` dalla voce **Innesco e squadre**. Scegli innesco, categoria, tempo e2estremi della linea; esegui A/B. Il terreno predisposto e il punto meteo sono ancora quelli del caso dimostrativo, non una qualificazione di altri territori. I job restano nella coda FIFO esistente; attesa ed esecuzione si consultano nella dashboard. Un errore di dominio non va reinterpretato come previsione completa.
+
+I7campi atmosferici sono visibili nella serie del run: il vento orario alimenta il modello, mentre fuel e moisture restano dichiarati nel report. Interventi nativi idealizzati non equivalgono ad efficacia reale delle squadre. Dettagli/comandi/esiti e limiti: [report](../reports/INNESCO-SQUADRE-E-DEGRADAZIONE.md). Nessun servizio commerciale o nuova VM richiesti.

@@ -1,6 +1,7 @@
 /* Place controls by task while retaining existing data/qualification panels. */
 export function arrangeWorkspace(){
  const $=id=>document.getElementById(id),move=(parent,...nodes)=>nodes.filter(Boolean).forEach(n=>parent.append(n));
+ const studio=document.createElement('a');studio.href='/fire-studio.html';studio.className='studio-nav';studio.textContent='Innesco e squadre';document.querySelector('.main-nav').append(studio);
  document.querySelector('button[data-view="results"]').lastChild.textContent='Simulazioni e risorse';
  document.querySelector('.decision-heading h2').textContent='Simulazioni e risorse';
  document.querySelector('.sidebar h1').textContent='Scenario e unità';

@@ -31,6 +31,7 @@ def validate_request(value, root=None):
     expected=value['options']['duration_s'] if value['hazard']=='FIRE' else value['options']['hours']*3600
     if duration!=expected:
         raise HazardError('INVALID_TIME','Declared model duration differs from product validity interval')
+    if value['hazard']=='FIRE' and value['options']['duration_s']>3600 and (value['schema_version']!='0.4.0' or not any(a['role']=='fire_plan' for a in value['assets'])):raise HazardError('INVALID_INPUT','Multi-day fire requires versioned studio plan')
     if value['hazard']=='FLOOD' and len(value['options']['rain_mm'])!=value['options']['hours']+1:
         raise HazardError('INVALID_INPUT','Flood forcing requires hours+1samples')
     if value['grid']['crs']!=value['territory']['work_crs'] and value['hazard']=='FIRE':
@@ -40,6 +41,7 @@ def validate_request(value, root=None):
         raise HazardError('INVALID_INPUT','Unique dem/weather assets required')
     if value['hazard']=='FIRE' and 'fire_arrays' not in roles:
         raise HazardError('INVALID_INPUT','Fire arrays required')
+    if ('fire_plan' in roles)!=(value['schema_version']=='0.4.0') or 'fire_plan' in roles and value['hazard']!='FIRE':raise HazardError('INVALID_INPUT','Studio plan requires explicit FIRE0.4.0 contract')
     grid=value['grid'];tr=grid['transform']
     if tr[0]<=0 or tr[4]>=0 or tr[1]!=0 or tr[3]!=0:
         raise HazardError('GRID_MISMATCH','North-up regular grid required')
@@ -50,6 +52,9 @@ def validate_request(value, root=None):
             verify_asset(root,asset)
         weather=load(verify_asset(root,next(v for v in value['assets'] if v['role']=='weather')))
         validate_weather(weather,value)
+        if 'fire_plan' in roles:
+            from hazardia.firelab import validate_plan
+            validate_plan(load(verify_asset(root,next(a for a in value['assets'] if a['role']=='fire_plan'))),value,weather)
     return value
 
 def validate_weather(weather, request):
@@ -67,7 +72,7 @@ def validate_weather(weather, request):
     if weather['data_kind']=='FORECAST':
         unknown=weather['issued_at'] is None
         if unknown:
-            if not (weather['schema_version']=='0.3.0' and request['schema_version']=='0.3.0' and request['mode']=='RESEARCH_FORECAST' and weather.get('issued_at_status')=='UNKNOWN_PROVIDER' and weather['source'].get('provider')=='Open-Meteo'):
+            if not (weather['schema_version']=='0.3.0' and request['schema_version'] in ['0.3.0','0.4.0'] and request['mode']=='RESEARCH_FORECAST' and weather.get('issued_at_status')=='UNKNOWN_PROVIDER' and weather['source'].get('provider')=='Open-Meteo'):
                 raise HazardError('INVALID_TIME','Forecast issue time missing without explicit research unknown-issue semantics')
         elif timestamp(weather['issued_at'])>available:raise HazardError('INVALID_TIME','Forecast issue must precede availability')
         if request['mode']=='RESEARCH_FORECAST' and timestamp(request['valid_from'])<available:raise HazardError('FUTURE_SOURCE','Forecast simulation must start after first observed availability')
