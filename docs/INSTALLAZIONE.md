@@ -164,3 +164,9 @@ Gli altri script browser storici documentano prove di precedenti incrementi; alc
 | Ortofoto non disponibili | Stato degradato esplicito e Sentinel locale; il risultato fisico non cambia |
 | Alluvione dinamica/argini/pompe assenti | Limite attuale del prototipo, non problema d’installazione; vedere piano e checklist |
 | Installazione su x86/altro OS | Percorso non ancora verificato; usare i lock ARM64 di riferimento solo su ARM64 |
+
+## Previsioni Open-Meteo nella VM
+
+Nessun pacchetto o chiave aggiuntiva. Avvia la dashboard come sopra: il browser legge solo `/api/weather` locale e il backend acquisisce il punto L’Aquila dal solo endpoint gratuito. Le schede condividono cache/contatore SQLite in `web-state/weather`,30min/minimo tra tentativi,48tentativi/giornoUTC. Non copiare cache personali o quote inGit. Eseguire solo usi noncommerciali consentiti dai termini. Un’installazione nuova acquisisce un nuovo snapshot alla prima apertura; nessuna stessa-condizione atmosferica implicita.
+
+Nella mappa **Meteo → ora → Simula con queste previsioni** apre il nuovo calcolo con fonteFORECAST. Scegli ora futura e modello, poi avvia. Incendio10/30/60min; alluvione6h. Eventi/combustibile/soil/Q0 non calibrati; un caso asciutto può legittimamente non mappare acqua. [Guida dettagliata](../reports/METEO-REALE.md), [contratti/tempi](../reports/ADR-0010-openmeteo-forecast.md). Per verifiche extra nella VM: `../core-env/bin/python -m unittest discover -s tests/unit -p test_forecast.py -v`. Il browserQA opzionale `tests/browser/weather.cjs` usa le variabiliQA già documentate e deve puntare a un runtime di collaudo.

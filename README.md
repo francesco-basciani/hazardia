@@ -47,6 +47,10 @@ Il server resta locale; la guida spiega il tunnel SSH e l’accesso dal browser.
 
 [Verifica completa del piano](reports/VERIFICA-PIANO.md): tutti i requisiti restano previsti, ma la piattaforma non è completa. La matrice distingue software verificato, fixture sintetici, funzionalità mancanti e gate bloccati; non dedurre il completamento dai soli test PASS.
 
+## Previsioni reali e nuovi scenari
+
+[Open-Meteo è collegato](reports/METEO-REALE.md): livello Meteo sul punto L’Aquila, selezione oraria e avvio esplicito di nuove simulazioni native con previsione reale. Cache condivisa nella VM, piano gratuito non commerciale, massimo48tentativi/giorno e intervallo30min. Incendio60min e HMC→REFlEx6h eseguiti: il caso alluvionale asciutto produce un raster nativo zero, senza pioggia inventata. Condizioni iniziali e parametri fisici restano di ricerca; nessuna allerta operativa o calibrazione implicita.
+
 ## Current repository status
 
 **Open [the local dashboard](http://127.0.0.1:8080/).** The default workspace is [Monitoraggio](reports/MONITORAGGIO.md): a large central map with independent fire/flood filters and both overlays. Planning and comparisons have their own “Decisioni e confronto” section. Read the [Italian quick-start guide](reports/DASHBOARD-GUIDA.md) for practical trials, model jobs and restart commands.

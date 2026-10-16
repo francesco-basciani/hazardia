@@ -1,0 +1,632 @@
+{
+  "run_id": "openmeteo-20261016T060251Z",
+  "at": "2026-10-16T06:29:40.482739+00:00",
+  "reviewer": "Codex self-check",
+  "backend_tests": {
+    "status": "PASS",
+    "counts": {
+      "unit": 50,
+      "domain": 19,
+      "decision": 14,
+      "web": 14
+    },
+    "total": 97,
+    "source": "5a06668"
+  },
+  "browser": {
+    "status": "PASS",
+    "weather_checks": 26,
+    "monitor_checks": 44,
+    "viewports": [
+      375,
+      768,
+      1440
+    ],
+    "axe_scans": 18,
+    "axe_violations": 0,
+    "raw_incompletes_retained": true,
+    "browser_version": "155.0.8059.84",
+    "weather_checks_detail": [
+      {
+        "id": "forecast-products-carry-source-kind",
+        "status": "PASS"
+      },
+      {
+        "id": "real-weather-map",
+        "status": "PASS"
+      },
+      {
+        "id": "multi-day-hour-selection",
+        "status": "PASS",
+        "detail": 73
+      },
+      {
+        "id": "weather-hour-updates-map",
+        "status": "PASS"
+      },
+      {
+        "id": "weather-layer-independent",
+        "status": "PASS"
+      },
+      {
+        "id": "forecast-job-builder",
+        "status": "PASS"
+      },
+      {
+        "id": "source-and-assumptions",
+        "status": "PASS"
+      },
+      {
+        "id": "historical-separate",
+        "status": "PASS"
+      },
+      {
+        "id": "shared-cache-no-extra-provider-calls",
+        "status": "PASS",
+        "detail": {
+          "before": 1,
+          "after": 1
+        }
+      },
+      {
+        "id": "arbitrary-provider-query-rejected",
+        "status": "PASS"
+      },
+      {
+        "id": "stale-forecast-id-rejected",
+        "status": "PASS"
+      },
+      {
+        "id": "layout-375-map",
+        "status": "PASS",
+        "detail": {
+          "width": 375,
+          "scroll": 375
+        }
+      },
+      {
+        "id": "axe-375-map",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "id": "layout-375-results",
+        "status": "PASS",
+        "detail": {
+          "width": 375,
+          "scroll": 375
+        }
+      },
+      {
+        "id": "axe-375-results",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "id": "layout-768-map",
+        "status": "PASS",
+        "detail": {
+          "width": 768,
+          "scroll": 768
+        }
+      },
+      {
+        "id": "axe-768-map",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "id": "layout-768-results",
+        "status": "PASS",
+        "detail": {
+          "width": 768,
+          "scroll": 768
+        }
+      },
+      {
+        "id": "axe-768-results",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "id": "layout-1440-map",
+        "status": "PASS",
+        "detail": {
+          "width": 1440,
+          "scroll": 1440
+        }
+      },
+      {
+        "id": "axe-1440-map",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "id": "layout-1440-results",
+        "status": "PASS",
+        "detail": {
+          "width": 1440,
+          "scroll": 1440
+        }
+      },
+      {
+        "id": "axe-1440-results",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "id": "no-direct-browser-provider-requests",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "id": "no-model-submission-from-map",
+        "status": "PASS"
+      },
+      {
+        "id": "no-js-errors",
+        "status": "PASS",
+        "detail": []
+      }
+    ],
+    "monitor_metric_checks": [
+      {
+        "id": "filter-p95",
+        "status": "PASS",
+        "detail": {
+          "n": 35,
+          "p95_ms": 16.799999982118607
+        }
+      }
+    ]
+  },
+  "native": {
+    "jobs": [
+      {
+        "id": "job-0ccb4d49371045b1af281486b40fa49e",
+        "hazard": "FIRE",
+        "valid_from": "2026-10-16T07:00:00Z",
+        "valid_until": "2026-10-16T08:00:00Z",
+        "forecast_id": "openmeteo-3772e6d2a363b7de18914f1a",
+        "weather_sha256": "eab8c6e82266bd528a2a514993fd3a9c90b2af463c96bb1fc1e4924a44ede1ce",
+        "product": {
+          "assumptions": [
+            "Scenario ignition, not an observed incident",
+            "Uniform synthetic legacy5 fuel, not inferred from satellite imagery",
+            "Synthetic fuel moisture10percent; no local calibration",
+            "Real Open-Meteo DWD ICON-EU point forecast openmeteo-3772e6d2a363b7de18914f1a; first observed availability 2026-10-16T06:07:25.320904Z; model initialization UNKNOWN",
+            "Point forcing uniform over the small existing research AOI; not a calibrated/distributed catchment forecast",
+            "Terrain and optical background are dated; ignition/fuel/moisture/soil/Q0 and model initial states remain hypothetical",
+            "Open-Meteo precipitation/shortwave end-hour statistics shifted to following simulation-hour interval; no invented missing values",
+            "Native fire uses forecast wind at start held constant for <=1h; fuel moisture remains declared synthetic percent, not inferred from air relative humidity",
+            "Arrival is earliest across realizations, masked to burned cells; not a calibrated probabilistic arrival forecast"
+          ],
+          "engine": {
+            "name": "PROPAGATOR",
+            "patch_sha256": null,
+            "source_commit": "48b45078093692aa8dcca98f51849a5fbcd981a5"
+          },
+          "grid": {
+            "crs": "EPSG:32633",
+            "nodata": -9999,
+            "shape": [
+              64,
+              64
+            ],
+            "transform": [
+              30.0,
+              0.0,
+              365611.4924394685,
+              0.0,
+              -30.0,
+              4690868.412847364
+            ],
+            "vertical_datum": "EGM2008_DSM_UNQUALIFIED"
+          },
+          "hazard": "FIRE",
+          "input_hashes": [
+            {
+              "role": "weather",
+              "sha256": "eab8c6e82266bd528a2a514993fd3a9c90b2af463c96bb1fc1e4924a44ede1ce"
+            },
+            {
+              "role": "satellite",
+              "sha256": "3755ff15e705b6be34a628ebe5862fa324318837b2c6fcf836d706895ae76384"
+            },
+            {
+              "role": "dem",
+              "sha256": "a203714274bc57856c73327faa262d3a2884e655e952109ba7f4a04ee39f70fe"
+            },
+            {
+              "role": "weather_raw",
+              "sha256": "3772e6d2a363b7de18914f1ab484893107b02380178e3fa7206ab0d415c8adaa"
+            },
+            {
+              "role": "fire_arrays",
+              "sha256": "fee038c3f2edb719db2304ea4aa1d1ea7301e2727e8c877978aca01852f7ce9b"
+            }
+          ],
+          "job_id": "job-0ccb4d49371045b1af281486b40fa49e",
+          "kind": "hazard_product",
+          "layers": [
+            {
+              "name": "FIRE_PROBABILITY",
+              "path": "products/fire-probability.tif",
+              "sha256": "f7f8d389260cb637a3f29e4e625739077af6569d336fccc16fcfc8aebe6497db",
+              "statistics": {
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "positive_cells": 31,
+                "valid_cells": 4096
+              },
+              "unit": "1"
+            },
+            {
+              "name": "ARRIVAL_TIME",
+              "path": "products/earliest-realization-arrival.tif",
+              "sha256": "83304035d43061f9c1ac9106dd5cf9eda5c7ca020df7b38fe245844d829ea191",
+              "statistics": {
+                "maximum": 3563.0,
+                "minimum": 0.0,
+                "positive_cells": 30,
+                "valid_cells": 31
+              },
+              "unit": "s"
+            }
+          ],
+          "qualification": "UNQUALIFIED_RESEARCH",
+          "request_id": "forecast-ac5ac65eac984cbf92312e1cf8820e86",
+          "schema_version": "0.2.0",
+          "valid_from": "2026-10-16T07:00:00Z",
+          "valid_until": "2026-10-16T08:00:00Z",
+          "validation": {
+            "scope": "TECHNICAL_CONTENT_ONLY",
+            "status": "PASS"
+          }
+        },
+        "native": {
+          "duration_s": 3600,
+          "moisture_native_unit": "percent",
+          "probability_shape": [
+            64,
+            64
+          ],
+          "realizations": 2,
+          "seed": 1729,
+          "spotting": false,
+          "threads": 1,
+          "wind_direction": "meteorological FROM, clockwise north; upstream NEIGHBOURS_ANGLE convention",
+          "wind_native_unit": "km/h",
+          "worker_seed_proof": [
+            0.21215859519373315
+          ]
+        }
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77",
+        "hazard": "FLOOD",
+        "valid_from": "2026-10-16T07:00:00Z",
+        "valid_until": "2026-10-16T13:00:00Z",
+        "forecast_id": "openmeteo-3772e6d2a363b7de18914f1a",
+        "weather_sha256": "eab8c6e82266bd528a2a514993fd3a9c90b2af463c96bb1fc1e4924a44ede1ce",
+        "product": {
+          "assumptions": [
+            "Partial AOI, not complete hydrological catchment",
+            "Uncalibrated HMC soil/default parameters, roughness and initial state",
+            "Q0zero is explicitly synthetic bankfull-reference placeholder, not first HMC sample",
+            "Q100/return_period100 is upstream column label only, not recurrence",
+            "Maximum inundation only, not arrival-time prediction",
+            "Declared experimental2line REFlExcompatibilitycopy",
+            "Real Open-Meteo DWD ICON-EU point forecast openmeteo-3772e6d2a363b7de18914f1a; first observed availability 2026-10-16T06:07:25.320904Z; model initialization UNKNOWN",
+            "Point forcing uniform over the small existing research AOI; not a calibrated/distributed catchment forecast",
+            "Terrain and optical background are dated; ignition/fuel/moisture/soil/Q0 and model initial states remain hypothetical",
+            "Open-Meteo precipitation/shortwave end-hour statistics shifted to following simulation-hour interval; no invented missing values",
+            "Native HMC cold-start uncalibrated scenario; actual forecast rainfall used unchanged, dry/no-excess outcomes may produce classified non-success",
+            "Native REFlEx executed and returned zero depths: all rounded triangular reach volumes below its unchanged1m3 research cutoff; no real-world safety claim"
+          ],
+          "engine": {
+            "name": "HMC+REFLEX",
+            "patch_sha256": "61dea2c4a8b5de6d003c5bc1a2d32e5a0d0ca7c963f9199e099036afedd1a82e",
+            "source_commit": "HMC=e6e95ecbc794431c4e6d09a81b3292704f3cca42;REFLEX=0dd5aa9803f7c163a4f6c3b42d9f69bce88a53bd"
+          },
+          "grid": {
+            "crs": "EPSG:4326",
+            "nodata": -9999,
+            "shape": [
+              145,
+              145
+            ],
+            "transform": [
+              0.0002777777777777778,
+              0.0,
+              13.35986111111111,
+              0.0,
+              -0.0002777777777777778,
+              42.37013888888889
+            ],
+            "vertical_datum": "EGM2008_DSM_UNQUALIFIED"
+          },
+          "hazard": "FLOOD",
+          "input_hashes": [
+            {
+              "role": "weather",
+              "sha256": "eab8c6e82266bd528a2a514993fd3a9c90b2af463c96bb1fc1e4924a44ede1ce"
+            },
+            {
+              "role": "satellite",
+              "sha256": "3755ff15e705b6be34a628ebe5862fa324318837b2c6fcf836d706895ae76384"
+            },
+            {
+              "role": "dem",
+              "sha256": "95af943f437da6d19e9531987c28ed66504811bee9f13aa35f19d7ad8559bd8a"
+            },
+            {
+              "role": "weather_raw",
+              "sha256": "3772e6d2a363b7de18914f1ab484893107b02380178e3fa7206ab0d415c8adaa"
+            }
+          ],
+          "job_id": "job-a91721608c7d49d6889190ec94ee4c77",
+          "kind": "hazard_product",
+          "layers": [
+            {
+              "name": "MAXIMUM_DEPTH",
+              "path": "products/maximum-depth.tif",
+              "sha256": "78ebee104c37b36e4193d6184eac58f0d4e3a55280f795d580fbef53bcb88d5d",
+              "statistics": {
+                "maximum": 0.0,
+                "minimum": 0.0,
+                "positive_cells": 0,
+                "valid_cells": 21025
+              },
+              "unit": "m"
+            }
+          ],
+          "qualification": "UNQUALIFIED_RESEARCH",
+          "request_id": "forecast-ce76dc39d6024631be0cd4ade8004418",
+          "schema_version": "0.2.0",
+          "valid_from": "2026-10-16T07:00:00Z",
+          "valid_until": "2026-10-16T13:00:00Z",
+          "validation": {
+            "scope": "TECHNICAL_CONTENT_ONLY",
+            "status": "PASS"
+          }
+        },
+        "native": {
+          "depth_path": "flood-work/flood/T100/rst/flood_map_T100_m.tif",
+          "eligible_streams": 0,
+          "hmc_output_files": 6,
+          "mapping_status": "NO_INCLUDED_RUNOFF_VOLUME",
+          "max_relative_optimizer_residual": 0.0,
+          "meaning": "Native REFlEx map; no included runoff means all rounded triangular reach volumes fall below the unchanged1m3 research cutoff, not proof of no real flood",
+          "minimum_volume_included_m3": 1,
+          "optimizer_rows": 0,
+          "qualification": "UNQUALIFIED_RESEARCH",
+          "reaches": 26,
+          "reflex_step4_executed": true
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "job-0ccb4d49371045b1af281486b40fa49e-raw-hash",
+        "status": "PASS"
+      },
+      {
+        "id": "job-0ccb4d49371045b1af281486b40fa49e-real-future-mode",
+        "status": "PASS"
+      },
+      {
+        "id": "job-0ccb4d49371045b1af281486b40fa49e-unknown-issue-not-fabricated",
+        "status": "PASS"
+      },
+      {
+        "id": "job-0ccb4d49371045b1af281486b40fa49e-FIRE_PROBABILITY-finite-grid",
+        "status": "PASS"
+      },
+      {
+        "id": "job-0ccb4d49371045b1af281486b40fa49e-ARRIVAL_TIME-finite-grid",
+        "status": "PASS"
+      },
+      {
+        "id": "job-0ccb4d49371045b1af281486b40fa49e-native-wind-conversion",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-raw-hash",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-real-future-mode",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-unknown-issue-not-fabricated",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-MAXIMUM_DEPTH-finite-grid",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-forcing-file-count",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-pressure-kPa-202610160700",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-rain-unmodified-202610160700",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-pressure-kPa-202610160800",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-rain-unmodified-202610160800",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-pressure-kPa-202610160900",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-rain-unmodified-202610160900",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-pressure-kPa-202610161000",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-rain-unmodified-202610161000",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-pressure-kPa-202610161100",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-rain-unmodified-202610161100",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-pressure-kPa-202610161200",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-rain-unmodified-202610161200",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-pressure-kPa-202610161300",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-rain-unmodified-202610161300",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-native-reflex-executed",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-dry-not-fabricated",
+        "status": "PASS"
+      },
+      {
+        "id": "job-a91721608c7d49d6889190ec94ee4c77-pressure-default-not-used",
+        "status": "PASS"
+      },
+      {
+        "id": "original145enginehashes",
+        "status": "PASS"
+      }
+    ],
+    "status": "PASS",
+    "source_commit": "da840d7",
+    "scope": "Independent content reader; conditional research weather/physics integration only, no calibrated accuracy or real alert claim"
+  },
+  "source": {
+    "url": "https://api.open-meteo.com/v1/forecast?latitude=42.35&longitude=13.38&hourly=temperature_2m%2Crelative_humidity_2m%2Cprecipitation%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure%2Cshortwave_radiation&timezone=UTC&wind_speed_unit=ms&forecast_days=4&models=icon_eu",
+    "raw_sha256": "3772e6d2a363b7de18914f1ab484893107b02380178e3fa7206ab0d415c8adaa",
+    "response_bytes": 5464,
+    "available_at": "2026-10-16T06:07:25.320904Z",
+    "issued_at": null,
+    "issued_at_status": "UNKNOWN_PROVIDER",
+    "model": "DWD ICON-EU via Open-Meteo",
+    "model_point": {
+      "elevation": 621.0,
+      "latitude": 42.375,
+      "longitude": 13.375
+    },
+    "hourly_records": 95,
+    "interval_alignment": "START_OF_HOUR: precipitation and shortwave mean shifted from next provider end-of-hour row; other variables instantaneous at start"
+  },
+  "final_proof": {
+    "status": "PASS",
+    "weather_status": "FRESH",
+    "forecast_id": "openmeteo-3772e6d2a363b7de18914f1a",
+    "quota": {
+      "attempts_today": 1,
+      "local_daily_limit": 48,
+      "refresh_s": 1800,
+      "scope": "single fixed point;7variables4days; free noncommercial endpoint"
+    },
+    "catalog_count": 9,
+    "catalog_forecast_modes_verified": true,
+    "new_jobs": [
+      [
+        "job-a91721608c7d49d6889190ec94ee4c77",
+        "SUCCEEDED"
+      ],
+      [
+        "job-0ccb4d49371045b1af281486b40fa49e",
+        "SUCCEEDED"
+      ]
+    ],
+    "original_engine_hashes": 145,
+    "test_server_stopped": 128673,
+    "cumulative_download_bytes": 3640858902,
+    "download_limit_bytes": 5368709120,
+    "free_disk_bytes": 9271984128
+  },
+  "negative_outcomes": {
+    "first_flood": "FAIL old checker rejected native empty optimizer table though native zero map existed; pressure hPa passed to native kPa reader; original job-cff1de0ab68e4a59bd14779579bccf60 retained",
+    "monitor_harness": "FAIL hard-coded2024 year rejected real2026case; corrected generic full-date assertion, final44checks PASS",
+    "catalog_metadata": "FAIL visual review found missing mode/weather propagation in catalog; source19f81da rebuild corrected labels, final browser verifies source kind"
+  },
+  "scope": "Real point weather and conditional native integration; no calibrated hazard accuracy, observed false-alarm skill, automatic predictive alerts, general hydraulic mitigation/days or scientific release",
+  "evidence_hashes": {
+    "final-proof.json": "92209c1195228b94a6af500e692c530b45b084f5e3db22e22717a04741cc9b87",
+    "production-native-progress.json": "ef6b673bd7fefadc69d52c13621da90f323805f6d2ab9956b95ec3e2281b2cb5",
+    "final-deployment.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "monitor-final.log": "451eb0beb12054b44fa16156730ec5ef42e9016b2a8c3d970c4ea1a663ace76d",
+    "native-verification.json": "b1039488cfad41749a26aa9ef6c74a3f5ab4bb1d3d5093b15727fc0a644247f3",
+    "monitor-release.log": "bab9487302957757e1556ab0bf46da07ae2d9e0a465956c4eedbd2c8f2213980",
+    "plan.json": "e2caedc20bd1fc4f191d3c4c9136516edd7f572925e726b90cf26949bb5432da",
+    "deployment.json": "51acb25cf74538df5cf6b5c00e435bb137f126a18287e57cf809dd2f5c8af103",
+    "tests-first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "monitor-regression.log": "01aa77e5f19ee83882e80daf771b62f742f091c97435a39d88d8b38aebfc4802",
+    "corrected-deployment.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "corrected-deployment.json": "f36d4447a10d4e5f0025c7d17e59f9fadbe955649acddf89f8f7c5adf0ffa69c",
+    "tests-final.json": "cac1714b068b87b4dc97550034b42d0d2149cd6b49c862a4a4d28cce68505415",
+    "tests-delivery.json": "a83ae9b83d0431b0c0637566d0f3b6a34fbf3a069efda948f6c50a1da56e3088",
+    "browser-first.log": "80e8d6978aae2accbef56294b72b38a164a999295efaf90c368e7c757397ab51",
+    "browser-release.log": "4f578df7d35f8f78d1d6e5a4fd2e82dfa586b20f0c1ae3e40fa02e4dbf734058",
+    "browser-final.log": "80e8d6978aae2accbef56294b72b38a164a999295efaf90c368e7c757397ab51",
+    "production-ui-submissions.json": "94912737dad9e1d93a1c4b3c3366ec8c1c9c5b2d53a56945ae0ba192e55c15de",
+    "catalog-correction.json": "c5df647cee5b0c8d0a9fcb031cada50f30e7f954a0be639359f5b838a308ec42",
+    "deployment.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "catalog-correction.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests-first.json": "94fa29f452a7079aed5084f3274cc73b541c1fa9922d2adc2d77cca7c098ba5a",
+    "native-submissions.json": "3f14f985db8725a5dc9d80267bdcb08cc71541d2832228527e72d35693ef887f",
+    "acquisition-first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "final-proof.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-status-first.json": "dc8d8ad52b901d29d581131bd30a994c2955df411be361d561585b1d749261f1",
+    "native-verification.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests-corrected.json": "be3951f72baab481c3194ea1cbd66f7ce747fde0190cc8e39c667b1b559ded49",
+    "final-deployment.json": "93ce32841bfd25cc77e845435134212502e368245e5297c0aa966101f1ba43e2",
+    "native-submissions.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "acquisition-first.json": "a8fb3d1ca700d9916b427446032589048e2cebf1e35197ea716f02fd14e9a292",
+    "source-provenance-correction.json": "373ae147ccabceeb27c0f85270afd5c899c6fa24f10318f2397b5fbe9eed36d7"
+  },
+  "source_provenance_correction": {
+    "at": "2026-10-16T06:30:14.063962+00:00",
+    "run_id": "openmeteo-20261016T060251Z",
+    "source_provenance_correction": "Initial plan generator reused the source dict key for URL, so its source Git field was overwritten; plan.json retained unchanged. Source identity is established by frozen bundles, native job run manifests and per-phase records, not claimed fully preregistered in parent plan.",
+    "baseline_git": "3c40ac9dcfc2dc551e4ce4aae333f011eea7a2cf",
+    "first_execution_commit": "3788874",
+    "corrected_native_commit": "da840d7",
+    "source_bundles": {
+      "source-corrected.bundle": "27578e0a3c1aa2beebfde3900bc7316720fc60b40d339ff439661b3454abf0a3",
+      "catalog-source.bundle": "ccc89df279fdc58b0b244d683ce59d1d31d709c2a45e6534a3c21f0cb4ff647a",
+      "source-v2.bundle": "2598c74034e6a28f65249bfff8dc82230f26625cd31dc4e74529375a555298cd",
+      "source.bundle": "8b1b54dc968059fefa09c26e2821f98635b3701e445a430f8457bdda724117b9",
+      "release-source.bundle": "4f86fd61c8b43d6727eb0347307572e28432e36bba9467a5bf01365124b20410",
+      "final-source.bundle": "63264d9992e5b5f1d52c94c17802024e081b9069010edcd35cee13d286c7e60e",
+      "delivery.bundle": "ef3592f78808cb0ed9c6d471518e56cc61f22c183b0c111c1a3e7612f5f64009"
+    }
+  }
+}

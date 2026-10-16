@@ -54,7 +54,7 @@ def validate_request(value, root=None):
 
 def validate_weather(weather, request):
     required={'schema_version','kind','data_kind','issued_at','available_at','valid_from','valid_until','units','records','source','license'}
-    if not isinstance(weather,dict) or not required.issubset(weather) or weather['schema_version']!=VERSION or weather['kind']!='weather':
+    if not isinstance(weather,dict) or not required.issubset(weather) or weather['schema_version'] not in [VERSION,'0.3.0'] or weather['kind']!='weather':
         raise HazardError('INVALID_CONTRACT','Versioned weather record required')
     expected={'precipitation':'mm','wind_speed_10m':'m/s','wind_direction_10m':'°','temperature_2m':'°C','relative_humidity_2m':'%','surface_pressure':'hPa','shortwave_radiation':'W/m²'}
     if any(weather['units'].get(k)!=v for k,v in expected.items()):
@@ -65,8 +65,12 @@ def validate_weather(weather, request):
     if not (timestamp(weather['valid_from'])<=timestamp(request['valid_from']) and timestamp(request['valid_until'])<=timestamp(weather['valid_until'])):
         raise HazardError('STALE_FORECAST','Scenario outside weather validity')
     if weather['data_kind']=='FORECAST':
-        if weather['issued_at'] is None or timestamp(weather['issued_at'])>available:
-            raise HazardError('INVALID_TIME','Forecast issue must precede availability')
+        unknown=weather['issued_at'] is None
+        if unknown:
+            if not (weather['schema_version']=='0.3.0' and request['schema_version']=='0.3.0' and request['mode']=='RESEARCH_FORECAST' and weather.get('issued_at_status')=='UNKNOWN_PROVIDER' and weather['source'].get('provider')=='Open-Meteo'):
+                raise HazardError('INVALID_TIME','Forecast issue time missing without explicit research unknown-issue semantics')
+        elif timestamp(weather['issued_at'])>available:raise HazardError('INVALID_TIME','Forecast issue must precede availability')
+        if request['mode']=='RESEARCH_FORECAST' and timestamp(request['valid_from'])<available:raise HazardError('FUTURE_SOURCE','Forecast simulation must start after first observed availability')
     elif weather['data_kind']=='REANALYSIS':
         if weather['issued_at'] is not None or request['mode']!='RESEARCH_RETROSPECTIVE':
             raise HazardError('SOURCE_KIND','Reanalysis is not an issued predictive forecast')

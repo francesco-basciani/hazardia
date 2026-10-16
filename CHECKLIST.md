@@ -580,3 +580,19 @@ E-HMC-STORAGE-001 PASS: unmodified pinned HMC spill/lake routines linked to synt
 | Native HMC spill/tank component calls | PASS |7synthetic cases/21assertions, no upstream edits; documented replay PASS |
 | Full reservoir mitigation HMC→REFlEx/UI | NOT RUN | Component checks do not imply integrated feature |
 | All flood actions/day/historical/scientific release | BLOCKED | Prior unmet dependencies unchanged |
+
+
+## Open-Meteo real map/native forecast increment — openmeteo-20261016T060251Z
+User explicitly authorizes free-tier Open-Meteo on map and new native simulations, allsameVM. FR-WX-REAL-01/ADR-0010: fixed L’Aquila point,7variables4days,DWDICON-EU, shared30mincache/max48attemptsUTCday/256KiB/16MiB, no key/paid endpoint; unknown model issue stays null, first availability observed06:07:25Z, preceding-hour precip/radiation shifted explicitly. New research-forecast0.3 contracts preserve legacy0.2 retrospectivity.
+PASS97guesttests,70browserchecks (26weather+44monitor,18axe0violations with rawincompletes),29independent native assertions. Actual8080 UI requests FIRE job-0ccb4d49371045b1af281486b40fa49e (31positivecells60min), FLOOD job-a91721608c7d49d6889190ec94ee4c77 (6h,HMC+REFlEx0–4,native21025validzero cells,0eligible runoff aboveunchanged1m3cutoff) bothSUCCEEDED. No added rainfall, fake water or real-safety claim. First flood FAIL job-cff1de0ab68e4a59bd14779579bccf60 retained: empty native optimizer case was wrongly rejected; pressure hPa→nativekPa mapping also corrected post-failure, actualnewforcing checked. Year-specific harnessFAIL and catalogsource-label defect retained/corrected beforehandoff.
+Finalcatalogforecastmodes/hash/readers PASS, original145enginehashes unchanged,813priorstateJSON preserved duringguardedrestart;8080running,temporary8081closed. Oneactualproviderrequest atcheckpoint; conservative traffic3640858902/5368709120B, VMlimitsunchanged. Report reports/METEO-REALE.md and reports/weather/verification.json; raw run manifests/native products retained. Reviewer Codex self-check; noH1–H3/forecastskill/operational qualification. FR-06full/FR-17/M5–M7 remainBLOCKED forensembles,distributedforcing,effects,alertsqualification,history/scale; scoped FR-WX-REAL-01 PASS. Current next researchincrement remains all3floodphysicalactions/qualifiedinputs, not package reinstallation.
+
+| Check | Outcome | Scope |
+|---|---|---|
+| FR-WX-REAL-01 | PASS | Real Open-Meteo point on map, hourly selection, fresh frozen forecast into actual native jobs, all VM/free |
+| Shared forecast cache/quota/time/units/integrity | PASS | Actual1request,97software tests incl12forecast checks; no browser-provider requests |
+| Native future FIRE60min / HMC→REFlEx6h | PASS | Both new8080jobs succeed,29content/forcing/provenance assertions; dry native map explicit |
+| First flood / harnessyear / cataloglabel defects | FAIL | Historical negative attempts retained; corrected and verified in new runs |
+| UI weather and monitoring regressions | PASS |70checks,18axe scans,375/768/1440, raw incompletes retained |
+| Full FR-06/17 and M5–M7 | BLOCKED | No ensemble/distributed/calibrated/alert-quality/historical/fullscale qualification |
+| New30min/100k/historical/mitigation/daystudy | NOT RUN | Earlier release blockers unchanged |

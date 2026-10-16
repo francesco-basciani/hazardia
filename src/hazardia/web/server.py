@@ -11,10 +11,12 @@ from hazardia.decision.research_fixture import problem
 from hazardia.decision.supervisor import bounded_decide
 from hazardia.adaptation.control import ResearchControl
 from hazardia.decision.rolling import advance
+from hazardia.ingest.forecast import ForecastStore
+from hazardia.adapters.forecast import stage as stage_forecast
 
 class App:
     def __init__(self,root):
-        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',self.root/'runtime-v2.json');self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.notebook=Notebook(self.state/"notebook")
+        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',self.root/'runtime-v2.json');self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.notebook=Notebook(self.state/"notebook");self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock()
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
     def models(self):
@@ -31,10 +33,13 @@ class App:
         with self.store.connect() as db:rows=db.execute('SELECT * FROM jobs ORDER BY rowid DESC LIMIT 25').fetchall()
         return [dict(dict(r),usable_product=r['state']=='SUCCEEDED') for r in rows]
     def submit_model(self,body):
-        allowed={'hazard','seed','minutes','row','col'}
+        allowed={'hazard','seed','minutes','row','col','weather_source','forecast_id','start_at'}
         if set(body)-allowed:raise HazardError('INVALID_INPUT','Unknown simulation fields')
         hazard=body.get('hazard');
         if hazard not in ['FIRE','FLOOD']:raise HazardError('INVALID_INPUT','Select FIRE/FLOOD')
+        if body.get('weather_source')=='FORECAST':
+            forecast=self.weather.fresh(body.get('forecast_id'));req,folder=stage_forecast(self.root,forecast,body,self.weather.root);return self.store.get(self.store.submit(req,folder))
+        if body.get('weather_source') not in [None,'HISTORICAL']:raise HazardError('INVALID_INPUT','Unsupported weather source')
         old=self.root/'runs/m1-abruzzo-20261015T161041Z';req=load(old/(hazard.lower()+'-request.json'));req['id']='ui-'+uuid.uuid4().hex;req['snapshot_at']=utcnow()
         if hazard=='FIRE':
             seed=body.get('seed',1729);minutes=body.get('minutes',30);row=body.get('row',32);col=body.get('col',32)
@@ -42,6 +47,15 @@ class App:
             req['options'].update(seed=seed,duration_s=minutes*60,ignition=[row,col]);req['valid_until']=(dt.datetime.fromisoformat(req['valid_from'].replace('Z','+00:00'))+dt.timedelta(minutes=minutes)).isoformat().replace('+00:00','Z')
         else:req['valid_from']='2024-07-13T13:00:00Z';req['valid_until']='2024-07-13T19:00:00Z'
         return self.store.get(self.store.submit(req,old))
+    def refresh_weather(self):
+        if self.weather_lock.acquire(False):
+            def fetch():
+                try:self.weather.refresh()
+                except HazardError as e:
+                    with self.weather.connect() as db:db.execute('UPDATE state SET error=? WHERE id=1',(e.code+': '+str(e),))
+                finally:self.weather_lock.release()
+            threading.Thread(target=fetch,daemon=True).start()
+        return dict(status='ACCEPTED',scope='Shared bounded VM cache; existing forecast remains readable')
     def submit_decision(self,body):
         if set(body)-{'hazard','resources','robust','road_open','transfer','disabled','scenario_ids','rolling_from','preparedness'}:raise HazardError('INVALID_INPUT','Unknown decision fields')
         hazard=body.get('hazard','FIRE');count=body.get('resources',3);risk=body.get('robust',.5)
@@ -131,6 +145,9 @@ class Handler(BaseHTTPRequestHandler):
                 if path=='/api/research':
                     with app.lock:result=app.replay.action(body)
                     return self.send(200,result)
+                if path=='/api/weather/refresh':
+                    if body:raise HazardError('INVALID_INPUT','Fixed research forecast point; no arbitrary provider queries')
+                    return self.send(202,app.refresh_weather())
                 if path=='/api/jobs':return self.send(202,app.submit_model(body))
                 if path=='/api/decisions':return self.send(202,app.submit_decision(body))
                 match=re.fullmatch('/api/jobs/(job-[a-f0-9]{32})/(cancel|retry)',path)
@@ -150,6 +167,7 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/maps/status':return self.send(200,app.orthophotos.status())
             tile=re.fullmatch(r'/api/maps/ortho/(\d{1,2})/(\d{1,6})/(\d{1,6})',path)
             if tile:return self.send(200,app.orthophotos.tile(*map(int,tile.groups())),'image/jpeg')
+            if path=='/api/weather':return self.send(200,app.weather.snapshot())
             if path=='/api/catalog':return self.send(200,app.catalog())
             if path=='/api/jobs':return self.send(200,app.jobs())
             match=re.fullmatch('/api/decisions/(decision-[a-f0-9]{32})/problem',path)

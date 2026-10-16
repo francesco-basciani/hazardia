@@ -1,3 +1,5 @@
+> Open-Meteo reale disponibile: nel Monitoraggio attiva **Meteo**, scegli l’ora e premi **Simula con queste previsioni**, quindi **Avvia simulazione** nella sezione dedicata. I vecchi casi2024 restano storici. [Guida meteo e limiti](METEO-REALE.md).
+
 > Aggiornamento16ottobre2026: la home è **Monitoraggio**, con mappa grande e filtri Incendi/Alluvioni/Mostra tutti. I comandi descritti sotto per piani, evacuazione e risultati si trovano ora in **Decisioni e confronto**. [Guida alla nuova organizzazione](MONITORAGGIO.md).
 
 # HAZARDIA — Guida per le prime prove

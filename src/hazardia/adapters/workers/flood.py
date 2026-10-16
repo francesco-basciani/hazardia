@@ -13,6 +13,7 @@ import geopandas as gpd
 import rasterio
 from netCDF4 import Dataset
 from hazardia.io import load,write_new,verify_asset,HazardError,sha256
+from hazardia.adapters.flood_checks import verify_dry_map
 
 def execute(command,log):
     with Path(log).open('xb') as stream:
@@ -113,11 +114,11 @@ def run(root):
         with Dataset(path,'w',format='NETCDF4') as ds:
             ds.createDimension('south_north',3);ds.createDimension('west_east',3)
             for key,value in dict(ncols=3,nrows=3,xllcorner=fx,yllcorner=fy,cellsize=forcing_res,nodata_value=-9999.).items():ds.setncattr(key,value)
-            for name,value,unit in [('Rain',options['rain_mm'][hour],'mm'),('AirTemperature',met['temperature_2m'],'C'),('IncRadiation',met['shortwave_radiation'],'W/m2'),('RelHumidity',met['relative_humidity_2m'],'%'),('Wind',met['wind_speed_10m'],'m/s'),('AirPressure',met['surface_pressure'],'hPa'),('Albedo',.23,'1'),('LAI',4,'1'),('AEvt',0,'mm'),('PEvt',0,'mm'),('FC',.5,'1')]:
+            for name,value,unit in [('Rain',options['rain_mm'][hour],'mm'),('AirTemperature',met['temperature_2m'],'C'),('IncRadiation',met['shortwave_radiation'],'W/m2'),('RelHumidity',met['relative_humidity_2m'],'%'),('Wind',met['wind_speed_10m'],'m/s'),('AirPressure',met['surface_pressure']/10,'kPa'),('Albedo',.23,'1'),('LAI',4,'1'),('AEvt',0,'mm'),('PEvt',0,'mm'),('FC',.5,'1')]:
                 var=ds.createVariable(name,'f4',('south_north','west_east'),fill_value=-9999.);var.units=unit;var[:]=value
         with path.open('rb') as src,gzip.open(str(path)+'.gz','wb') as dst:dst.write(src.read())
         path.unlink()
-    write_new(root/'hmc-input-mapping.json',dict(sections=sections,row_cell_area_m2=row_area.tolist(),reflex_mean_area_m2=mean_area,reflex_area_max_relative_error=float(np.max(np.abs(row_area/mean_area-1))),synthetic_rain_mm=options['rain_mm'],real_weather_id=weather['id'],static_parameters='Uncalibrated declared research constants',q0_policy='Synthetic reference only, not inferred bankfull'))
+    write_new(root/'hmc-input-mapping.json',dict(sections=sections,row_cell_area_m2=row_area.tolist(),reflex_mean_area_m2=mean_area,reflex_area_max_relative_error=float(np.max(np.abs(row_area/mean_area-1))),synthetic_rain_mm=options['rain_mm'],real_weather_id=weather['id'],static_parameters='Uncalibrated declared research constants',q0_policy='Synthetic reference only, not inferred bankfull',pressure_mapping='Open-Meteo/contract hPa divided by10 to native HMC kPa',energy_balance=False,snow=False))
     execute([cfg['hmc_binary'],str(hmc/'model.info.txt')],work/'logs/hmc.log')
     log=(work/'logs/hmc.log').read_text(errors='replace');files=sorted((hmc/'output').glob('hmc.output-grid.*.nc.gz'))
     if 'SIMULATION END' not in log or re.search(r'\bERROR\b|\bFATAL\b|\bSTOP\b',log) or len(files)!=hours:raise HazardError('MODEL_INCOMPLETE','HMC log or output count invalid despite possible exit0')
@@ -134,13 +135,25 @@ def run(root):
                 value=float(q[rr,cc]);qvalues[s['stream']].append(value);records.append(dict(stream=s['stream'],time=expected_time,Q_m3_s=value,coordinate_delta_deg=delta))
     rows=[]
     for sid,values in qvalues.items():rows.append(dict(stream=sid,Q0=options['q0_m3_s'],Q100=max(values)))
-    if not any(v['Q100']>v['Q0'] for v in rows):raise HazardError('NO_FLOOD_EXCESS','Wet research fixture produced no excess discharge')
     pd.DataFrame(rows).to_csv(work/'discharge.csv',index=False)
     write_new(root/'hmc-reflex-bridge.json',dict(status='PASS',scope='TECHNICAL_IO_ONLY',records=records,reach_rows=rows,q0_evidence=options['q0_evidence'],unit='m3/s',upstream_Q100_label='No return-period claim',tconc_source='REFlEx generated; uncalibrated'))
     step(4)
     stats=pd.read_csv(work/'flood/T100/txt/flood_stats_T100_m.csv')
-    if stats.empty or not np.isfinite(stats[['V_cut','v_i','diff_final']].values).all():raise HazardError('INVALID_OUTPUT','Nonfinite/empty REFlEx optimizers')
-    write_new(root/'flood-native-result.json',dict(reaches=len(features),optimizer_rows=len(stats),hmc_output_files=len(files),depth_path='flood-work/flood/T100/rst/flood_map_T100_m.tif',qualification='UNQUALIFIED_RESEARCH',max_relative_optimizer_residual=float((stats.diff_final/np.maximum(stats.V_cut,1e-12)).max())))
+    # REFlEx legitimately filters every stream when its rounded triangular
+    # runoff volume is below the unchanged native minimum_volume_included.
+    indexed={r['stream']:r for r in rows}
+    volume=((features.stream.astype(int).map(lambda sid:indexed[sid]['Q100']-indexed[sid]['Q0']))*features.tconc/2).round(0)
+    eligible=int((volume>=settings['step_4']['minimum_volume_included']).sum())
+    if stats.empty:
+        with rasterio.open(work/'flood/T100/rst/flood_map_T100_m.tif') as src:
+            values=src.read(1,masked=True).compressed()
+            verify_dry_map(eligible,values)
+        residual=0.;status='NO_INCLUDED_RUNOFF_VOLUME'
+    else:
+        if not np.isfinite(stats[['V_cut','v_i','diff_final']].values).all():raise HazardError('INVALID_OUTPUT','Nonfinite REFlEx optimizers')
+        residual=float((stats.diff_final/np.maximum(stats.V_cut,1e-12)).max());status='MAPPED_RUNOFF'
+    write_new(root/'flood-native-result.json',dict(reaches=len(features),optimizer_rows=len(stats),hmc_output_files=len(files),depth_path='flood-work/flood/T100/rst/flood_map_T100_m.tif',qualification='UNQUALIFIED_RESEARCH',max_relative_optimizer_residual=residual,mapping_status=status,reflex_step4_executed=True,eligible_streams=eligible,minimum_volume_included_m3=settings['step_4']['minimum_volume_included'],meaning='Native REFlEx map; no included runoff means all rounded triangular reach volumes fall below the unchanged1m3 research cutoff, not proof of no real flood'))
+
 
 if __name__=='__main__':
     root=Path(sys.argv[1])

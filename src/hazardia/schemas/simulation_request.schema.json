@@ -2,7 +2,10 @@
   "type": "object",
   "properties": {
     "schema_version": {
-      "const": "0.2.0"
+      "enum": [
+        "0.2.0",
+        "0.3.0"
+      ]
     },
     "kind": {
       "const": "simulation_request"
@@ -18,7 +21,10 @@
       ]
     },
     "mode": {
-      "const": "RESEARCH_RETROSPECTIVE"
+      "enum": [
+        "RESEARCH_RETROSPECTIVE",
+        "RESEARCH_FORECAST"
+      ]
     },
     "territory": {
       "type": "object",
@@ -128,7 +134,8 @@
               "dem",
               "weather",
               "fire_arrays",
-              "satellite"
+              "satellite",
+              "weather_raw"
             ]
           },
           "path": {
@@ -389,6 +396,38 @@
               "allow_experimental_patch"
             ],
             "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "RESEARCH_FORECAST"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "schema_version": {
+            "const": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "const": "0.2.0"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "mode": {
+            "const": "RESEARCH_RETROSPECTIVE"
           }
         }
       }
