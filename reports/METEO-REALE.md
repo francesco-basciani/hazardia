@@ -52,3 +52,12 @@ Backend/scienza/acquisizione nella VM, browser sul Mac. Il riavvio finale contro
 La guida di installazione/bootstrap esistente include il codice standard-library necessario: nessun pacchetto aggiuntivo. Dal servizio locale, GET `/api/weather` legge la cache; POST `/api/weather/refresh` conJSONvuoto e header same-origin avvia un fetch limitato; POST `/api/jobs` accetta `weather_source=FORECAST`, `forecast_id`, `start_at` UTCfuturo, hazard e parametri già limitati. Nuove prove richiedono nuovi percorsi/ID; una futura acquisizione non può riprodurre lo stesso tempo atmosferico, usare lo snapshot immutabile salvato per replay. Test `tests/unit/test_forecast.py`, `tests/browser/weather.cjs`, `tests/browser/monitoring.cjs`. Raw e manifest in `experiments/runs/openmeteo-20261016T060251Z` e nelle directory jobs della VM; hash in verification.json.
 
 NOT RUN/BLOCKED: ensemble meteorologici, forcing distribuito/calibrazione bacino, snow/energybalance qualificati, watcher allerte d’impatto reali, casi storici e skill indipendente, nuovi interventi fisici alluvionali, giorni generali, nuova sessione30min/100kstress e rilascio scientifico completo. FR-06 restaBLOCKED nella sua accettazione integrale; FR-WX-REAL-01 èPASS nel perimetro di previsione puntuale e nuove simulazioni condizionali.
+
+
+## Livelli meteo attivabili sulla mappa
+
+Run `weather-layers-20261016T063635Z`, codice `b4dc8e5f139ee5dca4aff12ce8887758d1faa49c`. Nella scheda meteo puoi scegliere **vento**, **temperatura** e **pioggia nell’ora**, separatamente. «Meteo» sopra la mappa nasconde tutto mantenendo le scelte; «Centra il punto meteo» inquadra il punto della griglia. L’ora selezionata aggiorna la sovrapposizione. La freccia indica dove soffia il vento; il numero in gradi indica da dove proviene. Il simbolo è ora ancorato al punto effettivo restituito dal modello, invece che alle coordinate richieste.
+
+PASS36controlli browser e6scansioni axe senza violazioni su375/768/1440, comprese viste di confronto, nessun job dai comandi cartografici e nessuna chiamata browser al provider. Dati e servizio restano nella VM; aggiornati solo4file statici, senza riavviare backend o motori. [Verifica](weather/layers-verification.json).
+
+**Copertura:** un punto della griglia vicino all’Aquila. Non è ancora una mappa continua del vento/pioggia sull’Abruzzo. Per quella servono dati distribuiti; non sono stati inventati o ripetuti valori puntuali su tutto il territorio. Nuove simulazioni e nuove prove di stabilità prolungata NOT RUN in questo incremento.

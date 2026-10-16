@@ -6,6 +6,19 @@ const catalog=await (await p.request.get('/api/catalog')).json();check('forecast
 check('real-weather-map',await p.locator('.weather-marker').isVisible()&&(await p.locator('#weather-meta').innerText()).includes('DWD ICON-EU')&&(await p.locator('#weather-meta').innerText()).includes('Emissione modello non fornita'));
 const hours=await p.locator('#weather-hour option').count();check('multi-day-hour-selection',hours>=48,hours);await p.locator('#weather-hour').selectOption({index:24});check('weather-hour-updates-map',(await p.locator('.weather-marker').innerText()).includes('previsione'));
 await p.locator('#monitor-weather').uncheck();check('weather-layer-independent',!await p.locator('.weather-marker').isVisible()&&(await p.locator('#monitor-map').getAttribute('data-hazards'))==='FIRE,FLOOD');await p.locator('#monitor-weather').check();
+// Overlay controls act independently of hazard filters and never submit jobs.
+const initialHazards=await p.locator('#monitor-map').getAttribute('data-hazards');
+check('wind-overlay-default',await p.locator('.wind-arrow').isVisible()&&(await p.locator('#monitor-map').getAttribute('data-weather-fields'))==='wind,temperature');
+const at=await p.locator('#weather-hour').inputValue();const selectedRecord=before.forecast.records.find(r=>r.at===at);
+check('wind-from-to-convention',await p.locator('.wind-arrow').evaluate((e,deg)=>e.style.transform==='rotate('+deg+'deg)',(selectedRecord.values.wind_direction_10m+180)%360));
+await p.locator('#weather-layer-temperature').uncheck();await p.locator('#weather-layer-rain').check();check('rain-independent-of-temperature',await p.locator('.weather-rain').isVisible()&&!await p.locator('.weather-temperature').count()&&await p.locator('.wind-arrow').isVisible());
+await p.locator('#weather-layer-wind').uncheck();check('rain-only-layer',!await p.locator('.wind-arrow').count()&&(await p.locator('#monitor-map').getAttribute('data-weather-fields'))==='rain');
+await p.locator('#monitor-weather').uncheck();check('master-hides-weather-legend',!await p.locator('#weather-map-legend').isVisible()&&!await p.locator('.weather-marker').count());await p.locator('#monitor-weather').check();check('master-preserves-variable-selection',(await p.locator('#monitor-map').getAttribute('data-weather-fields'))==='rain');
+await p.locator('#weather-layer-rain').uncheck();check('all-variables-off',!await p.locator('.weather-marker').count()&&!await p.locator('#weather-map-legend').isVisible());
+await p.locator('#weather-layer-wind').check();await p.locator('#weather-layer-temperature').check();await p.locator('#weather-center').click();
+check('point-not-regional-coverage',(await p.locator('#weather-map-legend').innerText()).includes('nessuna interpolazione regionale')&&(await p.locator('#weather-map-legend').innerText()).includes(String(before.forecast.model_point.latitude)));
+await p.locator('#weather-hour').selectOption({index:25});check('hour-updates-overlay-date',(await p.locator('.weather-marker').getAttribute('title')).includes('Previsione')&&(await p.locator('#weather-map-legend').innerText()).includes('Roma'));
+check('weather-toggle-preserves-hazards',(await p.locator('#monitor-map').getAttribute('data-hazards'))===initialHazards);
 await p.locator('#weather-use').click();check('forecast-job-builder',await p.locator('#simulation-weather').inputValue()==='FORECAST'&&await p.locator('#simulation-start').isEnabled()&&!await p.locator('#monitor-section').isVisible());
 check('source-and-assumptions',(await p.locator('#simulation-weather-note').innerText()).includes('ipotetici'));await p.locator('#simulation-weather').selectOption('HISTORICAL');check('historical-separate',!await p.locator('#simulation-start').isEnabled());
 await p.locator('button[data-view="map"]').click();for(let i=0;i<30;i++){await p.locator('#weather-hour').selectOption({index:i});await p.locator('#monitor-weather').setChecked(i%2===1);}

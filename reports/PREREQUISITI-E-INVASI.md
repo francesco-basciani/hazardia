@@ -49,3 +49,12 @@ Adattare solo il percorso alla propria cartella hmc-src compilata. Script e harn
 ## Prossimo lavoro concreto
 
 Costruire un fixture di bacino HMC con struttura dichiarata, validare gli input invaso/curve/forzanti e la conversione di unità, confrontare idrografi matched senza/con invaso, quindi REFlEx e rappresentazione nella piattaforma. Argini/pompaggio restano da valutare con idraulica locale: qualsiasi nuovo motore sostanziale va presentato prima di adottarlo. I tre interventi sono già richiesti dall’utente; nessuna scelta esclusiva pendente. Fonti/forecast, portafoglio decisioni, scala e validazione restano nel piano originale; nessuna nuova autorizzazione ordinaria di milestone richiesta.
+
+
+## Chiarimento: completare le integrazioni rimaste
+
+La richiesta riguarda tutte le integrazioni funzionali del piano, non solo i pacchetti. Open-Meteo è già collegato; questo non chiude il resto del lavoro. Ispezione aggiuntiva `remaining-integrations-20261016T063454Z`: PASS lettura dei sorgenti HMC nella VM, senza installare o modificare motori.
+
+Per il prossimo fixture, `HMC_Module_Info_Point.f90:169–179` legge conteggi diga/centrali da `dominio.info_dam.txt`; `HMC_Module_Data_Static_Point.f90:592–750` legge geometria, volumi, parametri di sfioro, file curva volume-livello e impianti. Le righe della griglia vengono invertite; il codice della diga deve identificare le celle nel raster choice/mask. Il parsing dei rilasci cambia con il formato/versione: occorre verificare quello esatto del sorgente fissato. Estratti integrali e SHA256 sono conservati nel run.
+
+**NOT RUN:** fixture integrato, idrografi senza/con invaso e nuove mappe REFlEx. Nessuna nuova simulazione o efficacia dichiarata da questa sola ispezione. Argini e pompaggio restano richiesti; un eventuale motore fisico aggiuntivo va valutato e presentato prima dell’adozione. Gli altri blocchi restano quelli di `VERIFICA-PIANO.md`, aggiornati dal successivo incremento meteo.

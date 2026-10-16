@@ -596,3 +596,24 @@ Finalcatalogforecastmodes/hash/readers PASS, original145enginehashes unchanged,8
 | UI weather and monitoring regressions | PASS |70checks,18axe scans,375/768/1440, raw incompletes retained |
 | Full FR-06/17 and M5–M7 | BLOCKED | No ensemble/distributed/calibrated/alert-quality/historical/fullscale qualification |
 | New30min/100k/historical/mitigation/daystudy | NOT RUN | Earlier release blockers unchanged |
+
+
+## Remaining integration clarification — remaining-integrations-20261016T063454Z
+
+| Check | Outcome | Evidence / limitation |
+|---|---|---|
+| Native HMC reservoir input contract inspection | PASS | Guest source paths/SHA256/line extracts and executed command in experiments/runs/remaining-integrations-20261016T063454Z; source baseline cb012796c1633da474f068021b4265eb9391217e; reviewer Codex self-check |
+| Full basin reservoir / HMC→REFlEx intervention maps | NOT RUN | Source inspection and prior component tests do not close integration |
+| New hydraulic engine adoption/ARM64 build | NOT RUN | No engine installed or selected; architectural assessment required |
+| Complete remaining integrations/research release | BLOCKED | Existing functional/data/scale/validation dependencies retained; user clarification is authorization, not evidence of completion |
+
+
+## Weather overlay controls — weather-layers-20261016T063635Z
+
+| Check | Outcome | Evidence / scope |
+|---|---|---|
+| FR-WX-LAYERS-01 point weather overlays | PASS |36browser checks, source b4dc8e5f139ee5dca4aff12ce8887758d1faa49c; raw experiments/runs/weather-layers-20261016T063635Z/browser/results.json; independent variable/master toggles, selected time, FROM/toward convention, hazard visibility preserved |
+| Responsive/accessibility regression | PASS |375/768/1440 map/results,6axe scans0violations; incomplete axe checks retained |
+| Shared quota / no provider browser call / no model submission | PASS |Existing shared VM cache, before/after attempt count unchanged; no model job created by map controls |
+| SameVM live deployment | PASS |4static files SHA256 match; no backend restart or scientific execution; reports/weather/layers-verification.json; reviewer Codex self-check |
+| Regional distributed weather field / new physics / new soak | NOT RUN |Current forecast covers one model point; no duplicated/interpolated field or new release claim |

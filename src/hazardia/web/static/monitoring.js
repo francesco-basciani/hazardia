@@ -33,8 +33,23 @@ export function monitoringMap(initial,feedback){
   // Small, bounded inspectable state for QA; no geographic/physics computation on client.
   $('monitor-map').dataset.hazards=active.map(s=>s.hazard).join(',');$('monitor-map').dataset.products=active.map(s=>s.id).join(',');
  }
- function weather(forecast,record){weatherForecast=forecast;weatherRecord=record;weatherLayer.clearLayers();if(!forecast||!record||!$('monitor-weather').checked)return;const v=record.values;L.marker([42.35,13.38],{keyboard:true,icon:L.divIcon({className:'weather-marker',iconSize:[170,58],iconAnchor:[85,64],html:'<div><strong>'+Math.round(v.temperature_2m)+' °C</strong> · '+Number(v.wind_speed_10m).toLocaleString('it-IT',{maximumFractionDigits:1})+' m/s<br>Pioggia '+v.precipitation+' mm · previsione</div>'})}).addTo(weatherLayer).bindPopup('Open-Meteo · DWD ICON-EU<br>'+escape(date(record.at))+'<br>Previsione puntuale, non osservazione. Pioggia nell’ora successiva.');}
- $('monitor-weather').onchange=()=>weather(weatherForecast,weatherRecord);
+ function weather(forecast,record){
+  weatherForecast=forecast;weatherRecord=record;weatherLayer.clearLayers();
+  const enabled=$('monitor-weather').checked,fields=['wind','temperature','rain'].filter(k=>$('weather-layer-'+k).checked),legend=$('weather-map-legend');
+  $('monitor-map').dataset.weatherFields=enabled&&forecast&&record?fields.join(','):'';
+  legend.hidden=!enabled||!forecast||!record||!fields.length;
+  if(legend.hidden)return;
+  const v=record.values,position=forecast.model_point,number=n=>Number(n).toLocaleString('it-IT',{maximumFractionDigits:1}),toward=(Number(v.wind_direction_10m)+180)%360;
+  const parts=[];
+  if(fields.includes('wind'))parts.push('<div class="weather-wind"><span class="wind-dial" aria-hidden="true"><span class="wind-north">N</span><span class="wind-arrow" style="transform:rotate('+toward+'deg)">↑</span></span><span><strong>'+number(v.wind_speed_10m)+' m/s</strong><br>Vento da '+number(v.wind_direction_10m)+'°'+(v.wind_speed_10m===0?' · calma':'')+'</span></div>');
+  if(fields.includes('temperature'))parts.push('<div class="weather-temperature">Temperatura <strong>'+number(v.temperature_2m)+' °C</strong></div>');
+  if(fields.includes('rain'))parts.push('<div class="weather-rain">Pioggia nell’ora <strong>'+number(v.precipitation)+' mm</strong></div>');
+  const title='Previsione '+date(record.at);
+  legend.textContent=title+' · '+forecast.model+' · punto della griglia '+position.latitude+', '+position.longitude+'. Freccia verso dove soffia il vento; dato puntuale, nessuna interpolazione regionale.';
+  L.marker([position.latitude,position.longitude],{keyboard:true,title,icon:L.divIcon({className:'weather-marker',iconSize:[204,100],iconAnchor:[102,50],html:'<div>'+parts.join('')+'<small>previsione · '+escape(date(record.at))+'</small></div>'})}).addTo(weatherLayer).bindPopup('Open-Meteo · '+escape(forecast.model)+'<br>'+escape(title)+'<br>Punto della griglia '+escape(position.latitude)+', '+escape(position.longitude)+'<br>Previsione puntuale, non osservazione. Pioggia nell’ora successiva.<br>Il vento è indicato in gradi da nord: il valore indica la provenienza, la freccia la direzione di movimento.');
+ }
+ for(const id of ['monitor-weather','weather-layer-wind','weather-layer-temperature','weather-layer-rain'])$(id).onchange=()=>weather(weatherForecast,weatherRecord);
+ $('weather-center').onclick=()=>{if(weatherForecast)map.setView([weatherForecast.model_point.latitude,weatherForecast.model_point.longitude],14,{animate:false});};
  function fit(){const active=shown();if(!active.length)return;map.fitBounds(active.reduce((b,s)=>b.extend(s.bounds),L.latLngBounds(active[0].bounds)),{padding:[35,35],maxZoom:16,animate:false});}
  function update(next){catalog=next;for(const kind of ['FIRE','FLOOD']){const select=$('monitor-'+kind.toLowerCase()+'-case'),old=select.value,list=catalog.scenarios.filter(s=>s.hazard===kind);select.innerHTML=list.map((s,i)=>'<option value="'+escape(s.id)+'">Caso '+(i+1)+' · '+escape(date(s.valid_from))+' · '+(kind==='FIRE'?Math.round(s.options.duration_s/60)+' min':'max6h')+'</option>').join('');if(list.some(s=>s.id===old))select.value=old;}draw();}
  for(const id of ['monitor-fire','monitor-flood','monitor-fire-case','monitor-flood-case'])$(id).onchange=()=>{const t=performance.now();draw();feedback(t,'monitor-filter');};

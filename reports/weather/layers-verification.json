@@ -1,0 +1,37 @@
+{
+  "run_id": "weather-layers-20261016T063635Z",
+  "source_commit": "b4dc8e5f139ee5dca4aff12ce8887758d1faa49c",
+  "status": "PASS",
+  "browser": "155.0.8059.84",
+  "checks": 36,
+  "failed": [],
+  "axe_scans": 6,
+  "axe_violations": 0,
+  "viewports": [
+    375,
+    768,
+    1440
+  ],
+  "forecast_id": "openmeteo-3772e6d2a363b7de18914f1a",
+  "forecast_available_at": "2026-10-16T06:07:25.320904Z",
+  "quota_after": {
+    "attempts_today": 1,
+    "local_daily_limit": 48,
+    "refresh_s": 1800,
+    "scope": "single fixed point;7variables4days; free noncommercial endpoint"
+  },
+  "deployment": "Four static files in existing VM original8080; backend source/process unchanged; hashes match code commit",
+  "deployed_hashes": {
+    "monitoring.js": "cfaad69b17fa1e476b15d145bfff7b98cf99b732a152d358a7c1336d5a1ac34a",
+    "index.html": "20e4deacbe9c4373b79901d969f624c1527b9080fbd058b4a2f9b5795381f56a",
+    "app.js": "f3e0b6ca5f34857233e9c14bc3be10907c473b4b6e9f49795592ae77903bdff3",
+    "app.css": "9277d88f4faa8cae906b04a3128b59f60ab5bff6393cdcd3ed5b280cf177bca6"
+  },
+  "reviewer": "Codex self-check",
+  "not_run": [
+    "regional weather grid",
+    "new physical simulations",
+    "new 30-minute soak",
+    "scientific validation"
+  ]
+}
