@@ -1,4 +1,4 @@
-import {regionBoundaries} from '/region-boundaries.js?v=1';
+import {regionBoundaries} from '/region-boundaries.js?v=workspace1';
 import {eventMarkers} from '/event-markers.js?v=1';
 const $=id=>document.getElementById(id),esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let timer=null,syncing=false,revision=0;const maps=[],rasters=[],rings=[],backgrounds=[];let imageryErrors=0;const imageryStatus=()=>{$('physical-imagery').textContent=imageryErrors?'Ortofoto parzialmente non disponibili; i raster fisici restano consultabili.':backgrounds.some(l=>l.isLoading())?'Caricamento ortofoto regionali…':'Ortofoto Regione Abruzzo 2018–2019 · consultazione online · sfondo distinto dai risultati del modello'};;

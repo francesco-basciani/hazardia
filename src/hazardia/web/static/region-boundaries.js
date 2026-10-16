@@ -5,8 +5,7 @@ export function regionBoundaries(map,{url='/assets/administrative-regions.json',
  const pane='regionContext';map.createPane(pane);map.getPane(pane).style.zIndex=530;map.getPane(pane).style.pointerEvents='none';
  const labelPane='regionNames';map.createPane(labelPane);map.getPane(labelPane).style.zIndex=600;map.getPane(labelPane).style.pointerEvents='none';
  const group=L.layerGroup(),labels=L.layerGroup();let data=null,outline,ink,on=true;
- const control=L.control({position:'topright'});let input,status;
- control.onAdd=()=>{const box=L.DomUtil.create('div','region-control');const label=document.createElement('label');input=document.createElement('input');input.type='checkbox';input.checked=true;input.setAttribute('aria-label','Confini regionali');label.append(input,document.createTextNode('Confini regionali'));status=document.createElement('small');status.textContent='Caricamento confini…';box.append(label,status);L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);input.onchange=()=>{on=input.checked;draw();};return box;};control.addTo(map);
+ const input=document.getElementById('config-regions'),status=document.getElementById('regions-status')||document.createElement('small');if(input){on=input.checked;input.addEventListener('change',()=>{on=input.checked;draw();});}
  function draw(){const z=map.getZoom(),show=on&&data&&z<=11;map.getContainer().dataset.regionBoundaries=show?'visible':data?'hidden':'unavailable';
   if(!show){group.remove();labels.remove();if(data)status.textContent=on?'Visibili nella vista d’insieme':'Nascosti';return;}
   if(!outline){const base={pane,fill:false,interactive:false,smoothFactor:1.5};outline=L.geoJSON(data,{...base,style:{color:'#172d3b',weight:4.5,opacity:.8}}).addTo(group);ink=L.geoJSON(data,{...base,style:f=>({color:f.properties.code===highlightCode?'#ffe2a3':'#f1f5f8',weight:1.4,opacity:.95})}).addTo(group);}
@@ -16,6 +15,6 @@ export function regionBoundaries(map,{url='/assets/administrative-regions.json',
  }
  map.on('zoomend moveend',draw);
  if(!sourceCache.has(url)){if(sourceCache.size>=4)sourceCache.delete(sourceCache.keys().next().value);sourceCache.set(url,fetch(url).then(async r=>{if(!r.ok)throw Error();const text=await r.text();if(text.length>4*1024**2)throw Error();const d=JSON.parse(text);if(d.type!=='FeatureCollection'||!Array.isArray(d.features)||d.features.length>100||!d.features.length||d.features.some(f=>!['Polygon','MultiPolygon'].includes(f.geometry?.type)||!f.properties?.name||!Array.isArray(f.properties.label_point)||f.properties.label_point.length!==2))throw Error();return d;}));}
- sourceCache.get(url).then(d=>{data=d;map.getContainer().dataset.regionCount=String(d.features.length);map.attributionControl.addAttribution('© Istat · confini2026 · CC BY4.0 · generalizzati a fini statistici');draw();}).catch(()=>{status.textContent='Confini non disponibili';input.disabled=true;map.getContainer().dataset.regionBoundaries='unavailable';});
+ sourceCache.get(url).then(d=>{data=d;map.getContainer().dataset.regionCount=String(d.features.length);map.attributionControl.addAttribution('© Istat · confini2026 · CC BY4.0 · generalizzati a fini statistici');draw();}).catch(()=>{status.textContent='Confini non disponibili';if(input)input.disabled=true;map.getContainer().dataset.regionBoundaries='unavailable';});
  return {refresh:draw};
 }

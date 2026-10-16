@@ -308,3 +308,7 @@ These numeric UI targets are **initial engineering budgets, not validated operat
 
 ## Regional overview context — user requirement 2026-10-16
 FR-MAP-REGION-01: show sourced administrative region boundaries and region names over distant satellite views, with an independent accessible toggle. Prefer high-contrast unfilled lines, emphasize the configured pilot region and reduce visual clutter at local zoom. Geography/year/license/generalization must be explicit; display boundaries must not silently determine operational jurisdiction or historical membership. Current Italian context: Istat2026 generalized20regions; foreign territory assets require separate qualification.
+
+
+## Control placement and editable resources — user requirement 2026-10-16
+**FR-UI-WORKSPACE-01 (P0):** keep map settings, including regional boundaries, in a coherent configuration section; place comparison mode controls beside their maps; keep weather hour, layer and actual visible-area values discoverable. Minimize repeated prose without removing qualification/provenance. Resource editing must send actual position, availability and arrival inputs to the solver. Explicitly distinguish research evacuation from physical hazard suppression: manual coordinates alone must never imply computed road travel, firefighting capability or altered propagation. Existing scenarios retain their forcing; selected-run weather must be explicit. Full typed firefighting intervention coupling remains required by existing physical-action requirements and is not satisfied by an evacuation editor.

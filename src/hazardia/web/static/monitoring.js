@@ -1,6 +1,7 @@
-import {regionBoundaries} from '/region-boundaries.js?v=1';
+import {resilientTiles} from '/tile-retry.js?v=1';
+import {regionBoundaries} from '/region-boundaries.js?v=workspace1';
 import {eventMarkers,scenarioReference} from '/event-markers.js?v=1';
-import {regionalWind} from '/wind-particles.js?v=viewport1';
+import {regionalWind} from '/wind-particles.js?v=workspace1';
 /* Read-only hazard overview: one chosen product per hazard, never a fused forecast. */
 const $=id=>document.getElementById(id);
 const escape=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -24,7 +25,7 @@ export function monitoringMap(initial,feedback){
  L.control.scale({imperial:false,maxWidth:120}).addTo(map);
  map.attributionControl.addAttribution('© OpenStreetMap contributors · ODbL · GeoNames CC BY4.0 · <a href="https://open-meteo.com/">Open-Meteo</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY4.0</a>');
  function source(){const online=$('monitor-basemap').value==='ortho';$('monitor-source').textContent=online?(map.getZoom()<=11?'Sentinel-2 cloudless2024 · EOX · mosaico regionale online · CC BY-NC-SA4.0.':'Ortofoto aeree 2018–2019 · 20 cm/px dichiarati · online.')+(failures?' Alcune tessere non disponibili: scegli Sentinel offline.':''):'Sentinel-2 · 13/07/2024 · pixel10m · ritaglio offline. Fuori dal ritaglio lo sfondo non è disponibile.';}
- ortho.on('tileerror',()=>{failures++;source()});regional.on('tileerror',()=>{failures++;source()});map.on('zoomend',source);source();
+ const tileFailures={ortho:0,regional:0};for(const [id,layer] of [['ortho',ortho],['regional',regional]])resilientTiles(layer,n=>{tileFailures[id]=n;failures=tileFailures.ortho+tileFailures.regional;source();});map.on('zoomend',source);source();
  function chosen(kind){return catalog.scenarios.find(s=>s.hazard===kind&&s.id===$('monitor-'+kind.toLowerCase()+'-case').value);}
  function shown(){return ['FIRE','FLOOD'].filter(k=>$('monitor-'+k.toLowerCase()).checked).map(chosen).filter(Boolean);}
  function draw(){

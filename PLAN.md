@@ -287,3 +287,7 @@ User reaffirms full meteorological/terrain/fuel inputs must actually drive PROPA
 
 ## Regional boundaries UI increment — 2026-10-16
 FR-MAP-REGION-01 PASS in current map slice: official20Istat2026 regions, WGS84 assets prepared in VM, source pinned, overview labels/lines/toggle and adaptive detail. PASS33browserchecks/3axe0violations,20valid geometries/inside labels,145enginepins/9deployedsourcehashes and cached bootstrap replay. reports/CONFINI-REGIONALI.md. No change to physics or research gate status.
+
+
+## Riordino workspace e risorse manuali — workspace-repair-20261016
+PASS configurazione unica/confini, controlli adiacenti alle mappe, letture meteo visibili, particelle più leggibili e editor di unità di evacuazione con coordinate/arrivo/disponibilità realmente consumati dal solver. Ricerca sintetica IMPACT_ONLY: posizione visuale, arrivo manuale e beneficio parametrico, nessun routing o effetto antincendio. PASS121test software VM,30browser/6axe0violazioni a375/768/1440,14runtimeSHA;855/857JSON precedenti invariati, cambiano solo2contatori traffico. Nessun nuovo job nativo. Report reports/RIORDINO-WORKSPACE.md, checksum reports/workspace/verification.json, raw experiments/runs/workspace-repair-20261016. Errori intermedi conservati/corretti, ricorrenza lag VM169s risincronizzata con servizio esistente; stabilità clock restaBLOCKED. FR-FIRE-FORCING-01/flotta antincendio e fullM5–M7 BLOCKED; nuovi run fisici/crossbrowser/soak100k NOT RUN. Prossimo incremento: coupling input e interventi fisici qualificati. Reviewer Codex self-check.

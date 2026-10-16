@@ -11,6 +11,7 @@ from hazardia.decision.research_fixture import problem
 from hazardia.decision.supervisor import bounded_decide
 from hazardia.adaptation.control import ResearchControl
 from hazardia.decision.rolling import advance
+from hazardia.decision.resource_overrides import apply as apply_resource_overrides
 from hazardia.ingest.forecast import ForecastStore
 from hazardia.ingest.wind import WindStore
 from hazardia.ingest.map_weather import MapWeatherStore,grid as map_weather_grid
@@ -76,7 +77,7 @@ class App:
             threading.Thread(target=fetch,daemon=True).start()
         return dict(status='ACCEPTED',scope='Bounded viewport display only;81nodes; shared VM cache')
     def submit_decision(self,body):
-        if set(body)-{'hazard','resources','robust','road_open','transfer','disabled','scenario_ids','rolling_from','preparedness'}:raise HazardError('INVALID_INPUT','Unknown decision fields')
+        if set(body)-{'hazard','resources','robust','road_open','transfer','disabled','scenario_ids','rolling_from','preparedness','resource_overrides'}:raise HazardError('INVALID_INPUT','Unknown decision fields')
         hazard=body.get('hazard','FIRE');count=body.get('resources',3);risk=body.get('robust',.5)
         if hazard not in ['FIRE','FLOOD','JOINT'] or type(count) is not int or not 1<=count<=8 or not isinstance(risk,(int,float)) or isinstance(risk,bool) or not 0<=risk<=1:raise HazardError('INVALID_INPUT','Invalid decision controls')
         for key in ['road_open','transfer']:
@@ -98,6 +99,9 @@ class App:
                 arrival=120 if body['preparedness']=='PREPOSITIONED' else 480
                 for option in p['options']:
                     option['arrival_s']=arrival;option['benefit']={w:v*(1-arrival/600) for w,v in option['benefit'].items()}
+            if body.get('resource_overrides') is not None:
+                if body.get('rolling_from') or body.get('preparedness'):raise HazardError('INVALID_INPUT','Custom unit arrivals cannot be combined with rolling or preset arrival profiles')
+                apply_resource_overrides(p,body['resource_overrides'])
             progress=None
             if body.get('rolling_from'):
                 previous=self.decision(body['rolling_from']);old=load(self.state/body['rolling_from']/'problem.json');p,progress=advance(old,previous,1);p['id']=ident

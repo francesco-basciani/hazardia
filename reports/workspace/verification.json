@@ -1,0 +1,61 @@
+{
+  "run_id": "workspace-repair-20261016",
+  "status": "PASS",
+  "scope": "UI and manual research evacuation only; physical suppression and full meteorological forcing BLOCKED",
+  "base_git_sha": "841424a3498419ac2018d2e15a24f427ae125e1c",
+  "source_state": "base plus source_runtime_hashes; final source commit is indexed by PUBLICATION.json",
+  "software_tests": 121,
+  "browser_checks": 30,
+  "axe_scans": 6,
+  "axe_violations": 0,
+  "viewports": [
+    375,
+    768,
+    1440
+  ],
+  "browser": "155.0.8059.84",
+  "source_runtime_hashes": {
+    "src/hazardia/web/server.py": "27a58ab04414afa508a5c34f94777028cbf8950c154f11b7eff865cb0983f5d9",
+    "src/hazardia/web/static/app.js": "59098709c26d954d8d7a8ba63342aa2640dd67d86d7957e7c9911b591659047a",
+    "src/hazardia/web/static/index.html": "b4236ee8c367bbe75490c89b65ccf4d5462a8fee4687a8bfa01e923714ec3102",
+    "src/hazardia/web/static/monitoring.js": "7db0143e7fcc2c782e73c627506416199f009c0f21b9679a036d91c79c022853",
+    "src/hazardia/web/static/physical-fire.html": "fa280dc5bc0a756523e7638ecf2f339f56a191d6e63620ac037f86daf858c20d",
+    "src/hazardia/web/static/physical-fire.js": "498128f254b3a7d68ae37c94b036627602018c0cb0d5e21476cbdb75ab7194fe",
+    "src/hazardia/web/static/region-boundaries.js": "cd7f602b5bd309fdaee908fe9a108f13d86dde67c87375548b2c219ec3cfba2d",
+    "src/hazardia/web/static/weather.js": "093d2c0db9ae0374ed76e29b7af5781fdae3c80a55ec054ea078613943810a99",
+    "src/hazardia/web/static/wind-particles.js": "ce8a97b23b67dcc89d14c3d4e69ddd8b7d2c56176a7d3c88f88d2f8d0e6c0085",
+    "src/hazardia/decision/resource_overrides.py": "aae1e4bda0a98059956ffc2f44b0f7756cdcb51c834e8649fe4e1dadf0c7c8a8",
+    "src/hazardia/web/static/resource-editor.js": "34706363e037115fd8456bd0ffae302a9ca99e4af7763e511f4c6f73b42a7381",
+    "src/hazardia/web/static/tile-retry.js": "f0ead3f4834e148576da80a144dfd2807c35e71654777668879215b142d5621b",
+    "src/hazardia/web/static/ui-layout.js": "f058de703427f7efed26703b7cf5d7a21072f786d4e43ade6e73cb5c0f4b9b7a",
+    "src/hazardia/web/static/workspace.css": "78fb0502487f917884e57390818f4f7fa691a6eb657cd938917024c4c7153872"
+  },
+  "prior_json_count": 857,
+  "prior_json_unchanged": 855,
+  "changed_counters": [
+    "web-state/map-traffic.json",
+    "web-state/regional-satellite-traffic.json"
+  ],
+  "native_jobs_submitted": 0,
+  "reviewer": "Codex self-check",
+  "artifacts": {
+    "experiments/runs/workspace-repair-20261016/plan.json": "40a0e7212fb83e8f3c5603bd0933e68fe50e0c605181b2144391ee04f3f07d72",
+    "experiments/runs/workspace-repair-20261016/regression.log": "30921948c0c644ee25359aa199df98bbab85b3e7c0d25baeda8ab185b5d951d5",
+    "experiments/runs/workspace-repair-20261016/decision-tests-v2.log": "7462488700e54f26b74e34197fa3b26f683dd9a5730217a148e5b5712a4b5b6b",
+    "experiments/runs/workspace-repair-20261016/final-v5/results.json": "61605d3ccc7e077e538f12419148a07cc97c794604f223415953617713ef2692",
+    "tests/browser/workspace-repair.cjs": "335c74c69d83495d0f0e976c56b74d6bbe1c322088bbb125147258d78e064900"
+  },
+  "not_run": [
+    "new native physics",
+    "cross-browser",
+    "physical devices",
+    "30min soak",
+    "100k load"
+  ],
+  "blocked": [
+    "physical crew/aircraft suppression",
+    "qualified distributed wildfire forcing",
+    "VM clock stability qualification",
+    "full M5-M7 research gates"
+  ]
+}
