@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-15T19:18:26.625584Z",
+  "conservative_cumulative_bytes": 2438028097,
+  "filesystem_available_bytes": 13327613952,
+  "filesystem_used_bytes": 6240157696,
+  "limit_bytes": 5368709120,
+  "note": "All guest RX incl local source uploads; no new remote data. Prior conservative bound plus RX delta.",
+  "rx_bytes": 656910523,
+  "status": "PASS"
+}

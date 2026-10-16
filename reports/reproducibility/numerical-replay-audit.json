@@ -1,0 +1,66 @@
+{
+  "final_expected_areas_ha": {
+    "baseline": 8553.735,
+    "fuelbreak": 2.475
+  },
+  "limitations": [
+    "Same host/VM OS, one paired fixture; no independent historical event or field-effectiveness inference"
+  ],
+  "original_engine_files_unchanged": 145,
+  "physical_native_npz_hashes_equal": 144,
+  "physical_png_hashes_equal": 144,
+  "replay_checks": [
+    {
+      "hazard": "fire",
+      "layers": [
+        {
+          "changed_valid_cells": 0,
+          "layer": "FIRE_PROBABILITY",
+          "masks_equal": true,
+          "maximum_absolute_difference": 0.0,
+          "new_statistics": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "positive_cells": 29,
+            "valid_cells": 4096
+          }
+        },
+        {
+          "changed_valid_cells": 0,
+          "layer": "ARRIVAL_TIME",
+          "masks_equal": true,
+          "maximum_absolute_difference": 0.0,
+          "new_statistics": {
+            "maximum": 3594.0,
+            "minimum": 0.0,
+            "positive_cells": 28,
+            "valid_cells": 29
+          }
+        }
+      ],
+      "scope": "Measured single-fixture replay; exact equality reported separately from valid execution",
+      "status": "PASS"
+    },
+    {
+      "hazard": "flood",
+      "layers": [
+        {
+          "changed_valid_cells": 197,
+          "layer": "MAXIMUM_DEPTH",
+          "masks_equal": true,
+          "maximum_absolute_difference": 1.4901161193847656e-08,
+          "new_statistics": {
+            "maximum": 0.1786166876554489,
+            "minimum": 0.0,
+            "positive_cells": 1220,
+            "valid_cells": 21025
+          }
+        }
+      ],
+      "scope": "Measured single-fixture replay; exact equality reported separately from valid execution",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "total_physical_frames": 144
+}

@@ -1,0 +1,11 @@
+{
+  "build_s": 24.715366231997905,
+  "index_bytes": 7090176,
+  "indexed_query_s": 0.006492197997431504,
+  "measurement": "one execution; RSS includes imports/integration; no p95 or UI target",
+  "payload_bytes": 51796,
+  "process_peak_rss_bytes": 103923712,
+  "records": 10000,
+  "returned": 100,
+  "serialization_s": 0.0017980390002776403
+}

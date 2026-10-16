@@ -1,0 +1,65 @@
+{
+  "run_id": "m1-abruzzo-20261015T161041Z",
+  "created_utc": "2026-10-15T16:10:41.823704+00:00",
+  "milestone": "M1",
+  "authorization": "User explicitly: Procedi con M1!",
+  "baseline_git_sha": "5ddf6b96f191aeca588ae01cda1af5d41c7490ab",
+  "scope": "M1.1 ingestion/data;M1.2fire;M1.3flood;M1.4boundedjobs/manifests/errors;M1.5actual integration+negative tests",
+  "territory": {
+    "id": "abruzzo-laquila-research",
+    "region": "Abruzzo",
+    "bbox_wgs84": [
+      13.36,
+      42.33,
+      13.4,
+      42.37
+    ],
+    "selection_basis": "User-selected Abruzzo; compact L Aquila geographic fixture, not chosen on simulated outcome. Partial AOI not complete calibrated catchment.",
+    "work_crs": "EPSG:32633",
+    "timezone": "Europe/Rome"
+  },
+  "sources": {
+    "terrain": "Public CopernicusGLO30DSM via official EarthSearchcatalog",
+    "satellite": "Sentinel2L2A July2024,fullAOIcoverage,minscenecloudthenID; quality independently checked fromSCL",
+    "weather": "ERA5viaOpenMeteo historical public API; REANALYSIS,not issuedforecast"
+  },
+  "scenario_policy": "Real terrain/source records; synthetic ignition/uniform fuel/moisture and flood rainpulse/soil/Q0 assumptions explicitly marked research_unqualified. No historic predictive skill/recurrence/arrival claim.",
+  "seeds": [
+    1729,
+    1730
+  ],
+  "limits": {
+    "new_source_payload_bytes": 402653184,
+    "total_download_bytes": 5368709120,
+    "disk_bytes": 21474836480,
+    "ram_bytes": 8589934592,
+    "vcpus": 4,
+    "max_running_simulator_jobs": 1,
+    "queue_capacity": 4
+  },
+  "budget_baseline": {
+    "status": "PASS",
+    "conservative_cumulative_bytes": 2026535111,
+    "limit_bytes": 5368709120,
+    "source_payload_bytes": 13104470,
+    "run_source_limit_bytes": 33554432,
+    "accounting": "Prior conservative bound plus total guestRX delta, including local uploads/traffic; not exact Internet wire total",
+    "latest_guest_rx_total": 245417537,
+    "baseline_guest_rx_total": 230937606,
+    "filesystem_used_bytes": 5721014272,
+    "filesystem_available_bytes": 13846757376,
+    "configured_disk_bytes": 20401094656,
+    "configured_ram_bytes": 8589934592,
+    "configured_vcpus": 4,
+    "installations": 0
+  },
+  "acceptance": [
+    "Source bytes/rights/grid/time/missing checks and cold/warm cache evidence",
+    "Fresh real PROPAGATOR and HMC->REFlEx outputs via adapters,georeferenced/finite/schema/provenance",
+    "No overwrite,source drift,invalidunit/grid/time,missingcriticalinput rejected",
+    "Bounded FIFO,cancel queued/running,timeout,processgroup containment,retryexplicit,nosilentfail exit0",
+    "Ext02/03/04review/05 on real M1components;Ext01decisioncoreNOTRUNuntilM3"
+  ],
+  "gate": "M1notcompleteuntilexecutedchecks;M2+notauthorized",
+  "reviewer": "Codex self-check; external physical review pending"
+}

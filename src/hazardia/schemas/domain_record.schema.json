@@ -1,0 +1,1126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:hazardia:domain:0.4.0",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "id",
+        "available_at",
+        "provenance",
+        "payload"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.4.0"
+        },
+        "kind": {
+          "const": "territory"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "available_at": {
+          "type": "string",
+          "pattern": "Z$"
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "license",
+            "qualification"
+          ],
+          "properties": {
+            "source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "license": {
+              "type": "string",
+              "minLength": 1
+            },
+            "qualification": {
+              "enum": [
+                "SYNTHETIC_RESEARCH",
+                "UNQUALIFIED_RESEARCH",
+                "QUALIFIED"
+              ]
+            }
+          }
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "bbox_wgs84",
+            "work_crs",
+            "timezone",
+            "jurisdictions",
+            "horizontal_unit",
+            "vertical_datum",
+            "calibration",
+            "calibration_refs",
+            "missing_data_policy",
+            "source_policy"
+          ],
+          "properties": {
+            "bbox_wgs84": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "work_crs": {
+              "type": "string",
+              "minLength": 1
+            },
+            "timezone": {
+              "type": "string",
+              "minLength": 1
+            },
+            "jurisdictions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "horizontal_unit": {
+              "const": "m"
+            },
+            "vertical_datum": {
+              "type": "string",
+              "minLength": 1
+            },
+            "calibration": {
+              "enum": [
+                "UNKNOWN",
+                "DOCUMENTED"
+              ]
+            },
+            "calibration_refs": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "missing_data_policy": {
+              "const": "BLOCK_CRITICAL_UNKNOWN"
+            },
+            "source_policy": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "max_age_s",
+                "min_coverage"
+              ],
+              "properties": {
+                "max_age_s": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "min_coverage": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "id",
+        "available_at",
+        "provenance",
+        "payload"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.4.0"
+        },
+        "kind": {
+          "const": "detection"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "available_at": {
+          "type": "string",
+          "pattern": "Z$"
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "license",
+            "qualification"
+          ],
+          "properties": {
+            "source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "license": {
+              "type": "string",
+              "minLength": 1
+            },
+            "qualification": {
+              "enum": [
+                "SYNTHETIC_RESEARCH",
+                "UNQUALIFIED_RESEARCH",
+                "QUALIFIED"
+              ]
+            }
+          }
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "territory_id",
+            "hazard",
+            "bbox_wgs84",
+            "sensed_at",
+            "sensor",
+            "correlation_group",
+            "assessment",
+            "confidence",
+            "coverage"
+          ],
+          "properties": {
+            "territory_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "hazard": {
+              "enum": [
+                "FIRE",
+                "FLOOD"
+              ]
+            },
+            "bbox_wgs84": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "sensed_at": {
+              "type": "string",
+              "pattern": "Z$"
+            },
+            "sensor": {
+              "type": "string",
+              "minLength": 1
+            },
+            "correlation_group": {
+              "type": "string",
+              "minLength": 1
+            },
+            "assessment": {
+              "enum": [
+                "PRESENT",
+                "ABSENT"
+              ]
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "coverage": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "id",
+        "available_at",
+        "provenance",
+        "payload"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.4.0"
+        },
+        "kind": {
+          "const": "weather_ensemble"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "available_at": {
+          "type": "string",
+          "pattern": "Z$"
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "license",
+            "qualification"
+          ],
+          "properties": {
+            "source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "license": {
+              "type": "string",
+              "minLength": 1
+            },
+            "qualification": {
+              "enum": [
+                "SYNTHETIC_RESEARCH",
+                "UNQUALIFIED_RESEARCH",
+                "QUALIFIED"
+              ]
+            }
+          }
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "territory_id",
+            "bbox_wgs84",
+            "spatial_resolution_m",
+            "data_kind",
+            "issued_at",
+            "valid_from",
+            "valid_until",
+            "step_s",
+            "units",
+            "members"
+          ],
+          "properties": {
+            "territory_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bbox_wgs84": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "spatial_resolution_m": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "data_kind": {
+              "enum": [
+                "FORECAST",
+                "REANALYSIS"
+              ]
+            },
+            "issued_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "Z$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "valid_from": {
+              "type": "string",
+              "pattern": "Z$"
+            },
+            "valid_until": {
+              "type": "string",
+              "pattern": "Z$"
+            },
+            "step_s": {
+              "const": 3600
+            },
+            "units": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "precipitation",
+                "wind_speed_10m",
+                "wind_direction_10m",
+                "temperature_2m",
+                "relative_humidity_2m",
+                "surface_pressure",
+                "shortwave_radiation"
+              ],
+              "properties": {
+                "precipitation": {
+                  "const": "mm"
+                },
+                "wind_speed_10m": {
+                  "const": "m/s"
+                },
+                "wind_direction_10m": {
+                  "const": "\u00b0"
+                },
+                "temperature_2m": {
+                  "const": "\u00b0C"
+                },
+                "relative_humidity_2m": {
+                  "const": "%"
+                },
+                "surface_pressure": {
+                  "const": "hPa"
+                },
+                "shortwave_radiation": {
+                  "const": "W/m\u00b2"
+                }
+              }
+            },
+            "members": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "weight",
+                  "records"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "weight": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "records": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "at",
+                        "values"
+                      ],
+                      "properties": {
+                        "at": {
+                          "type": "string",
+                          "pattern": "Z$"
+                        },
+                        "values": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "precipitation",
+                            "wind_speed_10m",
+                            "wind_direction_10m",
+                            "temperature_2m",
+                            "relative_humidity_2m",
+                            "surface_pressure",
+                            "shortwave_radiation"
+                          ],
+                          "properties": {
+                            "precipitation": {
+                              "type": "number"
+                            },
+                            "wind_speed_10m": {
+                              "type": "number"
+                            },
+                            "wind_direction_10m": {
+                              "type": "number"
+                            },
+                            "temperature_2m": {
+                              "type": "number"
+                            },
+                            "relative_humidity_2m": {
+                              "type": "number"
+                            },
+                            "surface_pressure": {
+                              "type": "number"
+                            },
+                            "shortwave_radiation": {
+                              "type": "number"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "id",
+        "available_at",
+        "provenance",
+        "payload"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.4.0"
+        },
+        "kind": {
+          "const": "exposure"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "available_at": {
+          "type": "string",
+          "pattern": "Z$"
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "license",
+            "qualification"
+          ],
+          "properties": {
+            "source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "license": {
+              "type": "string",
+              "minLength": 1
+            },
+            "qualification": {
+              "enum": [
+                "SYNTHETIC_RESEARCH",
+                "UNQUALIFIED_RESEARCH",
+                "QUALIFIED"
+              ]
+            }
+          }
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "territory_id",
+            "point_wgs84",
+            "category",
+            "people",
+            "vulnerability",
+            "valid_from",
+            "valid_until"
+          ],
+          "properties": {
+            "territory_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "point_wgs84": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "category": {
+              "enum": [
+                "POPULATION",
+                "INFRASTRUCTURE"
+              ]
+            },
+            "people": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "vulnerability": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "valid_from": {
+              "type": "string",
+              "pattern": "Z$"
+            },
+            "valid_until": {
+              "type": "string",
+              "pattern": "Z$"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "id",
+        "available_at",
+        "provenance",
+        "payload"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.4.0"
+        },
+        "kind": {
+          "const": "road"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "available_at": {
+          "type": "string",
+          "pattern": "Z$"
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "license",
+            "qualification"
+          ],
+          "properties": {
+            "source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "license": {
+              "type": "string",
+              "minLength": 1
+            },
+            "qualification": {
+              "enum": [
+                "SYNTHETIC_RESEARCH",
+                "UNQUALIFIED_RESEARCH",
+                "QUALIFIED"
+              ]
+            }
+          }
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "territory_id",
+            "from_node",
+            "to_node",
+            "bbox_wgs84",
+            "status",
+            "load_limit_kg",
+            "length_m",
+            "speed_kmh",
+            "valid_from",
+            "valid_until"
+          ],
+          "properties": {
+            "territory_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "from_node": {
+              "type": "string",
+              "minLength": 1
+            },
+            "to_node": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bbox_wgs84": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "status": {
+              "enum": [
+                "OPEN",
+                "CLOSED",
+                "UNKNOWN"
+              ]
+            },
+            "load_limit_kg": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "length_m": {
+              "type": "number",
+              "minimum": 0
+            },
+            "speed_kmh": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "valid_from": {
+              "type": "string",
+              "pattern": "Z$"
+            },
+            "valid_until": {
+              "type": "string",
+              "pattern": "Z$"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "id",
+        "available_at",
+        "provenance",
+        "payload"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.4.0"
+        },
+        "kind": {
+          "const": "resource"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "available_at": {
+          "type": "string",
+          "pattern": "Z$"
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "license",
+            "qualification"
+          ],
+          "properties": {
+            "source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "license": {
+              "type": "string",
+              "minLength": 1
+            },
+            "qualification": {
+              "enum": [
+                "SYNTHETIC_RESEARCH",
+                "UNQUALIFIED_RESEARCH",
+                "QUALIFIED"
+              ]
+            }
+          }
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "territory_id",
+            "home_authority",
+            "point_wgs84",
+            "skills",
+            "equipment",
+            "capabilities",
+            "schedule",
+            "rest_hours",
+            "maintenance",
+            "autonomy_h",
+            "consumables",
+            "cost_per_hour",
+            "reliability",
+            "mass_kg"
+          ],
+          "properties": {
+            "territory_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "home_authority": {
+              "type": "string",
+              "minLength": 1
+            },
+            "point_wgs84": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "skills": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "equipment": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "capabilities": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "enum": [
+                      "FIRE",
+                      "FLOOD"
+                    ]
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "schedule": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "start",
+                      "end"
+                    ],
+                    "properties": {
+                      "start": {
+                        "type": "string",
+                        "pattern": "Z$"
+                      },
+                      "end": {
+                        "type": "string",
+                        "pattern": "Z$"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "rest_hours": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maintenance": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "READY",
+                    "UNAVAILABLE",
+                    "UNKNOWN"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "autonomy_h": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "consumables": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "fuel_l",
+                    "water_l"
+                  ],
+                  "properties": {
+                    "fuel_l": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "water_l": {
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "cost_per_hour": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reliability": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "mass_kg": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "id",
+        "available_at",
+        "provenance",
+        "payload"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.4.0"
+        },
+        "kind": {
+          "const": "intervention"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "available_at": {
+          "type": "string",
+          "pattern": "Z$"
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "license",
+            "qualification"
+          ],
+          "properties": {
+            "source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "license": {
+              "type": "string",
+              "minLength": 1
+            },
+            "qualification": {
+              "enum": [
+                "SYNTHETIC_RESEARCH",
+                "UNQUALIFIED_RESEARCH",
+                "QUALIFIED"
+              ]
+            }
+          }
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "territory_id",
+            "hazard",
+            "effect",
+            "action",
+            "model_id",
+            "evidence",
+            "parameters"
+          ],
+          "properties": {
+            "territory_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "hazard": {
+              "enum": [
+                "FIRE",
+                "FLOOD"
+              ]
+            },
+            "effect": {
+              "enum": [
+                "IMPACT_ONLY",
+                "PHYSICAL_EFFECT",
+                "UNKNOWN_EFFECT"
+              ]
+            },
+            "action": {
+              "type": "string",
+              "minLength": 1
+            },
+            "model_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evidence": {
+              "enum": [
+                "SYNTHETIC_RESEARCH",
+                "QUALIFIED",
+                "UNKNOWN"
+              ]
+            },
+            "parameters": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "evacuated_people"
+              ],
+              "properties": {
+                "evacuated_people": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

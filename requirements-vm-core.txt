@@ -1,0 +1,3 @@
+# Exact already-installed core validator used for this VM execution.
+# Broader supported range in pyproject; this file records the tested runtime.
+jsonschema==3.2.0

@@ -1,0 +1,250 @@
+{
+  "at": "2026-10-16T05:27:17.672Z",
+  "browser": "155.0.8059.84",
+  "checks": [
+    {
+      "id": "72-hour-native-pair",
+      "status": "PASS",
+      "detail": {
+        "baseline": {
+          "expected_area_ha": 8553.735,
+          "native_sha256": "d2666c1d9f50854ff86831e43db21b49b50f83c4aa31bb44fe3b3d9bceb279e7",
+          "png_sha256": "29b1d4cc943f20f855380958709fa6360d926f840499c1a8ffff25bd58787310",
+          "positive_cells": 139576,
+          "url": "/assets/physical-days-20261016T040414Z/baseline-72.png"
+        },
+        "fuelbreak": {
+          "expected_area_ha": 2.475,
+          "native_sha256": "d4d40ee20220a5ee86cc43baf38d702f8f244ae6ae790736270a2a906de15393",
+          "png_sha256": "1857e4346d8e066229397bf779a925ad493b69433063e2e30b87beb8050a7027",
+          "positive_cells": 40,
+          "url": "/assets/physical-days-20261016T040414Z/fuelbreak-72.png"
+        },
+        "hour": 72
+      }
+    },
+    {
+      "id": "different-physical-rasters",
+      "status": "PASS",
+      "detail": {
+        "a": "8553,74 ha",
+        "b": "2,48 ha"
+      }
+    },
+    {
+      "id": "no-action-control-identical",
+      "status": "PASS",
+      "detail": "0 ha"
+    },
+    {
+      "id": "horizon-24",
+      "status": "PASS",
+      "detail": "1 g 0 h"
+    },
+    {
+      "id": "horizon-48",
+      "status": "PASS",
+      "detail": "2 g 0 h"
+    },
+    {
+      "id": "horizon-72",
+      "status": "PASS",
+      "detail": "3 g 0 h"
+    },
+    {
+      "id": "first-hour-real-frame",
+      "status": "PASS",
+      "detail": "0 g 1 h"
+    },
+    {
+      "id": "play-pause-hourly",
+      "status": "PASS",
+      "detail": "0 g 2 h"
+    },
+    {
+      "id": "30-native-frame-switches",
+      "status": "PASS",
+      "detail": {
+        "n": 30,
+        "p95_full_delivery_ms": 66.65337500000169,
+        "scope": "Automation+network+decode measurement, not input acknowledgement p95"
+      }
+    },
+    {
+      "id": "30-pans-rendered-frames",
+      "status": "PASS",
+      "detail": {
+        "fps": 60.00284685039803,
+        "scope": "QA requestAnimationFrame cadence over30keyboardpans; not GPU compositor measurement"
+      }
+    },
+    {
+      "id": "bounded-image-dom",
+      "status": "PASS",
+      "detail": 2
+    },
+    {
+      "id": "responsive-375",
+      "status": "PASS",
+      "detail": {
+        "width": 375,
+        "scroll": 375,
+        "controls": [
+          {
+            "id": "physical-action",
+            "left": 31,
+            "right": 344
+          },
+          {
+            "id": "physical-days",
+            "left": 31,
+            "right": 344
+          },
+          {
+            "id": "physical-fit",
+            "left": 31,
+            "right": 169.265625
+          },
+          {
+            "id": "physical-near",
+            "left": 185.265625,
+            "right": 325.296875
+          },
+          {
+            "id": "physical-play",
+            "left": 29,
+            "right": 107.5
+          },
+          {
+            "id": "physical-hour",
+            "left": 31,
+            "right": 241
+          }
+        ]
+      }
+    },
+    {
+      "id": "responsive-768",
+      "status": "PASS",
+      "detail": {
+        "width": 768,
+        "scroll": 768,
+        "controls": [
+          {
+            "id": "physical-action",
+            "left": 31,
+            "right": 737
+          },
+          {
+            "id": "physical-days",
+            "left": 31,
+            "right": 737
+          },
+          {
+            "id": "physical-fit",
+            "left": 31,
+            "right": 169.265625
+          },
+          {
+            "id": "physical-near",
+            "left": 185.265625,
+            "right": 325.296875
+          },
+          {
+            "id": "physical-play",
+            "left": 29,
+            "right": 107.5
+          },
+          {
+            "id": "physical-hour",
+            "left": 200.09375,
+            "right": 634
+          }
+        ]
+      }
+    },
+    {
+      "id": "responsive-1440",
+      "status": "PASS",
+      "detail": {
+        "width": 1440,
+        "scroll": 1440,
+        "controls": [
+          {
+            "id": "physical-action",
+            "left": 43,
+            "right": 327
+          },
+          {
+            "id": "physical-days",
+            "left": 343,
+            "right": 427
+          },
+          {
+            "id": "physical-fit",
+            "left": 489.515625,
+            "right": 627.78125
+          },
+          {
+            "id": "physical-near",
+            "left": 643.78125,
+            "right": 783.8125
+          },
+          {
+            "id": "physical-play",
+            "left": 41,
+            "right": 119.5
+          },
+          {
+            "id": "physical-hour",
+            "left": 224.09375,
+            "right": 1288
+          }
+        ]
+      }
+    },
+    {
+      "id": "automated-accessibility",
+      "status": "PASS",
+      "detail": [
+        {
+          "width": 375,
+          "violations": [],
+          "incomplete": [
+            "color-contrast"
+          ]
+        },
+        {
+          "width": 768,
+          "violations": [],
+          "incomplete": [
+            "color-contrast"
+          ]
+        },
+        {
+          "width": 1440,
+          "violations": [],
+          "incomplete": [
+            "color-contrast"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "no-runtime-science-in-browser",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "only-local-data-requests",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "no-JavaScript-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scope": "Display/client QA of independent reconstructed runtime via temporary loopback SSH forward8081; raw accessibility incompletes retained locally"
+}

@@ -1,0 +1,92 @@
+{
+  "checks": [
+    {
+      "detail": [
+        {
+          "engine": {
+            "name": "PROPAGATOR",
+            "patch_sha256": null,
+            "source_commit": "48b45078093692aa8dcca98f51849a5fbcd981a5"
+          },
+          "job": "job-7f7c35a549494a118219cd98bcf70093",
+          "metrics": {
+            "artifact_bytes": 240505,
+            "child_cpu_system_s": 1.202382,
+            "child_cpu_user_s": 26.780197,
+            "execution_s": 28.186199758998555,
+            "queue_s": 0.013522,
+            "rss_samples": 155,
+            "rss_sampling_interval_s": 0.1,
+            "sampled_peak_process_group_rss_bytes": 333737984
+          }
+        },
+        {
+          "engine": {
+            "name": "HMC+REFLEX",
+            "patch_sha256": "61dea2c4a8b5de6d003c5bc1a2d32e5a0d0ca7c963f9199e099036afedd1a82e",
+            "source_commit": "HMC=e6e95ecbc794431c4e6d09a81b3292704f3cca42;REFLEX=0dd5aa9803f7c163a4f6c3b42d9f69bce88a53bd"
+          },
+          "job": "job-78cd5d14b5234865b715bd8f090c0caf",
+          "metrics": {
+            "artifact_bytes": 20573845,
+            "child_cpu_system_s": 8.966449,
+            "child_cpu_user_s": 261.150154,
+            "execution_s": 230.42686318599954,
+            "queue_s": 0.013424,
+            "rss_samples": 1204,
+            "rss_sampling_interval_s": 0.1,
+            "sampled_peak_process_group_rss_bytes": 1412108288
+          }
+        }
+      ],
+      "name": "real_products_manifests_bytes_grids_units",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "burned_cells": 4,
+        "oracle": "Pinned upstream PROPAGATOR.compute_arrival_time_min"
+      },
+      "name": "arrival_compared_with_upstream_method",
+      "status": "PASS"
+    },
+    {
+      "detail": "Exact two-process same-seed comparison; one thread, one fixture, not independent statistical samples",
+      "name": "fire_narrow_seeded_replay",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "maximum_relative_fit_residual": 2.1296777285114857e-06,
+        "outputs": 6,
+        "physics": "UNQUALIFIED",
+        "rain": "SYNTHETIC",
+        "reaches": 26
+      },
+      "name": "actual_HMC_discharge_bridge_and_nonempty_HAND",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "available_at": "2026-10-15T16:13:34.520823Z",
+        "qualification": "Retrospective conditional scenarios",
+        "scene": "S2A_33TUG_20240713_0_L2A",
+        "sensed_at": "2024-07-13T10:09:10.545000Z"
+      },
+      "name": "source_timestamps_rights_and_explicit_unknowns",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "reviewed_files": 8,
+        "scope": "AST imports in concrete core/ingestion; subprocess simulator workers separate; no decision core yet"
+      },
+      "name": "core_and_provider_dependency_boundary",
+      "status": "PASS"
+    }
+  ],
+  "failed": 0,
+  "passed": 6,
+  "reviewer": "Codex self-check; no external physical validation",
+  "run_id": "m1-abruzzo-20261015T161041Z"
+}

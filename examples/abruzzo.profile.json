@@ -1,0 +1,9 @@
+{
+  "id": "abruzzo-laquila-research",
+  "region": "Abruzzo",
+  "bbox_wgs84": [13.36, 42.33, 13.40, 42.37],
+  "work_crs": "EPSG:32633",
+  "timezone": "Europe/Rome",
+  "calibration": "UNKNOWN",
+  "complete_catchment": false
+}

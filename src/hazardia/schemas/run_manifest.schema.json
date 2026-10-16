@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:hazardia:0.3.0:run_manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "kind",
+    "run_id",
+    "parent_job",
+    "request_id",
+    "status",
+    "error_code",
+    "detail",
+    "started_at",
+    "ended_at",
+    "metrics",
+    "artifacts",
+    "qualification",
+    "code",
+    "seed",
+    "environment"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.3.0"
+    },
+    "kind": {
+      "const": "run_manifest"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_job": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "SUCCEEDED",
+        "ERROR",
+        "TIMEOUT",
+        "CANCELLED"
+      ]
+    },
+    "error_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "detail": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ended_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "metrics": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "qualification": {
+      "const": "UNQUALIFIED_RESEARCH"
+    },
+    "code": {
+      "type": "object",
+      "required": [
+        "git_sha",
+        "dirty",
+        "source_sha256"
+      ],
+      "properties": {
+        "git_sha": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dirty": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_sha256": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "seed": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "environment": {
+      "type": "object"
+    }
+  }
+}

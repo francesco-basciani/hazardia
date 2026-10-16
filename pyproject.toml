@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hazardia"
+version = "0.1.0"
+description = "Local research ingestion and isolated CIMA simulation jobs"
+requires-python = ">=3.10"
+dependencies = ["jsonschema>=3.2,<5"]
+
+[project.scripts]
+hazardia = "hazardia.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+hazardia = ["schemas/*.json", "web/static/*"]

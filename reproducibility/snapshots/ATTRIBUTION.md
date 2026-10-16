@@ -1,0 +1,12 @@
+# Public input snapshots
+
+Only small, licensed metadata/meteorological/gazetteer snapshots are included. No private or operational data, no regional orthophoto imagery, no raw large satellite/terrain rasters.
+
+- `abruzzo/dem-item.json`: Copernicus GLO-30 DSM catalogue metadata, Earth Search STAC. The DSM itself is fetched separately from the locked public URL. Copernicus WorldDEM-30 © DLR e.V. 2010–2014 / © Airbus Defence and Space GmbH 2014–2018, provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of Copernicus incur no liability for use of WorldDEM-30. See https://spacedata.copernicus.eu/collections/copernicus-digital-elevation-model .
+- `abruzzo/sentinel-item.json`: Sentinel-2 L2A catalogue metadata. Satellite asset downloads retain the Copernicus Sentinel legal notice; see https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice . Contains modified Copernicus Sentinel data 2024 applies to generated previews; no claim of satellite-observed disaster.
+- `abruzzo/weather.json`, `physical-days/weather-4days.json`: retrospective ERA5 data via Open-Meteo, CC BY 4.0, https://open-meteo.com/ and https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5 . Original first-seen/source timestamps are historical provenance, not an operational forecast or a reconstructed issue time. New runtime acquisition/reuse receipts are recorded separately.
+- `map-context.json`: derived gazetteer / map context. OpenStreetMap contributors, ODbL 1.0 https://www.openstreetmap.org/copyright , with GeoNames records CC BY 4.0 https://www.geonames.org/ . The JSON preserves per-source provenance and coverage. No official administrative boundaries, cadastral addresses or guaranteed routing inferred. Retain the database licence and attribution when redistributing this database; code elsewhere is not relicensed by this data file.
+- `abruzzo/plan.json`, `physical-days/grid.json`: HAZARDIA authored research configuration, not empirical calibration.
+- `inputs.lock.json`: public URLs, payload sizes and SHA-256 for the original downloaded inputs and BSD-2-Clause Leaflet 1.9.4. Refresh to a different dataset only as an explicit new snapshot, never silently replace a hash.
+
+Original input selection/limitations: README.md, research/EVIDENCE.md and reports/M1-integration.md. Reproducing a synthetic experiment does not establish forecast accuracy or intervention effectiveness.

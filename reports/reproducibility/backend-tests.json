@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "counts": {
+    "unit": 38,
+    "domain": 19,
+    "decision": 14,
+    "web": 14
+  },
+  "total": 85,
+  "scope": "Same Ubuntu VM; newly built independent runtime prefix; no new OS boot"
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "dem-original.tif",
+    "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N42_00_E013_00_DEM/Copernicus_DSM_COG_10_N42_00_E013_00_DEM.tif",
+    "sha256": "ce66eaaa51ec82ab45533544cd49be663deb9bfd2f0a42ccd9a64a1a10a83a79",
+    "bytes": 42952996,
+    "license": "Copernicus DEM licence"
+  },
+  {
+    "name": "sentinel-original.tif",
+    "url": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/33/T/UG/2024/7/S2A_33TUG_20240713_0_L2A/TCI.tif",
+    "sha256": "78dbd5110d34933d194c7e764d9ed7ada505555eeeb2af42f8b0fc61495b7366",
+    "bytes": 340218184,
+    "license": "Copernicus Sentinel legal notice"
+  },
+  {
+    "name": "sentinel-scl.tif",
+    "url": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/33/T/UG/2024/7/S2A_33TUG_20240713_0_L2A/SCL.tif",
+    "sha256": "a1c066c31d49b8fdbb326f69d62daf2e10f1d2754295c4e84c6a06e184c24930",
+    "bytes": 3139811,
+    "license": "Copernicus Sentinel legal notice"
+  },
+  {
+    "name": "leaflet/leaflet.js",
+    "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
+    "sha256": "db49d009c841f5ca34a888c96511ae936fd9f5533e90d8b2c4d57596f4e5641a",
+    "bytes": 147552,
+    "license": "BSD-2-Clause"
+  },
+  {
+    "name": "leaflet/leaflet.css",
+    "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+    "sha256": "a7837102824184820dfa198d1ebcd109ff6d0ff9a2672a074b9a1b4d147d04c6",
+    "bytes": 14806,
+    "license": "BSD-2-Clause"
+  },
+  {
+    "name": "leaflet/LICENSE",
+    "url": "https://unpkg.com/leaflet@1.9.4/LICENSE",
+    "sha256": "53e8dc25862014e4324741ca18fbe3611e11d42ef69f59f86ea8c5389647d4cb",
+    "bytes": 1395,
+    "license": "BSD-2-Clause"
+  }
+]

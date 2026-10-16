@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "run_id": "m2-domain-20261015T190836Z",
+  "verified_artifacts": 122,
+  "archive_bytes": 1600843,
+  "archive_sha256": "0d49c6e1a04092441d06f9f14ee3c50a64c183fd7999f80f3c52575f74975014",
+  "guest_manifest_sha256": "5f619a68ffdbba6efaf6933b91a340c4e47e7b54bad879cb8cbd82c504c16398",
+  "host_manifest_sha256": "953c0c49ad7f9846cfd7a6696e04b26e5db1df7b135c7ba3baba28d7a2464bf1",
+  "command_control_records": 8,
+  "method": "Host standard-library hash/transport only; all tests/geoscience in LinuxVM"
+}

@@ -1,0 +1,1 @@
+{"name":"hazardia-browser-qa","private":true,"description":"Optional display-client QA; HAZARDIA itself has no Node runtime dependency","devDependencies":{"playwright":"1.62.1","axe-core":"4.10.3"},"scripts":{"test:ui":"node tests/browser/control-room.cjs qa-results/control-room"}}

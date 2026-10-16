@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-15T16:53:12.485805Z",
+  "conservative_cumulative_bytes": 2435051901,
+  "filesystem_available_bytes": 13362909184,
+  "filesystem_used_bytes": 6204862464,
+  "limit_bytes": 5368709120,
+  "rx_bytes": 653934327,
+  "status": "PASS"
+}

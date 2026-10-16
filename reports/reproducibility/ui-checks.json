@@ -1,0 +1,362 @@
+{
+  "at": "2026-10-16T05:23:58.536Z",
+  "browser": "155.0.8059.84",
+  "checks": [
+    {
+      "id": "map-first",
+      "status": "PASS"
+    },
+    {
+      "id": "local-search-inspector",
+      "status": "PASS"
+    },
+    {
+      "id": "comparison-pair",
+      "status": "PASS"
+    },
+    {
+      "id": "flood-real-solver",
+      "status": "PASS",
+      "detail": "1122 ms \u00b7 highs-1.12.0"
+    },
+    {
+      "id": "fire-real-solver",
+      "status": "PASS"
+    },
+    {
+      "id": "fire-legend-color",
+      "status": "PASS"
+    },
+    {
+      "id": "restore-case",
+      "status": "PASS"
+    },
+    {
+      "id": "distance-geodesic",
+      "status": "PASS",
+      "detail": "QA \u00b7 distanza \u00b7 111 m \u00b7 annotazione, non risultato fisico"
+    },
+    {
+      "id": "area-measurement",
+      "status": "PASS",
+      "detail": "QA \u00b7 distanza \u00b7 111 m \u00b7 annotazione, non risultato fisicoQA \u00b7 area \u00b7 0,91 ha (approssimati) \u00b7 annotazione, non risultato fisico"
+    },
+    {
+      "id": "crossing-area-rejected",
+      "status": "PASS"
+    },
+    {
+      "id": "restore-map-view",
+      "status": "PASS"
+    },
+    {
+      "id": "geojson-lon-lat",
+      "status": "PASS",
+      "detail": {
+        "type": "Feature",
+        "properties": {
+          "name": "QA \u00b7 area",
+          "meaning": "User-authored research annotation; no physical intervention",
+          "measurement": "0,91 ha (approssimati)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                13.399,
+                42.35
+              ],
+              [
+                13.399,
+                42.351
+              ],
+              [
+                13.4,
+                42.351
+              ],
+              [
+                13.4,
+                42.35
+              ],
+              [
+                13.399,
+                42.35
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "vm-persistence-after-reload",
+      "status": "PASS"
+    },
+    {
+      "id": "concurrent-stale-save-rejected",
+      "status": "PASS"
+    },
+    {
+      "id": "qa-cleanup-preserves-prior",
+      "status": "PASS",
+      "detail": {
+        "revision": 5,
+        "cases": [],
+        "annotations": [],
+        "views": []
+      }
+    },
+    {
+      "id": "p95-room-hazard-layer",
+      "status": "PASS",
+      "detail": {
+        "n": 30,
+        "p95_ms": 15.599999994039536,
+        "max_ms": 15.799999982118607
+      }
+    },
+    {
+      "id": "p95-room-opacity",
+      "status": "PASS",
+      "detail": {
+        "n": 30,
+        "p95_ms": 2.4000000059604645,
+        "max_ms": 2.5
+      }
+    },
+    {
+      "id": "p95-room-comparison",
+      "status": "PASS",
+      "detail": {
+        "n": 30,
+        "p95_ms": 16.600000023841858,
+        "max_ms": 17.30000001192093
+      }
+    },
+    {
+      "id": "p95-room-navigation",
+      "status": "PASS",
+      "detail": {
+        "n": 61,
+        "p95_ms": 16.099999994039536,
+        "max_ms": 16.19999998807907
+      }
+    },
+    {
+      "id": "pan-raf-cadence",
+      "status": "PASS",
+      "detail": {
+        "n": 30,
+        "p05_fps": 59.992051053235194,
+        "scope": "offline Sentinel, RAF callback cadence, not compositor certification"
+      }
+    },
+    {
+      "id": "compact-map-first-375",
+      "status": "PASS"
+    },
+    {
+      "id": "compact-controls-open-375",
+      "status": "PASS"
+    },
+    {
+      "id": "layout-375-map",
+      "status": "PASS",
+      "detail": {
+        "width": 375,
+        "scroll": 375
+      }
+    },
+    {
+      "id": "axe-375-map",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-375-results",
+      "status": "PASS",
+      "detail": {
+        "width": 375,
+        "scroll": 375
+      }
+    },
+    {
+      "id": "axe-375-results",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-375-sources",
+      "status": "PASS",
+      "detail": {
+        "width": 375,
+        "scroll": 375
+      }
+    },
+    {
+      "id": "axe-375-sources",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-375-help",
+      "status": "PASS",
+      "detail": {
+        "width": 375,
+        "scroll": 375
+      }
+    },
+    {
+      "id": "axe-375-help",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "compact-map-first-768",
+      "status": "PASS"
+    },
+    {
+      "id": "compact-controls-open-768",
+      "status": "PASS"
+    },
+    {
+      "id": "layout-768-map",
+      "status": "PASS",
+      "detail": {
+        "width": 768,
+        "scroll": 768
+      }
+    },
+    {
+      "id": "axe-768-map",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-768-results",
+      "status": "PASS",
+      "detail": {
+        "width": 768,
+        "scroll": 768
+      }
+    },
+    {
+      "id": "axe-768-results",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-768-sources",
+      "status": "PASS",
+      "detail": {
+        "width": 768,
+        "scroll": 768
+      }
+    },
+    {
+      "id": "axe-768-sources",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-768-help",
+      "status": "PASS",
+      "detail": {
+        "width": 768,
+        "scroll": 768
+      }
+    },
+    {
+      "id": "axe-768-help",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-1440-map",
+      "status": "PASS",
+      "detail": {
+        "width": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "id": "axe-1440-map",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-1440-results",
+      "status": "PASS",
+      "detail": {
+        "width": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "id": "axe-1440-results",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-1440-sources",
+      "status": "PASS",
+      "detail": {
+        "width": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "id": "axe-1440-sources",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-1440-help",
+      "status": "PASS",
+      "detail": {
+        "width": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "id": "axe-1440-help",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "keyboard-navigation",
+      "status": "PASS"
+    },
+    {
+      "id": "keyboard-return-map",
+      "status": "PASS"
+    },
+    {
+      "id": "cold-useful-display",
+      "status": "PASS",
+      "detail": [
+        228,
+        268.5,
+        172
+      ]
+    },
+    {
+      "id": "notebook-api-p95",
+      "status": "PASS",
+      "detail": {
+        "n": 30,
+        "p95_ms": 68.41941700000098
+      }
+    },
+    {
+      "id": "no-model-submissions-by-map",
+      "status": "PASS"
+    },
+    {
+      "id": "no-page-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "scope": "Display/client QA of independent reconstructed runtime via temporary loopback SSH forward8081; raw accessibility incompletes retained locally"
+}

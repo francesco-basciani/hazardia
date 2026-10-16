@@ -1,0 +1,134 @@
+{
+  "assets": {
+    "data": {
+      "href": "s3://copernicus-dem-30m/Copernicus_DSM_COG_10_N42_00_E013_00_DEM/Copernicus_DSM_COG_10_N42_00_E013_00_DEM.tif",
+      "raster:bands": [
+        {
+          "data_type": "float32",
+          "sampling": "point",
+          "spatial_resolution": 30,
+          "unit": "meter"
+        }
+      ],
+      "roles": [
+        "data"
+      ],
+      "title": "Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized"
+    }
+  },
+  "bbox": [
+    12.99986111111111,
+    42.00013888888889,
+    13.99986111111111,
+    43.00013888888889
+  ],
+  "collection": "cop-dem-glo-30",
+  "geometry": {
+    "coordinates": [
+      [
+        [
+          13.99986111111111,
+          42.00013888888889
+        ],
+        [
+          13.99986111111111,
+          43.00013888888889
+        ],
+        [
+          12.99986111111111,
+          43.00013888888889
+        ],
+        [
+          12.99986111111111,
+          42.00013888888889
+        ],
+        [
+          13.99986111111111,
+          42.00013888888889
+        ]
+      ]
+    ],
+    "type": "Polygon"
+  },
+  "id": "Copernicus_DSM_COG_10_N42_00_E013_00_DEM",
+  "links": [
+    {
+      "href": "https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_N42_00_E013_00_DEM",
+      "rel": "self",
+      "type": "application/geo+json"
+    },
+    {
+      "href": "s3://earthsearch-data/cop-dem-glo-30/Copernicus_DSM_COG_10_N42_00_E013_00_DEM/Copernicus_DSM_COG_10_N42_00_E013_00_DEM.json",
+      "rel": "canonical",
+      "type": "application/json"
+    },
+    {
+      "description": "Also includes data usage information",
+      "href": "https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf",
+      "rel": "handbook",
+      "title": "Copernicus DEM User handbook",
+      "type": "application/pdf"
+    },
+    {
+      "href": "https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30",
+      "rel": "parent",
+      "type": "application/json"
+    },
+    {
+      "href": "https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30",
+      "rel": "collection",
+      "type": "application/json"
+    },
+    {
+      "href": "https://earth-search.aws.element84.com/v1",
+      "rel": "root",
+      "type": "application/json"
+    },
+    {
+      "href": "https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_N42_00_E013_00_DEM/thumbnail",
+      "rel": "thumbnail"
+    }
+  ],
+  "properties": {
+    "created": "2023-03-28T15:21:10.833Z",
+    "datetime": "2021-04-22T00:00:00Z",
+    "earthsearch:payload_id": "cop-dem-glo/workflow-cop-dem-glo-to-stac/95b4e1ec819c417accffe0b314b01eba",
+    "grid:code": "CDEM-N42E013",
+    "gsd": 30,
+    "platform": "tandem-x",
+    "processing:software": {
+      "cop-dem-glo-to-stac": "2023.03.28"
+    },
+    "proj:centroid": {
+      "lat": 42.5,
+      "lon": 13.5
+    },
+    "proj:epsg": 4326,
+    "proj:shape": [
+      3600,
+      3600
+    ],
+    "proj:transform": [
+      0.0002777777777777778,
+      0,
+      12.99986111111111,
+      0,
+      -0.0002777777777777778,
+      43.00013888888889
+    ],
+    "storage:platform": "AWS",
+    "storage:region": "eu-central-1",
+    "storage:requester_pays": false,
+    "updated": "2023-04-20T18:11:40.680Z"
+  },
+  "stac_extensions": [
+    "https://stac-extensions.github.io/processing/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/grid/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/storage/v1.0.0/schema.json"
+  ],
+  "stac_version": "1.0.0",
+  "type": "Feature"
+}

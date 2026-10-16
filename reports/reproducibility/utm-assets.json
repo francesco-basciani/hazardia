@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "scope": "macOS hypervisor asset preparation only; no new VM boot or privileged installation",
+  "seed_iso_bytes": 921600,
+  "seed_iso_sha256": "6e7032a80de470bbf8918934fb579962e4ec6f127f1d9b665069b9b8dd9b4cd0",
+  "private_key_included": false,
+  "image_sha256": "86e13258765945ad792dac75fac7f02f4db9fa73a4a535ffa472266e7041fa19"
+}

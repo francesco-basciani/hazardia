@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-16T05:30:21.322392Z",
+  "checks": [
+    {
+      "count": 260,
+      "id": "independent-engine-files",
+      "status": "PASS"
+    },
+    {
+      "id": "reference-geospatial-versions",
+      "status": "PASS",
+      "versions": {
+        "gdal": "3.4.1",
+        "numpy": "1.21.5",
+        "pyproj": "3.3.0",
+        "rasterio": "1.2.10"
+      }
+    },
+    {
+      "id": "fire",
+      "product": "job-e41295cae2054771937f4cab1517e09e",
+      "qualification": "UNQUALIFIED_RESEARCH",
+      "status": "PASS"
+    },
+    {
+      "id": "flood",
+      "product": "job-76fdd79efa034cae8cc4a426ed1c4f24",
+      "qualification": "UNQUALIFIED_RESEARCH",
+      "status": "PASS"
+    },
+    {
+      "id": "native-72h-pair-and144png",
+      "status": "PASS"
+    }
+  ],
+  "limitations": [
+    "Same VM OS prerequisites, not independent newly booted VM",
+    "Unqualified conditional physics, no H1-H3 evidence"
+  ],
+  "platform": "Linux-5.15.0-198-generic-aarch64-with-glibc2.35",
+  "status": "PASS"
+}

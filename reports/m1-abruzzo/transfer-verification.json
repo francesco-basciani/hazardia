@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "run_id": "m1-abruzzo-20261015T161041Z",
+  "archive_sha256": "b3ddab064315311c970c74219433a4327e31789ac2e7aa30184816f2401263af",
+  "guest_manifest_sha256": "05ad03f4ee45460987cc2cf1a0a45604623eee9ce9c0e1c7f50d5796fd440ae8",
+  "host_manifest_sha256": "016f1d9f7b7e7382d17edc1286315b48bfe752d0355df045657e22f2cae2e574",
+  "verified_transported_artifacts": 1160,
+  "omitted_large_originals": [
+    "run/cache/dem-original.tif",
+    "run/cache/sentinel-original.tif",
+    "run/cache/sentinel-scl.tif"
+  ],
+  "command_and_control_records": 23,
+  "method": "Host standard-library SHA256/archive membership; guest performs all scientific/model/content tests"
+}

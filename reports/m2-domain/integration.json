@@ -1,0 +1,74 @@
+{
+  "checks": [
+    {
+      "detail": [
+        {
+          "crs": "EPSG:32633",
+          "profile": "abruzzo-laquila-research",
+          "snapshot_hash": "3f4fbb5c9603266e000c69080a5dff94f799c1cdeb8c7bd9e721ca6a38d68e28",
+          "timezone": "Europe/Rome"
+        },
+        {
+          "crs": "EPSG:32628",
+          "profile": "synthetic-senegal-river",
+          "snapshot_hash": "f1c4c8af5d4b5d98030660ea7b48c419289c2669edb3d0ae9f84dd62bf45e200",
+          "timezone": "Africa/Dakar"
+        }
+      ],
+      "name": "two_profiles_same_snapshot_event_workflow_and_real_CRS",
+      "status": "PASS"
+    },
+    {
+      "detail": "Real history normalized without fabricated issue/weights; two-member authored forecast validated separately",
+      "name": "real_reanalysis_boundary_and_synthetic_forecast_distinction",
+      "status": "PASS"
+    },
+    {
+      "detail": [
+        {
+          "co_located_synthetic_people": 30,
+          "hazard": "FIRE",
+          "job": "job-7f7c35a549494a118219cd98bcf70093",
+          "raster_sha256": "49dd2a1c0dad497eb2d559c109d0bcdaa4a594faa7b29577188204699a446148",
+          "remaining_under_synthetic_effect": 25
+        },
+        {
+          "co_located_synthetic_people": 30,
+          "hazard": "FLOOD",
+          "job": "job-78cd5d14b5234865b715bd8f090c0caf",
+          "raster_sha256": "ba94a0e90ff8054f71ca13a646ab01cee196e0eff7d8781d89c47de1c0596f95",
+          "remaining_under_synthetic_effect": 25
+        }
+      ],
+      "name": "genuine_products_exposure_vs_effect_and_negative_grid_coverage",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "build_s": 24.715366231997905,
+        "index_bytes": 7090176,
+        "indexed_query_s": 0.006492197997431504,
+        "measurement": "one execution; RSS includes imports/integration; no p95 or UI target",
+        "payload_bytes": 51796,
+        "process_peak_rss_bytes": 103923712,
+        "records": 10000,
+        "returned": 100,
+        "serialization_s": 0.0017980390002776403
+      },
+      "name": "indexed_window_matches_full_scan_bounded_payload_and_metrics",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "M1_run_and_job_artifacts": "unchanged; archived app source is historical, live app now M2",
+        "engine_files": 145
+      },
+      "name": "M1_frozen_evidence_and_engines_unchanged",
+      "status": "PASS"
+    }
+  ],
+  "failed": 0,
+  "passed": 5,
+  "reviewer": "Codex self-check; no physical/operational qualification",
+  "run_id": "verified-replay"
+}

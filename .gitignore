@@ -1,0 +1,34 @@
+.DS_Store
+.m0-venv/
+__pycache__/
+*.py[cod]
+*.nbc
+*.nbi
+# Local immutable evidence; curate manifests separately before any approved release.
+experiments/runs/*
+!experiments/runs/.gitkeep
+
+# Authorized M0 VM bootstrap, caches and local private SSH key.
+.m0-runtime/
+# M1 runtime/cache/build output lives in the VM and is never source material.
+.runtime/
+.cache/
+.venv/
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+# Local VM images, secrets, publication staging and regenerated datasets.
+*.utm/
+*.qcow2
+*.img
+*.iso
+*.pem
+.env
+.env.*
+!.env.example
+.publication/
+.publication-*/
+node_modules/
+qa-results/
+.vm-assets/
