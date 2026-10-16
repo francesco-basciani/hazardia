@@ -629,3 +629,13 @@ Finalcatalogforecastmodes/hash/readers PASS, original145enginehashes unchanged,8
 | Existing monitor/weather/decision regressions | PASS |44+36checks;2solver/verifier calls sameVM isolatedprefix; no physical job created |
 | Local deployment/state preservation | PASS |3staticfilehashes;816priorstateJSONpreserved,backendkeptalive, sameVM bounds |
 | Physical devices / crossbrowser / user study / new30min/100k | NOT RUN |Viewport emulation cannot establish perfect adaptation on all hardware/browsers; prior full-release blockers unchanged |
+
+
+## Transparent weather map symbols — transparent-weather-20261016T065258Z
+
+| Check | Outcome | Evidence / limits |
+|---|---|---|
+| FR-WX-LAYERS-01 transparent presentation | PASS |Transparent surface/no card, SVG wind, compact translucent values;38weatherchecks source 72f059d76c39d39cc479b43fe26bcad8d6c6b81e |
+| Responsive/keyboard/weather regressions | PASS |56design+38weather=94checks,8viewport/orientations320–1920,9axe scans0violations; raw incomplete checks retained |
+| VM deployment / state preservation | PASS |5staticSHA256, 816priorstateJSONunchanged, no backend restart; reports/weather/transparent-verification.json; reviewer Codex self-check |
+| New physics / regional grid / soak100k / real devices | NOT RUN |Presentation-only; existing qualification blockers unchanged |

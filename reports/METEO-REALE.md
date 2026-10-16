@@ -61,3 +61,10 @@ Run `weather-layers-20261016T063635Z`, codice `b4dc8e5f139ee5dca4aff12ce8887758d
 PASS36controlli browser e6scansioni axe senza violazioni su375/768/1440, comprese viste di confronto, nessun job dai comandi cartografici e nessuna chiamata browser al provider. Dati e servizio restano nella VM; aggiornati solo4file statici, senza riavviare backend o motori. [Verifica](weather/layers-verification.json).
 
 **Copertura:** un punto della griglia vicino all’Aquila. Non è ancora una mappa continua del vento/pioggia sull’Abruzzo. Per quella servono dati distribuiti; non sono stati inventati o ripetuti valori puntuali su tutto il territorio. Nuove simulazioni e nuove prove di stabilità prolungata NOT RUN in questo incremento.
+
+
+## Sovrapposizione trasparente
+
+Il riquadro bianco è stato sostituito da una rosa del vento aperta con freccia SVG e piccole etichette semitrasparenti per velocità, temperatura e pioggia. Il terreno resta visibile sotto il simbolo e attraverso le etichette; nessun rettangolo opaco racchiude l’intera visualizzazione. I dati restano puntuali e l’ora/variabili selezionate conservano il loro significato. Il centro della rosa coincide con il punto della griglia; «Centra il punto meteo» lo inquadra. La preferenza CSS reduced-transparency ha un fallback più opaco per le sole etichette (emulazione di questa preferenza NOT RUN).
+
+Run `transparent-weather-20261016T065258Z`, sorgente `72f059d76c39d39cc479b43fe26bcad8d6c6b81e`. PASS94controlli browser,9scansioni axe0violazioni e dimensioni320–1920, senza nuovi job fisici. Aggiornamento locale5file statici, 816JSON di stato conservati; nessun riavvio/installazione/nuovo servizio. [Verifica](weather/transparent-verification.json). Raw log e incomplete axe conservati; non è un test di accuratezza meteo o di prestazioni prolungate.

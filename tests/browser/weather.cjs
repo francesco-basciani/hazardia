@@ -9,6 +9,8 @@ await p.locator('#monitor-weather').uncheck();check('weather-layer-independent',
 // Overlay controls act independently of hazard filters and never submit jobs.
 const initialHazards=await p.locator('#monitor-map').getAttribute('data-hazards');
 check('wind-overlay-default',await p.locator('.wind-arrow').isVisible()&&(await p.locator('#monitor-map').getAttribute('data-weather-fields'))==='wind,temperature');
+const surface=await p.locator('.weather-overlay').evaluate(e=>({background:getComputedStyle(e).backgroundColor,border:getComputedStyle(e).borderTopWidth,shadow:getComputedStyle(e).boxShadow}));check('transparent-weather-surface',surface.background==='rgba(0, 0, 0, 0)'&&surface.border==='0px'&&surface.shadow==='none',surface);
+check('wind-vector-symbol',await p.locator('.wind-arrow svg').isVisible());
 const at=await p.locator('#weather-hour').inputValue();const selectedRecord=before.forecast.records.find(r=>r.at===at);
 check('wind-from-to-convention',await p.locator('.wind-arrow').evaluate((e,deg)=>e.style.transform==='rotate('+deg+'deg)',(selectedRecord.values.wind_direction_10m+180)%360));
 await p.locator('#weather-layer-temperature').uncheck();await p.locator('#weather-layer-rain').check();check('rain-independent-of-temperature',await p.locator('.weather-rain').isVisible()&&!await p.locator('.weather-temperature').count()&&await p.locator('.wind-arrow').isVisible());

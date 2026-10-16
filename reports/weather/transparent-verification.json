@@ -1,0 +1,41 @@
+{
+  "run_id": "transparent-weather-20261016T065258Z",
+  "source_commit": "72f059d76c39d39cc479b43fe26bcad8d6c6b81e",
+  "reviewer": "Codex self-check",
+  "status": "PASS",
+  "checks": 94,
+  "suites": {
+    "weather": 38,
+    "design": 56
+  },
+  "axe_scans": 9,
+  "axe_violations": 0,
+  "browser": "155.0.8059.84",
+  "deployment": {
+    "hashes": {
+      "monitoring.js": "7a867da71468dba4a558a3a92d33b97657a2bd77392693b35367dfd2294599a6",
+      "design.css": "150d6f9f67255e3f3bf646049dd9476362970f9aacc46c91f61bd276a79ae25f",
+      "app.js": "847db2f0cb330ba56e9d202f0e71d1b647b731a4d0067410bb6b9088ee05d5e7",
+      "index.html": "436de1616ebf9bbab7cd4cde4c44fca027753d2f946b572a1f0c1ea560daf91e",
+      "physical-fire.html": "eef90f2f90774f21769e0f050094eb1700313b5740069eab8350006b46e67f1b"
+    },
+    "preserved_json": 816,
+    "forecast_id": "openmeteo-0d79daf6c59992f004a4bb7b",
+    "available_at": "2026-10-16T06:37:34.649662Z",
+    "quota": {
+      "attempts_today": 2,
+      "local_daily_limit": 48,
+      "refresh_s": 1800,
+      "scope": "single fixed point;7variables4days; free noncommercial endpoint"
+    },
+    "backend_restarted": false
+  },
+  "raw_evidence": "experiments/runs/transparent-weather-20261016T065258Z",
+  "not_run": [
+    "distributed regional weather field",
+    "new native simulations",
+    "new30minsoak/100k stress",
+    "real-device/cross-browser study",
+    "reduced-transparency OS preference emulation"
+  ]
+}
