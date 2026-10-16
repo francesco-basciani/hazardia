@@ -12,13 +12,17 @@ This is a tracked acceptance checklist, **not** an assertion that work exists. `
 - Do not modify evidence from past runs; issue a new immutable manifest. Review `git diff` and reconcile ledger at each milestone gate.
 - `PASS` on every P0 requirement + every mandatory gate, with no unapproved BLOCKED items, is necessary but **not sufficient** for operational approval; research release and operational use are distinct.
 
+## Current acceptance audit — 2026-10-16
+
+[Full plan audit](reports/VERIFICA-PIANO.md), run `plan-audit-20261016T054141Z`: complete release **BLOCKED**. FR-03, FR-18 and FR-26 aggregate acceptance corrected to BLOCKED; historical scoped software PASS results remain unchanged. A PASS below is limited by its evidence column and is not model calibration, full usability or operational approval. Latest additions and user requirements are reconciled in the audit matrix and appendix; chronological checkpoints retain their original meaning.
+
 ## A. Functional requirements (all P0 unless indicated)
 
 | Check | ID | Scope | Status | Test/evidence | Reviewer |
 |---|---|---|---|---|---|
 | [x] | FR-01 | Register AOI, CRS, units, time zone, source policies, administrative jurisdictions, calibration metadata,  | PASS | M2 profiles/negative contracts, §R; calibration UNKNOWN preserved | Codex self-check |
 | [x] | FR-02 | Acquire/cache satellite observations and preprocessed products via replaceable connectors; record acquisit | PASS | M1 real Copernicus/ERA5 cache and hashes; M3 provider boundary, scoped local sources | Codex self-check |
-| [x] | FR-03 | Cluster and track events across time/sensors without merging unrelated incidents; ambiguous associations e | PASS | M2 temporal association/dedup/ambiguity tests on authored detections; not real detection skill | Codex self-check |
+| [ ] | FR-03 | Cluster and track events across time/sensors without merging unrelated incidents; ambiguous associations e | BLOCKED | M2 authored association/dedup/ambiguity tests PASS; required simple-baseline comparison NOT RUN; full acceptance BLOCKED, audit reports/VERIFICA-PIANO.md | Codex self-check |
 | [x] | FR-04 | Fuse observations conservatively accounting for sensor dependence/uncertainty and conflicting evidence; no | PASS | M2 conservative correlated/conflicting fixture fusion; confidence not calibrated probability | Codex self-check |
 | [ ] | FR-05 | Track sensor/feed health (staleness, outage, coverage, disagreement) and make health available to service- | BLOCKED | M1 QC + M6 controlled staleness pass; automatic real sensor/feed health chain incomplete | Codex self-check |
 | [ ] | FR-06 | Acquire weather history, forecasts and ensembles (wind, precipitation and appropriate supporting variables | BLOCKED | Real ERA5 and current MET source audit PASS; complete matched forecast/ensemble forcing absent, M7 report | Codex self-check |
@@ -33,7 +37,7 @@ This is a tracked acceptance checklist, **not** an assertion that work exists. `
 | [x] | FR-15 | Define six capabilities (safety, situational awareness, allocation, regional coordination, forecast, expla | PASS | M6 six controlled capability states/rules/CAS/fresh synthetic recovery; no operational health certification | Codex self-check |
 | [ ] | FR-16 | Under resource/data/infrastructure/environment degradation, minimize loss of prioritized capabilities, rec | BLOCKED | M6 rule-based fallback + measured diagnostic/loss PASS; general prioritized capability optimization not implemented | Codex self-check |
 | [ ] | FR-17 | Monitor new forecast/data revisions and emit *impact-based* georeferenced alerts with uncertainty, evidenc | BLOCKED | M5/M6 authored alert lifecycle PASS; real georeferenced predictive impact watcher/review-window qualification incomplete | Codex self-check |
-| [x] | FR-18 | Local web UI: map/layers, scenario builder, resources, comparison 2+ synchronized maps, timeline playback, | PASS | M3/M4/M6 local maps/charts/provenance/jobs/control replay and nonoperational research review; dashboard guide | Codex self-check |
+| [ ] | FR-18 | Local web UI: map/layers, scenario builder, resources, comparison 2+ synchronized maps, timeline playback, | BLOCKED | Small UI slice PASS; full territory/source/event/ensemble builder and candidate workflow incomplete; reports/VERIFICA-PIANO.md | Codex self-check |
 | [x] | FR-19 | Preserve immutable experiment manifest (inputs, versions, seeds, data rights, execution environment), metr | PASS |3275file supplement/transport hashes and packaged source replay PASS, final checkpoint §V; complete physical replication unqualified | Codex self-check |
 | [x] | FR-20 | Support independently evaluated preparedness/prepositioning strategies using the same admissibility rules  | PASS | M6 same independent admissibility checks for2/8min authored preparation; no empirical efficacy claim | Codex self-check |
 | [x] | FR-21 | Simulator and connector worker jobs are isolated and bounded; failure in flood must not falsely invalidate | PASS | M1 supervisor and M6 actual owned flood-worker SIGKILL ERROR/unusable, FIRE remains validated | Codex self-check |
@@ -50,7 +54,7 @@ This is a tracked acceptance checklist, **not** an assertion that work exists. `
 | [ ] | QR-04 | See SPEC §4 and §8 + CHECKLIST § Traceability | BLOCKED | M0/M1 narrow seeded fire replay PASS; full physics/independent install replication unqualified | Codex self-check |
 | [x] | QR-05 | See SPEC §4 and §8 + CHECKLIST § Traceability | PASS | M1/M2 independently read raster/array CRS/units/hash/time mismatches rejected, versioned products | Codex self-check |
 | [x] | QR-06 | See SPEC §4 and §8 + CHECKLIST § Traceability | PASS | M3/M4 identical physical context across panes; mismatched joint windows rejected; impact-only effect labeled | Codex self-check |
-| [x] | QR-07 | See SPEC §4 and §8 + CHECKLIST § Traceability | PASS | M3 loopback/Host/Origin/JSON/path/CSP checks; no public/push/dispatch. Deployment security review not performed | Codex self-check |
+| [x] | QR-07 | See SPEC §4 and §8 + CHECKLIST § Traceability | PASS | M3 loopback/Host/Origin/JSON/path/CSP checks; source push authorized and verified; no public service/dispatch. Deployment security review not performed | Codex self-check |
 | [ ] | QR-08 | See SPEC §4 and §8 + CHECKLIST § Traceability | BLOCKED | M2 two-profile shared contracts/state PASS; end-to-end physical/decision portability outsideAbruzzo NOT RUN | Codex self-check |
 | [x] | QR-09 | See SPEC §4 and §8 + CHECKLIST § Traceability | PASS | M1–M6 job/decision IDs/hash/queue/run metrics/classified failures; explicit retry only | Codex self-check |
 | [x] | QR-10 | See SPEC §4 and §8 + CHECKLIST § Traceability | PASS | M5 controlled true-warning/false-alarm/stale/unknown-effect replay, raw lead/caveats; not real forecast skill | Codex self-check |
@@ -66,7 +70,7 @@ This is a tracked acceptance checklist, **not** an assertion that work exists. `
 | [x] | M4 | Controlled two-region joint fire/flood resource allocation, checked baselines and browser | reports/M4-joint.md, m4-joint-20261015T194711Z | PASS (technical fixture) |
 | [ ] | M5 | Timing/rolling/alert software PASS controlled; real forecast/impact and full baselines incomplete | reports/M5-adaptive.md, E-M5 | BLOCKED |
 | [ ] | M6 |12integration groups + actual worker crash/UI PASS; full capability objective/qualification incomplete | reports/M6-degradation.md, E-M6 | BLOCKED |
-| [ ] | M7 | Final technical verification in progress; historical/portability/large-load release blockers | reports/M7-validation.md, E-M7 | BLOCKED |
+| [ ] | M7 | Final technical pilot and reconstruction executed; historical/portability/large-load release blockers | reports/M7-validation.md, E-M7 | BLOCKED |
 
 ## D. Mandatory cross-cutting controls
 
@@ -77,7 +81,7 @@ This is a tracked acceptance checklist, **not** an assertion that work exists. `
 | [x] | G-03 Run identity and provenance |3275file supplement/transport verification PASS, source998b934; final checkpoint below | PASS |
 | [x] | G-04 Deadline per request | M5 fixed workload and corrected external short-watchdog tests; historical .800246s FAIL preserved | PASS |
 | [x] | G-05 p95 benchmark | M5 two pinned n30 campaigns with raw timings/useful/terminal rates; CPU/RSS whole-suite log | PASS |
-| [ ] | G-06 Research replication | Supplement/pinned local replay pending; independent full install/native historical replication unavailable | BLOCKED |
+| [ ] | G-06 Research replication | Supplement/pinned local replay and independent-prefix native rebuild PASS; fresh OS boot/full historical replication NOT RUN | BLOCKED |
 | [ ] | G-07 Release integrity | Not all P0 pass: real forecasts/history/candidate portfolio/capability objective/large-scale/per-machine validation | BLOCKED |
 
 ## E. Verification record template (copy once per executed check)
@@ -138,15 +142,15 @@ Use `CHECKLIST.md` to report each P0 FR-01..FR-22 and QR-01..QR-10 separately, a
 |---|---|---|---|---|
 | [x] | FR-24 | 375/768/1440 px browser and keyboard/accessibility walkthrough; controls usable without hidden essential actions | PASS | M3/M6/M7 375/768/1440px controls+keyboard+axe0violations; contrast incompletes remain, no WCAG certification |
 | [x] | FR-25 | Genuine long simulation job while UI remains responsive; job states and cancellation verified | PASS | M3 genuine CIMA job with usable map/decision and cancellation/retry; M6 worker-crash isolation |
-| [x] | FR-26 | Real paired map outputs synchronized at same AOI/time, differences, export and mismatched-case rejection | PASS | M3/M4 matched paired maps/impact deltas/JSON export/time-window rejection; no invented flood animation |
+| [ ] | FR-26 | Real paired map outputs synchronized at same AOI/time, differences, export and mismatched-case rejection | BLOCKED | Small matched-pair/export tests PASS; complete physical workflows/large-layer acceptance incomplete, QR-14 FAIL; audit report |
 | [x] | FR-27 | Cold/warm caching, paging/windowing, no redundant simulator restart | PASS | M2 indexed bounded window; M3 catalog/assets/cache/poll and no simulation POST from pan; M7 stress limits explicit |
 | [x] | FR-28 | Route/job/render/memory observability, correct errors, no secret leakage | PASS | M3 browser/server metrics, M1 job RSS/CPU/queue, M5 timing/logs and typed UI error states; no credentials exported |
 | [x] | QR-11 | P95 feedback <=200 ms and >=30 fps map interaction benchmark on pinned environment | PASS | M7 browser30actions/type and30map moves on supported case;100kdisplay stress separately FAIL |
 | [x] | QR-12 | Cached read API p95 <=500 ms; dashboard useful <=3 s on 3 cold navigations | PASS | M3 API30reads p95~6.55ms, M7 threecold useful displays within3s; pinned local fixture |
 | [x] | QR-13 | Long worker job, cancel/retry, nonblocking browser navigation, correct partial status | PASS | M3/M6 real isolated job/error/cancel/retry plus nonblocking client; partial outputs unusable |
-| [ ] | QR-14 | Scaling and 30-minute session memory/latency metrics with trace and explicit limits | FAIL | M7 100kdisplay stress no valid mapFPS sample and1.316GBheap; 24/48slotfullM/L unsupported;30min outcome pending |
+| [ ] | QR-14 | Scaling and 30-minute session memory/latency metrics with trace and explicit limits | FAIL | M7 100kdisplay stress no valid mapFPS sample and1.316GBheap; 24/48slotfullM/L unsupported;historical30min smallfixture PASS; currentUI newsoak NOT RUN |
 | [x] | M0-PERF | Host/browser inventoried; bounded fixture design and profiling protocol recorded; product UI metrics NOT RUN | PASS | `reports/M0-performance-baseline.md`; `m0-audit-20261015T122006Z` |
-| [ ] | M7-PERF | All performance budgets measured and met or release blocked with owner approval | BLOCKED | M7 supported UI tests pass;100kdisplay stressFAIL,30minstabilitypending; no target waived |
+| [ ] | M7-PERF | All performance budgets measured and met or release blocked with owner approval | BLOCKED | M7 supported UI tests pass;100kdisplay stressFAIL,old30minstabilityPASS/newUIsoakNOTRUN; no target waived |
 
 PASS requires real test execution, immutable run evidence, benchmark device/configuration, observed results, Git SHA and review, in accordance with the status policy at top of this ledger. P0 performance items block release and must be reconciled in SPEC and PLAN.
 
@@ -528,3 +532,26 @@ Run `github-repro-20261016`; reviewer Codex self-check; FR-REPRO-GH-01. See repo
 | Actual public push + remote byte/tree verification | PASS | SSH push039df1c68cceb1b36c4fb58e1729b3faed7f194f; independent GitHub clone;191file hashes/lengths and exact tracked tree match, private history absent |
 | New VM boot, privileged OS installation, complete fresh network acquisition | NOT RUN | ExistingVM OS and hash-verified archive/raster reuse; source-only install docs cover missing phases |
 | Full scientific/operational qualification | BLOCKED | Existing M5/M6/M7 constraints not closed by installation/replay |
+
+## Complete plan audit — plan-audit-20261016T054141Z
+
+Reviewer Codex self-check; source d0f9f34. All28FR,14QR,9SC,8milestones, AR-EXT and6additional requirements mapped in reports/plan-audit/coverage.json and reports/VERIFICA-PIANO.md. No requirements removed or thresholds relaxed. FR-03/18/26 full acceptance BLOCKED; prior narrow PASS kept in executed records. QR-10 controlled software PASS does not establish real forecast skill. Full M5/M6/M7/G-07 remain BLOCKED.
+
+| Check | Outcome | Evidence |
+|---|---|---|
+| Runtime/read-only original8080 inspection | PASS | runtime-inspection.json:7catalog scenarios,0active jobs, live589cb5f and reconstructed6c44c4b in sameVM |
+| Current regression in reconstructed prefix | PASS | guest-regressions.json:38unit+19domain+14decision+14web=85, all exit0 |
+| Live/source identity | PASS | Live differs only in jobs.py optional privateGRASSprefix support; reconstructed src matches audit checkout; no deployment inferred from push |
+| New physics/browser/stress/soak/fault campaign during audit | NOT RUN | Audit only, existing user state untouched; old UI tests not recast as fresh runs |
+| All requested flood physical interventions and days | NOT RUN | All3requested, not pending a single-choice answer |
+| Complete current-user requirement acceptance | BLOCKED | Physical flood/day/editor/forecast/strategy/qualification gaps detailed in audit |
+
+| Additional requirement | Outcome | Evidence / scope |
+|---|---|---|
+| AR-EXT-01 | PASS | Sette possibilità conservate nei confini/versioni; AT-EXT M1/M2/M3 controllati, non prova di sostituibilità fisica universale. |
+| FR-MAP-01 | PASS | Ortofoto Abruzzo20cm nominali e Sentinel10m, coordinate/ricerca/scala; strade/POI locali, confini/quartieri ufficiali/catasto non coperti integralmente. |
+| FR-MAP-02 | BLOCKED | Coppia nativa incendio con fascia ideale PASS; confronto fisico alluvione e azioni generali integrati nel decision engine NOT RUN. |
+| FR-HORIZON-01 | BLOCKED | Laboratorio incendio72h reale PASS; jobUI10/30/60min, solver1–12slot e alluvione massima6h: durata generale di giorni NOT RUN. |
+| FR-UI-REF-01 | BLOCKED | Restyling/strumenti cartografici salvati PASS; parità funzionale Tactical Analyst/Geospace NOT RUN, editor fisico libero e feeds mancanti. |
+| FR-FLOOD-ACTIONS-01 | NOT RUN | Laminazione/invasi, argini e pompaggio richiesti tutti; nessuna delle tre integrazioni fisiche verificata. |
+| FR-REPRO-GH-01 | PASS | Sorgenti/script/guide pubblicati, clone191hash PASS; nuovo prefisso nella stessa VM PASS, bootOS nuovo NOT RUN. |

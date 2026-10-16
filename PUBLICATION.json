@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "d0f9f34d5b0ae0f2ca01349e21b3e21f31c5b44a",
+  "source_git_sha": "0acd7a7d20e0a13e46d23cb2724b8b1b4d694980",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,24 +11,24 @@
       "sha256": "4b98756a752e4cf1f083cd32c998de04abeaea3d003a942e6063fd48925231d4"
     },
     "CHECKLIST.md": {
-      "bytes": 80603,
-      "sha256": "cd66f67889979059cb70c09be0ded64ae543768ac2f79ba869b9cb929ed13a71"
+      "bytes": 83938,
+      "sha256": "06123dd8c2e4bf38a520d2281ee3c26eacd4ba17ea5806162f14414c7aa455d6"
     },
     "MEMORY.md": {
-      "bytes": 42661,
-      "sha256": "9028622c0be34fc065e9f2f6aa89d8711c0ba7dd3b5640d32de10977547689b4"
+      "bytes": 44260,
+      "sha256": "8ad9457b7edf08320eff8d94c264c41874785d04b340c67902598c5849d0789a"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 50105,
-      "sha256": "239287b7b03ed140dcbf32affe283c9a17b2564cd01985152674471f24fe2a53"
+      "bytes": 51471,
+      "sha256": "74d2edd514aafbfff64625e0d00d8d05cbe8fa9fb5a54fd66b0544664d842462"
     },
     "README.md": {
-      "bytes": 9543,
-      "sha256": "236b04683a903f538e8a6559ddc106d202850ea3ab36af393ec6221bd44e9b0f"
+      "bytes": 9847,
+      "sha256": "78735bede119770cd446d49da0881daee94a338dfba6004036bf85805a4a8a40"
     },
     "SPEC.md": {
       "bytes": 47545,
@@ -230,6 +230,10 @@
       "bytes": 10925,
       "sha256": "36a01500d59007e09198087f9f01818e1e9044f1d666d139ffd4e29f8605e9a7"
     },
+    "reports/VERIFICA-PIANO.md": {
+      "bytes": 18914,
+      "sha256": "a5c9d77f27513f8359dd6a501ca8c945d437da90ca940f74bfb748f303c480f8"
+    },
     "reports/m1-abruzzo/ATTRIBUTION.md": {
       "bytes": 1980,
       "sha256": "4b29cc7a5b7384a4dc304eceb4abd8cb9de602fa27dda6945dca8318578d0360"
@@ -261,6 +265,14 @@
     "reports/m2-domain/transfer-verification.json": {
       "bytes": 520,
       "sha256": "2f75443954574b9f15b38ef5627d92b16f4f9eb8340b66b21d0614b8daf5da75"
+    },
+    "reports/plan-audit/coverage.json": {
+      "bytes": 13103,
+      "sha256": "8d937474687eefdba4c87eeab11a935833b194f3c206e49e5669dbe4062a9cbb"
+    },
+    "reports/plan-audit/verification.json": {
+      "bytes": 994,
+      "sha256": "81cab110ee2a1a209ff1fb79ca8fbd7c31225f15cca13c19dfd113a8b352e26c"
     },
     "reports/reproducibility/backend-tests.json": {
       "bytes": 209,
@@ -355,8 +367,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 56200,
-      "sha256": "2b71daf3a00610671da2fa3265a0c6db5784c6801ff592a3bf139228d2e5d341"
+      "bytes": 57566,
+      "sha256": "6f889580eebcad2104cef5899f249c6923b0784b8cefd53ea75e5954f0b23c26"
     },
     "research/RESEARCH.md": {
       "bytes": 29485,

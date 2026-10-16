@@ -1,0 +1,27 @@
+{
+  "run_id": "plan-audit-20261016T054141Z",
+  "status": "PASS",
+  "meaning": "Audit matrix coverage/link validation and85guest regression executions; not full-platform acceptance",
+  "counts": {
+    "unit": 38,
+    "domain": 19,
+    "decision": 14,
+    "web": 14
+  },
+  "normative_coverage": {
+    "FR": 28,
+    "QR": 14,
+    "SC": 9,
+    "additional_including_AR": 7,
+    "milestones": 8
+  },
+  "raw_evidence_hashes": {
+    "guest-regressions.json": "7400a1f63c4714fd9189c88d61abf8e8d82e7ba76af4388ec0f6455d0d4fb568",
+    "plan.json": "f2b26cd393838a1cf78ea4d3503adc76071e3d425c77d8a1585115eb41bb68b9",
+    "guest-regressions.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime-inspection.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime-inspection.json": "4e559ba037d39903d476d32ce0ee53be27d3935add0b1683e3adba919af944b1"
+  },
+  "ended_at": "2026-10-16T05:45:32.013449+00:00",
+  "reviewer": "Codex self-check"
+}

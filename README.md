@@ -43,6 +43,10 @@ Il server resta locale; la guida spiega il tunnel SSH e l’accesso dal browser.
 - Research-only V1; no claim of certified emergency operations. Synthetic resources must be declared synthetic.
 - GitHub publication explicitly requested by the user on 2026-10-16; designated repository: `https://github.com/francesco-basciani/hazardia.git`.
 
+## Complete plan audit
+
+[Verifica completa del piano](reports/VERIFICA-PIANO.md): tutti i requisiti restano previsti, ma la piattaforma non è completa. La matrice distingue software verificato, fixture sintetici, funzionalità mancanti e gate bloccati; non dedurre il completamento dai soli test PASS.
+
 ## Current repository status
 
 **Open [the local dashboard](http://127.0.0.1:8080/).** Read the [Italian quick-start guide](reports/DASHBOARD-GUIDA.md) for practical trials, model jobs and restart commands.

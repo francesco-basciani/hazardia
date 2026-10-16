@@ -1,0 +1,362 @@
+{
+  "run_id": "plan-audit-20261016T054141Z",
+  "audit_source_commit": "d0f9f34d5b0ae0f2ca01349e21b3e21f31c5b44a",
+  "functional": [
+    {
+      "id": "FR-01",
+      "status": "PASS",
+      "scope": "Profili territoriali e validazione",
+      "limit": "Contratti e due fixture; configuratore geografico completo in UI assente.",
+      "source": "src/hazardia/domain/contracts.py"
+    },
+    {
+      "id": "FR-02",
+      "status": "PASS",
+      "scope": "Acquisizione/cache satellitare sostituibile",
+      "limit": "STAC e snapshot reali; non monitoraggio satellitare continuo.",
+      "source": "src/hazardia/ingest/providers.py"
+    },
+    {
+      "id": "FR-03",
+      "status": "BLOCKED",
+      "scope": "Associazione/tracciamento eventi",
+      "limit": "Deduplica, conflitto e ambiguità testati; confronto con baseline semplici richiesto dalla SPEC non dimostrato.",
+      "source": "src/hazardia/domain/events.py"
+    },
+    {
+      "id": "FR-04",
+      "status": "PASS",
+      "scope": "Fusione conservativa",
+      "limit": "Fixture con correlazione/conflitto; confidenza non calibrata, nessuna skill osservativa dichiarata.",
+      "source": "tests/domain/test_domain.py"
+    },
+    {
+      "id": "FR-05",
+      "status": "BLOCKED",
+      "scope": "Salute fonti/sensori",
+      "limit": "Controlli stale/coverage e fault sintetici; manca catena automatica di salute delle fonti reali.",
+      "source": "src/hazardia/adaptation/control.py"
+    },
+    {
+      "id": "FR-06",
+      "status": "BLOCKED",
+      "scope": "Meteo storico/previsioni/ensemble",
+      "limit": "ERA5 reale e acquisizione MET separate; manca forzante forecast completa, coerente con nuovi modelli ed ensemble.",
+      "source": "reports/M7-validation.md"
+    },
+    {
+      "id": "FR-07",
+      "status": "PASS",
+      "scope": "Esecuzione simulatori reali",
+      "limit": "PROPAGATOR e HMC→REFlEx eseguiti; scenari non calibrati, patch REFlEx dichiarata.",
+      "source": "reports/PUBBLICAZIONE-GITHUB.md"
+    },
+    {
+      "id": "FR-08",
+      "status": "PASS",
+      "scope": "Separazione fisica e conseguenze",
+      "limit": "Evacuazione impact-only; laboratorio fisico incendio distinto; azioni non supportate rifiutate.",
+      "source": "src/hazardia/domain/consequences.py"
+    },
+    {
+      "id": "FR-09",
+      "status": "PASS",
+      "scope": "Esposizione/vulnerabilità/accessibilità",
+      "limit": "Rappresentazione e provenienza testate con dati sintetici; mancano censimenti e rete stradale operativa verificata.",
+      "source": "src/hazardia/domain/consequences.py"
+    },
+    {
+      "id": "FR-10",
+      "status": "PASS",
+      "scope": "Risorse e vincoli",
+      "limit": "Contratti/verificatore e negativi testati; unità e soglie di ricerca, non inventario reale.",
+      "source": "src/hazardia/decision/verifier.py"
+    },
+    {
+      "id": "FR-11",
+      "status": "PASS",
+      "scope": "Proprietà/trasferimenti/riserve",
+      "limit": "Due regioni sintetiche e autorizzazioni; nessuna autorità giuridica reale certificata.",
+      "source": "reports/M4-joint.md"
+    },
+    {
+      "id": "FR-12",
+      "status": "PASS",
+      "scope": "Solver sostituibile, robustezza, rolling",
+      "limit": "HiGHS e enumerazione di riferimento, checker separato, expected/worst e continuità; obiettivi/effetti sintetici.",
+      "source": "src/hazardia/decision/controller.py"
+    },
+    {
+      "id": "FR-13",
+      "status": "BLOCKED",
+      "scope": "Alternative candidate e stati negativi",
+      "limit": "Stati negativi presenti; un optimum e baseline, manca portfolio di strategie distinte/frontiera.",
+      "source": "src/hazardia/decision/controller.py"
+    },
+    {
+      "id": "FR-14",
+      "status": "PASS",
+      "scope": "Deadline sperimentale60s",
+      "limit": "Due campagne n30 su piccolo fixture; non garantisce nuovi run fisici entro60s né qualsiasi carico.",
+      "source": "reports/M5-adaptive.md"
+    },
+    {
+      "id": "FR-15",
+      "status": "PASS",
+      "scope": "Sei capacità e transizioni",
+      "limit": "Regole e recupero con evidenze sintetiche; monitor reale distinto e incompleto.",
+      "source": "src/hazardia/adaptation/control.py"
+    },
+    {
+      "id": "FR-16",
+      "status": "BLOCKED",
+      "scope": "Ottimizzare conservazione capacità",
+      "limit": "Fallback e fault testati; manca ottimizzazione generale delle capacità prioritarie e confronto sperimentale completo.",
+      "source": "reports/M6-degradation.md"
+    },
+    {
+      "id": "FR-17",
+      "status": "BLOCKED",
+      "scope": "Allerte predittive georiferite reali",
+      "limit": "Lifecycle su replay scritto a mano; manca watcher reale di impatti, lead time/falsi allarmi osservati e review window qualificata.",
+      "source": "src/hazardia/adaptation/alerts.py"
+    },
+    {
+      "id": "FR-18",
+      "status": "BLOCKED",
+      "scope": "Tutti i workflow UI previsti",
+      "limit": "Mappe, confronto, job, revisione e laboratorio presenti; builder territorio/fonti/eventi/ensemble e confronto completo strategie non coperti. PASS del vecchio slice non vale per requisito intero.",
+      "source": "src/hazardia/web/server.py"
+    },
+    {
+      "id": "FR-19",
+      "status": "PASS",
+      "scope": "Manifest, traccia ed export",
+      "limit": "Provenienza e pacchetto/hash verificati; non equivale a campagna scientifica completata.",
+      "source": "reports/PUBBLICAZIONE-GITHUB.md"
+    },
+    {
+      "id": "FR-20",
+      "status": "PASS",
+      "scope": "Preposizionamento valutato",
+      "limit": "Stessi vincoli indipendenti su modello sintetico120/480s; efficacia sul campo non provata.",
+      "source": "reports/M6-degradation.md"
+    },
+    {
+      "id": "FR-21",
+      "status": "PASS",
+      "scope": "Worker isolati e risultati parziali",
+      "limit": "Crash reale del solo job alluvione e FIRE conservato; cancellazione/retry testati storicamente, non ripetuti durante audit.",
+      "source": "reports/M6-degradation.md"
+    },
+    {
+      "id": "FR-22",
+      "status": "PASS",
+      "scope": "Una VM, locale e senza servizi a pagamento",
+      "limit": "Runtime attivo e ricostruito nella stessa VM; dipendenze separate, Mac client. Portabilità nuova macchina non provata.",
+      "source": "reports/ADR-0002-single-linux-runtime.md"
+    },
+    {
+      "id": "FR-23",
+      "status": "NOT RUN",
+      "scope": "P1: collaborazione/notifiche/interoperabilità",
+      "limit": "Differito esplicitamente; confronto con prodotti commerciali non autorizza dispatch o collaborazione operativa.",
+      "source": "SPEC.md"
+    },
+    {
+      "id": "FR-24",
+      "status": "PASS",
+      "scope": "Responsive e accessibilità di base",
+      "limit": "375/768/1440 e tastiera/axe; incompletes conservati, nessuna certificazione WCAG.",
+      "source": "reports/UI-CONTROL-ROOM.md"
+    },
+    {
+      "id": "FR-25",
+      "status": "PASS",
+      "scope": "Job lunghi e UI interattiva",
+      "limit": "Job reale, pan/cancel/retry verificati nel pilot; acquisizione e previsione live complete ancora mancanti.",
+      "source": "reports/M3-dashboard.md"
+    },
+    {
+      "id": "FR-26",
+      "status": "BLOCKED",
+      "scope": "Confronto completo/scala/delta/export",
+      "limit": "Coppie sincronizzate e export presenti; workflow generale multi-day/flood e carichi grandi non qualificati,100kFAIL.",
+      "source": "reports/M7-validation.md"
+    },
+    {
+      "id": "FR-27",
+      "status": "PASS",
+      "scope": "Cache/windowing/concorrenza",
+      "limit": "Controlli di limiti e navigazione senza nuovi run sul fixture; non capacità illimitata del browser.",
+      "source": "reports/MAPPE-DETTAGLIO.md"
+    },
+    {
+      "id": "FR-28",
+      "status": "PASS",
+      "scope": "Osservabilità/errori",
+      "limit": "Metriche job/API/browser nei run, stati errore; non una piattaforma di telemetria continua per ogni carico.",
+      "source": "reports/M3-dashboard.md"
+    }
+  ],
+  "quality": [
+    {
+      "id": "QR-01",
+      "status": "PASS",
+      "scope": "Checker/UNKNOWN/autorità, nel modello di ricerca"
+    },
+    {
+      "id": "QR-02",
+      "status": "PASS",
+      "scope": "Deadline n30, workload piccolo fissato; non hard real-time"
+    },
+    {
+      "id": "QR-03",
+      "status": "PASS",
+      "scope": "Crash reale isolato, prove storiche conservate"
+    },
+    {
+      "id": "QR-04",
+      "status": "BLOCKED",
+      "scope": "Replay FIRE esatto; FLOOD197celle differiscono max1.49e-8m, causa/tolleranza statistica e installazione OS indipendente non risolte"
+    },
+    {
+      "id": "QR-05",
+      "status": "PASS",
+      "scope": "CRS/unità/tempi/provenienza e negativi"
+    },
+    {
+      "id": "QR-06",
+      "status": "PASS",
+      "scope": "Confronti controllati e mismatch; evacuazione non cambia raster"
+    },
+    {
+      "id": "QR-07",
+      "status": "PASS",
+      "scope": "Localhost/protezioni di ricerca; push sorgenti ora autorizzato; sicurezza deployment condiviso NOT RUN"
+    },
+    {
+      "id": "QR-08",
+      "status": "BLOCKED",
+      "scope": "Due profili contrattuali; workflow fisico/decisionale Senegal completo NOT RUN"
+    },
+    {
+      "id": "QR-09",
+      "status": "PASS",
+      "scope": "Identità job/decisioni, transizioni, errori e hash"
+    },
+    {
+      "id": "QR-10",
+      "status": "PASS",
+      "scope": "Lifecycle/lead time e falsi allarmi sul replay sintetico controllato; nessuna skill su osservazioni indipendenti, coperta dal blocco FR-17/M5"
+    },
+    {
+      "id": "QR-11",
+      "status": "PASS",
+      "scope": "Budget interazione su piccolo fixture, evidence storica n30; non100k"
+    },
+    {
+      "id": "QR-12",
+      "status": "PASS",
+      "scope": "API warm e3cold display; completamento ortofoto online escluso dal segnale iniziale"
+    },
+    {
+      "id": "QR-13",
+      "status": "PASS",
+      "scope": "Job reale lungo/cancel/retry/UI sul pilot"
+    },
+    {
+      "id": "QR-14",
+      "status": "FAIL",
+      "scope": "100kdisplay senza campioneFPS valido/heap1.316GB;30min vecchia UI PASS, nuova UI soak NOT RUN"
+    }
+  ],
+  "additional": [
+    {
+      "id": "AR-EXT-01",
+      "status": "PASS",
+      "scope": "Sette possibilità conservate nei confini/versioni; AT-EXT M1/M2/M3 controllati, non prova di sostituibilità fisica universale."
+    },
+    {
+      "id": "FR-MAP-01",
+      "status": "PASS",
+      "scope": "Ortofoto Abruzzo20cm nominali e Sentinel10m, coordinate/ricerca/scala; strade/POI locali, confini/quartieri ufficiali/catasto non coperti integralmente."
+    },
+    {
+      "id": "FR-MAP-02",
+      "status": "BLOCKED",
+      "scope": "Coppia nativa incendio con fascia ideale PASS; confronto fisico alluvione e azioni generali integrati nel decision engine NOT RUN."
+    },
+    {
+      "id": "FR-HORIZON-01",
+      "status": "BLOCKED",
+      "scope": "Laboratorio incendio72h reale PASS; jobUI10/30/60min, solver1–12slot e alluvione massima6h: durata generale di giorni NOT RUN."
+    },
+    {
+      "id": "FR-UI-REF-01",
+      "status": "BLOCKED",
+      "scope": "Restyling/strumenti cartografici salvati PASS; parità funzionale Tactical Analyst/Geospace NOT RUN, editor fisico libero e feeds mancanti."
+    },
+    {
+      "id": "FR-FLOOD-ACTIONS-01",
+      "status": "NOT RUN",
+      "scope": "Laminazione/invasi, argini e pompaggio richiesti tutti; nessuna delle tre integrazioni fisiche verificata."
+    },
+    {
+      "id": "FR-REPRO-GH-01",
+      "status": "PASS",
+      "scope": "Sorgenti/script/guide pubblicati, clone191hash PASS; nuovo prefisso nella stessa VM PASS, bootOS nuovo NOT RUN."
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "SC-01",
+      "status": "BLOCKED",
+      "scope": "Contratti/ingest presenti; configurazione geografica e builder UI completi assenti."
+    },
+    {
+      "id": "SC-02",
+      "status": "PASS",
+      "scope": "Tutti i tre motori reali, input dichiarati non calibrati."
+    },
+    {
+      "id": "SC-03",
+      "status": "BLOCKED",
+      "scope": "Evacuazione e fascia ideale; confronto ground/aerial/mixed e alluvioni fisiche non completo."
+    },
+    {
+      "id": "SC-04",
+      "status": "PASS",
+      "scope": "Due aree/due hazard/risorsa condivisa sintetica, checker indipendente."
+    },
+    {
+      "id": "SC-05",
+      "status": "BLOCKED",
+      "scope": "Solo replay sintetico, non catena predittiva reale."
+    },
+    {
+      "id": "SC-06",
+      "status": "BLOCKED",
+      "scope": "Fault/preservazione sicura provati; ottimizzazione generale e fonti reali mancanti."
+    },
+    {
+      "id": "SC-07",
+      "status": "BLOCKED",
+      "scope": "Osservazioni CEMS acquisite; hindcast corrispondenti/scoring indipendente non eseguiti."
+    },
+    {
+      "id": "SC-08",
+      "status": "BLOCKED",
+      "scope": "Profili Italy/Senegal testati; workflow completo senza modifiche core non eseguito."
+    },
+    {
+      "id": "SC-09",
+      "status": "PASS",
+      "scope": "Revisione modellata append-only; nessun dispatch reale."
+    }
+  ],
+  "overall_release": "BLOCKED",
+  "new_test_total": 85,
+  "new_browser_tests": "NOT RUN",
+  "reviewer": "Codex self-check"
+}
