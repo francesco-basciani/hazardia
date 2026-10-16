@@ -1,3 +1,5 @@
+> Aggiornamento16ottobre2026: la home è **Monitoraggio**, con mappa grande e filtri Incendi/Alluvioni/Mostra tutti. I comandi descritti sotto per piani, evacuazione e risultati si trovano ora in **Decisioni e confronto**. [Guida alla nuova organizzazione](MONITORAGGIO.md).
+
 # HAZARDIA — Guida per le prime prove
 
 Apri **http://127.0.0.1:8080/** sul Mac. Il servizio, i dati, HiGHS e tutti e tre i simulatori CIMA sono nella VM Linux **HAZARDIA-M0-ARM64**; il browser è il client. Non occorrono account o servizi a pagamento. L'accesso è locale tramite tunnel SSH.

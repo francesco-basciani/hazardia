@@ -49,7 +49,7 @@ Il server resta locale; la guida spiega il tunnel SSH e l’accesso dal browser.
 
 ## Current repository status
 
-**Open [the local dashboard](http://127.0.0.1:8080/).** Read the [Italian quick-start guide](reports/DASHBOARD-GUIDA.md) for practical trials, model jobs and restart commands.
+**Open [the local dashboard](http://127.0.0.1:8080/).** The default workspace is [Monitoraggio](reports/MONITORAGGIO.md): a large central map with independent fire/flood filters and both overlays. Planning and comparisons have their own “Decisioni e confronto” section. Read the [Italian quick-start guide](reports/DASHBOARD-GUIDA.md) for practical trials, model jobs and restart commands.
 
 The backend, data, HiGHS, PROPAGATOR and HMC→REFlEx execute together in the existing Linux VM (4vCPU/8GiB RAM/19GiB disk); the Mac is the display/development client. Real Sentinel-2 pixels and genuine model outputs cover a small L'Aquila AOI. Two synchronized maps, authored resources/exposure, verified allocation, joint fire/flood comparison, physical-job queue/cancel/retry, controlled rolling progress, fault laboratory and advisory replay are available. No paid service, public service deployment or dispatch; source publication is separate from running an operational service.
 

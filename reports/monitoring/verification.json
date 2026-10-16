@@ -1,0 +1,284 @@
+{
+  "run_id": "monitor-first-20261016T054705Z",
+  "source_commit": "1b7ccf9d8e8558cddc94e3127470a2a8920ffbd5",
+  "browser": "155.0.8059.84",
+  "at": "2026-10-16T05:50:47.619Z",
+  "checks": [
+    {
+      "id": "default-monitor-and-combined",
+      "status": "PASS"
+    },
+    {
+      "id": "central-large-map",
+      "status": "PASS",
+      "detail": {
+        "x": 25,
+        "y": 303.5,
+        "width": 1084,
+        "height": 816
+      }
+    },
+    {
+      "id": "flood-only",
+      "status": "PASS"
+    },
+    {
+      "id": "fire-only",
+      "status": "PASS"
+    },
+    {
+      "id": "empty-selection-honest",
+      "status": "PASS"
+    },
+    {
+      "id": "restore-all",
+      "status": "PASS"
+    },
+    {
+      "id": "distinct-legends-and-full-dates",
+      "status": "PASS"
+    },
+    {
+      "id": "search-position",
+      "status": "PASS"
+    },
+    {
+      "id": "out-of-coverage-search-rejected",
+      "status": "PASS"
+    },
+    {
+      "id": "monitor-read-only",
+      "status": "PASS",
+      "detail": [
+        "/api/decisions",
+        "/api/decisions"
+      ]
+    },
+    {
+      "id": "filter-p95",
+      "status": "PASS",
+      "detail": {
+        "n": 35,
+        "p95_ms": 17
+      }
+    },
+    {
+      "id": "decision-section-separate",
+      "status": "PASS"
+    },
+    {
+      "id": "real-decision-FIRE",
+      "status": "PASS"
+    },
+    {
+      "id": "decision-preserved-FIRE",
+      "status": "PASS"
+    },
+    {
+      "id": "real-decision-FLOOD",
+      "status": "PASS"
+    },
+    {
+      "id": "decision-preserved-FLOOD",
+      "status": "PASS"
+    },
+    {
+      "id": "layout-375-map",
+      "status": "PASS",
+      "detail": {
+        "width": 375,
+        "scroll": 375
+      }
+    },
+    {
+      "id": "axe-375-map",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-375-results",
+      "status": "PASS",
+      "detail": {
+        "width": 375,
+        "scroll": 375
+      }
+    },
+    {
+      "id": "axe-375-results",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-375-sources",
+      "status": "PASS",
+      "detail": {
+        "width": 375,
+        "scroll": 375
+      }
+    },
+    {
+      "id": "axe-375-sources",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-375-help",
+      "status": "PASS",
+      "detail": {
+        "width": 375,
+        "scroll": 375
+      }
+    },
+    {
+      "id": "axe-375-help",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-768-map",
+      "status": "PASS",
+      "detail": {
+        "width": 768,
+        "scroll": 768
+      }
+    },
+    {
+      "id": "axe-768-map",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-768-results",
+      "status": "PASS",
+      "detail": {
+        "width": 768,
+        "scroll": 768
+      }
+    },
+    {
+      "id": "axe-768-results",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-768-sources",
+      "status": "PASS",
+      "detail": {
+        "width": 768,
+        "scroll": 768
+      }
+    },
+    {
+      "id": "axe-768-sources",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-768-help",
+      "status": "PASS",
+      "detail": {
+        "width": 768,
+        "scroll": 768
+      }
+    },
+    {
+      "id": "axe-768-help",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-1440-map",
+      "status": "PASS",
+      "detail": {
+        "width": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "id": "axe-1440-map",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-1440-results",
+      "status": "PASS",
+      "detail": {
+        "width": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "id": "axe-1440-results",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-1440-sources",
+      "status": "PASS",
+      "detail": {
+        "width": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "id": "axe-1440-sources",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "layout-1440-help",
+      "status": "PASS",
+      "detail": {
+        "width": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "id": "axe-1440-help",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "keyboard-decisions",
+      "status": "PASS"
+    },
+    {
+      "id": "keyboard-monitor",
+      "status": "PASS"
+    },
+    {
+      "id": "no-model-posts",
+      "status": "PASS",
+      "detail": [
+        "/api/decisions",
+        "/api/decisions"
+      ]
+    },
+    {
+      "id": "no-js-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "deployment": {
+    "status": "PASS",
+    "old_commit": "589cb5fe9ab39d926222a79387782b6116d15b28",
+    "new_commit": "1b7ccf9d8e8558cddc94e3127470a2a8920ffbd5",
+    "health": "RUNNING",
+    "prior_state_files_preserved": 810,
+    "static_hashes": {
+      "index.html": "5a752e931e4108e2844a68d3be7c734d35098c9719248e252f1d19392cada42e",
+      "app.js": "16a7736d7ac6e71568c330c0737d2aff718a147dff3e866a8e3ed67186760c7d",
+      "app.css": "74a6a2e76f9636beecead805719363ab2030d742f283913a579ac4f88c2eff2f",
+      "workbench.js": "02c46474ec9efe60ea9dd3afc9d711be17812eee61077a0588167fcaf2cd0ae6",
+      "monitoring.js": "b42a5d20ae04ec5383e7cf295a51771ee94f8c73c938844999011045d33c0171"
+    },
+    "conservative_download_bytes": 3467423994,
+    "download_limit_bytes": 5368709120
+  },
+  "backend_tests": 85,
+  "scope": "New same-VM prefix/browser automated QA; production8080 deployed and original persisted JSON bytes unchanged; no new native physics or live feed integration",
+  "reviewer": "Codex self-check",
+  "production_browser_smoke": "PASS CUA:8080 monitoring/both, FIRE off yields FLOOD only, Mostra tutti restores both; screenshot retained locally (regional ortho redistribution not inferred)",
+  "cleanup": "PASS owned test server/tunnel8081 stopped; production8080 retained"
+}

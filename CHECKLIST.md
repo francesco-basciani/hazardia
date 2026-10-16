@@ -555,3 +555,15 @@ Reviewer Codex self-check; source d0f9f34. All28FR,14QR,9SC,8milestones, AR-EXT 
 | FR-UI-REF-01 | BLOCKED | Restyling/strumenti cartografici salvati PASS; parità funzionale Tactical Analyst/Geospace NOT RUN, editor fisico libero e feeds mancanti. |
 | FR-FLOOD-ACTIONS-01 | NOT RUN | Laminazione/invasi, argini e pompaggio richiesti tutti; nessuna delle tre integrazioni fisiche verificata. |
 | FR-REPRO-GH-01 | PASS | Sorgenti/script/guide pubblicati, clone191hash PASS; nuovo prefisso nella stessa VM PASS, bootOS nuovo NOT RUN. |
+
+
+## Monitoring-first UI — 1b7ccf9 / monitor-first-20261016T054705Z
+User requests monitoring as main activity, large central map with FIRE/FLOOD/both filters, separate decisions/comparison. FR-MONITOR-01 added to SPEC. Implemented read-only monitoring map, per-hazard product selectors/dates/legends, context search/coordinates, online ortho and offline Sentinel, independent selection/opacity; dedicated decision section preserves existing proposal across navigation. No change to physical models, intervention semantics or source qualification.
+PASS85guest regressions and44browser checks incl2real solver/verifier calls,12axe scans0violations (raw incompletes retained),3viewports375/768/1440,keyboard,35filter samples p95=17ms. No physicsPOST from map tools. SameVM runtime deployed1b7ccf9; existing persisted JSON files byte-preserved on guarded idle restart. Original8080 available. reports/MONITORAGGIO.md and reports/monitoring/verification.json; raw experiments/runs/monitor-first-20261016T054705Z. Current source85backend/44browser tests are engineering evidence only. New30minsoak,100kstress,live monitoring and expanded reference parity NOT RUN; prior scientific/release BLOCKED unchanged.
+
+| Requirement/check | Outcome | Scope |
+|---|---|---|
+| FR-MONITOR-01 | PASS | Default central map, independent/both filters, distinct decision section, dates/legends, proposal preserved, no unwanted jobs;44browser checks |
+| Responsive375/768/1440 + keyboard +12axe scans | PASS | Raw incompletes retained, no WCAG certification |
+| Current guest regression | PASS |85tests in reconstructed-prefix runtime, deployed same source |
+| New monitor30min/100k/historical/live feeds | NOT RUN | Existing QR-14FAIL and FR-05/06/17/M5–M7BLOCKED remain |
