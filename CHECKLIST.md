@@ -680,3 +680,17 @@ Finalcatalogforecastmodes/hash/readers PASS, original145enginehashes unchanged,8
 | Actual global-model source and runtime | PASS |325228B raw+receipt/SHA;972transformation checks,145enginepins unchanged,9source/runtime hashes; bounded free shared cache, conservative daily6456location-equivalents including prior endpoints. |
 | Cell-click inspection before correction | FAIL | browser-inspection/final/inspect-diagnostic/inspect-fix retain failed attempt; final verified suite PASS after feature click handler added. |
 | Real Senegal/multi-country native workflow / distributed model forcing | NOT RUN | Global display adapter/synthetic bounds support does not qualify international physics or replace CIMA forcings. QR-08/fullM5–M7 unchanged BLOCKED. |
+
+## Wildfire forcing audit — 2026-10-16
+| Item | Status | Evidence / scope |
+|---|---|---|
+| FIRE-FORCING-READ-AUDIT | PASS (inspection only) | adapters/forecast.py: point wind m/s→km/h; workers/fire.py: native wind/fuel/DEM/moisture. Pinned upstream core/models.py documents fuel moisture %, not air RH. Reviewer Codex self-check. No new execution. |
+| FR-FIRE-FORCING-01 complete | BLOCKED | Real spatial/time-varying weather, terrain-aligned vegetation/fuel and qualified fuel-moisture estimation not integrated. Point-wind run evidence from openmeteo increment remains partial. |
+| New distributed/moisture native runs and sensitivity evidence | NOT RUN | No new run or scientific conclusion in this requirement clarification. |
+
+## Regional overview boundaries — 2026-10-16
+| Item | Status | Evidence / scope |
+|---|---|---|
+| FR-MAP-REGION-01 | PASS | region-boundaries-20261016;20officialIstat2026 geometries+internal labels,33browserchecks/3axe0violations,9deployedsourceSHA,145enginepins; reports/CONFINI-REGIONALI.md. Codex self-check. |
+| Initial archive selector | FAIL | prepare.log: `_WGS84` names not anticipated; corrected and prepare-v2/bootstrap replay PASS using same archive. |
+| Independent machine/foreign boundaries/provincial detail/new load study | NOT RUN | This increment is administrative display context only; no jurisdiction or physical qualification. |

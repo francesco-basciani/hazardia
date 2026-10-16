@@ -14,6 +14,7 @@ I comandi scientifici seguenti si eseguono **nella VM Ubuntu 22.04 ARM64**, dopo
 ```sh
 python3 scripts/bootstrap.py install --runtime "$HOME/hazardia-runtime"
 python3 scripts/bootstrap.py demo --runtime "$HOME/hazardia-runtime"
+python3 scripts/bootstrap.py regions --runtime "$HOME/hazardia-runtime"
 python3 scripts/bootstrap.py days --runtime "$HOME/hazardia-runtime"
 python3 scripts/bootstrap.py verify --runtime "$HOME/hazardia-runtime"
 ../core-env/bin/python scripts/web_service.py start --runtime "$HOME/hazardia-runtime"

@@ -136,6 +136,8 @@ write_new(r/'installation/demo-jobs.json',done)
     geo(root,APP/'scripts/build_dashboard_data.py','--runtime',root)
     shutil.copyfile(from_boot/'map-context.json',root/'web-assets/map-context.json')
     write(root/'installation/demo.json',dict(status='PASS',scope='Two genuine CIMA executions on frozen research inputs, not historical skill',at=datetime.datetime.now(datetime.timezone.utc).isoformat()))
+def regions(root,args):
+    geo(root,APP/'scripts/prepare_region_boundaries.py','--runtime',root)
 def days(root,args):
     geo(root,APP/'reproducibility/prepare_days.py','--runtime',root)
     cfg=read(root/'runtime-v2.json');run=root/'runs/physical-days-20261016T040414Z/expanded';env=environment(root);env['PYTHONPATH']+=os.pathsep+cfg['fire_source']
@@ -146,7 +148,7 @@ def verify(root,args):
     core(root,APP/'reproducibility/verify_installation.py','--runtime',root)
     for directory in ['unit','domain','decision','web']:core(root,'-m','unittest','discover','-s',APP/'tests'/directory,'-v')
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('stage',choices=['preflight','install','demo','days','verify']);p.add_argument('--runtime',required=True);p.add_argument('--archive-cache');p.add_argument('--input-cache');args=p.parse_args();root=Path(args.runtime).expanduser().resolve();root.mkdir(parents=True,exist_ok=True)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('stage',choices=['preflight','install','demo','regions','days','verify']);p.add_argument('--runtime',required=True);p.add_argument('--archive-cache');p.add_argument('--input-cache');args=p.parse_args();root=Path(args.runtime).expanduser().resolve();root.mkdir(parents=True,exist_ok=True)
     preflight(root)
     if args.stage!='preflight':globals()[args.stage](root,args)
 if __name__=='__main__':main()

@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "asset_bytes": 2549962,
+  "asset_sha256": "c06b8869fba7786889f9027b2f92f52f48a5d87dbe5e9c41ee0d9e6b7e426090",
+  "regions_valid": 20,
+  "label_points_inside": 20,
+  "engine_pins_unchanged": 145,
+  "source": {
+    "url": "https://www.istat.it/storage/cartografia/confini_amministrativi/generalizzati/2026/Limiti01012026_g.zip",
+    "sha256": "b011a590656c3a3ebc297fba80726a376aa843b6f164641cf6a4a990021a81d6",
+    "bytes": 10450609,
+    "available_at": "2026-10-16T13:34:29.927646+00:00",
+    "reference_date": "2026-01-01",
+    "license": "CC-BY-4.0",
+    "license_url": "https://www.istat.it/note-legali/"
+  },
+  "files": {
+    "scripts/prepare_region_boundaries.py": "9ccac16d86a5efe37975ef35c4f503122a07d89569295f29fc6951a30c11c2a9",
+    "scripts/bootstrap.py": "a8bcb4ff2544ab6d387b2f34dcc0bce65a05a2ab7aa0480a79e2758b83263587",
+    "src/hazardia/web/static/region-boundaries.js": "8fcb58893237c1c9a84c9311f4cd7d8a50b894f4f850360cef5439748b6dc1a7",
+    "src/hazardia/web/static/region-boundaries.css": "0099f4f7e6e27a70a795e0e3cef8e7e595411027a9cdb16acaf7b097caf1eaf0",
+    "src/hazardia/web/static/app.js": "8de6498de3a80d3036d6e16abf66f11d7f61915bee1e9eadc99c7aaec8928666",
+    "src/hazardia/web/static/monitoring.js": "23430ba2c042c05a6c22a77e9c3450c95b280871a87bed99be8dbf248acb97a6",
+    "src/hazardia/web/static/physical-fire.js": "0b0f7535e12d5dbfb307a2b61e9296c8c82acf69c835f69adde50d351896f951",
+    "src/hazardia/web/static/index.html": "fa5dceaf184d36943d13c74dd8526233fc7731bf9d25f9974657e998bed45b63",
+    "src/hazardia/web/static/physical-fire.html": "98980520bcc0f76f80d9a076f86207e8c2b5e23999d3ea2f7cace1ccfb8bb4c0"
+  },
+  "conservative_download_bytes": 3733420350,
+  "limit_bytes": 5368709120,
+  "run_id": "region-boundaries-20261016",
+  "browser_checks": 33,
+  "axe_scans": 3,
+  "browser_results_sha256": "1f6ee50776295bd8fc7d110e18f6de62a6128f773df0fc7d4ee2c6f35f56c97a",
+  "replay": "bootstrap.py regions reused pinned archive; no second source download"
+}

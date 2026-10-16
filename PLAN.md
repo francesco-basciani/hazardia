@@ -281,3 +281,9 @@ FR-MAP-EVENT-01 implemented in current UI slice: fixed40pixel FIRE/FLOOD referen
 
 ## Viewport weather increment — 2026-10-16
 FR-WX-VIEW-01: user confirmed wind+temperature+precipitation over the whole visible map at any zoom. Implemented bounded global display adapter and transparent scalars, preserved finer Abruzzo wind and point forcing. PASS117software/59browser/6axe0violations/972source transformations/145engineSHA/9deployedsourceSHA, report METEO-SULLA-MAPPA.md. No model substitution/distributed forcing or scientific milestone closure. Real foreign profile execution and large-load qualification NOT RUN.
+
+## Wildfire physical-input audit — 2026-10-16
+User reaffirms full meteorological/terrain/fuel inputs must actually drive PROPAGATOR. Code/native-interface read audit: forecast point wind consumed with m/s→km/h, held constant <=1h; terrain copied, vegetation uniform legacy fuel, moisture synthetic percent; distributed map weather remains display-only. Next physical increment must qualify fuel/vegetation mapping and a sourced fuel-moisture estimator, align spatial/time-varying forcing, then execute matched sensitivity/native runs with consumed-input manifests. No new physical run or moisture conversion performed in this audit. Full FR-FIRE-FORCING-01 remains BLOCKED by missing qualified inputs/model integration, rather than counted complete by weather UI.
+
+## Regional boundaries UI increment — 2026-10-16
+FR-MAP-REGION-01 PASS in current map slice: official20Istat2026 regions, WGS84 assets prepared in VM, source pinned, overview labels/lines/toggle and adaptive detail. PASS33browserchecks/3axe0violations,20valid geometries/inside labels,145enginepins/9deployedsourcehashes and cached bootstrap replay. reports/CONFINI-REGIONALI.md. No change to physics or research gate status.
