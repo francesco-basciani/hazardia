@@ -295,3 +295,7 @@ PASS configurazione unica/confini, controlli adiacenti alle mappe, letture meteo
 
 ## Intestazione essenziale — header-copy-20261016
 PASS rimosse intestazioni ripetitive e badge locale duplicato; resta solo espansione ufficiale HAZARDIA dal README. Avviso condiviso di ricerca conservato. PASS verifica browser375/724/1440px senza overflow, riga18px(36pxsu375), configurazione disponibile,3checksum runtime uguali. Distribuzione soli statici nella stessaVM, nessun riavvio. Evidenza reports/workspace/header-verification.json; screenshot/raw experiments/runs/header-copy-20261016. Nuova regressione completa/fisica/userstudy NOT RUN, gate scientifici BLOCKED invariati. Reviewer Codex self-check.
+
+
+## Identità geografica generica — generic-identity-20261016
+PASS correzione diciture: HAZARDIA è piattaforma multi-hazard geograficamente configurabile, target Italia e territori esteri (Senegal incluso). Titolo browser/metadati e navigazione mappa generici; L’Aquila/Abruzzo resta solo come caso dimostrativo/copertura delle sorgenti. Nessuna nuova copertura territoriale dedotta dalla modifica del testo. PASS verifica browser724px: titolo/metadati generici, demo esplicita, nessun overflow. Evidenza raw experiments/runs/generic-identity-20261016; implementazione limitata a index.html eREADME. Nuova qualificazione geografica e nuovi run NOT RUN; QR-08 e gate scientifici BLOCKED invariati. Reviewer Codex self-check.

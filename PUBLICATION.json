@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "a92e3764f7db44b440abcebc034c876a087679d5",
+  "source_git_sha": "0870880ccb91b3ad7619624fd80361e8ffbc45eb",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,24 +11,24 @@
       "sha256": "4b98756a752e4cf1f083cd32c998de04abeaea3d003a942e6063fd48925231d4"
     },
     "CHECKLIST.md": {
-      "bytes": 101698,
-      "sha256": "fa68d876b8b669618b66ab18340f2590a55148b30a9f9afc5251bb6ada2bc63c"
+      "bytes": 102428,
+      "sha256": "11ed23d736e8b103692fdef7093847661a1ed9399b5b6ffd34d56e921d4370bd"
     },
     "MEMORY.md": {
-      "bytes": 60321,
-      "sha256": "e1a4c19400b0506d58edbd5e2d5238732f89632de795c1ba1e7c89a07440e35f"
+      "bytes": 61051,
+      "sha256": "f775365a24e110af014f79feed87ef7fb49fb4c062b8acd0e4aac966d248ca8e"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 66364,
-      "sha256": "520818262a67e39f002ebe7a8c3cde95719875e867a1c70d68a00d4ab3296b31"
+      "bytes": 67094,
+      "sha256": "e8331c821c631f17bc1e6feca3c3108cb95b7d23a3db5aa78cefb40fefbd5f5d"
     },
     "README.md": {
-      "bytes": 11464,
-      "sha256": "8911b5c563da22fc57f41b6205404e63f89d2389d37170f974fba8c6d12a55b3"
+      "bytes": 11492,
+      "sha256": "e1ebabdb6b8b5d0c9ef743367cc718b55ef144e274d7411f75a3a12e153ddef3"
     },
     "SPEC.md": {
       "bytes": 56657,
@@ -463,8 +463,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 76008,
-      "sha256": "5322459f507b4b57e1e4f8113f41bec7d4e167fdccb184590606fd64d25fc1ce"
+      "bytes": 76738,
+      "sha256": "dee7f422837f533937cf9cfb08bd4ff8dd6f6b0ca45002f188b547ada4f5753a"
     },
     "research/RESEARCH.md": {
       "bytes": 30535,
@@ -759,8 +759,8 @@
       "sha256": "85fffc4fbbe667ec7ff711cd79437893682e3ced7f2c6094547e022592f28e3f"
     },
     "src/hazardia/web/static/index.html": {
-      "bytes": 29393,
-      "sha256": "54ccba82fe2f648688b8df330f5c541c5df8173a3a922afeed0fbe2642d55e0a"
+      "bytes": 29430,
+      "sha256": "db54f133e3d927531ad5219ce673a032f348452b0071f242ba7b8a277851e8a9"
     },
     "src/hazardia/web/static/map-detail.js": {
       "bytes": 9528,
