@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "87504c4f74433f1b44bcf8bc236998f89549da5b",
+  "source_git_sha": "d0f9f34d5b0ae0f2ca01349e21b3e21f31c5b44a",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,20 +11,20 @@
       "sha256": "4b98756a752e4cf1f083cd32c998de04abeaea3d003a942e6063fd48925231d4"
     },
     "CHECKLIST.md": {
-      "bytes": 80529,
-      "sha256": "d7c03f5a894a2d8a04be524b2e43046906828df81f6e99c00749d21416384bc4"
+      "bytes": 80603,
+      "sha256": "cd66f67889979059cb70c09be0ded64ae543768ac2f79ba869b9cb929ed13a71"
     },
     "MEMORY.md": {
-      "bytes": 42084,
-      "sha256": "ba6718597096d9239d51a7b0102437e7705468b895e7ef3c9b131beca970599a"
+      "bytes": 42661,
+      "sha256": "9028622c0be34fc065e9f2f6aa89d8711c0ba7dd3b5640d32de10977547689b4"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 49528,
-      "sha256": "fb12253131c1388d730e4e4ec9ab1d8bd769dd12f9c3272c3ec35bd924646145"
+      "bytes": 50105,
+      "sha256": "239287b7b03ed140dcbf32affe283c9a17b2564cd01985152674471f24fe2a53"
     },
     "README.md": {
       "bytes": 9543,
@@ -219,8 +219,8 @@
       "sha256": "d83d198bee5502696e95fb9acc4bff2806a75b0ce0af813af70a0f9619c85e62"
     },
     "reports/PUBBLICAZIONE-GITHUB.md": {
-      "bytes": 7293,
-      "sha256": "cc3e5665430a162e5ad192e4b4aeec834fb67ad0c52f63d147d0890644a713be"
+      "bytes": 8076,
+      "sha256": "6ae9c3837ee79ecee23ff5bc9f354cffaaa89c127cfb0f801abf7c606d8d484c"
     },
     "reports/STATO-IN-PAROLE-SEMPLICI.md": {
       "bytes": 3547,
@@ -355,8 +355,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 55623,
-      "sha256": "d30a0f2c30b03def8e9d4acd39f71c1e0e1746c220c411c12dc42d5728a2a488"
+      "bytes": 56200,
+      "sha256": "2b71daf3a00610671da2fa3265a0c6db5784c6801ff592a3bf139228d2e5d341"
     },
     "research/RESEARCH.md": {
       "bytes": 29485,

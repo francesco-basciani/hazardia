@@ -525,6 +525,6 @@ Run `github-repro-20261016`; reviewer Codex self-check; FR-REPRO-GH-01. See repo
 | First safe extraction / FIRE import / verifier attempts | FAIL | Original logs preserved; repaired and verified, no threshold/input tuning to hide failure |
 | Public source export/secret-pattern scan/excluded-media policy | PASS | prepare_publication.py,5publicationtests,PUBLICATION.json; private history preserved |
 | GitHub HTTPS authentication | BLOCKED | No configured HTTPS username/token; existing SSH auth dry-run PASS resolves delivery path |
-| Actual public push + remote byte/tree verification | NOT RUN | Preparation checkpoint; update after real push, not inferred from dry-run |
+| Actual public push + remote byte/tree verification | PASS | SSH push039df1c68cceb1b36c4fb58e1729b3faed7f194f; independent GitHub clone;191file hashes/lengths and exact tracked tree match, private history absent |
 | New VM boot, privileged OS installation, complete fresh network acquisition | NOT RUN | ExistingVM OS and hash-verified archive/raster reuse; source-only install docs cover missing phases |
 | Full scientific/operational qualification | BLOCKED | Existing M5/M6/M7 constraints not closed by installation/replay |

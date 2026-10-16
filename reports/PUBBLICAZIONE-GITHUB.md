@@ -24,7 +24,7 @@ Sono stati aggiunti configurazione UTM, generazione cloud-init/ISO senza passwor
 | Integrità vecchi motori | PASS |145file originari invariati; il runtime della dashboard dell’utente non è stato sostituito per effettuare il collaudo |
 | Export completo sorgente, controllo pattern segreti e omissioni dichiarate | PASS | `scripts/prepare_publication.py` legge il commit, non file locali non versionati; `PUBLICATION.json` generato nella copia pubblica |
 | Autenticazione pubblicazione | PASS via SSH | HTTPS locale senza credenziali BLOCKED; accesso SSH esistente verificato con dry-run, senza nuove autorizzazioni o lettura/stampa di token |
-| Push e verifica remoto | NOT RUN al checkpoint di preparazione | Da aggiornare dopo il push effettivo; un dry-run non equivale a pubblicazione |
+| Push e verifica remoto | PASS | Primo commit pubblico `039df1c68cceb1b36c4fb58e1729b3faed7f194f`; clone indipendente da GitHub, tutti i191file confrontati byte/hash con PUBLICATION.json, albero esatto e nessuna cronologia privata |
 | Nuova macchina/OS indipendente, acquisizione completa da rete da zero | NOT RUN | Sistema Ubuntu esistente e cache di input con hash; non confondere nuovo prefisso con un nuovo OS |
 
 ## Ripetibilità numerica: risultato positivo e limite
@@ -51,3 +51,9 @@ CIMA, GRASS, Python e i dati conservano diritti/attribuzioni propri. La patch RE
 ## Prossimo incremento
 
 Dopo la pubblicazione, riprendere il piano applicativo originale: laminazione, argini e pompaggio richiesti tutti dall’utente, con verifica HMC e valutazione idraulica prima di eventuali adozioni sostanziali. Rimangono da eseguire un boot/installazione su nuovo OS indipendente e la qualificazione scientifica: il bootstrap non li dichiara completati.
+
+## Consegna pubblicata
+
+Repository: https://github.com/francesco-basciani/hazardia . Primo push SSH effettivo e clone remoto verificati il2026-10-16: commit `039df1c68cceb1b36c4fb58e1729b3faed7f194f`,191file di manifest più PUBLICATION.json. Questo aggiornamento documentale viene pubblicato come normale commit successivo, preservando la storia pubblica. Il controllo byte/hash del clone è PASS; non è una nuova prova di installazione su OS vergine.
+
+Checkpoint risorse dopo il collaudo: stima conservativa download3.433.583.372B su5.368.709.120B, spazio libero guest9.422.553.088B;4vCPU/8GiBRAM/19GiBdisco invariati. Server/tunnel temporanei8081 chiusi; dashboard originale8080 preservata.
