@@ -255,3 +255,7 @@ The user clarifies that the earlier installation request covers all remaining pl
 
 ## Selectable weather overlays — weather-layers-20261016T063635Z
 User requests switchable map weather layers, particularly wind. FR-WX-LAYERS-01 implemented: independent wind/temperature/hourly-rain checkboxes, master switch preserving selection, time-linked arrow/speed/values, model-point centering and coverage legend. PASS36browser checks,6axe scans0violations across375/768/1440 including decision-view regression; source b4dc8e5f139ee5dca4aff12ce8887758d1faa49c. Four static files/hash-verified deployment to sameVM8080; backend kept running. New physical simulations/regional grid/30minsoak NOT RUN; existing full-release gates unchanged. Evidence reports/weather/layers-verification.json, raw experiments/runs/weather-layers-20261016T063635Z.
+
+
+## Professional responsive UI — professional-ui-20261016T064202Z
+FR-UI-DESIGN-01 implemented as local presentation system, no new service/library/physics. PASS136browserchecks (44monitor+36weather+56design),21axe scans0violations,8viewport/orientation combinations320–1920; two real solver/verifier calls isolatedVM, no native jobs. Filter p95=17.5ms/n=35. Code 2bf6bd804e95dd36f2d188ff8e4946a7e165344f; static-only production deployment preserves816priorstateJSON/no backend restart. Report reports/INTERFACCIA-GRAFICA.md and reports/design/verification.json. Physical devices/Safari/Firefox/userstudy/newsoak100k NOT RUN; existing release gates unchanged.

@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "7a304193a54169b1f06128361c8e08e893eb8a7e",
+  "source_git_sha": "b0b6cf874904952edcecf71fbd9e3ef5acb970e3",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,28 +11,28 @@
       "sha256": "4b98756a752e4cf1f083cd32c998de04abeaea3d003a942e6063fd48925231d4"
     },
     "CHECKLIST.md": {
-      "bytes": 92491,
-      "sha256": "c2ed32b5ecdb86765790fbd693fcadb6aca53da68b0886f3026e3f051f639b2a"
+      "bytes": 93635,
+      "sha256": "a4841bc754f03539c8d92c78290da508fd19cc3846633ff02f2e9639a8cabaef"
     },
     "MEMORY.md": {
-      "bytes": 50746,
-      "sha256": "6eca26cb862ac6ed79d1073add2d77348e22c6bd5613366a6407e8b63d71438d"
+      "bytes": 51507,
+      "sha256": "96786ee35a425f395212fe51d622b5a06feea51fa0c581122975edaed3a6351c"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 57695,
-      "sha256": "394091ca59a0ed36b3b47083844c5206d90ce5a315863d82539fe797ad3cda65"
+      "bytes": 58359,
+      "sha256": "ed4b77744484cec14bed7015aa0cbe795ec1d6aaf09435fc4a3b429e1191d90c"
     },
     "README.md": {
       "bytes": 10615,
       "sha256": "317ed2e2f07f6833564ec34f837949de340667be47dfb14016ad4cf1e7df062e"
     },
     "SPEC.md": {
-      "bytes": 50142,
-      "sha256": "a170801f704e69138ee5b078babae386cb693b504b8d3716ccf8a5a78a901d98"
+      "bytes": 50799,
+      "sha256": "4ad2837e96c8c2bd77196afb549e143a2a90d8f492bbf534ac44a9605164e6c6"
     },
     "docs/INSTALLAZIONE.md": {
       "bytes": 13613,
@@ -150,6 +150,10 @@
       "bytes": 10624,
       "sha256": "24b9cc7aaaf669dc1737876c924c3a6841e221bb7b8ad2bea51784e8dc1e7407"
     },
+    "reports/INTERFACCIA-GRAFICA.md": {
+      "bytes": 2678,
+      "sha256": "c9c086b8acd05486532ddcacdda1e8bf16d990d3f9fbe32db2e8cc8102219060"
+    },
     "reports/INTERVENTI-FISICI-E-GIORNI.md": {
       "bytes": 6127,
       "sha256": "e7a34bab39516bd6a63d4d6e471b90f7066074abd3db8fb735e67eb7c12da818"
@@ -249,6 +253,10 @@
     "reports/VERIFICA-PIANO.md": {
       "bytes": 18914,
       "sha256": "a5c9d77f27513f8359dd6a501ca8c945d437da90ca940f74bfb748f303c480f8"
+    },
+    "reports/design/verification.json": {
+      "bytes": 1636,
+      "sha256": "88d655b2687ca19375627a6fe00c08f39bf8db2c88481b9b730c4443b9f717d4"
     },
     "reports/m1-abruzzo/ATTRIBUTION.md": {
       "bytes": 1980,
@@ -399,8 +407,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 64379,
-      "sha256": "ad40c53d3b936f9e87a2367b0592ef4205aa30546c7634a9d894d9045820eab8"
+      "bytes": 65331,
+      "sha256": "2069abc93c34d22f473ad7ee1d4345cf2d4159c7c089cbfdb7c0e6ea56d8cb63"
     },
     "research/RESEARCH.md": {
       "bytes": 30535,
@@ -658,9 +666,13 @@
       "bytes": 21180,
       "sha256": "f3e0b6ca5f34857233e9c14bc3be10907c473b4b6e9f49795592ae77903bdff3"
     },
+    "src/hazardia/web/static/design.css": {
+      "bytes": 12502,
+      "sha256": "cfc28cf08a03288680c92bc5e93dd56947d64720cb3442c5e59ecc58eaa31a8e"
+    },
     "src/hazardia/web/static/index.html": {
-      "bytes": 26521,
-      "sha256": "20e4deacbe9c4373b79901d969f624c1527b9080fbd058b4a2f9b5795381f56a"
+      "bytes": 27937,
+      "sha256": "3d9130d5987fd053922e900cec44989f89bf28c9907adf694fec9cbd930f901f"
     },
     "src/hazardia/web/static/map-detail.js": {
       "bytes": 9528,
@@ -675,8 +687,8 @@
       "sha256": "59a126d4cc213a57187a29ba331c4b81fd7bc43591a9dbc4ebaef0c630331790"
     },
     "src/hazardia/web/static/physical-fire.html": {
-      "bytes": 5017,
-      "sha256": "e6ba2872b353353143ce0dbd4e5d006586b65fff311edfba83d9f1024894946a"
+      "bytes": 5097,
+      "sha256": "b8ddc78592624fdd0fba922ac2f055de7c4a14113f56a8a999f9882f3d1c6291"
     },
     "src/hazardia/web/static/physical-fire.js": {
       "bytes": 6622,
@@ -717,6 +729,10 @@
     "tests/browser/dashboard.cjs": {
       "bytes": 5107,
       "sha256": "6bd4cdf2c2969fcdf18958c30453d7931b3f255b4b115f6107833bd4010d483e"
+    },
+    "tests/browser/design.cjs": {
+      "bytes": 4256,
+      "sha256": "01f68411cccdfbd02f4f5a8f4fe7dae7aa1c51462fa8bbc6adbe164d92bd2d9a"
     },
     "tests/browser/joint.cjs": {
       "bytes": 1828,

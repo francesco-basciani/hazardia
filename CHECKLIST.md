@@ -617,3 +617,15 @@ Finalcatalogforecastmodes/hash/readers PASS, original145enginehashes unchanged,8
 | Shared quota / no provider browser call / no model submission | PASS |Existing shared VM cache, before/after attempt count unchanged; no model job created by map controls |
 | SameVM live deployment | PASS |4static files SHA256 match; no backend restart or scientific execution; reports/weather/layers-verification.json; reviewer Codex self-check |
 | Regional distributed weather field / new physics / new soak | NOT RUN |Current forecast covers one model point; no duplicated/interpolated field or new release claim |
+
+
+## Professional responsive UI — professional-ui-20261016T064202Z
+
+| Check | Outcome | Evidence / limits |
+|---|---|---|
+| FR-UI-DESIGN-01 responsive professional presentation | PASS |136automatedbrowserchecks; code 2bf6bd804e95dd36f2d188ff8e4946a7e165344f; reports/design/verification.json, report reports/INTERFACCIA-GRAFICA.md; reviewer Codex self-check |
+| Layout/navigation320–1920 including tablet/landscape | PASS |8sizes,4sections+physicalpage, no overflow, navigation touch targets ≥44px, mobile planner reachable |
+| Automated accessibility/keyboard/reduced motion | PASS |21axe scans0violations; raw incompletes retained, focus/navigation/reducedmotion assertions |
+| Existing monitor/weather/decision regressions | PASS |44+36checks;2solver/verifier calls sameVM isolatedprefix; no physical job created |
+| Local deployment/state preservation | PASS |3staticfilehashes;816priorstateJSONpreserved,backendkeptalive, sameVM bounds |
+| Physical devices / crossbrowser / user study / new30min/100k | NOT RUN |Viewport emulation cannot establish perfect adaptation on all hardware/browsers; prior full-release blockers unchanged |

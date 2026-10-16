@@ -1,0 +1,78 @@
+{
+  "run_id": "professional-ui-20261016T064202Z",
+  "source_commit": "2bf6bd804e95dd36f2d188ff8e4946a7e165344f",
+  "initial_design_commit": "ef0d6bbc5fc8178ebd71ea76146592c41b59f9d2",
+  "reviewer": "Codex self-check",
+  "status": "PASS",
+  "suites": {
+    "monitoring": {
+      "checks": 44,
+      "failed": []
+    },
+    "weather": {
+      "checks": 36,
+      "failed": []
+    },
+    "design": {
+      "checks": 56,
+      "failed": []
+    }
+  },
+  "total_checks": 136,
+  "axe_scans": 21,
+  "axe_violations": 0,
+  "browser": "155.0.8059.84",
+  "sizes": [
+    [
+      320,
+      740
+    ],
+    [
+      375,
+      812
+    ],
+    [
+      600,
+      960
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      1440,
+      1000
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      812,
+      375
+    ]
+  ],
+  "filter_feedback": {
+    "n": 35,
+    "p95_ms": 17.5
+  },
+  "test_harness_sha256": "01f68411cccdfbd02f4f5a8f4fe7dae7aa1c51462fa8bbc6adbe164d92bd2d9a",
+  "deployment": {
+    "hashes": {
+      "design.css": "cfc28cf08a03288680c92bc5e93dd56947d64720cb3442c5e59ecc58eaa31a8e",
+      "index.html": "3d9130d5987fd053922e900cec44989f89bf28c9907adf694fec9cbd930f901f",
+      "physical-fire.html": "b8ddc78592624fdd0fba922ac2f055de7c4a14113f56a8a999f9882f3d1c6291"
+    },
+    "state_json_preserved": 816,
+    "backend_restarted": false
+  },
+  "limits": [
+    "Automated Chromium viewport checks, not physical devices or cross-browser qualification",
+    "No new 30min soak,100k stress,model rerun or scientific validation",
+    "Aesthetic improvement is a design revision, not a measured user study"
+  ]
+}
