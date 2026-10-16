@@ -1,0 +1,28 @@
+{
+  "run_id": "event-markers-20261016T1304Z",
+  "scope": "UI-only; VM server, Mac browser client",
+  "files": {
+    "event-markers.js": "85fffc4fbbe667ec7ff711cd79437893682e3ced7f2c6094547e022592f28e3f",
+    "event-markers.css": "6f90494dd1d08d7948e66b462930fe880099dd02e4b0f53ef48da0edd08abc8c",
+    "monitoring.js": "dd663ecba8993291e5fc59c00c1ae2001e63b50ce598db583c160bfce32f0a55",
+    "app.js": "a43ddf31b15641012dc1fd59d4e11afd3fe0475d5aa1f971b9daaf2b15477df7",
+    "physical-fire.js": "fec5b3b3d550bc114c05e34d8089aa2383624888a85335d384a437186f38436a",
+    "index.html": "b20ed9e9eae7379debef75259a5bdd0603192295801367c9e201ce57b9e32240",
+    "physical-fire.html": "1f6481ca7f3c5827863c6eca2920d2caaffca685cf2bb18785d39755eadf1541"
+  },
+  "checks": [
+    {
+      "suite": "browser-final-v2",
+      "passed": 30,
+      "browser": "155.0.8059.84",
+      "results_sha256": "64e9f6a5895be50b4ab1b3519811abb45d0aec62a6487c034ce74166e205f8be"
+    },
+    {
+      "suite": "design",
+      "passed": 56,
+      "browser": "155.0.8059.84",
+      "results_sha256": "e992797f7429c93f52335b4ef7861cda4002eef0e918bf95e234d7b0e389bfa9"
+    }
+  ],
+  "status": "PASS"
+}

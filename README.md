@@ -86,3 +86,5 @@ Final local supplement:3,275files verified inVM and after host transport; source
 
 
 [Vento regionale animato](reports/VENTO-REGIONALE.md):315punti ICON-EU reali su tutto il rettangolo Abruzzo,96ore, particelle trasparenti/ora/pausa, piano gratuito non commerciale con cacheVM3h/max8acquisizioni al giorno. Sfondo satellitare regionale e ortofoto al dettaglio; il campo è di visualizzazione, non nuove forzanti distribuite nei simulatori.
+
+Il [meteo sull’intera inquadratura](reports/METEO-SULLA-MAPPA.md) aggiunge vento, temperatura e precipitazione reali nel Monitoraggio ai13zoom8–20, con livelli trasparenti, lettura per punto e cache VM gratuita entro quote. Conserva il vento Abruzzo più fitto; il contesto globale usa un campionamento dichiarato più rado. La portabilità reale all’estero e le forzanti distribuite CIMA restano da qualificare.

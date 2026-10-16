@@ -1,0 +1,11 @@
+# Icone degli eventi a ogni zoom — 16 ottobre 2026
+
+Icone FIRE/FLOOD da40pixel, bordo bianco e contrasto sul satellite, indipendenti dall’opacità dei raster. Livello sopra meteo e toponimi; simboli vicini affiancati mantenendo l’ancoraggio geografico. Popup e tastiera. Fuori inquadratura (o presso il bordo) compare un pulsante per ricentrare il riferimento. I filtri hazard nascondono anche le relative icone. Presenti nel monitoraggio, confronto decisionale A/B e laboratorio fisico.
+
+Posizioni: FIRE sul centro della cella positiva con primo arrivo minimo, esplicitamente riferimento simulato; fallback al centro del dominio dichiarato. FLOOD al centro del dominio simulato, anche con profondità tutte nulle: non rappresenta un allarme o rilevamento. Nel laboratorio fisico si usa l’innesco ipotetico effettivamente configurato nel manifest. Gli allarmi del replay non hanno coordinate verificate: non sono stati trasformati in falsi punti geografici. Il componente supporta simboli ALERT quando un futuro dato geolocalizzato sarà integrato; quel flusso non è verificato.
+
+Run `event-markers-20261016T1304Z`, piano preventivo e hash sorgenti in experiments/runs; manifest finale in reports/event-markers-verification.json. PASS30controlli specifici, inclusi zoom8–20,40pixel costanti, sovrapposizioni, opacità0, filtri, ritorno da fuori vista tramite tastiera, popup, confronto e inneschi fisici; PASS56regressioni grafiche su8viewport/orientazioni320–1920;6scansioni axe senza violazioni (3monitor+3fisico; incompleti conservati). Nessun POST nei30controlli specifici, nessun job fisico nelle regressioni.7file statici verificati SHA256 identici nella VM originale, nessun riavvio backend o modifica ai motori. Browser Chrome155 sul Mac come client; esecuzione server nella VM.
+
+Esiti negativi conservati: hit box del simbolo alluvione inizialmente intercettava l’incendio; corretto. Errori del solo harness per serializzazione Leaflet e iniezione axe bloccata da CSP: corretti nel test, CSP di produzione invariata. Log e note negative nel run.
+
+NOT RUN: allarmi osservati geolocalizzati, grandi cataloghi/cluster, dispositivi fisici, nuovi esperimenti scientifici. Nessuna nuova validazione fisica o geografica; i gate di ricerca precedenti restano BLOCKED. Reviewer: Codex self-check.

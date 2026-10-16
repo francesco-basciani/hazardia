@@ -1,0 +1,13 @@
+# ADR-0012 — Meteo distribuito sull’inquadratura
+
+Decisione16/10/2026, richiesta utente confermata: vento, temperatura e pioggia in tutta la vista, indipendentemente dallo zoom. Estendere il solo livello di consultazione, mantenendo separati meteo per nuovi job CIMA e risultati storici. Nessuna sostituzione di simulatore fisico.
+
+Aggiungere un adapter/API locali per campo9×9 da Open-Meteo ICON Global, modello a copertura globale documentata; coordinate richieste/effettive, URL, raw/receipt/hash, istanti UTC conservati. Bounding box validato, nessun URL arbitrario, antimeridiano e latitudini oltre85° esplicitamente non supportati. Acquisire un contesto che copra la vista più ampia prevista dai limiti cartografici, riutilizzandolo per pan/zoom: non una richiesta per ogni ingrandimento. Il controllo non dipende da coordinate italiane; il pilota cartografico resta Abruzzo.
+
+Cache condivisa VM: TTL3h, massimo48tentativi/giorno, distanza65s, risposta≤1MiB, archivio≤64MiB, prenotazioni SQLite atomiche, un’acquisizione alla volta.81località/tentativo→3888/giorno; insieme ai massimi preesistenti315×8 e48puntuali, totale conservativo6456località-equivalenti/giorno. Provider gratuito non commerciale con attribuzione, nessuna credenziale commerciale. Non si promette servizio illimitato o disponibilità garantita.
+
+IDW4 sulle coordinate effettive e bilineare per il disegno. Vento animato mantiene il campo ICON-EU più dettagliato, fresco e disponibile alla stessa ora, dentro la sua copertura; altrimenti usa il campo globale. Questo mosaico di consultazione non è una forzante fisica o una ricostruzione calibrata e può avere discontinuità di bordo/modello. Temperatura/pioggia hanno una sola tinta attiva alla volta, combinabile con il vento. Alpha limitato, sfondo visibile, nessuna estrapolazione; precipitazione della riga successiva per l’ora che inizia al tempo selezionato. Clic sul punto mostra valori, ora e fonte.
+
+Il campionamento9×9 su una vista ampia è più rado della griglia distribuita ICON Global0,1°/~11km: il pannello dichiara gli intervalli in gradi. Zoom alto non aggiunge precisione meteorologica; le tinte sono una panoramica interpolata. Secondo la documentazione del provider, dopo78h i valori orari derivano da dati3-orari. Inizializzazione modello non fornita.
+
+Alternative non adottate: duplicare il punto L’Aquila (falsa copertura), extrapolare fuori dal campo (dati inventati), acquisire a ogni zoom/pan (quote eccessive), sostituire automaticamente le forzanti CIMA (diverso requisito di qualificazione). Non è stato eseguito un confronto scientifico tra queste alternative. Riferimenti: [API](https://open-meteo.com/en/docs), [DWD](https://open-meteo.com/en/docs/dwd-api), [termini](https://open-meteo.com/en/terms).

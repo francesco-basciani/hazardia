@@ -660,3 +660,23 @@ Finalcatalogforecastmodes/hash/readers PASS, original145enginehashes unchanged,8
 | Existing NTP service resync on idle queue | PASS |sudo -n systemctl restart systemd-timesyncd, no install/config change; host/guest<3s final-runtime.json |
 | UI clock/expiry downgrade and updated cache | PASS |2newclockchecks,166browserchecks total/24axe0violations; automatic second real dataset verified1890components;145enginepins unchanged |
 | Direct API/CLI clock certification | NOT RUN |Correct OS time remains prerequisite; browser gate is conservative UI behavior, not independent operational clock authority |
+
+## Geographic target reaffirmation — 2026-10-16
+| Item | Status | Evidence / scope |
+|---|---|---|
+| GEO-TARGET-RECONFIRM | PASS (documentation) | Explicit user instruction: Abruzzo pilot; target all Italy and abroad, including Senegal. SPEC scope, PLAN and MEMORY aligned; reviewer Codex self-check. |
+| GEO-TARGET-E2E | NOT RUN | No new geographic execution or provider qualification in this checkpoint. Existing synthetic two-profile checks remain limited to their recorded scope; QR-08 full gate remains BLOCKED. |
+
+## Persistent event references — 2026-10-16
+| Item | Status | Evidence / scope |
+|---|---|---|
+| FR-MAP-EVENT-01 current scenarios | PASS | event-markers-20261016T1304Z;30specific+56design browser checks,6axe scans0violations; monitor zoom8–20, filters/opacity/offscreen/keyboard/nearby icons, comparison+physical ignition;7VM SHA matches; reports/ICONE-EVENTI.md. Codex self-check. |
+| Live geolocated alarm integration / large catalog | NOT RUN | Current replay alerts have no verified point geometry; not invented. No clustering/load or new geography qualification. |
+
+## Weather across visible viewport — 2026-10-16
+| Item | Status | Evidence / scope |
+|---|---|---|
+| FR-WX-VIEW-01 current monitoring map | PASS | viewport-weather-20261016T1320Z:117software/59browser,6axe scans0violations,13zoom coverage100%, temperature/precipitation transparent selection and point inspection. Codex self-check; reports/METEO-SULLA-MAPPA.md. |
+| Actual global-model source and runtime | PASS |325228B raw+receipt/SHA;972transformation checks,145enginepins unchanged,9source/runtime hashes; bounded free shared cache, conservative daily6456location-equivalents including prior endpoints. |
+| Cell-click inspection before correction | FAIL | browser-inspection/final/inspect-diagnostic/inspect-fix retain failed attempt; final verified suite PASS after feature click handler added. |
+| Real Senegal/multi-country native workflow / distributed model forcing | NOT RUN | Global display adapter/synthetic bounds support does not qualify international physics or replace CIMA forcings. QR-08/fullM5–M7 unchanged BLOCKED. |

@@ -1,0 +1,63 @@
+{
+  "run_id": "viewport-weather-20261016T1320Z",
+  "status": "PASS",
+  "native": {
+    "status": "PASS",
+    "field_id": "map-weather-57e2891971ca12d18b2204d1",
+    "raw_sha256": "57e2891971ca12d18b2204d17e32ce8a6a0978f4aaa144ccc25175c76b13e0d0",
+    "raw_bytes": 325228,
+    "available_at": "2026-10-16T13:17:40.170084Z",
+    "hours": 95,
+    "source_checks": 972,
+    "max_rounding_error": 4.985881065855402e-05,
+    "units": "separately m/s, degreesC, mm; rounding only, not accuracy",
+    "engine_hashes_unchanged": 145,
+    "attempts": 1,
+    "bounds": [
+      [
+        39.6,
+        8.7
+      ],
+      [
+        44.9,
+        19.0
+      ]
+    ],
+    "python": "3.10.12",
+    "platform": "Linux-5.15.0-198-generic-aarch64-with-glibc2.35"
+  },
+  "source_runtime_hashes": {
+    "src/hazardia/ingest/map_weather.py": "239ed9964b9cbfd4cf25477a661aa84e0b9e408481035adbd0eebc111b82235c",
+    "src/hazardia/web/server.py": "2715c6c076156666e93ce7f7365c95f2923ef37c2a7cb2299df57d4976b40e2a",
+    "src/hazardia/web/static/wind-particles.js": "247571e922ea4b4381578c8a6e9c0a039deb85f9b4ce609fcb3b7edb25ef0d0a",
+    "src/hazardia/web/static/monitoring.js": "d42495a3f1de800e5dc31a20088ab6c27eb92c4eaddddbb95ee73c34b0a1783c",
+    "src/hazardia/web/static/app.js": "0a9d2a69eec4f8bd964bc4264e9a4025b9451f5e0d635328f73818424d3ef988",
+    "src/hazardia/web/static/index.html": "99afe61079f40e090631931d930d02015d2e030aa3606fdb17250a8033479063",
+    "src/hazardia/web/static/design.css": "a4a39d48e1cc97cae5a35038ec35c8c40c516ea4c9a8f33466b77fbba8ec29b1",
+    "tests/unit/test_map_weather.py": "c06c31d4d8435abbcb294e8e24f569f61b6dd2a9297f9e9e085bfc0145faadc1",
+    "scripts/verify_map_weather.py": "129bbc58e9bf623b7f1b65eb535bcd99cdcffc61063b7d09d85bd227fb7bb1a4"
+  },
+  "browser_suites": [
+    {
+      "suite": "verified",
+      "count": 31,
+      "sha256": "c8bd41537bce6b3562d7cbc45acf61e1165e763b657e2cc82725e36093934bd2"
+    },
+    {
+      "suite": "wind-verified",
+      "count": 28,
+      "sha256": "ca7892be7d572f3c3ebcbab70106c747e792fdab6cc45705ad1dd86ac2fcc365"
+    }
+  ],
+  "software_tests": 117,
+  "axe_scans": 6,
+  "prior_json_files": 834,
+  "mutable_exclusions": [
+    "map-traffic.json",
+    "regional-satellite-traffic.json"
+  ],
+  "conservative_download_bytes": 3705762115,
+  "download_limit_bytes": 5368709120,
+  "free_disk_bytes": 9265893376,
+  "archive_sha256": "bff13a5f0983f83f1fda02ffe3eef32bc2a5731936928b30cf10ae974f11acf0"
+}
