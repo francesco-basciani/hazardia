@@ -1,0 +1,251 @@
+{
+  "run_id": "missing-prerequisites-20261016T055356Z",
+  "at": "2026-10-16T05:57:50.507877+00:00",
+  "reviewer": "Codex self-check",
+  "system_packages": {
+    "count": 32,
+    "missing": [],
+    "status": "PASS"
+  },
+  "pinned_python_packages": {
+    "count": 25,
+    "status": "PASS",
+    "details": {
+      "fire": [
+        {
+          "name": "llvmlite",
+          "expected": "0.45.1",
+          "actual": "0.45.1",
+          "status": "PASS"
+        },
+        {
+          "name": "numba",
+          "expected": "0.62.1",
+          "actual": "0.62.1",
+          "status": "PASS"
+        },
+        {
+          "name": "numpy",
+          "expected": "2.3.5",
+          "actual": "2.3.5",
+          "status": "PASS"
+        },
+        {
+          "name": "scipy",
+          "expected": "1.18.1",
+          "actual": "1.18.1",
+          "status": "PASS"
+        }
+      ],
+      "decision": [
+        {
+          "name": "highspy",
+          "expected": "1.12.0",
+          "actual": "1.12.0",
+          "status": "PASS"
+        },
+        {
+          "name": "numpy",
+          "expected": "2.2.6",
+          "actual": "2.2.6",
+          "status": "PASS"
+        }
+      ],
+      "geo-extra": [
+        {
+          "name": "rioxarray",
+          "expected": "0.9.1",
+          "actual": "0.9.1",
+          "status": "PASS"
+        },
+        {
+          "name": "grass-session",
+          "expected": "0.5",
+          "actual": "0.5",
+          "status": "PASS"
+        },
+        {
+          "name": "pysheds",
+          "expected": "0.3.3",
+          "actual": "0.3.3",
+          "status": "PASS"
+        },
+        {
+          "name": "geojson",
+          "expected": "2.5.0",
+          "actual": "2.5.0",
+          "status": "PASS"
+        },
+        {
+          "name": "richdem",
+          "expected": "0.3.4",
+          "actual": "0.3.4",
+          "status": "PASS"
+        },
+        {
+          "name": "xarray-spatial",
+          "expected": "0.3.5",
+          "actual": "0.3.5",
+          "status": "PASS"
+        },
+        {
+          "name": "datashader",
+          "expected": "0.14.1",
+          "actual": "0.14.1",
+          "status": "PASS"
+        },
+        {
+          "name": "datashape",
+          "expected": "0.5.2",
+          "actual": "0.5.2",
+          "status": "PASS"
+        },
+        {
+          "name": "colorcet",
+          "expected": "3.0.0",
+          "actual": "3.0.0",
+          "status": "PASS"
+        },
+        {
+          "name": "pyct",
+          "expected": "0.4.8",
+          "actual": "0.4.8",
+          "status": "PASS"
+        },
+        {
+          "name": "param",
+          "expected": "1.12.2",
+          "actual": "1.12.2",
+          "status": "PASS"
+        },
+        {
+          "name": "dask",
+          "expected": "2021.10.0",
+          "actual": "2021.10.0",
+          "status": "PASS"
+        },
+        {
+          "name": "partd",
+          "expected": "1.2.0",
+          "actual": "1.2.0",
+          "status": "PASS"
+        },
+        {
+          "name": "toolz",
+          "expected": "0.12.0",
+          "actual": "0.12.0",
+          "status": "PASS"
+        },
+        {
+          "name": "cloudpickle",
+          "expected": "2.2.1",
+          "actual": "2.2.1",
+          "status": "PASS"
+        },
+        {
+          "name": "multipledispatch",
+          "expected": "0.6.0",
+          "actual": "0.6.0",
+          "status": "PASS"
+        },
+        {
+          "name": "locket",
+          "expected": "1.0.0",
+          "actual": "1.0.0",
+          "status": "PASS"
+        },
+        {
+          "name": "bokeh",
+          "expected": "2.4.3",
+          "actual": "2.4.3",
+          "status": "PASS"
+        },
+        {
+          "name": "fsspec",
+          "expected": "2022.7.1",
+          "actual": "2022.7.1",
+          "status": "PASS"
+        }
+      ]
+    }
+  },
+  "native_prerequisites": {
+    "hmc_binary": true,
+    "grass_addons": {
+      "r.stream.basins": [
+        "/home/hazardia/.grass7/addons/bin/r.stream.basins"
+      ],
+      "r.stream.order": [
+        "/home/hazardia/.grass7/addons/bin/r.stream.order"
+      ],
+      "r.stream.distance": [
+        "/home/hazardia/.grass7/addons/bin/r.stream.distance"
+      ],
+      "r.accumulate": [
+        "/home/hazardia/.grass7/addons/bin/r.accumulate"
+      ]
+    },
+    "engine_hashes_verified": 145,
+    "status": "PASS"
+  },
+  "environment_imports": {
+    "status": "PASS",
+    "details": {
+      "core_python": {
+        "python": "/home/hazardia/hazardia-runtime/core-env/bin/python",
+        "exit_code": 0,
+        "stdout": "{\"hazardia\": \"0.1.0\", \"jsonschema\": \"3.2.0\"}\n",
+        "stderr": ""
+      },
+      "fire_python": {
+        "python": "/home/hazardia/m0/fire-env/bin/python",
+        "exit_code": 0,
+        "stdout": "{\"propagator\": \"0.0.0\", \"numpy\": \"2.3.5\", \"numba\": \"0.62.1\", \"scipy\": \"1.18.1\"}\n",
+        "stderr": ""
+      },
+      "geo_python": {
+        "python": "/home/hazardia/m0/reflex-env/bin/python",
+        "exit_code": 0,
+        "stdout": "{\"numpy\": \"1.21.5\", \"scipy\": \"1.8.0\", \"rasterio\": \"1.2.10\", \"osgeo.gdal\": \"3.4.1\", \"geopandas\": \"0.10.2\", \"rioxarray\": \"0.9.1\", \"grass_session\": \"import PASS\", \"pysheds\": \"0.3.3\", \"richdem\": \"import PASS\"}\n",
+        "stderr": ""
+      },
+      "decision_python": {
+        "python": "/home/hazardia/hazardia-runtime/decision-env/bin/python",
+        "exit_code": 0,
+        "stdout": "{\"highspy\": \"import PASS\", \"numpy\": \"2.2.6\"}\n",
+        "stderr": ""
+      }
+    }
+  },
+  "package_installation": {
+    "status": "NOT RUN",
+    "reason": "No declared runtime package missing; no gratuitous upgrades or privileged installs"
+  },
+  "hmc_storage_probe": {
+    "status": "PASS",
+    "upstream_commit": "e6e95ecbc794431c4e6d09a81b3292704f3cca42",
+    "source_sha256": "a8b18402274310f041844659bc45ead11bc8eaf08d174e90fdc48e0cc073347d",
+    "synthetic_cases": 7,
+    "assertions": 21,
+    "stdout": " PASSbelow_static_storage_storage_m3   450.000000       450.000000    \n PASSbelow_static_storage_release_mm_per_step   0.00000000       0.00000000    \n PASSbelow_static_storage_balance_m3   0.00000000       0.00000000    \n DAMbelow_static_storage   450.000000       10.0000000       450.000000       0.00000000    \n PASSbelow_spill_height_storage_m3   800.000000       800.000000    \n PASSbelow_spill_height_release_mm_per_step   0.00000000       0.00000000    \n PASSbelow_spill_height_balance_m3   0.00000000       0.00000000    \n DAMbelow_spill_height   800.000000       10.0000000       800.000000       0.00000000    \n PASScapped_spill_storage_m3   940.000000       940.000000    \n PASScapped_spill_release_mm_per_step   100.000000       100.000000    \n PASScapped_spill_balance_m3   10.0000000       10.0000000    \n DAMcapped_spill   950.000000       10.0000000       940.000000       100.000000    \n PASSoverflow_above_capacity_storage_m3   1000.00000       1000.00000    \n PASSoverflow_above_capacity_release_mm_per_step   2000.00000       2000.00000    \n PASSoverflow_above_capacity_balance_m3   200.000000       200.000000    \n DAMoverflow_above_capacity   1200.00000       10.0000000       1000.00000       2000.00000    \n PASSstatic_storage_lower_bound_storage_m3   500.000000       500.000000    \n PASSstatic_storage_lower_bound_release_mm_per_step   4500.00000       4500.00000    \n PASSstatic_storage_lower_bound_balance_m3   450.000000       450.000000    \n DAMstatic_storage_lower_bound   950.000000       1000.00000       500.000000       4500.00000    \n PASSlake_volume_m3   1000.00000       1000.00000    \n PASSlake_outflow_mm_per_h   1000.00000       1000.00000    \n PASSlake_downstream_mm   1000.00000       1000.00000    \n PASSlake_volume_balance_m3   100.000000       100.000000    \n LAKE   1000.00000       1000.00000       1000.00000    \n PASSlake_below_min_volume   50.0000000       50.0000000    \n PASSlake_below_min_release   0.00000000       0.00000000    \n ALL_COMPONENT_CHECKS_PASS\n",
+    "compiler": "GNU Fortran (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "upstream_sources_unchanged": true,
+    "runtime_engine_integrity": true,
+    "documented_runner_replay": "PASS",
+    "scope": "Native unmodified component routine calls; no inflow routing/catchment/REFlEx intervention coupling/operational validation"
+  },
+  "full_flood_actions": "NOT RUN",
+  "research_release": "BLOCKED",
+  "evidence_hashes": {
+    "storage-ssh.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pinned-dependencies.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "inventory-first.json": "cb4c9389a759de08436275c8fd7173e6f1f4d8a5c9d54f37c5599d86f098b583",
+    "plan.json": "5eb9367d20d5ff5303f963112018a6867955078f29158df3dff7974f2d489fbc",
+    "inventory-first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storage-pilot-plan.json": "600946b10f2586464d74d81305bbb81616b309207a5163daf109a66306472a06",
+    "documented-runner.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pinned-dependencies.json": "f37096eee7692dc24106f590ce2b62b03918daddae7d673f88e4b48682d5d611",
+    "storage-result.json": "7b67befef3beeca355d516071218708a424570b4bbcf746a6236e35277d9d6c3",
+    "documented-runner.json": "42346241303996fe9888ed9256eb822a66b3f42c317ed1e6bb342ff699b6aa1f"
+  }
+}

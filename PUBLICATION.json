@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "eb859905168a732921e368078f9c3a67b08d5969",
+  "source_git_sha": "3c40ac9dcfc2dc551e4ce4aae333f011eea7a2cf",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,20 +11,20 @@
       "sha256": "4b98756a752e4cf1f083cd32c998de04abeaea3d003a942e6063fd48925231d4"
     },
     "CHECKLIST.md": {
-      "bytes": 85691,
-      "sha256": "a6468d77ccde9509693a5b66e27a20e3cc25c9a43e200fbc6e3acfd32e5fba51"
+      "bytes": 87698,
+      "sha256": "4245aa5420b17452f5121b2cef5c88dee16dca04b7e961b4ad30c90286b784d8"
     },
     "MEMORY.md": {
-      "bytes": 45464,
-      "sha256": "eb44c194029b52a2f8882d85481a973697751a0ac22687978e8c0ab09d4974de"
+      "bytes": 46894,
+      "sha256": "c631a5b8aa4fac9801120b4629b4cb37021ca3fb4b9b6b2cb15d03ed84c8d8ee"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 52675,
-      "sha256": "cf2bf5d640cb719e6865fd5781eb044a91b708cda0a53a138d44ddfc83961205"
+      "bytes": 54105,
+      "sha256": "8466a5926802618685548636f09558626a0c1ca942db9ad792fef71a9306b063"
     },
     "README.md": {
       "bytes": 10065,
@@ -222,6 +222,10 @@
       "bytes": 2362,
       "sha256": "522a9bc89ea9fae5659f85f28d780336eb8a943bc4a3183a31f7e94de9b71fad"
     },
+    "reports/PREREQUISITI-E-INVASI.md": {
+      "bytes": 5965,
+      "sha256": "5c608be60f9f14259adde7d1e491c823952b9b7676f68a14fc37bcae7e0daf3f"
+    },
     "reports/PUBBLICAZIONE-GITHUB.md": {
       "bytes": 8076,
       "sha256": "6ae9c3837ee79ecee23ff5bc9f354cffaaa89c127cfb0f801abf7c606d8d484c"
@@ -281,6 +285,10 @@
     "reports/plan-audit/verification.json": {
       "bytes": 994,
       "sha256": "81cab110ee2a1a209ff1fb79ca8fbd7c31225f15cca13c19dfd113a8b352e26c"
+    },
+    "reports/prerequisites/verification.json": {
+      "bytes": 9432,
+      "sha256": "9da07165bd8183af88bce7d7adf1010ce6bb82c0f826312c8fd09458fefd31a5"
     },
     "reports/reproducibility/backend-tests.json": {
       "bytes": 209,
@@ -375,8 +383,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 58770,
-      "sha256": "18f134a1f626f63450cec762e6123d74b8f6e3fca635ca994373862021ffa697"
+      "bytes": 60200,
+      "sha256": "70302c7703c57eed445c133d531164ba68e28ea1f5f07d54270526482e358d8a"
     },
     "research/RESEARCH.md": {
       "bytes": 29485,
@@ -429,6 +437,10 @@
     "scripts/render_abruzzo.py": {
       "bytes": 4153,
       "sha256": "2d81ce137cb9ec9f7420b0ee2128c7223da7dcb2bb16585446d9daca1f026e24"
+    },
+    "scripts/verify_hmc_storage.py": {
+      "bytes": 3143,
+      "sha256": "19b33bce04be47348aba6c3c25b2af1078f1e6fa331d93851717b535f505fa1c"
     },
     "scripts/web_service.py": {
       "bytes": 1566,
@@ -757,6 +769,10 @@
     "tests/integration/verify_scaling.py": {
       "bytes": 4042,
       "sha256": "3f312f75f4a86c543bf3b227d0ade647785cc0a4f41b868fefde7a826e6cdbf9"
+    },
+    "tests/native/hmc_storage_probe.f90": {
+      "bytes": 3003,
+      "sha256": "472c97b674312029cf52232f824aa69a94293debdbca9c93c7b27047b38f9c6c"
     },
     "tests/support.py": {
       "bytes": 2058,

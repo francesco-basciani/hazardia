@@ -567,3 +567,16 @@ PASS85guest regressions and44browser checks incl2real solver/verifier calls,12ax
 | Responsive375/768/1440 + keyboard +12axe scans | PASS | Raw incompletes retained, no WCAG certification |
 | Current guest regression | PASS |85tests in reconstructed-prefix runtime, deployed same source |
 | New monitor30min/100k/historical/live feeds | NOT RUN | Existing QR-14FAIL and FR-05/06/17/M5–M7BLOCKED remain |
+
+
+## Prerequisites / native HMC storage pilot — missing-prerequisites-20261016T055356Z
+User asks to install missing requirements. Actual inventory PASS: 32Ubuntu packages,25pinned Python versions,4env imports,10commands,4GRASSaddons,145enginehashes. No declared runtime prerequisite missing; new package installation NOT RUN (unnecessary), no sudo/upgrade/new engine. Optional rg absent, Python fallback used. Functional/data/scientific gaps remain open, not solved by package installation.
+E-HMC-STORAGE-001 PASS: unmodified pinned HMC spill/lake routines linked to synthetic native driver;7cases/21assertions and documented runner replay PASS, source/engine integrity PASS. Units verified: spill mm/step, lake mm/h; volume conversion explicit. Initial diagnostic substring counter22included final marker; corrected assertion count21, raw log retained. No full reservoir catchment/REFlEx mitigation/days/levees/pumping/historical accuracy result. FR-FLOOD-ACTIONS-01 remains NOT RUN for integrated actions; scientific gates remain BLOCKED. Report reports/PREREQUISITI-E-INVASI.md, reports/prerequisites/verification.json; source driver SHA and raw commands/logs under experiments/runs/missing-prerequisites-20261016T055356Z; sameVM, GNUFortran11.4.0, reviewer Codex self-check, no H1–H3 claim. Next executable work remains full matched HMC reservoir fixture/bridge and hydraulic assessment, not another dependency reinstall.
+
+| Check | Outcome | Scope |
+|---|---|---|
+| Declared system/Python/native prerequisites | PASS | All present, actual versions/imports/file integrity audited |
+| Additional dependency installation | NOT RUN | No declared prerequisite missing |
+| Native HMC spill/tank component calls | PASS |7synthetic cases/21assertions, no upstream edits; documented replay PASS |
+| Full reservoir mitigation HMC→REFlEx/UI | NOT RUN | Component checks do not imply integrated feature |
+| All flood actions/day/historical/scientific release | BLOCKED | Prior unmet dependencies unchanged |
