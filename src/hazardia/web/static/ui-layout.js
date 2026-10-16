@@ -7,7 +7,7 @@ export function arrangeWorkspace(){
  document.querySelector('.sidebar>.subtle').textContent='Unità per evacuazione · laboratorio di ricerca';
  document.querySelector('.evac-controls').open=true;document.querySelector('label[for=disabled]').hidden=true;$('disabled').hidden=true;
  document.querySelector('.evac-controls summary').textContent='Unità di evacuazione';
- document.querySelector('.monitor-heading .section-label').remove();$('monitor-heading').textContent='Monitoraggio · Abruzzo';document.querySelector('.monitor-heading p').remove();
+
  document.querySelector('.notice p').innerHTML='<strong>Ambiente di ricerca.</strong> Scenari ipotetici, non allerte operative.';
  const old=document.querySelector('.monitor-panel'),dialog=document.createElement('dialog');dialog.id='map-settings';dialog.className='monitor-panel settings-dialog';dialog.setAttribute('aria-labelledby','settings-title');while(old.firstChild)dialog.append(old.firstChild);old.replaceWith(dialog);
  dialog.querySelector('.section-label').remove();dialog.querySelector('h2').id='settings-title';dialog.querySelector('h2').textContent='Configurazione';dialog.querySelector('.monitor-disclaimer').remove();

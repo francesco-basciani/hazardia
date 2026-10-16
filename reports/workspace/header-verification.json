@@ -1,0 +1,44 @@
+{
+  "run_id": "header-copy-20261016",
+  "status": "PASS",
+  "scope": "Presentation copy only; official expansion from README.md:3",
+  "base_git_sha": "58a7c2a5fae2702042f3aebf72af77e5f08eabdf",
+  "viewports": [
+    {
+      "width": 375,
+      "overflow": false,
+      "heading": "Hazard-Aware Adaptive Resource and Decision Intelligence Architecture",
+      "height": 36,
+      "oldBadge": false,
+      "configuration": true
+    },
+    {
+      "width": 724,
+      "overflow": false,
+      "heading": "Hazard-Aware Adaptive Resource and Decision Intelligence Architecture",
+      "height": 18,
+      "oldBadge": false,
+      "configuration": true
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "heading": "Hazard-Aware Adaptive Resource and Decision Intelligence Architecture",
+      "height": 18,
+      "oldBadge": false,
+      "configuration": true
+    }
+  ],
+  "source_runtime_sha256": {
+    "src/hazardia/web/static/index.html": "54ccba82fe2f648688b8df330f5c541c5df8173a3a922afeed0fbe2642d55e0a",
+    "src/hazardia/web/static/ui-layout.js": "ad844d752abdee4a62dbd9d30c4ead8ab7f38aa825b978258e40a16fcf0e3466",
+    "src/hazardia/web/static/workspace.css": "fa3f564a773685c31bfae05e04f0e8958bb6f9c7b4c40b9ea2ae87b9eeb745d7"
+  },
+  "runtime": "same Ubuntu VM, static-only deployment, no backend restart",
+  "reviewer": "Codex self-check",
+  "not_run": [
+    "new physics",
+    "new full regression",
+    "user study"
+  ]
+}
