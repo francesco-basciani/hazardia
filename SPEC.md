@@ -4,6 +4,7 @@
 
 ## 1. Scope and actors
 
+- Platform identity: HAZARDIA means **Hazard-Aware Adaptive Resource and Decision Intelligence Architecture**. Platform branding and general descriptions remain hazard-neutral; specific hazard names belong to the corresponding modules. User reconfirmation 2026-10-17 preserves the original extensible architecture and does not expand current implementation scope.
 - Hazards: wildfire and flood in V1, validated separately before joint cross-region allocation. Other hazards may be added via adapters but are not release acceptance targets.
 - Actors: researcher (configures runs and evaluates), decision analyst (builds and compares plans), regional coordinator (controls own resources), suprarregional coordinator (proposes transfers), human authorizer (authorizes modeled real-world operations). No dispatch or evacuation automation.
 - Time horizons: real-time-ish response with rolling-horizon recomputation and 60 s **decision response budget**; preventive prepositioning is also required. Physical model simulation latencies are separately tracked.

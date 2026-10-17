@@ -757,3 +757,13 @@ PASS prima integrazione di innesco WGS84, categorie/linee/tempi delle unità, du
 | Import legacy/durata/harness primi tentativi | FAIL | browser/browser-v2/browser-final preservati, corretti |
 | Nuovi72h multi-innesco/area; streaming/checkpoint; benchmark e campo | NOT RUN | Non dedotti da prove precedenti |
 | Fuel/moisture/efficacia e gate scientifici completi | BLOCKED | Limiti preesistenti invariati |
+
+
+## Identità generica — generic-brand-20261017
+| Attività | Esito | Evidenza |
+|---|---|---|
+| Riesame scope originale/AR-EXT-01 e milestone | PASS | SPEC§1,PLAN M0–M7,ADR-0004; nessun nuovo dominio implementato |
+| Brand ufficiale, metadati e responsive375/721/1440 | PASS | reports/workspace/generic-brand-verification.json; raw generic-brand-20261017 |
+| Controllo piano prima delle modifiche | PASS | AGENTS.md, guard esplicito; regola di processo, non garanzia automatica |
+| Nuove prove fisiche/nuovi hazard | NOT RUN | Modifica di identità grafica/testo |
+| Gate scientifici M5–M7 | BLOCKED | Invariati |

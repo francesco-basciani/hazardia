@@ -3,7 +3,7 @@
 **Hazard-Aware Adaptive Resource and Decision Intelligence Architecture**  
 **Documentation baseline v1.4 | Local multi-hazard dashboard available for research trials; current demo: Abruzzo**
 
-Satellite-first, weather-aware, geographically configurable multi-hazard decision support for wildfires and floods. HAZARDIA is a research framework comprising replaceable satellite/data connectors, CIMA physical simulators (PROPAGATOR and HMC + REFlEx, executed on declared unqualified research fixtures), impact/exposure models, a solver-pluggable robust rolling-horizon decision engine, capability-aware graceful degradation, predictive alerts, and a local web UI for side-by-side scenario comparisons. All real dispatch decisions require human authorization.
+Satellite-first, weather-aware, geographically configurable multi-hazard decision support, with wildfires and floods as the first implemented domains. HAZARDIA is a generic extensible platform; these initial modules do not define its future domain boundary. HAZARDIA is a research framework comprising replaceable satellite/data connectors, CIMA physical simulators (PROPAGATOR and HMC + REFlEx, executed on declared unqualified research fixtures), impact/exposure models, a solver-pluggable robust rolling-horizon decision engine, capability-aware graceful degradation, predictive alerts, and a local web UI for side-by-side scenario comparisons. All real dispatch decisions require human authorization.
 
 ## Innesco e squadre antincendio
 

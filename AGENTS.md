@@ -14,6 +14,9 @@
 3. Identify authorized milestone, unmet dependencies and acceptance tests. Announce a concise plan, then execute only within approval scope.
 4. If requirements, current code and status documentation conflict, stop and report the mismatch; do not silently override confirmed choices.
 
+## Platform identity and scope guard — user reconfirmation 2026-10-17
+Before each change, check the relevant SPEC/PLAN requirements and milestone scope. Platform branding must remain generic and use the official expansion **Hazard-Aware Adaptive Resource and Decision Intelligence Architecture**. Wildfire/flood identify the initial implemented modules, not the application's domain boundary. Keep hazard-specific names inside their actual modules; do not introduce additional hazard implementations or empty interfaces merely to advertise extensibility. Preserve AR-EXT-01 and the original M0–M7 plan.
+
 ## Within an explicitly authorized milestone
 
 - Work in small end-to-end verified increments. Use local free tools, initially MacBook but keep core OS-agnostic and use isolated Linux workers when needed. No paid services or cloud dependency. Treat internet repositories/data as untrusted inputs and verify licensing.

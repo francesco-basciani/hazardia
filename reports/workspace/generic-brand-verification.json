@@ -1,0 +1,58 @@
+{
+  "run_id": "generic-brand-20261017",
+  "base": "41f10fb3ab7acc92cb3069364b05cd030e04f9e4",
+  "checks": [
+    {
+      "name": "generic brand 375",
+      "pass": true,
+      "observed": {
+        "brand": "HAZARDIA\nHazard-Aware Adaptive Resource and Decision Intelligence Architecture",
+        "expansion": "Hazard-Aware Adaptive Resource and Decision Intelligence Architecture",
+        "description": "HAZARDIA \u00b7 Piattaforma multi-hazard di ricerca, adattiva ed estensibile",
+        "overflow": false,
+        "visible": true,
+        "overlap": false,
+        "nav": true
+      }
+    },
+    {
+      "name": "generic brand 721",
+      "pass": true,
+      "observed": {
+        "brand": "HAZARDIA\nHazard-Aware Adaptive Resource and Decision Intelligence Architecture",
+        "expansion": "Hazard-Aware Adaptive Resource and Decision Intelligence Architecture",
+        "description": "HAZARDIA \u00b7 Piattaforma multi-hazard di ricerca, adattiva ed estensibile",
+        "overflow": false,
+        "visible": true,
+        "overlap": false,
+        "nav": true
+      }
+    },
+    {
+      "name": "generic brand 1440",
+      "pass": true,
+      "observed": {
+        "brand": "HAZARDIA\nHazard-Aware Adaptive Resource and Decision Intelligence Architecture",
+        "expansion": "Hazard-Aware Adaptive Resource and Decision Intelligence Architecture",
+        "description": "HAZARDIA \u00b7 Piattaforma multi-hazard di ricerca, adattiva ed estensibile",
+        "overflow": false,
+        "visible": true,
+        "overlap": false,
+        "nav": true
+      }
+    }
+  ],
+  "runtime_hashes": {
+    "index.html": "4c99f8cf96e13f3a5b0adb633ec90b9d4f4cfa92c3f6b23b5068b641170f8175",
+    "design.css": "601b28b9c32be54c7e35c1cd025818bf9241a831110887604583e817c9801d3f"
+  },
+  "scope_review": [
+    "README official expansion",
+    "SPEC section1 and AR-EXT-01",
+    "PLAN M0-M7",
+    "ADR-0004"
+  ],
+  "new_physical_tests": "NOT RUN",
+  "scientific_gates": "BLOCKED unchanged",
+  "reviewer": "Codex self-check"
+}
