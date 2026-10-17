@@ -1,2 +1,2 @@
-// Layout and interaction contract updated from swipe comparison to simultaneous windows.
-require('./scenario-windows.cjs');
+// Current user workflow: empty authoring, explicit units, simultaneous maps and weather layers.
+require('./clean-authoring.cjs');

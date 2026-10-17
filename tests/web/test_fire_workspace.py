@@ -18,3 +18,12 @@ class WorkspaceTests(unittest.TestCase):
    b=self.body();b['scenarios'][0]['job_id']='../bad'
    with self.assertRaises(HazardError):FireWorkspace(root).save(b)
    self.assertEqual(FireWorkspace(root).read()['revision'],0)
+
+ def test_empty_draft_allowed_but_not_submitted(self):
+  from hazardia.firelab import validate
+  with tempfile.TemporaryDirectory() as root:
+   b=self.body();b['scenarios'][0]['input']['ignitions']=[]
+   self.assertEqual(FireWorkspace(root).save(b)['scenarios'][0]['input']['ignitions'],[])
+   with self.assertRaises(HazardError):validate(b['scenarios'][0]['input'])
+   b['revision']=1;b['scenarios'][0]['submitted_input']=copy.deepcopy(b['scenarios'][0]['input'])
+   with self.assertRaises(HazardError):FireWorkspace(root).save(b)

@@ -7,7 +7,7 @@ CATEGORIES=('waterline_action','canadair','helicopter','heavy_action')
 def number(v,lo,hi):
     if type(v) not in (int,float) or not math.isfinite(v) or not lo<=v<=hi:raise HazardError('INVALID_INPUT','Finite bounded number required')
     return v
-def validate(body):
+def validate(body,*,allow_empty_ignitions=False):
     if not isinstance(body,dict):raise HazardError('INVALID_INPUT','Fire input object required')
     if set(body)-{'ignition','hours','seed','moisture_percent','resources','start_at','forecast_id','weather_source','weather_changes','ignitions','comparison_times'}:raise HazardError('INVALID_INPUT','Unknown fire experiment fields')
     for k in ['hours','seed']:
@@ -18,7 +18,7 @@ def validate(body):
         number(p[0],-85,85);number(p[1],-180,180)
     if 'ignitions' in body:
         ignitions=body['ignitions']
-        if 'ignition' in body or not isinstance(ignitions,list) or not 1<=len(ignitions)<=16:raise HazardError('INVALID_INPUT','Use1..16 timed ignitions or one legacy ignition')
+        if 'ignition' in body or not isinstance(ignitions,list) or not (0 if allow_empty_ignitions else 1)<=len(ignitions)<=16:raise HazardError('INVALID_INPUT','Use1..16 timed ignitions or one legacy ignition')
         seen=[]
         for r in ignitions:
             if not isinstance(r,dict) or set(r)!={'id','point','at_minutes'} or not isinstance(r['id'],str) or not 1<=len(r['id'])<=40:raise HazardError('INVALID_INPUT','Strict timed ignition required')

@@ -15,7 +15,7 @@ class FireWorkspace:
         for s in body['scenarios']:
             if not isinstance(s,dict) or not {'id','name','input','job_id','submitted_input'}<=set(s) or set(s)-{'id','name','input','job_id','submitted_input','previous_job_id'}:raise HazardError('INVALID_INPUT','Invalid scenario fields')
             if not isinstance(s['id'],str) or not re.fullmatch('[a-zA-Z0-9_-]{1,60}',s['id']) or not isinstance(s['name'],str) or not 1<=len(s['name'])<=80 or any(ord(c)<32 for c in s['name']):raise HazardError('INVALID_INPUT','Invalid scenario identity')
-            validate(s['input'])
+            validate(s['input'],allow_empty_ignitions=True)
             if s['submitted_input'] is not None:validate(s['submitted_input'])
             if s['job_id'] is not None and (not isinstance(s['job_id'],str) or not re.fullmatch('job-[a-f0-9]{32}',s['job_id'])):raise HazardError('INVALID_INPUT','Invalid stored job')
             if s.get('previous_job_id') is not None and (not isinstance(s['previous_job_id'],str) or not re.fullmatch('job-[a-f0-9]{32}',s['previous_job_id'])):raise HazardError('INVALID_INPUT','Invalid previous job')
