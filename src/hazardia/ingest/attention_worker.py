@@ -82,6 +82,19 @@ class Acquisition:
         self.receipts.append(rec);return data
     def js(self,url,label,cap=2*1024**2):return json.loads(self.fetch(url,label,cap))
 
+def qualify_footprints(geo):
+    from shapely.geometry import shape,mapping
+    for feature in geo['features']:
+        geom=shape(feature['geometry']);p=feature['properties'];p['source_geometry_valid']=geom.is_valid
+        display=geom.simplify(.001,preserve_topology=True);tolerance=.001
+        if geom.is_valid and not display.is_valid:
+            display=geom;tolerance=0
+            p['display_geometry_note']='Simplification invalid; exact decoded official source coordinates retained'
+        feature['geometry']=mapping(display);p['cartographic_simplification_degrees']=tolerance;p['display_geometry_valid']=display.is_valid
+        if not geom.is_valid or not display.is_valid:
+            p['source_level']=p['level'];p['level']=None;p['geometry_warning']='Unqualified source or display geometry; classification withheld on this footprint'
+    return geo
+
 def dpc(acq,profile):
     from shapely.geometry import shape,mapping
     repo=profile['dpc_repository'];commits=acq.js(DPC+repo+'/commits?path=files&per_page=1','dpc-head.json')
@@ -99,15 +112,7 @@ def dpc(acq,profile):
         # Build pinned paths; ignore arbitrary URLs and all untrusted bulletin HTML.
         path='files/topojson/'+ident+'_'+key+'.json'
         geo=topology(acq.js(prefix+path,'dpc-'+key+'.json'))
-        for feature in geo['features']:
-            geom=shape(feature['geometry'])
-            feature['properties']['source_geometry_valid']=geom.is_valid
-            feature['geometry']=mapping(geom.simplify(.001,preserve_topology=True))
-            feature['properties']['cartographic_simplification_degrees']=.001
-            if not geom.is_valid:
-                feature['properties']['source_level']=feature['properties']['level']
-                feature['properties']['level']=None
-                feature['properties']['geometry_warning']='Source geometry invalid after TopoJSON decoding; classification withheld on this footprint'
+        qualify_footprints(geo)
         valid=(stamp+dt.timedelta(days=offset)).date().isoformat()
         name='dpc-'+valid+'.geojson';(acq.folder/name).write_text(json.dumps(geo,separators=(',',':')))
         end=dt.datetime.combine(stamp.date()+dt.timedelta(days=offset+1),dt.time.min,ZoneInfo('Europe/Rome'))
@@ -136,6 +141,46 @@ def effis(acq,profile,day):
     name='effis-'+day+'.geojson';(acq.folder/name).write_text(json.dumps(dict(type='FeatureCollection',features=features),separators=(',',':')))
     return dict(day=day,file=name,valid_until=day+'T23:59:59Z',cells=len(features),attention_cells=sum(f['properties']['level'] is not None and f['properties']['level']>=1 for f in features))
 
+def zone_summary(cells,zones):
+    """Display summary on published meteo-hydro zones, never an official fire warning.
+    Use equal-area approximated weights (cos latitude) of source cell centres.
+    No resampling to a finer physical resolution and no invalid geometry repair.
+    """
+    from shapely.geometry import shape,Point
+    from shapely.prepared import prep
+    results=[]
+    samples=[]
+    for cell in cells['features']:
+        geom=shape(cell['geometry']);p=geom.centroid
+        samples.append((p,math.cos(math.radians(p.y)),cell['properties']))
+    for zone in zones['features']:
+        geometry=shape(zone['geometry']);p=zone['properties'];valid=geometry.is_valid and p.get('source_geometry_valid',True)
+        prepared=prep(geometry) if valid else None
+        selected=[(weight,value) for point,weight,value in samples if prepared.covers(point)] if valid else []
+        summary=dict(id=p['id'],name=p['name'],spatial_support='DPC_METEO_HYDRO_ZONE',aggregation='Maximum valid source cell centre within zone; means cosine-latitude weighted',sample_count=len(selected),source_geometry_valid=valid,municipalities=p.get('municipalities',[]))
+        for key,thresholds,dest in [('fwi',FWI,'level'),('dc',DC,'dc_level')]:
+            values=[(w,v[key]) for w,v in selected if v.get(key) is not None]
+            summary[key]=max((v for w,v in values),default=None)
+            summary[key+'_mean']=round(sum(w*v for w,v in values)/sum(w for w,v in values),3) if values else None
+            summary[key+'_min']=min((v for w,v in values),default=None)
+            summary[key+'_samples']=len(values);summary[dest]=classify(summary[key],thresholds)
+        if not valid:summary['geometry_warning']='Unqualified source geometry; no zonal calculation'
+        if not selected:summary['coverage_warning']='No qualified source cell centres within this zone; no risk classification'
+        results.append(dict(type='Feature',geometry=zone['geometry'],properties=summary))
+    return dict(type='FeatureCollection',features=results)
+
+def territorialize(acq,product,dpc_source):
+    day=product['day'];file=acq.folder/product['file'];cells=json.loads(file.read_text());gridfile=acq.folder/('effis-grid-'+day+'.geojson');gridfile.write_text(file.read_text())
+    zone_product=next((p for p in dpc_source.get('products',[]) if p['day']==day),None)
+    if zone_product:
+        geo=zone_summary(cells,json.loads((acq.folder/zone_product['file']).read_text()))
+        file.write_text(json.dumps(geo,separators=(',',':')))
+        product.update(spatial_support='DPC_METEO_HYDRO_ZONE',zones=len(geo['features']),unknown_zones=sum(f['properties']['level'] is None for f in geo['features']),aggregation='Maximum source cell within zone; not official fire-risk zoning',source_grid_file=gridfile.name)
+    else:
+        file.write_text(json.dumps(dict(type='FeatureCollection',features=[])))
+        product.update(spatial_support='ZONE_GEOMETRY_UNAVAILABLE',geometry_error='No matching official zone geometry; raw grid retained in archive, no random polygons shown')
+    return product
+
 def run(folder,profile_path):
     folder=Path(folder);profile=json.loads(Path(profile_path).read_text());acq=Acquisition(folder);sources={}
     try:
@@ -145,7 +190,10 @@ def run(folder,profile_path):
     now=dt.datetime.fromtimestamp(acq.reference or time.time(),dt.timezone.utc);products=[];errors=[]
     for offset in range(profile['days']):
         day=(now+dt.timedelta(days=offset)).date().isoformat()
-        try:products.append(effis(acq,profile,day))
+        try:
+            product=effis(acq,profile,day)
+            if (acq.folder/product['file']).exists():product=territorialize(acq,product,sources.get('dpc',{}))
+            products.append(product)
         except Exception as e:errors.append(dict(day=day,error=type(e).__name__+': '+str(e)[:240]))
     sources['effis']=dict(status='AVAILABLE' if products and not errors else 'PARTIAL' if products else 'UNAVAILABLE',provider='EFFIS / Copernicus EMS · Météo-France',kind='FIRE_WEATHER_DANGER_FORECAST',license='CC-BY-4.0',source_url='https://forest-fire.emergency.copernicus.eu/about-effis/technical-background/fire-danger-forecast',issued_at=None,issued_at_status='NOT_SUPPLIED_BY_WMS',native_resolution_km=profile['native_resolution_km'],sampling_grid_deg=.1,products=products,errors=errors,bounds=profile['bounds'],zero_policy='Zero/nonfinite is unknown: WMS does not distinguish missing coverage from true zero')
     local=max((r['retrieved_local_epoch'] for r in acq.receipts),default=time.time());ref=acq.reference

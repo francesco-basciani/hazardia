@@ -1,0 +1,78 @@
+{
+  "run_id": "territorial-days-20261017",
+  "base_git_sha": "812434ccd78fba653028a516db9e4950caa54a2e",
+  "native": {
+    "status": "PASS",
+    "jobs": {
+      "A": "job-b529dd7bfc65456883c55597758efd35",
+      "B": "job-c25ae3f72783453b8a04c31bb7618122"
+    },
+    "frames_per_case": 288,
+    "elapsed_s": 259200,
+    "weather_source": "Open-Meteo point forecast",
+    "wind_vectors_unique": 66,
+    "initial_moisture_percent": 15,
+    "area_ha": {
+      "A": {
+        "1.0": 1.35,
+        "3.0": 6.255,
+        "24.0": 235.44,
+        "48.0": 342.225,
+        "72.0": 347.13
+      },
+      "B": {
+        "1.0": 1.35,
+        "3.0": 1.53,
+        "24.0": 1.53,
+        "48.0": 1.53,
+        "72.0": 1.53
+      }
+    },
+    "pre_action_png_hashes_equal": true,
+    "native_fuel_removal_events": {
+      "fuel_removal_geometries": 1,
+      "ignition_count": 0,
+      "moisture_changed_cells": 0,
+      "time": 3600,
+      "vegetation_changed_cells": 1506,
+      "wind_from_deg": 80,
+      "wind_kmh": 4.032000000000001
+    },
+    "qualification": "UNQUALIFIED_RESEARCH",
+    "no_real_fuel_or_operational_efficacy_claim": true
+  },
+  "browser_checks": 22,
+  "browser_failures": 0,
+  "attention_regression_checks": 26,
+  "unit_tests": 17,
+  "geospatial_zonal_test": 2,
+  "web_regressions": 17,
+  "qualification": "UNQUALIFIED_RESEARCH",
+  "not_run": [
+    "Qualified local fuel mapping",
+    "Sourced and validated fuel moisture estimator coupled to T/RH/rain",
+    "Calibrated differential fleet efficacy/logistics",
+    "Historical predictive skill",
+    "p95/soak/load/physical devices"
+  ],
+  "sources": [
+    "Official DPC bulletin/zone geometry",
+    "EFFIS daily FWI/DC",
+    "Open-Meteo hourly point wind and distributed display weather"
+  ],
+  "final_derived_snapshot": "snapshot-b497634df8ff4a38b09dd9c73f3c62fa",
+  "exact_official_footprint_fallback_per_day": 1,
+  "unknown_effis_zones_per_day": 11,
+  "independent_source_verification": {
+    "status": "PASS",
+    "source_zone_geometries_unchanged": 374,
+    "numeric_zonal_checks": 2112,
+    "mean_absolute_tolerance": 0.00101,
+    "invalid_zone_day_footprints_excluded": 22,
+    "original_25_percent_native_npz_hashes_equal": 96,
+    "first_empty_native_queue_hour": 2.75,
+    "engine_hashes_unchanged": 145,
+    "python": "3.10.12",
+    "platform": "Linux-5.15.0-198-generic-aarch64-with-glibc2.35"
+  }
+}

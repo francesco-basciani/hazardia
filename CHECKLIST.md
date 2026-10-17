@@ -829,3 +829,23 @@ Base e2b9404080479a678aa54c760d583cae5f7a254c, reviewer Codex self-check; report
 | Skill/efficacia operativa e gate scientifici | BLOCKED | Fuel/moisture/interventi non qualificati, invariati |
 
 Base 5bdc9c871bf1041bbf865826de2ae38a103f4ac5; reviewer Codex self-check. Report reports/SIMULATORE-USABILITA.md; raw experiments/runs/fire-usability-20261017.
+
+## Meteo, zone e tre giorni — territorial-days-20261017
+| Verifica | Esito | Evidenza / limite |
+|---|---|---|
+| Diagnosi caso25% e orizzonte24h | PASS | Fronti nativi esauriti entro3h, nessun limite applicativo3h; replica nel raw |
+| Pilot storico72h15% | PASS |288frame,827,055ha finali; sensibilità esplorativa, non calibrazione |
+| Coppia reale72h con vento previsto orario | PASS |2job SUCCEEDED,288frame/caso,72record/66vettori distinti; pre-azione3PNG identici |
+| Intervento consumato nel motore | PASS |1506celle cambiate a3600s; aree347,13/1,53ha ideali, nessuna efficacia sul campo dedotta |
+| Stato dei fronti e input ipotetici visibili | PASS |Tabella e limite sotto timeline;22nuovi controlli browser |
+| Meteo distribuito selezionabile | PASS |9variabili reali,7campi scalari, quote/cache conservate;17test unitari weather/attention |
+| Zone territoriali del bollettino DPC | PASS |187zone dello snapshot,6nomi Abruzzo; livelli ufficiali distinti da sintesi EFFIS |
+| Aggregazione FWI/DC su zone, unknown e geometrie | PASS |2test geospaziali più verifica indipendente; massimo/minimo esatti, media arrotondata tolleranza0,00101 |
+| Browser responsive/accessibilità e assenza/scadenza | PASS |26regressioni+22controlli nuovi,6axe0violazioni375/768/1440;17web VM |
+| Conservazione configurazioni e riavvii | PASS |6casi preservati e2aggiunti con revisione, nessun job interrotto |
+| Prefisso nomi nel test, uguaglianza bit-esatta media DC, prima griglia troppo larga | FAIL |Esiti iniziali conservati in negative-results.json; correzioni successive verificate senza cambiare dati di fonte |
+| Scenario locale realistico completo / FR-FIRE-FORCING-01 | BLOCKED |Fuel ancora uniforme, moisture manuale, assente estimator T/RH/pioggia qualificato; categorie/logistica ideali |
+| Previsione d'impatto locale/allarme automatico qualificato | BLOCKED |FWI/DPC sono fonti distinte, nessun nuovo indice operativo validato |
+| Skill storico, p95/soak/100k/device fisici e trasferimento estero | NOT RUN |Non inferiti da UI o2realizzazioni |
+
+Base812434ccd78fba653028a516db9e4950caa54a2e; reviewer Codex self-check. Report reports/METEO-ZONE-E-TRE-GIORNI.md, riepilogo reports/monitoring/territorial-days-verification.json, raw experiments/runs/territorial-days-20261017. Gate scientifici M5–M7 invariati.

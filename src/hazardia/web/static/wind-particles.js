@@ -1,6 +1,7 @@
 import {checkedForecastTime} from '/weather-clock.js?v=1';
 /* Bounded transparent display advection, not physical air-parcel trajectories. */
 const $=id=>document.getElementById(id);
+const scalarFields={temperature:['Temperatura a 2 m','°C',-10,40],precipitation:['Pioggia nell’ora successiva','mm',0,10],humidity:['Umidità relativa aria','%',0,100],gusts:['Raffica massima nell’ora successiva','m/s',0,30],cloud:['Copertura nuvolosa','%',0,100],pressure:['Pressione al suolo','hPa',800,1050],radiation:['Radiazione media nell’ora successiva','W/m²',0,1000]};
 const clock=t=>new Date(t).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' Roma';
 export function sampleVector(field,record,lat,lon){
  const ys=field.lats,xs=field.lons,ny=ys.length,nx=xs.length;
@@ -21,14 +22,15 @@ export function regionalWind(map){
  const colors=['#b6efff','#61e5c1','#f4dc8c','#ffac80'];
  function color(s){return colors[s<3?0:s<7?1:s<12?2:3];}
  function viewport(){const b=map.getBounds();return [[Math.max(-85,b.getSouth()),Math.max(-180,b.getWest())],[Math.min(85,b.getNorth()),Math.min(180,b.getEast())]];}
- function acquisitionBounds(){const limits=map.options.maxBounds;if(!limits)return viewport();const b=L.latLngBounds(limits),z=map.getMinZoom(),size=map.getSize(),sw=map.project(b.getSouthWest(),z),ne=map.project(b.getNorthEast(),z),a=map.unproject([sw.x-size.x/2,sw.y+size.y/2],z),c=map.unproject([ne.x+size.x/2,ne.y-size.y/2],z);return [[Math.max(-85,a.lat),Math.max(-180,a.lng)],[Math.min(85,c.lat),Math.min(180,c.lng)]];}
- function readout(){const el=$('map-weather-readout');if(!el)return;el.hidden=!$('monitor-weather').checked;if(!record||!field){el.textContent='Meteo in caricamento';return;}const p=map.getCenter(),t=sampleScalar(field,record,'temperature',p.lat,p.lng),rain=sampleScalar(field,record,'precipitation',p.lat,p.lng),v=(fineRecord&&Date.now()-Date.parse(fineField.available_at)>=0&&Date.now()-Date.parse(fineField.available_at)<10800000&&sampleVector(fineField,fineRecord,p.lat,p.lng))||sampleVector(field,record,p.lat,p.lng),n=x=>Number(x).toLocaleString('it-IT',{maximumFractionDigits:1});el.textContent=t===null||rain===null||!v?'Vista fuori copertura meteo · attendi l’acquisizione':(fieldStatus==='FRESH'?'':'CACHE METEO NON ATTUALE · ')+n(t)+' °C · Vento '+n(Math.hypot(...v))+' m/s · Precipitazione '+n(rain)+' mm nell’ora · '+clock(record.at)+' · centro della mappa';}
+ function acquisitionBounds(){return viewport();}
+ function weatherText(p,keys=Object.keys(scalarFields)){const n=x=>Number(x).toLocaleString('it-IT',{maximumFractionDigits:1});return Object.entries(scalarFields).filter(([key])=>keys.includes(key)).map(([key,[label,unit]])=>{const v=sampleScalar(field,record,key,p.lat,p.lng);return label+': '+(v===null?'non disponibile':n(v)+' '+unit);}).join(' · ');}
+ function readout(){const el=$('map-weather-readout');if(!el)return;el.hidden=!$('monitor-weather').checked;if(!record||!field){el.textContent='Meteo in caricamento';return;}const p=map.getCenter(),v=(fineRecord&&Date.now()-Date.parse(fineField.available_at)>=0&&Date.now()-Date.parse(fineField.available_at)<10800000&&sampleVector(fineField,fineRecord,p.lat,p.lng))||sampleVector(field,record,p.lat,p.lng);el.textContent=(fieldStatus==='FRESH'?'':'CACHE METEO NON ATTUALE · ')+(v?'Vento '+Math.hypot(...v).toFixed(1)+' m/s · ':'Vento non disponibile · ')+weatherText(p,[$('map-weather-field').value])+' · '+clock(record.at)+' · centro della mappa';}
  function scalar(){
   if(!scalarCanvas){scalarCanvas=L.DomUtil.create('canvas','weather-field',map.getPane('mapWeatherFill'));scalarCanvas.setAttribute('aria-hidden','true');scalarCtx=scalarCanvas.getContext('2d');}
   scalarCanvas.width=Math.ceil(width/12);scalarCanvas.height=Math.ceil(height/12);scalarCanvas.style.width=width+'px';scalarCanvas.style.height=height+'px';L.DomUtil.setPosition(scalarCanvas,map.containerPointToLayerPoint([0,0]));
   const key=$('map-weather-field').value;scalarCtx.clearRect(0,0,scalarCanvas.width,scalarCanvas.height);if(!scalarCanvas.width||!scalarCanvas.height||!visible||!$('monitor-weather').checked||!record||key==='none')return;
   const image=scalarCtx.createImageData(scalarCanvas.width,scalarCanvas.height);let valid=0;
-  for(let y=0;y<image.height;y++)for(let x=0;x<image.width;x++){const ll=map.containerPointToLatLng([(x+.5)*12,(y+.5)*12]),v=sampleScalar(field,record,key,ll.lat,ll.lng);if(v===null)continue;valid++;let rgb,alpha;if(key==='temperature'){const t=Math.max(0,Math.min(1,(v+10)/50));rgb=[Math.round(40+210*t),Math.round(130-55*t),Math.round(230-190*t)];alpha=90;}else{const t=Math.min(1,v/10);rgb=[50,Math.round(180-100*t),230];alpha=v<.1?0:Math.round(30+80*t);}const i=(y*image.width+x)*4;image.data.set([...rgb,alpha],i);}
+  for(let y=0;y<image.height;y++)for(let x=0;x<image.width;x++){const ll=map.containerPointToLatLng([(x+.5)*12,(y+.5)*12]),v=sampleScalar(field,record,key,ll.lat,ll.lng);if(v===null)continue;valid++;let rgb,alpha;const config=scalarFields[key],t=Math.max(0,Math.min(1,(v-config[2])/(config[3]-config[2])));if(key==='temperature'){rgb=[Math.round(40+210*t),Math.round(130-55*t),Math.round(230-190*t)];alpha=90;}else if(key==='precipitation'){rgb=[50,Math.round(180-100*t),230];alpha=v<.1?0:Math.round(30+80*t);}else{rgb=key==='humidity'?[45,Math.round(195-100*t),210]:key==='cloud'?[190,205,220]:key==='radiation'?[245,Math.round(215-150*t),50]:[Math.round(65+160*t),100,Math.round(220-150*t)];alpha=75;}const i=(y*image.width+x)*4;image.data.set([...rgb,alpha],i);}
   scalarCtx.putImageData(image,0,0);scalarCanvas.dataset.field=field.id;scalarCanvas.dataset.variable=key;scalarCanvas.dataset.coverage=String(valid/(image.width*image.height));
  }
  function enabled(){return visible&&!document.hidden&&$('monitor-weather').checked&&$('wind-regional').checked&&!!record;}
@@ -81,8 +83,8 @@ export function regionalWind(map){
  async function load(refresh=true){
   if(busy||disposed||!visible)return;busy=true;
   try{const r=await fetch('/api/weather/map');if(!r.ok)throw Error('Servizio meteo della mappa non disponibile');const s=await r.json();render(s);
-   const b=viewport(),f=s.forecast,covers=f&&b.every((p,i)=>p.every((v,j)=>i===0?v>=f.bounds[0][j]:v<=f.bounds[1][j]));
-   if((!covers||s.status==='STALE')&&refresh&&!s.fetching){const key=JSON.stringify(acquisitionBounds())+':'+Math.floor(Date.now()/65000);if(key!==requestKey){requestKey=key;await fetch('/api/weather/map/refresh',{method:'POST',headers:{'Content-Type':'application/json','X-Hazardia-Research':'1'},body:JSON.stringify({bounds:acquisitionBounds()})});clearTimeout(poll);poll=setTimeout(()=>load(false),1200);}}
+   const b=viewport(),f=s.forecast,adequate=f&&(f.bounds[1][0]-f.bounds[0][0])<=4*Math.max(.8,(b[1][0]-b[0][0])*1.3)&&(f.bounds[1][1]-f.bounds[0][1])<=4*Math.max(.8,(b[1][1]-b[0][1])*1.3),covers=adequate&&b.every((p,i)=>p.every((v,j)=>i===0?v>=f.bounds[0][j]:v<=f.bounds[1][j]));
+   if((!covers||s.status==='STALE'||f&&!f.records[0]?.humidity)&&refresh&&!s.fetching){const key=JSON.stringify(acquisitionBounds())+':'+Math.floor(Date.now()/65000);if(key!==requestKey){requestKey=key;await fetch('/api/weather/map/refresh',{method:'POST',headers:{'Content-Type':'application/json','X-Hazardia-Research':'1'},body:JSON.stringify({bounds:acquisitionBounds()})});clearTimeout(poll);poll=setTimeout(()=>load(false),1200);}}
    else if(s.fetching){clearTimeout(poll);poll=setTimeout(()=>load(false),1200);}
    if(!covers&&f)$('wind-status').textContent+=' Copertura parziale della vista: acquisizione o attesa del limite gratuito.';
   }catch(e){$('wind-status').textContent=e.message+' · Nessun campo meteo inventato.';}finally{busy=false;}
@@ -91,7 +93,7 @@ export function regionalWind(map){
  map.createPane('regionalWind');map.getPane('regionalWind').style.zIndex=450;map.getPane('regionalWind').style.pointerEvents='none';
  map.on('movestart zoomstart',()=>{stop();clear();});map.on('moveend zoomend resize',()=>{reset();clearTimeout(viewTimer);viewTimer=setTimeout(()=>load(),700);});
  $('wind-regional').onchange=()=>{if($('wind-regional').checked&&!field)load();reset();};
- $('map-weather-field').onchange=()=>{reset();$('map-weather-key').textContent=$('map-weather-field').value==='temperature'?'Temperatura a 2 m · scala −10 → 40 °C':$('map-weather-field').value==='precipitation'?'Precipitazione nell’ora successiva · 0,1 → 10+ mm · nessuna tinta sotto 0,1 mm':'Vento · m/s · scie con velocità visiva amplificata';};
+ $('map-weather-field').onchange=()=>{reset();const key=$('map-weather-field').value,c=scalarFields[key];$('map-weather-key').textContent=c?c[0]+' · scala '+c[2]+' → '+c[3]+' '+c[1]+(record&&!record[key]?' · NON DISPONIBILE nello snapshot corrente':''):'Vento · m/s · scie con velocità visiva amplificata';};
  $('wind-hour').onchange=()=>{record=field?.records.find(r=>r.at===$('wind-hour').value)||null;fineRecord=fineField?.records.find(r=>r.at===record?.at)||null;$('wind-map-time').textContent=(fieldStatus==='STALE'?'CACHE SCADUTA · ':'')+'Vento a 10 m · '+(record?clock(record.at):'ora non coperta')+' · m/s';reset();};
  $('wind-animation').onclick=()=>{paused=!paused;button();reset();};$('wind-fit').onclick=()=>{if(field){map.fitBounds([[41.6,12.9],[43,14.9]],{padding:[12,12],maxZoom:9,animate:false});map.getContainer().scrollIntoView({block:'center',behavior:'auto'});}};
  document.addEventListener('visibilitychange',reset);reduced.addEventListener('change',()=>{paused=reduced.matches;button();reset();});button();$('map-weather-field').dispatchEvent(new Event('change'));
@@ -103,7 +105,7 @@ export function regionalWind(map){
   const fine=fineRecord&&Date.now()-Date.parse(fineField.available_at)>=0&&Date.now()-Date.parse(fineField.available_at)<10800000&&sampleVector(fineField,fineRecord,latlng.lat,latlng.lng),v=fine||sampleVector(field,record,latlng.lat,latlng.lng);
   if(temperature===null||rain===null||!v)return 'Punto fuori dalla copertura meteo acquisita; nessuna estrapolazione.';
   const n=v=>Number(v).toLocaleString('it-IT',{maximumFractionDigits:1}),from=(Math.atan2(-v[0],-v[1])*180/Math.PI+360)%360;
-  return 'Previsione '+clock(record.at)+': '+n(temperature)+'°C; precipitazione nell’ora successiva '+n(rain)+'mm (ICON Global); vento '+n(Math.hypot(...v))+'m/s da '+n(from)+'° ('+(fine?'ICON-EU':'ICON Global')+'). Valori interpolati per consultazione, non osservazioni locali.';
+  return 'Previsione '+clock(record.at)+': '+weatherText(latlng)+'; vento '+n(Math.hypot(...v))+'m/s da '+n(from)+'° ('+(fine?'ICON-EU':'ICON Global')+'). Valori interpolati per consultazione, non osservazioni locali.';
  }
  return {at,toggle(){reset();},hour(at){if(field?.records.some(r=>r.at===at)&&record?.at!==at){$('wind-hour').value=at;$('wind-hour').dispatchEvent(new Event('change'));}},visible(on){visible=on;reset();},dispose(){disposed=true;stop();clearTimeout(poll);clearInterval(timer);clearInterval(fineTimer);clearTimeout(viewTimer);canvas?.remove();scalarCanvas?.remove();}};
 }
