@@ -45,7 +45,7 @@ export function monitoringMap(initial,feedback){
   $('monitor-map').dataset.hazards=active.map(s=>s.hazard).join(',');$('monitor-map').dataset.products=active.map(s=>s.id).join(',');
  }
  function weather(forecast,record){
-  const timeChanged=weatherRecord?.at!==record?.at;weatherForecast=forecast;weatherRecord=record;weatherLayer.clearLayers();if(record&&timeChanged)wind.hour(record.at);wind.toggle();
+  weatherForecast=forecast;weatherRecord=record;weatherLayer.clearLayers();wind.toggle(); // Point forecast updates must not reset the distributed forecast clock.
   const enabled=$('monitor-weather').checked,fields=['wind','temperature','rain'].filter(k=>$('weather-layer-'+k).checked),legend=$('weather-map-legend');
   $('monitor-map').dataset.weatherFields=enabled&&forecast&&record?fields.join(','):'';
   legend.hidden=!enabled||!forecast||!record||!fields.length;

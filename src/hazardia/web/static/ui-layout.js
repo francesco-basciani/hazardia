@@ -27,7 +27,7 @@ export function arrangeWorkspace(){
  const meteo=document.querySelector('.regional-wind-panel'),bar=document.createElement('div');bar.className='map-weather-toolbar';bar.setAttribute('aria-label','Meteo sulla mappa');
  for(const id of ['wind-hour']){const label=meteo.querySelector('label[for="'+id+'"]');label.textContent=id==='wind-hour'?'Previsione':'Livello meteo';const wrap=document.createElement('div');move(wrap,label,$(id));bar.append(wrap);}
  const weatherOptions=document.createElement('details');weatherOptions.className='map-weather-picker';weatherOptions.innerHTML='<summary>Valori sulla mappa</summary>';weatherOptions.append($('regional-weather-options'));bar.append(weatherOptions);
- move(bar,$('wind-animation'),$('wind-fit'));const readout=document.createElement('div');readout.id='map-weather-readout';readout.className='map-weather-readout';readout.setAttribute('role','status');readout.textContent='Caricamento delle condizioni meteo…';document.querySelector('.monitor-map-toolbar').after(bar,readout,$('map-weather-key'));
+ move(bar,$('wind-animation'),$('wind-fit'));const readout=document.createElement('div');readout.id='map-weather-readout';readout.className='map-weather-readout';readout.setAttribute('role','status');readout.textContent='Caricamento delle condizioni meteo…';const weatherClock=document.createElement('div');weatherClock.id='monitor-weather-playback';$('monitor-map').after(weatherClock,bar,readout,$('map-weather-key'));
  $('map-weather-field').value='temperature';$('simulation-weather').value='FORECAST';
  dialog.querySelector('.monitor-inspector').removeAttribute('open');document.querySelector('.monitor-canvas').append(dialog.querySelector('.monitor-inspector'));
  $('weather-use').addEventListener('click',()=>dialog.close());$('monitor-to-decisions').addEventListener('click',()=>dialog.close());
@@ -37,13 +37,15 @@ export function arrangeWorkspace(){
  const foot=document.querySelector('.monitor-footnote');foot.hidden=true;details.append(foot);foot.hidden=false;
  // Keep map mode immediately adjacent to the maps, with annotation tools below.
  const modes=document.querySelector('.comparison .map-controls');modes.classList.add('comparison-map-toolbar');$('map-pair').before(modes);
+ heading.after(document.querySelector('.comparison'));
  const annotations=document.createElement('details');annotations.className='map-annotations';annotations.id='map-annotations';annotations.innerHTML='<summary>Strumenti e annotazioni</summary>';document.querySelector('.comparison').append(annotations);move(annotations,document.querySelector('.drawing-toolbar'),$('drawing-status'));
  const geo=document.querySelector('.geographic-tools');const gDetails=document.createElement('details');gDetails.className='comparison-settings';gDetails.innerHTML='<summary>Ricerca e configurazione mappa</summary>';geo.replaceWith(gDetails);gDetails.append(geo);const configButton=document.createElement('button');configButton.type='button';configButton.className='small-button';configButton.textContent='Configurazione';configButton.onclick=()=>dialog.showModal();modes.append(configButton);
  const timeline=document.querySelector('.comparison .timeline');$('map-pair').after(timeline);
  const diagnostics=document.createElement('details');diagnostics.className='comparison-settings';diagnostics.innerHTML='<summary>Dati e limiti dello scenario</summary>';document.querySelector('.comparison').append(diagnostics);for(const sel of ['#map-source','.geo-precision','.physical-inline','#time-note'])move(diagnostics,document.querySelector(sel));
- const context=document.createElement('p');context.id='scenario-weather-context';context.className='scenario-weather-context';modes.before(context);
+ const context=document.createElement('p');context.id='scenario-weather-context';context.className='scenario-weather-context';$('map-pair').after(context);
  const unitBox=document.createElement('section');unitBox.id='resource-editor';unitBox.innerHTML='<h3>Posiziona le unità di evacuazione</h3><p class="subtle">Clicca «Posiziona», poi sulla mappa. Imposta disponibilità e arrivo previsto.</p><div id="resource-rows"></div><p id="resource-editor-status" role="status">Evacuazione di ricerca. Posizioni e arrivi sono manuali; propagazione invariata. Per le unità antincendio usa Incendio · innesco e squadre, in questa sezione.</p>';
  const resourceFieldset=document.querySelector('.evac-controls fieldset'),pool=document.createElement('div');move(pool,document.querySelector('label[for=resources]'),$('resources'));resourceFieldset.prepend(pool,unitBox);
  const advanced=document.createElement('details');advanced.className='settings-group';advanced.innerHTML='<summary>Vincoli e priorità</summary>';for(const node of [...resourceFieldset.children])if(![pool,unitBox].includes(node)&&node.tagName!=='LEGEND')advanced.append(node);resourceFieldset.append(advanced);
+ const comparison=document.querySelector('.comparison');comparison.prepend(comparison.querySelector('.panel-heading'),$('map-pair'));$('map-pair').after(modes,timeline,gDetails,context);
  $('save-case').textContent='Salva impostazioni di base';
 }

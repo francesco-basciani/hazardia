@@ -1,3 +1,5 @@
+// The archived physical comparison also opens directly on its maps.
+const physicalHeading=document.querySelector('main>h1'),physicalPair=document.querySelector('.pair');physicalHeading.after(physicalPair);physicalPair.after(document.querySelector('.timeline'),document.querySelector('.controls'),document.querySelector('.stats'));
 import {regionBoundaries} from '/region-boundaries.js?v=workspace1';
 import {eventMarkers} from '/event-markers.js?v=1';
 const $=id=>document.getElementById(id),esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

@@ -1,3 +1,4 @@
+import {forecastPlayback} from '/forecast-playback.js';
 import {sampleScalar,sampleVector} from '/wind-particles.js';
 import {paintRain,weatherLabels,labelSurface,positionLabels,windGain,rainLegend} from '/weather-display.js';
 import {checkedForecastTime} from '/weather-clock.js?v=1';
@@ -11,29 +12,30 @@ export function scenarioWeather(primary){
  const $=id=>document.getElementById(id),layers=new Map(),selected=new Set(['wind','temperature','humidity','precipitation']),reduced=matchMedia('(prefers-reduced-motion: reduce)');
  let snapshot=null,requestedAt=null,busy=false,refreshAt=0,timer=null,poll=null,paused=reduced.matches;
  const options=$('map-weather-options'),rainKey=$('scenario-rain-key');rainLegend(rainKey);
+ const playback=forecastPlayback({select:$('map-weather-hour'),mount:$('scenario-weather-playback'),getTimes:()=>snapshot?.forecast?.records.filter(r=>Date.parse(r.at)+3600000>Date.now()).map(r=>r.at)||[],getCurrent:()=>record()?.at,active:()=>selected.size>0});
  for(const [key,[label,unit,min,max,rgb]] of Object.entries(fields)){
   const wrap=document.createElement('label'),input=document.createElement('input'),dot=document.createElement('i');input.type='checkbox';input.value=key;input.checked=selected.has(key);input.dataset.weatherLayer=key;dot.style.background='rgb('+rgb.join(',')+')';dot.setAttribute('aria-hidden','true');wrap.append(input,dot,document.createTextNode(label+' · '+unit));options.append(wrap);input.onchange=()=>{input.checked?selected.add(key):selected.delete(key);redraw();if(selected.size)load();};
  }
  function chosenTime(){return $('map-weather-hour').value==='timeline'?requestedAt:$('map-weather-hour').value;}
  function record(){const f=snapshot?.forecast,at=chosenTime();return f?.records.find(r=>r.at===(at||f.records.find(r=>Date.parse(r.at)>Date.now())?.at))||null;}
  function status(){const f=snapshot?.forecast,r=record(),names=[...selected].map(k=>fields[k][0]);$('map-weather-status').textContent=!selected.size?'Nessun livello meteo attivo.':!f?'DATI MANCANTI · '+(snapshot?.error||'Campo meteo non disponibile.'):(snapshot.status==='FRESH'?'Previsione reale':'CACHE METEO SCADUTA')+' · '+f.model+' · '+(r?clock(r.at):'ORA NON COPERTA')+' · '+names.join(', ')+(snapshot.error?' · '+snapshot.error:'')+'. Modello circa11km · campioni '+Math.abs(f.lats[1]-f.lats[0]).toFixed(2)+'° × '+Math.abs(f.lons[1]-f.lons[0]).toFixed(2)+'°. Scie amplificate; etichette interpolate, non stazioni. Interpolazione visuale, nessun dettaglio stradale misurato.';}
- function redraw(){rainKey.hidden=!selected.has('precipitation');status();for(const layer of layers.values())layer.reset();}
+ function redraw(){rainKey.hidden=false;status();playback.sync();for(const layer of layers.values())layer.reset();}
  const WeatherLayer=L.Layer.extend({
   initialize(){this.frame=null;this.particles=[];this.hide=this.hide.bind(this);this.reset=this.reset.bind(this);this.tick=this.tick.bind(this);},
   onAdd(map){this.map=map;this.readings=labelSurface(map);this.canvas=L.DomUtil.create('canvas','scenario-weather-canvas',map.getPane('scenarioWeather'));this.canvas.setAttribute('aria-hidden','true');this.ctx=this.canvas.getContext('2d');this.wind=L.DomUtil.create('canvas','scenario-weather-wind',map.getPane('scenarioWeather'));this.wind.setAttribute('aria-hidden','true');this.wctx=this.wind.getContext('2d');this.legend=L.control({position:'bottomright'});this.legend.onAdd=()=>{const el=L.DomUtil.create('div','scenario-weather-legend');el.setAttribute('role','status');el.tabIndex=0;L.DomEvent.disableClickPropagation(el);return this.legendEl=el;};this.legend.addTo(map);map.on('movestart zoomstart',this.hide);map.on('moveend zoomend resize contextnames',this.reset);this.reset();},
   onRemove(map){this.hide();map.off('movestart zoomstart',this.hide);map.off('moveend zoomend resize contextnames',this.reset);this.canvas.remove();this.wind.remove();this.readings.remove();this.legend.remove();this.map=null;},
   hide(){if(this.frame!==null)cancelAnimationFrame(this.frame);this.frame=null;this.canvas.style.visibility='hidden';this.wind.style.visibility='hidden';this.readings.style.visibility='hidden';},
   reset(){
-   if(!this.map)return;this.hide();const size=this.map.getSize(),w=size.x,h=size.y;this.width=w;this.height=h;
+   if(!this.map)return;this.hide();const size=this.map.getSize(),w=size.x,h=size.y;this.width=w;this.height=h;if(w<1||h<1){this.readings.replaceChildren();return;}
    for(const el of [this.canvas,this.wind]){el.style.width=w+'px';el.style.height=h+'px';el.style.visibility='visible';L.DomUtil.setPosition(el,this.map.containerPointToLayerPoint([0,0]));}
    positionLabels(this.readings,this.map);this.readings.style.visibility='visible';this.readings.replaceChildren();
-   this.canvas.width=Math.ceil(w/12);this.canvas.height=Math.ceil(h/12);this.wind.width=w;this.wind.height=h;
+   this.canvas.width=Math.ceil(w/8);this.canvas.height=Math.ceil(h/8);this.wind.width=w;this.wind.height=h;
    const r=record(),f=snapshot?.forecast;this.canvas.dataset.at=r?.at||'';this.canvas.dataset.fields=[...selected].join(',');this.wind.dataset.at=r?.at||'';this.wind.dataset.active='false';this.legendEl.replaceChildren();this.legendEl.hidden=!selected.size;
    if(!selected.size)return;
    const title=document.createElement('strong');title.textContent=r?(snapshot.status==='FRESH'?'':'CACHE SCADUTA · ')+clock(r.at):'METEO NON DISPONIBILE A QUEST’ORA';this.legendEl.append(title);
    if(!r||!f)return;
    const keys=[...selected].filter(k=>k!=='wind');
-   const coverage=selected.has('precipitation')?paintRain(this.ctx,this.map,f,r):0;
+   const coverage=paintRain(this.ctx,this.map,f,r,{rain:selected.has('precipitation'),cloud:selected.has('cloud')});
    this.canvas.dataset.coverage=String(coverage);
    weatherLabels(this.readings,this.map,f,r,keys);
    const covered=this.map.getBounds().intersects(f.bounds),full=L.latLngBounds(f.bounds).contains(this.map.getBounds());

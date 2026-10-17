@@ -41,3 +41,5 @@ Per browser QA impostare HAZARDIA_PLAYWRIGHT_PATH, HAZARDIA_BROWSER_EXECUTABLE e
 Prossimo incremento eseguibile: continuare la qualificazione degli input fisici e la validazione degli interventi già prevista dal piano. Questi indicatori di consultazione non risolvono il coupling di temperatura/pioggia/UR con il combustibile.
 
 Ambiente browser verificato: Apple M4 Pro,48GiB RAM; macOS27.0.1 build26A434; Chrome155.0.8059.84, Node24.19.0. VM Linux5.15.0-198-generic aarch64, Python3.10.12; disco19GiB,11GiB usati,7,5GiB disponibili al controllo. `viewport-weather.cjs` delega alla suite corrente: non è una seconda esecuzione indipendente.
+
+Nota di integrità degli artefatti,2026-10-17: le sole catture diagnostiche iniziali first-studio.png e first-monitor.png sono state sovrascritte accidentalmente da uno smoke successivo e non recuperate. I risultati numerici e i set final/release/release-final restano intatti. Le nuove immagini sono nel run forecast-map-first-20261017; vedere artifact-incident.txt e reports/PREVISIONI-METEO-E-MAPPE-IN-ALTO.md. Non utilizzare i due vecchi percorsi per confronti storici.
