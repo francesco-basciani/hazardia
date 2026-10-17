@@ -7,7 +7,7 @@ Satellite-first, weather-aware, geographically configurable multi-hazard decisio
 
 ## Innesco e squadre antincendio
 
-Nella dashboard apri **Simulazioni e risorse → Incendio · innesco e squadre** (`/?view=results`): scegli l’innesco, seleziona categoria e tempo, premi **Posiziona squadra** e fai un clic sulla mappa B. Lunghezza e orientamento definiscono la linea d’azione ipotetica; ogni unità può essere spostata, modificata o rimossa. Confronta due esecuzioni PROPAGATOR con vento orario e variazioni ipotetiche, frame su1–3giorni e risultati riapribili. Prima prepara il terreno dimostrativo con `bootstrap.py days`. Il [report di verifica](reports/INNESCO-SQUADRE-E-DEGRADAZIONE.md) distingue prove eseguite, azioni ideali e limiti: vegetazione uniforme e umidità del combustibile manuale; T/RH/pioggia visibili ma non ancora accoppiate tramite un estimator qualificato. La sezione continuità rende accessibili i guasti controllati, separati dalla salute reale.
+Apri **Simulazioni e risorse → Incendio · innesco e squadre** (`/?view=results`). Trascina inneschi e unità sulla mappa, disegna linee o aree d'intervento e imposta l'istante di attivazione. Aggiungi scenari con **＋ Nuovo**, calcolali e confrontali con una timeline comune dotata di play, pausa e rewind. Le configurazioni sono salvate nella VM. La nuova ipotesi di intervento rimuove il combustibile nelle celle disegnate dal momento indicato; non è un'efficacia operativa calibrata delle categorie. Vento orario consumato, fuel uniforme e moisture manuale; T/RH/pioggia visibili ma non ancora accoppiati. Vedi [workflow ed evidenze](reports/SCENARI-INCENDIO.md).
 
 ## Installazione completa e ricostruzione della VM
 

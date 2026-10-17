@@ -1,0 +1,183 @@
+{
+  "run_id": "fire-sandbox-20261017",
+  "base_git_sha": "074583787e3766014048f37624e23f40bfd83ad2",
+  "reviewer": "Codex self-check",
+  "native": {
+    "baseline_succeeded": true,
+    "area_succeeded": true,
+    "noop_succeeded": true,
+    "multiple_ignitions": true,
+    "delayed_ignition": true,
+    "polygon_native_cells": true,
+    "noop_probability_hashes": true,
+    "area_reduces_spread": true,
+    "before_intervention_identical": true,
+    "line_succeeded": true,
+    "line_removes_native_fuel": true
+  },
+  "native_ui": {
+    "state": "SUCCEEDED",
+    "same_native_probability_hashes": true,
+    "expected_area_ha": 1.71,
+    "job_id": "job-d6299c3a7ab64314b4ff6b01c152639a"
+  },
+  "browser": {
+    "checks": [
+      {
+        "name": "embedded in simulations",
+        "status": "PASS"
+      },
+      {
+        "name": "timeline advances",
+        "status": "PASS"
+      },
+      {
+        "name": "pause freezes time",
+        "status": "PASS"
+      },
+      {
+        "name": "rewind",
+        "status": "PASS"
+      },
+      {
+        "name": "drag adds second ignition",
+        "status": "PASS"
+      },
+      {
+        "name": "existing ignition remains draggable",
+        "status": "PASS"
+      },
+      {
+        "name": "drag adds team",
+        "status": "PASS"
+      },
+      {
+        "name": "polygon vertices editable",
+        "status": "PASS"
+      },
+      {
+        "name": "new event clock invalidates old baseline",
+        "status": "PASS"
+      },
+      {
+        "name": "additional scenario created",
+        "status": "PASS"
+      },
+      {
+        "name": "further scenario created",
+        "status": "PASS"
+      },
+      {
+        "name": "multiple timed ignitions reach API",
+        "status": "PASS"
+      },
+      {
+        "name": "drawn polygon reaches physical API",
+        "status": "PASS"
+      },
+      {
+        "name": "matched event clock present",
+        "status": "PASS"
+      },
+      {
+        "name": "scenario configurations persist in VM",
+        "status": "PASS"
+      },
+      {
+        "name": "main no overflow 375",
+        "status": "PASS"
+      },
+      {
+        "name": "map no overflow 375",
+        "status": "PASS"
+      },
+      {
+        "name": "axe main 375",
+        "status": "PASS"
+      },
+      {
+        "name": "axe studio 375",
+        "status": "PASS"
+      },
+      {
+        "name": "main no overflow 724",
+        "status": "PASS"
+      },
+      {
+        "name": "map no overflow 724",
+        "status": "PASS"
+      },
+      {
+        "name": "axe main 724",
+        "status": "PASS"
+      },
+      {
+        "name": "axe studio 724",
+        "status": "PASS"
+      },
+      {
+        "name": "main no overflow 1440",
+        "status": "PASS"
+      },
+      {
+        "name": "map no overflow 1440",
+        "status": "PASS"
+      },
+      {
+        "name": "axe main 1440",
+        "status": "PASS"
+      },
+      {
+        "name": "axe studio 1440",
+        "status": "PASS"
+      },
+      {
+        "name": "no JS errors",
+        "status": "PASS"
+      },
+      {
+        "name": "original workspace restored after QA",
+        "status": "PASS"
+      }
+    ],
+    "errors": []
+  },
+  "touch": [
+    {
+      "name": "mobile touch palette and map placement",
+      "pass": true
+    }
+  ],
+  "regressions": {
+    "unit": 83,
+    "web": 17,
+    "status": "PASS",
+    "environment": "existing Linux VM"
+  },
+  "runtime": {
+    "engine_pins": 145,
+    "source": {
+      "src/hazardia/firelab.py": "d35f459167bbb7fbd3deb9f7a3d419d91539a75ee6b2a9d640f52cc5aef0139d",
+      "src/hazardia/adapters/workers/fire_studio.py": "3f6bf870a6ae117a963b1c49a8b16c6980ea1733a565a573f2ea145d9326b911",
+      "src/hazardia/web/server.py": "5084f90a3dce1f71323eeaea4ae6a68d7aa03b80af7262db26e5bedb57686fa0",
+      "src/hazardia/web/fire_workspace.py": "f323d3ddeaa49d02d27b17c94246f360c9ff508d5bcc4c181e8098e2b76a6e81",
+      "src/hazardia/web/static/fire-studio.html": "20d2759abccb48f8c62ca80b6953fa35df962836b4a08cca6f035c2298af786d",
+      "src/hazardia/web/static/fire-studio.js": "e1048f63ad9b3549513a94f04f9d54e54d06971a62504b72080cb44b68f46493",
+      "src/hazardia/web/static/fire-studio.css": "55b965e0c1a41ffd74f3e1b682911cbf4168a1f637fd9464f6210c6fcc2e3984"
+    },
+    "platform": "Linux-5.15.0-198-generic-aarch64-with-glibc2.35",
+    "processors": 4,
+    "status": "PASS"
+  },
+  "negative": {
+    "status": 400,
+    "body": {
+      "status": "ERROR",
+      "code": "INVALID_INPUT",
+      "detail": "Draw a valid non-self-intersecting area, up to4km2"
+    }
+  },
+  "scientific_gates": "BLOCKED unchanged",
+  "multi_ignition_area_72h": "NOT RUN",
+  "streaming_checkpoint": "NOT RUN"
+}

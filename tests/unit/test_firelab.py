@@ -39,3 +39,34 @@ class FireLabTests(unittest.TestCase):
    elif change=='clock':p['records'][0]['time']=1
    else:p['records']=[]
    with self.assertRaises(HazardError):validate_plan(p,q,w)
+
+class FireSandboxTests(unittest.TestCase):
+ def body(self):
+  return dict(ignitions=[dict(id='i1',point=[42.35,13.38],at_minutes=0),dict(id='i2',point=[42.352,13.382],at_minutes=60)],hours=3,seed=1729,moisture_percent=10,resources=[dict(id='u',category='waterline_action',effect='fuel_removal',area=[[42.349,13.379],[42.349,13.381],[42.351,13.381],[42.351,13.379]],at_minutes=15)],comparison_times=[0,900,3600],weather_source='HISTORICAL',weather_changes=[])
+ def test_multi_ignitions_and_area(self):
+  b=self.body();self.assertEqual(validate(b),b)
+ def test_polygon_requires_explicit_effect(self):
+  for effect in [None,'native','magic']:
+   b=self.body()
+   if effect is None:del b['resources'][0]['effect']
+   else:b['resources'][0]['effect']=effect
+   with self.assertRaises(HazardError):validate(b)
+ def test_reject_mixed_or_invalid_geometry(self):
+  for mutation in ['both','too_few','duplicates']:
+   b=self.body();r=b['resources'][0]
+   if mutation=='both':r['line']=[[42.35,13.38],[42.351,13.38]]
+   if mutation=='too_few':r['area']=r['area'][:2]
+   if mutation=='duplicates':r['area'][2]=r['area'][1]
+   with self.assertRaises(HazardError):validate(b)
+ def test_ignition_ambiguity_and_time(self):
+  for mutation in ['both','duplicate','late','empty']:
+   b=self.body()
+   if mutation=='both':b['ignition']=[42.35,13.38]
+   if mutation=='duplicate':b['ignitions'][1]['id']='i1'
+   if mutation=='late':b['ignitions'][1]['at_minutes']=180
+   if mutation=='empty':b['ignitions']=[]
+   with self.assertRaises(HazardError):validate(b)
+ def test_clock_rejects_unbounded_unsorted(self):
+  for clock in [[900,0],[-1],[10800],[0,0],[True]]:
+   b=self.body();b['comparison_times']=clock
+   with self.assertRaises(HazardError):validate(b)

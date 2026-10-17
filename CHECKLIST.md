@@ -737,3 +737,23 @@ PASS prima integrazione di innesco WGS84, categorie/linee/tempi delle unità, du
 | Tentativi iniziali CSP/axe harness/ridimensionamento | FAIL | Conservati raw v1–v4; cause e correzioni nel report |
 | Nuovi run nativi, benchmark e user study | NOT RUN | Cambiamento UI; evidenza fisica precedente immutata |
 | Efficacia/fuel/moisture e gate completi M5–M7 | BLOCKED | Limiti scientifici preesistenti invariati |
+
+
+## Sandbox incendio — fire-sandbox-20261017
+| Attività | Esito | Evidenza / ambito |
+|---|---|---|
+| Drag/drop inneschi e unità, vertici geometrie, più scenari | PASS | tests/browser/fire-sandbox.cjs, browser-delivery nel raw |
+| Play/pausa/rewind, confronto alla stessa ora relativa | PASS | Test mouse; frame nativi già completati, non streaming |
+| Salvataggio VM e conflitto revisione | PASS |17test web e browser reload; limite60KB |
+| Due inneschi temporizzati | PASS | baseline-result.json: eventi0/3600s |
+| Area fuel-removal a60min,1506celle | PASS | Primo frame identico al baseline, divergenza dopo intervento |
+| Linea fuel-removal a0min | PASS | line-result.json: input nativo consumato |
+| Replica noop | PASS |3hash NPZ identici |
+| Flusso nuovo job dalla UI e risultato precedente conservato | PASS | ui-native-accepted/result nel raw |
+| Regressioni VM | PASS | regression-final.log:83unit+17web |
+| Responsive e axe375/724/1440 | PASS | browser-delivery:6scansioni0violazioni |
+| Touch mobile emulato | PASS | touch.json; non device reale |
+| Area autointersecante | PASS | negative-geometry.json:400INVALID_INPUT |
+| Import legacy/durata/harness primi tentativi | FAIL | browser/browser-v2/browser-final preservati, corretti |
+| Nuovi72h multi-innesco/area; streaming/checkpoint; benchmark e campo | NOT RUN | Non dedotti da prove precedenti |
+| Fuel/moisture/efficacia e gate scientifici completi | BLOCKED | Limiti preesistenti invariati |

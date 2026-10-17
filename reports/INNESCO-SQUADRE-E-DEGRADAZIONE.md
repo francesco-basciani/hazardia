@@ -1,5 +1,8 @@
 # Innesco, interventi nativi, vento nel tempo e degradazione
 
+**Aggiornamento 2026-10-17:** il flusso UI di questo report è storico ed è stato sostituito dal [sandbox con drag/drop, timeline e più scenari](SCENARI-INCENDIO.md). Le evidenze fisiche qui riportate restano distinte.
+
+
 Run `fire-studio-20261016`; base host `0870880ccb91b3ad7619624fd80361e8ffbc45eb` + modifiche con checksum in `reports/fire-studio/verification.json`. Reviewer Codex self-check. Esperimenti ingegneristici iterativi, non valutazione H1–H3. Fonte normativa: richiesta esplicita dell'utente su innesco, categorie/posizioni/tempi delle squadre, meteo e graceful degradation.
 
 ## Cosa si può provare

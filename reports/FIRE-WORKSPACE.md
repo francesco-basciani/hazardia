@@ -1,5 +1,8 @@
 # Simulazioni e risorse: innesco e squadre
 
+**Aggiornamento 2026-10-17:** il flusso UI di questo report è storico ed è stato sostituito dal [sandbox con drag/drop, timeline e più scenari](SCENARI-INCENDIO.md). Le evidenze fisiche qui riportate restano distinte.
+
+
 Run: `fire-workspace-20261017`, base privata `592e911328a4095a2330ef8ad52b3cb1cee77419`, reviewer Codex self-check. Incremento UI autorizzato dall'utente. Backend e fisica nella stessa VM; nessuna installazione o nuova acquisizione dati.
 
 ## Flusso consegnato

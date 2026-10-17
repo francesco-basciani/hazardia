@@ -7,6 +7,7 @@ from hazardia.io import load,loads,write_new,utcnow,HazardError,sha256
 from hazardia.jobs import JobStore
 from hazardia.web.maps import Orthophotos,RegionalSatellite
 from hazardia.web.notebook import Notebook
+from hazardia.web.fire_workspace import FireWorkspace
 from hazardia.decision.research_fixture import problem
 from hazardia.decision.supervisor import bounded_decide
 from hazardia.adaptation.control import ResearchControl
@@ -20,7 +21,7 @@ from hazardia.firelab import stage as stage_firelab,validate as validate_firelab
 
 class App:
     def __init__(self,root):
-        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock()
+        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock()
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
     def models(self):
@@ -37,17 +38,19 @@ class App:
     def jobs(self):
         with self.store.connect() as db:rows=db.execute('SELECT * FROM jobs ORDER BY rowid DESC LIMIT 25').fetchall()
         return [dict(dict(r),usable_product=r['state']=='SUCCEEDED') for r in rows]
-    def submit_firelab(self,body):
+    def submit_firelab(self,body,single=False):
         validate_firelab(body)
         if body['weather_source']=='FORECAST' and 'source_stale' in self.replay.state['faults']:raise HazardError('STALE_FORECAST','Controlled source loss: new forecast blocked; historical replay remains available')
         forecast=self.weather.fresh(body.get('forecast_id')) if body['weather_source']=='FORECAST' else None
         # Reserve both places before staging; no partial pair accepted on a full queue.
         with self.lock:
             with self.store.connect() as db:
-                if db.execute("SELECT count(*) FROM jobs WHERE state='QUEUED'").fetchone()[0]>self.store.capacity-2:raise HazardError('QUEUE_FULL','Two queue places required for a matched native comparison')
+                if db.execute("SELECT count(*) FROM jobs WHERE state='QUEUED'").fetchone()[0]>self.store.capacity-(1 if single else 2):raise HazardError('QUEUE_FULL','Two queue places required for a matched native comparison')
             folder,requests=stage_firelab(self.root,body,forecast);jobs={}
             try:
-                for case,req in requests.items():jobs[case]=self.store.submit(req,folder)
+                for case,req in requests.items():
+                    if single and case!='B':continue
+                    jobs[case]=self.store.submit(req,folder)
             except Exception:
                 for job in jobs.values():self.store.cancel(job)
                 raise
@@ -179,6 +182,9 @@ class Handler(BaseHTTPRequestHandler):
                 if not 0<size<=65536:raise HazardError('PAYLOAD_LIMIT','Body must be1..65536bytes')
                 body=loads(self.rfile.read(size).decode())
                 if not isinstance(body,dict):raise HazardError('INVALID_INPUT','JSON object required')
+                if path=='/api/fire-workspace':
+                    with app.lock:result=app.fire_workspace.save(body)
+                    return self.send(200,result)
                 if path=='/api/notebook':
                     with app.lock:result=app.notebook.save(body)
                     return self.send(200,result)
@@ -195,6 +201,7 @@ class Handler(BaseHTTPRequestHandler):
                     if body:raise HazardError('INVALID_INPUT','Fixed research forecast point; no arbitrary provider queries')
                     return self.send(202,app.refresh_weather())
                 if path=='/api/jobs':return self.send(202,app.submit_model(body))
+                if path=='/api/firelab/scenario':return self.send(202,app.submit_firelab(body,single=True))
                 if path=='/api/firelab':return self.send(202,app.submit_firelab(body))
                 if path=='/api/decisions':return self.send(202,app.submit_decision(body))
                 match=re.fullmatch('/api/jobs/(job-[a-f0-9]{32})/(cancel|retry)',path)
@@ -205,6 +212,9 @@ class Handler(BaseHTTPRequestHandler):
                     if choice not in ['ACKNOWLEDGE_RESEARCH','REJECT'] or result.get('status')!='VALIDATED_FOR_SIMULATION':raise HazardError('INVALID_INPUT','Review only a verified research proposal')
                     record=dict(id='review-'+uuid.uuid4().hex,decision_id=result['id'],choice=choice,at=utcnow(),operational_authority=False,meaning='Modeled research review only; no dispatch');write_new(app.state/(record['id']+'.json'),record);return self.send(201,record)
                 raise HazardError('NOT_FOUND','Unknown endpoint')
+            if path=='/api/fire-workspace':
+                with app.lock:result=app.fire_workspace.read()
+                return self.send(200,result)
             if path=='/api/notebook':
                 with app.lock:result=app.notebook.read()
                 return self.send(200,result)
