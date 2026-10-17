@@ -14,3 +14,5 @@
 .monitor-heading #monitor-heading{font-size:12px;font-weight:500;line-height:1.5;color:#52637a;margin:0;letter-spacing:.01em}.monitor-heading{margin:0 0 10px;min-height:0}
 
 .main-nav .studio-nav{display:flex;align-items:center;color:#e3edfa;padding:12px 14px;font-size:12px;font-weight:650;text-decoration:underline;min-height:44px}
+
+.simulation-switcher{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.simulation-switcher[hidden],#fire-workbench[hidden]{display:none}.simulation-switcher button[aria-pressed=true]{background:#215989;color:#fff}body[data-view=results][data-lab=fire] .decision-heading,body[data-view=results][data-lab=fire] .comparison,body[data-view=results][data-lab=fire] #results-section,body[data-view=results][data-lab=fire] #control-sidebar,body[data-view=results][data-lab=fire] #sidebar-toggle{display:none!important}body[data-view=results][data-lab=fire] .shell{grid-template-columns:minmax(0,1fr)}#fire-workbench h2{font-size:22px;margin:4px 0 12px}#fire-workbench{min-width:0}

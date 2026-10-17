@@ -1,0 +1,128 @@
+{
+  "checks": [
+    {
+      "name": "legacy link redirects to main simulations",
+      "pass": true
+    },
+    {
+      "name": "no separate studio navigation",
+      "pass": true
+    },
+    {
+      "name": "old pair restored",
+      "pass": true
+    },
+    {
+      "name": "legacy sidebar hidden for fire",
+      "pass": true
+    },
+    {
+      "name": "single click inserts typed unit",
+      "pass": true
+    },
+    {
+      "name": "move preserves category/time",
+      "pass": true
+    },
+    {
+      "name": "cancel creates no unit",
+      "pass": true
+    },
+    {
+      "name": "navigation preserves draft",
+      "pass": true
+    },
+    {
+      "name": "evacuation retained",
+      "pass": true
+    },
+    {
+      "name": "return to fire",
+      "pass": true
+    },
+    {
+      "name": "typed native request body unchanged",
+      "pass": true
+    },
+    {
+      "name": "main no overflow 375",
+      "pass": true
+    },
+    {
+      "name": "studio no overflow 375",
+      "pass": true
+    },
+    {
+      "name": "axe main 375",
+      "pass": true
+    },
+    {
+      "name": "axe studio 375",
+      "pass": true
+    },
+    {
+      "name": "main no overflow 724",
+      "pass": true
+    },
+    {
+      "name": "studio no overflow 724",
+      "pass": true
+    },
+    {
+      "name": "axe main 724",
+      "pass": true
+    },
+    {
+      "name": "axe studio 724",
+      "pass": true
+    },
+    {
+      "name": "main no overflow 1440",
+      "pass": true
+    },
+    {
+      "name": "studio no overflow 1440",
+      "pass": true
+    },
+    {
+      "name": "axe main 1440",
+      "pass": true
+    },
+    {
+      "name": "axe studio 1440",
+      "pass": true
+    },
+    {
+      "name": "no page errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "run_id": "fire-workspace-20261017",
+  "software_tests": {
+    "status": "PASS",
+    "count": 14,
+    "environment": "VM core-env"
+  },
+  "runtime": {
+    "source_hashes": {
+      "src/hazardia/web/static/ui-layout.js": "486aa52f4ceacc432dbb844c2e62ec6ccf09a522700f65efa93e45d6293e36e7",
+      "src/hazardia/web/static/workbench.js": "02a68329fdd59319b0e26d86d2bcd4a554660852f230853c2b3456bb810641cc",
+      "src/hazardia/web/static/workspace.css": "a848c80e12dd3ac415b8311ab5978e6b9972b677dbb41832211f77ec026809b9",
+      "src/hazardia/web/static/fire-studio.html": "8b9e9824331f42a64c629986b8f8d7425e2b7d34c52f48e16350539cefae28f8",
+      "src/hazardia/web/static/fire-studio.js": "3a7a69b9a68c9f52baea0cfcda83d2e1d545ed055cb645bc94b890f21c6ef6a4",
+      "src/hazardia/web/static/fire-studio.css": "3f26725f73118713584164b372369c813b0946618296b2515b3591aa2b437f2d",
+      "src/hazardia/web/server.py": "8a3edd1bed41e1311f4d400c4e1f18b5fc23bc405d40f720dfca40da10508c50"
+    },
+    "csp": {
+      "/": "default-src 'self'; img-src 'self' data: blob:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; frame-ancestors 'none'",
+      "/fire-studio.html": "default-src 'self'; img-src 'self' data: blob:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; frame-ancestors 'self'",
+      "/api/health": "default-src 'self'; img-src 'self' data: blob:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; frame-ancestors 'none'"
+    },
+    "status": "PASS"
+  },
+  "native_repeated": "NOT RUN",
+  "scientific_gates": "BLOCKED unchanged",
+  "reviewer": "Codex self-check",
+  "base_git_sha": "592e911328a4095a2330ef8ad52b3cb1cee77419"
+}

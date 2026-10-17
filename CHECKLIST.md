@@ -723,3 +723,17 @@ PASS prima integrazione di innesco WGS84, categorie/linee/tempi delle unità, du
 | Accessibilità tabella (prima scansione) | FAIL | browser-v3/axe-375.json, preservato |
 | Accessibilità/responsive dopo correzione | PASS | browser-final,3scansioni0violazioni |
 | Regressioni | PASS | 78unit+19domain+18decision+14web=129;8mirati finali ripetuti |
+
+
+## Simulazioni e risorse integrate — fire-workspace-20261017
+| Verifica | Esito | Evidenza / limite |
+|---|---|---|
+| Studio nella stessa sezione; legacy link ripristina A/B | PASS | final/verification.json nel raw del run; reports/FIRE-WORKSPACE.md |
+| Un clic per posizionare; categoria/tempo/spostamento/cancel | PASS | Test browser riproducibile tests/browser/fire-workspace.cjs |
+| Contratto nativo ricevuto dalla UI | PASS | POST intercettato senza accodare; nessuna prova fisica nuova dedotta |
+| Responsive 375/724/1440 e axe pagina/componente | PASS | final/axe*.json; nessun overflow osservato |
+| Regressioni web VM | PASS | web-tests.log:14test |
+| Hash distribuiti e CSP per route | PASS | runtime.json:7hash; solo componente same-origin |
+| Tentativi iniziali CSP/axe harness/ridimensionamento | FAIL | Conservati raw v1–v4; cause e correzioni nel report |
+| Nuovi run nativi, benchmark e user study | NOT RUN | Cambiamento UI; evidenza fisica precedente immutata |
+| Efficacia/fuel/moisture e gate completi M5–M7 | BLOCKED | Limiti scientifici preesistenti invariati |
