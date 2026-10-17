@@ -32,7 +32,7 @@ def bounded_decide(problem,directory,solver_python,*,accepted_monotonic=None):
             process.wait()
     late=time.monotonic()-start>=budget-reserve*.25
     if result is None or late:
-        result=dict(schema_version='0.5.0',kind='decision_response',id=out.name,problem_sha256=identity(problem),status='TIMEOUT_UNPROVEN' if late or 'deadline' in detail else 'ERROR',selected=[],verifier={},solver={},loss=None,baseline=None,detail=detail or 'Serialization reserve exhausted',operationally_approvable=False,qualification='SYNTHETIC_RESEARCH')
+        result=dict(schema_version=problem.get('schema_version','0.5.0'),kind='decision_response',id=out.name,problem_sha256=identity(problem),status='TIMEOUT_UNPROVEN' if late or 'deadline' in detail else 'ERROR',selected=[],verifier={},solver={},loss=None,baseline=None,detail=detail or 'Serialization reserve exhausted',operationally_approvable=False,qualification='SYNTHETIC_RESEARCH')
     result.update(id=out.name,elapsed_s=time.monotonic()-start,ended_at=utcnow(),outer_watchdog=True)
     write_new(out/'response.json',result);return result
 

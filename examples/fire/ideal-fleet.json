@@ -1,0 +1,12 @@
+{
+  "job_id": "REPLACE_WITH_COMPLETED_BASELINE_JOB_ID",
+  "fleet": [
+    {"id": "ground-1", "category": "waterline_action", "available": true, "arrival_minutes": 0},
+    {"id": "ground-2", "category": "waterline_action", "available": true, "arrival_minutes": 0},
+    {"id": "air-1", "category": "canadair", "available": true, "arrival_minutes": 0},
+    {"id": "heli-1", "category": "helicopter", "available": true, "arrival_minutes": 0}
+  ],
+  "weights": {"hospital": 5, "school": 3, "fire_station": 3, "residential": 2, "settlement": 2},
+  "robust": 1,
+  "assumptions_confirmed": true
+}

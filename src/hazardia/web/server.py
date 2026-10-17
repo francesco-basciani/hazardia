@@ -146,9 +146,11 @@ class App:
         if not re.fullmatch('decision-[a-f0-9]{32}',ident):raise HazardError('INVALID_INPUT','Invalid decision ID')
         with self.lock:
             if ident in self.results:return self.current_result(self.results[ident])
+        deadline=self.state/(ident+'-input')/'deadline.json'
+        if deadline.exists():return load(deadline)
         path=self.state/ident/'response.json'
         if path.exists():
-            r=load(path);context=self.state/ident/'context.json'
+            r=load(self.state/ident/'ideal-result.json') if (self.state/ident/'ideal-result.json').exists() else load(path);context=self.state/ident/'context.json'
             if context.exists():r['replay_health_revision']=load(context)['health']['revision']
             return self.current_result(r)
         raise HazardError('NOT_FOUND','Decision not found')
@@ -205,6 +207,12 @@ class Handler(BaseHTTPRequestHandler):
                     if body:raise HazardError('INVALID_INPUT','Fixed research forecast point; no arbitrary provider queries')
                     return self.send(202,app.refresh_weather())
                 if path=='/api/jobs':return self.send(202,app.submit_model(body))
+                if path=='/api/fire-ideal':
+                    from hazardia.web.fire_ideal_service import submit
+                    return self.send(202,submit(app,body))
+                if path=='/api/fire-ideal/replay':
+                    from hazardia.web.fire_ideal_service import replay
+                    return self.send(202,replay(app,body))
                 if path=='/api/firelab/scenario':return self.send(202,app.submit_firelab(body,single=True))
                 if path=='/api/firelab':return self.send(202,app.submit_firelab(body))
                 if path=='/api/decisions':return self.send(202,app.submit_decision(body))
