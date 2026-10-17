@@ -364,3 +364,5 @@ User-requested ideal case uses available resource inventory and explicit priorit
 
 ### Leggibilità del meteo e contesto — chiarimento utente2026-10-17
 FR-WX-VIEW-01 prevede indicatori numerici distribuiti e combinati (temperatura/umidità e variabili selezionate), vento animato visibile e precipitazione con palette d'intensità trasparente, leggenda/unità/ora/fonte. Densità grafica e amplificazione del vento non aumentano la risoluzione dei modelli. Confini e nomi geografici disponibili nelle mappe, impostazioni cartografiche raccolte; copertura parziale/missing espliciti. Mantenere drag/drop, confronto sincronizzato, quote gratuite e runtime unicaVM. La pioggia visualizzata non è una previsione d'allagamento e le classi cromatiche non sono livelli di allerta. Non modifica i requisiti di coupling/qualificazione fisica già aperti. Esito dell'incremento: reports/METEO-LEGGIBILE-E-CONTESTO.md.
+
+Richiesta UI2026-10-17: indicatori meteo numerici come testo sovrapposto senza riquadri, sfondi o bordi; il territorio deve rimanere visibile. Ammesso solo contorno/ombra sui caratteri per la leggibilità.
