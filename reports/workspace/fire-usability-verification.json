@@ -1,0 +1,32 @@
+{
+  "run_id": "fire-usability-20261017",
+  "base_git_sha": "5bdc9c871bf1041bbf865826de2ae38a103f4ac5",
+  "reviewer": "Codex self-check",
+  "native": {
+    "status": "PASS",
+    "jobs": [
+      "job-a1304b9f54634eab9ae27f56ad20e2d9",
+      "job-fd11b1c543124d95a5c8ff8af210217b"
+    ],
+    "hours": 24,
+    "frames_per_case": 96,
+    "interval_s": 900,
+    "pre_intervention_first_3_png_equal": true,
+    "areas_ha": [
+      1.395,
+      0.54
+    ],
+    "qualification": "Hypothetical moisture25 and idealized fuel removal, not field efficacy"
+  },
+  "browser_workflow_checks": 19,
+  "browser_cadence_checks": 7,
+  "firelab_workspace_unit_tests": 16,
+  "web_tests": 17,
+  "qualification": "Software and native-output feasibility; no calibrated intervention effect or user-study claim",
+  "limitations": [
+    "72h at15minute cadence not run",
+    "Physical integration stepping differs from legacy hourly runs; causal comparison requires matched new runs",
+    "Moisture25 is hypothetical; example A area stabilizes after3h and is not artificially expanded",
+    "No streaming/checkpoint; complete job precedes playback"
+  ]
+}

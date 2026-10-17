@@ -814,3 +814,18 @@ Report reports/MONITORAGGIO-TERRITORIALE.md; questa revisione non cambia lo stat
 | Replay storico, metriche skill/falsi positivi, portabilità reale, p95/soak/device | NOT RUN | Prova fredda8,45s singola, nessuna distribuzione dedotta |
 
 Base e2b9404080479a678aa54c760d583cae5f7a254c, reviewer Codex self-check; report reports/MONITORAGGIO-FONTI-REALI.md e reports/monitoring/real-sources-verification.json; raw experiments/runs/monitor-real-20261017. Sostituisce NOT RUN del precedente riesame solo per gli incrementi effettivamente verificati.
+
+
+## Percorso simulatore — fire-usability-20261017
+
+| Verifica | Esito | Evidenza |
+|---|---|---|
+| Scenari visibili, duplicazione, durata comune, payload e casi precedenti | PASS |19controlli browser-delivery;4casi preservati,2esempi aggiunti |
+| Native24h/15min, lettura corretta tempi, stessi primi3frame prima dell’effetto | PASS |2job×96frame; native-verification.json;7controlli cadence-delivery |
+| Responsive e accessibilità automatica radice | PASS |375/768/1440,3axe senza violazioni |
+| Contratti firelab/workspace e regressioni web | PASS |16test mirati e17web, overlap non contato come indipendente |
+| Metadata richieste prime prove ancora descritti come orari | FAIL | Testo conservato; corretto nei nuovi staging, output effettivi900s verificati |
+| Nuovi72h, p95/soak/dispositivi reali/userstudy/equivalenza stepping | NOT RUN | Nessuna conclusione da screenshot o da un singolo pilot |
+| Skill/efficacia operativa e gate scientifici | BLOCKED | Fuel/moisture/interventi non qualificati, invariati |
+
+Base 5bdc9c871bf1041bbf865826de2ae38a103f4ac5; reviewer Codex self-check. Report reports/SIMULATORE-USABILITA.md; raw experiments/runs/fire-usability-20261017.

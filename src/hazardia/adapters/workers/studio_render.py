@@ -11,7 +11,7 @@ def render(root,req):
         with np.load(root/frame['path'],allow_pickle=False) as a:p=a['probability']
         if list(p.shape)!=grid['shape'] or not np.isfinite(p).all() or (p<0).any() or (p>1).any():raise HazardError('INVALID_OUTPUT','Native frame shape/range')
         projected=np.zeros((1024,1024),dtype='float32');reproject(p,projected,src_transform=tr,src_crs=grid['crs'],dst_transform=from_bounds(*merc,1024,1024),dst_crs='EPSG:3857',resampling=Resampling.nearest)
-        rgba=np.zeros((1024,1024,4),dtype='uint8');rgba[:,:,:3]=[242,78,18];rgba[:,:,3]=np.where(projected>0,80+150*projected,0).astype('uint8');name='frame-%03d.png'%frame['hour'];file=root/'products'/name;Image.fromarray(rgba,'RGBA').save(file)
+        rgba=np.zeros((1024,1024,4),dtype='uint8');rgba[:,:,:3]=[242,78,18];rgba[:,:,3]=np.where(projected>0,80+150*projected,0).astype('uint8');name='frame-%03d.png'%frame.get('index',frame['hour']);file=root/'products'/name;Image.fromarray(rgba,'RGBA').save(file)
         area=float(p.sum(dtype=np.float64)*tr.a**2/10000)
         if not np.isclose(area,frame['expected_area_ha']):raise HazardError('INVALID_OUTPUT','Independent frame area mismatch')
         rows.append(dict(frame,url='/api/firelab/'+root.name+'/'+name,png_sha256=sha256(file)))
