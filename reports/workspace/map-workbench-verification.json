@@ -1,0 +1,485 @@
+{
+  "run_id": "map-workbench-20261017",
+  "base": "2761f5c3a30d4bbd46f3ce3050df03e0030ce982",
+  "reviewer": "Codex self-check",
+  "browser": {
+    "checks": [
+      {
+        "name": "map first, layers initially closed",
+        "status": "PASS"
+      },
+      {
+        "name": "geographic raster clipping at half",
+        "status": "PASS",
+        "detail": [
+          {
+            "side": "left",
+            "error": 0.0005710000000362925,
+            "url": "/api/firelab/job-5308acf9121748fe90ce774924a4130e/frame-003.png"
+          },
+          {
+            "side": "right",
+            "error": 0.0005710000000362925,
+            "url": "/api/firelab/job-d6299c3a7ab64314b4ff6b01c152639a/frame-003.png"
+          }
+        ]
+      },
+      {
+        "name": "exact native frame URLs",
+        "status": "PASS"
+      },
+      {
+        "name": "clip at zero",
+        "status": "PASS",
+        "detail": [
+          {
+            "side": "left",
+            "error": 0.0013670000000729488,
+            "url": "/api/firelab/job-5308acf9121748fe90ce774924a4130e/frame-003.png"
+          },
+          {
+            "side": "right",
+            "error": 0.0013670000000729488,
+            "url": "/api/firelab/job-d6299c3a7ab64314b4ff6b01c152639a/frame-003.png"
+          }
+        ]
+      },
+      {
+        "name": "clip at100",
+        "status": "PASS",
+        "detail": [
+          {
+            "side": "left",
+            "error": 0.0019179999999323627,
+            "url": "/api/firelab/job-5308acf9121748fe90ce774924a4130e/frame-003.png"
+          },
+          {
+            "side": "right",
+            "error": 0.00191800000038711,
+            "url": "/api/firelab/job-d6299c3a7ab64314b4ff6b01c152639a/frame-003.png"
+          }
+        ]
+      },
+      {
+        "name": "keyboard separator",
+        "status": "PASS"
+      },
+      {
+        "name": "pointer separator",
+        "status": "PASS"
+      },
+      {
+        "name": "clip after dragging",
+        "status": "PASS",
+        "detail": [
+          {
+            "side": "left",
+            "error": 0.0008750000000077307,
+            "url": "/api/firelab/job-5308acf9121748fe90ce774924a4130e/frame-003.png"
+          },
+          {
+            "side": "right",
+            "error": 0.0008750000002351044,
+            "url": "/api/firelab/job-d6299c3a7ab64314b4ff6b01c152639a/frame-003.png"
+          }
+        ]
+      },
+      {
+        "name": "clip after map pan",
+        "status": "PASS",
+        "detail": [
+          {
+            "side": "left",
+            "error": 0.0011919999997758168,
+            "url": "/api/firelab/job-5308acf9121748fe90ce774924a4130e/frame-003.png"
+          },
+          {
+            "side": "right",
+            "error": 0.0011920000002305642,
+            "url": "/api/firelab/job-d6299c3a7ab64314b4ff6b01c152639a/frame-003.png"
+          }
+        ]
+      },
+      {
+        "name": "clip after zoom",
+        "status": "PASS",
+        "detail": [
+          {
+            "side": "left",
+            "error": 0.003259999999215779,
+            "url": "/api/firelab/job-5308acf9121748fe90ce774924a4130e/frame-003.png"
+          },
+          {
+            "side": "right",
+            "error": 0.003260000000125274,
+            "url": "/api/firelab/job-d6299c3a7ab64314b4ff6b01c152639a/frame-003.png"
+          }
+        ]
+      },
+      {
+        "name": "synchronized native hour",
+        "status": "PASS"
+      },
+      {
+        "name": "opacity changes visible layers",
+        "status": "PASS"
+      },
+      {
+        "name": "main no overflow 375",
+        "status": "PASS"
+      },
+      {
+        "name": "studio no overflow 375",
+        "status": "PASS"
+      },
+      {
+        "name": "clip after resize 375",
+        "status": "PASS",
+        "detail": [
+          {
+            "side": "left",
+            "error": 0.0016989999999168504,
+            "url": "/api/firelab/job-5308acf9121748fe90ce774924a4130e/frame-003.png"
+          },
+          {
+            "side": "right",
+            "error": 0.0016989999999168504,
+            "url": "/api/firelab/job-d6299c3a7ab64314b4ff6b01c152639a/frame-003.png"
+          }
+        ]
+      },
+      {
+        "name": "map visible early 375",
+        "status": "PASS"
+      },
+      {
+        "name": "axe main 375",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "name": "axe studio 375",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "name": "main no overflow 721",
+        "status": "PASS"
+      },
+      {
+        "name": "studio no overflow 721",
+        "status": "PASS"
+      },
+      {
+        "name": "clip after resize 721",
+        "status": "PASS",
+        "detail": [
+          {
+            "side": "left",
+            "error": 0.0005520000003400583,
+            "url": "/api/firelab/job-5308acf9121748fe90ce774924a4130e/frame-003.png"
+          },
+          {
+            "side": "right",
+            "error": 0.0005519999998853109,
+            "url": "/api/firelab/job-d6299c3a7ab64314b4ff6b01c152639a/frame-003.png"
+          }
+        ]
+      },
+      {
+        "name": "map visible early 721",
+        "status": "PASS"
+      },
+      {
+        "name": "axe main 721",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "name": "axe studio 721",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "name": "main no overflow 1440",
+        "status": "PASS"
+      },
+      {
+        "name": "studio no overflow 1440",
+        "status": "PASS"
+      },
+      {
+        "name": "clip after resize 1440",
+        "status": "PASS",
+        "detail": [
+          {
+            "side": "left",
+            "error": 0.0008750000000077307,
+            "url": "/api/firelab/job-5308acf9121748fe90ce774924a4130e/frame-003.png"
+          },
+          {
+            "side": "right",
+            "error": 0.0008750000002351044,
+            "url": "/api/firelab/job-d6299c3a7ab64314b4ff6b01c152639a/frame-003.png"
+          }
+        ]
+      },
+      {
+        "name": "map visible early 1440",
+        "status": "PASS"
+      },
+      {
+        "name": "axe main 1440",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "name": "axe studio 1440",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "name": "main no overflow 1920",
+        "status": "PASS"
+      },
+      {
+        "name": "studio no overflow 1920",
+        "status": "PASS"
+      },
+      {
+        "name": "clip after resize 1920",
+        "status": "PASS",
+        "detail": [
+          {
+            "side": "left",
+            "error": 0.0016029999997044797,
+            "url": "/api/firelab/job-5308acf9121748fe90ce774924a4130e/frame-003.png"
+          },
+          {
+            "side": "right",
+            "error": 0.0016029999999318534,
+            "url": "/api/firelab/job-d6299c3a7ab64314b4ff6b01c152639a/frame-003.png"
+          }
+        ]
+      },
+      {
+        "name": "map visible early 1920",
+        "status": "PASS"
+      },
+      {
+        "name": "axe main 1920",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "name": "axe studio 1920",
+        "status": "PASS",
+        "detail": []
+      },
+      {
+        "name": "overlay mode restores all checked layers",
+        "status": "PASS"
+      },
+      {
+        "name": "monitoring preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "decision workspace preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "simulation workspace restored",
+        "status": "PASS"
+      },
+      {
+        "name": "missing result is explicit",
+        "status": "PASS"
+      },
+      {
+        "name": "no stale image for missing case",
+        "status": "PASS"
+      },
+      {
+        "name": "time zero fabricates no raster",
+        "status": "PASS"
+      },
+      {
+        "name": "workspace unchanged",
+        "status": "PASS"
+      },
+      {
+        "name": "no new native jobs",
+        "status": "PASS"
+      },
+      {
+        "name": "no JS errors",
+        "status": "PASS",
+        "detail": []
+      }
+    ],
+    "errors": []
+  },
+  "touch": [
+    {
+      "name": "real touch drag moves separator",
+      "status": "PASS",
+      "detail": 75
+    },
+    {
+      "name": "mobile no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "layer drawer opens on mobile",
+      "status": "PASS"
+    },
+    {
+      "name": "layer drawer closes on mobile",
+      "status": "PASS"
+    },
+    {
+      "name": "touch view leaves scenarios untouched",
+      "status": "PASS"
+    }
+  ],
+  "interaction": {
+    "checks": [
+      {
+        "name": "embedded in simulations",
+        "status": "PASS"
+      },
+      {
+        "name": "timeline advances",
+        "status": "PASS"
+      },
+      {
+        "name": "pause freezes time",
+        "status": "PASS"
+      },
+      {
+        "name": "rewind",
+        "status": "PASS"
+      },
+      {
+        "name": "drag adds second ignition",
+        "status": "PASS"
+      },
+      {
+        "name": "existing ignition remains draggable",
+        "status": "PASS"
+      },
+      {
+        "name": "drag adds team",
+        "status": "PASS"
+      },
+      {
+        "name": "polygon vertices editable",
+        "status": "PASS"
+      },
+      {
+        "name": "new event clock invalidates old baseline",
+        "status": "PASS"
+      },
+      {
+        "name": "additional scenario created",
+        "status": "PASS"
+      },
+      {
+        "name": "further scenario created",
+        "status": "PASS"
+      },
+      {
+        "name": "multiple timed ignitions reach API",
+        "status": "PASS"
+      },
+      {
+        "name": "drawn polygon reaches physical API",
+        "status": "PASS"
+      },
+      {
+        "name": "matched event clock present",
+        "status": "PASS"
+      },
+      {
+        "name": "scenario configurations persist in VM",
+        "status": "PASS"
+      },
+      {
+        "name": "main no overflow 375",
+        "status": "PASS"
+      },
+      {
+        "name": "map no overflow 375",
+        "status": "PASS"
+      },
+      {
+        "name": "axe main 375",
+        "status": "PASS"
+      },
+      {
+        "name": "axe studio 375",
+        "status": "PASS"
+      },
+      {
+        "name": "main no overflow 724",
+        "status": "PASS"
+      },
+      {
+        "name": "map no overflow 724",
+        "status": "PASS"
+      },
+      {
+        "name": "axe main 724",
+        "status": "PASS"
+      },
+      {
+        "name": "axe studio 724",
+        "status": "PASS"
+      },
+      {
+        "name": "main no overflow 1440",
+        "status": "PASS"
+      },
+      {
+        "name": "map no overflow 1440",
+        "status": "PASS"
+      },
+      {
+        "name": "axe main 1440",
+        "status": "PASS"
+      },
+      {
+        "name": "axe studio 1440",
+        "status": "PASS"
+      },
+      {
+        "name": "no JS errors",
+        "status": "PASS"
+      },
+      {
+        "name": "original workspace restored after QA",
+        "status": "PASS"
+      }
+    ],
+    "errors": []
+  },
+  "runtime": {
+    "engine_pins_verified": 145,
+    "sources": {
+      "fire-studio.html": "9590a93bc2cec8bf2b9f091ee160032c5542fbe6902e1bb3018e8e229682e52a",
+      "fire-studio.js": "78cc8e8a9dfe72f143c29d260f579879a6187e180a439a63ce18f82a88bff2c5",
+      "fire-studio.css": "cd3c0147c48207b4c0b265b20cd5674b915bf7f1ab706bfe183306014fcf66cc",
+      "raster-comparison.js": "cdc417f1d6a33d38e7c45a3008246e1e7583fd97216752cacaca542a90f02de9",
+      "workspace.css": "1d485a80be53048414ec3b9afbb79fc5e48e247009a49bcf981dfd8fda306a3e"
+    },
+    "status": "PASS",
+    "scenario_configurations_preserved": true,
+    "native_frames": {
+      "/api/firelab/job-5308acf9121748fe90ce774924a4130e/frame-003.png": "3389f0a7915e497ca046355f239b622237801c616203a5799c18dc46cd28d482",
+      "/api/firelab/job-d6299c3a7ab64314b4ff6b01c152639a/frame-003.png": "9ab2a77be328e16979cae43fa35441e932bc3b8cafcd60866c3d83e5322edb1c"
+    }
+  },
+  "new_physical_runs": "NOT RUN",
+  "scientific_gates": "BLOCKED unchanged"
+}

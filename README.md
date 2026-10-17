@@ -7,7 +7,7 @@ Satellite-first, weather-aware, geographically configurable multi-hazard decisio
 
 ## Innesco e squadre antincendio
 
-Apri **Simulazioni e risorse → Incendio · innesco e squadre** (`/?view=results`). Trascina inneschi e unità sulla mappa, disegna linee o aree d'intervento e imposta l'istante di attivazione. Aggiungi scenari con **＋ Nuovo**, calcolali e confrontali con una timeline comune dotata di play, pausa e rewind. Le configurazioni sono salvate nella VM. La nuova ipotesi di intervento rimuove il combustibile nelle celle disegnate dal momento indicato; non è un'efficacia operativa calibrata delle categorie. Vento orario consumato, fuel uniforme e moisture manuale; T/RH/pioggia visibili ma non ancora accoppiati. Vedi [workflow ed evidenze](reports/SCENARI-INCENDIO.md).
+Apri **Simulazioni e risorse → Incendio · innesco e squadre** (`/?view=results`). Trascina inneschi e unità sulla mappa, disegna linee o aree d'intervento e imposta l'istante di attivazione. Aggiungi scenari con **＋ Nuovo**, calcolali e confrontali con una timeline comune dotata di play, pausa e rewind. Le configurazioni sono salvate nella VM. La nuova ipotesi di intervento rimuove il combustibile nelle celle disegnate dal momento indicato; non è un'efficacia operativa calibrata delle categorie. Vento orario consumato, fuel uniforme e moisture manuale; T/RH/pioggia visibili ma non ancora accoppiati. Vedi [workflow ed evidenze](reports/SCENARI-INCENDIO.md). Il [confronto cartografico](reports/MAPPA-E-CONFRONTO.md) aggiunge livelli con opacità e separatore trascinabile, sincronizzato con la timeline, in una UI centrata sulla mappa.
 
 ## Installazione completa e ricostruzione della VM
 

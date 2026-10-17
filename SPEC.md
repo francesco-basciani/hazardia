@@ -322,3 +322,7 @@ FR-MAP-REGION-01: show sourced administrative region boundaries and region names
 
 ## FR-FIRE-WORKSPACE-01 — flusso confermato e precisato 2026-10-17
 Dentro **Simulazioni e risorse** una mappa consente drag/drop di uno o più inneschi e unità, geometrie di intervento a linea/area e relativi tempi. Timeline comune con avanzamento, pausa, ritorno indietro e confronto di scenari aggiungibili oltre A/B. Le categorie non implicano efficacia non verificata: l'ipotesi richiesta di sottrazione del combustibile deve alterare input fisici temporizzati, conservando la traccia delle celle coinvolte. Distinguere riproduzione dei frame calcolati, bozza modificata e ricalcolo fisico. Conservare separazione dal laboratorio evacuazione, meteo e qualificazioni scientifiche; nessuna azione reale. La semplificazione interattiva non autorizza perimetri disegnati come risultati o una dichiarazione di streaming/checkpoint del solver non implementati.
+
+
+## FR-UI-LAYERS-01 — confronto cartografico, 2026-10-17
+La UI deve rendere centrale la mappa e consentire di leggere risultati come livelli sovrapposti con opacità, oppure confrontare due scenari con un separatore trascinabile sincronizzato alla stessa ora simulata. Conservare la georeferenziazione e i valori originali; distinguere selezione per modifica, risultati calcolati, frame mancanti e bozze. Controlli contestuali compatti, accessibili via mouse/touch/tastiera e responsive. Il riferimento visuale commerciale non qualifica nuovi prodotti fisici o metriche di rischio e non cambia AR-EXT-01 né l'ambito M0–M7.

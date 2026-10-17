@@ -767,3 +767,18 @@ PASS prima integrazione di innesco WGS84, categorie/linee/tempi delle unità, du
 | Controllo piano prima delle modifiche | PASS | AGENTS.md, guard esplicito; regola di processo, non garanzia automatica |
 | Nuove prove fisiche/nuovi hazard | NOT RUN | Modifica di identità grafica/testo |
 | Gate scientifici M5–M7 | BLOCKED | Invariati |
+
+
+## Mappa, livelli e separatore — map-workbench-20261017
+| Attività | Esito | Evidenza |
+|---|---|---|
+| Riesame piano originale, identità generica, scope UI | PASS | SPEC§8/AR-EXT-01/FR-UI-LAYERS-01; nessun dominio aggiunto |
+| Separatore mouse/tastiera, clip durante pan/zoom/resize | PASS |46controlli browser-delivery; URL PNG nativi invariati |
+| Livelli/opacità, assenza frame, modifiche da ricalcolare | PASS | browser-delivery, casi negativi senza job nuovi |
+| Responsive e accessibilità | PASS |375/721/1440/1920;8axe0violazioni nel nuovo test |
+| Touch emulato | PASS |5controlli touch-delivery |
+| Regressione drag/drop, geometrie, timeline, scenari, persistenza | PASS |29controlli interaction-regression-v2;6axe0violazioni |
+| Runtime statici e asset preservati | PASS | runtime-verification.json nel raw |
+| Primo harness/pannello nascosto | FAIL | interaction-regression preservato, corretto |
+| Nuovi run fisici/benchmark/user study/browser e device ulteriori | NOT RUN | Solo UI; nessuna equivalenza commerciale dedotta |
+| Gate completi M5–M7 | BLOCKED | Limiti scientifici invariati |
