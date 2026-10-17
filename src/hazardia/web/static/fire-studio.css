@@ -39,3 +39,7 @@ details{border-top:1px solid var(--line);padding:14px 16px;font-size:12px}summar
 @media(max-width:700px){.scenario-map-heading{min-height:60px}.scenario-maps:has(.scenario-map-card:only-child) .map{height:clamp(320px,49svh,460px)}.workbench-toolbar{gap:6px}.workbench-toolbar button{font-size:11px;padding-inline:10px}.active-scenario-label{min-width:140px}.map-toolbar strong{min-width:120px}.map-toolbar button{font-size:11px}.map-detail-grid{padding:0 6px 6px}}
 
 .map-toolbar #editing{display:none}.map-toolbar:has(#cancel-tool[hidden]):has(#finish-area[hidden]){display:none}
+
+.terrain-coverage-bar{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:10px 14px;background:#f2f7fa;border-bottom:1px solid #d2dfeb;font:11px/1.5 system-ui;color:#37536c}.terrain-coverage-bar span{min-width:0;overflow-wrap:anywhere}.terrain-coverage-bar button{flex-shrink:0;min-height:44px;border:1px solid #b7cbdc;border-radius:5px;background:#fff;color:#214c72;padding:8px 10px;font:600 11px system-ui}.terrain-coverage-bar.invalid{background:#fff7eb;color:#704712}.palette button{touch-action:none;user-select:none}.peer-map .team-icon{cursor:grab}.peer-map .team-icon:active{cursor:grabbing}@media(max-width:600px){.terrain-coverage-bar{align-items:stretch;flex-direction:column;gap:6px}}
+
+.terrain-coverage-bar{flex-wrap:wrap}.terrain-coverage-bar>span{flex:1}.terrain-coverage-bar details{flex-basis:100%}.terrain-coverage-bar summary{cursor:pointer;min-height:28px}.terrain-coverage-bar details p{margin:6px 0;max-width:100%;font-size:11px}

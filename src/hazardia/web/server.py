@@ -8,6 +8,7 @@ from hazardia.jobs import JobStore
 from hazardia.web.maps import Orthophotos,RegionalSatellite
 from hazardia.web.notebook import Notebook
 from hazardia.web.fire_workspace import FireWorkspace
+from hazardia.web.fire_coverage import coverage as fire_coverage
 from hazardia.decision.research_fixture import problem
 from hazardia.decision.supervisor import bounded_decide
 from hazardia.adaptation.control import ResearchControl
@@ -245,6 +246,7 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/weather/map':return self.send(200,app.map_weather.snapshot())
             if path=='/api/weather/wind':return self.send(200,app.wind.snapshot())
             if path=='/api/weather':return self.send(200,app.weather.snapshot())
+            if path=='/api/firelab/coverage':return self.send(200,fire_coverage(app.root))
             if path=='/api/catalog':return self.send(200,app.catalog())
             if path=='/api/jobs':return self.send(200,app.jobs())
             studio=re.fullmatch('/api/firelab/(job-[a-f0-9]{32})(?:/(frame-[0-9]{3}\\.png))?',path)
