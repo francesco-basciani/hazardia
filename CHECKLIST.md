@@ -849,3 +849,17 @@ Base 5bdc9c871bf1041bbf865826de2ae38a103f4ac5; reviewer Codex self-check. Report
 | Skill storico, p95/soak/100k/device fisici e trasferimento estero | NOT RUN |Non inferiti da UI o2realizzazioni |
 
 Base812434ccd78fba653028a516db9e4950caa54a2e; reviewer Codex self-check. Report reports/METEO-ZONE-E-TRE-GIORNI.md, riepilogo reports/monitoring/territorial-days-verification.json, raw experiments/runs/territorial-days-20261017. Gate scientifici M5–M7 invariati.
+
+## Riordino grafico studio — studio-layout-20261017
+| Verifica | Esito | Evidenza / limite |
+|---|---|---|
+| Controlli44px, allineamento, nessun controllo/messaggio sulla cartografia | PASS | tests/browser/studio-layout.cjs,34controlli complessivi |
+| Responsive320/375/768/1024/1440 e accessibilità | PASS |5axe componente+3root senza violazioni;8scansioni,5dimensioni |
+| Pannello proprietà, pointer/tastiera, alternativa e drag | PASS | Test senza clic forzati, workspace intercettata per le modifiche |
+| Stato tool/annullamento, impostazioni compatte, movimento ridotto | PASS | browser-release/verification.json nel raw |
+| Regressioni scenario/durata/payload e workspace reale | PASS |19controlli fire-usability; workspace invariata; invio simulazione intercettato |
+| Controlli nascosti/media query, margini label, collisione icone e perdita clic | FAIL | Esiti iniziali mantenuti in negative-results.json e log; correzioni successive PASS |
+| User study, device fisici, p95/soak/100k e nuovi calcoli scientifici | NOT RUN | Non inferiti da screenshot/test browser |
+| Qualificazione fisica e gate scientifici M5–M7 | BLOCKED | Limiti precedenti invariati |
+
+Base c88b6c3f0bb57c7b0477c5dd174e7d07ce38ea90; reviewer Codex self-check. Report reports/RIORDINO-GRAFICO-SIMULATORE.md, reports/workspace/studio-layout-verification.json; raw experiments/runs/studio-layout-20261017.

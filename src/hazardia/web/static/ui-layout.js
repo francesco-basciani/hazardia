@@ -2,7 +2,7 @@
 export function arrangeWorkspace(){
  const $=id=>document.getElementById(id),move=(parent,...nodes)=>nodes.filter(Boolean).forEach(n=>parent.append(n));
  const switcher=document.createElement('div');switcher.id='simulation-switcher';switcher.hidden=true;switcher.className='simulation-switcher';switcher.setAttribute('role','group');switcher.setAttribute('aria-label','Tipo di simulazione');switcher.innerHTML='<button type="button" data-lab="fire" aria-pressed="true">Incendio · innesco e squadre</button><button type="button" data-lab="evacuation" aria-pressed="false">Evacuazione · allocazione risorse</button>';
- const studio=document.createElement('section');studio.id='fire-workbench';studio.hidden=true;studio.innerHTML='<h2>Simulazioni e risorse</h2><iframe id="fire-workbench-frame" title="Simulazione incendio: innesco, squadre e confronto" style="width:100%;height:1800px;border:0;display:block" allow="" ></iframe>';
+ const studio=document.createElement('section');studio.id='fire-workbench';studio.hidden=true;studio.innerHTML='<h2>Simulazioni e risorse</h2><iframe id="fire-workbench-frame" aria-label="Simulazione incendio: innesco, squadre e confronto" style="width:100%;height:1800px;border:0;display:block" allow="" ></iframe>';
  const heading=document.querySelector('.decision-heading');heading.before(switcher,studio);
  document.body.dataset.lab='fire';
  const frame=studio.querySelector('iframe'),params=new URLSearchParams(location.search);params.set('embedded','1');

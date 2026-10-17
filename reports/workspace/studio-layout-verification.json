@@ -1,0 +1,29 @@
+{
+  "run_id": "studio-layout-20261017",
+  "base_git_sha": "c88b6c3f0bb57c7b0477c5dd174e7d07ce38ea90",
+  "status": "PASS",
+  "layout_interaction_checks": 34,
+  "workflow_regression_checks": 19,
+  "viewports": [
+    320,
+    375,
+    768,
+    1024,
+    1440
+  ],
+  "component_axe_scans": 5,
+  "root_axe_scans": 3,
+  "axe_violations": 0,
+  "control_height_px": 44,
+  "aligned_control_rows": true,
+  "controls_messages_outside_map": true,
+  "marker_collision_separation": "Display positions with connectors to unchanged geographic anchor; dragging explicitly edits authored geometry",
+  "workspace_preserved": true,
+  "native_jobs_submitted": 0,
+  "not_run": [
+    "Physical device testing",
+    "User study / aesthetic acceptance",
+    "New p95/soak/load benchmarks",
+    "New physics experiments"
+  ]
+}

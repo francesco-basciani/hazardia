@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "c88b6c3f0bb57c7b0477c5dd174e7d07ce38ea90",
+  "source_git_sha": "063f3f1f298b9eb4b061b3aba7b0c6ab81a60ff1",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,24 +11,24 @@
       "sha256": "5873e41264bccd6579785f11feac9997b403083dc0f7ca12473775f5d4c16d79"
     },
     "CHECKLIST.md": {
-      "bytes": 115445,
-      "sha256": "b146a60c326237d3663d6bf0de96ede6fe8d5cb21924c37c84f98aad6788e2ee"
+      "bytes": 116836,
+      "sha256": "ee6333d60de34eb2a1e64bd4c76682874cd3945c86c10d092a13b1e01ddc80bd"
     },
     "MEMORY.md": {
-      "bytes": 71317,
-      "sha256": "a5a6ecba98a6052908d2723bc3cc139f8ba8416b866bd261eb49caa4245d5799"
+      "bytes": 72221,
+      "sha256": "09097e46d6a213b284e611a16de5c61d4a8626645aea4b94c4cb6403ac839a41"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 76601,
-      "sha256": "2e4757128f546f8b76c2e3dddb82334dffdeaf7fb507175e7192b5cfec4bed77"
+      "bytes": 77337,
+      "sha256": "d8e0336181a1ea76f9d1a3b4e293e672aeb9e22e77a4caca5c38467d95e76edc"
     },
     "README.md": {
-      "bytes": 14223,
-      "sha256": "2e1ab77043f9aa211d94dc5c52850535c9f7034de2af1cee052a72d68e7e4900"
+      "bytes": 14563,
+      "sha256": "b65d34a910a08f1c175ce9b4dfeacc58f667a33f8f95b58eec6397e6de196c4a"
     },
     "SPEC.md": {
       "bytes": 66558,
@@ -290,6 +290,10 @@
       "bytes": 8076,
       "sha256": "6ae9c3837ee79ecee23ff5bc9f354cffaaa89c127cfb0f801abf7c606d8d484c"
     },
+    "reports/RIORDINO-GRAFICO-SIMULATORE.md": {
+      "bytes": 3765,
+      "sha256": "1a8abbc21b71019ae05c2c018390ca8dfd3eca593c84f37d096e202a1223244e"
+    },
     "reports/RIORDINO-WORKSPACE.md": {
       "bytes": 6191,
       "sha256": "89e96669cb4abbf7d4ceaf5aec86c3cd8bfc18fe587f1c26ca8ade7522c8e5cb"
@@ -458,6 +462,10 @@
       "bytes": 12097,
       "sha256": "b84af54bea496eed196b0b14704cfcc7464c36333609419a50e8011d9e8fbbb5"
     },
+    "reports/workspace/studio-layout-verification.json": {
+      "bytes": 801,
+      "sha256": "a5ea1febf0e480cbcca1141fb7a2ee5225dc02a054945b6e9145d14474e84aa4"
+    },
     "reports/workspace/verification.json": {
       "bytes": 3345,
       "sha256": "1c75dc9324954607b4170eda198bd858fc032f5ff3784dfcd651d1ce6e84f8f3"
@@ -531,8 +539,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 86858,
-      "sha256": "7351adf677f982c34d3ec173745053b8ddb319c2f357388499cd3dcbf42a444d"
+      "bytes": 87744,
+      "sha256": "ba563a43c60b3ff1a15119fed5eaa7690c884f8219a184688a9aa31cfd93eda7"
     },
     "research/RESEARCH.md": {
       "bytes": 30535,
@@ -859,16 +867,16 @@
       "sha256": "85fffc4fbbe667ec7ff711cd79437893682e3ced7f2c6094547e022592f28e3f"
     },
     "src/hazardia/web/static/fire-studio.css": {
-      "bytes": 15114,
-      "sha256": "42ce3302862c7c10c81a5421148b3851db00ba700e71e0722f001fa6f1d7832a"
+      "bytes": 17207,
+      "sha256": "6a066dc7459e88efa6ea1e403b750398bd87e26679cd2d76e384a747517ef0a3"
     },
     "src/hazardia/web/static/fire-studio.html": {
-      "bytes": 7615,
-      "sha256": "84a1fdfa451513cb5b73ddf762dc3fa4967c915f61ddf45a7bb006c250930099"
+      "bytes": 8493,
+      "sha256": "720e070758f6457cd6b478e824b1c1a55661752e6bef3a0229cd408d33d87d5d"
     },
     "src/hazardia/web/static/fire-studio.js": {
-      "bytes": 34824,
-      "sha256": "a9ef62d63a27d653359e321a212ef0e6cd9bdd4dc4040451530c6302feb01123"
+      "bytes": 37153,
+      "sha256": "3791fcb581872cecc01ec66a23a75e8e3a08bf9eb993b13859b98202457951cf"
     },
     "src/hazardia/web/static/index.html": {
       "bytes": 31813,
@@ -915,8 +923,8 @@
       "sha256": "f0ead3f4834e148576da80a144dfd2807c35e71654777668879215b142d5621b"
     },
     "src/hazardia/web/static/ui-layout.js": {
-      "bytes": 9954,
-      "sha256": "c1514f8579bcc5c300829cd4f681709629d7dddc32ff82d8f51a90a465133ddc"
+      "bytes": 9959,
+      "sha256": "1fe31808d1cef70004c4ccfcba306a38f531ee625707c6bf0b5af39fc563db8a"
     },
     "src/hazardia/web/static/weather-clock.js": {
       "bytes": 602,
@@ -1045,6 +1053,10 @@
     "tests/browser/stability.cjs": {
       "bytes": 4731,
       "sha256": "ddd9434922d20a9a867bb22b25f805c1402acf3119f524ebae0e61c274a99e81"
+    },
+    "tests/browser/studio-layout.cjs": {
+      "bytes": 6922,
+      "sha256": "5c09232231d70a9136e49373d01c2017459918038235a3eddcfef1392a8a9de1"
     },
     "tests/browser/territorial-days.cjs": {
       "bytes": 5206,
