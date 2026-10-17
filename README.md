@@ -15,7 +15,7 @@ Apri **Simulazioni e risorse → Incendio · innesco e squadre** (`/?view=result
 
 ## Esplorare le previsioni meteo
 
-In Monitoraggio e nelle mappe degli scenari la barra **Previsioni meteo** permette di riprodurre, mettere in pausa e scorrere le ore del campo disponibile, con velocità regolabile e data/ora esplicita. Nei controlli sotto la mappa seleziona vento, temperatura, pioggia, umidità, nuvole e altre variabili. Valori senza riquadri, temperature colorate, precipitazione e nuvolosità trasparenti con sfumature continue. Mappe prima dei pannelli di configurazione. Il replay consulta la cache reale Open-Meteo nella VM: non avvia simulazioni né modifica un risultato già calcolato; quote, risoluzione e dati mancanti sono dichiarati. [Verifiche e limiti](reports/PREVISIONI-METEO-E-MAPPE-IN-ALTO.md).
+In Monitoraggio e nelle mappe degli scenari la barra **Previsioni meteo** permette di riprodurre, mettere in pausa e scorrere le ore del campo disponibile, con velocità regolabile e data/ora esplicita. Il passaggio fra ore è continuo, con interpolazione visuale dichiarata e pausa anche sugli istanti intermedi; i nomi geografici hanno una gerarchia distinta dai numeri meteo. Nei controlli sotto la mappa seleziona vento, temperatura, pioggia, umidità, nuvole e altre variabili. Valori senza riquadri, temperature colorate, precipitazione e nuvolosità trasparenti con sfumature continue. Mappe prima dei pannelli di configurazione. Il replay consulta la cache reale Open-Meteo nella VM: non avvia simulazioni né modifica un risultato già calcolato; quote, risoluzione e dati mancanti sono dichiarati. [Verifiche e limiti](reports/NOMI-E-METEO-CONTINUO.md).
 
 ## Installazione completa e ricostruzione della VM
 

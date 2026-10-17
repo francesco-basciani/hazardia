@@ -1,14 +1,36 @@
-// Replay actual cached forecast hours. Never submit a job or acquire per frame.
+// Continuous visual replay of hourly VM snapshots: no acquisition or jobs per frame.
 const clock=at=>new Date(at).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' Roma';
 export function forecastPlayback({select,mount,getTimes,getCurrent,active=()=>true}){
  const bar=document.createElement('section');bar.className='forecast-playback';bar.setAttribute('aria-label','Riproduzione previsioni meteorologiche');
- const title=document.createElement('strong');title.textContent='Previsioni meteo';const back=document.createElement('button'),play=document.createElement('button'),next=document.createElement('button'),slider=document.createElement('input'),out=document.createElement('output'),speedLabel=document.createElement('label'),speed=document.createElement('select');
- back.textContent='−1 h';back.setAttribute('aria-label','Ora meteo precedente');next.textContent='+1 h';next.setAttribute('aria-label','Ora meteo successiva');slider.type='range';slider.min=0;slider.max=0;slider.step=1;slider.value=0;slider.setAttribute('aria-label','Ora delle previsioni sulla mappa');out.className='forecast-time';speedLabel.textContent='Velocità';speed.setAttribute('aria-label','Velocità riproduzione meteo');
- for(const [value,label] of [[1500,'1 h / 1,5 s'],[750,'1 h / 0,75 s'],[3000,'1 h / 3 s']]){const o=document.createElement('option');o.value=value;o.textContent=label;speed.append(o);}speedLabel.append(speed);bar.append(title,back,play,next,slider,out,speedLabel);mount.append(bar);let timer=null,internal=false,times=[];
- const playing=()=>{play.textContent=timer?'Ⅱ Pausa meteo':'▶ Riproduci meteo';play.setAttribute('aria-label',timer?'Pausa previsioni meteo':'Riproduci previsioni meteo');play.setAttribute('aria-pressed',String(!!timer));};
- function stop(){clearInterval(timer);timer=null;playing();}
- function sync(){times=[...new Set(getTimes()||[])].filter(at=>Number.isFinite(Date.parse(at))).sort();const i=times.indexOf(getCurrent());slider.max=Math.max(0,times.length-1);slider.value=Math.max(0,i);slider.setAttribute('aria-valuetext',i>=0?clock(times[i]):'Ora non disponibile');out.textContent=times.length?(getCurrent()?clock(getCurrent()):'Seleziona un’ora'):'Previsioni non disponibili';for(const el of [back,play,next,slider,speed])el.disabled=!times.length;if(!times.length||!active()||timer&&i<0)stop();back.disabled=!times.length||i<=0;next.disabled=!times.length||i===times.length-1;play.disabled=!times.length||!active();bar.dataset.at=getCurrent()||'';playing();}
- function set(i){if(i<0||i>=times.length)return;internal=true;select.value=times[i];select.dispatchEvent(new Event('change',{bubbles:true}));internal=false;sync();}
- function start(){if(timer){stop();return;}sync();if(!times.length||!active())return;if(times.indexOf(getCurrent())===times.length-1)set(0);timer=setInterval(()=>{if(document.hidden||!active()||!bar.getClientRects().length||window.frameElement&&!window.frameElement.getClientRects().length){stop();return;}const i=times.indexOf(getCurrent());if(i>=times.length-1){stop();return;}set(i+1);if(i+1===times.length-1)stop();},Number(speed.value));playing();}
- back.onclick=()=>{stop();set(times.indexOf(getCurrent())-1);};next.onclick=()=>{stop();set(times.indexOf(getCurrent())+1);};play.onclick=start;slider.oninput=()=>{stop();set(Number(slider.value));};speed.onchange=()=>{if(timer){stop();start();}};select.addEventListener('change',()=>{if(!internal)stop();sync();});document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});window.addEventListener('pagehide',stop);sync();return {sync,stop,element:bar};
+ const title=document.createElement('strong');title.textContent='Previsioni meteo';const back=document.createElement('button'),play=document.createElement('button'),next=document.createElement('button'),slider=document.createElement('input'),out=document.createElement('output'),speedLabel=document.createElement('label'),speed=document.createElement('select'),note=document.createElement('small');
+ back.textContent='−1 h';back.setAttribute('aria-label','Ora meteo precedente');next.textContent='+1 h';next.setAttribute('aria-label','Ora meteo successiva');slider.type='range';slider.min=0;slider.max=0;slider.step=.001;slider.value=0;slider.setAttribute('aria-label','Ora delle previsioni sulla mappa');out.className='forecast-time';speedLabel.textContent='Velocità';speed.setAttribute('aria-label','Velocità riproduzione meteo');
+ note.className='forecast-interpolation-note';note.textContent='Transizione visiva fra previsioni orarie · pioggia, raffiche e radiazione riferite alle finestre orarie, non ai minuti.';
+ for(const [value,label] of [[1500,'1 h / 1,5 s'],[750,'1 h / 0,75 s'],[3000,'1 h / 3 s']]){const o=document.createElement('option');o.value=value;o.textContent=label;speed.append(o);}speedLabel.append(speed);bar.append(title,back,play,next,slider,out,speedLabel,note);mount.append(bar);
+ let timer=null,internal=false,times=[],position=0,phase=null,previous=null,lastPaint=0;
+ const playing=()=>{play.textContent=timer!==null?'Ⅱ Pausa meteo':'▶ Riproduci meteo';play.setAttribute('aria-label',timer!==null?'Pausa previsioni meteo':'Riproduci previsioni meteo');play.setAttribute('aria-pressed',String(timer!==null));};
+ function stop(){if(timer!==null)cancelAnimationFrame(timer);timer=null;previous=null;playing();}
+ function sync(){
+  const fresh=[...new Set(getTimes()||[])].filter(at=>Number.isFinite(Date.parse(at))).sort();
+  if(times.join()!==fresh.join()){stop();phase=null;}times=fresh;
+  const current=getCurrent(),i=times.indexOf(current);if(!phase||current!==phase.at){phase=null;position=Math.max(0,i);}
+  slider.max=Math.max(0,times.length-1);slider.value=position;slider.setAttribute('aria-valuetext',current?clock(current):'Ora non disponibile');out.textContent=times.length?(current?clock(current):'Seleziona un’ora'):'Previsioni non disponibili';
+  for(const el of [back,play,next,slider,speed])el.disabled=!times.length;
+  if(!times.length||!active())stop();back.disabled=!times.length||position<=0;next.disabled=!times.length||position>=times.length-1;play.disabled=!times.length||!active();bar.dataset.at=current||'';bar.dataset.from=phase?.from||current||'';bar.dataset.to=phase?.to||current||'';bar.dataset.fraction=String(phase?.fraction||0);playing();
+ }
+ function set(value){
+  position=Math.max(0,Math.min(times.length-1,value));const i=Math.floor(position),fraction=position-i;
+  if(fraction&&Date.parse(times[i+1])-Date.parse(times[i])!==3600000){stop();position=i;}
+  const j=Math.floor(position),t=position-j;
+  phase=t?{from:times[j],to:times[j+1],fraction:t,at:new Date(Date.parse(times[j])+t*3600000).toISOString()}:null;
+  internal=true;select.value=times[j];const event=new Event('change',{bubbles:true});event.forecastPhase=phase;event.forecastReplay=true;select.dispatchEvent(event);internal=false;sync();
+ }
+ function tick(now){
+  if(document.hidden||!active()||!bar.getClientRects().length||window.frameElement&&!window.frameElement.getClientRects().length){stop();return;}
+  if(previous!==null){const delta=(now-previous)/Number(speed.value);position=Math.min(times.length-1,position+delta);}previous=now;
+  if(now-lastPaint>=50||position>=times.length-1){lastPaint=now;const started=performance.now();set(position);const costs=bar._frameCosts||(bar._frameCosts=[]);costs.push(performance.now()-started);if(costs.length>120)costs.shift();}
+  if(position>=times.length-1||timer===null){stop();return;}timer=requestAnimationFrame(tick);
+ }
+ function start(){if(timer!==null){stop();return;}sync();if(!times.length||!active())return;if(position>=times.length-1)set(0);previous=null;timer=requestAnimationFrame(tick);playing();}
+ back.onclick=()=>{stop();set(Math.max(0,Math.ceil(position)-1));};next.onclick=()=>{stop();set(Math.min(times.length-1,Math.floor(position)+1));};play.onclick=start;slider.oninput=()=>{stop();set(Number(slider.value));};
+ speed.onchange=()=>{previous=null;};select.addEventListener('change',()=>{if(internal)return;stop();phase=null;queueMicrotask(sync);});document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});window.addEventListener('pagehide',stop);sync();return {sync,stop,element:bar};
 }
