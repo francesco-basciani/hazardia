@@ -782,3 +782,35 @@ PASS prima integrazione di innesco WGS84, categorie/linee/tempi delle unità, du
 | Primo harness/pannello nascosto | FAIL | interaction-regression preservato, corretto |
 | Nuovi run fisici/benchmark/user study/browser e device ulteriori | NOT RUN | Solo UI; nessuna equivalenza commerciale dedotta |
 | Gate completi M5–M7 | BLOCKED | Limiti scientifici invariati |
+
+
+## Fusione territoriale — monitor-fusion-review-20261017
+
+| Attività | Esito | Evidenza |
+|---|---|---|
+| Riesame requisito/piano e sorgenti attuali | PASS | Base 07eb050effff8546f6a541e16a11b7c93574e404; raw review.json; reviewer Codex self-check |
+| Distinzione attenzione interna/allerta ufficiale/dato mancante | PASS | Requisito documentato FR-MONITOR-FUSION-01; non è una verifica runtime |
+| Nuovi connettori EFFIS/siccità/bollettini/radar e diritti concreti | NOT RUN | Consultate fonti primarie; accesso e licenze d'uso da verificare |
+| Fusione territoriale continua e livelli spiegabili sulla mappa | NOT RUN | Attuale monitoring.js è consultazione scenari/meteo |
+| Degradazione e recupero della futura valutazione territoriale | NOT RUN | Test specifici da eseguire, nessuna estensione dedotta dai test precedenti |
+| Soglie territoriali operative/calibrazione/qualità predittiva | BLOCKED | Necessarie qualificazione territoriale e validazione indipendente |
+
+Report reports/MONITORAGGIO-TERRITORIALE.md; questa revisione non cambia lo stato dei gate precedenti.
+
+
+## Monitoraggio reale — monitor-real-20261017
+
+| Attività | Esito | Evidenza |
+|---|---|---|
+| Fonti gratuite reali, licenze, snapshot e worker stessa VM | PASS | cold.json,17verifiche native; EFFIS/DPC,2.714.911byte |
+| FWI/DC e zone ufficiali oggi/domani, fonti/tempi/contesto separati | PASS |26controlli browser-delivery e17verifiche reali |
+| Assenza/scadenza/recupero, corruzione/path, clock e perdita fonte | PASS |7test unitari e browser fault injection; capacità parziali esplicite |
+| Responsive e accessibilità, click e alternativa tastiera | PASS |375/768/1440;3axe0violazioni |
+| Regressioni backend e conservazione stato a riavvio inattivo | PASS |17test web; restart-final.json,nessun job interrotto |
+| Classificazione sulle11geometrie DPC non valide | BLOCKED | Fonte PARTIAL; UNKNOWN per quei footprint, testi ufficiali conservati |
+| Avvii e primi harness, fonteECMWF non esposta | FAIL | Errori preservati; correzioni successive verificate, nessun modello CIMA sostituito |
+| Radar/gauge/hotspot live, fuel/soil/esposizione qualificati | NOT RUN | Dichiarati mancanti nella UI |
+| Rischio d'impatto/soglie operative e gate scientifici | BLOCKED | Fonte reale non equivale a validazione locale |
+| Replay storico, metriche skill/falsi positivi, portabilità reale, p95/soak/device | NOT RUN | Prova fredda8,45s singola, nessuna distribuzione dedotta |
+
+Base e2b9404080479a678aa54c760d583cae5f7a254c, reviewer Codex self-check; report reports/MONITORAGGIO-FONTI-REALI.md e reports/monitoring/real-sources-verification.json; raw experiments/runs/monitor-real-20261017. Sostituisce NOT RUN del precedente riesame solo per gli incrementi effettivamente verificati.

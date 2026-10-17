@@ -14,6 +14,7 @@ from hazardia.adaptation.control import ResearchControl
 from hazardia.decision.rolling import advance
 from hazardia.decision.resource_overrides import apply as apply_resource_overrides
 from hazardia.ingest.forecast import ForecastStore
+from hazardia.ingest.attention import AttentionStore
 from hazardia.ingest.wind import WindStore
 from hazardia.ingest.map_weather import MapWeatherStore,grid as map_weather_grid
 from hazardia.adapters.forecast import stage as stage_forecast
@@ -21,7 +22,7 @@ from hazardia.firelab import stage as stage_firelab,validate as validate_firelab
 
 class App:
     def __init__(self,root):
-        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock()
+        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock()
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
     def models(self):
@@ -191,6 +192,9 @@ class Handler(BaseHTTPRequestHandler):
                 if path=='/api/research':
                     with app.lock:result=app.replay.action(body)
                     return self.send(200,result)
+                if path=='/api/monitoring/refresh':
+                    if body:raise HazardError('INVALID_INPUT','Configured monitoring profile only')
+                    return self.send(202,app.attention.refresh())
                 if path=='/api/weather/map/refresh':
                     if set(body)!={'bounds'}:raise HazardError('INVALID_INPUT','Only viewport bounds allowed')
                     return self.send(202,app.refresh_map_weather(body['bounds']))
@@ -227,6 +231,9 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/maps/status':return self.send(200,app.orthophotos.status())
             tile=re.fullmatch(r'/api/maps/ortho/(\d{1,2})/(\d{1,6})/(\d{1,6})',path)
             if tile:return self.send(200,app.orthophotos.tile(*map(int,tile.groups())),'image/jpeg')
+            if path=='/api/monitoring':return self.send(200,app.attention.snapshot())
+            attention_layer=re.fullmatch(r'/api/monitoring/layers/(snapshot-[a-f0-9]{32})/((?:dpc|effis)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.geojson)',path)
+            if attention_layer:return self.send(200,app.attention.layer(*attention_layer.groups()))
             if path=='/api/weather/map':return self.send(200,app.map_weather.snapshot())
             if path=='/api/weather/wind':return self.send(200,app.wind.snapshot())
             if path=='/api/weather':return self.send(200,app.weather.snapshot())

@@ -1,0 +1,12 @@
+{
+  "id": "italy",
+  "label": "Italia",
+  "bounds": [6.0, 35.0, 19.0, 48.0],
+  "display_grid": [130, 130],
+  "days": 2,
+  "effis_model": "mf010",
+  "native_resolution_km": 10,
+  "dpc_repository": "pcm-dpc/DPC-Bollettini-Criticita-Idrogeologica-Idraulica",
+  "refresh_s": 10800,
+  "license": "CC-BY-4.0"
+}

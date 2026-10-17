@@ -1,0 +1,279 @@
+{
+  "run_id": "monitor-real-20261017",
+  "base_git_sha": "e2b9404080479a678aa54c760d583cae5f7a254c",
+  "reviewer": "Codex self-check",
+  "scope": "Real-source research monitoring, not operational risk skill",
+  "unit_tests": {
+    "status": "PASS",
+    "count": 7
+  },
+  "web_regression_tests": {
+    "status": "PASS",
+    "count": 17
+  },
+  "browser_checks": [
+    {
+      "id": "native-sources-and-days",
+      "status": "PASS"
+    },
+    {
+      "id": "switch-drought-and-low",
+      "status": "PASS"
+    },
+    {
+      "id": "inspect-real-dated-evidence",
+      "status": "PASS",
+      "detail": "Condizioni favorevoli al fuoco\n\nPREVISIONE EFFIS \u00b7 non \u00e8 un incendio rilevato\n\nPericolosit\u00e0 incendio \u00b7 FWI\n27.572 \u00b7 Alta\nSecchezza del combustibile profondo \u00b7 DC\n980.52 \u00b7 Molto estrema\n\nIndici meteorologici EFFIS: non misurano un innesco, il combustibile locale o l\u2019efficacia delle squadre. Campione WMS 0,1\u00b0; modello circa 10 km.\n\nGiorno del prodotto\n2026-10-17\nEmissione\nNon comunicata dalla fonte\nAcquisizione nella VM\n17/10/26, 16:53 Roma\nSnapshot riproducibile\nsnapshot-f04d93d4e95a460387fdcaa990486690\nAltre evidenze nella stessa posizione\n\nDPC \u00b7 Bacino dell'Aterno \u00b7 bollettino aggiornato\n\nPer rischio idraulico\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nPer rischio temporali\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nPer rischio idrogeologico\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nContesto meteo della posizione\n\nDWD ICON Global via Open-Meteo \u00b7 campione pi\u00f9 vicino 42.25, 13.90. 17/10/26, 14:00 Roma\n\nTemperatura a 2 m\n18,1 \u00b0C\nVento a 10 m\n2,2 m/s\nPrecipitazione prevista nel giorno UTC\n0 mm \u00b7 24 ore complete\nUmidit\u00e0 relativa spaziale\nNon disponibile in questo campo\n\nContesto da modello distinto: non modifica il bollettino DPC o gli indici EFFIS e non dimostra un allagamento.\n\nValutazione d\u2019impatto locale non disponibile: mancano suolo e vulnerabilit\u00e0 qualificati, radar/idrometri e osservazioni satellitari live.\n\nFonte e metodologia \u2197"
+    },
+    {
+      "id": "explicit-source-distinction",
+      "status": "PASS",
+      "detail": "Condizioni favorevoli al fuoco\n\nPREVISIONE EFFIS \u00b7 non \u00e8 un incendio rilevato\n\nPericolosit\u00e0 incendio \u00b7 FWI\n27.572 \u00b7 Alta\nSecchezza del combustibile profondo \u00b7 DC\n980.52 \u00b7 Molto estrema\n\nIndici meteorologici EFFIS: non misurano un innesco, il combustibile locale o l\u2019efficacia delle squadre. Campione WMS 0,1\u00b0; modello circa 10 km.\n\nGiorno del prodotto\n2026-10-17\nEmissione\nNon comunicata dalla fonte\nAcquisizione nella VM\n17/10/26, 16:53 Roma\nSnapshot riproducibile\nsnapshot-f04d93d4e95a460387fdcaa990486690\nAltre evidenze nella stessa posizione\n\nDPC \u00b7 Bacino dell'Aterno \u00b7 bollettino aggiornato\n\nPer rischio idraulico\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nPer rischio temporali\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nPer rischio idrogeologico\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nContesto meteo della posizione\n\nDWD ICON Global via Open-Meteo \u00b7 campione pi\u00f9 vicino 42.25, 13.90. 17/10/26, 14:00 Roma\n\nTemperatura a 2 m\n18,1 \u00b0C\nVento a 10 m\n2,2 m/s\nPrecipitazione prevista nel giorno UTC\n0 mm \u00b7 24 ore complete\nUmidit\u00e0 relativa spaziale\nNon disponibile in questo campo\n\nContesto da modello distinto: non modifica il bollettino DPC o gli indici EFFIS e non dimostra un allagamento.\n\nValutazione d\u2019impatto locale non disponibile: mancano suolo e vulnerabilit\u00e0 qualificati, radar/idrometri e osservazioni satellitari live.\n\nFonte e metodologia \u2197"
+    },
+    {
+      "id": "missing-impact-not-safe",
+      "status": "PASS",
+      "detail": "Condizioni favorevoli al fuoco\n\nPREVISIONE EFFIS \u00b7 non \u00e8 un incendio rilevato\n\nPericolosit\u00e0 incendio \u00b7 FWI\n27.572 \u00b7 Alta\nSecchezza del combustibile profondo \u00b7 DC\n980.52 \u00b7 Molto estrema\n\nIndici meteorologici EFFIS: non misurano un innesco, il combustibile locale o l\u2019efficacia delle squadre. Campione WMS 0,1\u00b0; modello circa 10 km.\n\nGiorno del prodotto\n2026-10-17\nEmissione\nNon comunicata dalla fonte\nAcquisizione nella VM\n17/10/26, 16:53 Roma\nSnapshot riproducibile\nsnapshot-f04d93d4e95a460387fdcaa990486690\nAltre evidenze nella stessa posizione\n\nDPC \u00b7 Bacino dell'Aterno \u00b7 bollettino aggiornato\n\nPer rischio idraulico\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nPer rischio temporali\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nPer rischio idrogeologico\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nContesto meteo della posizione\n\nDWD ICON Global via Open-Meteo \u00b7 campione pi\u00f9 vicino 42.25, 13.90. 17/10/26, 14:00 Roma\n\nTemperatura a 2 m\n18,1 \u00b0C\nVento a 10 m\n2,2 m/s\nPrecipitazione prevista nel giorno UTC\n0 mm \u00b7 24 ore complete\nUmidit\u00e0 relativa spaziale\nNon disponibile in questo campo\n\nContesto da modello distinto: non modifica il bollettino DPC o gli indici EFFIS e non dimostra un allagamento.\n\nValutazione d\u2019impatto locale non disponibile: mancano suolo e vulnerabilit\u00e0 qualificati, radar/idrometri e osservazioni satellitari live.\n\nFonte e metodologia \u2197"
+    },
+    {
+      "id": "combined-evidence",
+      "status": "PASS",
+      "detail": "Condizioni favorevoli al fuoco\n\nPREVISIONE EFFIS \u00b7 non \u00e8 un incendio rilevato\n\nPericolosit\u00e0 incendio \u00b7 FWI\n27.572 \u00b7 Alta\nSecchezza del combustibile profondo \u00b7 DC\n980.52 \u00b7 Molto estrema\n\nIndici meteorologici EFFIS: non misurano un innesco, il combustibile locale o l\u2019efficacia delle squadre. Campione WMS 0,1\u00b0; modello circa 10 km.\n\nGiorno del prodotto\n2026-10-17\nEmissione\nNon comunicata dalla fonte\nAcquisizione nella VM\n17/10/26, 16:53 Roma\nSnapshot riproducibile\nsnapshot-f04d93d4e95a460387fdcaa990486690\nAltre evidenze nella stessa posizione\n\nDPC \u00b7 Bacino dell'Aterno \u00b7 bollettino aggiornato\n\nPer rischio idraulico\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nPer rischio temporali\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nPer rischio idrogeologico\nAssenza di fenomeni significativi prevedibili / NESSUNA ALLERTA\nContesto meteo della posizione\n\nDWD ICON Global via Open-Meteo \u00b7 campione pi\u00f9 vicino 42.25, 13.90. 17/10/26, 14:00 Roma\n\nTemperatura a 2 m\n18,1 \u00b0C\nVento a 10 m\n2,2 m/s\nPrecipitazione prevista nel giorno UTC\n0 mm \u00b7 24 ore complete\nUmidit\u00e0 relativa spaziale\nNon disponibile in questo campo\n\nContesto da modello distinto: non modifica il bollettino DPC o gli indici EFFIS e non dimostra un allagamento.\n\nValutazione d\u2019impatto locale non disponibile: mancano suolo e vulnerabilit\u00e0 qualificati, radar/idrometri e osservazioni satellitari live.\n\nFonte e metodologia \u2197"
+    },
+    {
+      "id": "map-click-inspection",
+      "status": "PASS"
+    },
+    {
+      "id": "tomorrow-selectable",
+      "status": "PASS"
+    },
+    {
+      "id": "hide-attention",
+      "status": "PASS"
+    },
+    {
+      "id": "flood-only-attention",
+      "status": "PASS"
+    },
+    {
+      "id": "fire-only-attention",
+      "status": "PASS"
+    },
+    {
+      "id": "responsive-375",
+      "status": "PASS",
+      "detail": {
+        "w": 375,
+        "s": 375
+      }
+    },
+    {
+      "id": "axe-375",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-768",
+      "status": "PASS",
+      "detail": {
+        "w": 768,
+        "s": 768
+      }
+    },
+    {
+      "id": "axe-768",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-1440",
+      "status": "PASS",
+      "detail": {
+        "w": 1440,
+        "s": 1440
+      }
+    },
+    {
+      "id": "axe-1440",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "existing-studio-retained",
+      "status": "PASS"
+    },
+    {
+      "id": "return-to-monitor",
+      "status": "PASS"
+    },
+    {
+      "id": "national-view-available",
+      "status": "PASS"
+    },
+    {
+      "id": "stale-not-low",
+      "status": "PASS"
+    },
+    {
+      "id": "missing-no-all-clear",
+      "status": "PASS"
+    },
+    {
+      "id": "source-recovery",
+      "status": "PASS"
+    },
+    {
+      "id": "layer-failure-no-false-fresh",
+      "status": "PASS"
+    },
+    {
+      "id": "no-simulations-triggered",
+      "status": "PASS",
+      "detail": [
+        "/api/monitoring/refresh",
+        "/api/monitoring/refresh",
+        "/api/monitoring/refresh",
+        "/api/monitoring/refresh",
+        "/api/monitoring/refresh",
+        "/api/monitoring/refresh"
+      ]
+    },
+    {
+      "id": "no-js-errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "native_checks": [
+    {
+      "id": "hash-fwi-2026-10-18.tif",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-fwi-2026-10-17.tif",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-effis-2026-10-17.geojson",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-dpc-tomorrow.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-dc-2026-10-18.tif",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-dpc-bulletin.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-dpc-2026-10-17.geojson",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-dc-2026-10-17.tif",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-dpc-head.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-dpc-today.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-effis-2026-10-18.geojson",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-dpc-2026-10-18.geojson",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "hash-dpc-commit.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "id": "native-values-2026-10-17",
+      "status": "PASS",
+      "detail": {
+        "cells": 8968,
+        "tiff_crs": "EPSG:4326",
+        "grid": [
+          130,
+          130
+        ],
+        "native_km": 10
+      }
+    },
+    {
+      "id": "official-text-and-levels-2026-10-17",
+      "status": "PASS",
+      "detail": {
+        "zones": 187,
+        "unverified_geometry": 11
+      }
+    },
+    {
+      "id": "native-values-2026-10-18",
+      "status": "PASS",
+      "detail": {
+        "cells": 8968,
+        "tiff_crs": "EPSG:4326",
+        "grid": [
+          130,
+          130
+        ],
+        "native_km": 10
+      }
+    },
+    {
+      "id": "official-text-and-levels-2026-10-18",
+      "status": "PASS",
+      "detail": {
+        "zones": 187,
+        "unverified_geometry": 11
+      }
+    }
+  ],
+  "versions": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "platform": "Linux-5.15.0-198-generic-aarch64-with-glibc2.35",
+    "rasterio": "1.2.10",
+    "shapely": "1.8.0"
+  },
+  "cold_acquisition": {
+    "status": "PASS",
+    "elapsed_s": 8.449537876993418,
+    "meaning": "One acquisition only, not a performance distribution"
+  },
+  "source_download_bytes": 2714911,
+  "sources": {
+    "EFFIS": "FWI and DC, M\u00e9t\u00e9o-France ~10km; WMS numeric sampling0.1degree, emission unknown",
+    "DPC": "187 zones/day;11 invalid decoded source footprints classified UNKNOWN, official texts retained"
+  },
+  "limitations": [
+    "No local inundation or impact forecast inferred from rainfall",
+    "Live radar, gauges, hotspots, qualified fuel/soil/vulnerability not integrated",
+    "No historical skill, false-alarm/lead-time, new p95/soak or international validation"
+  ],
+  "raw": "experiments/runs/monitor-real-20261017"
+}
