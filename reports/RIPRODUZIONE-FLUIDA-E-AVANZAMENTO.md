@@ -4,7 +4,7 @@ Run `smooth-resume-20261018`,18ottobre2026. Base `02143bd00cc50087c7432dc95c68a7
 
 ## Diagnosi
 
-Il messaggio generico “calcolo nella VM in corso” nascondeva una sequenza di quattro job reali avviati dall’utente. Osservati RUNNING/SUCCEEDED, poi tutti SUCCEEDED: `job-53e36e1aff8e43399bf2b3647dc26653`, `job-268d21ca223b47fd93172c65cd408d82`, `job-c49ea10f01e042f3a933d099161bb8ed`, `job-1f63cbbb3c294b8f880422a9b82d6fa2`. Nessuna evidenza di deadlock del motore in questi job. Il ricalcolo completo impiega minuti; non è esecuzione interattiva del solver dal punto di pausa.
+Il messaggio generico “calcolo nella VM in corso” nascondeva una sequenza di quattro job reali avviati dall’utente. Osservati RUNNING/SUCCEEDED, poi tutti SUCCEEDED; identificativi e configurazioni nel raw privato. Nessuna evidenza di deadlock del motore in questi job. Il ricalcolo completo impiega minuti; non è esecuzione interattiva del solver dal punto di pausa.
 
 Un secondo limite effettivo: intenzione di ripresa e coda vivevano soltanto nelle variabili JS. Aggiornare la pagina perdeva quel contesto pur conservando i job nella VM. Ora sessionStorage conserva ora, selezione, coda e intenzione di ripresa per lo stesso tab/caso, con firme degli input. La configurazione scientifica e i job restano salvati nella VM. Configurazioni incompatibili non recuperano il contesto vecchio. Copre reload dopo salvataggio; NON garantisce recupero transazionale da crash durante la finestra fra richiesta accettata e persistenza, né coordinamento di più tab esecutori.
 
