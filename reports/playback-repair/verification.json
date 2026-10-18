@@ -1,0 +1,272 @@
+{
+  "run_id": "playback-repair-20261018",
+  "parent_sha": "435a45fa5457d691e6d5e5f0d1e72637a7101264",
+  "reviewer": "Codex self-check",
+  "browser": "155.0.8059.84",
+  "dedicated": [
+    {
+      "id": "single-visible-result-clock",
+      "status": "PASS"
+    },
+    {
+      "id": "timeline-immediately-above-maps",
+      "status": "PASS"
+    },
+    {
+      "id": "three-original-pngs-decoded",
+      "status": "PASS"
+    },
+    {
+      "id": "native-play-advances-all-three",
+      "status": "PASS"
+    },
+    {
+      "id": "pause-stays-still",
+      "status": "PASS"
+    },
+    {
+      "id": "manual-seek-keeps-requested-hour",
+      "status": "PASS"
+    },
+    {
+      "id": "back-one-native-sample",
+      "status": "PASS"
+    },
+    {
+      "id": "forward-one-native-sample",
+      "status": "PASS"
+    },
+    {
+      "id": "loading-shows-busy-and-last-good-maps",
+      "status": "PASS"
+    },
+    {
+      "id": "slow-first-sample-not-skipped",
+      "status": "PASS"
+    },
+    {
+      "id": "slow-play-advances-all-windows",
+      "status": "PASS"
+    },
+    {
+      "id": "each-png-downloaded-once",
+      "status": "PASS",
+      "detail": [
+        "http://127.0.0.1:8080/api/firelab/job-9007a1fc063749dba5bed8b55f8e05a6/frame-161.png",
+        "http://127.0.0.1:8080/api/firelab/job-7ebc9b72a7054bdba6d7df5de3b1683c/frame-161.png",
+        "http://127.0.0.1:8080/api/firelab/job-7e29200923e649acbba9e6274c6cb051/frame-161.png",
+        "http://127.0.0.1:8080/api/firelab/job-9007a1fc063749dba5bed8b55f8e05a6/frame-162.png",
+        "http://127.0.0.1:8080/api/firelab/job-7ebc9b72a7054bdba6d7df5de3b1683c/frame-162.png",
+        "http://127.0.0.1:8080/api/firelab/job-7e29200923e649acbba9e6274c6cb051/frame-162.png",
+        "http://127.0.0.1:8080/api/firelab/job-9007a1fc063749dba5bed8b55f8e05a6/frame-163.png",
+        "http://127.0.0.1:8080/api/firelab/job-7ebc9b72a7054bdba6d7df5de3b1683c/frame-163.png",
+        "http://127.0.0.1:8080/api/firelab/job-7e29200923e649acbba9e6274c6cb051/frame-163.png",
+        "http://127.0.0.1:8080/api/firelab/job-9007a1fc063749dba5bed8b55f8e05a6/frame-201.png",
+        "http://127.0.0.1:8080/api/firelab/job-7ebc9b72a7054bdba6d7df5de3b1683c/frame-201.png",
+        "http://127.0.0.1:8080/api/firelab/job-7e29200923e649acbba9e6274c6cb051/frame-201.png"
+      ]
+    },
+    {
+      "id": "pause-during-loading-does-not-commit",
+      "status": "PASS"
+    },
+    {
+      "id": "failed-frame-pauses-preserves-last-good",
+      "status": "PASS"
+    },
+    {
+      "id": "stops-at-result-end",
+      "status": "PASS"
+    },
+    {
+      "id": "restart-from-end",
+      "status": "PASS"
+    },
+    {
+      "id": "consultation-weather-clock-explicitly-separate",
+      "status": "PASS"
+    },
+    {
+      "id": "result-weather-follows-fire-clock",
+      "status": "PASS"
+    },
+    {
+      "id": "responsive-375",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-375",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-768",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-768",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-1440",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-1440",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "uncomputed-draft-cannot-play",
+      "status": "PASS"
+    },
+    {
+      "id": "no-javascript-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "main-workspace-unmodified",
+      "status": "PASS"
+    },
+    {
+      "id": "saved-case-unmodified",
+      "status": "PASS"
+    }
+  ],
+  "regression": [
+    {
+      "id": "three-scenarios-any-terrain",
+      "status": "PASS"
+    },
+    {
+      "id": "fixed-boundary-removed",
+      "status": "PASS"
+    },
+    {
+      "id": "weather-estimator-default",
+      "status": "PASS"
+    },
+    {
+      "id": "wheel-does-not-zoom-scenario-0",
+      "status": "PASS"
+    },
+    {
+      "id": "wheel-does-not-zoom-scenario-1",
+      "status": "PASS"
+    },
+    {
+      "id": "wheel-does-not-zoom-scenario-2",
+      "status": "PASS"
+    },
+    {
+      "id": "dynamic-endpoint-submitted",
+      "status": "PASS"
+    },
+    {
+      "id": "model-selected-explicitly",
+      "status": "PASS"
+    },
+    {
+      "id": "future-start-used",
+      "status": "PASS"
+    },
+    {
+      "id": "preparation-visible",
+      "status": "PASS"
+    },
+    {
+      "id": "preparation-persisted",
+      "status": "PASS"
+    },
+    {
+      "id": "calculation-does-not-freeze-maps",
+      "status": "PASS"
+    },
+    {
+      "id": "cancel-transmitted",
+      "status": "PASS"
+    },
+    {
+      "id": "cancel-is-terminal",
+      "status": "PASS"
+    },
+    {
+      "id": "manual-mode-deliberate",
+      "status": "PASS"
+    },
+    {
+      "id": "batch-submits-every-scenario",
+      "status": "PASS"
+    },
+    {
+      "id": "batch-common-start",
+      "status": "PASS"
+    },
+    {
+      "id": "batch-pins-first-forecast",
+      "status": "PASS"
+    },
+    {
+      "id": "batch-no-hidden-resources",
+      "status": "PASS"
+    },
+    {
+      "id": "batch-classified-failures-release-controls",
+      "status": "PASS"
+    },
+    {
+      "id": "responsive-375",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-375",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-768",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-768",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-1440",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-1440",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "monitor-wheel-no-zoom",
+      "status": "PASS"
+    },
+    {
+      "id": "monitor-time-connects-danger-day",
+      "status": "PASS"
+    },
+    {
+      "id": "no-browser-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "actual-workspace-preserved",
+      "status": "PASS"
+    }
+  ],
+  "iab": {
+    "status": "PASS",
+    "before_hour": 24,
+    "paused_hour": 35.25,
+    "case": "fonte-vetica-20261018"
+  },
+  "new_model_runs": "NOT RUN",
+  "physics_qualification": "BLOCKED; unchanged"
+}

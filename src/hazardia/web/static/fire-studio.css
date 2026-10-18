@@ -45,3 +45,5 @@ details{border-top:1px solid var(--line);padding:14px 16px;font-size:12px}summar
 .terrain-coverage-bar{flex-wrap:wrap}.terrain-coverage-bar>span{flex:1}.terrain-coverage-bar details{flex-basis:100%}.terrain-coverage-bar summary{cursor:pointer;min-height:28px}.terrain-coverage-bar details p{margin:6px 0;max-width:100%;font-size:11px}
 
 .case-banner{padding:16px 20px;border-bottom:1px solid #b8cadc;background:#f0f6fc;color:#173553}.case-banner strong{display:block;font-size:1.05rem}.case-banner p{margin:6px 0;max-width:90ch;font-size:.875rem;line-height:1.5}.case-banner a{color:#195582;font-weight:600;display:inline-block;padding:6px 0}
+
+.forecast-playback[hidden]{display:none!important}
