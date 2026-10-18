@@ -412,3 +412,7 @@ Scelta utente: scenario futuro con innesco ipotetico e dati reali, distinto dall
 
 ## FR-FIRE-WORKSPACE-01 — disposizione nominale, richiesta2026-10-18
 Nuovo workspace con un solo scenario nominale vuoto. Il primo scenario rimane riferimento in evidenza, con alternative sotto nell’ordine di creazione; selezione/modifica non scambia le mappe. Alternative eliminabili dalla workspace, con annullamento singolo nella sessione e mantenimento degli artefatti calcolati. Nominale protetto dalla cancellazione, inneschi e risorse sempre modificabili; non imporre assenza di squadre al lavoro esistente. Nessun reset automatico di configurazioni o casi già salvati. Risorse/geometrie indirizzate alla mappa scelta, sincronizzazione temporale/meteo e zoom esistente invariati.
+
+
+## FR-FIRE-WORKSPACE-01 — ricalcolo e bozze vuote
+Le alternative senza inneschi restano bozze visibili e non impediscono calcolo/ripresa degli scenari eseguibili. Lo stato modificato dipende dai valori, non dall’ordine delle proprietà JSON. Un risultato invariato può essere riutilizzato soltanto se compatibile anche con il calendario di eventi numerici comune; altrimenti viene ricalcolato. Mostrare calcolo/errore accanto al cursore, fermare la coda al primo errore ed evitare falsa ripresa; risultati precedenti conservati. La ripresa richiede risultati coerenti con gli input correnti ed esclude le sole bozze senza inneschi.
