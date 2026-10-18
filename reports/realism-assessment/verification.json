@@ -1,0 +1,51 @@
+{
+  "run_id": "realism-assessment-20261018",
+  "base_sha": "ab39ab19f7f11d46d7a44cc4b63246b4315755d9",
+  "reviewer": "Codex self-check",
+  "status": "PARTIAL_ASSESSMENT_REALISTIC_SCENARIO_NOT_COMPLETE",
+  "input_audit": {
+    "status": "PASS",
+    "jobs_audited": 3,
+    "assets_verified": 15,
+    "artifacts_verified": 1782,
+    "realizations_each": [
+      2,
+      2,
+      2
+    ],
+    "native_cell_m": 30,
+    "spatial_forcing_events_each": [
+      72,
+      72,
+      72
+    ]
+  },
+  "initialization_pilot": {
+    "qualification": "POINT_PILOT_NOT_SPATIAL_FUEL_MAP_NOT_CALIBRATED",
+    "start": "2026-10-18T16:00:00Z",
+    "antecedent_hours": 168,
+    "provider_model_position": [
+      42.375,
+      13.75
+    ],
+    "provider_elevation_m": 1233.0,
+    "legacy_reset_percent": 16.29896193771626,
+    "initialization_spread_at_ignition_pp": 8.0108642578125e-05
+  },
+  "initialized_moisture_percent": [
+    16.352256774902344,
+    16.352190017700195,
+    16.352176666259766
+  ],
+  "acquisition_bytes": 10048,
+  "unit_tests_passed": 6,
+  "new_native_runs": 0,
+  "production_inputs_changed": false,
+  "missing": [
+    "Observed ignition/perimeter/timing for historical reconstruction",
+    "Local seasonal fuels and species, measured/validated moisture",
+    "Spatial forecast accuracy in complex terrain",
+    "Calibrated aircraft/ground-resource effectiveness and logistics",
+    "Adequate stochastic and forecast ensemble plus independent held-out validation"
+  ]
+}

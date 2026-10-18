@@ -1000,3 +1000,17 @@ Report reports/MODIFICHE-DURANTE-LA-SIMULAZIONE.md e reports/midrun-edit/*.json;
 | Qualificazione efficacia/logistica/skill e fullM5–M7 | BLOCKED |prerequisiti scientifici invariati |
 
 Base 02143bd00cc50087c7432dc95c68a7016c8d0df2+dirty; commit consegna Git/PUBLICATION.json, reviewer Codex self-check. Raw experiments/runs/smooth-resume-20261018; prossimo incremento scientifico invariato.
+
+
+## Realismo fisico — realism-assessment-20261018
+
+| Verifica | Esito | Evidenza |
+|---|---|---|
+| Input/forzanti effettivi3casi FonteVetica | PASS |15asset/1782artefatti, native-input-audit.json raw |
+| Storia168h e sensibilità inizializzazione,1richiesta/10048B | PASS |protocol.json preregistrato, receipt e result VM, reports/realism-assessment/verification.json |
+| Nessun leakage pioggia dopo inizio; gap/null/unità rifiutati | PASS |6testVM unit.log |
+| Accessibilità fonti forestali e condizioni di uso | PASS analisi |report SCENARIO-REALISTICO-PREREQUISITI, CFI accesso formale; nessuna email inviata |
+| Scenario realistico completo/validazione FonteVetica/efficacia soccorsi | BLOCKED |Combustibili/moisture/logistica/ensemble/osservazioni non qualificati |
+| Nuovo caso dashboard, run fisici/ensemble/calibrazione/p95/soak | NOT RUN |nessun input/workspace/runtime modificato |
+
+La prova puntuale non è un’inizializzazione spaziale né una validazione. Richiesta di scenario realistico ancora aperta. Baseab39ab1+dirty, SHA Git/PUBLICATION.json, reviewer Codex self-check.
