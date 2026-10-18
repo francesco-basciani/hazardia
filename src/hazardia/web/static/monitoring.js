@@ -11,6 +11,7 @@ function date(v){return new Date(v).toLocaleString('it-IT',{timeZone:'Europe/Rom
 export function monitoringMap(initial,feedback){
  let catalog=initial,context=[],selected=null,failures=0,visible=true,labelsTimer,weatherRecord=null,weatherForecast=null;
  const map=L.map('monitor-map',{preferCanvas:true,scrollWheelZoom:false,keyboard:true}).setView([42.35,13.38],8);
+ map.getContainer().dataset.zoom=String(map.getZoom());map.on('zoomend',()=>map.getContainer().dataset.zoom=String(map.getZoom()));
  map.setMinZoom(4);map.setMaxZoom(20);map.setMaxBounds([[34,5],[49,20]]);map.attributionControl.setPrefix('HAZARDIA · Ricerca');
  map.createPane('monitorSatellite');map.getPane('monitorSatellite').style.zIndex=190;
  const satellite=L.imageOverlay('/assets/satellite.png',[[42.30,13.32],[42.40,13.44]],{opacity:1,pane:'monitorSatellite',attribution:'Contains modified Copernicus Sentinel data2024'}).addTo(map);

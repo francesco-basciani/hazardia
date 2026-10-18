@@ -72,14 +72,14 @@ class RegionalSatellite(Orthophotos):
     Separate bounded RAM cache/traffic; no offline redistribution archive.
     """
     memory_limit=8*1024**2
-    download_limit=16*1024**2
+    download_limit=64*1024**2
     tile_limit=512*1024
     traffic_name='regional-satellite-traffic.json'
     extent=(-180.,-85.,180.,85.)
     min_zoom=4
-    max_zoom=11
+    max_zoom=14
     def url(self,z,x,y,bbox):
-        if z>11:raise HazardError('INVALID_INPUT','Overview background only at zoom4–11')
+        if z>14:raise HazardError('INVALID_INPUT','Satellite background native zoom4–14')
         return f'https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2024_3857/default/g/{z}/{y}/{x}.jpg'
     def status(self):
         r=super().status();r.update(source='Sentinel-2 cloudless2024 by EOX; Contains modified Copernicus Sentinel data2024',license='CC-BY-NC-SA-4.0',license_url='https://www.eox.at/2025/03/sentinel-2-cloudless-2024/');return r

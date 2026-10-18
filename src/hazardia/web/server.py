@@ -3,7 +3,7 @@ import concurrent.futures,copy,datetime as dt,hashlib,json,mimetypes,os,re,sqlit
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
-from hazardia.io import load,loads,write_new,utcnow,HazardError,sha256
+from hazardia.io import load,loads,write_new,utcnow,HazardError,sha256,verify_asset
 from hazardia.jobs import JobStore
 from hazardia.web.maps import Orthophotos,RegionalSatellite
 from hazardia.web.notebook import Notebook
@@ -23,7 +23,7 @@ from hazardia.firelab import stage as stage_firelab,validate as validate_firelab
 
 class App:
     def __init__(self,root):
-        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock()
+        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock();from hazardia.web.dynamic_fire import DynamicFire;self.dynamic_fire=DynamicFire(self)
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
     def models(self):
@@ -214,6 +214,8 @@ class Handler(BaseHTTPRequestHandler):
                 if path=='/api/fire-ideal/replay':
                     from hazardia.web.fire_ideal_service import replay
                     return self.send(202,replay(app,body))
+                if path.startswith('/api/fire-preparations/') and path.endswith('/cancel'):return self.send(200,app.dynamic_fire.cancel(path.split('/')[-2]))
+                if path=='/api/firelab/dynamic':return self.send(202,app.dynamic_fire.submit(body))
                 if path=='/api/firelab/scenario':return self.send(202,app.submit_firelab(body,single=True))
                 if path=='/api/firelab':return self.send(202,app.submit_firelab(body))
                 if path=='/api/decisions':return self.send(202,app.submit_decision(body))
@@ -246,9 +248,13 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/weather/map':return self.send(200,app.map_weather.snapshot())
             if path=='/api/weather/wind':return self.send(200,app.wind.snapshot())
             if path=='/api/weather':return self.send(200,app.weather.snapshot())
+            if path.startswith('/api/fire-preparations/'):return self.send(200,app.dynamic_fire.get(path.split('/')[-1]))
             if path=='/api/firelab/coverage':return self.send(200,fire_coverage(app.root))
             if path=='/api/catalog':return self.send(200,app.catalog())
             if path=='/api/jobs':return self.send(200,app.jobs())
+            forcing=re.fullmatch('/api/fire-forcing/(job-[a-f0-9]{32})',path)
+            if forcing:
+                folder=app.root/'jobs'/forcing.group(1);app.store.get(forcing.group(1));req=load(folder/'request.json');weather=load(verify_asset(folder,next(a for a in req['assets'] if a['role']=='weather')));return self.send(200,dict(field=weather.get('distributed_field'),qualification='FROZEN_JOB_INPUT',valid_from=req['valid_from']))
             studio=re.fullmatch('/api/firelab/(job-[a-f0-9]{32})(?:/(frame-[0-9]{3}\\.png))?',path)
             if studio:
                 job,frame=studio.groups();state=app.store.get(job)

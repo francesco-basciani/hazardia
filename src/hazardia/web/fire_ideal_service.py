@@ -28,7 +28,7 @@ def submit(app,body):
             cfg=load(app.root/'runtime-v2.json');env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[2]),PROJ_LIB='/usr/share/proj')
             remaining=60-(time.monotonic()-accepted)
             if remaining<=0:raise subprocess.TimeoutExpired('queue',60)
-            with (stage/'prepare.log').open('xb') as log:proc=subprocess.run([cfg['geo_python'],'-m','hazardia.decision.fire_ideal',str(app.root),str(stage/'request.json'),str(stage/'prepared')],env=env,stdout=log,stderr=subprocess.STDOUT,timeout=min(20,remaining))
+            with (stage/'prepare.log').open('xb') as log:proc=subprocess.run([cfg['geo_python'],'-m','hazardia.decision.fire_ideal',str(app.root),str(stage/'request.json'),str(stage/'prepared')],env=env,stdout=log,stderr=subprocess.STDOUT,timeout=min(30,remaining))
             if proc.returncode:raise HazardError('INVALID_INPUT','Geographic policy could not be prepared; check coverage, baseline without interventions and logs')
             p=load(stage/'prepared/problem.json');context=load(stage/'prepared/context.json')
             with app.lock:p=app.replay.apply(p);health=app.replay.snapshot()

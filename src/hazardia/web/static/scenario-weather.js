@@ -11,7 +11,7 @@ const clock=at=>new Date(at).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:
 const number=v=>Number.isFinite(v)?v.toLocaleString('it-IT',{maximumFractionDigits:1}):'non disponibile';
 export function scenarioWeather(primary){
  const $=id=>document.getElementById(id),layers=new Map(),selected=new Set(['wind','temperature','humidity','precipitation']),reduced=matchMedia('(prefers-reduced-motion: reduce)');
- let displayRecord=null,snapshot=null,requestedAt=null,busy=false,refreshAt=0,timer=null,poll=null,paused=reduced.matches;
+ let displayPhase=null,displayRecord=null,snapshot=null,requestedAt=null,busy=false,refreshAt=0,timer=null,poll=null,paused=reduced.matches;
  const options=$('map-weather-options'),rainKey=$('scenario-rain-key');rainLegend(rainKey);
  const playback=forecastPlayback({select:$('map-weather-hour'),mount:$('scenario-weather-playback'),getTimes:()=>snapshot?.forecast?.records.filter(r=>Date.parse(r.at)+3600000>Date.now()).map(r=>r.at)||[],getCurrent:()=>record()?.at,active:()=>selected.size>0});
  for(const [key,[label,unit,min,max,rgb]] of Object.entries(fields)){
@@ -19,7 +19,7 @@ export function scenarioWeather(primary){
  }
  function chosenTime(){return $('map-weather-hour').value==='timeline'?requestedAt:$('map-weather-hour').value;}
  function record(){if(displayRecord)return displayRecord;const f=snapshot?.forecast,at=chosenTime();return f?.records.find(r=>r.at===(at||f.records.find(r=>Date.parse(r.at)>Date.now())?.at))||null;}
- function status(){const f=snapshot?.forecast,r=record(),names=[...selected].map(k=>fields[k][0]);$('map-weather-status').textContent=!selected.size?'Nessun livello meteo attivo.':!f?'DATI MANCANTI · '+(snapshot?.error||'Campo meteo non disponibile.'):(snapshot.status==='FRESH'?'Previsione reale':'CACHE METEO SCADUTA')+' · '+f.model+' · '+(r?clock(r.at):'ORA NON COPERTA')+' · '+names.join(', ')+(snapshot.error?' · '+snapshot.error:'')+'. Modello circa11km · campioni '+Math.abs(f.lats[1]-f.lats[0]).toFixed(2)+'° × '+Math.abs(f.lons[1]-f.lons[0]).toFixed(2)+'°. Scie amplificate; etichette interpolate, non stazioni. Interpolazione visuale, nessun dettaglio stradale misurato.';}
+ function status(){if([...layers.values()].some(l=>l.forcing)){ $('map-weather-status').textContent='Meteo del risultato: fonte congelata distinta per ogni scenario. Le modifiche al vento sono rappresentate sulla relativa mappa. Previsioni aggiornate è una consultazione separata; non modifica risultati già calcolati.';return;}const f=snapshot?.forecast,r=record(),names=[...selected].map(k=>fields[k][0]);$('map-weather-status').textContent=!selected.size?'Nessun livello meteo attivo.':!f?'DATI MANCANTI · '+(snapshot?.error||'Campo meteo non disponibile.'):(snapshot.status==='FRESH'?'Previsione reale':'CACHE METEO SCADUTA')+' · '+f.model+' · '+(r?clock(r.at):'ORA NON COPERTA')+' · '+names.join(', ')+(snapshot.error?' · '+snapshot.error:'')+'. Modello circa11km · campioni '+Math.abs(f.lats[1]-f.lats[0]).toFixed(2)+'° × '+Math.abs(f.lons[1]-f.lons[0]).toFixed(2)+'°. Scie amplificate; etichette interpolate, non stazioni. Interpolazione visuale, nessun dettaglio stradale misurato.';}
  function redraw(){rainKey.hidden=false;status();playback.sync();for(const layer of layers.values())layer.reset();}
  const WeatherLayer=L.Layer.extend({
   initialize(){this.frame=null;this.particles=[];this.hide=this.hide.bind(this);this.reset=this.reset.bind(this);this.tick=this.tick.bind(this);},
@@ -32,7 +32,7 @@ export function scenarioWeather(primary){
    positionLabels(this.readings,this.map);this.readings.style.visibility='visible';this.readings.replaceChildren();
    this.canvas.width=Math.ceil(w/8);this.canvas.height=Math.ceil(h/8);this.wind.width=w;this.wind.height=h;
    this.draw();
-   const r=record(),f=snapshot?.forecast;
+   const r=this.record(),f=this.field();
    if(!selected.has('wind')||!r||!f||!this.map.getBounds().intersects(f.bounds))return;
    this.particles=Array.from({length:Math.min(420,Math.max(100,Math.floor(w*h/1300)))},()=>({x:Math.random()*w,y:Math.random()*h,age:Math.random()*80}));this.last=0;
    if(paused||reduced.matches){this.arrows();return;}
@@ -40,9 +40,9 @@ export function scenarioWeather(primary){
   },
   draw(){
    if(!this.map||!this.width||!this.height)return;
-   const detailsOpen=this.legendEl.querySelector('details')?.open;const r=record(),f=snapshot?.forecast;this.canvas.dataset.at=r?.at||'';this.canvas.dataset.fields=[...selected].join(',');this.wind.dataset.at=r?.at||'';this.wind.dataset.active='false';this.legendEl.replaceChildren();this.legendEl.hidden=!selected.size;
+   const detailsOpen=this.legendEl.querySelector('details')?.open;const r=this.record(),f=this.field();this.canvas.dataset.at=r?.at||'';this.canvas.dataset.field=f?.id||'';this.canvas.dataset.origin=this.forcing?'FROZEN_JOB':'LIVE_CONSULTATION';this.canvas.dataset.job=this.forcing?.id||'';this.canvas.dataset.fields=[...selected].join(',');this.wind.dataset.at=r?.at||'';this.wind.dataset.active='false';this.legendEl.replaceChildren();this.legendEl.hidden=!selected.size;
    if(!selected.size)return;
-   const title=document.createElement('strong');title.textContent=r?(snapshot.status==='FRESH'?'':'CACHE SCADUTA · ')+clock(r.at):'METEO NON DISPONIBILE A QUEST’ORA';this.legendEl.append(title);
+   const title=document.createElement('strong');title.textContent=r?(this.forcing?($('map-weather-hour').value==='timeline'?'METEO USATO · ':'FONTE DEL RISULTATO · '):snapshot.status==='FRESH'?'':'CACHE SCADUTA · ')+clock(r.at):'METEO NON DISPONIBILE A QUEST’ORA';this.legendEl.append(title);
    if(!r||!f)return;
    const keys=[...selected].filter(k=>k!=='wind');
    const coverage=paintRain(this.ctx,this.map,f,r,{rain:selected.has('precipitation'),cloud:selected.has('cloud')});
@@ -56,8 +56,10 @@ export function scenarioWeather(primary){
   arrows(){const w=this.width,h=this.height;
    for(let y=25;y<h;y+=45)for(let x=25;x<w;x+=45){const v=this.velocity(x,y);if(!v)continue;const s=Math.hypot(...v);if(s<.1)continue;const dx=v[0]/s*10,dy=-v[1]/s*10,c=this.wctx;c.strokeStyle='#9ceee1';c.lineWidth=2;c.lineCap='round';c.shadowColor='#071929';c.shadowBlur=2;c.beginPath();c.moveTo(x-dx/2,y-dy/2);c.lineTo(x+dx/2,y+dy/2);c.lineTo(x+dx/2-dx*.4+dy*.25,y+dy/2-dy*.4-dx*.25);c.stroke();}
   },
-  velocity(x,y){const p=this.map.containerPointToLatLng([x,y]);return sampleVector(snapshot.forecast,record(),p.lat,p.lng);},
-  tick(t){this.frame=null;if(document.hidden||!selected.has('wind')||paused||!record())return;this.frame=requestAnimationFrame(this.tick);if(this.last&&t-this.last<32)return;const dt=this.last?Math.min(.08,(t-this.last)/1000):.033;this.last=t;const c=this.wctx;c.globalCompositeOperation='destination-in';c.fillStyle='rgba(0,0,0,.92)';c.fillRect(0,0,this.width,this.height);c.globalCompositeOperation='source-over';c.lineWidth=2;c.lineCap='round';c.shadowColor='#071929';c.shadowBlur=2;
+  field(){return this.forcing?.field||snapshot?.forecast;},
+  record(){const f=this.field();if(!f)return null;const at=this.forcing&&$('map-weather-hour').value==='timeline'?this.forcing.at:record()?.at;const key=f.id+':'+(this.forcing?.id||'')+':'+at+':'+(displayPhase?.fraction||0);if(this.recordKey===key)return this.recordValue;this.recordKey=key;let r=displayPhase&&$('map-weather-hour').value!=='timeline'?interpolateWeather(f.records,displayPhase):f.records.find(r=>r.at===at);if(!r){this.recordValue=null;return null;}const edit=this.forcing?.changes?.find(c=>c.hour===Math.floor((Date.parse(r.at)-Date.parse(this.forcing.start))/3600000));if(edit){const a=edit.direction_deg*Math.PI/180;r={...r,u:f.lats.flatMap(()=>f.lons.map(()=>-edit.speed_ms*Math.sin(a))),v:f.lats.flatMap(()=>f.lons.map(()=>-edit.speed_ms*Math.cos(a)))};}this.recordValue=r;return r;},
+  velocity(x,y){const p=this.map.containerPointToLatLng([x,y]);return sampleVector(this.field(),this.record(),p.lat,p.lng);},
+  tick(t){this.frame=null;if(document.hidden||!selected.has('wind')||paused||!this.record())return;this.frame=requestAnimationFrame(this.tick);if(this.last&&t-this.last<32)return;const dt=this.last?Math.min(.08,(t-this.last)/1000):.033;this.last=t;const c=this.wctx;c.globalCompositeOperation='destination-in';c.fillStyle='rgba(0,0,0,.92)';c.fillRect(0,0,this.width,this.height);c.globalCompositeOperation='source-over';c.lineWidth=2;c.lineCap='round';c.shadowColor='#071929';c.shadowBlur=2;
    for(const p of this.particles){const v=this.velocity(p.x,p.y);if(!v||p.age>100||p.x<0||p.y<0||p.x>this.width||p.y>this.height){p.x=Math.random()*this.width;p.y=Math.random()*this.height;p.age=0;continue;}const speed=Math.hypot(...v),x=p.x+v[0]*dt*windGain(speed),y=p.y-v[1]*dt*windGain(speed);p.age++;c.strokeStyle=speed<3?'#e5faff':speed<7?'#70ead3':speed<12?'#f4dc8c':'#ffab80';c.beginPath();c.moveTo(p.x,p.y);c.lineTo(x,y);c.stroke();p.x=x;p.y=y;}
    this.wind.dataset.active='true';
   }
@@ -69,7 +71,7 @@ export function scenarioWeather(primary){
   if(refresh&&(!covers||snapshot.status!=='FRESH')&&!snapshot.fetching&&Date.now()-refreshAt>=65000){refreshAt=Date.now();await fetch('/api/weather/map/refresh',{method:'POST',headers:{'Content-Type':'application/json','X-Hazardia-Research':'1'},body:JSON.stringify({bounds})});clearTimeout(poll);poll=setTimeout(()=>load(false),1600);}else if(snapshot.fetching){clearTimeout(poll);poll=setTimeout(()=>load(false),1600);}
  }catch(e){snapshot={...snapshot,status:'UNAVAILABLE',error:e.message};redraw();}finally{busy=false;}}
  primary.on('moveend',()=>{clearTimeout(timer);timer=setTimeout(()=>load(),700);});
- $('map-weather-hour').onchange=e=>{displayRecord=interpolateWeather(snapshot?.forecast?.records,e.forecastPhase);if(e.forecastReplay){for(const layer of layers.values()){layer.draw();if(paused||reduced.matches){layer.wctx.clearRect(0,0,layer.width,layer.height);layer.arrows();}}}else redraw();};$('map-weather-pause').onclick=()=>{paused=!paused;$('map-weather-pause').textContent=paused?'Riprendi vento':'Pausa vento';$('map-weather-pause').setAttribute('aria-pressed',String(paused));redraw();};
+ $('map-weather-hour').onchange=e=>{displayPhase=e.forecastPhase||null;displayRecord=interpolateWeather(snapshot?.forecast?.records,e.forecastPhase);if(e.forecastReplay){for(const layer of layers.values()){layer.draw();if(paused||reduced.matches){layer.wctx.clearRect(0,0,layer.width,layer.height);layer.arrows();}}}else redraw();};$('map-weather-pause').onclick=()=>{paused=!paused;$('map-weather-pause').textContent=paused?'Riprendi vento':'Pausa vento';$('map-weather-pause').setAttribute('aria-pressed',String(paused));redraw();};
  reduced.addEventListener('change',()=>redraw());document.addEventListener('visibilitychange',()=>redraw());setInterval(()=>load(),65000);load();
- return {add(m){if(layers.has(m))return;m.createPane('scenarioWeather');m.getPane('scenarioWeather').style.zIndex=420;m.getPane('scenarioWeather').style.pointerEvents='none';const layer=new WeatherLayer();layers.set(m,layer);layer.addTo(m);},remove(m){const layer=layers.get(m);if(layer){layer.remove();layers.delete(m);}},setTime(at){if(requestedAt!==at){requestedAt=at;redraw();}}};
+ return {use(m,forcing){const layer=layers.get(m);if(!layer)return;const key=forcing?forcing.id+':'+forcing.at+':'+$('weather-view').value:'';if(layer.forcingKey!==key){layer.forcingKey=key;layer.forcing=$('weather-view').value==='forecast'?null:forcing;layer.reset();status();}},add(m){if(layers.has(m))return;m.createPane('scenarioWeather');m.getPane('scenarioWeather').style.zIndex=420;m.getPane('scenarioWeather').style.pointerEvents='none';const layer=new WeatherLayer();layers.set(m,layer);layer.addTo(m);},remove(m){const layer=layers.get(m);if(layer){layer.remove();layers.delete(m);}},setTime(at){if(requestedAt!==at){requestedAt=at;redraw();}}};
 }

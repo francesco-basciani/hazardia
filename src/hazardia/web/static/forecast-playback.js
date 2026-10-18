@@ -22,7 +22,7 @@ export function forecastPlayback({select,mount,getTimes,getCurrent,active=()=>tr
   if(fraction&&Date.parse(times[i+1])-Date.parse(times[i])!==3600000){stop();position=i;}
   const j=Math.floor(position),t=position-j;
   phase=t?{from:times[j],to:times[j+1],fraction:t,at:new Date(Date.parse(times[j])+t*3600000).toISOString()}:null;
-  internal=true;select.value=times[j];const event=new Event('change',{bubbles:true});event.forecastPhase=phase;event.forecastReplay=true;select.dispatchEvent(event);internal=false;sync();
+  internal=true;select.value=times[j];const event=new Event('change',{bubbles:true});event.forecastPhase=phase;event.forecastReplay=true;select.dispatchEvent(event);internal=false;sync();document.dispatchEvent(new CustomEvent('hazardia-weather-time',{detail:{at:getCurrent()}}));
  }
  function tick(now){
   if(document.hidden||!active()||!bar.getClientRects().length||window.frameElement&&!window.frameElement.getClientRects().length){stop();return;}

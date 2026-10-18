@@ -17,16 +17,17 @@ def run(root):
     req=load(root/'request.json');opt=req['options'];asset=next(v for v in req['assets'] if v['role']=='fire_arrays');path=verify_asset(root,asset)
     with np.load(path,allow_pickle=False) as values:
         dem=values['dem'];veg=values['veg'];speed=values['wind_speed_kmh'];direction=values['wind_dir_deg']
+    plan_asset=next((a for a in req['assets'] if a['role']=='fire_plan'),None)
+    plan=load(verify_asset(root,plan_asset)) if plan_asset else None
     expected=tuple(req['grid']['shape'])
     if any(v.shape!=expected for v in [dem,veg,speed,direction]) or any(not np.isfinite(v).all() for v in [dem,veg,speed,direction]):raise HazardError('INVALID_INPUT','Fire input shape/nonfinite values')
-    if (veg!=opt['fuel_legacy']).any() or (speed<0).any() or (direction<0).any() or (direction>360).any():raise HazardError('INVALID_INPUT','Unsupported fuel/wind input')
+    if ((not (plan and plan.get('forcing')) and (veg!=opt['fuel_legacy']).any()) or not np.isin(veg,[0,1,2,3,4,5,6,7]).all()) or (speed<0).any() or (direction<0).any() or (direction>360).any():raise HazardError('INVALID_INPUT','Unsupported fuel/wind input')
     row,col=opt['ignition']
     if not (0<=row<expected[0] and 0<=col<expected[1]):raise HazardError('INVALID_INPUT','Ignition outside grid')
     if get_num_threads()!=1:raise HazardError('UNSUPPORTED_CONFIGURATION','Only tested one-thread RNG policy enabled')
-    plan_asset=next((a for a in req['assets'] if a['role']=='fire_plan'),None)
     if plan_asset:
         from hazardia.adapters.workers.fire_studio import run_studio
-        return run_studio(root,req,dem,veg,load(verify_asset(root,plan_asset)))
+        return run_studio(root,req,dem,veg,plan)
     def model(seconds,prime=False):
         m=Propagator(dem=dem,veg=veg,cellsize=req['grid']['transform'][0],realizations=opt['realizations'],fuels=FUEL_SYSTEM_LEGACY,do_spotting=False,out_of_bounds_mode='raise')
         m.set_boundary_conditions(BoundaryConditions(time=0,ignitions=[(row,col)],wind_speed=speed,wind_dir=direction,moisture=np.full_like(dem,opt['moisture_percent'])))

@@ -1,0 +1,170 @@
+{
+  "run_id": "dynamic-fire-domain-20261018",
+  "source_base": "3b3d97d424a4eee1631f07f124447e11e15644e0",
+  "source_state": "Declared dirty during experiments; delivery SHA in Git/PUBLICATION.json",
+  "reviewer": "Codex self-check",
+  "qualification": "UNQUALIFIED_RESEARCH_SOFTWARE_PILOT",
+  "vm": {
+    "cpu": 4,
+    "ram_gib": 8,
+    "disk_gib": 19,
+    "platform": "Ubuntu22.04 ARM64"
+  },
+  "native_jobs": [
+    {
+      "id": "job-7cfd8226bc0c4557932ecf526280f21c",
+      "state": "SUCCEEDED",
+      "hours": 72.0,
+      "frames": 288,
+      "expected_final_area_ha": 0.45,
+      "qualification": "NOT_FIELD_EFFECTIVENESS"
+    },
+    {
+      "id": "job-5a046a05ef8541a48292c7825ae0b1c7",
+      "state": "SUCCEEDED",
+      "hours": 72.0,
+      "frames": 288,
+      "expected_final_area_ha": 0.09,
+      "qualification": "NOT_FIELD_EFFECTIVENESS"
+    },
+    {
+      "id": "job-a1e8f8f142c14294be9458813cfa5a85",
+      "state": "SUCCEEDED",
+      "hours": 3.0,
+      "frames": 12,
+      "expected_final_area_ha": 0.09,
+      "qualification": "NOT_FIELD_EFFECTIVENESS"
+    },
+    {
+      "id": "job-6a91e1f708714cfca53adb5cf1ac798c",
+      "state": "SUCCEEDED",
+      "hours": 72.0,
+      "frames": 288,
+      "expected_final_area_ha": 0.45,
+      "qualification": "NOT_FIELD_EFFECTIVENESS"
+    },
+    {
+      "id": "job-ca79cb2bd48247ac82a8441c985ad841",
+      "state": "SUCCEEDED",
+      "hours": 72.0,
+      "frames": 288,
+      "expected_final_area_ha": 0.09,
+      "qualification": "NOT_FIELD_EFFECTIVENESS"
+    },
+    {
+      "id": "job-1140402d1f5b4f268da9c00b23c70f0c",
+      "state": "SUCCEEDED",
+      "hours": 3.0,
+      "frames": 12,
+      "expected_final_area_ha": 0.45,
+      "qualification": "NOT_FIELD_EFFECTIVENESS"
+    }
+  ],
+  "browser": {
+    "browser-batch-release": {
+      "checks": 30,
+      "pass_count": 30,
+      "fail_count": 0
+    },
+    "authoring-final": {
+      "checks": 33,
+      "pass_count": 32,
+      "fail_count": 1
+    },
+    "frozen-browser": {
+      "checks": 7,
+      "pass_count": 7,
+      "fail_count": 0
+    },
+    "batch-browser-final": {
+      "checks": 6,
+      "pass_count": 6,
+      "fail_count": 0
+    }
+  },
+  "vm_tests": {
+    "unit": 102,
+    "web": 18,
+    "decision": 24,
+    "status": "PASS",
+    "log": "final-regression-third.log"
+  },
+  "matched_pair": {
+    "checks": {
+      "same_terrain": true,
+      "same_forcing": true,
+      "same_seed": true,
+      "both_72h": true,
+      "intervention_consumed": true,
+      "different_native_footprint": true,
+      "hourly_spatial_forcing": true,
+      "moisture_changes_over_time": true
+    },
+    "baseline": "job-7cfd8226bc0c4557932ecf526280f21c",
+    "intervention": "job-5a046a05ef8541a48292c7825ae0b1c7",
+    "status": "PASS"
+  },
+  "ideal_replay": {
+    "status": "PASS",
+    "decision_id": "decision-72881d9488844ce68388afb939c16fdc",
+    "jobs": {
+      "A": "job-6a91e1f708714cfca53adb5cf1ac798c",
+      "B": "job-ca79cb2bd48247ac82a8441c985ad841"
+    },
+    "selected": [
+      "ground-one-asset-81"
+    ],
+    "unavailable_excluded": true,
+    "areas_ha": {
+      "A": 0.45,
+      "B": 0.09
+    },
+    "frames": {
+      "A": 288,
+      "B": 288
+    }
+  },
+  "boundaries": {
+    "calibration": "BLOCKED",
+    "field_effectiveness": "BLOCKED",
+    "full_M5_M7": "BLOCKED",
+    "new_HMC_REFLEX_runs": "NOT RUN",
+    "adaptive_domain_expansion": "NOT RUN",
+    "international_72h": "NOT RUN",
+    "second_VM": "NOT RUN",
+    "FPS_soak_historical_skill": "NOT RUN"
+  },
+  "status": "PASS technical increment, scientific gates remain BLOCKED",
+  "audit": {
+    "checks": {
+      "upstream_sources_unchanged": true,
+      "runtime_engine_pins_unchanged": true,
+      "workspace_preserved": true,
+      "no_active_jobs": true,
+      "raster_chunk_receipts_valid": true,
+      "actual_global_native_zoom14_tile": true
+    },
+    "source_files": 125,
+    "runtime_pins": 145,
+    "cog_chunks": 29,
+    "cog_downloaded_cached_bytes": 35527679,
+    "disk_free_bytes": 7730511872
+  },
+  "native_integrity": {
+    "status": "PASS",
+    "jobs": [
+      "job-7cfd8226bc0c4557932ecf526280f21c",
+      "job-5a046a05ef8541a48292c7825ae0b1c7",
+      "job-a1e8f8f142c14294be9458813cfa5a85",
+      "job-6a91e1f708714cfca53adb5cf1ac798c",
+      "job-ca79cb2bd48247ac82a8441c985ad841",
+      "job-1140402d1f5b4f268da9c00b23c70f0c"
+    ],
+    "assets_rehashed": 30,
+    "native_frames_rehashed": 1176,
+    "rendered_frames_rehashed": 1176,
+    "conservative_accounted_download_bound_bytes": 3828111737,
+    "download_limit_bytes": 5368709120,
+    "budget_method": "Prior publication estimate plus all retained web state including generated duplicates, COG cache and receipts, cumulative imagery traffic and20MiB OSM allowance. Conservative accounting estimate, not packet-level network measurement; no new packages this increment."
+  }
+}

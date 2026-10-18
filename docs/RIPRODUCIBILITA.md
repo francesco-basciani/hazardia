@@ -47,3 +47,7 @@ python3 scripts/prepare_publication.py --ref HEAD --output /percorso/nuova-espor
 ```
 
 Lo strumento legge soltanto file presenti nel commit, esclude stato locale/media e bozza editoriale, controlla pattern noti di chiavi/token e genera `PUBLICATION.json` con hash di ogni file e commit sorgente. Non esegue push. Per gli aggiornamenti, applicare la nuova esportazione a una checkout fresca del repository pubblico, revisionare il diff, committare e fare un normale push che conservi i commit pubblici precedenti. Non copiare `.git` dalla storia privata e non modificare la visibilità del repository implicitamente. Il controllo di pattern non è una garanzia universale di assenza di segreti: la revisione del contenuto resta necessaria.
+
+
+## Terreni e forzanti dinamiche
+Ogni nuovo dominio conserva grid/manifest, finestre COG con ETag e SHA, arrays/DEM, source raw e campo meteo normalizzato, piano e risorse. Il job fissa gli asset per hash. Una riacquisizione Open-Meteo successiva non è un replay esatto; per confronti controllati riusare il forcing_id del primo caso e identici inizio/terreno/seme. Il batch UI ricalcola gli scenari selezionati sullo stesso campo di base e tempo; i cambi ipotetici sono espliciti. Gli input scientifici e lo stato dell’utente rimangono nella VM, non nel repository pubblico. [Report](../reports/DOMINI-DINAMICI-E-FORZANTI.md) e [ADR-0014](../reports/ADR-0014-dynamic-terrain-and-forcing.md) documentano le assunzioni non calibrate e le prove reali; la nuova copertura tecnica non chiude M5–M7.

@@ -1,0 +1,13 @@
+# ADR-0014 — Dominio interno attorno agli inneschi e forzanti distribuite
+
+2026-10-18. Decisione guidata dall’utente; medesimi componenti e milestone, stessa VM e servizi gratuiti. Il riquadro fisso del vecchio esempio non soddisfa il posizionamento geografico richiesto. PROPAGATOR richiede comunque array finiti: il dominio è quindi preparato automaticamente, non eliminato.
+
+Scelta: griglia UTM locale1024×1024 a30m (30,72km), centro determinato dagli inneschi comuni e arrotondato30m. Copernicus GLO30 e WorldCover2021v200 acquisiti per finestre via HTTP Range, con cache/ETag/SHA e budget; nessun download globale. Terreno invariato tra scenari, risorse non ne spostano il centro. Inneschi distanti, dati assenti e fronti al bordo producono fallimento classificato. Non viene effettuata estensione automatica del dominio in corsa. Preparazione seriale asincrona, quattro richieste ammesse, subprocessi isolati con timeout e cancellazione.
+
+Forzanti: campo reale ICON Global/Open-Meteo congelato,81campioni; interpolazione spaziale bilineare su celle fisiche, vento u/v con conversione m/s→km/h e correzione della convergenza UTM. Nuove condizioni native ogni ora; precipitazione accumulata applicata all’intervallo precedente. Stima indipendente hFFMC1977 con wetting Van Wagner/Pickett1985, FFMC iniziale85 assunto, e clipping compatibile con PROPAGATOR dichiarato. Non è RISICO, non è un modello di moisture localmente qualificato. Umidità manuale disponibile solo esplicitamente.
+
+WorldCover non identifica specie o stato stagionale: alberi→broadleaves è un proxy dichiarato, costruito/acqua/nudo→non combustibile. Richiedere fuel locale qualificato come prerequisito di accuratezza, senza continuare a chiamare il vecchio fuel uniforme “territorio reale”. Priorità da OSM quando disponibile; in sua assenza poligoni edificati WorldCover, senza inventare uso, servizi o popolazione.
+
+Alternative: mantenere dominio fisso (rifiutata dall’utente); dominio illimitato o scarico nazionale (incompatibili con dati/budget); terreno/fuel uniformi per qualunque punto (risultati fuorvianti); usare RH come moisture (semantica errata); sostituire PROPAGATOR (non richiesto); attendere calibrazione completa prima di ogni prova (non necessario per scenari esplicitamente di ricerca). Estensione adattiva/checkpoint e fuel/specie ad alta qualità restano incrementi futuri.
+
+Motori CIMA originali invariati; nessun nuovo ambiente, pacchetto, piattaforma agentica o servizio commerciale. Report e registro ufficiale contengono i risultati effettivi. Questa decisione documenta un’implementazione tecnica, non dimostra generalizzazione o efficacia operativa.

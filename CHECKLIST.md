@@ -887,3 +887,28 @@ PASS gerarchia cartografica distinta dai numeri meteo, replay frazionario con pa
 
 ## Copertura e squadre su ogni scenario — scenario-drop-coverage-20261017
 PASS diagnosi separata: innesco/interventi utente fuori dal terreno preparato e drop limitato alla mappa primaria. PASS destinatario dal rilascio su ogni mappa, marker squadre trascinabili nelle finestre secondarie, selezione+tocco e inneschi comuni; nessuna risorsa ereditata nascosta. PASS API copertura derivata dalla griglia reale con SHA/cache, limite tratteggiato e Mostra area simulabile, preflight/messaggi italiani e stato coerente; nessuno spostamento automatico. PASS13unitariVM+18browser dedicati+33regressioni,6axe;30feedback p9530ms max37ms. PASS3job reali3h/12frame,0/5/5celle fuel modificate e aree18,675/0,09/0,09ha; ipotesi fuel_removal identica, nessuna efficacia di categoria rivendicata. PASS negativo fuori dominio senza nuovi job e workspace reale rev59 preservato. FAIL probe asincrono conservato/corretto. BLOCKED caso geografico attuale finché manca il nuovo terreno/forcing; fullM5–M7 invariati. NOT RUN72h live/newAOI/touch fisico/soak/skill. Report reports/COPERTURA-E-SQUADRE-SCENARI.md; raw experiments/runs/scenario-drop-coverage-20261017, parentbed2f94+dirty, SHA consegna Git/PUBLICATION.json, reviewer Codex self-check. Prossimo incremento preparazione territorio scelto con input/forzanti verificati.
+
+
+## Domini automatici e meteo fisico — dynamic-fire-domain-20261018
+
+| Verifica | Esito | Evidenza e limite |
+|---|---|---|
+| Preparazione attorno agli inneschi, senza recinto fisso | PASS | Italia e Senegal, terreno-cache con hash; dominio interno30,72km, non copertura illimitata |
+| DEM/copertura reali e fuel non uniforme | PASS integrazione | GLO30/WorldCover2021, mapping dichiarato; qualità combustibili BLOCKED |
+| Vento distribuito e moisture daT/RH/pioggia | PASS integrazione |72eventi orari nativi; FFMC iniziale85 assunto, stima non calibrata |
+| Squadre modificano input/propagazione | PASS tecnico | coppia72h0,45/0,09ha; ipotesi fuel_removal, non efficacia di categoria |
+| Simulazione fuoriItalia | PASS tecnico | Senegal3h/12frame e negativo non-fuel; nessuna generalizzazione |
+| Priorità/mezzi disponibili/ottimizzazione e replay | PASS tecnico | decision-72881… e duejob72h; fallback edificato reale con missing dichiarati |
+| Preparazione cancellabile senza nuovi job | PASS | vm/cancel-verification.json |
+| Meteo congelato corretto per ciascuna mappa | PASS | frozen-browser7controlli, duejob reali alle48h |
+| Monitoraggio: clock e validità criticità | PASS software | browser-batch-release, nessuna estensione implicita di bollettini oltre orizzonte |
+| Rotellina non zooma mappe | PASS | eventi reali su3mappe+monitor; tutti i costruttori Leaflet disabilitati |
+| Regression VM | PASS |102unitari+18web+24decisione, final-regression-third.log |
+| Workflow/responsiveness/missing/accessibilità | PASS |30+33+7+6browser,6axe375/768/1440;30feedback p9518,10ms, non FPS/usability |
+| Integrità sorgenti/cache/workspace | PASS |125upstream/145pin/29chunk, rev59 conservata; final-audit.json |
+| Tentativi iniziali gateway/seam/inventario/test | FAIL preservati | log numerati; corretti nei run successivi, non eliminati |
+| OSM live | FAIL fonte | timeout/HTTP500 preservati; fallback WorldCover dichiarato e verificato |
+| Calibrazione fuel/moisture/interventi/rischio/skill | BLOCKED | evidenze storiche e revisione specialistica mancanti, fullM5–M7 aperti |
+| Espansione adattiva, held-out, FPS/soak, secondaVM, nuovoHydro | NOT RUN | nessun risultato rivendicato |
+
+Comandi, job completi, ambiente e qualifiche: reports/DOMINI-DINAMICI-E-FORZANTI.md; sommario reports/dynamic-fire/verification.json; raw experiments/runs/dynamic-fire-domain-20261018. Base3b3d97d+dirty, SHA consegna Git/PUBLICATION.json, reviewer Codex self-check. I PASS tecnici non chiudono gate scientifici.

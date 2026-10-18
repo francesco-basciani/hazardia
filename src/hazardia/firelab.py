@@ -9,7 +9,9 @@ def number(v,lo,hi):
     return v
 def validate(body,*,allow_empty_ignitions=False):
     if not isinstance(body,dict):raise HazardError('INVALID_INPUT','Fire input object required')
-    if set(body)-{'ignition','hours','seed','moisture_percent','resources','start_at','forecast_id','weather_source','weather_changes','ignitions','comparison_times'}:raise HazardError('INVALID_INPUT','Unknown fire experiment fields')
+    if set(body)-{'ignition','hours','seed','moisture_percent','resources','start_at','forecast_id','weather_source','weather_changes','ignitions','comparison_times','moisture_model','forcing_id'}:raise HazardError('INVALID_INPUT','Unknown fire experiment fields')
+    if body.get('moisture_model','HFFMC_1977') not in ['HFFMC_1977','MANUAL']:raise HazardError('INVALID_INPUT','Unknown fuel moisture model')
+    if 'forcing_id' in body and (__import__('re').fullmatch('map-weather-[a-f0-9]{24}',str(body['forcing_id'])) is None):raise HazardError('INVALID_INPUT','Invalid distributed forcing identifier')
     for k in ['hours','seed']:
         if type(body.get(k)) is not int:raise HazardError('INVALID_INPUT','Integer duration/seed required')
     number(body['hours'],1,72);number(body['seed'],0,2**31-1);number(body.get('moisture_percent'),0,100)
@@ -55,13 +57,16 @@ def dataset(root):return Path(root)/'runs/physical-days-20261016T040414Z/expande
 
 def validate_plan(plan,req,weather):
     expected={'case','ignition_wgs84','weather_source','records','resources','action_times','weather_changes','qualification','moisture_percent'}
-    if not isinstance(plan,dict) or not expected<=set(plan) or set(plan)-expected-{'ignitions_wgs84','comparison_times'} or plan['case'] not in ['A','B']:raise HazardError('INVALID_INPUT','Strict native fire plan required')
+    if not isinstance(plan,dict) or not expected<=set(plan) or set(plan)-expected-{'ignitions_wgs84','comparison_times','forcing'} or plan['case'] not in ['A','B']:raise HazardError('INVALID_INPUT','Strict native fire plan required')
     input_body=dict(hours=req['options']['duration_s']//3600,seed=req['options']['seed'],moisture_percent=plan['moisture_percent'],resources=plan['resources'],weather_changes=plan['weather_changes'],weather_source=plan['weather_source'],comparison_times=plan.get('comparison_times',[]))
     input_body.update(ignitions=plan['ignitions_wgs84']) if 'ignitions_wgs84' in plan else input_body.update(ignition=plan['ignition_wgs84'])
     validate(input_body)
     if 'ignitions_wgs84' in plan and plan['ignition_wgs84']!=plan['ignitions_wgs84'][0]['point']:raise HazardError('INVALID_INPUT','Primary ignition mismatch')
     if plan.get('comparison_times') and not (set(plan['action_times'])|{int(i['at_minutes']*60) for i in plan.get('ignitions_wgs84',[])})<=set(plan['comparison_times']):raise HazardError('INVALID_TIME','Comparison clock misses events')
     if plan['moisture_percent']!=req['options']['moisture_percent'] or plan['qualification']!='UNQUALIFIED_RESEARCH' or plan['case']=='A' and (plan['resources'] or plan['weather_changes']):raise HazardError('INVALID_INPUT','Unqualified matching baseline required')
+    if 'forcing' in plan:
+        f=plan['forcing'];field=weather.get('distributed_field')
+        if set(f)!={'version','terrain_id','field_id','moisture_model','initial_ffmc','field_sha256','landcover_crosswalk'} or f['version']!='distributed/1' or f['moisture_model'] not in ['HFFMC_1977','MANUAL'] or not field or field['id']!=f['field_id'] or f['initial_ffmc']!=85:raise HazardError('SOURCE_MISMATCH','Distributed forcing contract mismatch')
     count=req['options']['duration_s']//3600
     if req['options']['duration_s']%3600 or len(plan['records'])!=count:raise HazardError('INVALID_TIME','Whole-hour complete native fire schedule required')
     times=plan['action_times']

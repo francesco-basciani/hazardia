@@ -11,7 +11,7 @@ from propagator.io.geo import GeographicInfo
 from rasterio.transform import Affine,array_bounds
 from pyproj import CRS
 from hazardia.adapters.workers.fire import seed_worker
-from hazardia.io import write_new,sha256,HazardError
+from hazardia.io import write_new,sha256,HazardError,load,verify_asset
 
 def run_studio(root,req,dem,veg,plan):
     opt=req['options'];tr=Affine(*req['grid']['transform']);geo=GeographicInfo(crs=CRS.from_user_input(req['grid']['crs']),trans=tr,bounds=array_bounds(*dem.shape,tr),shape=dem.shape)
@@ -26,6 +26,16 @@ def run_studio(root,req,dem,veg,plan):
         t=int(r['at_minutes']*60)
         if r.get('effect')=='fuel_removal':continue
         geometry=LineString([(p[1],p[0]) for p in r['line']]);events[t].setdefault('actions',[]).append(ACTION_CLASSES[r['category']](geometries=[geometry],epsg=4326))
+    fields={};dynamic=plan.get('forcing')
+    if dynamic:
+        from hazardia.fire_forcing import SpatialForcing,hourly_moisture
+        weather=load(verify_asset(root,next(a for a in req['assets'] if a['role']=='weather')));field=weather['distributed_field'];sampler=SpatialForcing(req['grid'],field);moisture=np.full(dem.shape,147.2*(101-85)/(59.5+85),dtype='float32');previous=None;previous_speed=None
+        for h,row in enumerate(plan['records']):
+            r=next(r for r in field['records'] if r['at']==row['at'])
+            if h and dynamic['moisture_model']=='HFFMC_1977':moisture=hourly_moisture(moisture,sampler.sample(previous,'temperature'),sampler.sample(previous,'humidity'),previous_speed,sampler.sample(previous,'precipitation'))
+            speed,direction=sampler.wind(r,next((c for c in plan['weather_changes'] if c['hour']==h),None))
+            native_moisture=np.clip(moisture,0,100).astype('float32') if dynamic['moisture_model']=='HFFMC_1977' else np.full(dem.shape,opt['moisture_percent'],dtype='float32')
+            fields[h*3600]=(speed,direction,native_moisture);previous=r;previous_speed=speed
     conditions=[];proof=[]
     for t,e in sorted(events.items()):
         timed=TimedInput.model_validate(dict(e,epsg=4326));bc=timed.get_boundary_conditions(geo,FUEL_SYSTEM_LEGACY.get_non_vegetated())
@@ -39,9 +49,10 @@ def run_studio(root,req,dem,veg,plan):
             fuel[np.logical_or.reduce(masks)]=FUEL_SYSTEM_LEGACY.get_non_vegetated();bc=dataclasses.replace(bc,vegetation_changes=fuel)
         if t in set(plan['action_times']+plan.get('comparison_times',[])) and bc.vegetation_changes is None and bc.additional_moisture is None:bc=dataclasses.replace(bc,vegetation_changes=np.full(dem.shape,np.nan,dtype='float32'))
         if t in ignitions_at:bc=dataclasses.replace(bc,ignitions=ignitions_at[t])
-        if t==0:bc=dataclasses.replace(bc,moisture=np.full(dem.shape,opt['moisture_percent'],dtype='float32'))
+        if t in fields:bc=dataclasses.replace(bc,wind_speed=fields[t][0],wind_dir=fields[t][1],moisture=fields[t][2])
+        if t==0 and not dynamic:bc=dataclasses.replace(bc,moisture=np.full(dem.shape,opt['moisture_percent'],dtype='float32'))
         conditions.append(bc)
-        proof.append(dict(time=t,ignition_count=len(ignitions_at.get(t,[])),fuel_removal_geometries=len(masks),wind_kmh=e.get('w_speed'),wind_from_deg=e.get('w_dir'),moisture_changed_cells=int(np.count_nonzero(bc.additional_moisture)) if bc.additional_moisture is not None else 0,vegetation_changed_cells=int(np.isfinite(bc.vegetation_changes).sum()) if bc.vegetation_changes is not None else 0))
+        proof.append(dict(time=t,ignition_count=len(ignitions_at.get(t,[])),fuel_removal_geometries=len(masks),wind_kmh=e.get('w_speed'),wind_from_deg=e.get('w_dir'),moisture_changed_cells=int(np.count_nonzero(bc.additional_moisture)) if bc.additional_moisture is not None else 0,vegetation_changed_cells=int(np.isfinite(bc.vegetation_changes).sum()) if bc.vegetation_changes is not None else 0,spatial_forcing=bool(t in fields),wind_grid_range_kmh=[float(bc.wind_speed.min()),float(bc.wind_speed.max())] if t in fields else None,moisture_grid_range_percent=[float(bc.moisture.min()),float(bc.moisture.max())] if t in fields else None))
     def model():
         m=Propagator(dem=dem,veg=veg.copy(),cellsize=tr.a,realizations=opt['realizations'],fuels=FUEL_SYSTEM_LEGACY,do_spotting=False,out_of_bounds_mode='raise')
         for bc in conditions:m.set_boundary_conditions(bc)
@@ -54,4 +65,4 @@ def run_studio(root,req,dem,veg,plan):
         file=root/('frame-%03d.npz'%index);np.savez_compressed(file,probability=p);frames.append(dict(index=index,elapsed_s=index*900,hour=hour,path=file.name,sha256=sha256(file),expected_area_ha=float(p.sum(dtype=np.float64)*tr.a**2/10000),positive_cells=int((p>0).sum()),queued_front_events=int(m._front_sizes.sum()),realizations_with_front=int((m._front_sizes>0).sum())))
         print('HOUR',hour,'CELLS',frames[-1]['positive_cells'],flush=True)
     np.savez_compressed(root/'fire-output.npz',probability=m.compute_fire_probability(),fire=m.fire,arrival=m.arrival_time)
-    write_new(root/'fire-native-result.json',dict(case=plan['case'],seed=opt['seed'],worker_seed_proof=seed_proof,threads=1,realizations=opt['realizations'],duration_s=int(m.time),consumed_events=proof,frames=frames,qualification='UNQUALIFIED_RESEARCH',actual_inputs='Hourly point wind; upstream actions or authored ideal fuel removal; real DEM; uniform fuel5 and manual fuel moisture'))
+    write_new(root/'fire-native-result.json',dict(case=plan['case'],seed=opt['seed'],worker_seed_proof=seed_proof,threads=1,realizations=opt['realizations'],duration_s=int(m.time),consumed_events=proof,frames=frames,qualification='UNQUALIFIED_RESEARCH',forcing_contract=dynamic,actual_inputs=('Real DSM/WorldCover; distributed hourly wind and explicit fuel moisture estimator' if dynamic else 'Hourly point wind; upstream actions or authored ideal fuel removal; real DEM; uniform fuel5 and manual fuel moisture')))
