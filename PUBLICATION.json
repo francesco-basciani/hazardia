@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "957313af2dc9e32dae987848fabca68e3df1d828",
+  "source_git_sha": "b52021b766bca79ae5fe3c86790cfa744354a82c",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,28 +11,28 @@
       "sha256": "9ac0bfafdb471d942fbbc72a88a4796416a228d80c84b8165c9759185c1bb3af"
     },
     "CHECKLIST.md": {
-      "bytes": 141955,
-      "sha256": "0e9dd513c428be40c3bde91544fe7e57545c6c91edbc716837eeaedf44b66e36"
+      "bytes": 143469,
+      "sha256": "585c7b7e4886e10902c06b42ca0e8f276e5e009901c34a2d3c2e86f5d77162b5"
     },
     "MEMORY.md": {
-      "bytes": 97147,
-      "sha256": "ef054b4eb98e500e3d1b8e22ebfef86b7bf522febdbcda1a5b9697bfdb2476b8"
+      "bytes": 98661,
+      "sha256": "63815b9c141470ecc4fd7ac95699747aee52341ff2bea734d2204619ccfe094d"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 102263,
-      "sha256": "c27bf1fcccbc52d5d6509dc92948542496339b73765d0679603fc04ee5f63e25"
+      "bytes": 103777,
+      "sha256": "37bd6802b08c7a54f5bcb179eb7660f067efe4a7dadbe4b33d2afb2f9a00167a"
     },
     "README.md": {
       "bytes": 19281,
       "sha256": "6ec1f0dcfdbe7762605e00a80291abb2e617b05aefe6c21ecd2d5ce2abdf8f4f"
     },
     "SPEC.md": {
-      "bytes": 80203,
-      "sha256": "695f6ce3c881cd9487fcdd56a9a258ae4c07fbc3cce9efdcccafa523c68600f8"
+      "bytes": 80897,
+      "sha256": "766e82fbdf2f9ab19b4f06465fa86443226e42f43b2b74d44f95fd53b8332077"
     },
     "docs/INSTALLAZIONE.md": {
       "bytes": 23085,
@@ -382,6 +382,10 @@
       "bytes": 8205,
       "sha256": "dfcbb42bab434802ed15fdd26aa2da6fc43ad0ba12aed460b62a9ac713f9a9c1"
     },
+    "reports/SCENARIO-NOMINALE-E-ALTERNATIVE.md": {
+      "bytes": 3696,
+      "sha256": "ee12922eb38e5a7e1467a3b79e52f0d9ec90eb039ae1955d9cefeb77ca2fe238"
+    },
     "reports/SCENARIO-REALISTICO-PREREQUISITI.md": {
       "bytes": 8540,
       "sha256": "f537130ee91a72731c94e040cc6de3a5fdc9f357c504d3db7a337029d19b8150"
@@ -497,6 +501,10 @@
     "reports/monitoring/verification.json": {
       "bytes": 5957,
       "sha256": "5046251526305749894d1084a44e9d65a5a25fcd0490072909cb0c2659bb2e6c"
+    },
+    "reports/nominal-layout/verification.json": {
+      "bytes": 14376,
+      "sha256": "47d4c673478447f24fa940bd5ff8b7b4adf4eb8e894c1d8394fe61839328a49d"
     },
     "reports/plan-audit/coverage.json": {
       "bytes": 13103,
@@ -683,8 +691,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 113648,
-      "sha256": "34d09926a64d1297308050af02ab12ae175983852d1fabb26ca8fd2dc0f067d9"
+      "bytes": 115162,
+      "sha256": "c89c24bc62acc4bcbecd78ae7cb1e86cb72409f6efb8c086592ec38526dd7922"
     },
     "research/RESEARCH.md": {
       "bytes": 33312,
@@ -1087,16 +1095,16 @@
       "sha256": "6f6ceacb9ede2b379e70490ece763e7b500650a8b6882d2ada6639ee0d26e40e"
     },
     "src/hazardia/web/static/fire-studio.css": {
-      "bytes": 26869,
-      "sha256": "6c9bdc17727588c9634283c719e0181ce3a32f200b8e7ee102731d370c4a1050"
+      "bytes": 28160,
+      "sha256": "c7945a76f3b804332c14637ede6319256cb5d65a07bf629667f8a90e4af28bdd"
     },
     "src/hazardia/web/static/fire-studio.html": {
-      "bytes": 13235,
-      "sha256": "22ac684858fbb659706a4c7e61239f1d73a2dd5d656f80ff2d9483a08e092783"
+      "bytes": 13394,
+      "sha256": "0834d4d3202c257dc2c2ceaace28db07084815ad756d8aca4c29e6a791b625c4"
     },
     "src/hazardia/web/static/fire-studio.js": {
-      "bytes": 67621,
-      "sha256": "42f4297a01a7fae5d487898c69ba69837ce058a3f0ae41073c4ea28d40cfb850"
+      "bytes": 70150,
+      "sha256": "b0e3fadf0ab59c461c2f90eb4076582681a9ef31f9f10b735c3d26ed62147998"
     },
     "src/hazardia/web/static/forecast-playback.js": {
       "bytes": 5181,
@@ -1318,6 +1326,10 @@
       "bytes": 6267,
       "sha256": "e7a3bb732bfff813383f1ce79e8f3ac33047a323d1dccc32781da36dcfd36f17"
     },
+    "tests/browser/nominal-layout.cjs": {
+      "bytes": 6061,
+      "sha256": "78d5b9b81fb1f5706ebf4e8b13d0166979f26cdf67c71223330cb58c2691194a"
+    },
     "tests/browser/optimized-scenario.cjs": {
       "bytes": 4103,
       "sha256": "2248e7dc7fd1f46c90c19147c6f44326364c021022ab0f6710c680d8fe2eb0f7"
@@ -1343,8 +1355,8 @@
       "sha256": "02accb2581d9673832b221f3c38dec30578a3387c424cc02455303beedff8446"
     },
     "tests/browser/scenario-authoring.cjs": {
-      "bytes": 7701,
-      "sha256": "bf9d2e844fcfb7a82b0a8f1186eb8b2504330057b91eab3c3a3711f0cf8e0e6d"
+      "bytes": 7791,
+      "sha256": "b7b9fe4b657218e5cbfccb7389e0a2609eee344a43e3afd0c4553364a754f5bb"
     },
     "tests/browser/scenario-clock.cjs": {
       "bytes": 6453,

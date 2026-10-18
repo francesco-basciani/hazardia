@@ -1,0 +1,562 @@
+{
+  "run_id": "nominal-layout-20261018",
+  "base_git_sha": "957313af2dc9e32dae987848fabca68e3df1d828",
+  "reviewer": "Codex self-check",
+  "qualification": "UI regression; existing native results read-only; no new physics runs",
+  "status": "PASS",
+  "check_count": 76,
+  "runs": {
+    "final-nominal-layout": {
+      "checks": [
+        {
+          "id": "one-empty-nominal-in-new-workspace",
+          "status": "PASS"
+        },
+        {
+          "id": "nominal-label-and-protection",
+          "status": "PASS"
+        },
+        {
+          "id": "alternatives-follow-creation-order",
+          "status": "PASS"
+        },
+        {
+          "id": "nominal-full-width-alternatives-below",
+          "status": "PASS"
+        },
+        {
+          "id": "stable-map-identities-select-1",
+          "status": "PASS"
+        },
+        {
+          "id": "stable-map-identities-select-3",
+          "status": "PASS"
+        },
+        {
+          "id": "stable-map-identities-select-0",
+          "status": "PASS"
+        },
+        {
+          "id": "stable-map-identities-select-2",
+          "status": "PASS"
+        },
+        {
+          "id": "delete-is-immediate-and-persisted",
+          "status": "PASS"
+        },
+        {
+          "id": "delete-retains-other-map-instances",
+          "status": "PASS"
+        },
+        {
+          "id": "undo-restores-original-position",
+          "status": "PASS"
+        },
+        {
+          "id": "reload-retains-creation-order",
+          "status": "PASS"
+        },
+        {
+          "id": "placement-addresses-chosen-map-only",
+          "status": "PASS"
+        },
+        {
+          "id": "nominal-marker-does-not-inherit-alternative",
+          "status": "PASS"
+        },
+        {
+          "id": "geometry-editing-stays-in-alternative",
+          "status": "PASS"
+        },
+        {
+          "id": "nominal-first-responsive-375",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-375",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "nominal-first-responsive-768",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-768",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "nominal-first-responsive-1440",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-1440",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "no-hidden-calculations",
+          "status": "PASS"
+        },
+        {
+          "id": "no-js-errors",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "main-preserved",
+          "status": "PASS"
+        },
+        {
+          "id": "case-preserved",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "browser": "155.0.8059.84",
+      "qualification": "ISOLATED_AUTHORING_UI_NOT_PHYSICS"
+    },
+    "final-scenario-authoring": {
+      "checks": [
+        {
+          "id": "one-empty-scenario",
+          "status": "PASS"
+        },
+        {
+          "id": "first-scenario-accepts-units",
+          "status": "PASS",
+          "detail": {
+            "scenarios": [
+              {
+                "id": "qa-first",
+                "name": "Scenario 1",
+                "input": {
+                  "ignitions": [
+                    {
+                      "id": "fire-3e8227c9-85d",
+                      "point": [
+                        42.484251,
+                        12.819672
+                      ],
+                      "at_minutes": 0
+                    }
+                  ],
+                  "resources": [
+                    {
+                      "id": "unit-5b983e36-e06",
+                      "category": "waterline_action",
+                      "line": [
+                        [
+                          42.492353,
+                          13.115693
+                        ],
+                        [
+                          42.492353,
+                          13.116911
+                        ]
+                      ],
+                      "at_minutes": 0,
+                      "effect": "fuel_removal"
+                    }
+                  ],
+                  "hours": 72,
+                  "seed": 1729,
+                  "moisture_percent": 10,
+                  "moisture_model": "HFFMC_1977",
+                  "weather_source": "FORECAST",
+                  "weather_changes": [],
+                  "forecast_id": "map-weather-95be3740338fc7437afc35dc",
+                  "start_at": "2026-10-18T18:00:00Z"
+                },
+                "job_id": null,
+                "submitted_input": null
+              }
+            ],
+            "status": "Squadra a terra aggiunta a Scenario 1 \u00b7 linea iniziale di 100 m. Clicca l\u2019icona per modificare linea, area o orario."
+          }
+        },
+        {
+          "id": "typed-unit-size-and-activation",
+          "status": "PASS"
+        },
+        {
+          "id": "editable-intervention-area",
+          "status": "PASS"
+        },
+        {
+          "id": "explicit-copy-includes-ignitions-and-units",
+          "status": "PASS"
+        },
+        {
+          "id": "ignitions-are-local-after-copy",
+          "status": "PASS"
+        },
+        {
+          "id": "ignition-drag-does-not-alter-other-scenario",
+          "status": "PASS"
+        },
+        {
+          "id": "new-scenario-is-empty",
+          "status": "PASS"
+        },
+        {
+          "id": "scenario-removal-keeps-two-others",
+          "status": "PASS"
+        },
+        {
+          "id": "activation-at-selected-time",
+          "status": "PASS"
+        },
+        {
+          "id": "rewind-edit-keeps-independent-copy",
+          "status": "PASS"
+        },
+        {
+          "id": "unit-can-be-removed",
+          "status": "PASS"
+        },
+        {
+          "id": "optimizer-uses-chosen-fleet-and-time",
+          "status": "PASS"
+        },
+        {
+          "id": "optimizer-prepares-matching-reference",
+          "status": "PASS"
+        },
+        {
+          "id": "calculation-cancellable-near-clock",
+          "status": "PASS"
+        },
+        {
+          "id": "responsive-375",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-375",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "responsive-768",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-768",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "responsive-1440",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-1440",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "no-javascript-errors",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "real-workspace-preserved",
+          "status": "PASS"
+        }
+      ],
+      "errors": []
+    },
+    "final-forecast-profile": {
+      "checks": [
+        {
+          "id": "profile-loaded-from-native-case",
+          "status": "PASS"
+        },
+        {
+          "id": "native-profile-visible",
+          "status": "PASS"
+        },
+        {
+          "id": "native-case-playback",
+          "status": "PASS"
+        },
+        {
+          "id": "initialization-change-never-reuses-frozen-parent",
+          "status": "PASS"
+        },
+        {
+          "id": "ensemble-change-never-reuses-eight-member-result",
+          "status": "PASS"
+        },
+        {
+          "id": "responsive-375",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-375",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "responsive-768",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-768",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "responsive-1440",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-1440",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "no-js-errors",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "main-preserved",
+          "status": "PASS"
+        },
+        {
+          "id": "real-case-preserved",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "requests": [
+        {
+          "type": "dynamic",
+          "body": {
+            "ignitions": [
+              {
+                "id": "hypothetical-fonte-vetica",
+                "point": [
+                  42.42549444444444,
+                  13.74145
+                ],
+                "at_minutes": 0
+              }
+            ],
+            "hours": 72,
+            "seed": 1729,
+            "moisture_percent": 10,
+            "moisture_model": "HFFMC_1977",
+            "antecedent_hours": 0,
+            "realizations": 8,
+            "resources": [],
+            "weather_source": "FORECAST",
+            "weather_changes": [],
+            "comparison_times": [
+              0
+            ],
+            "start_at": "2026-10-18T18:00:00Z"
+          }
+        },
+        {
+          "type": "dynamic",
+          "body": {
+            "ignitions": [
+              {
+                "id": "hypothetical-fonte-vetica",
+                "point": [
+                  42.42549444444444,
+                  13.74145
+                ],
+                "at_minutes": 0
+              }
+            ],
+            "hours": 72,
+            "seed": 1729,
+            "moisture_percent": 10,
+            "moisture_model": "HFFMC_1977",
+            "antecedent_hours": 168,
+            "realizations": 2,
+            "resources": [],
+            "weather_source": "FORECAST",
+            "weather_changes": [],
+            "comparison_times": [
+              0
+            ],
+            "start_at": "2026-10-18T18:00:00Z"
+          }
+        }
+      ],
+      "qualification": "UI_TRANSPORT_FIXTURE_NOT_NATIVE_PHYSICS"
+    },
+    "midrun-1": {
+      "checks": [
+        {
+          "id": "target-window-keeps-its-position",
+          "status": "PASS",
+          "detail": {
+            "before": [
+              "Riferimento",
+              "Alternativa"
+            ],
+            "after": [
+              "Riferimento",
+              "Alternativa"
+            ]
+          }
+        },
+        {
+          "id": "only-target-gets-unit",
+          "status": "PASS"
+        },
+        {
+          "id": "pointerdown-freezes-visible-time",
+          "status": "PASS",
+          "detail": {
+            "paused": 24.0175,
+            "activation": 1441
+          }
+        },
+        {
+          "id": "target-inspector-opens",
+          "status": "PASS"
+        },
+        {
+          "id": "new-canadair-uses-native-action",
+          "status": "PASS"
+        },
+        {
+          "id": "recalculate-preserves-visible-time",
+          "status": "PASS"
+        },
+        {
+          "id": "frozen-replay-not-fresh-request",
+          "status": "PASS"
+        },
+        {
+          "id": "both-scenarios-recalculated",
+          "status": "PASS"
+        },
+        {
+          "id": "same-parent-start-weather-context",
+          "status": "PASS"
+        },
+        {
+          "id": "resume-from-interruption-not-zero",
+          "status": "PASS",
+          "detail": {
+            "paused": 24.0175,
+            "resumed": 24.064874999994
+          }
+        },
+        {
+          "id": "end-of-horizon-does-not-hide-earlier-activation",
+          "status": "PASS"
+        },
+        {
+          "id": "no-js-errors",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "main-preserved",
+          "status": "PASS"
+        },
+        {
+          "id": "case-preserved",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "requests": [
+        {
+          "job_id": "job-2065f1b44e7f422ab7098d9d3cfc8f04",
+          "input": {
+            "ignitions": [
+              {
+                "id": "fonte-vetica-approx",
+                "point": [
+                  42.42549444444444,
+                  13.741449999999999
+                ],
+                "at_minutes": 0
+              }
+            ],
+            "hours": 72,
+            "seed": 1729,
+            "moisture_percent": 10,
+            "moisture_model": "HFFMC_1977",
+            "resources": [],
+            "weather_source": "FORECAST",
+            "weather_changes": [],
+            "start_at": "2026-10-18T13:00:00Z",
+            "comparison_times": [
+              0,
+              86460
+            ]
+          }
+        },
+        {
+          "job_id": "job-2065f1b44e7f422ab7098d9d3cfc8f04",
+          "input": {
+            "ignitions": [
+              {
+                "id": "fonte-vetica-approx",
+                "point": [
+                  42.42549444444444,
+                  13.741449999999999
+                ],
+                "at_minutes": 0
+              }
+            ],
+            "hours": 72,
+            "seed": 1729,
+            "moisture_percent": 10,
+            "moisture_model": "HFFMC_1977",
+            "resources": [
+              {
+                "id": "unit-a90e3e54-8c7",
+                "category": "canadair",
+                "line": [
+                  [
+                    42.413065,
+                    13.743910285809957
+                  ],
+                  [
+                    42.413065,
+                    13.762181714190042
+                  ]
+                ],
+                "at_minutes": 1441,
+                "effect": "native"
+              }
+            ],
+            "weather_source": "FORECAST",
+            "weather_changes": [],
+            "start_at": "2026-10-18T13:00:00Z",
+            "comparison_times": [
+              0,
+              86460
+            ]
+          }
+        }
+      ],
+      "fresh": [],
+      "browser": "155.0.8059.84",
+      "qualification": "UI_TRANSPORT_FIXTURE_NOT_NATIVE_PHYSICS"
+    }
+  },
+  "prior_failures": [
+    "authoring-1: outdated active-editor selector after permanent nominal map",
+    "nominal-1: fixed delay before initial autosave completed; replaced with observable save state"
+  ],
+  "not_run": [
+    "New native wind sensitivity experiment",
+    "New scientific performance/skill benchmarks"
+  ],
+  "blocked": [
+    "Full M5\u2013M7 scientific qualification unchanged"
+  ]
+}
