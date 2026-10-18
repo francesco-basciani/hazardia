@@ -912,3 +912,21 @@ PASS diagnosi separata: innesco/interventi utente fuori dal terreno preparato e 
 | Espansione adattiva, held-out, FPS/soak, secondaVM, nuovoHydro | NOT RUN | nessun risultato rivendicato |
 
 Comandi, job completi, ambiente e qualifiche: reports/DOMINI-DINAMICI-E-FORZANTI.md; sommario reports/dynamic-fire/verification.json; raw experiments/runs/dynamic-fire-domain-20261018. Base3b3d97d+dirty, SHA consegna Git/PUBLICATION.json, reviewer Codex self-check. I PASS tecnici non chiudono gate scientifici.
+
+
+## Fonte Vetica — fonte-vetica-20261018
+
+| Attività | Esito | Evidenza/limite |
+|---|---|---|
+| Lettura notizia/tempi e riferimento luogo | PASS | fetchHTTPSVM, metadata18/10, carta EnteParco; punto effettivo incendio UNKNOWN |
+| Apertura diretta notizia nel toolweb | FAIL | recupero VM riuscito, articolo/foto non redistribuiti |
+| Preregistrazione e tre job72h | PASS tecnico | protocol.json,3×288frame, risultati non perimetro reale |
+| Forzanti/terreno/seme comuni e consumo interventi | PASS | verification.json, delayed pre60min identico |
+| Integrità | PASS |15asset/864frame/864PNG,145pin invariati |
+| Caso opt-in e bozze indipendenti | PASS |19browser, workspace principale rev59 invariata; restore solo prova |
+| Web e regressioni | PASS |21testVM+30browsergenerici,6axe con caso a375/768/1440 |
+| Helper ricreazione/registrazione | PASS tecnico | from-run eseguito, poi prova in prefisso isolato e hash; nessun nuovo job nel replay di registrazione |
+| Ricostruzione evento e skill reale | BLOCKED | mancano innesco/perimetro/tempi/mezzi/moisture osservati; nessuna efficacia certificata |
+| Nuovo p95/FPS/soak/held-out/secondaVM | NOT RUN | nessuna metrica inferita dai3job |
+
+Report reports/FONTE-VETICA-20261018.md; sommario reports/fonte-vetica/verification.json; raw experiments/runs/fonte-vetica-20261018; basec26d70d+dirty e SHA consegna Git/PUBLICATION.json. Reviewer Codex self-check; fullM5–M7 rimangono BLOCKED.

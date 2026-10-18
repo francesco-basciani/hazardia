@@ -65,3 +65,7 @@ User explicitly requests publishing complete source and all installation/recreat
 
 ## Stato corrente: territorio dinamico e forzanti — 2026-10-18
 Il percorso FORECAST dello studio prepara ora automaticamente dominio/DEM/WorldCover/meteo attorno agli inneschi, superando il blocco del riquadro storico. Non reintrodurre il limite del vecchio caso nell’authoring generico. Usare contratto forcing distribuito e input congelati per i confronti; fuel/moisture riclassificati/stimati restano unqualified. PASS tecnico:6run nativi (4×72h,2×3h),144testVM/76browser/6axe, queue multi-scenario corretta, workspace rev59 preservato. Report reports/DOMINI-DINAMICI-E-FORZANTI.md, ADR-0014; raw dynamic-fire-domain-20261018. Richiesta utente mantiene Monitoraggio/Simulazione come percorsi principali e vieta scrollWheelZoom su tutte le mappe. Non dichiarare copertura geografica illimitata, efficacia di categoria o chiusura scientifica M5–M7 dal nuovo PASS tecnico.
+
+
+## Prove salvate opt-in — Fonte Vetica20261018
+Le prove preparate sono isolate tramite ?case=<id> e FireCases; mai inserirle automaticamente nel workspace principale o sostituire bozze dell’utente. FonteVetica è prospettica, innesco/risorse ipotetici da spec preregistrata, non ricostruzione del rogo2026. Report reports/FONTE-VETICA-20261018.md;3run72h e controlli di isolamento PASS, skill/operatività BLOCKED invariati. Lo script di preparazione rifiuta sovrascritture; usare un nuovo ID per nuovi snapshot.

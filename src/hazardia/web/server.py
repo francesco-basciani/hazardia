@@ -8,6 +8,7 @@ from hazardia.jobs import JobStore
 from hazardia.web.maps import Orthophotos,RegionalSatellite
 from hazardia.web.notebook import Notebook
 from hazardia.web.fire_workspace import FireWorkspace
+from hazardia.web.fire_cases import FireCases
 from hazardia.web.fire_coverage import coverage as fire_coverage
 from hazardia.decision.research_fixture import problem
 from hazardia.decision.supervisor import bounded_decide
@@ -23,7 +24,7 @@ from hazardia.firelab import stage as stage_firelab,validate as validate_firelab
 
 class App:
     def __init__(self,root):
-        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock();from hazardia.web.dynamic_fire import DynamicFire;self.dynamic_fire=DynamicFire(self)
+        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.fire_cases=FireCases(self.root);self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock();from hazardia.web.dynamic_fire import DynamicFire;self.dynamic_fire=DynamicFire(self)
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
     def models(self):
@@ -187,7 +188,9 @@ class Handler(BaseHTTPRequestHandler):
                 body=loads(self.rfile.read(size).decode())
                 if not isinstance(body,dict):raise HazardError('INVALID_INPUT','JSON object required')
                 if path=='/api/fire-workspace':
-                    with app.lock:result=app.fire_workspace.save(body)
+                    with app.lock:
+                        case_id=parse_qs(urlsplit(self.path).query,keep_blank_values=True).get('case',[None])[0]
+                        result=(app.fire_cases.workspace(case_id) if case_id is not None else app.fire_workspace).save(body)
                     return self.send(200,result)
                 if path=='/api/notebook':
                     with app.lock:result=app.notebook.save(body)
@@ -227,8 +230,11 @@ class Handler(BaseHTTPRequestHandler):
                     if choice not in ['ACKNOWLEDGE_RESEARCH','REJECT'] or result.get('status')!='VALIDATED_FOR_SIMULATION':raise HazardError('INVALID_INPUT','Review only a verified research proposal')
                     record=dict(id='review-'+uuid.uuid4().hex,decision_id=result['id'],choice=choice,at=utcnow(),operational_authority=False,meaning='Modeled research review only; no dispatch');write_new(app.state/(record['id']+'.json'),record);return self.send(201,record)
                 raise HazardError('NOT_FOUND','Unknown endpoint')
+            if path=='/api/fire-cases':return self.send(200,dict(cases=app.fire_cases.catalog()))
             if path=='/api/fire-workspace':
-                with app.lock:result=app.fire_workspace.read()
+                with app.lock:
+                    case_id=parse_qs(urlsplit(self.path).query,keep_blank_values=True).get('case',[None])[0]
+                    result=app.fire_cases.read(case_id) if case_id is not None else app.fire_workspace.read()
                 return self.send(200,result)
             if path=='/api/notebook':
                 with app.lock:result=app.notebook.read()

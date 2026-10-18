@@ -1,0 +1,65 @@
+{
+  "run_id": "fonte-vetica-20261018",
+  "status": "PASS",
+  "checks": {
+    "three_native_72h": true,
+    "same_terrain": true,
+    "same_frozen_weather": true,
+    "same_seed": true,
+    "common_ignitions": true,
+    "delayed_unchanged_before_intervention": true,
+    "interventions_consumed": true,
+    "different_final_native_results": true,
+    "all_assets_and_frames_rehashed": true,
+    "main_workspace_preserved": true,
+    "upstream_engine_pins_unchanged": true
+  },
+  "qualification": "PROSPECTIVE_HYPOTHETICAL_NOT_EVENT_RECONSTRUCTION",
+  "jobs": [
+    {
+      "id": "job-9007a1fc063749dba5bed8b55f8e05a6",
+      "frames": 288,
+      "final_area_ha": 2766.195,
+      "fronts_at_72h": 2
+    },
+    {
+      "id": "job-7ebc9b72a7054bdba6d7df5de3b1683c",
+      "frames": 288,
+      "final_area_ha": 0.09,
+      "fronts_at_72h": 0
+    },
+    {
+      "id": "job-7e29200923e649acbba9e6274c6cb051",
+      "frames": 288,
+      "final_area_ha": 1486.17,
+      "fronts_at_72h": 1
+    }
+  ],
+  "frames_rehashed": 864,
+  "pngs_rehashed": 864,
+  "assets_rehashed": 15,
+  "engine_pins": 145,
+  "news_html_sha256": "b95b7897dc77c76de5b84ef42034ad9a81d8f74d05c17fb23181794fd0b3d672",
+  "news_html_bytes": 156761,
+  "disk_free_bytes": 7622447104,
+  "terrain_id": "e97be42ecdae76e0a67e32ae3869c23edda7de8516287df69686b0a4cd21e684",
+  "forcing_id": "map-weather-c8a8114d6aa219ff5ac51474",
+  "source_base": "c26d70dc786efb7d915142534c90a075755ed284+case UI changes",
+  "start_at": "2026-10-18T12:00:00Z",
+  "browser_case_checks": 19,
+  "browser_case_pass": true,
+  "web_tests": {
+    "count": 21,
+    "status": "PASS"
+  },
+  "limitations": [
+    "Ignition coordinate/time/perimeter and actual tactics unavailable",
+    "Future weather scenario, not hindcast of17October",
+    "Uncalibrated WorldCover fuel crosswalk and hFFMC initial85 assumption",
+    "One seed, two realizations, ideal instantaneous fuel removal; no field efficacy",
+    "FullM5-M7 remain BLOCKED"
+  ],
+  "reviewer": "Codex self-check",
+  "browser_regression_checks": 30,
+  "browser_regression_pass": true
+}
