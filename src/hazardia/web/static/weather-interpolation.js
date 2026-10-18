@@ -11,3 +11,13 @@ export function interpolateWeather(records,phase){
  }
  return out;
 }
+
+// Resolve the shared absolute scenario time. No nearest-hour substitution across gaps.
+export function weatherAt(records,at){
+ const target=Date.parse(at);if(!Number.isFinite(target))return null;
+ const exact=records?.find(r=>Date.parse(r.at)===target);if(exact)return exact;
+ const from=records?.find(r=>Date.parse(r.at)<target&&target-Date.parse(r.at)<3600000);
+ const to=records?.find(r=>Date.parse(r.at)>target&&Date.parse(r.at)-target<3600000);
+ if(!from||!to)return null;
+ return interpolateWeather(records,{from:from.at,to:to.at,fraction:(target-Date.parse(from.at))/3600000,at:new Date(target).toISOString().replace('.000Z','Z')});
+}
