@@ -1,0 +1,288 @@
+{
+  "status": "PASS",
+  "protocol_sha256": "51aed6956ffc9f8f230d3081e87bc88d8287e657f1a0c3d2aa6c592269b6e607",
+  "cases": {
+    "replay-baseline": {
+      "seconds": 53.33090316900052,
+      "final_ha": 2766.195,
+      "frames": 288,
+      "resource_count": 0,
+      "vegetation_changed_cells": 0,
+      "spatial_forcing_events": 72,
+      "wind_events": [
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 1,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.298961639404297,
+            16.298961639404297
+          ],
+          "spatial_forcing": true,
+          "time": 0,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 89.05173432225877,
+          "wind_grid_range_kmh": [
+            3.654228925704956,
+            9.40168285369873
+          ],
+          "wind_kmh": 6.485001917038994
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.855106353759766,
+            16.240943908691406
+          ],
+          "spatial_forcing": true,
+          "time": 3600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 86.22558997121615,
+          "wind_grid_range_kmh": [
+            4.282430648803711,
+            10.43120002746582
+          ],
+          "wind_kmh": 7.018156528673215
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.467304229736328,
+            16.240943908691406
+          ],
+          "spatial_forcing": true,
+          "time": 7200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 84.6451111578084,
+          "wind_grid_range_kmh": [
+            5.568268299102783,
+            10.210466384887695
+          ],
+          "wind_kmh": 7.490040494851346
+        }
+      ]
+    },
+    "user-scenario-1": {
+      "seconds": 42.076560427987715,
+      "final_ha": 2832.615,
+      "frames": 288,
+      "resource_count": 1,
+      "vegetation_changed_cells": 20,
+      "spatial_forcing_events": 72,
+      "wind_events": [
+        {
+          "fuel_removal_geometries": 1,
+          "ignition_count": 1,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.298961639404297,
+            16.298961639404297
+          ],
+          "spatial_forcing": true,
+          "time": 0,
+          "vegetation_changed_cells": 20,
+          "wind_from_deg": 89.05173432225877,
+          "wind_grid_range_kmh": [
+            3.654228925704956,
+            9.40168285369873
+          ],
+          "wind_kmh": 6.485001917038994
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.855106353759766,
+            16.240943908691406
+          ],
+          "spatial_forcing": true,
+          "time": 3600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 86.22558997121615,
+          "wind_grid_range_kmh": [
+            4.282430648803711,
+            10.43120002746582
+          ],
+          "wind_kmh": 7.018156528673215
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.467304229736328,
+            16.240943908691406
+          ],
+          "spatial_forcing": true,
+          "time": 7200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 84.6451111578084,
+          "wind_grid_range_kmh": [
+            5.568268299102783,
+            10.210466384887695
+          ],
+          "wind_kmh": 7.490040494851346
+        }
+      ],
+      "different_probability_cells": 14781,
+      "resource_intersections": [
+        {
+          "id": "ground-hypothesis",
+          "cells": 20,
+          "baseline_reached_cells": 20,
+          "at_minutes": 0
+        }
+      ]
+    },
+    "user-scenario-2": {
+      "seconds": 39.94892945099855,
+      "final_ha": 2827.35,
+      "frames": 288,
+      "resource_count": 1,
+      "vegetation_changed_cells": 16,
+      "spatial_forcing_events": 72,
+      "wind_events": [
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 1,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.298961639404297,
+            16.298961639404297
+          ],
+          "spatial_forcing": true,
+          "time": 0,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 89.05173432225877,
+          "wind_grid_range_kmh": [
+            3.654228925704956,
+            9.40168285369873
+          ],
+          "wind_kmh": 6.485001917038994
+        },
+        {
+          "fuel_removal_geometries": 1,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.855106353759766,
+            16.240943908691406
+          ],
+          "spatial_forcing": true,
+          "time": 3600,
+          "vegetation_changed_cells": 16,
+          "wind_from_deg": 86.22558997121615,
+          "wind_grid_range_kmh": [
+            4.282430648803711,
+            10.43120002746582
+          ],
+          "wind_kmh": 7.018156528673215
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.467304229736328,
+            16.240943908691406
+          ],
+          "spatial_forcing": true,
+          "time": 7200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 84.6451111578084,
+          "wind_grid_range_kmh": [
+            5.568268299102783,
+            10.210466384887695
+          ],
+          "wind_kmh": 7.490040494851346
+        }
+      ],
+      "different_probability_cells": 15814,
+      "resource_intersections": [
+        {
+          "id": "ground-hypothesis",
+          "cells": 16,
+          "baseline_reached_cells": 16,
+          "at_minutes": 60
+        }
+      ]
+    },
+    "wind-override": {
+      "seconds": 48.42053397800191,
+      "final_ha": 3685.77,
+      "frames": 288,
+      "resource_count": 0,
+      "vegetation_changed_cells": 0,
+      "spatial_forcing_events": 72,
+      "wind_events": [
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 1,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.298961639404297,
+            16.298961639404297
+          ],
+          "spatial_forcing": true,
+          "time": 0,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 89.05173432225877,
+          "wind_grid_range_kmh": [
+            3.654228925704956,
+            9.40168285369873
+          ],
+          "wind_kmh": 6.485001917038994
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.855106353759766,
+            16.240943908691406
+          ],
+          "spatial_forcing": true,
+          "time": 3600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 266.22558997121615,
+          "wind_grid_range_kmh": [
+            10.800000190734863,
+            10.800000190734863
+          ],
+          "wind_kmh": 10.8
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.404529571533203,
+            16.240943908691406
+          ],
+          "spatial_forcing": true,
+          "time": 7200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 264.6451111578084,
+          "wind_grid_range_kmh": [
+            10.800000190734863,
+            10.800000190734863
+          ],
+          "wind_kmh": 10.8
+        }
+      ],
+      "different_probability_cells": 25225,
+      "resource_intersections": []
+    }
+  },
+  "checks": {
+    "baseline_all_288_probability_arrays_identical": true,
+    "user-scenario-1_consumed": true,
+    "user-scenario-2_consumed": true,
+    "wind_changes_native_probability": true
+  }
+}

@@ -1,0 +1,785 @@
+{
+  "run_id": "fire-coupling-20261018",
+  "parent_sha": "96c9959924de024543a161aa60ec62402cb10f26",
+  "reviewer": "Codex self-check",
+  "e2e": {
+    "status": "PASS",
+    "rows": [
+      {
+        "job_id": "job-2065f1b44e7f422ab7098d9d3cfc8f04",
+        "previous_job_id": "job-e9843385a7d24a81b101d5a1425227d8",
+        "state": "SUCCEEDED",
+        "valid_from": "2026-10-18T13:00:00Z",
+        "valid_until": "2026-10-21T13:00:00Z",
+        "field_id": "map-weather-cb2fb8a37a7e386cca75724d",
+        "field_sha256": "b6d5beba751eeaf6f36c9f8cfca1103a1fd25198e85a80fbd7769b1fb2d42065",
+        "terrain_id": "e97be42ecdae76e0a67e32ae3869c23edda7de8516287df69686b0a4cd21e684",
+        "resources_equal_authored": true,
+        "resource_count": 0,
+        "changed_cells": 0,
+        "spatial_forcing_events": 72,
+        "final_ha": 2552.85
+      },
+      {
+        "job_id": "job-d8c90cc03e4947289029b9c07421b606",
+        "previous_job_id": "job-7ebc9b72a7054bdba6d7df5de3b1683c",
+        "state": "SUCCEEDED",
+        "valid_from": "2026-10-18T13:00:00Z",
+        "valid_until": "2026-10-21T13:00:00Z",
+        "field_id": "map-weather-cb2fb8a37a7e386cca75724d",
+        "field_sha256": "b6d5beba751eeaf6f36c9f8cfca1103a1fd25198e85a80fbd7769b1fb2d42065",
+        "terrain_id": "e97be42ecdae76e0a67e32ae3869c23edda7de8516287df69686b0a4cd21e684",
+        "resources_equal_authored": true,
+        "resource_count": 1,
+        "changed_cells": 20,
+        "spatial_forcing_events": 72,
+        "final_ha": 2793.06
+      },
+      {
+        "job_id": "job-b4b2d5219aad4177837cfacac47f0af8",
+        "previous_job_id": "job-7e29200923e649acbba9e6274c6cb051",
+        "state": "SUCCEEDED",
+        "valid_from": "2026-10-18T13:00:00Z",
+        "valid_until": "2026-10-21T13:00:00Z",
+        "field_id": "map-weather-cb2fb8a37a7e386cca75724d",
+        "field_sha256": "b6d5beba751eeaf6f36c9f8cfca1103a1fd25198e85a80fbd7769b1fb2d42065",
+        "terrain_id": "e97be42ecdae76e0a67e32ae3869c23edda7de8516287df69686b0a4cd21e684",
+        "resources_equal_authored": true,
+        "resource_count": 1,
+        "changed_cells": 16,
+        "spatial_forcing_events": 72,
+        "final_ha": 2669.715
+      }
+    ],
+    "verified_assets": 15,
+    "verified_frames": 864,
+    "verified_pngs": 864,
+    "workspace_revision": 17,
+    "weather_quota": {
+      "attempts_today": 9,
+      "local_daily_limit": 48,
+      "location_equivalents_per_refresh": 81,
+      "max_location_equivalents_daily": 3888,
+      "refresh_s": 65
+    }
+  },
+  "main_workspace_unchanged": true,
+  "browser_suites": {
+    "final-playback": {
+      "checks": [
+        {
+          "id": "single-visible-result-clock",
+          "status": "PASS"
+        },
+        {
+          "id": "timeline-immediately-above-maps",
+          "status": "PASS"
+        },
+        {
+          "id": "three-original-pngs-decoded",
+          "status": "PASS"
+        },
+        {
+          "id": "native-play-advances-all-three",
+          "status": "PASS"
+        },
+        {
+          "id": "pause-stays-still",
+          "status": "PASS"
+        },
+        {
+          "id": "manual-seek-keeps-requested-hour",
+          "status": "PASS"
+        },
+        {
+          "id": "back-one-native-sample",
+          "status": "PASS"
+        },
+        {
+          "id": "forward-one-native-sample",
+          "status": "PASS"
+        },
+        {
+          "id": "loading-shows-busy-and-last-good-maps",
+          "status": "PASS"
+        },
+        {
+          "id": "slow-first-sample-not-skipped",
+          "status": "PASS"
+        },
+        {
+          "id": "slow-play-advances-all-windows",
+          "status": "PASS"
+        },
+        {
+          "id": "each-png-downloaded-once",
+          "status": "PASS",
+          "detail": [
+            "http://127.0.0.1:8080/api/firelab/job-2065f1b44e7f422ab7098d9d3cfc8f04/frame-161.png",
+            "http://127.0.0.1:8080/api/firelab/job-d8c90cc03e4947289029b9c07421b606/frame-161.png",
+            "http://127.0.0.1:8080/api/firelab/job-b4b2d5219aad4177837cfacac47f0af8/frame-161.png",
+            "http://127.0.0.1:8080/api/firelab/job-2065f1b44e7f422ab7098d9d3cfc8f04/frame-162.png",
+            "http://127.0.0.1:8080/api/firelab/job-d8c90cc03e4947289029b9c07421b606/frame-162.png",
+            "http://127.0.0.1:8080/api/firelab/job-b4b2d5219aad4177837cfacac47f0af8/frame-162.png",
+            "http://127.0.0.1:8080/api/firelab/job-2065f1b44e7f422ab7098d9d3cfc8f04/frame-163.png",
+            "http://127.0.0.1:8080/api/firelab/job-d8c90cc03e4947289029b9c07421b606/frame-163.png",
+            "http://127.0.0.1:8080/api/firelab/job-b4b2d5219aad4177837cfacac47f0af8/frame-163.png",
+            "http://127.0.0.1:8080/api/firelab/job-2065f1b44e7f422ab7098d9d3cfc8f04/frame-201.png",
+            "http://127.0.0.1:8080/api/firelab/job-d8c90cc03e4947289029b9c07421b606/frame-201.png",
+            "http://127.0.0.1:8080/api/firelab/job-b4b2d5219aad4177837cfacac47f0af8/frame-201.png"
+          ]
+        },
+        {
+          "id": "pause-during-loading-does-not-commit",
+          "status": "PASS"
+        },
+        {
+          "id": "failed-frame-pauses-preserves-last-good",
+          "status": "PASS"
+        },
+        {
+          "id": "stops-at-result-end",
+          "status": "PASS"
+        },
+        {
+          "id": "restart-from-end",
+          "status": "PASS"
+        },
+        {
+          "id": "updated-weather-has-no-independent-clock",
+          "status": "PASS"
+        },
+        {
+          "id": "result-weather-follows-fire-clock",
+          "status": "PASS"
+        },
+        {
+          "id": "responsive-375",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-375",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "responsive-768",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-768",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "responsive-1440",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-1440",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "uncomputed-draft-offers-calculation",
+          "status": "PASS"
+        },
+        {
+          "id": "no-javascript-errors",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "main-workspace-unmodified",
+          "status": "PASS"
+        },
+        {
+          "id": "saved-case-unmodified",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "browser": "155.0.8059.84",
+      "case": "fonte-vetica-20261018"
+    },
+    "final-clock": {
+      "checks": [
+        {
+          "id": "one-play-control-only",
+          "status": "PASS"
+        },
+        {
+          "id": "independent-time-selector-removed",
+          "status": "PASS"
+        },
+        {
+          "id": "result-weather-exact-shared-time-0",
+          "status": "PASS",
+          "detail": [
+            {
+              "at": "2026-10-18T13:00:00Z",
+              "requested": "2026-10-18T13:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-2065f1b44e7f422ab7098d9d3cfc8f04"
+            },
+            {
+              "at": "2026-10-18T13:00:00Z",
+              "requested": "2026-10-18T13:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-d8c90cc03e4947289029b9c07421b606"
+            },
+            {
+              "at": "2026-10-18T13:00:00Z",
+              "requested": "2026-10-18T13:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-b4b2d5219aad4177837cfacac47f0af8"
+            }
+          ]
+        },
+        {
+          "id": "result-weather-exact-shared-time-1",
+          "status": "PASS",
+          "detail": [
+            {
+              "at": "2026-10-18T14:00:00Z",
+              "requested": "2026-10-18T14:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-2065f1b44e7f422ab7098d9d3cfc8f04"
+            },
+            {
+              "at": "2026-10-18T14:00:00Z",
+              "requested": "2026-10-18T14:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-d8c90cc03e4947289029b9c07421b606"
+            },
+            {
+              "at": "2026-10-18T14:00:00Z",
+              "requested": "2026-10-18T14:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-b4b2d5219aad4177837cfacac47f0af8"
+            }
+          ]
+        },
+        {
+          "id": "result-weather-exact-shared-time-1.5",
+          "status": "PASS",
+          "detail": [
+            {
+              "at": "2026-10-18T14:30:00Z",
+              "requested": "2026-10-18T14:30:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-2065f1b44e7f422ab7098d9d3cfc8f04"
+            },
+            {
+              "at": "2026-10-18T14:30:00Z",
+              "requested": "2026-10-18T14:30:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-d8c90cc03e4947289029b9c07421b606"
+            },
+            {
+              "at": "2026-10-18T14:30:00Z",
+              "requested": "2026-10-18T14:30:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-b4b2d5219aad4177837cfacac47f0af8"
+            }
+          ]
+        },
+        {
+          "id": "result-weather-exact-shared-time-24",
+          "status": "PASS",
+          "detail": [
+            {
+              "at": "2026-10-19T13:00:00Z",
+              "requested": "2026-10-19T13:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-2065f1b44e7f422ab7098d9d3cfc8f04"
+            },
+            {
+              "at": "2026-10-19T13:00:00Z",
+              "requested": "2026-10-19T13:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-d8c90cc03e4947289029b9c07421b606"
+            },
+            {
+              "at": "2026-10-19T13:00:00Z",
+              "requested": "2026-10-19T13:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-b4b2d5219aad4177837cfacac47f0af8"
+            }
+          ]
+        },
+        {
+          "id": "result-weather-exact-shared-time-25",
+          "status": "PASS",
+          "detail": [
+            {
+              "at": "2026-10-19T14:00:00Z",
+              "requested": "2026-10-19T14:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-2065f1b44e7f422ab7098d9d3cfc8f04"
+            },
+            {
+              "at": "2026-10-19T14:00:00Z",
+              "requested": "2026-10-19T14:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-d8c90cc03e4947289029b9c07421b606"
+            },
+            {
+              "at": "2026-10-19T14:00:00Z",
+              "requested": "2026-10-19T14:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-b4b2d5219aad4177837cfacac47f0af8"
+            }
+          ]
+        },
+        {
+          "id": "result-weather-exact-shared-time-48",
+          "status": "PASS",
+          "detail": [
+            {
+              "at": "2026-10-20T13:00:00Z",
+              "requested": "2026-10-20T13:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-2065f1b44e7f422ab7098d9d3cfc8f04"
+            },
+            {
+              "at": "2026-10-20T13:00:00Z",
+              "requested": "2026-10-20T13:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-d8c90cc03e4947289029b9c07421b606"
+            },
+            {
+              "at": "2026-10-20T13:00:00Z",
+              "requested": "2026-10-20T13:00:00Z",
+              "origin": "FROZEN_JOB",
+              "field": "map-weather-cb2fb8a37a7e386cca75724d",
+              "job": "job-b4b2d5219aad4177837cfacac47f0af8"
+            }
+          ]
+        },
+        {
+          "id": "play-advances-fire-and-weather-together",
+          "status": "PASS",
+          "detail": {
+            "paused": 1.5,
+            "cs": [
+              {
+                "at": "2026-10-18T14:30:00Z",
+                "requested": "2026-10-18T14:30:00Z",
+                "origin": "FROZEN_JOB",
+                "field": "map-weather-cb2fb8a37a7e386cca75724d",
+                "job": "job-2065f1b44e7f422ab7098d9d3cfc8f04"
+              },
+              {
+                "at": "2026-10-18T14:30:00Z",
+                "requested": "2026-10-18T14:30:00Z",
+                "origin": "FROZEN_JOB",
+                "field": "map-weather-cb2fb8a37a7e386cca75724d",
+                "job": "job-d8c90cc03e4947289029b9c07421b606"
+              },
+              {
+                "at": "2026-10-18T14:30:00Z",
+                "requested": "2026-10-18T14:30:00Z",
+                "origin": "FROZEN_JOB",
+                "field": "map-weather-cb2fb8a37a7e386cca75724d",
+                "job": "job-b4b2d5219aad4177837cfacac47f0af8"
+              }
+            ]
+          }
+        },
+        {
+          "id": "pause-freezes-both-times",
+          "status": "PASS"
+        },
+        {
+          "id": "source-change-retains-one-clock",
+          "status": "PASS"
+        },
+        {
+          "id": "updated-forecast-keeps-scenario-origin",
+          "status": "PASS",
+          "detail": [
+            {
+              "at": "2026-10-18T14:00:00Z",
+              "requested": "2026-10-18T14:00:00Z",
+              "origin": "LIVE_CONSULTATION",
+              "field": "map-weather-682140c5c65bd43e19b09023",
+              "job": ""
+            },
+            {
+              "at": "2026-10-18T14:00:00Z",
+              "requested": "2026-10-18T14:00:00Z",
+              "origin": "LIVE_CONSULTATION",
+              "field": "map-weather-682140c5c65bd43e19b09023",
+              "job": ""
+            },
+            {
+              "at": "2026-10-18T14:00:00Z",
+              "requested": "2026-10-18T14:00:00Z",
+              "origin": "LIVE_CONSULTATION",
+              "field": "map-weather-682140c5c65bd43e19b09023",
+              "job": ""
+            }
+          ]
+        },
+        {
+          "id": "updated-forecast-plus25-not-now-plus25",
+          "status": "PASS",
+          "detail": [
+            {
+              "at": "2026-10-19T14:00:00Z",
+              "requested": "2026-10-19T14:00:00Z",
+              "origin": "LIVE_CONSULTATION",
+              "field": "map-weather-682140c5c65bd43e19b09023",
+              "job": ""
+            },
+            {
+              "at": "2026-10-19T14:00:00Z",
+              "requested": "2026-10-19T14:00:00Z",
+              "origin": "LIVE_CONSULTATION",
+              "field": "map-weather-682140c5c65bd43e19b09023",
+              "job": ""
+            },
+            {
+              "at": "2026-10-19T14:00:00Z",
+              "requested": "2026-10-19T14:00:00Z",
+              "origin": "LIVE_CONSULTATION",
+              "field": "map-weather-682140c5c65bd43e19b09023",
+              "job": ""
+            }
+          ]
+        },
+        {
+          "id": "hourly-source-value-is-unchanged",
+          "status": "PASS"
+        },
+        {
+          "id": "fractional-display-interpolation",
+          "status": "PASS"
+        },
+        {
+          "id": "gaps-outside-invalid-remain-missing",
+          "status": "PASS"
+        },
+        {
+          "id": "missing-hour-never-substitutes-another",
+          "status": "PASS",
+          "detail": [
+            {
+              "at": "",
+              "requested": "2026-10-19T14:00:00Z",
+              "origin": "LIVE_CONSULTATION",
+              "field": "map-weather-682140c5c65bd43e19b09023",
+              "job": ""
+            },
+            {
+              "at": "",
+              "requested": "2026-10-19T14:00:00Z",
+              "origin": "LIVE_CONSULTATION",
+              "field": "map-weather-682140c5c65bd43e19b09023",
+              "job": ""
+            },
+            {
+              "at": "",
+              "requested": "2026-10-19T14:00:00Z",
+              "origin": "LIVE_CONSULTATION",
+              "field": "map-weather-682140c5c65bd43e19b09023",
+              "job": ""
+            }
+          ]
+        },
+        {
+          "id": "missing-hour-visible-on-maps",
+          "status": "PASS"
+        },
+        {
+          "id": "frozen-result-still-available-despite-live-gap",
+          "status": "PASS"
+        },
+        {
+          "id": "no-javascript-errors",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "main-unchanged",
+          "status": "PASS"
+        },
+        {
+          "id": "case-unchanged",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "browser": "155.0.8059.84",
+      "starts": [
+        "2026-10-18T13:00:00Z",
+        "2026-10-18T13:00:00Z",
+        "2026-10-18T13:00:00Z"
+      ]
+    },
+    "final-workflow": {
+      "checks": [
+        {
+          "id": "modified-team-detected",
+          "status": "PASS"
+        },
+        {
+          "id": "old-result-not-presented-as-updated",
+          "status": "PASS"
+        },
+        {
+          "id": "play-submits-physical-calculation-first",
+          "status": "PASS"
+        },
+        {
+          "id": "calculation-state-visible",
+          "status": "PASS"
+        },
+        {
+          "id": "old-time-does-not-advance-while-calculating",
+          "status": "PASS"
+        },
+        {
+          "id": "all-three-scenarios-submitted",
+          "status": "PASS"
+        },
+        {
+          "id": "new-team-position-in-preparation-request",
+          "status": "PASS"
+        },
+        {
+          "id": "baseline-has-no-hidden-resources",
+          "status": "PASS"
+        },
+        {
+          "id": "batch-common-start-and-frozen-field",
+          "status": "PASS"
+        },
+        {
+          "id": "autoplay-only-after-updated-results",
+          "status": "PASS"
+        },
+        {
+          "id": "warning-cleared-only-after-calculation",
+          "status": "PASS"
+        },
+        {
+          "id": "responsive-375",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-375",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "responsive-768",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-768",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "responsive-1440",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-1440",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "failure-suppresses-autoplay-with-independent-outcomes",
+          "status": "PASS"
+        },
+        {
+          "id": "failed-new-input-not-fresh-after-reload",
+          "status": "PASS"
+        },
+        {
+          "id": "no-js-errors",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "main-preserved",
+          "status": "PASS"
+        },
+        {
+          "id": "user-case-preserved",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "browser": "155.0.8059.84"
+    },
+    "final-regression": {
+      "checks": [
+        {
+          "id": "three-scenarios-any-terrain",
+          "status": "PASS"
+        },
+        {
+          "id": "fixed-boundary-removed",
+          "status": "PASS"
+        },
+        {
+          "id": "weather-estimator-default",
+          "status": "PASS"
+        },
+        {
+          "id": "wheel-does-not-zoom-scenario-0",
+          "status": "PASS"
+        },
+        {
+          "id": "wheel-does-not-zoom-scenario-1",
+          "status": "PASS"
+        },
+        {
+          "id": "wheel-does-not-zoom-scenario-2",
+          "status": "PASS"
+        },
+        {
+          "id": "dynamic-endpoint-submitted",
+          "status": "PASS"
+        },
+        {
+          "id": "model-selected-explicitly",
+          "status": "PASS"
+        },
+        {
+          "id": "future-start-used",
+          "status": "PASS"
+        },
+        {
+          "id": "preparation-visible",
+          "status": "PASS"
+        },
+        {
+          "id": "preparation-persisted",
+          "status": "PASS"
+        },
+        {
+          "id": "calculation-does-not-freeze-maps",
+          "status": "PASS"
+        },
+        {
+          "id": "cancel-transmitted",
+          "status": "PASS"
+        },
+        {
+          "id": "cancel-is-terminal",
+          "status": "PASS"
+        },
+        {
+          "id": "manual-mode-deliberate",
+          "status": "PASS"
+        },
+        {
+          "id": "batch-submits-every-scenario",
+          "status": "PASS"
+        },
+        {
+          "id": "batch-common-start",
+          "status": "PASS"
+        },
+        {
+          "id": "batch-pins-first-forecast",
+          "status": "PASS"
+        },
+        {
+          "id": "batch-no-hidden-resources",
+          "status": "PASS"
+        },
+        {
+          "id": "batch-classified-failures-release-controls",
+          "status": "PASS"
+        },
+        {
+          "id": "responsive-375",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-375",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "responsive-768",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-768",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "responsive-1440",
+          "status": "PASS"
+        },
+        {
+          "id": "axe-1440",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "monitor-wheel-no-zoom",
+          "status": "PASS"
+        },
+        {
+          "id": "monitor-time-connects-danger-day",
+          "status": "PASS"
+        },
+        {
+          "id": "no-browser-errors",
+          "status": "PASS",
+          "detail": []
+        },
+        {
+          "id": "actual-workspace-preserved",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "browser": "155.0.8059.84"
+    }
+  },
+  "vm_moisture_tests": {
+    "status": "PASS",
+    "count": 7,
+    "evidence": "moisture-tests.log"
+  },
+  "native_executions": {
+    "offline_controlled": 4,
+    "first_e2e_partial": 1,
+    "final_e2e_group": 3,
+    "total": 8
+  },
+  "qualification": "UNQUALIFIED_RESEARCH; full M5\u2013M7 BLOCKED unchanged",
+  "iab": {
+    "status": "PASS",
+    "auto_play_observed_hour": 17.25,
+    "paused_hour": 21.75,
+    "final_view_hour": 48
+  }
+}

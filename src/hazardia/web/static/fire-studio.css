@@ -47,3 +47,5 @@ details{border-top:1px solid var(--line);padding:14px 16px;font-size:12px}summar
 .case-banner{padding:16px 20px;border-bottom:1px solid #b8cadc;background:#f0f6fc;color:#173553}.case-banner strong{display:block;font-size:1.05rem}.case-banner p{margin:6px 0;max-width:90ch;font-size:.875rem;line-height:1.5}.case-banner a{color:#195582;font-weight:600;display:inline-block;padding:6px 0}
 
 .forecast-playback[hidden]{display:none!important}
+
+.calculation-status{padding:10px 14px;background:#fff7e8;color:#704500;border-bottom:1px solid #e5c994;font-size:12px;line-height:1.5;overflow-wrap:anywhere}.calculation-status.pending{background:#edf5fc;border-color:#c8dbea;color:#244f75}.scenario-map-card.outdated .scenario-map-heading{background:#fff7e8}
