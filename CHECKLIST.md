@@ -965,3 +965,22 @@ PASS diagnosi reale: caso FonteVetica rev5 con2geometrie spostate salvate ma ass
 | Checkpoint/streaming, nuovo p95/FPS/soak/held-out/devicefisici/Hydro | NOT RUN | nessun esito dedotto dal PASS del workflow |
 
 Report reports/FLUSSO-SIMULAZIONE-E-OTTIMIZZAZIONE.md; reports/scenario-workflow/verification.json e audit nativi; raw experiments/runs/scenario-workflow-20261018. Parentb1b3897+dirty, SHA consegna Git/PUBLICATION.json. Reviewer Codex self-check; tutti i gate scientifici ancora bloccati restano invariati.
+
+
+## Modifiche in corsa — midrun-edit-20261018
+
+| Verifica | Esito | Evidenza |
+| --- | --- | --- |
+| Riproduzione difetti precedente | FAIL confermato | browser-before: finestre riordinate, attivazione oltre tempo iniziale del drag |
+| Drop, pausa, finestra stabile e ripresa | PASS | browser-after-2:14check, incluso ricalcolo con origine e genitore invariati |
+| Authoring e meteo unico | PASS |23authoring+22ricalcolo+22clock;6axe375/768/1440 senza violazioni |
+| Ammissione replay, origine/seme/terreno | PASS |2testVM,2preparazioni negative reali: SOURCE_MISMATCH e DOMAIN_SPAN, nessun job |
+| Due run nativi72h congelati e prefix identico | PASS tecnico |10asset,576frame,576PNG;95campioni prima di24h identici per run,145pin invariati |
+| Consumo azioni | PASS tecnico | barriera140celle fuel; Canadair418celle umidità a86400s; geometria fissata nel protocollo |
+| Riduzione superficie Canadair nel pilot | FAIL |2625,705ha contro2552,85ha; differenza riportata senza efficacia reale dedotta |
+| Conservazione dati utente | PASS | main: scenari identici, sola revisione84→85 non attribuita; caso20 JSON identico |
+| Primo tentativo lineage | FAIL corretto | browser-after-1: altro genitore compatibile scelto; preferenza proprio risultato verificata dopo correzione |
+| Efficacia/logistica/input/skill, fullM5–M7 | BLOCKED | nessuna certificazione dai parametri upstream,2realizzazioni non ensemble qualificato |
+| Checkpoint, spegnimento attivo, nuovi benchmark/held-out/devicefisici | NOT RUN | nessun prodotto di fiamme attive inventato |
+
+Report reports/MODIFICHE-DURANTE-LA-SIMULAZIONE.md e reports/midrun-edit/*.json; raw experiments/runs/midrun-edit-20261018. Base93b6785+dirty, SHA consegna Git/PUBLICATION.json, reviewer Codex self-check. Gate scientifici invariati.

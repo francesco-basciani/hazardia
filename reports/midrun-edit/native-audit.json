@@ -1,0 +1,103 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "case": "barrier",
+      "job_id": "job-13bc29b4f45d451686d8cacb85c48e81",
+      "parent": "job-2065f1b44e7f422ab7098d9d3cfc8f04",
+      "start": "2026-10-18T13:00:00Z",
+      "assets_verified": 5,
+      "artifacts_verified": 594,
+      "pngs_verified": 288,
+      "frames": 288,
+      "prefix_frames_identical": 95,
+      "area_ha": 2431.125,
+      "different_final_cells": 12905,
+      "past_burn_probability_preserved": true,
+      "event_at24": {
+        "fuel_removal_geometries": 1,
+        "ignition_count": 0,
+        "moisture_changed_cells": 0,
+        "moisture_grid_range_percent": [
+          15.403038024902344,
+          19.257041931152344
+        ],
+        "spatial_forcing": true,
+        "time": 86400,
+        "vegetation_changed_cells": 140,
+        "wind_from_deg": 74.2738152841473,
+        "wind_grid_range_kmh": [
+          3.878835439682007,
+          9.000438690185547
+        ],
+        "wind_kmh": 7.1443731609375964
+      },
+      "action": {
+        "at_minutes": 1440,
+        "category": "canadair",
+        "effect": "fuel_removal",
+        "id": "midrun-barrier",
+        "line": [
+          [
+            42.414,
+            13.72
+          ],
+          [
+            42.414,
+            13.77
+          ]
+        ]
+      }
+    },
+    {
+      "case": "canadair",
+      "job_id": "job-c2a47751b4284eaeb3594f9362c011d5",
+      "parent": "job-2065f1b44e7f422ab7098d9d3cfc8f04",
+      "start": "2026-10-18T13:00:00Z",
+      "assets_verified": 5,
+      "artifacts_verified": 594,
+      "pngs_verified": 288,
+      "frames": 288,
+      "prefix_frames_identical": 95,
+      "area_ha": 2625.705,
+      "different_final_cells": 12201,
+      "past_burn_probability_preserved": true,
+      "event_at24": {
+        "fuel_removal_geometries": 0,
+        "ignition_count": 0,
+        "moisture_changed_cells": 418,
+        "moisture_grid_range_percent": [
+          15.403038024902344,
+          19.257041931152344
+        ],
+        "spatial_forcing": true,
+        "time": 86400,
+        "vegetation_changed_cells": 0,
+        "wind_from_deg": 74.2738152841473,
+        "wind_grid_range_kmh": [
+          3.878835439682007,
+          9.000438690185547
+        ],
+        "wind_kmh": 7.1443731609375964
+      },
+      "action": {
+        "at_minutes": 1440,
+        "category": "canadair",
+        "effect": "native",
+        "id": "midrun-canadair",
+        "line": [
+          [
+            42.414,
+            13.72
+          ],
+          [
+            42.414,
+            13.77
+          ]
+        ]
+      }
+    }
+  ],
+  "parent_final_ha": 2552.85,
+  "qualification": "Frozen research replay, one seed and2realizations; no extinction or operational efficacy claim"
+}

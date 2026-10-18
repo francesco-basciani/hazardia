@@ -222,6 +222,7 @@ class Handler(BaseHTTPRequestHandler):
                     return self.send(202,replay(app,body))
                 if path.startswith('/api/fire-preparations/') and path.endswith('/cancel'):return self.send(200,app.dynamic_fire.cancel(path.split('/')[-2]))
                 if path=='/api/firelab/dynamic':return self.send(202,app.dynamic_fire.submit(body))
+                if path=='/api/firelab/branch':return self.send(202,app.dynamic_fire.submit_branch(body))
                 if path=='/api/firelab/scenario':return self.send(202,app.submit_firelab(body,single=True))
                 if path=='/api/firelab':return self.send(202,app.submit_firelab(body))
                 if path=='/api/decisions':return self.send(202,app.submit_decision(body))

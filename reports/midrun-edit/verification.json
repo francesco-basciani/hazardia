@@ -1,0 +1,61 @@
+{
+  "run_id": "midrun-edit-20261018",
+  "parent": "93b67850c3b9d9b1f84a47b06159955b2d33858c+dirty",
+  "reviewer": "Codex self-check",
+  "browser": [
+    {
+      "suite": "browser-after-2",
+      "status": "PASS",
+      "checks": 14,
+      "sha256": "a7331b4b86512e1de537221243fa291e3a29a156f53649c164393086a2ea4d94"
+    },
+    {
+      "suite": "authoring-1",
+      "status": "PASS",
+      "checks": 23,
+      "sha256": "dfb2cbe689a9985d22a2da697694682942fb0ebdcf7af5bd9c3f70f7c52f091a"
+    },
+    {
+      "suite": "recalculate-1",
+      "status": "PASS",
+      "checks": 22,
+      "sha256": "e86fe30b36450c5914c65d0e6e70de3ab0cdee651a17d4134ac857e54dfba529"
+    },
+    {
+      "suite": "clock-1",
+      "status": "PASS",
+      "checks": 22,
+      "sha256": "85c13535976ca0b4f4ce2081c78e893add386f6ff1df557e28d7f1e5408845b4"
+    }
+  ],
+  "checks": 81,
+  "axe_runs": 6,
+  "vm_unit_tests": 2,
+  "real_negative_preparations": [
+    {
+      "case": "seed-mismatch",
+      "state": "ERROR",
+      "error": "SOURCE_MISMATCH",
+      "detail": "Resource-only replay requires the original ignition, duration, weather and model settings",
+      "preparation_id": "prep-8386b3bb835f4013a27cee6eb567def4"
+    },
+    {
+      "case": "outside-terrain",
+      "state": "ERROR",
+      "error": "DOMAIN_SPAN",
+      "detail": "Intervention outside frozen terrain; start a new territory simulation",
+      "preparation_id": "prep-e23c7e7d7da34308942212f00e1c307b"
+    }
+  ],
+  "main_revision_before": 84,
+  "main_revision_after": 85,
+  "main_scenario_contents_unchanged": true,
+  "revision_only_increment_origin": "NOT ATTRIBUTED; concurrent revision increment, no scenario changes; first full-JSON equality assembly rejected and corrected to explicitly report this difference",
+  "case_revision": 20,
+  "case_json_unchanged": true,
+  "qualifications": {
+    "scientific_M5_M7": "BLOCKED",
+    "native_canadair_reduces_area": "FAIL in this pilot, not a calibrated efficacy test",
+    "checkpoint_or_extinction_model": "NOT RUN"
+  }
+}

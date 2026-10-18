@@ -75,3 +75,29 @@ class DynamicFire:
     self.write(folder,dict(id=ident,state='SUCCEEDED',jobs={'B':job},forcing_id=field['id'],terrain_id=manifest['id'],input=body,detail='Territorio e forzanti verificati; PROPAGATOR accodato'))
   except Exception as e:self.write(folder,dict(id=ident,state='CANCELLED' if isinstance(e,HazardError) and e.code=='CANCELLED' else 'ERROR',error=e.code if isinstance(e,HazardError) else 'PREPARATION_FAILED',detail=str(e)))
   finally:self.slots.release()
+
+ def submit_branch(self,body):
+  import re
+  if not isinstance(body,dict) or set(body)!={'job_id','input'} or not isinstance(body['job_id'],str) or not re.fullmatch('job-[a-f0-9]{32}',body['job_id']):raise HazardError('INVALID_INPUT','Known parent job and strict input required')
+  validate(body['input'])
+  if self.app.store.get(body['job_id'])['state']!='SUCCEEDED':raise HazardError('DEPENDENCY_UNAVAILABLE','Completed parent required')
+  if not self.slots.acquire(False):raise HazardError('QUEUE_FULL','Four preparations already queued')
+  ident='prep-'+uuid.uuid4().hex;folder=self.base/ident;folder.mkdir();write_new(folder/'branch.json',body);self.write(folder,dict(id=ident,state='QUEUED',detail='Ricalcolo condizionale: stessi terreno, meteo e inizio del risultato precedente'))
+  threading.Thread(target=self.work_branch,args=(ident,folder),daemon=True).start();return dict(preparation_id=ident,state='QUEUED')
+ def work_branch(self,ident,folder):
+  app=self.app
+  try:
+   with self.serial:
+    self.write(folder,dict(id=ident,state='PREPARING',detail='Verifica degli input congelati; nessuna nuova acquisizione meteo'))
+    cfg=load(app.root/'runtime-v2.json');env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[2]),PROJ_LIB='/usr/share/proj')
+    with (folder/'prepare.log').open('xb') as log:result=self.execute(ident,[cfg['geo_python'],'-m','hazardia.fire_branch',str(app.root),str(folder)],env,log,30)
+    if result.returncode:
+     error=load(folder/'prepare-error.json') if (folder/'prepare-error.json').exists() else dict(code='PREPARATION_FAILED',detail='Frozen replay preparation failed; inspect log')
+     raise HazardError(error['code'],error['detail'])
+    if ident in self.cancelled:raise HazardError('CANCELLED','Preparation cancelled')
+    req=load(folder/'request.json')
+    with app.lock:job=app.store.submit(req,folder)
+    plan=load(folder/next(a['path'] for a in req['assets'] if a['role']=='fire_plan'))
+    self.write(folder,dict(id=ident,state='SUCCEEDED',jobs={'B':job},forcing_id=plan.get('forcing',{}).get('field_id'),detail='PROPAGATOR accodato sugli stessi input congelati del genitore'))
+  except Exception as e:self.write(folder,dict(id=ident,state='CANCELLED' if ident in self.cancelled else 'ERROR',error=e.code if isinstance(e,HazardError) else 'PREPARATION_FAILED',detail=str(e)))
+  finally:self.slots.release();self.cancelled.discard(ident)
