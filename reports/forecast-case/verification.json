@@ -1,0 +1,119 @@
+{
+  "run_id": "forecast-case-20261018",
+  "base_sha": "b5422c85b16fa958d93eb2c3352c34bc3d6a6af3",
+  "qualification": "CONDITIONAL_FORECAST_REAL_INPUTS_NOT_CALIBRATED_OPERATIONAL_SKILL",
+  "native_audit": {
+    "status": "PASS",
+    "qualification": "REAL_INPUT_CONDITIONAL_FORECAST_NOT_CALIBRATED_OPERATIONAL_VALIDATION",
+    "start": "2026-10-18T18:00:00Z",
+    "end": "2026-10-21T18:00:00Z",
+    "rows": [
+      {
+        "job_id": "job-ebe51c3a0c4b4832bda1ab3f117e6ec6",
+        "request_id": "prep-32f4fc5376704d5980ecf1c4b00bfdb3",
+        "artifacts": 594,
+        "assets": 5,
+        "frames": 288,
+        "initial_moisture_range_percent": [
+          16.80267333984375,
+          18.913864135742188
+        ],
+        "native_initialization_matches": true,
+        "final_area_ha": 1229.20875,
+        "last_active_realizations": 4,
+        "wind_hours": 72,
+        "history_bytes": 747038
+      },
+      {
+        "job_id": "job-6ef11525dfe94014906dd353cc1bc202",
+        "request_id": "prep-caf0c8e5ef0640cf9a60163a8b516fbe",
+        "artifacts": 594,
+        "assets": 5,
+        "frames": 288,
+        "initial_moisture_range_percent": [
+          16.80267333984375,
+          18.913864135742188
+        ],
+        "native_initialization_matches": true,
+        "final_area_ha": 1271.655,
+        "last_active_realizations": 4,
+        "wind_hours": 72,
+        "history_bytes": 747038
+      }
+    ],
+    "identical_pre_action_samples": 3,
+    "different_final_probability_cells": 19960,
+    "canadair_consumed_event": {
+      "fuel_removal_geometries": 0,
+      "ignition_count": 0,
+      "moisture_changed_cells": 81,
+      "moisture_grid_range_percent": [
+        17.151519775390625,
+        19.061426162719727
+      ],
+      "spatial_forcing": true,
+      "time": 3600,
+      "vegetation_changed_cells": 0,
+      "wind_from_deg": 359.0629666936579,
+      "wind_grid_range_kmh": [
+        0.0028106996323913336,
+        5.118166446685791
+      ],
+      "wind_kmh": 0.4317838973029719
+    },
+    "static_inputs_identical": true,
+    "known_limits": [
+      "Fuel2021 research crosswalk/seasonality",
+      "ICON global11km mountain forecast not local sensors",
+      "HFFMC estimate, not RISICO/field moisture",
+      "Eight realizations of one forecast are not a weather ensemble",
+      "Native aircraft action not calibrated efficacy/logistics",
+      "No observed-event/held-out validation"
+    ]
+  },
+  "runtime_audit": {
+    "status": "PASS",
+    "engine_pins_verified": 145,
+    "jobs": [
+      {
+        "job": "job-ebe51c3a0c4b4832bda1ab3f117e6ec6",
+        "metrics": {
+          "artifact_bytes": 23327711,
+          "child_cpu_system_s": 7.536123,
+          "child_cpu_user_s": 128.497869,
+          "execution_s": 136.46716799100977,
+          "queue_s": 0.17812,
+          "rss_samples": 717,
+          "rss_sampling_interval_s": 0.1,
+          "sampled_peak_process_group_rss_bytes": 2803535872
+        },
+        "state": "SUCCEEDED"
+      },
+      {
+        "job": "job-6ef11525dfe94014906dd353cc1bc202",
+        "metrics": {
+          "artifact_bytes": 23507795,
+          "child_cpu_system_s": 6.359527000000002,
+          "child_cpu_user_s": 118.53391599999998,
+          "execution_s": 125.201582373993,
+          "queue_s": 0.309982,
+          "rss_samples": 654,
+          "rss_sampling_interval_s": 0.1,
+          "sampled_peak_process_group_rss_bytes": 2825056256
+        },
+        "state": "SUCCEEDED"
+      }
+    ]
+  },
+  "unit_tests": 124,
+  "browser_checks": 37,
+  "axe_checks": 6,
+  "replay_contract_checks": 5,
+  "browser_all_pass": true,
+  "browser": "Google Chrome headless; runtime path logged",
+  "sources_paid": false,
+  "new_dependencies": false,
+  "new_native_jobs": 2,
+  "full_M5_M7": "BLOCKED",
+  "historical_profile_staging_8_members": "PASS_NO_NATIVE_JOB"
+}

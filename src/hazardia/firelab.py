@@ -9,7 +9,9 @@ def number(v,lo,hi):
     return v
 def validate(body,*,allow_empty_ignitions=False):
     if not isinstance(body,dict):raise HazardError('INVALID_INPUT','Fire input object required')
-    if set(body)-{'ignition','hours','seed','moisture_percent','resources','start_at','forecast_id','weather_source','weather_changes','ignitions','comparison_times','moisture_model','forcing_id'}:raise HazardError('INVALID_INPUT','Unknown fire experiment fields')
+    if set(body)-{'ignition','hours','seed','moisture_percent','resources','start_at','forecast_id','weather_source','weather_changes','ignitions','comparison_times','moisture_model','forcing_id','antecedent_hours','realizations'}:raise HazardError('INVALID_INPUT','Unknown fire experiment fields')
+    if type(body.get('antecedent_hours',0)) is not int or body.get('antecedent_hours',0) not in [0,168] or type(body.get('realizations',2)) is not int or not 2<=body.get('realizations',2)<=8:raise HazardError('INVALID_INPUT','Antecedent hours0/168 and2..8 realizations required')
+    if body.get('antecedent_hours',0) and (body.get('moisture_model','HFFMC_1977')!='HFFMC_1977' or body.get('weather_source')!='FORECAST'):raise HazardError('INVALID_INPUT','Antecedent initialization requires forecast HFFMC')
     if body.get('moisture_model','HFFMC_1977') not in ['HFFMC_1977','MANUAL']:raise HazardError('INVALID_INPUT','Unknown fuel moisture model')
     if 'forcing_id' in body and (__import__('re').fullmatch('map-weather-[a-f0-9]{24}',str(body['forcing_id'])) is None):raise HazardError('INVALID_INPUT','Invalid distributed forcing identifier')
     for k in ['hours','seed']:
@@ -66,7 +68,13 @@ def validate_plan(plan,req,weather):
     if plan['moisture_percent']!=req['options']['moisture_percent'] or plan['qualification']!='UNQUALIFIED_RESEARCH' or plan['case']=='A' and (plan['resources'] or plan['weather_changes']):raise HazardError('INVALID_INPUT','Unqualified matching baseline required')
     if 'forcing' in plan:
         f=plan['forcing'];field=weather.get('distributed_field')
-        if set(f)!={'version','terrain_id','field_id','moisture_model','initial_ffmc','field_sha256','landcover_crosswalk'} or f['version']!='distributed/1' or f['moisture_model'] not in ['HFFMC_1977','MANUAL'] or not field or field['id']!=f['field_id'] or f['initial_ffmc']!=85:raise HazardError('SOURCE_MISMATCH','Distributed forcing contract mismatch')
+        keys={'version','terrain_id','field_id','moisture_model','initial_ffmc','field_sha256','landcover_crosswalk'}
+        if f.get('version')=='distributed/2':
+            keys.add('initialization');initial=f.get('initialization',{});history=weather.get('antecedent_field')
+            from hazardia.ingest.antecedent_weather import history_rows
+            if not history or initial.get('hours')!=168 or initial.get('field_id')!=history['id'] or initial.get('method')!='SPATIAL_HFFMC_168H' or f['moisture_model']!='HFFMC_1977':raise HazardError('SOURCE_MISMATCH','Antecedent initialization mismatch')
+            history_rows(history,req['valid_from'])
+        if set(f)!=keys or f['version'] not in ['distributed/1','distributed/2'] or f['moisture_model'] not in ['HFFMC_1977','MANUAL'] or not field or field['id']!=f['field_id'] or f['initial_ffmc']!=85:raise HazardError('SOURCE_MISMATCH','Distributed forcing contract mismatch')
     count=req['options']['duration_s']//3600
     if req['options']['duration_s']%3600 or len(plan['records'])!=count:raise HazardError('INVALID_TIME','Whole-hour complete native fire schedule required')
     times=plan['action_times']
@@ -114,7 +122,7 @@ def stage(root,body,forecast=None):
         write_new(dest/('plan-'+case+'.json'),plan);req=copy.deepcopy(template);req.update(id=dest.name+'-'+case,valid_from=start,valid_until=(begin+dt.timedelta(hours=body['hours'])).isoformat().replace('+00:00','Z'),snapshot_at=utcnow(),mode='RESEARCH_FORECAST' if body['weather_source']=='FORECAST' else 'RESEARCH_RETROSPECTIVE',schema_version='0.4.0')
         req['assets']=[dict(role=role,path=name,sha256=sha256(dest/name)) for role,name in [('dem','dem.tif'),('fire_arrays','arrays.npz'),('weather','weather.json'),('fire_plan','plan-'+case+'.json')]]
         req['assumptions']=['Native paired fire experiment '+case,'Real cached terrain; uniform legacy vegetation fuel5; manually authored fuel moisture (not atmospheric RH)','Hourly point wind consumed by native model; weather table also includes T/RH/rain/pressure/radiation, not yet a qualified fuel-moisture estimator','Native upstream line actions: idealized parameter effects, not calibrated personnel/aircraft efficacy or dispatch feasibility','Identical seed, realizations, quarter-hour output stepping and action-event schedule in matched A/B; wind remains hourly; B weather edits are hypothetical','Domain exit fails the job, never a clipped successful forecast']
-        req['options'].update(seed=body['seed'],duration_s=body['hours']*3600,moisture_percent=body['moisture_percent']);write_new(dest/('request-'+case+'.json'),req);plans[case]=req
+        req['options'].update(seed=body['seed'],duration_s=body['hours']*3600,moisture_percent=body['moisture_percent'],realizations=body.get('realizations',2));write_new(dest/('request-'+case+'.json'),req);plans[case]=req
     return dest,plans
 
 def prepare(root,dest):

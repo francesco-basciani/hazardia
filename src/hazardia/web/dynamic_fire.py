@@ -62,9 +62,22 @@ class DynamicFire:
     start=body.get('start_at');times={r['at'] for r in field['records']}
     if not start or timestamp(start)<=timestamp(utcnow()):raise HazardError('STALE_FORECAST','Scegli un inizio futuro: l’ora salvata non è più valida')
     if any((timestamp(start)+dt.timedelta(hours=h)).isoformat().replace('+00:00','Z') not in times for h in range(body['hours'])):raise HazardError('SOURCE_MISSING','Meteo incompleto per la durata scelta; scegli un inizio più vicino o accorcia la durata')
+    if body.get('antecedent_hours',0):
+     import time
+     from hazardia.ingest.antecedent_weather import acquire
+     deadline=time.monotonic()+150
+     while True:
+      if ident in self.cancelled:raise HazardError('CANCELLED','Preparazione annullata')
+      self.write(folder,dict(id=ident,state='PREPARING',detail='Meteo dei7giorni precedenti: acquisizione distribuita, budget gratuito condiviso'))
+      try:history=acquire(app.map_weather,field,start);break
+      except HazardError as e:
+       if e.code!='WEATHER_THROTTLED' or time.monotonic()>=deadline:raise
+       time.sleep(1)
+     write_new(folder/'antecedent.json',history)
+     self.write(folder,dict(id=ident,state='PREPARING',detail='Inizializzazione spaziale umidità combustibile da168ore di meteo'))
     write_new(folder/'field.json',field);write_new(folder/'terrain.json',dict(path=str(terrain),sha256=sha256(terrain/'manifest.json')))
     with (folder/'stage.log').open('xb') as log:
-     result=self.execute(ident,[cfg['geo_python'],'-m','hazardia.dynamic_stage',str(app.root),str(folder)],env,log,90)
+     result=self.execute(ident,[cfg['geo_python'],'-m','hazardia.dynamic_stage',str(app.root),str(folder)],env,log,240)
     if result.returncode:
      detail=(folder/'stage.log').read_text()
      if 'Ignition on built-up' in detail:raise HazardError('NO_BURNABLE_FUEL','Il punto scelto è classificato come superficie non combustibile in WorldCover2021; scegli esplicitamente una posizione vegetata')

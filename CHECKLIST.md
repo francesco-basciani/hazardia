@@ -1014,3 +1014,21 @@ Base 02143bd00cc50087c7432dc95c68a7016c8d0df2+dirty; commit consegna Git/PUBLICA
 | Nuovo caso dashboard, run fisici/ensemble/calibrazione/p95/soak | NOT RUN |nessun input/workspace/runtime modificato |
 
 La prova puntuale non è un’inizializzazione spaziale né una validazione. Richiesta di scenario realistico ancora aperta. Baseab39ab1+dirty, SHA Git/PUBLICATION.json, reviewer Codex self-check.
+
+
+## Previsione condizionale reale — forecast-case-20261018
+
+| Verifica | Esito | Evidenza |
+|---|---|---|
+| Storia168h spaziale81nodi, cache/quote/range/unità/gap/causalità | PASS |124unitVM, unit-final.log,9dedicati, acquisizione747038B |
+| Due run72h/8membri con/senza Canadair, stessi input congelati | PASS |native-audit-1.json;10asset/1188artefatti/576frame/PNG |
+| Azione a1h consumata, prefisso identico e probabilità diversa | PASS |3campioni/81celle action/19960celle finali diverse |
+| Riduzione superficie finale con questa linea Canadair | FAIL |1229,20875→1271,655ha; nessuna efficacia generalizzata dedotta |
+| Riproduzione/meteo, nuovo profilo, invalidazione risultati e authoring responsive | PASS |37browser/6axe375–1440 e IAB, rawforecast-case |
+| Replay mantiene8/168; mismatch e storia mancante rifiutati | PASS |5preflight reali senza job, replay-contract-final.json |
+| Main/vecchio caso conservati, VM e dipendenze invariati | PASS |preparatore, browser, runtime-audit e risorse |
+| Harness anticipati/ora eliminata fuori finestra | FAIL |profile1–2 e replay-contract primo; oracoli corretti, negativi conservati |
+| Calibrazione/skill/fuel stagionale/efficacia/logistica/fullM5–M7 | BLOCKED |qualifiche scientifiche invariate |
+| Nuovo weather ensemble/benchmark30p95/soak/heldout/secondaVM/ottimizzazione specifica | NOT RUN |report PREVISIONE-CON-DATI-REALI |
+
+Baseb5422c8+dirty, SHA consegna Git/PUBLICATION.json, reviewer Codex self-check. Caso opt-in forecast-fonte-vetica-20261018; non ricostruzione evento osservato.

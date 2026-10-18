@@ -35,3 +35,13 @@ class SpatialForcing:
   u=self.sample(record,'u');v=self.sample(record,'v');speed=np.hypot(u,v)*3.6;direction=(np.degrees(np.arctan2(-u,-v))+360)%360
   if change:speed=np.full_like(speed,change['speed_ms']*3.6);direction=np.full_like(direction,change['direction_deg'])
   return speed.astype('float32'),((direction-self.convergence)%360).astype('float32')
+
+
+def initialize_moisture(grid,field,start):
+ """Integrate real antecedent fields on native grid; no assumed observed FFMC."""
+ import numpy as np
+ from hazardia.ingest.antecedent_weather import history_rows
+ sampler=SpatialForcing(grid,field);m=np.full(grid['shape'],147.2*(101-85)/(59.5+85),dtype='float32')
+ for r in history_rows(field,start):
+  speed,_=sampler.wind(r);m=hourly_moisture(m,sampler.sample(r,'temperature'),sampler.sample(r,'humidity'),speed,sampler.sample(r,'precipitation'))
+ return np.clip(m,0,100).astype('float32')

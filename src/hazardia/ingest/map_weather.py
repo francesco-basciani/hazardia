@@ -35,7 +35,7 @@ def normalize(raw,receipt):
         if not finite(py) or not finite(px) or abs(py-y)>.25 or abs(px-x)>.25:raise HazardError('SOURCE_POSITION','Unexpected nearest model coordinate')
         if loc.get('hourly_units')!={'time':'iso8601',**VARS,**{k:v[0] for k,v in extra.items()}}:raise HazardError('SOURCE_UNIT','Map weather units differ')
         h=loc.get('hourly',{});ts=h.get('time',[])
-        if not 24<=len(ts)<=100 or times is not None and ts!=times:raise HazardError('SOURCE_TIME','Common hourly horizon required')
+        if not 24<=len(ts)<=(216 if q.get('past_days')==['7'] and q.get('forecast_days')==['2'] else 100) or times is not None and ts!=times:raise HazardError('SOURCE_TIME','Common hourly horizon required')
         if times is None:
             parsed=[timestamp(t+':00Z') for t in ts]
             if any((b-a).total_seconds()!=3600 for a,b in zip(parsed,parsed[1:])):raise HazardError('SOURCE_TIME','Hourly gap')

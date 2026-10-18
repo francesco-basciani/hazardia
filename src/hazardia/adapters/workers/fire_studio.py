@@ -30,6 +30,9 @@ def run_studio(root,req,dem,veg,plan):
     if dynamic:
         from hazardia.fire_forcing import SpatialForcing,hourly_moisture
         weather=load(verify_asset(root,next(a for a in req['assets'] if a['role']=='weather')));field=weather['distributed_field'];sampler=SpatialForcing(req['grid'],field);moisture=np.full(dem.shape,147.2*(101-85)/(59.5+85),dtype='float32');previous=None;previous_speed=None
+        if dynamic.get('version')=='distributed/2':
+            with np.load(verify_asset(root,next(a for a in req['assets'] if a['role']=='fire_arrays')),allow_pickle=False) as a:moisture=a['initial_moisture'].copy()
+            if moisture.shape!=dem.shape or not np.isfinite(moisture).all() or ((moisture<0)|(moisture>100)).any():raise HazardError('INVALID_INPUT','Invalid antecedent fuel moisture grid')
         for h,row in enumerate(plan['records']):
             r=next(r for r in field['records'] if r['at']==row['at'])
             if h and dynamic['moisture_model']=='HFFMC_1977':moisture=hourly_moisture(moisture,sampler.sample(previous,'temperature'),sampler.sample(previous,'humidity'),previous_speed,sampler.sample(previous,'precipitation'))

@@ -12,6 +12,7 @@ def prepare(root,folder):
  if sha256(source/'fire-series.json')!=manifest['artifacts']['fire-series.json']:raise HazardError('CHECKSUM','Original result changed')
  plan=load(source/'fire-series.json')['plan']
  expected=dict(hours=req['options']['duration_s']//3600,seed=req['options']['seed'],moisture_percent=plan['moisture_percent'],weather_source=plan['weather_source'],weather_changes=plan['weather_changes'],ignitions=plan['ignitions_wgs84'])
+ if input.get('realizations',2)!=req['options']['realizations'] or input.get('antecedent_hours',0)!=plan.get('forcing',{}).get('initialization',{}).get('hours',0):raise HazardError('SOURCE_MISMATCH','Ensemble/antecedent settings differ from frozen parent')
  if any(input.get(k)!=v for k,v in expected.items()) or input.get('start_at')!=req['valid_from'] or input.get('moisture_model','HFFMC_1977')!=plan.get('forcing',{}).get('moisture_model','HFFMC_1977'):raise HazardError('SOURCE_MISMATCH','Resource-only replay requires the original ignition, duration, weather and model settings')
  tr=Affine(*req['grid']['transform']);project=Transformer.from_crs(4326,req['grid']['crs'],always_xy=True)
  for unit in input['resources']:
