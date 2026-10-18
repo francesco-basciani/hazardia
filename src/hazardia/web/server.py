@@ -214,6 +214,9 @@ class Handler(BaseHTTPRequestHandler):
                 if path=='/api/fire-ideal':
                     from hazardia.web.fire_ideal_service import submit
                     return self.send(202,submit(app,body))
+                if path=='/api/fire-ideal/evaluate':
+                    from hazardia.web.fire_ideal_service import evaluate
+                    return self.send(202,evaluate(app,body))
                 if path=='/api/fire-ideal/replay':
                     from hazardia.web.fire_ideal_service import replay
                     return self.send(202,replay(app,body))

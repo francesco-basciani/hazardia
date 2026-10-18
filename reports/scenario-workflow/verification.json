@@ -1,0 +1,66 @@
+{
+  "run_id": "scenario-workflow-20261018",
+  "parent": "b1b38977160715890e0664c69feb85d7000e7c5a+dirty",
+  "reviewer": "Codex self-check",
+  "browser_suites": [
+    {
+      "suite": "authoring-4",
+      "status": "PASS",
+      "checks": 23,
+      "errors": [],
+      "raw_sha256": "279a83fd85fc185fef5cf9a4067bb5c2c292cb9c90d7d42dcd66875be54bf415"
+    },
+    {
+      "suite": "recalculate-1",
+      "status": "PASS",
+      "checks": 22,
+      "errors": [],
+      "raw_sha256": "5285abdfeaa7da27c9e045c0bfb09af751ec2155858db849df17d68ca752ef42"
+    },
+    {
+      "suite": "clock-1",
+      "status": "PASS",
+      "checks": 22,
+      "errors": [],
+      "raw_sha256": "218284caf8240e06ba71ae912d855c7a5573cad9aeed84451848ed5b81d0badc"
+    },
+    {
+      "suite": "playback-3",
+      "status": "PASS",
+      "checks": 28,
+      "errors": [],
+      "raw_sha256": "95035fa27f834551d903173488dda0741267dc490bf8e5c1577c8b883d95c72b"
+    },
+    {
+      "suite": "optimized-ui-3",
+      "status": "PASS",
+      "checks": 19,
+      "errors": [],
+      "raw_sha256": "4b7eb09400556a9beb4cbde5d695bfb8ff8507507090494bcce8f3ea778e24fc"
+    }
+  ],
+  "browser_checks": 114,
+  "axe_runs": 12,
+  "vm_unit_tests": 12,
+  "native_jobs": 4,
+  "native_frames": 1152,
+  "native_pngs": 1152,
+  "engine_pins_unchanged": 145,
+  "main_revision": 65,
+  "main_unchanged": true,
+  "case_revision_before": 17,
+  "case_revision_after": 20,
+  "three_original_scenarios_unchanged": true,
+  "qualification": "TECHNICAL_PASS_NOT_OPERATIONAL_OR_GLOBAL_OPTIMUM",
+  "scientific_M5_M7": "BLOCKED",
+  "raw_dir": "experiments/runs/scenario-workflow-20261018",
+  "negative_trials_retained": [
+    "decision-d3772f53c1a6410eb5e77047fb66a2d5",
+    "authoring-1",
+    "authoring-2",
+    "playback-1",
+    "playback-2",
+    "optimized-ui-2",
+    "evaluation-tests.log"
+  ]
+}

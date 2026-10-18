@@ -29,7 +29,9 @@ def submit(app,body):
             remaining=60-(time.monotonic()-accepted)
             if remaining<=0:raise subprocess.TimeoutExpired('queue',60)
             with (stage/'prepare.log').open('xb') as log:proc=subprocess.run([cfg['geo_python'],'-m','hazardia.decision.fire_ideal',str(app.root),str(stage/'request.json'),str(stage/'prepared')],env=env,stdout=log,stderr=subprocess.STDOUT,timeout=min(30,remaining))
-            if proc.returncode:raise HazardError('INVALID_INPUT','Geographic policy could not be prepared; check coverage, baseline without interventions and logs')
+            if proc.returncode:
+                error=load(stage/'prepare-error.json') if (stage/'prepare-error.json').exists() else dict(code='INVALID_INPUT',detail='Geographic policy could not be prepared; inspect the preparation log')
+                raise HazardError(error['code'],error['detail'])
             p=load(stage/'prepared/problem.json');context=load(stage/'prepared/context.json')
             with app.lock:p=app.replay.apply(p);health=app.replay.snapshot()
             r=bounded_decide(p,app.state/ident,str(app.root/'decision-env/bin/python'),accepted_monotonic=accepted)
@@ -77,4 +79,25 @@ def replay(app,body):
         except Exception:
             for job in jobs.values():app.store.cancel(job)
             raise
-    write_new(folder/'replay.json',dict(decision_id=body['decision_id'],source_baseline=baseline,jobs=jobs,qualification='UNQUALIFIED_IDEAL_FROZEN_REPLAY'));return dict(jobs=jobs,qualification='UNQUALIFIED_IDEAL_FROZEN_REPLAY')
+    write_new(folder/'replay.json',dict(decision_id=body['decision_id'],source_baseline=baseline,jobs=jobs,qualification='UNQUALIFIED_IDEAL_FROZEN_REPLAY'));return dict(comparison_id=folder.name,jobs=jobs,qualification='UNQUALIFIED_IDEAL_FROZEN_REPLAY')
+
+
+def evaluate(app,body):
+    if set(body)!={'comparison_id'} or not isinstance(body['comparison_id'],str) or not re.fullmatch('ideal-native-[a-f0-9]{32}',body['comparison_id']):raise HazardError('INVALID_INPUT','Known comparison identifier required')
+    folder=app.state/body['comparison_id'];r=load(folder/'replay.json')
+    if any(app.store.get(j)['state']!='SUCCEEDED' for j in r['jobs'].values()):raise HazardError('DEPENDENCY_UNAVAILABLE','Both native results must succeed')
+    if not app.capacity.acquire(False):raise HazardError('QUEUE_FULL','Evaluation queue full')
+    ident='decision-'+uuid.uuid4().hex;dest=app.state/ident;dest.mkdir()
+    with app.lock:app.results[ident]=dict(id=ident,status='QUEUED',operationally_approvable=False)
+    def work():
+        try:
+            cfg=load(app.root/'runtime-v2.json');env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[2]),PROJ_LIB='/usr/share/proj')
+            with app.lock:app.results[ident]=dict(id=ident,status='RUNNING',operationally_approvable=False)
+            if not (folder/'evaluation-native.json').exists():
+                with (dest/'evaluation.log').open('xb') as log:subprocess.run([cfg['geo_python'],'-m','hazardia.decision.fire_ideal_evaluation',str(app.root),str(folder)],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=30)
+            result=dict(load(folder/'evaluation-native.json'),id=ident)
+        except Exception as e:result=dict(id=ident,status='EVALUATION_FAILED',detail=str(e),operationally_approvable=False)
+        finally:app.capacity.release()
+        write_new(dest/'response.json',result)
+        with app.lock:app.results[ident]=result
+    app.pool.submit(work);return dict(id=ident,status='QUEUED')

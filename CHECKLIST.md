@@ -942,3 +942,26 @@ PASS un solo Riproduci/Pausa nello studio; eliminati player meteo, selettore ora
 
 ## Meteo e squadre nel calcolo — fire-coupling-20261018
 PASS diagnosi reale: caso FonteVetica rev5 con2geometrie spostate salvate ma assenti dai risultati mostrati. PASS Calcola e riproduci unico: ricalcolo fisico del gruppo prima del replay, warning presso le mappe, pausa alle modifiche, verifica piano realmente consumato anche dopo reload/errore, conteggio celle nell’ispettore. PASS4replay nativi72h: baseline identica per tutti288array, nuove aree20/16celle consumate e14781/15814celle probabilità diverse; override vento modifica25225celle. Le due aree NON migliorano la superficie finale in questa prova con2realizzazioni: nessuna efficacia inventata, categorie ancora idealizzate. FAIL primo e2e: riferimento riuscito ma forecast prossimaTTL scaduta prima degli altri2, guardia rispettata; nessun allentamentoTTL. PASS retry reale viaIAB:3job72h, stesse risorse utente/terreno/inizio15:00Roma/campo fresco,15asset+864array+864PNG verificati, caso rev17, posizioni conservate e mainrev59 invariata, quota9/48.8nuove esecuzioni native in totale(4offline+1parziale+3finali). PASS7test moisture VM+102browser finali/9axe375–1440; FAIL intermedi coda/harness conservati. IAB autoplay verificato e vista lasciata a+48h in pausa. NOT RUN efficacia ensemble/heldout/nuoviFPS/p95/soak; BLOCKED categorie/logistica/skill/fuel-moisture e fullM5–M7 invariati. Report reports/FISICA-METEO-E-SQUADRE.md, sommari reports/fire-coupling/*.json; raw experiments/runs/fire-coupling-20261018. Parent96c9959+dirty, SHA consegna Git/PUBLICATION.json, reviewer Codex self-check. Prossimo incremento scientifico: validazione degli interventi ed ensemble prima di ordinare schieramenti per efficacia.
+
+
+## Workflow simulazione — scenario-workflow-20261018
+
+| Verifica | Esito | Evidenza e limite |
+| --- | --- | --- |
+| Requisito aggiornato, architettura generica | PASS | SPEC/AGENTS; supersede inneschi comuni, nessun nuovo hazard |
+| Primo scenario, inneschi/risorse indipendenti, copia esplicita | PASS | authoring-4:23check, geometria/estensione/categoria/tempi e rimozione |
+| Pausa/rewind/modifica/ricalcolo/ripresa | PASS | recalculate-1:22check; ripresa alla stessa ora, errore non avvia replay |
+| Unico clock e snapshot meteo coerenti | PASS | clock-1:22check su risultati reali, gap dichiarato |
+| Replay PNG lenti/mancanti e mobile | PASS | playback-3:28check; fixture corretta senza previous_job_id |
+| Disponibilità/attivazioni e verificatore solver | PASS tecnico |7test VM; ground0min, helicopter1440min, Canadair indisponibile escluso |
+| Confronto fisico e vincitore verificato | PASS tecnico |5test geo; native-api/native-dashboard JSON,4job reali, stesso seme/input |
+| Integrità e consumo input | PASS |20asset,1152frame,1152PNG,145pin;0/86400s con100celle ciascuno e72eventi meteo/run |
+| Flusso IAB e conservazione scenari | PASS | decision-b3b5220fc2c740b8a3939a45279a2f74; main65 identica, caso17→20,3originali identici |
+| Confronto finale e layout | PASS | optimized-ui-3:19check; intestazione senza sovrapposizioni375/768/1440 |
+| Accessibilità finale | PASS |12axe sui4suite,0violazioni; tabella vuota focalizzabile |
+| Primo solver tentativo | FAIL | decision-d3772f53c1a6410eb5e77047fb66a2d5: NameError; caricamento arrival corretto prima del retry |
+| Primi harness/visivo/axe | FAIL | authoring-1/2,playback-1/2,optimized-ui-2 e cattura IAB conservati, cause/correzioni nel report |
+| Efficacia per categoria, logistica, calibrazione, fullM5–M7 | BLOCKED | rimozione ideale uguale per categorie,2realizzazioni, fonti esposizione parziali |
+| Checkpoint/streaming, nuovo p95/FPS/soak/held-out/devicefisici/Hydro | NOT RUN | nessun esito dedotto dal PASS del workflow |
+
+Report reports/FLUSSO-SIMULAZIONE-E-OTTIMIZZAZIONE.md; reports/scenario-workflow/verification.json e audit nativi; raw experiments/runs/scenario-workflow-20261018. Parentb1b3897+dirty, SHA consegna Git/PUBLICATION.json. Reviewer Codex self-check; tutti i gate scientifici ancora bloccati restano invariati.

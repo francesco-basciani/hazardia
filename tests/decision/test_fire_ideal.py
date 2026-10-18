@@ -25,6 +25,13 @@ class IdealTests(unittest.TestCase):
    with self.assertRaises(HazardError):validate_input(body)
   with self.assertRaises(HazardError):validate([])
 
+ def test_multi_day_activation_is_explicit_and_bounded(self):
+  body=dict(job_id='job-'+'a'*32,fleet=[dict(id='u1',category='helicopter',available=True,arrival_minutes=1440)],weights=dict(hospital=5,school=3,fire_station=3,residential=2,settlement=2),robust=.5,assumptions_confirmed=True)
+  validate_input(body)
+  for invalid in [-1,4320,float('nan')]:
+   bad=copy.deepcopy(body);bad['fleet'][0]['arrival_minutes']=invalid
+   with self.assertRaises(HazardError):validate_input(bad)
+
  def test_queued_request_has_independent_deadline(self):
   import tempfile,threading,time
   from pathlib import Path

@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "comparison_id": "ideal-native-bd9cb31bee314a62b8b6be21a2f62a23",
+  "rows": [
+    {
+      "case": "A",
+      "job_id": "job-487cb86fa6774e2a97ab123fe0948fc9",
+      "area_ha": 2552.85,
+      "artifacts_verified": 594,
+      "assets_verified": 5,
+      "pngs_verified": 288,
+      "native_frames": 288,
+      "unit_times_minutes": [],
+      "changed_fuel_events": [],
+      "spatial_forcing_events": 72
+    },
+    {
+      "case": "B",
+      "job_id": "job-521538ef71204f27a7d67ef7cdbf10a4",
+      "area_ha": 2477.925,
+      "artifacts_verified": 594,
+      "assets_verified": 5,
+      "pngs_verified": 288,
+      "native_frames": 288,
+      "unit_times_minutes": [
+        0,
+        1440
+      ],
+      "changed_fuel_events": [
+        {
+          "time": 0,
+          "cells": 100
+        },
+        {
+          "time": 86400,
+          "cells": 100
+        }
+      ],
+      "spatial_forcing_events": 72
+    }
+  ],
+  "checks": {
+    "all_baseline_probability_frames_identical": true,
+    "different_final_probability_cells": 11411
+  },
+  "evaluation": {
+    "best_case": "B",
+    "best_job_id": "job-521538ef71204f27a7d67ef7cdbf10a4",
+    "native_output_sha256": [
+      "af0ef533da42736112aa77e74a69a7b980793cd79a42f5029db3adf91818326f",
+      "1eb0adaae8cd0d4b0877afd998357262ac1b5caae6c1047692b6f88979cf1858"
+    ],
+    "objective": "Weighted native fire probability on mapped priority areas; mean/max blend as configured, area breaks ties",
+    "operationally_approvable": false,
+    "qualification": "BEST_OF_TWO_EVALUATED_NOT_GLOBAL_PHYSICAL_OPTIMUM",
+    "rows": [
+      {
+        "area_ha": 2552.85,
+        "case": "A",
+        "job_id": "job-487cb86fa6774e2a97ab123fe0948fc9",
+        "native_priority_index": 3.5847222208976746,
+        "nominal": 3.169444441795349,
+        "stress": 4.0
+      },
+      {
+        "area_ha": 2477.925,
+        "case": "B",
+        "job_id": "job-521538ef71204f27a7d67ef7cdbf10a4",
+        "native_priority_index": 2.2327380999922752,
+        "nominal": 0.4654761999845505,
+        "stress": 4.0
+      }
+    ],
+    "status": "COMPARISON_EVALUATED",
+    "weather_sha256": "099b1b2180e445d28750042b9aaf92378d5080cd6600be4090b09887dc6abcfd"
+  },
+  "qualification": "Engineering replay; same seed, two realizations; no operational or global-optimum claim"
+}
