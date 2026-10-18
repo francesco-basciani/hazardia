@@ -984,3 +984,19 @@ Report reports/FLUSSO-SIMULAZIONE-E-OTTIMIZZAZIONE.md; reports/scenario-workflow
 | Checkpoint, spegnimento attivo, nuovi benchmark/held-out/devicefisici | NOT RUN | nessun prodotto di fiamme attive inventato |
 
 Report reports/MODIFICHE-DURANTE-LA-SIMULAZIONE.md e reports/midrun-edit/*.json; raw experiments/runs/midrun-edit-20261018. Base93b6785+dirty, SHA consegna Git/PUBLICATION.json, reviewer Codex self-check. Gate scientifici invariati.
+
+
+## Riproduzione fluida e recupero — smooth-resume-20261018
+
+| Verifica | Esito | Evidenza |
+|---|---|---|
+| Transizioni continue, endpoint originali, pausa/meteo/gap/reduced-motion/PNG mancante | PASS |23check browser-final, reports/smooth-resume/verification.json |
+| Ricalcolo, progresso reale, reload, coda senza duplicati e ripresa ora interrotta | PASS |browser-final +5unitVM, progress-unit.log |
+| Authoring/drag destinatario/clock/response375–1440 e6axe | PASS |23+14+22regressioni; totale82browser incluso dedicato |
+| Coda utente4job e piani reali, nessuna nuova esecuzione dall’agente | PASS |current-user-jobs.json nel raw; tutti SUCCEEDED |
+| Input principali conservati e caso rev20 identico | PASS |snapshot91/98 e before/after; revisioni cambiate per completamento job |
+| Vecchia riproduzione a scatti, negativi intermedi | FAIL |browser-before e after1–3, conservati; difetti corretti nella versione finale |
+| Checkpoint/streaming/crash transazionale/p95generale/soak/device/nuove prove fisiche | NOT RUN |report RIPRODUZIONE-FLUIDA-E-AVANZAMENTO |
+| Qualificazione efficacia/logistica/skill e fullM5–M7 | BLOCKED |prerequisiti scientifici invariati |
+
+Base 02143bd00cc50087c7432dc95c68a7016c8d0df2+dirty; commit consegna Git/PUBLICATION.json, reviewer Codex self-check. Raw experiments/runs/smooth-resume-20261018; prossimo incremento scientifico invariato.

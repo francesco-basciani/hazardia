@@ -1,0 +1,198 @@
+{
+  "run_id": "smooth-resume-20261018",
+  "base_sha": "02143bd00cc50087c7432dc95c68a7016c8d0df2",
+  "reviewer": "Codex self-check",
+  "qualification": "DISPLAY_TRANSITION_AND_UI_TRANSPORT_TESTS_NOT_PHYSICS_VALIDATION",
+  "browser_checks": {
+    "smooth": 23,
+    "authoring": 23,
+    "midrun": 14,
+    "clock": 22
+  },
+  "all_browser_checks_pass": true,
+  "unit_checks": 5,
+  "axe_checks": 6,
+  "browser": "155.0.8059.84",
+  "animation_distinct_hours": 42,
+  "animation_window_ms": 1500,
+  "main_input_preserved": true,
+  "main_revision_before": 91,
+  "main_revision_after": 98,
+  "case_preserved": true,
+  "user_jobs": {
+    "revision": 98,
+    "scenarios": [
+      {
+        "id": "baseline-clean",
+        "name": "Senza interventi",
+        "job": "job-53e36e1aff8e43399bf2b3647dc26653",
+        "state": "SUCCEEDED",
+        "resources": [
+          {
+            "at_minutes": 2190,
+            "category": "canadair",
+            "effect": "fuel_removal",
+            "id": "unit-3c1dcd61-b95",
+            "line": [
+              [
+                42.490912,
+                13.941329
+              ],
+              [
+                42.490437,
+                13.95356
+              ]
+            ]
+          }
+        ],
+        "first_exhausted_hour": 5.25,
+        "first_exhausted_elapsed_s": 18900,
+        "final_area_ha": 1.53,
+        "frame_count": 288,
+        "last_hour": 72.0
+      },
+      {
+        "id": "scenario-dea08e47-78a",
+        "name": "Scenario 1",
+        "job": "job-268d21ca223b47fd93172c65cd408d82",
+        "state": "SUCCEEDED",
+        "resources": [
+          {
+            "at_minutes": 0,
+            "category": "canadair",
+            "effect": "fuel_removal",
+            "id": "unit-c1c5b323-def",
+            "line": [
+              [
+                42.50349,
+                13.975639
+              ],
+              [
+                42.465512,
+                13.953323
+              ]
+            ]
+          },
+          {
+            "at_minutes": 0,
+            "category": "waterline_action",
+            "effect": "fuel_removal",
+            "id": "unit-d66f81cf-d6f",
+            "line": [
+              [
+                42.488982,
+                13.94749
+              ],
+              [
+                42.488982,
+                13.948708
+              ]
+            ]
+          }
+        ],
+        "first_exhausted_hour": 4.25,
+        "first_exhausted_elapsed_s": 15300,
+        "final_area_ha": 1.215,
+        "frame_count": 288,
+        "last_hour": 72.0
+      },
+      {
+        "id": "scenario-045a2cf8-759",
+        "name": "Scenario 3",
+        "job": "job-c49ea10f01e042f3a933d099161bb8ed",
+        "state": "SUCCEEDED",
+        "resources": [
+          {
+            "at_minutes": 0,
+            "category": "waterline_action",
+            "effect": "fuel_removal",
+            "id": "unit-19b84a42-1d0",
+            "line": [
+              [
+                42.487036,
+                14.046098
+              ],
+              [
+                42.487036,
+                14.047316
+              ]
+            ]
+          },
+          {
+            "at_minutes": 0,
+            "category": "waterline_action",
+            "effect": "fuel_removal",
+            "id": "unit-d1b6bb7e-788",
+            "line": [
+              [
+                42.485013,
+                13.92756
+              ],
+              [
+                42.477921,
+                13.959503
+              ]
+            ]
+          },
+          {
+            "at_minutes": 0,
+            "category": "helicopter",
+            "effect": "fuel_removal",
+            "id": "unit-d6ca703d-e84",
+            "line": [
+              [
+                42.487934,
+                13.94483
+              ],
+              [
+                42.487934,
+                13.946048
+              ]
+            ]
+          }
+        ],
+        "first_exhausted_hour": 3.75,
+        "first_exhausted_elapsed_s": 13500,
+        "final_area_ha": 1.26,
+        "frame_count": 288,
+        "last_hour": 72.0
+      },
+      {
+        "id": "scenario-a6b20c7f-ab3",
+        "name": "Scenario 3",
+        "job": "job-1f63cbbb3c294b8f880422a9b82d6fa2",
+        "state": "SUCCEEDED",
+        "resources": [
+          {
+            "at_minutes": 1290,
+            "category": "canadair",
+            "effect": "fuel_removal",
+            "id": "unit-bfe6938f-061",
+            "line": [
+              [
+                42.490137,
+                13.946792
+              ],
+              [
+                42.490137,
+                13.94801
+              ]
+            ]
+          }
+        ],
+        "first_exhausted_hour": 5.25,
+        "first_exhausted_elapsed_s": 18900,
+        "final_area_ha": 1.53,
+        "frame_count": 288,
+        "last_hour": 72.0
+      }
+    ]
+  },
+  "new_native_jobs_by_agent": 0,
+  "limitations": [
+    "Visual cross-dissolve only; native outputs every900s unchanged",
+    "Full native recalculation, no solver checkpoint/streaming",
+    "Recovery in the same browser tab after persisted workspace, not transactional crash recovery",
+    "No calibrated firefighting efficacy, physics skill or generalized FPS/p95 benchmark"
+  ]
+}

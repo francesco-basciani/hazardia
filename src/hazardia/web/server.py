@@ -268,7 +268,9 @@ class Handler(BaseHTTPRequestHandler):
             studio=re.fullmatch('/api/firelab/(job-[a-f0-9]{32})(?:/(frame-[0-9]{3}\\.png))?',path)
             if studio:
                 job,frame=studio.groups();state=app.store.get(job)
-                if state['state']!='SUCCEEDED':return self.send(200,state)
+                if state['state']!='SUCCEEDED':
+                    from hazardia.web.fire_progress import progress
+                    return self.send(200,dict(state,progress=progress(app.root,state)))
                 folder=app.root/'jobs'/job
                 if frame:
                     series=load(folder/'fire-series.json');entry=next((f for f in series['frames'] if f['url'].endswith('/'+frame)),None)
