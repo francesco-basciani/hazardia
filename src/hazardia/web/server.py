@@ -5,6 +5,7 @@ from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
 from hazardia.io import load,loads,write_new,utcnow,HazardError,sha256,verify_asset
 from hazardia.jobs import JobStore
+from hazardia.web.osm_tiles import OSMTiles
 from hazardia.web.maps import Orthophotos,RegionalSatellite
 from hazardia.web.territorial_service import TerritorialService
 from hazardia.web.notebook import Notebook
@@ -25,7 +26,7 @@ from hazardia.firelab import stage as stage_firelab,validate as validate_firelab
 
 class App:
     def __init__(self,root):
-        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.fire_cases=FireCases(self.root);self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock();from hazardia.web.dynamic_fire import DynamicFire;self.dynamic_fire=DynamicFire(self);self.territorial=TerritorialService(self)
+        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.osm_tiles=OSMTiles(self.state);self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.fire_cases=FireCases(self.root);self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock();from hazardia.web.dynamic_fire import DynamicFire;self.dynamic_fire=DynamicFire(self);self.territorial=TerritorialService(self)
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
     def models(self):
@@ -168,7 +169,7 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self,*args):pass
     def send(self,status,value,content_type='application/json',etag=None):
         raw=json.dumps(value,allow_nan=False).encode() if content_type=='application/json' and not isinstance(value,bytes) else value
-        self.send_response(status);self.send_header('Content-Type',content_type);self.send_header('Content-Length',str(len(raw)));self.send_header('Cache-Control','no-cache' if content_type=='application/json' else ('no-store' if self.path.startswith('/api/maps/ortho/') else 'no-cache' if not self.path.startswith('/assets/') else 'public, max-age=3600'));self.send_header('X-Content-Type-Options','nosniff');self.send_header('Referrer-Policy','no-referrer');self.send_header('Content-Security-Policy',"default-src 'self'; img-src 'self' data: blob:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; frame-ancestors "+("'self'" if urlsplit(self.path).path=='/fire-studio.html' else "'none'"))
+        self.send_response(status);self.send_header('Content-Type',content_type);self.send_header('Content-Length',str(len(raw)));self.send_header('Cache-Control','private, max-age=604800' if self.path.startswith('/api/maps/osm/') and status==200 and content_type=='image/png' else 'no-cache' if content_type=='application/json' else ('no-store' if self.path.startswith('/api/maps/ortho/') else 'no-cache' if not self.path.startswith('/assets/') else 'public, max-age=3600'));self.send_header('X-Content-Type-Options','nosniff');self.send_header('Referrer-Policy','same-origin');self.send_header('Content-Security-Policy',"default-src 'self'; img-src 'self' data: blob:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; frame-ancestors "+("'self'" if urlsplit(self.path).path=='/fire-studio.html' else "'none'"))
         if etag:self.send_header('ETag',etag)
         self.end_headers()
         if self.command!='HEAD':self.wfile.write(raw)
@@ -249,6 +250,8 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/research':
                 with app.lock:result=app.replay.snapshot()
                 return self.send(200,result)
+            osm=re.fullmatch(r'/api/maps/osm/(\d{1,2})/(\d{1,6})/(\d{1,6})',path)
+            if osm:return self.send(200,app.osm_tiles.tile(*map(int,osm.groups()),referer='http://'+self.headers.get('Host')+'/'),'image/png')
             if path=='/api/maps/regional/status':return self.send(200,app.regional_satellite.status())
             regional=re.fullmatch(r'/api/maps/regional/(\d{1,2})/(\d{1,6})/(\d{1,6})',path)
             if regional:return self.send(200,app.regional_satellite.tile(*map(int,regional.groups())),'image/jpeg')

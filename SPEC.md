@@ -424,3 +424,6 @@ Linee elettriche aeree e sostegni selezionabili, includendo distribuzione e tens
 
 
 **FR-OSM-CATALOG-01 —19ottobre2026:** la fonte OSM alimenta un catalogo territoriale generico riusabile da futuri scenari, inclusa sanità. Conservare raw e tutti i tag degli oggetti rappresentabili, anche chiavi non note; gruppi e layer selezionabili, ricerca/ispezione, geometrie/proxy/omissioni espliciti, provenienza/versione/diritti/copertura. Non confondere un estratto con copertura territoriale completa. Tag sanitari non certificano capacità o disponibilità attuale. Nuove categorie non diventano automaticamente priorità o risorse del decision engine; nessun nuovo simulatore sanitario in questo incremento. Acquisizioni/cache e normalizzazione nella stessaVM, con budget e fallimenti espliciti.
+
+
+**FR-UI-ROOM-01 —19ottobre2026:** Monitoraggio orientato alla mappa, navigazione chiara, comandi uniformi e pannelli ordinati; ispirazione gerarchica dal riferimentoGeospace, senza copiarne asset o dichiarazioni operative. Conservare controlli/funzioni, meteo e confronti, provenienza/missing espliciti e responsività; limitare altezza mappe anche negli iframe. SfondoOSM opzionale di consultazione con attribuzione/cache/budget conformi alla fonte, oltre al satellite; nessuna pretesa di navigabilità o accuratezza del modello. Piano originario e genericità multi-hazard invariati.

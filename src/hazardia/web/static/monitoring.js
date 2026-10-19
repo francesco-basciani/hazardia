@@ -13,6 +13,7 @@ export function monitoringMap(initial,feedback){
  let catalog=initial,context=[],selected=null,failures=0,visible=true,labelsTimer,weatherRecord=null,weatherForecast=null;
  const map=L.map('monitor-map',{preferCanvas:true,scrollWheelZoom:false,keyboard:true}).setView([42.35,13.38],8);
  const territoryHost=document.createElement('div');map.getContainer().parentElement.append(territoryHost);const territory=territorialLayers({api:async(path,body)=>{const r=await fetch(path,{method:body?'POST':'GET',headers:body?{'Content-Type':'application/json','X-Hazardia-Research':'1'}:{},body:body?JSON.stringify(body):undefined});const v=await r.json();if(!r.ok)throw Error(v.detail);return v;},host:territoryHost,monitor:true});territory.add(map);
+ window.addEventListener('hazardia-map-resize',()=>map.invalidateSize({pan:false}));
  map.getContainer().dataset.zoom=String(map.getZoom());map.on('zoomend',()=>map.getContainer().dataset.zoom=String(map.getZoom()));
  map.setMinZoom(4);map.setMaxZoom(20);map.setMaxBounds([[34,5],[49,20]]);map.attributionControl.setPrefix('HAZARDIA · Ricerca');
  map.createPane('monitorSatellite');map.getPane('monitorSatellite').style.zIndex=190;
@@ -21,6 +22,7 @@ export function monitoringMap(initial,feedback){
  for(const [name,z] of [['monitorFlood',410],['monitorFire',420],['monitorNames',610]]){map.createPane(name);map.getPane(name).style.zIndex=z;}
  const ortho=L.tileLayer('/api/maps/ortho/{z}/{x}/{y}',{minZoom:12,maxZoom:20,maxNativeZoom:19,keepBuffer:1,updateWhenIdle:true,updateWhenZooming:false,bounds:[[41.6607,12.9714],[42.9053,14.7922]],attribution:'Ortofoto Regione Abruzzo 2018–2019 · 20 cm/px dichiarati'}).addTo(map);
  const regional=L.tileLayer('/api/maps/regional/{z}/{x}/{y}',{minZoom:4,maxZoom:11,keepBuffer:1,updateWhenIdle:true,updateWhenZooming:false,bounds:[[-85,-180],[85,180]],attribution:'<a href="https://s2maps.eu">Sentinel-2 cloudless</a> by EOX IT Services GmbH (Contains modified Copernicus Sentinel data 2024) · CC BY-NC-SA4.0'}).addTo(map);
+ const osm=L.tileLayer('/api/maps/osm/{z}/{x}/{y}?v=2',{minZoom:4,maxZoom:20,maxNativeZoom:19,keepBuffer:0,updateWhenIdle:true,updateWhenZooming:false,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> · ODbL'});let osmErrors=0;osm.on('tileerror',()=>{osmErrors++;source();});
  regionBoundaries(map);
  const wind=regionalWind(map);
  const attention=territorialAttention(map);
@@ -29,7 +31,7 @@ export function monitoringMap(initial,feedback){
  const labels=L.layerGroup().addTo(map),roads=L.layerGroup().addTo(map),point=L.layerGroup().addTo(map),products={FIRE:L.layerGroup().addTo(map),FLOOD:L.layerGroup().addTo(map)};
  L.control.scale({imperial:false,maxWidth:120}).addTo(map);
  map.attributionControl.addAttribution('© OpenStreetMap contributors · ODbL · GeoNames CC BY4.0 · <a href="https://open-meteo.com/">Open-Meteo</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY4.0</a>');
- function source(){const online=$('monitor-basemap').value==='ortho';$('monitor-source').textContent=online?(map.getZoom()<=11?'Sentinel-2 cloudless2024 · EOX · mosaico regionale online · CC BY-NC-SA4.0.':'Ortofoto aeree 2018–2019 · 20 cm/px dichiarati · online.')+(failures?' Alcune tessere non disponibili: scegli Sentinel offline.':''):'Sentinel-2 · 13/07/2024 · pixel10m · ritaglio offline. Fuori dal ritaglio lo sfondo non è disponibile.';}
+ function source(){if($('monitor-basemap').value==='osm'){$('monitor-source').textContent='OpenStreetMap · cartografia online con nomi incorporati, cache7giorni nella VM · copertura e aggiornamento dipendono dalla fonte'+(osmErrors?' · Tessere non disponibili: riprova o scegli satellite.':'');return;}const online=$('monitor-basemap').value==='ortho';$('monitor-source').textContent=online?(map.getZoom()<=11?'Sentinel-2 cloudless2024 · EOX · mosaico regionale online · CC BY-NC-SA4.0.':'Ortofoto aeree 2018–2019 · 20 cm/px dichiarati · online.')+(failures?' Alcune tessere non disponibili: scegli Sentinel offline.':''):'Sentinel-2 · 13/07/2024 · pixel10m · ritaglio offline. Fuori dal ritaglio lo sfondo non è disponibile.';}
  const tileFailures={ortho:0,regional:0};for(const [id,layer] of [['ortho',ortho],['regional',regional]])resilientTiles(layer,n=>{tileFailures[id]=n;failures=tileFailures.ortho+tileFailures.regional;source();});map.on('zoomend',source);source();
  function chosen(kind){return catalog.scenarios.find(s=>s.hazard===kind&&s.id===$('monitor-'+kind.toLowerCase()+'-case').value);}
  function shown(){return ['FIRE','FLOOD'].filter(k=>$('monitor-'+k.toLowerCase()).checked).map(chosen).filter(Boolean);}
@@ -70,8 +72,8 @@ export function monitoringMap(initial,feedback){
  $('monitor-all').onclick=()=>{const t=performance.now();$('monitor-fire').checked=true;$('monitor-flood').checked=true;draw();feedback(t,'monitor-filter');};
  $('monitor-opacity').oninput=()=>{const t=performance.now();$('monitor-opacity-value').textContent=$('monitor-opacity').value+'%';const opacity=Number($('monitor-opacity').value)/100;Object.values(products).forEach(g=>g.eachLayer(l=>{if(l.setOpacity)l.setOpacity(opacity);else if(l.setStyle)l.setStyle({fillOpacity:opacity});}));feedback(t,'monitor-opacity');};
  $('monitor-fit').onclick=fit;
- $('monitor-basemap').onchange=()=>{const t=performance.now();if($('monitor-basemap').value==='ortho'&&visible){ortho.addTo(map);regional.addTo(map);}else{ortho.remove();regional.remove();}source();feedback(t,'monitor-basemap');};
- function renderLabels(){labels.clearLayers();roads.clearLayers();if(!$('monitor-labels').checked||!visible)return;const bounds=map.getBounds(),z=map.getZoom(),occupied=[];let roadCount=0;
+ $('monitor-basemap').onchange=()=>{const t=performance.now();osmErrors=0;osm.remove();if($('monitor-basemap').value==='osm'&&visible)osm.addTo(map);if($('monitor-basemap').value==='ortho'&&visible){ortho.addTo(map);regional.addTo(map);}else{ortho.remove();regional.remove();}source();renderLabels();feedback(t,'monitor-basemap');};
+ function renderLabels(){labels.clearLayers();roads.clearLayers();if(!$('monitor-labels').checked||!visible||$('monitor-basemap').value==='osm')return;const bounds=map.getBounds(),z=map.getZoom(),occupied=[];let roadCount=0;
   for(const f of context){if(f.kind==='place'&&bounds.contains([f.lat,f.lon])&&(z>=13||['city','town','capoluogo amministrativo'].includes(f.type))&&occupied.length<80){const px=map.latLngToContainerPoint([f.lat,f.lon]);if(occupied.some(p=>Math.abs(px.x-p.x)<100&&Math.abs(px.y-p.y)<24))continue;occupied.push(px);L.marker([f.lat,f.lon],{pane:'monitorNames',interactive:false,keyboard:false,icon:L.divIcon({className:'geo-label place',html:escape(f.name),iconSize:[140,22],iconAnchor:[70,11]})}).addTo(labels);}
    if(z>=14&&f.kind==='road'&&roadCount<150&&f.geometry.some(p=>bounds.contains([p[1],p[0]]))){roadCount++;L.polyline(f.geometry.map(p=>[p[1],p[0]]),{color:'#fff',weight:2,opacity:.65,interactive:false}).addTo(roads);}}
   map.fire('contextnames');
@@ -84,5 +86,5 @@ export function monitoringMap(initial,feedback){
  fetch('/assets/map-context.json').then(r=>{if(!r.ok)throw Error();return r.json()}).then(v=>{context=v.features;const places=[...new Set(context.filter(f=>f.kind==='place').map(f=>f.name))];$('monitor-places').innerHTML=places.map(n=>'<option value="'+escape(n)+'"></option>').join('');renderLabels();}).catch(()=>{$('monitor-search-status').textContent='Nomi geografici non disponibili. Ricerca per coordinate attiva.';});
  $('monitor-simulated').addEventListener('change',draw);
  update(initial);
- return {update,weather,visible(on){visible=on;attention.visible(on);wind.visible(on);if(!on){ortho.remove();regional.remove();}else if($('monitor-basemap').value==='ortho'){ortho.addTo(map);regional.addTo(map);}requestAnimationFrame(()=>{map.invalidateSize({pan:false});if(on)renderLabels();});}};
+ return {update,weather,visible(on){visible=on;attention.visible(on);wind.visible(on);if(!on){ortho.remove();regional.remove();osm.remove();}else if($('monitor-basemap').value==='osm')osm.addTo(map);else if($('monitor-basemap').value==='ortho'){ortho.addTo(map);regional.addTo(map);}requestAnimationFrame(()=>{map.invalidateSize({pan:false});if(on)renderLabels();});}};
 }

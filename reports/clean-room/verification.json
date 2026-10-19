@@ -1,0 +1,205 @@
+{
+  "run_id": "clean-room-20261019",
+  "source_parent": "1940037",
+  "runtime": {
+    "workspace_content_preserved": true,
+    "workspace_revision_before": 118,
+    "workspace_revision_after": 119,
+    "case_preserved": true,
+    "jobs_preserved": true,
+    "engine_pins": 145,
+    "engine_pins_unchanged": true,
+    "osm_tiles": 9,
+    "osm_traffic": {
+      "bytes": 269883
+    },
+    "disk_free": 5858041856,
+    "invalid_tile_status": 400,
+    "invalid_tile_cache_control": "no-cache"
+  },
+  "browser": {
+    "osm": {
+      "loaded": 9,
+      "tiles": 9
+    },
+    "source": "OpenStreetMap \u00b7 cartografia online con nomi incorporati, cache7giorni nella VM \u00b7 copertura e aggiornamento dipendono dalla fonte",
+    "panels": {
+      "levelsHidden": true,
+      "levelsRestored": true,
+      "settingsOpened": true,
+      "attentionOpened": true
+    },
+    "layout": [
+      {
+        "view": "monitor",
+        "basemapOptions": [
+          "osm",
+          "ortho",
+          "sentinel"
+        ],
+        "buttons": [
+          {
+            "height": 44,
+            "name": "Centra"
+          },
+          {
+            "height": 44,
+            "name": "Configura"
+          },
+          {
+            "height": 44,
+            "name": "Criticit\u00e0"
+          },
+          {
+            "height": 44,
+            "name": "Livelli"
+          }
+        ],
+        "dockHidden": false,
+        "map": {
+          "height": 715,
+          "width": 884,
+          "x": 229,
+          "y": 192
+        },
+        "scrollWidth": 1440,
+        "selected": 1,
+        "weatherLabels": 7,
+        "width": 1440,
+        "status": "PASS"
+      },
+      {
+        "view": "monitor",
+        "basemapOptions": [
+          "osm",
+          "ortho",
+          "sentinel"
+        ],
+        "buttons": [
+          {
+            "height": 44,
+            "name": "Centra"
+          },
+          {
+            "height": 44,
+            "name": "Configura"
+          },
+          {
+            "height": 44,
+            "name": "Criticit\u00e0"
+          },
+          {
+            "height": 44,
+            "name": "Livelli"
+          }
+        ],
+        "dockHidden": false,
+        "map": {
+          "height": 715,
+          "width": 554,
+          "x": 197,
+          "y": 368.796875
+        },
+        "scrollWidth": 768,
+        "selected": 1,
+        "weatherLabels": 7,
+        "width": 768,
+        "status": "PASS"
+      },
+      {
+        "view": "monitor",
+        "basemapOptions": [
+          "osm",
+          "ortho",
+          "sentinel"
+        ],
+        "buttons": [
+          {
+            "height": 44,
+            "name": "Centra"
+          },
+          {
+            "height": 44,
+            "name": "Configura"
+          },
+          {
+            "height": 44,
+            "name": "Criticit\u00e0"
+          },
+          {
+            "height": 44,
+            "name": "Livelli"
+          }
+        ],
+        "dockHidden": false,
+        "map": {
+          "height": 610,
+          "width": 353,
+          "x": 11,
+          "y": 413
+        },
+        "scrollWidth": 375,
+        "selected": 1,
+        "weatherLabels": 7,
+        "width": 375,
+        "status": "PASS"
+      },
+      {
+        "view": "simulation",
+        "scrollWidth": 1440,
+        "selected": 1,
+        "width": 1440,
+        "frameWidth": 1188,
+        "innerScroll": 1188,
+        "map": {
+          "height": 660,
+          "width": 1154
+        },
+        "playControls": 1,
+        "scenarios": 1,
+        "status": "PASS"
+      },
+      {
+        "view": "simulation",
+        "scrollWidth": 768,
+        "selected": 1,
+        "width": 768,
+        "frameWidth": 556,
+        "innerScroll": 556,
+        "map": {
+          "height": 460,
+          "width": 522
+        },
+        "playControls": 1,
+        "scenarios": 1,
+        "status": "PASS"
+      },
+      {
+        "view": "simulation",
+        "scrollWidth": 375,
+        "selected": 1,
+        "width": 375,
+        "frameWidth": 355,
+        "innerScroll": 355,
+        "map": {
+          "height": 460,
+          "width": 321
+        },
+        "playControls": 1,
+        "scenarios": 1,
+        "status": "PASS"
+      }
+    ]
+  },
+  "vm_unit_tests": {
+    "osm": 4,
+    "maps_regression": 5,
+    "status": "PASS"
+  },
+  "not_run": [
+    "New physical simulations",
+    "New full axe/device matrix",
+    "Performance p95/FPS/soak",
+    "Scientific qualification"
+  ]
+}
