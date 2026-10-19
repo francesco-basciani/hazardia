@@ -32,7 +32,7 @@ def acquire(root,terrain_id,bounds):
  result=dict(type='FeatureCollection',features=features,coverage_bbox_wgs84=bounds,source_url=URL,source_sha256=hashlib.sha256(data).hexdigest(),available_at=utcnow(),missing=['Population','Vulnerability','Incomplete OSM inventory','Points for assets without mapped polygon geometry'],qualification='MAPPED_POINTS_NOT_SATELLITE_DETECTION',truncated_possible=len(elements)>=1200)
  write_new(dest.with_name('priority-'+key+'-raw.json'),raw);write_new(dest,result);return result
 
-def builtup(root,terrain_id,bounds,error):
+def builtup(root,terrain_id,bounds,error,*,limit=200,min_area=2700):
  """Class50 polygons from actual WorldCover; unknown use/population, not OSM features."""
  import numpy as np
  from rasterio.features import shapes
@@ -47,7 +47,7 @@ def builtup(root,terrain_id,bounds,error):
  for geom,value in shapes(mask.astype('uint8'),mask=mask,transform=tr,connectivity=8):
   poly=shape(geom)
   if not poly.is_valid:poly=poly.buffer(0)
-  if poly.is_empty or poly.area<2700:continue
+  if poly.is_empty or poly.area<min_area:continue
   features.append(dict(type='Feature',id='builtup-'+str(len(features)+1),geometry=mapping(transform(back,poly.simplify(15,preserve_topology=True))),properties=dict(name='Area edificata · WorldCover2021',category='settlement',source='ESA WorldCover2021 class50; use/occupancy unknown')))
- features=sorted(features,key=lambda f:shape(f['geometry']).area,reverse=True)[:200]
- return dict(type='FeatureCollection',features=features,coverage_bbox_wgs84=bounds,source_url='https://esa-worldcover.org/en/data-access',source_sha256=sha256(terrain/'expanded-arrays.npz'),available_at=load(terrain/'manifest.json')['available_at'],missing=['OSM unavailable: '+error,'Population','Building use, hospitals and schools unavailable','WorldCover2021 may omit changes after2021'],qualification='SATELLITE_CLASSIFIED_BUILTUP_UNCALIBRATED',truncated_possible=len(features)>=200)
+ features=sorted(features,key=lambda f:shape(f['geometry']).area,reverse=True)[:limit]
+ return dict(type='FeatureCollection',features=features,coverage_bbox_wgs84=bounds,source_url='https://esa-worldcover.org/en/data-access',source_sha256=sha256(terrain/'expanded-arrays.npz'),available_at=load(terrain/'manifest.json')['available_at'],missing=['OSM unavailable: '+error,'Population','Building use, hospitals and schools unavailable','WorldCover2021 may omit changes after2021'],qualification='SATELLITE_CLASSIFIED_BUILTUP_UNCALIBRATED',truncated_possible=len(features)>=limit)

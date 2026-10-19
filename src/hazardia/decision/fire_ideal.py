@@ -5,6 +5,9 @@ from hazardia.io import HazardError,load,write_new,sha256,utcnow,timestamp
 CATEGORIES=('waterline_action','canadair','helicopter','heavy_action')
 WEIGHTS=('hospital','school','fire_station','residential','settlement')
 POLICY=dict(domain='FIRE_IDEAL_ASSIGNMENT',loss_unit='weighted_priority_points',benefit_model='EXCLUSIVE_AREA_COVERAGE_PROXY')
+def available_for_automatic_plan(unit):
+    return unit['available'] and unit['category'] not in ('canadair','helicopter')
+
 def validate_input(body):
     if not isinstance(body,dict) or set(body)!={'job_id','fleet','weights','robust','assumptions_confirmed'} or body['assumptions_confirmed'] is not True:raise HazardError('INVALID_INPUT','Explicit research ideal assumptions required')
     if not isinstance(body['job_id'],str) or not re.fullmatch('job-[a-f0-9]{32}',body['job_id']):raise HazardError('INVALID_INPUT','Completed baseline job required')
@@ -32,23 +35,25 @@ def prepare(root,body,out):
     if plan['resources']:raise HazardError('INVALID_INPUT','Use a baseline without interventions, not an already suppressed fire')
 
     if plan.get('forcing'):
-        from hazardia.ingest.fire_priorities import acquire
+        from hazardia.territorial_context import acquire
         b=series['affected_bounds'];full=req['territory']['bbox_wgs84'];margin=.03
-        context_bounds=[max(full[0],b[0][1]-margin),max(full[1],b[0][0]-margin),min(full[2],b[1][1]+margin),min(full[3],b[1][0]+margin)]
-        assets=acquire(root,plan['forcing']['terrain_id'],context_bounds)
+        context_bounds=full # Reuse the same bounded territorial snapshot shown on the scenario maps.
+        assets=acquire(root,context_bounds,plan['forcing']['terrain_id'])
     else:assets=load(root/'web-assets/priority-areas.json')
     tr=Affine(*req['grid']['transform']);project=Transformer.from_crs(4326,req['grid']['crs'],always_xy=True).transform;back=Transformer.from_crs(req['grid']['crs'],4326,always_xy=True).transform
     with np.load(job/'fire-output.npz',allow_pickle=False) as a:p=a['probability'];arrival=a['arrival'];burned=a['fire']
     if p.shape!=tuple(req['grid']['shape']) or not np.isfinite(p).all() or (p<0).any() or (p>1).any():raise HazardError('INVALID_INPUT','Native probability grid invalid')
     goals=[];goal_masks={}
     for f in assets['features']:
-        category=f['properties']['category'];weight=body['weights'][category]
+        category=f['properties']['category']
+        if category not in WEIGHTS or f['properties'].get('optimization_eligible') is False:continue
+        weight=body['weights'][category]
         g=transform(project,shape(f['geometry']));analysis=g.buffer(75) if g.geom_type=='Point' else g.buffer(100)
         # Mask uses the model grid; centre-based rasterization and point75m influence are disclosed.
         mask=geometry_mask([mapping(analysis)],p.shape,tr,invert=True);vals=p[mask]
         if not vals.size:continue
         nominal=float(vals.mean());stress=float(vals.max());score=weight*nominal
-        if assets.get('qualification')=='SATELLITE_CLASSIFIED_BUILTUP_UNCALIBRATED':
+        if assets.get('qualification')=='SATELLITE_CLASSIFIED_BUILTUP_UNCALIBRATED' or 'WorldCover' in f['properties'].get('source',''):
             from shapely.geometry import Point
             from shapely.ops import nearest_points
             rr,cc=np.where(p>0);fire_center=Point(*(tr*(float(cc.mean())+.5,float(rr.mean())+.5))) if len(rr) else g.representative_point();center=nearest_points(g,fire_center)[0]
@@ -57,7 +62,7 @@ def prepare(root,body,out):
         footprint=transform(back,box(center.x-150,center.y-150,center.x+150,center.y+150));area=[[y,x] for x,y in list(footprint.exterior.coords)[:-1]]
         corners=[(~tr)*project(lon,lat) for lat,lon in area]
         if any(not 0<=c<p.shape[1] or not 0<=r<p.shape[0] for c,r in corners):continue
-        goal_masks['asset-'+str(len(goals)+1)]=mask
+        if stress>0:goal_masks['asset-'+str(len(goals)+1)]=mask # Zero-exposure masks are never used by assignment; do not retain them.
         goals.append(dict(id='asset-'+str(len(goals)+1),feature_id=f['id'],name=f['properties']['name'],category=category,point=[lat,lon],area=area,priority_weight=weight,nominal_probability=nominal,stress_probability=stress,nominal_points=score,stress_points=weight*stress,geometry=f['geometry'],analysis='Point75m authored influence' if g.geom_type=='Point' else 'Mapped footprint plus100m research interface buffer; grid centre rasterization'))
     goals.sort(key=lambda g:(g['stress_points'],g['nominal_points']),reverse=True)
     clustered=[];suppressed=[]
@@ -72,7 +77,7 @@ def prepare(root,body,out):
     resources=[];options=[];mapping_options={}
     product=dict(job_id=body['job_id'],hazard='FIRE',sha256=manifest['artifacts']['fire-output.npz'],valid_from=at,valid_until=req['valid_until'],weather_hash=next(a['sha256'] for a in req['assets'] if a['role']=='weather'),qualification='UNQUALIFIED_RESEARCH')
     for r in body['fleet']:
-        payload=dict(territory_id=req['territory']['id'],home_authority='IDEAL_LOCAL',point_wgs84=list(reversed(plan['ignitions_wgs84'][0]['point'])),skills=['FIRE_SUPPRESSION'],equipment=[r['category']],capabilities=['FIRE'],schedule=[dict(start=at,end=finish)],rest_hours=12,maintenance='READY' if r['available'] else 'UNAVAILABLE',autonomy_h=hours,consumables=dict(fuel_l=100,water_l=100),cost_per_hour=1,reliability=1,mass_kg=1000)
+        payload=dict(territory_id=req['territory']['id'],home_authority='IDEAL_LOCAL',point_wgs84=list(reversed(plan['ignitions_wgs84'][0]['point'])),skills=['FIRE_SUPPRESSION'],equipment=[r['category']],capabilities=['FIRE'],schedule=[dict(start=at,end=finish)],rest_hours=12,maintenance='READY' if available_for_automatic_plan(r) else 'UNAVAILABLE',autonomy_h=hours,consumables=dict(fuel_l=100,water_l=100),cost_per_hour=1,reliability=1,mass_kg=1000)
         record=dict(schema_version='0.4.0',kind='resource',id=r['id'],available_at=utcnow(),provenance=dict(source='User ideal availability and arrival; remaining logistics explicitly hypothetical',license='AUTHORED_RESEARCH_FIXTURE',qualification='SYNTHETIC_RESEARCH'),payload=payload)
         resources.append(dict(id=r['id'],home_region='IDEAL_LOCAL',category=r['category'],record=record))
         future=np.mean((arrival>r['arrival_minutes']*60)&(burned>0),axis=2)
@@ -85,11 +90,11 @@ def prepare(root,body,out):
         nominal=event['exposure']['nominal'];stress=event['exposure']['stress'];event['exposure']['stress']=(1-body['robust'])*nominal+body['robust']*stress
     for option in problem['options']:
         n=option['benefit']['nominal'];v=option['benefit']['stress'];option['benefit']['stress']=(1-body['robust'])*n+body['robust']*v
-    bounds=assets['coverage_bbox_wgs84'];affected=series['affected_bounds'];complete=bounds[0]<=affected[0][1] and bounds[1]<=affected[0][0] and bounds[2]>=affected[1][1] and bounds[3]>=affected[1][0]
+    bounds=assets.get('osm_coverage_bbox_wgs84') or assets['coverage_bbox_wgs84'];affected=series['affected_bounds'];complete=bounds[0]<=affected[0][1] and bounds[1]<=affected[0][0] and bounds[2]>=affected[1][1] and bounds[3]>=affected[1][0]
     baseline_input=dict(ignitions=plan.get('ignitions_wgs84',[dict(id='ignition-1',point=plan['ignition_wgs84'],at_minutes=0)]),hours=req['options']['duration_s']//3600,seed=req['options']['seed'],moisture_percent=req['options']['moisture_percent'],resources=[],weather_source=plan['weather_source'],weather_changes=plan['weather_changes'])
     if plan['weather_source']=='FORECAST':baseline_input['start_at']=req['valid_from']
     if plan.get('forcing'):baseline_input.update(moisture_model=plan['forcing']['moisture_model'],antecedent_hours=plan['forcing'].get('initialization',{}).get('hours',0),realizations=req['options']['realizations'])
-    context=dict(baseline_input=baseline_input,assets=goals,option_resources=mapping_options,body=body,source=dict(grouped_points=suppressed,url=assets['source_url'],sha256=assets['source_sha256'],available_at=assets['available_at'],coverage_bbox=bounds,fire_footprint_covered=complete,omitted=omitted,missing=assets['missing'],qualification=assets.get('qualification','MAPPED_OSM_PARTIAL')),assumptions=['IDEAL ONLY; no operational approval','Priority points are not population or people saved','Mean footprint probability and maximum are not weather-ensemble members','One chosen unit ideally covers one target; no differential efficacy by category','Native check uses a300m square fuel-removal hypothesis, not an actual asset perimeter','Unit activation manual within the full simulation horizon; full-horizon availability/autonomy hypothetical, no verified travel/roads/consumables/fatigue', 'Benefit excludes cells already reached before unit activation in the sampled baseline; not a calibrated suppression prediction','Outside OSM coverage unknown, not low risk','Full joint native rerun required; additive proxy is not a physical effect prediction'])
+    context=dict(aviation=dict(qualified=False,excluded_air_units=[r['id'] for r in body['fleet'] if r['category'] in ('canadair','helicopter')],reason='Obstacle completeness, conductor heights, flight path and crew/aircraft night qualification unavailable; no automatic aerial proposal'),baseline_input=baseline_input,assets=goals,option_resources=mapping_options,body=body,source=dict(osm_status=assets.get('osm_status'),inventory_kinds=sorted({f['properties'].get('source','OpenStreetMap') for f in assets['features']}),grouped_points=suppressed,url=assets['source_url'],sha256=assets['source_sha256'],available_at=assets['available_at'],coverage_bbox=bounds,fire_footprint_covered=complete,omitted=omitted,missing=assets['missing'],qualification=assets.get('qualification','MAPPED_OSM_PARTIAL')),assumptions=['IDEAL ONLY; no operational approval','Priority points are not population or people saved','Mean footprint probability and maximum are not weather-ensemble members','One chosen unit ideally covers one target; no differential efficacy by category','Native check uses a300m square fuel-removal hypothesis, not an actual asset perimeter','Unit activation manual within the full simulation horizon; full-horizon availability/autonomy hypothetical, no verified travel/roads/consumables/fatigue', 'Benefit excludes cells already reached before unit activation in the sampled baseline; not a calibrated suppression prediction','Outside OSM coverage unknown, not low risk','Full joint native rerun required; additive proxy is not a physical effect prediction'])
     write_new(out/'problem.json',problem);write_new(out/'context.json',context);return problem,context
 
 if __name__=='__main__':

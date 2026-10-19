@@ -214,3 +214,45 @@ Per generare Fonte Vetica senza sostituire il workspace, nel guest con server at
 
 ## Previsione con antecedenti reali (profilo opzionale)
 Nel guest, servizio avviato: `PYTHONPATH=src ../core-env/bin/python scripts/prepare_fire_case.py --runtime "$HOME/hazardia-runtime" --spec examples/forecast-fonte-vetica-20261018.json`. Esegue due run72h×8realizzazioni con hFFMC inizializzato da168ore di meteo distribuito e apre un caso separato; rifiuta una definizione già presente. Per nuove acquisizioni usare un nuovo ID. Richiede solo dipendenze già installate e accesso alle fonti gratuite; rispetta budget48richieste/giorno e65s condivisi, campo storico max1MiB e cache64MiB. In dashboard: **Previsioni orarie e parametri del modello → Inizializzazione combustibile / Realizzazioni PROPAGATOR**. Fonte storica recente significa forecast archiviato, non misure di stazione. Nuovi profili non riscrivono i vecchi risultati; mancanza storia blocca il nuovo calcolo. [Comandi, caso, risultati e limiti](../reports/PREVISIONE-CON-DATI-REALI.md). Nessuna certificazione di fuel/soppressione/logistica o riproduzione dell’incendio reale.
+
+## Contesto territoriale, abitati e linee elettriche
+
+Il componente usa gli ambienti Python core/geo già previsti, senza nuovi pacchetti. Tutte le richieste OSM e le analisi avvengono nella VM. Nel Monitoraggio caricare una vista dettagliata; nei simulatori il contesto è derivato dai risultati conclusi. Gli endpoint locali sono:
+
+```sh
+curl -H 'Content-Type: application/json' -H 'X-Hazardia-Research: 1' \
+  -d '{"job_id":"JOB_ID_FIRE_CONCLUSO"}' http://127.0.0.1:8080/api/territorial-context
+# oppure {"bounds":[13.375,42.345,13.405,42.36]} per il solo inventario geografico
+curl http://127.0.0.1:8080/api/territorial-context/CONTEXT_ID_RESTITUITO
+```
+
+Risposta asincrona QUEUED/RUNNING/SUCCEEDED/ERROR. Dati/epoche/mancanti sono parte della risposta. `refresh:true` richiede una nuova vista del contesto, limitata per intervalli5min e dai budget, senza ricalcolare il fuoco. Bbox massimo1°×1°, massimo10richieste OSM esterne/giorno,2worker geospaziali e timeout100s. Errori delle fonti non fanno inventare città, cavi o quote. WorldCover usa il terreno reale già preparato dal simulatore; su un’installazione senza quel terreno il contesto satellitare non è disponibile. La cache abruzzese del pilot non costituisce copertura nazionale o mondiale.
+
+Per usare un estratto OSM JSON locale lecito, nella VM:
+
+```sh
+cd "$APP"
+PYTHONPATH=src "$CORE_PYTHON" scripts/import_territorial_osm.py \
+  --root "$RUNTIME" --raw /percorso/estratto-osm.json \
+  --bounds OVEST SUD EST NORD --source-url URL_DELLA_FONTE \
+  --source-available-at DATA_ORIGINALE_ISO_UTC
+```
+
+È un’importazione senza download o esecuzione del modello: massimo32MiB raw e5000feature, licenza ODbL, file derivato immutabile in `territorial-imports/SHA.json`. Accetta JSON con nodi/ways dell’API ufficiale o geometrie Overpass; le relazioni possono essere rappresentate come soli punti o omesse quando la geometria manca. Conservare il raw e il suo SHA per audit; non sostituirlo con dati inventati per far passare un test. Una nuova installazione può acquisire un piccolo estratto dai servizi gratuiti o importare uno snapshot conservato lecitamente. Se le API sono indisponibili e manca uno snapshot, il livello elettrico rimane MISSING. Gli snapshot privati del pilot non sono distribuiti col repository.
+
+Riferimenti: [ODbL OSM](https://www.openstreetmap.org/copyright), [limiti Overpass](https://wiki.openstreetmap.org/wiki/Overpass_API). I dati non certificano ostacoli, quote o rotte. L’ottimizzatore esclude i mezzi aerei non qualificati; le simulazioni manuali non autorizzano impiego operativo. Popolazione e vulnerabilità richiedono fonti ulteriori. Verifiche: [report territoriale](../reports/ABITATI-ESPOSIZIONE-E-LINEE-ELETTRICHE.md).
+
+## Verificare l’orologio della VM dopo sospensione
+
+Confrontare `date -u` sul Mac e nella VM, e controllare `timedatectl status` / `timedatectl timesync-status`. Uno stato storico “synchronized” non prova che l’orologio sia ancora allineato dopo una lunga sospensione. Il19ottobre il riallineamento è stato eseguito soltanto dopo autorizzazione esplicita dell’utente; ha conservato manifesti e date originali degli esperimenti.
+
+Configurazione applicata, riproducibile con autorizzazione amministrativa:
+
+```ini
+# /etc/systemd/timesyncd.conf.d/hazardia-resume.conf
+[Time]
+PollIntervalMinSec=32
+PollIntervalMaxSec=120
+```
+
+Dopo una modifica autorizzata: `sudo systemctl restart systemd-timesyncd`, verificare l’offset NTP e `sudo hwclock --systohc --utc` soltanto dopo l’allineamento. Per una correzione manuale usare l’ora UTC verificata del riferimento esterno, disabilitando temporaneamente NTP e riabilitandolo subito dopo. Non copiare l’ora del vecchio esperimento o presumere che il solo cambio di fuso corregga un ritardo. Il runtime HTTP e i simulatori non richiedono privilegi amministrativi.

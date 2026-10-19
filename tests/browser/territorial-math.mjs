@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {solarAltitude,intersectsWire} from '../../src/hazardia/web/static/territorial-layers.js';
+assert(solarAltitude('2026-03-20T12:00:00Z',0,0)>85);
+assert(solarAltitude('2026-03-20T00:00:00Z',0,0)<-85);
+assert(solarAltitude('2026-12-21T12:00:00Z',80,0)<0);
+const wire={geometry:{type:'LineString',coordinates:[[0,-1],[0,1]]}};
+assert(intersectsWire({line:[[0,-1],[0,1]]},wire));
+assert(!intersectsWire({line:[[0,2],[0,3]]},wire));
+assert(intersectsWire({area:[[-2,-2],[-2,2],[2,2],[2,-2]]},wire));
+assert(intersectsWire({line:[[-1,0],[1,0]]},wire));
+console.log('PASS7 solar/intersection checks; geometric screening only, no aviation qualification');

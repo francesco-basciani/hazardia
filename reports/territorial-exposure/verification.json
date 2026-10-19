@@ -1,0 +1,476 @@
+{
+  "run_id": "territorial-exposure-20261019",
+  "base_sha": "bdc1f9366e44d35100ab5db9de623a122664bb48",
+  "reviewer": "Codex self-check",
+  "browser_checks": 86,
+  "axe_checks": 12,
+  "vm_unit_tests": 13,
+  "geometry_solar_checks": 7,
+  "checks": [
+    {
+      "id": "real-territorial-inventory-on-nominal",
+      "status": "PASS"
+    },
+    {
+      "id": "each-map-bound-to-own-native-result",
+      "status": "PASS"
+    },
+    {
+      "id": "settlement-layer-toggle",
+      "status": "PASS"
+    },
+    {
+      "id": "scenario-exposure-table-visible",
+      "status": "PASS"
+    },
+    {
+      "id": "population-and-inventory-gaps-explicit",
+      "status": "PASS"
+    },
+    {
+      "id": "daylight-follows-shared-scenario-time",
+      "status": "PASS"
+    },
+    {
+      "id": "night-follows-shared-scenario-time",
+      "status": "PASS"
+    },
+    {
+      "id": "draft-exposure-not-labelled-current",
+      "status": "PASS"
+    },
+    {
+      "id": "aircraft-nonqualification-visible",
+      "status": "PASS"
+    },
+    {
+      "id": "responsive-375",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-375",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-768",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-768",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-1440",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-1440",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "no-hidden-physical-calculation",
+      "status": "PASS"
+    },
+    {
+      "id": "no-js-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "main-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "case-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "real-cached-osm-electric-lines-on-monitor",
+      "status": "PASS"
+    },
+    {
+      "id": "monitor-inventory-not-labelled-modelled",
+      "status": "PASS"
+    },
+    {
+      "id": "power-layer-can-be-hidden",
+      "status": "PASS"
+    },
+    {
+      "id": "power-layer-can-be-restored",
+      "status": "PASS"
+    },
+    {
+      "id": "missing-aviation-information-explicit",
+      "status": "PASS"
+    },
+    {
+      "id": "responsive-375",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-375",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-768",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-768",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-1440",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-1440",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "no-js-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "saved-native-unit-not-falsely-labelled-modified",
+      "status": "PASS"
+    },
+    {
+      "id": "json-key-order-does-not-invalidate-native-result",
+      "status": "PASS"
+    },
+    {
+      "id": "empty-alternative-does-not-block-recalculation",
+      "status": "PASS"
+    },
+    {
+      "id": "unchanged-nominal-reused-when-clock-matches",
+      "status": "PASS"
+    },
+    {
+      "id": "pending-labelled-as-calculation",
+      "status": "PASS"
+    },
+    {
+      "id": "time-frozen-at-interruption",
+      "status": "PASS"
+    },
+    {
+      "id": "automatic-resume-with-empty-alternative",
+      "status": "PASS"
+    },
+    {
+      "id": "updated-alternative-is-clean",
+      "status": "PASS"
+    },
+    {
+      "id": "updated-unit-proof-visible",
+      "status": "PASS"
+    },
+    {
+      "id": "failure-visible-near-clock-and-no-false-playback",
+      "status": "PASS"
+    },
+    {
+      "id": "failed-batch-stops-without-extra-submission",
+      "status": "PASS"
+    },
+    {
+      "id": "responsive-375",
+      "status": "PASS"
+    },
+    {
+      "id": "responsive-768",
+      "status": "PASS"
+    },
+    {
+      "id": "responsive-1440",
+      "status": "PASS"
+    },
+    {
+      "id": "no-js-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "real-workspace-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "one-empty-nominal-in-new-workspace",
+      "status": "PASS"
+    },
+    {
+      "id": "nominal-label-and-protection",
+      "status": "PASS"
+    },
+    {
+      "id": "alternatives-follow-creation-order",
+      "status": "PASS"
+    },
+    {
+      "id": "nominal-full-width-alternatives-below",
+      "status": "PASS"
+    },
+    {
+      "id": "stable-map-identities-select-1",
+      "status": "PASS"
+    },
+    {
+      "id": "stable-map-identities-select-3",
+      "status": "PASS"
+    },
+    {
+      "id": "stable-map-identities-select-0",
+      "status": "PASS"
+    },
+    {
+      "id": "stable-map-identities-select-2",
+      "status": "PASS"
+    },
+    {
+      "id": "delete-is-immediate-and-persisted",
+      "status": "PASS"
+    },
+    {
+      "id": "delete-retains-other-map-instances",
+      "status": "PASS"
+    },
+    {
+      "id": "undo-restores-original-position",
+      "status": "PASS"
+    },
+    {
+      "id": "reload-retains-creation-order",
+      "status": "PASS"
+    },
+    {
+      "id": "placement-addresses-chosen-map-only",
+      "status": "PASS"
+    },
+    {
+      "id": "nominal-marker-does-not-inherit-alternative",
+      "status": "PASS"
+    },
+    {
+      "id": "geometry-editing-stays-in-alternative",
+      "status": "PASS"
+    },
+    {
+      "id": "nominal-first-responsive-375",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-375",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "nominal-first-responsive-768",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-768",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "nominal-first-responsive-1440",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-1440",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "no-hidden-calculations",
+      "status": "PASS"
+    },
+    {
+      "id": "no-js-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "main-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "case-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "profile-loaded-from-native-case",
+      "status": "PASS"
+    },
+    {
+      "id": "native-profile-visible",
+      "status": "PASS"
+    },
+    {
+      "id": "native-case-playback",
+      "status": "PASS"
+    },
+    {
+      "id": "initialization-change-never-reuses-frozen-parent",
+      "status": "PASS"
+    },
+    {
+      "id": "ensemble-change-never-reuses-eight-member-result",
+      "status": "PASS"
+    },
+    {
+      "id": "responsive-375",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-375",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-768",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-768",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "responsive-1440",
+      "status": "PASS"
+    },
+    {
+      "id": "axe-1440",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "no-js-errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "main-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "real-case-preserved",
+      "status": "PASS"
+    }
+  ],
+  "native_audit": {
+    "status": "PASS",
+    "same_feature_inventory": true,
+    "rows": [
+      {
+        "job_id": "job-ebe51c3a0c4b4832bda1ab3f117e6ec6",
+        "features": 1410,
+        "evaluated": 1407,
+        "assets_verified": 5,
+        "artifacts_verified": 594,
+        "positive": [
+          {
+            "id": "builtup-2072",
+            "members": 4,
+            "first_minutes": 1555.7,
+            "mean_probability": 0.4166666567325592
+          },
+          {
+            "id": "builtup-2061",
+            "members": 4,
+            "first_minutes": 1676.8666666666666,
+            "mean_probability": 0.4107142984867096
+          }
+        ]
+      },
+      {
+        "job_id": "job-6ef11525dfe94014906dd353cc1bc202",
+        "features": 1410,
+        "evaluated": 1407,
+        "assets_verified": 5,
+        "artifacts_verified": 594,
+        "positive": [
+          {
+            "id": "builtup-2072",
+            "members": 4,
+            "first_minutes": 1459.75,
+            "mean_probability": 0.3802083432674408
+          },
+          {
+            "id": "builtup-2061",
+            "members": 4,
+            "first_minutes": 1640.6666666666667,
+            "mean_probability": 0.4214285612106323
+          }
+        ]
+      }
+    ],
+    "qualification": "Native input/output consistency, no calibrated risk or suppression-efficacy claim"
+  },
+  "pins": {
+    "engine_files_verified": 145,
+    "mismatches": []
+  },
+  "decision": {
+    "id": "decision-16a238020e91486f8ad97284f9563d0f",
+    "status": "VALIDATED_FOR_SIMULATION",
+    "elapsed_s": 14.667071278003277,
+    "selected": [
+      "ground-asset-619"
+    ],
+    "proposed_categories": [
+      "waterline_action"
+    ],
+    "excluded": {
+      "excluded_air_units": [
+        "air"
+      ],
+      "qualified": false,
+      "reason": "Obstacle completeness, conductor heights, flight path and crew/aircraft night qualification unavailable; no automatic aerial proposal"
+    },
+    "osm_status": "MISSING"
+  },
+  "clock": {
+    "vm_epoch": 1792398137.6739926,
+    "mac_midpoint_epoch": 1792398136.9820824,
+    "estimated_clock_offset_s": -0.6919102668762207,
+    "ssh_rtt_s": 1.3719549179077148,
+    "ntp_status": "               Local time: Mon 2026-10-19 08:22:18 UTC\n           Universal time: Mon 2026-10-19 08:22:18 UTC\n                 RTC time: Mon 2026-10-19 08:22:18\n                Time zone: Etc/UTC (UTC, +0000)\nSystem clock synchronized: yes\n              NTP service: active\n          RTC in local TZ: no\n       Server: 185.125.190.57 (ntp.ubuntu.com)\nPoll interval: 2min 8s (min: 32s; max 2min)\n         Leap: normal\n      Version: 4\n      Stratum: 2\n    Reference: 1D586304\n    Precision: 1us (-25)\nRoot distance: 5.271ms (max: 5s)\n       Offset: +56.592ms\n        Delay: 47.548ms\n       Jitter: 26.575ms\n Packet count: 16\n    Frequency: +68.002ppm\nFilesystem       1B-blocks        Used  Available Use% Mounted on\n/dev/vda1      19584548864 13124321280 6443450368  68% /\n"
+  },
+  "workspace_revisions": {
+    "main": 108,
+    "case": 1,
+    "preserved": true
+  },
+  "new_native_jobs": 0,
+  "new_dependencies": 0,
+  "paid_services": 0,
+  "source_coverage": {
+    "forecast_case_features": 1410,
+    "locality_points": 210,
+    "builtup_polygons": 1200,
+    "electrical_lines_case": 0,
+    "cached_osm_lines_laquila": 3,
+    "voltage_and_height": "UNKNOWN",
+    "population_vulnerability": "MISSING"
+  },
+  "negative_evidence": [
+    "Live Overpass500/502/504/timeouts, official map400 above50000nodes; regional catalogue redirect loop",
+    "Initial top200large builtup/200assessment omitted smaller exposed features; expanded bounded inventory retained and all1410 evaluated",
+    "First optimizer request NO_EXPOSED_ASSETS on previous inventory; no outcome relabelled",
+    "Browser harness waits/zoom/closed configuration dialog corrected; original failures retained"
+  ],
+  "qualification": "Partial mapped exposure and conservative research planning, not calibrated human risk or aviation clearance",
+  "full_M5_M7": "BLOCKED"
+}

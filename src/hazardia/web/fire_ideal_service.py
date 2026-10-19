@@ -35,7 +35,7 @@ def submit(app,body):
             p=load(stage/'prepared/problem.json');context=load(stage/'prepared/context.json')
             with app.lock:p=app.replay.apply(p);health=app.replay.snapshot()
             r=bounded_decide(p,app.state/ident,str(app.root/'decision-env/bin/python'),accepted_monotonic=accepted)
-            chosen=[context['option_resources'][oid] for oid in r['selected']];r.update(replay_health_revision=health['revision'],ideal=dict(baseline_job_id=body['job_id'],baseline_input=context['baseline_input'],assets=[{k:v for k,v in a.items() if k!='geometry'} for a in context['assets']],proposed_resources=chosen,assumptions=context['assumptions'],source=context['source'],fleet=body['fleet'],effect_qualification='IDEAL_PROXY_NOT_PHYSICAL_OPTIMUM',unavailable_units=[x['id'] for x in p['resources'] if x['record']['payload']['maintenance']!='READY']))
+            chosen=[context['option_resources'][oid] for oid in r['selected']];r.update(replay_health_revision=health['revision'],ideal=dict(aviation=context.get('aviation'),baseline_job_id=body['job_id'],baseline_input=context['baseline_input'],assets=[{k:v for k,v in a.items() if k!='geometry'} for a in context['assets']],proposed_resources=chosen,assumptions=context['assumptions'],source=context['source'],fleet=body['fleet'],effect_qualification='IDEAL_PROXY_NOT_PHYSICAL_OPTIMUM',unavailable_units=[x['id'] for x in p['resources'] if x['record']['payload']['maintenance']!='READY']))
             write_new(app.state/ident/'context.json',dict(health=health,ideal=r['ideal']));write_new(app.state/ident/'ideal-result.json',r)
         except Exception as e:
             r=dict(id=ident,status='TIMEOUT_UNPROVEN' if isinstance(e,subprocess.TimeoutExpired) else e.code if isinstance(e,HazardError) else 'ERROR',detail=str(e),selected=[],operationally_approvable=False,elapsed_s=time.monotonic()-accepted)
@@ -61,6 +61,8 @@ def replay(app,body):
     plan=load(source/'input/fire_plan.json');manifest=load(source/'manifest.json')
     if sha256(source/'fire-output.npz')!=manifest['artifacts']['fire-output.npz']:raise HazardError('CHECKSUM','Baseline changed')
     units=[{k:v for k,v in u.items() if k in ['id','category','area','at_minutes','effect']} for u in result['ideal']['proposed_resources']]
+
+    if any(u['category'] in ('canadair','helicopter') for u in units):raise HazardError('SAFETY_UNVERIFIED','Aerial proposal requires qualified obstacles, heights, flight paths and aircraft/crew capability; old decisions cannot bypass this check')
     action_times=sorted(set(int(u['at_minutes']*60) for u in units));clock=sorted(set([*plan.get('comparison_times',[]),*plan['action_times'],*action_times]));folder=app.state/('ideal-native-'+uuid.uuid4().hex);folder.mkdir();jobs={}
     with app.lock:
         with app.store.connect() as db:

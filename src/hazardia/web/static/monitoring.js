@@ -1,3 +1,4 @@
+import {territorialLayers} from '/territorial-layers.js';
 import {territorialAttention} from '/attention.js?v=1';
 import {resilientTiles} from '/tile-retry.js?v=1';
 import {regionBoundaries} from '/region-boundaries.js?v=workspace1';
@@ -11,6 +12,7 @@ function date(v){return new Date(v).toLocaleString('it-IT',{timeZone:'Europe/Rom
 export function monitoringMap(initial,feedback){
  let catalog=initial,context=[],selected=null,failures=0,visible=true,labelsTimer,weatherRecord=null,weatherForecast=null;
  const map=L.map('monitor-map',{preferCanvas:true,scrollWheelZoom:false,keyboard:true}).setView([42.35,13.38],8);
+ const territoryHost=document.createElement('div');map.getContainer().parentElement.append(territoryHost);const territory=territorialLayers({api:async(path,body)=>{const r=await fetch(path,{method:body?'POST':'GET',headers:body?{'Content-Type':'application/json','X-Hazardia-Research':'1'}:{},body:body?JSON.stringify(body):undefined});const v=await r.json();if(!r.ok)throw Error(v.detail);return v;},host:territoryHost,monitor:true});territory.add(map);
  map.getContainer().dataset.zoom=String(map.getZoom());map.on('zoomend',()=>map.getContainer().dataset.zoom=String(map.getZoom()));
  map.setMinZoom(4);map.setMaxZoom(20);map.setMaxBounds([[34,5],[49,20]]);map.attributionControl.setPrefix('HAZARDIA · Ricerca');
  map.createPane('monitorSatellite');map.getPane('monitorSatellite').style.zIndex=190;
