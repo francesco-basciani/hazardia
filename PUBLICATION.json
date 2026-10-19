@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "74748b8d1d52b5c635c316e8af00c7abef74adec",
+  "source_git_sha": "d63f90a2f434ca0617b10292fe9bd6c0eb8cf855",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,24 +11,24 @@
       "sha256": "7a64cf19bdff0146fd1fdd1467ab80a053114b174237993b5db7d57803d5dbc2"
     },
     "CHECKLIST.md": {
-      "bytes": 152288,
-      "sha256": "0cb5d7b89e284e7b814c0c45ef560de96d894500f4f31dcee434b145c46c4a77"
+      "bytes": 154059,
+      "sha256": "f62b6a924d6f93ec303eb95468b9c9747299c080549803b4498c6cc33c28b971"
     },
     "MEMORY.md": {
-      "bytes": 107480,
-      "sha256": "dd94ab94c78b1726872cbc89d92eb22833c9f46c8f73ae8ded1d4cda1dad97c5"
+      "bytes": 109251,
+      "sha256": "fcf2ea6b095a95b5dc3b72cddf114bab05ad4613658013cd6a0b364836d4679c"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 112596,
-      "sha256": "3c409f1c0bbf901327d21a1b85c8d5f33f6931478babb4bb17786ab35b22f404"
+      "bytes": 114367,
+      "sha256": "6f973c0144c1bfcd6aca572bd64a90b64ba7fc3a73ed1b225bf2eb17d88ce88e"
     },
     "README.md": {
-      "bytes": 21816,
-      "sha256": "06bad3e6baef111d541ebe1354d523e4d0cb82f22d4943a2a546749742045006"
+      "bytes": 22191,
+      "sha256": "a2a02f5ccfe8a97c7b1fe4da8c2ae3fd4d1c744755dcda3bf184a90a533cf4ca"
     },
     "SPEC.md": {
       "bytes": 85536,
@@ -205,6 +205,10 @@
     "reports/CONFINI-REGIONALI.md": {
       "bytes": 3364,
       "sha256": "57aae00b7330ada0807343f2b7c81d5195a80ef54e08f13574830ca124632414"
+    },
+    "reports/CONFRONTO-FISICO-PIANO-OTTIMIZZATO.md": {
+      "bytes": 9639,
+      "sha256": "544109cad9416fd5980e24c7036a5b607dc77142cb38328b78a28a2cba7dc10f"
     },
     "reports/COPERTURA-E-SQUADRE-SCENARI.md": {
       "bytes": 6764,
@@ -546,6 +550,26 @@
       "bytes": 14376,
       "sha256": "47d4c673478447f24fa940bd5ff8b7b4adf4eb8e894c1d8394fe61839328a49d"
     },
+    "reports/optimized-physical/case-generator.json": {
+      "bytes": 122,
+      "sha256": "1aa518d43287e0bf24725fe8eb8b7a361354acf8e507a0453615b70a55b0b4c3"
+    },
+    "reports/optimized-physical/integrity.json": {
+      "bytes": 315,
+      "sha256": "54ee32985b78e7d8bbfd4a6f15f8ecf6915872935f2d34bf783eb25036a5a755"
+    },
+    "reports/optimized-physical/runtime.json": {
+      "bytes": 8162,
+      "sha256": "9803ae47e1d4fbb373aff983f4542282942cb5b3b8cb555b8c0c8dc627e9a35f"
+    },
+    "reports/optimized-physical/ui-verification.json": {
+      "bytes": 2304,
+      "sha256": "e958e11cb36a6f514a0cd3fff0df3e1b01499f1b586bc3a913c0d553b0f6a84f"
+    },
+    "reports/optimized-physical/verification.json": {
+      "bytes": 85504,
+      "sha256": "c049eb1e5fbf3bc8e905f998fe9775ed5b80de1e117b1001fdc8dcd422e55da6"
+    },
     "reports/osm-catalog/verification.json": {
       "bytes": 2067,
       "sha256": "a7a97f7d2468b44ba999d4cd172d4b61ffd0d03e009224ede560686ff59c9161"
@@ -743,8 +767,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 123981,
-      "sha256": "1ca80911d7382a55fbab421ebff9f658ef254b2cd54919c4ba03162aa23758c0"
+      "bytes": 125752,
+      "sha256": "7c46f51af4afb54a7551b71668fab5c5baee919bcf8fde9fd94f4dcc611bc3dd"
     },
     "research/RESEARCH.md": {
       "bytes": 33312,
@@ -813,6 +837,10 @@
     "scripts/prepare_ideal_example.py": {
       "bytes": 2486,
       "sha256": "b3128122d49b418b8ebe0d2df8d04c31c117d13619a5894e072d5c176f60a4d8"
+    },
+    "scripts/prepare_optimized_comparison_case.py": {
+      "bytes": 2649,
+      "sha256": "ad8aa12eb85bb6667637a6704b6cd29a916e8062a6af6d1ad101eda6fdce47e9"
     },
     "scripts/prepare_publication.py": {
       "bytes": 3573,
@@ -1170,29 +1198,33 @@
       "bytes": 3704,
       "sha256": "85fffc4fbbe667ec7ff711cd79437893682e3ced7f2c6094547e022592f28e3f"
     },
+    "src/hazardia/web/static/fire-comparison-status.js": {
+      "bytes": 1838,
+      "sha256": "4a86d9866e6fa48f8b6acc8a41237cb4eb73c704bb4266d9a98aa23be068851b"
+    },
     "src/hazardia/web/static/fire-playback.js": {
       "bytes": 3288,
       "sha256": "6f6ceacb9ede2b379e70490ece763e7b500650a8b6882d2ada6639ee0d26e40e"
     },
     "src/hazardia/web/static/fire-studio.css": {
-      "bytes": 28160,
-      "sha256": "c7945a76f3b804332c14637ede6319256cb5d65a07bf629667f8a90e4af28bdd"
+      "bytes": 28599,
+      "sha256": "fa3894d684d7bbe5f5f528e0980105a13b99a9b69642a66a5c472e2f8cfdf9e9"
     },
     "src/hazardia/web/static/fire-studio.html": {
       "bytes": 13535,
       "sha256": "15998082a93786ceecb9f4ea29375a1b3ac4683f613ea3001787dba12c735079"
     },
     "src/hazardia/web/static/fire-studio.js": {
-      "bytes": 72386,
-      "sha256": "cf7104190fcb289a19d62411182c0969efa2273fe92063010f4bf6ebe4ae84c7"
+      "bytes": 72406,
+      "sha256": "ff2ae8b3f19662972c0550c9992b35545ea5efc32d326ca4be9a44b2c776c62c"
     },
     "src/hazardia/web/static/forecast-playback.js": {
       "bytes": 5181,
       "sha256": "288641c9815c2d9080d06bacded093b3486a1966343471ba98cf90f340909ac2"
     },
     "src/hazardia/web/static/ideal-planner.js": {
-      "bytes": 16294,
-      "sha256": "a3cff68e9d72ddbab0b1f9f3808307c76ef88343133b60c21e4782b428d41e36"
+      "bytes": 15988,
+      "sha256": "5328d8ec260eefd7ff0031d5ceb70e92a1e807ef3231f88a56bfd66b5549ff30"
     },
     "src/hazardia/web/static/index.html": {
       "bytes": 32247,
@@ -1357,6 +1389,10 @@
     "tests/browser/fire-cadence.cjs": {
       "bytes": 2764,
       "sha256": "ead49620fd62b83c2d3f599669832d0ab5e97f923fda4833c3e8da59e35d0f04"
+    },
+    "tests/browser/fire-comparison-status.mjs": {
+      "bytes": 1482,
+      "sha256": "cfa32c3cc936431ae087d818c7796383dabe30e9a914db6b3bf08c3ba6aab18a"
     },
     "tests/browser/fire-playback.cjs": {
       "bytes": 7813,
@@ -1637,6 +1673,10 @@
     "tests/native/intervention_plan_audit.py": {
       "bytes": 4388,
       "sha256": "5b2f2a73e5a2e8f83d81f8e9fb7e8f111db769991eed58ee291b5196ca4c6535"
+    },
+    "tests/native/optimized_physical_audit.py": {
+      "bytes": 5301,
+      "sha256": "323ad48763eb60668eb3b9f1678ff033823a355ade5c9252bf18ba90bd2c6eff"
     },
     "tests/native/osm_catalog_audit.py": {
       "bytes": 3123,

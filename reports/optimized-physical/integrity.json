@@ -1,0 +1,12 @@
+{
+  "new_jobs": [
+    "job-4bcbd12dc46d4fa4b6d0ffa18142551c",
+    "job-c7999234d3e74a63845d3439a0eba08c"
+  ],
+  "exactly_two_requested_jobs": true,
+  "main_unchanged": true,
+  "original_case_scenarios_preserved": true,
+  "original_case_added_pair": true,
+  "engine_pins_unchanged": true,
+  "engine_pin_count": 145
+}

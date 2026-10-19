@@ -1,0 +1,77 @@
+{
+  "run_id": "optimized-physical-20261019",
+  "status": "PASS",
+  "reviewer": "Codex self-check",
+  "case": "optimized-physical-fonte-vetica-20261019",
+  "layouts": [
+    {
+      "outer": {
+        "scroll": 1440,
+        "width": 1440
+      },
+      "inner": {
+        "maps": 2,
+        "scroll": 1188,
+        "states": [
+          "Scenario nominaleSenza interventiModificaRisultato calcolato · +34 h 45 minInquadra scenari",
+          "AlternativaDue squadre · piano ottimizzatoreRisultato calcolato · +34 h 45 minModificaElimina"
+        ],
+        "toolsOpen": false,
+        "width": 1188
+      },
+      "status": "PASS"
+    },
+    {
+      "outer": {
+        "scroll": 768,
+        "width": 768
+      },
+      "inner": {
+        "maps": 2,
+        "scroll": 556,
+        "states": [
+          "Scenario nominaleSenza interventiModificaRisultato calcolato · +34 h 45 minInquadra scenari",
+          "AlternativaDue squadre · piano ottimizzatoreRisultato calcolato · +34 h 45 minModificaElimina"
+        ],
+        "toolsOpen": false,
+        "width": 556
+      },
+      "status": "PASS"
+    },
+    {
+      "outer": {
+        "scroll": 375,
+        "width": 375
+      },
+      "inner": {
+        "maps": 2,
+        "scroll": 355,
+        "states": [
+          "Scenario nominaleSenza interventiModificaRisultato calcolato · +34 h 45 minInquadra scenari",
+          "AlternativaDue squadre · piano ottimizzatoreRisultato calcolato · +34 h 45 minModificaElimina"
+        ],
+        "toolsOpen": false,
+        "width": 355
+      },
+      "status": "PASS"
+    }
+  ],
+  "checks": {
+    "real_pair_loaded": "PASS",
+    "exactly_two_maps": "PASS",
+    "full_72h_and_remaining_fronts_displayed": "PASS",
+    "play_from24_5_to34_922": "PASS",
+    "pause": "PASS",
+    "shared_timeline": "PASS",
+    "no_mousewheel_zoom_config_preserved": "PASS"
+  },
+  "observed_playback_hour": 34.92210006713867,
+  "not_run": [
+    "new axe matrix",
+    "FPS measurement",
+    "30-repetition p95",
+    "physical devices"
+  ],
+  "screenshot": "experiments/runs/optimized-physical-20261019/iab-pair.png",
+  "negative_harness": "One frame locator deadline while playing; native accessibility verified time and pause. Initial desktop tools panel expanded across map; breakpoint aligned1200px and layouts repeated."
+}

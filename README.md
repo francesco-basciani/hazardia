@@ -127,3 +127,6 @@ Catalogo territoriale OSM: nel Monitoraggio e negli scenari, aprire **Territorio
 
 
 Il flusso **Simulazioni e risorse → Piano d’intervento** offre una sola mappa: dichiarare i mezzi in **Mezzi**, rivedere priorità/ipotesi e premere **Calcola posizionamento**. Le proposte numerate sono sperimentali e verificate rispetto ai vincoli dichiarati; dati mancanti e fallback sono espliciti. **Confronto scenari** conserva la vista multipla. [Funzionamento, prove e limiti](reports/PIANO-INTERVENTO-E-PRIORITA.md). L’inventario del modulo è di sessione, le decisioni sono archiviate nel backend; non è un sistema di invio operativo.
+
+
+Il [confronto fisico del piano ottimizzato](reports/CONFRONTO-FISICO-PIANO-OTTIMIZZATO.md) documenta due run reali72h×8 con meteo congelato, differenze degli array, risultato negativo sul criterio prudenziale e limiti del proxy. Il generatore `scripts/prepare_optimized_comparison_case.py` crea una prova opt-in a due mappe dai risultati locali, senza sovrascrivere casi.

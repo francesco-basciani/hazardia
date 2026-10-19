@@ -60,3 +60,6 @@ details{border-top:1px solid var(--line);padding:14px 16px;font-size:12px}summar
 @media(max-width:1200px){.map-detail-grid #inspector{grid-row:2}}
 .scenario-maps>.scenario-map-card:nth-child(2):last-child{grid-column:1/-1}
 @media(max-width:900px){.scenario-maps{grid-template-columns:minmax(0,1fr)}.scenario-maps>.nominal-card .map{height:clamp(340px,52svh,480px)}.scenario-map-card .map{height:340px}.scenario-map-heading{gap:6px}.scenario-map-heading strong{flex-basis:100%}.scenario-map-heading button{flex:1;justify-content:center}}
+
+/* Match the existing one-column breakpoint: tools must collapse before maps. */
+@media(max-width:1200px){.canvas-controls>summary{display:flex;align-items:center;min-height:44px;padding:10px 14px;cursor:pointer}.canvas-controls>summary::after{content:"＋";margin-left:auto}.canvas-controls[open]>summary::after{content:"−"}.canvas-controls .palette{display:flex;flex-wrap:wrap;gap:6px}.canvas-controls .palette button{flex:0 1 auto}}

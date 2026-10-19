@@ -1,0 +1,17 @@
+import {readFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const {propagationStatus,comparisonVerdict}=await import('data:text/javascript;base64,'+readFileSync('src/hazardia/web/static/fire-comparison-status.js').toString('base64'));
+const series={options:{duration_s:259200,realizations:8},frames:[{hour:1,queued_front_events:8,realizations_with_front:4},{hour:72,queued_front_events:2,realizations_with_front:3}]};
+assert.equal(propagationStatus(series,0),'');assert.equal(propagationStatus(series,1),'');
+assert.match(propagationStatus(series,72),/fine previsione 72 h.*3\/8/);
+assert.match(propagationStatus({...series,frames:[{hour:2,queued_front_events:0}]},2),/fronti esauriti/);
+assert.match(propagationStatus({...series,frames:[{hour:72,queued_front_events:0}]},72),/fine previsione.*fronti esauriti/);
+assert.equal(propagationStatus(null,72),'');
+const report=(x,y,a,b)=>comparisonVerdict({rows:[{case:'A',native_priority_index:x,area_ha:a},{case:'B',native_priority_index:y,area_ha:b}]});
+assert.match(report(8,8,1229.20875,1215.765),/invariato.*soltanto.*1\.229,21.*1\.215,77/);
+assert.match(report(8,7,100,110),/riduce l’indice/);
+assert.match(report(8,9,100,90),/peggiora/);
+assert.match(report(8,8,100,110),/riferimento prevale/);
+assert.match(report(8,8,100,100),/superficie è invariata/);
+assert.match(comparisonVerdict({rows:[]}),/incompleto/);
+console.log('PASS 12 assertions: native horizon/exhaustion and honest tie/loss/win summaries');

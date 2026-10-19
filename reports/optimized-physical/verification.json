@@ -1,0 +1,2841 @@
+{
+  "run_id": "optimized-physical-20261019",
+  "status": "PASS",
+  "comparison_id": "ideal-native-ee81c4a50a2847288db97f06f9904d32",
+  "decision_id": "decision-d22818d65e2f40b9987ee72f7643186e",
+  "checks": [
+    {
+      "id": "A-assets-and-artifacts",
+      "status": "PASS"
+    },
+    {
+      "id": "A-full-horizon",
+      "status": "PASS"
+    },
+    {
+      "id": "B-assets-and-artifacts",
+      "status": "PASS"
+    },
+    {
+      "id": "B-full-horizon",
+      "status": "PASS"
+    },
+    {
+      "id": "same-static-inputs-including-distributed-weather",
+      "status": "PASS"
+    },
+    {
+      "id": "same-grid-options-seed-clock",
+      "status": "PASS"
+    },
+    {
+      "id": "same-numerical-boundaries-and-ignitions",
+      "status": "PASS"
+    },
+    {
+      "id": "only-selected-interventions-differ",
+      "status": "PASS"
+    },
+    {
+      "id": "same-worker-seeds",
+      "status": "PASS"
+    },
+    {
+      "id": "interventions-really-consumed",
+      "status": "PASS"
+    },
+    {
+      "id": "complete-hourly-distributed-forcing",
+      "status": "PASS"
+    },
+    {
+      "id": "all-A-frames-match-frozen-baseline",
+      "status": "PASS"
+    },
+    {
+      "id": "pre-intervention-frames-identical",
+      "status": "PASS"
+    }
+  ],
+  "rows": [
+    {
+      "case": "A",
+      "job_id": "job-c7999234d3e74a63845d3439a0eba08c",
+      "area_ha": 1229.20875,
+      "last_growth_sample_hour": 71.75,
+      "first_front_exhaustion_hour": null,
+      "front_events_at_end": 57,
+      "members_with_front_at_end": 4,
+      "realizations": 8,
+      "horizon_hours": 72.0,
+      "checkpoints": [
+        {
+          "hour": 1.0,
+          "expected_area_ha": 0.57375,
+          "positive_cells": 30,
+          "queued_front_events": 26,
+          "realizations_with_front": 6
+        },
+        {
+          "hour": 6.0,
+          "expected_area_ha": 23.05125,
+          "positive_cells": 957,
+          "queued_front_events": 401,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 12.0,
+          "expected_area_ha": 103.48875,
+          "positive_cells": 3549,
+          "queued_front_events": 783,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 24.0,
+          "expected_area_ha": 338.9175,
+          "positive_cells": 9910,
+          "queued_front_events": 1126,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 36.0,
+          "expected_area_ha": 631.9125,
+          "positive_cells": 18197,
+          "queued_front_events": 1338,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 48.0,
+          "expected_area_ha": 962.3025,
+          "positive_cells": 26931,
+          "queued_front_events": 1167,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 60.0,
+          "expected_area_ha": 1228.1625,
+          "positive_cells": 34541,
+          "queued_front_events": 194,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 72.0,
+          "expected_area_ha": 1229.20875,
+          "positive_cells": 34578,
+          "queued_front_events": 57,
+          "realizations_with_front": 4
+        }
+      ],
+      "consumed_events": [
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 1,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.80267333984375,
+            18.913864135742188
+          ],
+          "spatial_forcing": true,
+          "time": 0,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 43.02459465971339,
+          "wind_grid_range_kmh": [
+            0.0030815289355814457,
+            4.156885623931885
+          ],
+          "wind_kmh": 0.9869765691474707
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.151519775390625,
+            19.061426162719727
+          ],
+          "spatial_forcing": true,
+          "time": 3600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 359.0629666936579,
+          "wind_grid_range_kmh": [
+            0.0028106996323913336,
+            5.118166446685791
+          ],
+          "wind_kmh": 0.4317838973029719
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.407299041748047,
+            19.583511352539062
+          ],
+          "spatial_forcing": true,
+          "time": 7200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 274.42938428369064,
+          "wind_grid_range_kmh": [
+            0.0013341597514227033,
+            6.287580490112305
+          ],
+          "wind_kmh": 1.0903784743964573
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            20.018497467041016
+          ],
+          "spatial_forcing": true,
+          "time": 10800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 261.8733619561495,
+          "wind_grid_range_kmh": [
+            0.0017941597616299987,
+            6.947688102722168
+          ],
+          "wind_kmh": 2.290310472743837
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            20.418092727661133
+          ],
+          "spatial_forcing": true,
+          "time": 14400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 264.4189901353389,
+          "wind_grid_range_kmh": [
+            1.380304217338562,
+            7.376689910888672
+          ],
+          "wind_kmh": 3.049138838217058
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            20.662687301635742
+          ],
+          "spatial_forcing": true,
+          "time": 18000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 284.1481328750085,
+          "wind_grid_range_kmh": [
+            2.8146567344665527,
+            7.391502857208252
+          ],
+          "wind_kmh": 4.285369115274499
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            20.83315086364746
+          ],
+          "spatial_forcing": true,
+          "time": 21600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 297.4837408462595,
+          "wind_grid_range_kmh": [
+            2.7908737659454346,
+            6.791283130645752
+          ],
+          "wind_kmh": 4.396913930243076
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            20.969507217407227
+          ],
+          "spatial_forcing": true,
+          "time": 25200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 294.76226009057024,
+          "wind_grid_range_kmh": [
+            2.3565800189971924,
+            6.83595609664917
+          ],
+          "wind_kmh": 4.226649882406863
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.086467742919922
+          ],
+          "spatial_forcing": true,
+          "time": 28800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 288.09004069970086,
+          "wind_grid_range_kmh": [
+            2.2813220024108887,
+            6.79583215713501
+          ],
+          "wind_kmh": 4.047884166550602
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.192527770996094
+          ],
+          "spatial_forcing": true,
+          "time": 32400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 287.8182806534883,
+          "wind_grid_range_kmh": [
+            2.335820198059082,
+            7.011172294616699
+          ],
+          "wind_kmh": 4.085621654165033
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.263593673706055
+          ],
+          "spatial_forcing": true,
+          "time": 36000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 288.70873880414445,
+          "wind_grid_range_kmh": [
+            1.7529975175857544,
+            7.051784038543701
+          ],
+          "wind_kmh": 3.8648509501400055
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.329700469970703
+          ],
+          "spatial_forcing": true,
+          "time": 39600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 291.57113485797004,
+          "wind_grid_range_kmh": [
+            1.6953824758529663,
+            6.832632064819336
+          ],
+          "wind_kmh": 3.78746411863301
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.376604080200195
+          ],
+          "spatial_forcing": true,
+          "time": 43200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 295.6290540906191,
+          "wind_grid_range_kmh": [
+            1.612242341041565,
+            6.799356937408447
+          ],
+          "wind_kmh": 3.7007241202961625
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.405160903930664
+          ],
+          "spatial_forcing": true,
+          "time": 46800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 298.1856328792053,
+          "wind_grid_range_kmh": [
+            1.4027099609375,
+            6.02876615524292
+          ],
+          "wind_kmh": 2.884978754677375
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.405160903930664
+          ],
+          "spatial_forcing": true,
+          "time": 50400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 270.5392079881508,
+          "wind_grid_range_kmh": [
+            0.34132203459739685,
+            2.985978126525879
+          ],
+          "wind_kmh": 0.4781594181285729
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.415868759155273,
+            21.200279235839844
+          ],
+          "spatial_forcing": true,
+          "time": 54000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 116.47597144979636,
+          "wind_grid_range_kmh": [
+            0.29046276211738586,
+            3.423754930496216
+          ],
+          "wind_kmh": 2.1576743906342677
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.147924423217773,
+            20.833003997802734
+          ],
+          "spatial_forcing": true,
+          "time": 57600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 101.43584578632158,
+          "wind_grid_range_kmh": [
+            0.9869504570960999,
+            5.727938175201416
+          ],
+          "wind_kmh": 3.360565309499582
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.755163192749023,
+            20.40216636657715
+          ],
+          "spatial_forcing": true,
+          "time": 61200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 88.63289286783049,
+          "wind_grid_range_kmh": [
+            1.2197922468185425,
+            7.403862476348877
+          ],
+          "wind_kmh": 4.290132800327656
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.296310424804688,
+            19.965829849243164
+          ],
+          "spatial_forcing": true,
+          "time": 64800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 80.15487089175355,
+          "wind_grid_range_kmh": [
+            2.3519699573516846,
+            8.640961647033691
+          ],
+          "wind_kmh": 5.802011715473835
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.837803840637207,
+            19.570402145385742
+          ],
+          "spatial_forcing": true,
+          "time": 68400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 74.2738152841473,
+          "wind_grid_range_kmh": [
+            3.878835439682007,
+            9.000438690185547
+          ],
+          "wind_kmh": 7.144373160937611
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.453447341918945,
+            19.265058517456055
+          ],
+          "spatial_forcing": true,
+          "time": 72000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 78.12898008536752,
+          "wind_grid_range_kmh": [
+            5.611116409301758,
+            8.855886459350586
+          ],
+          "wind_kmh": 7.35308569728179
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.264228820800781,
+            19.058177947998047
+          ],
+          "spatial_forcing": true,
+          "time": 75600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 81.12919541974105,
+          "wind_grid_range_kmh": [
+            5.284094333648682,
+            8.428086280822754
+          ],
+          "wind_kmh": 6.514196820703877
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.264228820800781,
+            18.943313598632812
+          ],
+          "spatial_forcing": true,
+          "time": 79200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 89.25727212785904,
+          "wind_grid_range_kmh": [
+            2.983971357345581,
+            6.029771327972412
+          ],
+          "wind_kmh": 4.203584016868777
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.41109561920166,
+            18.943313598632812
+          ],
+          "spatial_forcing": true,
+          "time": 82800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 133.11730678311716,
+          "wind_grid_range_kmh": [
+            0.0028739064000546932,
+            3.361429214477539
+          ],
+          "wind_kmh": 1.0634749720339884
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.860204696655273,
+            19.270343780517578
+          ],
+          "spatial_forcing": true,
+          "time": 86400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 231.0487354169698,
+          "wind_grid_range_kmh": [
+            0.0013874741271138191,
+            4.771329402923584
+          ],
+          "wind_kmh": 1.5276471887368077
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.24125862121582,
+            19.7137451171875
+          ],
+          "spatial_forcing": true,
+          "time": 90000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 250.33556950798726,
+          "wind_grid_range_kmh": [
+            0.5908758640289307,
+            5.663971424102783
+          ],
+          "wind_kmh": 2.5349708519294913
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.480939865112305,
+            20.07021713256836
+          ],
+          "spatial_forcing": true,
+          "time": 93600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 257.0447881403378,
+          "wind_grid_range_kmh": [
+            1.4323819875717163,
+            6.58521842956543
+          ],
+          "wind_kmh": 3.1867036898927332
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.63848114013672,
+            20.308452606201172
+          ],
+          "spatial_forcing": true,
+          "time": 97200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 266.0259028356028,
+          "wind_grid_range_kmh": [
+            2.4519481658935547,
+            6.870604038238525
+          ],
+          "wind_kmh": 3.974194566108902
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.770191192626953,
+            20.52151107788086
+          ],
+          "spatial_forcing": true,
+          "time": 100800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 266.78694032258016,
+          "wind_grid_range_kmh": [
+            2.9448676109313965,
+            7.550700664520264
+          ],
+          "wind_kmh": 4.622104215724136
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.898561477661133,
+            20.731657028198242
+          ],
+          "spatial_forcing": true,
+          "time": 104400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 268.5512896049279,
+          "wind_grid_range_kmh": [
+            2.7928922176361084,
+            7.121020793914795
+          ],
+          "wind_kmh": 4.935072023494684
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.03506851196289,
+            20.87980842590332
+          ],
+          "spatial_forcing": true,
+          "time": 108000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 261.9336272795464,
+          "wind_grid_range_kmh": [
+            2.647125482559204,
+            7.0558366775512695
+          ],
+          "wind_kmh": 4.67080809630116
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.174556732177734,
+            20.98131561279297
+          ],
+          "spatial_forcing": true,
+          "time": 111600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 258.8883256057906,
+          "wind_grid_range_kmh": [
+            2.617966890335083,
+            7.301079273223877
+          ],
+          "wind_kmh": 4.724830931279497
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.283283233642578,
+            21.056989669799805
+          ],
+          "spatial_forcing": true,
+          "time": 115200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 268.9277353397989,
+          "wind_grid_range_kmh": [
+            2.8290228843688965,
+            6.999454021453857
+          ],
+          "wind_kmh": 4.6285450549479075
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.342161178588867,
+            21.1252384185791
+          ],
+          "spatial_forcing": true,
+          "time": 118800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 269.7086592718292,
+          "wind_grid_range_kmh": [
+            3.5046496391296387,
+            7.10922384262085
+          ],
+          "wind_kmh": 5.089809986193276
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.406204223632812,
+            21.21147346496582
+          ],
+          "spatial_forcing": true,
+          "time": 122400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 267.1227905707954,
+          "wind_grid_range_kmh": [
+            3.292534112930298,
+            6.718667984008789
+          ],
+          "wind_kmh": 4.561796464981996
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.446617126464844,
+            21.321439743041992
+          ],
+          "spatial_forcing": true,
+          "time": 126000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 265.0201476243134,
+          "wind_grid_range_kmh": [
+            3.1239466667175293,
+            6.989914894104004
+          ],
+          "wind_kmh": 4.461702421961309
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.446617126464844,
+            21.432327270507812
+          ],
+          "spatial_forcing": true,
+          "time": 129600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 265.29079466779285,
+          "wind_grid_range_kmh": [
+            2.7811992168426514,
+            6.888818264007568
+          ],
+          "wind_kmh": 3.9886612045435004
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.446617126464844,
+            21.53748893737793
+          ],
+          "spatial_forcing": true,
+          "time": 133200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 259.3336245804335,
+          "wind_grid_range_kmh": [
+            2.0868470668792725,
+            5.393594264984131
+          ],
+          "wind_kmh": 2.5680058776530528
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.446617126464844,
+            21.53748893737793
+          ],
+          "spatial_forcing": true,
+          "time": 136800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 214.6341874399227,
+          "wind_grid_range_kmh": [
+            0.4099549949169159,
+            2.7271573543548584
+          ],
+          "wind_kmh": 1.8317709965962374
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.33376121520996,
+            21.403547286987305
+          ],
+          "spatial_forcing": true,
+          "time": 140400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 165.00497002396696,
+          "wind_grid_range_kmh": [
+            1.4301033020019531,
+            3.359125852584839
+          ],
+          "wind_kmh": 2.303226518513514
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.10628318786621,
+            21.139869689941406
+          ],
+          "spatial_forcing": true,
+          "time": 144000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 127.81190862605479,
+          "wind_grid_range_kmh": [
+            1.790967583656311,
+            6.036494255065918
+          ],
+          "wind_kmh": 3.3068403312063928
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.740774154663086,
+            20.794591903686523
+          ],
+          "spatial_forcing": true,
+          "time": 147600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 133.1528460232555,
+          "wind_grid_range_kmh": [
+            2.0877106189727783,
+            7.63864278793335
+          ],
+          "wind_kmh": 3.2329132212017995
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.053003311157227,
+            20.42267417907715
+          ],
+          "spatial_forcing": true,
+          "time": 151200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 114.91126503901137,
+          "wind_grid_range_kmh": [
+            1.7327696084976196,
+            8.313082695007324
+          ],
+          "wind_kmh": 3.6096913199966734
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.390918731689453,
+            20.088857650756836
+          ],
+          "spatial_forcing": true,
+          "time": 154800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 123.86486472380682,
+          "wind_grid_range_kmh": [
+            2.3179569244384766,
+            8.582460403442383
+          ],
+          "wind_kmh": 3.901258678227312
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            14.909114837646484,
+            19.827638626098633
+          ],
+          "spatial_forcing": true,
+          "time": 158400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 128.27396870232468,
+          "wind_grid_range_kmh": [
+            2.504340410232544,
+            7.759037494659424
+          ],
+          "wind_kmh": 4.1664661479139635
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            14.668615341186523,
+            19.635459899902344
+          ],
+          "spatial_forcing": true,
+          "time": 162000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 124.62876533979102,
+          "wind_grid_range_kmh": [
+            1.2418301105499268,
+            6.434101104736328
+          ],
+          "wind_kmh": 3.511650598517794
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            14.641261100769043,
+            19.530305862426758
+          ],
+          "spatial_forcing": true,
+          "time": 165600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 113.80788696738,
+          "wind_grid_range_kmh": [
+            2.244204044342041,
+            4.496111869812012
+          ],
+          "wind_kmh": 3.475836652664383
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            14.694329261779785,
+            19.530305862426758
+          ],
+          "spatial_forcing": true,
+          "time": 169200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 179.4655278017567,
+          "wind_grid_range_kmh": [
+            0.0026655325200408697,
+            2.914003372192383
+          ],
+          "wind_kmh": 1.99449446384117
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            14.988577842712402,
+            19.635948181152344
+          ],
+          "spatial_forcing": true,
+          "time": 172800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 203.18616181644902,
+          "wind_grid_range_kmh": [
+            0.6582029461860657,
+            3.975446939468384
+          ],
+          "wind_kmh": 2.4495420466201323
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.38124942779541,
+            19.818845748901367
+          ],
+          "spatial_forcing": true,
+          "time": 176400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 193.4877795849757,
+          "wind_grid_range_kmh": [
+            1.6665170192718506,
+            4.669480800628662
+          ],
+          "wind_kmh": 3.115208609274137
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.863176345825195,
+            20.193281173706055
+          ],
+          "spatial_forcing": true,
+          "time": 180000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 211.858717691856,
+          "wind_grid_range_kmh": [
+            2.153026819229126,
+            6.086023807525635
+          ],
+          "wind_kmh": 4.461627771979704
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.18463706970215,
+            20.631839752197266
+          ],
+          "spatial_forcing": true,
+          "time": 183600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 216.70147222608463,
+          "wind_grid_range_kmh": [
+            1.915030837059021,
+            6.366983890533447
+          ],
+          "wind_kmh": 4.844567774180696
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.468141555786133,
+            20.97677993774414
+          ],
+          "spatial_forcing": true,
+          "time": 187200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 214.80370919531012,
+          "wind_grid_range_kmh": [
+            2.8865811824798584,
+            7.0349507331848145
+          ],
+          "wind_kmh": 5.934411790676029
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.744306564331055,
+            21.24679183959961
+          ],
+          "spatial_forcing": true,
+          "time": 190800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 216.39268915405327,
+          "wind_grid_range_kmh": [
+            2.1003077030181885,
+            7.232001781463623
+          ],
+          "wind_kmh": 6.294715043196541
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.984094619750977,
+            21.481542587280273
+          ],
+          "spatial_forcing": true,
+          "time": 194400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 213.6500318129961,
+          "wind_grid_range_kmh": [
+            1.9341785907745361,
+            6.872040271759033
+          ],
+          "wind_kmh": 5.754510986634302
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.162412643432617,
+            21.686847686767578
+          ],
+          "spatial_forcing": true,
+          "time": 198000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 213.4240576494774,
+          "wind_grid_range_kmh": [
+            1.962247610092163,
+            6.8831000328063965
+          ],
+          "wind_kmh": 6.0706586853542115
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.226972579956055,
+            21.86001968383789
+          ],
+          "spatial_forcing": true,
+          "time": 201600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 215.06318567143018,
+          "wind_grid_range_kmh": [
+            1.7570979595184326,
+            7.324267387390137
+          ],
+          "wind_kmh": 5.966328727097919
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.235280990600586,
+            21.996103286743164
+          ],
+          "spatial_forcing": true,
+          "time": 205200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 221.4280543124462,
+          "wind_grid_range_kmh": [
+            1.9912022352218628,
+            6.816780090332031
+          ],
+          "wind_kmh": 5.833670836314395
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            19.95819091796875,
+            44.56618881225586
+          ],
+          "spatial_forcing": true,
+          "time": 208800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 236.0383840810843,
+          "wind_grid_range_kmh": [
+            4.370532989501953,
+            8.340538024902344
+          ],
+          "wind_kmh": 7.975375110382909
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            23.677837371826172,
+            83.80672454833984
+          ],
+          "spatial_forcing": true,
+          "time": 212400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 228.9526369906107,
+          "wind_grid_range_kmh": [
+            2.6326780319213867,
+            8.340880393981934
+          ],
+          "wind_kmh": 7.7717583815702085
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            36.62092971801758,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 216000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 217.84019366556316,
+          "wind_grid_range_kmh": [
+            2.3108012676239014,
+            7.958107948303223
+          ],
+          "wind_kmh": 7.139287141619137
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            48.82590103149414,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 219600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 221.53784018770713,
+          "wind_grid_range_kmh": [
+            2.8773744106292725,
+            7.707911491394043
+          ],
+          "wind_kmh": 7.127532407101438
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            59.092411041259766,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 223200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 227.65475821899835,
+          "wind_grid_range_kmh": [
+            0.9429128766059875,
+            7.620123863220215
+          ],
+          "wind_kmh": 6.909837393476348
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            68.24894714355469,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 226800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 232.38812102502476,
+          "wind_grid_range_kmh": [
+            0.005445759743452072,
+            7.981130123138428
+          ],
+          "wind_kmh": 6.863799199052498
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            65.02570343017578,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 230400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 232.06227433490656,
+          "wind_grid_range_kmh": [
+            0.004571608267724514,
+            8.087823867797852
+          ],
+          "wind_kmh": 6.549933186457904
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            62.19948196411133,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 234000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 228.75757630758397,
+          "wind_grid_range_kmh": [
+            0.07810381054878235,
+            7.987783908843994
+          ],
+          "wind_kmh": 6.152137172295671
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            59.788238525390625,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 237600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 227.83308638156112,
+          "wind_grid_range_kmh": [
+            0.0012392320204526186,
+            8.176319122314453
+          ],
+          "wind_kmh": 5.932959643600929
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            57.34803009033203,
+            95.78067779541016
+          ],
+          "spatial_forcing": true,
+          "time": 241200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 231.35072810962606,
+          "wind_grid_range_kmh": [
+            0.0011758961481973529,
+            8.271708488464355
+          ],
+          "wind_kmh": 5.799192328936751
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            54.9416618347168,
+            89.22627258300781
+          ],
+          "spatial_forcing": true,
+          "time": 244800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 237.90315895159893,
+          "wind_grid_range_kmh": [
+            0.1640196591615677,
+            8.38377571105957
+          ],
+          "wind_kmh": 5.695674043374171
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            52.79969787597656,
+            83.2574462890625
+          ],
+          "spatial_forcing": true,
+          "time": 248400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 243.64240132602646,
+          "wind_grid_range_kmh": [
+            0.41588279604911804,
+            8.415849685668945
+          ],
+          "wind_kmh": 5.860429692803634
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            51.06439971923828,
+            78.0606689453125
+          ],
+          "spatial_forcing": true,
+          "time": 252000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 244.71338886485887,
+          "wind_grid_range_kmh": [
+            1.6828118562698364,
+            8.676694869995117
+          ],
+          "wind_kmh": 6.808392646371951
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            49.487606048583984,
+            73.8983154296875
+          ],
+          "spatial_forcing": true,
+          "time": 255600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 246.7310850412012,
+          "wind_grid_range_kmh": [
+            3.965242624282837,
+            8.959335327148438
+          ],
+          "wind_kmh": 7.857037397054367
+        }
+      ],
+      "artifacts": 594,
+      "assets": 5,
+      "seed_proof": [
+        0.21215859519373315
+      ]
+    },
+    {
+      "case": "B",
+      "job_id": "job-4bcbd12dc46d4fa4b6d0ffa18142551c",
+      "area_ha": 1215.765,
+      "last_growth_sample_hour": 72.0,
+      "first_front_exhaustion_hour": null,
+      "front_events_at_end": 52,
+      "members_with_front_at_end": 3,
+      "realizations": 8,
+      "horizon_hours": 72.0,
+      "checkpoints": [
+        {
+          "hour": 1.0,
+          "expected_area_ha": 0.57375,
+          "positive_cells": 30,
+          "queued_front_events": 26,
+          "realizations_with_front": 6
+        },
+        {
+          "hour": 6.0,
+          "expected_area_ha": 23.05125,
+          "positive_cells": 957,
+          "queued_front_events": 401,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 12.0,
+          "expected_area_ha": 103.48875,
+          "positive_cells": 3549,
+          "queued_front_events": 783,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 24.0,
+          "expected_area_ha": 338.9175,
+          "positive_cells": 9910,
+          "queued_front_events": 1126,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 36.0,
+          "expected_area_ha": 615.285,
+          "positive_cells": 17908,
+          "queued_front_events": 1341,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 48.0,
+          "expected_area_ha": 940.0275,
+          "positive_cells": 26858,
+          "queued_front_events": 1095,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 60.0,
+          "expected_area_ha": 1214.80875,
+          "positive_cells": 33923,
+          "queued_front_events": 183,
+          "realizations_with_front": 4
+        },
+        {
+          "hour": 72.0,
+          "expected_area_ha": 1215.765,
+          "positive_cells": 33951,
+          "queued_front_events": 52,
+          "realizations_with_front": 3
+        }
+      ],
+      "consumed_events": [
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 1,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.80267333984375,
+            18.913864135742188
+          ],
+          "spatial_forcing": true,
+          "time": 0,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 43.02459465971339,
+          "wind_grid_range_kmh": [
+            0.0030815289355814457,
+            4.156885623931885
+          ],
+          "wind_kmh": 0.9869765691474707
+        },
+        {
+          "fuel_removal_geometries": 2,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.151519775390625,
+            19.061426162719727
+          ],
+          "spatial_forcing": true,
+          "time": 3600,
+          "vegetation_changed_cells": 200,
+          "wind_from_deg": 359.0629666936579,
+          "wind_grid_range_kmh": [
+            0.0028106996323913336,
+            5.118166446685791
+          ],
+          "wind_kmh": 0.4317838973029719
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.407299041748047,
+            19.583511352539062
+          ],
+          "spatial_forcing": true,
+          "time": 7200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 274.42938428369064,
+          "wind_grid_range_kmh": [
+            0.0013341597514227033,
+            6.287580490112305
+          ],
+          "wind_kmh": 1.0903784743964573
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            20.018497467041016
+          ],
+          "spatial_forcing": true,
+          "time": 10800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 261.8733619561495,
+          "wind_grid_range_kmh": [
+            0.0017941597616299987,
+            6.947688102722168
+          ],
+          "wind_kmh": 2.290310472743837
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            20.418092727661133
+          ],
+          "spatial_forcing": true,
+          "time": 14400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 264.4189901353389,
+          "wind_grid_range_kmh": [
+            1.380304217338562,
+            7.376689910888672
+          ],
+          "wind_kmh": 3.049138838217058
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            20.662687301635742
+          ],
+          "spatial_forcing": true,
+          "time": 18000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 284.1481328750085,
+          "wind_grid_range_kmh": [
+            2.8146567344665527,
+            7.391502857208252
+          ],
+          "wind_kmh": 4.285369115274499
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            20.83315086364746
+          ],
+          "spatial_forcing": true,
+          "time": 21600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 297.4837408462595,
+          "wind_grid_range_kmh": [
+            2.7908737659454346,
+            6.791283130645752
+          ],
+          "wind_kmh": 4.396913930243076
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            20.969507217407227
+          ],
+          "spatial_forcing": true,
+          "time": 25200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 294.76226009057024,
+          "wind_grid_range_kmh": [
+            2.3565800189971924,
+            6.83595609664917
+          ],
+          "wind_kmh": 4.226649882406863
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.086467742919922
+          ],
+          "spatial_forcing": true,
+          "time": 28800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 288.09004069970086,
+          "wind_grid_range_kmh": [
+            2.2813220024108887,
+            6.79583215713501
+          ],
+          "wind_kmh": 4.047884166550602
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.192527770996094
+          ],
+          "spatial_forcing": true,
+          "time": 32400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 287.8182806534883,
+          "wind_grid_range_kmh": [
+            2.335820198059082,
+            7.011172294616699
+          ],
+          "wind_kmh": 4.085621654165033
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.263593673706055
+          ],
+          "spatial_forcing": true,
+          "time": 36000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 288.70873880414445,
+          "wind_grid_range_kmh": [
+            1.7529975175857544,
+            7.051784038543701
+          ],
+          "wind_kmh": 3.8648509501400055
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.329700469970703
+          ],
+          "spatial_forcing": true,
+          "time": 39600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 291.57113485797004,
+          "wind_grid_range_kmh": [
+            1.6953824758529663,
+            6.832632064819336
+          ],
+          "wind_kmh": 3.78746411863301
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.376604080200195
+          ],
+          "spatial_forcing": true,
+          "time": 43200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 295.6290540906191,
+          "wind_grid_range_kmh": [
+            1.612242341041565,
+            6.799356937408447
+          ],
+          "wind_kmh": 3.7007241202961625
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.405160903930664
+          ],
+          "spatial_forcing": true,
+          "time": 46800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 298.1856328792053,
+          "wind_grid_range_kmh": [
+            1.4027099609375,
+            6.02876615524292
+          ],
+          "wind_kmh": 2.884978754677375
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.54422950744629,
+            21.405160903930664
+          ],
+          "spatial_forcing": true,
+          "time": 50400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 270.5392079881508,
+          "wind_grid_range_kmh": [
+            0.34132203459739685,
+            2.985978126525879
+          ],
+          "wind_kmh": 0.4781594181285729
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.415868759155273,
+            21.200279235839844
+          ],
+          "spatial_forcing": true,
+          "time": 54000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 116.47597144979636,
+          "wind_grid_range_kmh": [
+            0.29046276211738586,
+            3.423754930496216
+          ],
+          "wind_kmh": 2.1576743906342677
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.147924423217773,
+            20.833003997802734
+          ],
+          "spatial_forcing": true,
+          "time": 57600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 101.43584578632158,
+          "wind_grid_range_kmh": [
+            0.9869504570960999,
+            5.727938175201416
+          ],
+          "wind_kmh": 3.360565309499582
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.755163192749023,
+            20.40216636657715
+          ],
+          "spatial_forcing": true,
+          "time": 61200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 88.63289286783049,
+          "wind_grid_range_kmh": [
+            1.2197922468185425,
+            7.403862476348877
+          ],
+          "wind_kmh": 4.290132800327656
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.296310424804688,
+            19.965829849243164
+          ],
+          "spatial_forcing": true,
+          "time": 64800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 80.15487089175355,
+          "wind_grid_range_kmh": [
+            2.3519699573516846,
+            8.640961647033691
+          ],
+          "wind_kmh": 5.802011715473835
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.837803840637207,
+            19.570402145385742
+          ],
+          "spatial_forcing": true,
+          "time": 68400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 74.2738152841473,
+          "wind_grid_range_kmh": [
+            3.878835439682007,
+            9.000438690185547
+          ],
+          "wind_kmh": 7.144373160937611
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.453447341918945,
+            19.265058517456055
+          ],
+          "spatial_forcing": true,
+          "time": 72000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 78.12898008536752,
+          "wind_grid_range_kmh": [
+            5.611116409301758,
+            8.855886459350586
+          ],
+          "wind_kmh": 7.35308569728179
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.264228820800781,
+            19.058177947998047
+          ],
+          "spatial_forcing": true,
+          "time": 75600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 81.12919541974105,
+          "wind_grid_range_kmh": [
+            5.284094333648682,
+            8.428086280822754
+          ],
+          "wind_kmh": 6.514196820703877
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.264228820800781,
+            18.943313598632812
+          ],
+          "spatial_forcing": true,
+          "time": 79200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 89.25727212785904,
+          "wind_grid_range_kmh": [
+            2.983971357345581,
+            6.029771327972412
+          ],
+          "wind_kmh": 4.203584016868777
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.41109561920166,
+            18.943313598632812
+          ],
+          "spatial_forcing": true,
+          "time": 82800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 133.11730678311716,
+          "wind_grid_range_kmh": [
+            0.0028739064000546932,
+            3.361429214477539
+          ],
+          "wind_kmh": 1.0634749720339884
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.860204696655273,
+            19.270343780517578
+          ],
+          "spatial_forcing": true,
+          "time": 86400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 231.0487354169698,
+          "wind_grid_range_kmh": [
+            0.0013874741271138191,
+            4.771329402923584
+          ],
+          "wind_kmh": 1.5276471887368077
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.24125862121582,
+            19.7137451171875
+          ],
+          "spatial_forcing": true,
+          "time": 90000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 250.33556950798726,
+          "wind_grid_range_kmh": [
+            0.5908758640289307,
+            5.663971424102783
+          ],
+          "wind_kmh": 2.5349708519294913
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.480939865112305,
+            20.07021713256836
+          ],
+          "spatial_forcing": true,
+          "time": 93600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 257.0447881403378,
+          "wind_grid_range_kmh": [
+            1.4323819875717163,
+            6.58521842956543
+          ],
+          "wind_kmh": 3.1867036898927332
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.63848114013672,
+            20.308452606201172
+          ],
+          "spatial_forcing": true,
+          "time": 97200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 266.0259028356028,
+          "wind_grid_range_kmh": [
+            2.4519481658935547,
+            6.870604038238525
+          ],
+          "wind_kmh": 3.974194566108902
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.770191192626953,
+            20.52151107788086
+          ],
+          "spatial_forcing": true,
+          "time": 100800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 266.78694032258016,
+          "wind_grid_range_kmh": [
+            2.9448676109313965,
+            7.550700664520264
+          ],
+          "wind_kmh": 4.622104215724136
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.898561477661133,
+            20.731657028198242
+          ],
+          "spatial_forcing": true,
+          "time": 104400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 268.5512896049279,
+          "wind_grid_range_kmh": [
+            2.7928922176361084,
+            7.121020793914795
+          ],
+          "wind_kmh": 4.935072023494684
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.03506851196289,
+            20.87980842590332
+          ],
+          "spatial_forcing": true,
+          "time": 108000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 261.9336272795464,
+          "wind_grid_range_kmh": [
+            2.647125482559204,
+            7.0558366775512695
+          ],
+          "wind_kmh": 4.67080809630116
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.174556732177734,
+            20.98131561279297
+          ],
+          "spatial_forcing": true,
+          "time": 111600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 258.8883256057906,
+          "wind_grid_range_kmh": [
+            2.617966890335083,
+            7.301079273223877
+          ],
+          "wind_kmh": 4.724830931279497
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.283283233642578,
+            21.056989669799805
+          ],
+          "spatial_forcing": true,
+          "time": 115200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 268.9277353397989,
+          "wind_grid_range_kmh": [
+            2.8290228843688965,
+            6.999454021453857
+          ],
+          "wind_kmh": 4.6285450549479075
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.342161178588867,
+            21.1252384185791
+          ],
+          "spatial_forcing": true,
+          "time": 118800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 269.7086592718292,
+          "wind_grid_range_kmh": [
+            3.5046496391296387,
+            7.10922384262085
+          ],
+          "wind_kmh": 5.089809986193276
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.406204223632812,
+            21.21147346496582
+          ],
+          "spatial_forcing": true,
+          "time": 122400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 267.1227905707954,
+          "wind_grid_range_kmh": [
+            3.292534112930298,
+            6.718667984008789
+          ],
+          "wind_kmh": 4.561796464981996
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.446617126464844,
+            21.321439743041992
+          ],
+          "spatial_forcing": true,
+          "time": 126000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 265.0201476243134,
+          "wind_grid_range_kmh": [
+            3.1239466667175293,
+            6.989914894104004
+          ],
+          "wind_kmh": 4.461702421961309
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.446617126464844,
+            21.432327270507812
+          ],
+          "spatial_forcing": true,
+          "time": 129600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 265.29079466779285,
+          "wind_grid_range_kmh": [
+            2.7811992168426514,
+            6.888818264007568
+          ],
+          "wind_kmh": 3.9886612045435004
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.446617126464844,
+            21.53748893737793
+          ],
+          "spatial_forcing": true,
+          "time": 133200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 259.3336245804335,
+          "wind_grid_range_kmh": [
+            2.0868470668792725,
+            5.393594264984131
+          ],
+          "wind_kmh": 2.5680058776530528
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.446617126464844,
+            21.53748893737793
+          ],
+          "spatial_forcing": true,
+          "time": 136800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 214.6341874399227,
+          "wind_grid_range_kmh": [
+            0.4099549949169159,
+            2.7271573543548584
+          ],
+          "wind_kmh": 1.8317709965962374
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.33376121520996,
+            21.403547286987305
+          ],
+          "spatial_forcing": true,
+          "time": 140400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 165.00497002396696,
+          "wind_grid_range_kmh": [
+            1.4301033020019531,
+            3.359125852584839
+          ],
+          "wind_kmh": 2.303226518513514
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.10628318786621,
+            21.139869689941406
+          ],
+          "spatial_forcing": true,
+          "time": 144000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 127.81190862605479,
+          "wind_grid_range_kmh": [
+            1.790967583656311,
+            6.036494255065918
+          ],
+          "wind_kmh": 3.3068403312063928
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.740774154663086,
+            20.794591903686523
+          ],
+          "spatial_forcing": true,
+          "time": 147600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 133.1528460232555,
+          "wind_grid_range_kmh": [
+            2.0877106189727783,
+            7.63864278793335
+          ],
+          "wind_kmh": 3.2329132212017995
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.053003311157227,
+            20.42267417907715
+          ],
+          "spatial_forcing": true,
+          "time": 151200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 114.91126503901137,
+          "wind_grid_range_kmh": [
+            1.7327696084976196,
+            8.313082695007324
+          ],
+          "wind_kmh": 3.6096913199966734
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.390918731689453,
+            20.088857650756836
+          ],
+          "spatial_forcing": true,
+          "time": 154800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 123.86486472380682,
+          "wind_grid_range_kmh": [
+            2.3179569244384766,
+            8.582460403442383
+          ],
+          "wind_kmh": 3.901258678227312
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            14.909114837646484,
+            19.827638626098633
+          ],
+          "spatial_forcing": true,
+          "time": 158400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 128.27396870232468,
+          "wind_grid_range_kmh": [
+            2.504340410232544,
+            7.759037494659424
+          ],
+          "wind_kmh": 4.1664661479139635
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            14.668615341186523,
+            19.635459899902344
+          ],
+          "spatial_forcing": true,
+          "time": 162000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 124.62876533979102,
+          "wind_grid_range_kmh": [
+            1.2418301105499268,
+            6.434101104736328
+          ],
+          "wind_kmh": 3.511650598517794
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            14.641261100769043,
+            19.530305862426758
+          ],
+          "spatial_forcing": true,
+          "time": 165600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 113.80788696738,
+          "wind_grid_range_kmh": [
+            2.244204044342041,
+            4.496111869812012
+          ],
+          "wind_kmh": 3.475836652664383
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            14.694329261779785,
+            19.530305862426758
+          ],
+          "spatial_forcing": true,
+          "time": 169200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 179.4655278017567,
+          "wind_grid_range_kmh": [
+            0.0026655325200408697,
+            2.914003372192383
+          ],
+          "wind_kmh": 1.99449446384117
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            14.988577842712402,
+            19.635948181152344
+          ],
+          "spatial_forcing": true,
+          "time": 172800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 203.18616181644902,
+          "wind_grid_range_kmh": [
+            0.6582029461860657,
+            3.975446939468384
+          ],
+          "wind_kmh": 2.4495420466201323
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.38124942779541,
+            19.818845748901367
+          ],
+          "spatial_forcing": true,
+          "time": 176400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 193.4877795849757,
+          "wind_grid_range_kmh": [
+            1.6665170192718506,
+            4.669480800628662
+          ],
+          "wind_kmh": 3.115208609274137
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            15.863176345825195,
+            20.193281173706055
+          ],
+          "spatial_forcing": true,
+          "time": 180000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 211.858717691856,
+          "wind_grid_range_kmh": [
+            2.153026819229126,
+            6.086023807525635
+          ],
+          "wind_kmh": 4.461627771979704
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.18463706970215,
+            20.631839752197266
+          ],
+          "spatial_forcing": true,
+          "time": 183600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 216.70147222608463,
+          "wind_grid_range_kmh": [
+            1.915030837059021,
+            6.366983890533447
+          ],
+          "wind_kmh": 4.844567774180696
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.468141555786133,
+            20.97677993774414
+          ],
+          "spatial_forcing": true,
+          "time": 187200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 214.80370919531012,
+          "wind_grid_range_kmh": [
+            2.8865811824798584,
+            7.0349507331848145
+          ],
+          "wind_kmh": 5.934411790676029
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.744306564331055,
+            21.24679183959961
+          ],
+          "spatial_forcing": true,
+          "time": 190800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 216.39268915405327,
+          "wind_grid_range_kmh": [
+            2.1003077030181885,
+            7.232001781463623
+          ],
+          "wind_kmh": 6.294715043196541
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            16.984094619750977,
+            21.481542587280273
+          ],
+          "spatial_forcing": true,
+          "time": 194400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 213.6500318129961,
+          "wind_grid_range_kmh": [
+            1.9341785907745361,
+            6.872040271759033
+          ],
+          "wind_kmh": 5.754510986634302
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.162412643432617,
+            21.686847686767578
+          ],
+          "spatial_forcing": true,
+          "time": 198000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 213.4240576494774,
+          "wind_grid_range_kmh": [
+            1.962247610092163,
+            6.8831000328063965
+          ],
+          "wind_kmh": 6.0706586853542115
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.226972579956055,
+            21.86001968383789
+          ],
+          "spatial_forcing": true,
+          "time": 201600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 215.06318567143018,
+          "wind_grid_range_kmh": [
+            1.7570979595184326,
+            7.324267387390137
+          ],
+          "wind_kmh": 5.966328727097919
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            17.235280990600586,
+            21.996103286743164
+          ],
+          "spatial_forcing": true,
+          "time": 205200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 221.4280543124462,
+          "wind_grid_range_kmh": [
+            1.9912022352218628,
+            6.816780090332031
+          ],
+          "wind_kmh": 5.833670836314395
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            19.95819091796875,
+            44.56618881225586
+          ],
+          "spatial_forcing": true,
+          "time": 208800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 236.0383840810843,
+          "wind_grid_range_kmh": [
+            4.370532989501953,
+            8.340538024902344
+          ],
+          "wind_kmh": 7.975375110382909
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            23.677837371826172,
+            83.80672454833984
+          ],
+          "spatial_forcing": true,
+          "time": 212400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 228.9526369906107,
+          "wind_grid_range_kmh": [
+            2.6326780319213867,
+            8.340880393981934
+          ],
+          "wind_kmh": 7.7717583815702085
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            36.62092971801758,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 216000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 217.84019366556316,
+          "wind_grid_range_kmh": [
+            2.3108012676239014,
+            7.958107948303223
+          ],
+          "wind_kmh": 7.139287141619137
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            48.82590103149414,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 219600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 221.53784018770713,
+          "wind_grid_range_kmh": [
+            2.8773744106292725,
+            7.707911491394043
+          ],
+          "wind_kmh": 7.127532407101438
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            59.092411041259766,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 223200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 227.65475821899835,
+          "wind_grid_range_kmh": [
+            0.9429128766059875,
+            7.620123863220215
+          ],
+          "wind_kmh": 6.909837393476348
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            68.24894714355469,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 226800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 232.38812102502476,
+          "wind_grid_range_kmh": [
+            0.005445759743452072,
+            7.981130123138428
+          ],
+          "wind_kmh": 6.863799199052498
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            65.02570343017578,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 230400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 232.06227433490656,
+          "wind_grid_range_kmh": [
+            0.004571608267724514,
+            8.087823867797852
+          ],
+          "wind_kmh": 6.549933186457904
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            62.19948196411133,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 234000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 228.75757630758397,
+          "wind_grid_range_kmh": [
+            0.07810381054878235,
+            7.987783908843994
+          ],
+          "wind_kmh": 6.152137172295671
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            59.788238525390625,
+            100.0
+          ],
+          "spatial_forcing": true,
+          "time": 237600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 227.83308638156112,
+          "wind_grid_range_kmh": [
+            0.0012392320204526186,
+            8.176319122314453
+          ],
+          "wind_kmh": 5.932959643600929
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            57.34803009033203,
+            95.78067779541016
+          ],
+          "spatial_forcing": true,
+          "time": 241200,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 231.35072810962606,
+          "wind_grid_range_kmh": [
+            0.0011758961481973529,
+            8.271708488464355
+          ],
+          "wind_kmh": 5.799192328936751
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            54.9416618347168,
+            89.22627258300781
+          ],
+          "spatial_forcing": true,
+          "time": 244800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 237.90315895159893,
+          "wind_grid_range_kmh": [
+            0.1640196591615677,
+            8.38377571105957
+          ],
+          "wind_kmh": 5.695674043374171
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            52.79969787597656,
+            83.2574462890625
+          ],
+          "spatial_forcing": true,
+          "time": 248400,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 243.64240132602646,
+          "wind_grid_range_kmh": [
+            0.41588279604911804,
+            8.415849685668945
+          ],
+          "wind_kmh": 5.860429692803634
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            51.06439971923828,
+            78.0606689453125
+          ],
+          "spatial_forcing": true,
+          "time": 252000,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 244.71338886485887,
+          "wind_grid_range_kmh": [
+            1.6828118562698364,
+            8.676694869995117
+          ],
+          "wind_kmh": 6.808392646371951
+        },
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": [
+            49.487606048583984,
+            73.8983154296875
+          ],
+          "spatial_forcing": true,
+          "time": 255600,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": 246.7310850412012,
+          "wind_grid_range_kmh": [
+            3.965242624282837,
+            8.959335327148438
+          ],
+          "wind_kmh": 7.857037397054367
+        }
+      ],
+      "artifacts": 594,
+      "assets": 5,
+      "seed_proof": [
+        0.21215859519373315
+      ]
+    }
+  ],
+  "different_final_probability_cells": 15219,
+  "first_difference_hour": 24.75,
+  "area_change_B_minus_A_ha": -13.443749999999909,
+  "evaluation": {
+    "best_case": "B",
+    "best_job_id": "job-4bcbd12dc46d4fa4b6d0ffa18142551c",
+    "native_output_sha256": [
+      "5214517760ace5e212de81b668c0b931293b136e85fe2b6ed4b7f1e54bd4c633",
+      "04b0aedffcfb5c36e0a75c8c535ecfa862996875ad8cea2c13b4e05a4b3edefa"
+    ],
+    "objective": "Weighted native fire probability on mapped priority areas; mean/max blend as configured, area breaks ties",
+    "operationally_approvable": false,
+    "qualification": "BEST_OF_TWO_EVALUATED_NOT_GLOBAL_PHYSICAL_OPTIMUM",
+    "rows": [
+      {
+        "area_ha": 1229.20875,
+        "case": "A",
+        "job_id": "job-c7999234d3e74a63845d3439a0eba08c",
+        "native_priority_index": 8.0,
+        "nominal": 6.61904764175415,
+        "stress": 8.0
+      },
+      {
+        "area_ha": 1215.765,
+        "case": "B",
+        "job_id": "job-4bcbd12dc46d4fa4b6d0ffa18142551c",
+        "native_priority_index": 8.0,
+        "nominal": 1.082539677619934,
+        "stress": 8.0
+      }
+    ],
+    "status": "COMPARISON_EVALUATED",
+    "weather_sha256": "7740eac2e95ef7a59a8a0b4993e6e7b482d51b91804af7ab812e9802a9b0aa11"
+  },
+  "qualification": "Paired 8-member pilot under frozen real forecast; ideal fuel-removal units, no efficacy calibration or global physical optimum. Outcome may improve, remain equal or worsen."
+}
