@@ -1,0 +1,13 @@
+import {readFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const {playbackEntryHour}=await import('data:text/javascript;base64,'+readFileSync('src/hazardia/web/static/studio-view-state.js').toString('base64'));
+const saved={hour:2.59};
+assert.equal(playbackEntryHour(saved,'navigate'),0);
+assert.equal(playbackEntryHour(saved,'reload'),2.59);
+assert.equal(playbackEntryHour(saved,'back_forward'),2.59);
+assert.equal(playbackEntryHour({...saved,batchActive:true,resumeFromHour:2.59},'navigate'),2.59);
+assert.equal(playbackEntryHour({...saved,batchActive:true,resumeFromHour:NaN},'navigate'),0);
+assert.equal(playbackEntryHour({hour:73},'reload'),0);
+assert.equal(playbackEntryHour(null,'reload'),0);
+assert.equal(playbackEntryHour({hour:NaN},'reload'),0);
+console.log('PASS8: new navigation starts0, reload/history and valid calculation recovery preserve tab-local time');

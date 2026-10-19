@@ -1,0 +1,206 @@
+{
+  "run_id": "tab-playback-20261019",
+  "scope": "Read-only diagnosis of actual Safari workspace, not validation of physics",
+  "workspace_revision": 119,
+  "workspace_sha256": "417f29b13dd570467a6ca09b8dbe31d37fb053b026c5f1ccf69f68673e8b1584",
+  "scenarios": [
+    {
+      "name": "Senza interventi",
+      "job_id": "job-00a07daae47d42318502b8bc5b074114",
+      "frames": 288,
+      "realizations": 2,
+      "valid_from": "2026-10-18T15:00:00Z",
+      "valid_until": "2026-10-21T15:00:00Z",
+      "last_area_change_hour": 5.25,
+      "first_exhausted_hour": 5.25,
+      "final_area_ha": 1.53,
+      "frame_npz_hashes_pass": true,
+      "samples": [
+        {
+          "elapsed_s": 10800,
+          "expected_area_ha": 0.99,
+          "hour": 3.0,
+          "index": 12,
+          "path": "frame-012.npz",
+          "png_sha256": "8998807efb3e34fd061f771daf5f7a73fa550dc6692fd1c15424b0bd40b68378",
+          "positive_cells": 21,
+          "queued_front_events": 3,
+          "realizations_with_front": 1,
+          "sha256": "e6141a20341552ee7ebca71f63de617381076d4d4d1babedf7f9e52868d80579",
+          "url": "/api/firelab/job-00a07daae47d42318502b8bc5b074114/frame-012.png"
+        },
+        {
+          "elapsed_s": 21600,
+          "expected_area_ha": 1.53,
+          "hour": 6.0,
+          "index": 24,
+          "path": "frame-024.npz",
+          "png_sha256": "424149c68b6e31e1dad8204d7b25a70ccf8dbde69cd5168dfb8e194654e7f40b",
+          "positive_cells": 33,
+          "queued_front_events": 0,
+          "realizations_with_front": 0,
+          "sha256": "ff6e046531800c0cbcce98c91504875b0b1b4a30fe590b59e8cdf476b9344939",
+          "url": "/api/firelab/job-00a07daae47d42318502b8bc5b074114/frame-024.png"
+        },
+        {
+          "elapsed_s": 43200,
+          "expected_area_ha": 1.53,
+          "hour": 12.0,
+          "index": 48,
+          "path": "frame-048.npz",
+          "png_sha256": "424149c68b6e31e1dad8204d7b25a70ccf8dbde69cd5168dfb8e194654e7f40b",
+          "positive_cells": 33,
+          "queued_front_events": 0,
+          "realizations_with_front": 0,
+          "sha256": "ff6e046531800c0cbcce98c91504875b0b1b4a30fe590b59e8cdf476b9344939",
+          "url": "/api/firelab/job-00a07daae47d42318502b8bc5b074114/frame-048.png"
+        },
+        {
+          "elapsed_s": 259200,
+          "expected_area_ha": 1.53,
+          "hour": 72.0,
+          "index": 288,
+          "path": "frame-288.npz",
+          "png_sha256": "424149c68b6e31e1dad8204d7b25a70ccf8dbde69cd5168dfb8e194654e7f40b",
+          "positive_cells": 33,
+          "queued_front_events": 0,
+          "realizations_with_front": 0,
+          "sha256": "ff6e046531800c0cbcce98c91504875b0b1b4a30fe590b59e8cdf476b9344939",
+          "url": "/api/firelab/job-00a07daae47d42318502b8bc5b074114/frame-288.png"
+        }
+      ]
+    },
+    {
+      "name": "Scenario 1",
+      "job_id": "job-8a748e59be57436bbe8a7fb24e9932fb",
+      "frames": 288,
+      "realizations": 2,
+      "valid_from": "2026-10-18T15:00:00Z",
+      "valid_until": "2026-10-21T15:00:00Z",
+      "last_area_change_hour": 4.25,
+      "first_exhausted_hour": 4.25,
+      "final_area_ha": 1.215,
+      "frame_npz_hashes_pass": true,
+      "samples": [
+        {
+          "elapsed_s": 10800,
+          "expected_area_ha": 0.99,
+          "hour": 3.0,
+          "index": 12,
+          "path": "frame-012.npz",
+          "png_sha256": "0087730149ddb69628a17bd446e9ae5ca1eb4913e75214d2317c1fd26fd46561",
+          "positive_cells": 21,
+          "queued_front_events": 2,
+          "realizations_with_front": 1,
+          "sha256": "2241ac466a9a13b567c85c2a566e74a4f1f88e3ffb8602363ac875f8234c4c76",
+          "url": "/api/firelab/job-8a748e59be57436bbe8a7fb24e9932fb/frame-012.png"
+        },
+        {
+          "elapsed_s": 21600,
+          "expected_area_ha": 1.215,
+          "hour": 6.0,
+          "index": 24,
+          "path": "frame-024.npz",
+          "png_sha256": "76737efcec6b13aeda13c53fbf5b1cd2bfa0fc8b3f78c2743d7d6be62191ab97",
+          "positive_cells": 26,
+          "queued_front_events": 0,
+          "realizations_with_front": 0,
+          "sha256": "6155073c5b9848f892c36875e1e1cc636db6269e276493423d4728158d5d2cf4",
+          "url": "/api/firelab/job-8a748e59be57436bbe8a7fb24e9932fb/frame-024.png"
+        },
+        {
+          "elapsed_s": 43200,
+          "expected_area_ha": 1.215,
+          "hour": 12.0,
+          "index": 48,
+          "path": "frame-048.npz",
+          "png_sha256": "76737efcec6b13aeda13c53fbf5b1cd2bfa0fc8b3f78c2743d7d6be62191ab97",
+          "positive_cells": 26,
+          "queued_front_events": 0,
+          "realizations_with_front": 0,
+          "sha256": "6155073c5b9848f892c36875e1e1cc636db6269e276493423d4728158d5d2cf4",
+          "url": "/api/firelab/job-8a748e59be57436bbe8a7fb24e9932fb/frame-048.png"
+        },
+        {
+          "elapsed_s": 259200,
+          "expected_area_ha": 1.215,
+          "hour": 72.0,
+          "index": 288,
+          "path": "frame-288.npz",
+          "png_sha256": "76737efcec6b13aeda13c53fbf5b1cd2bfa0fc8b3f78c2743d7d6be62191ab97",
+          "positive_cells": 26,
+          "queued_front_events": 0,
+          "realizations_with_front": 0,
+          "sha256": "6155073c5b9848f892c36875e1e1cc636db6269e276493423d4728158d5d2cf4",
+          "url": "/api/firelab/job-8a748e59be57436bbe8a7fb24e9932fb/frame-288.png"
+        }
+      ]
+    },
+    {
+      "name": "Scenario 3",
+      "job_id": "job-1c79b102d9df4586b687fa5bad75c8ef",
+      "frames": 288,
+      "realizations": 2,
+      "valid_from": "2026-10-18T15:00:00Z",
+      "valid_until": "2026-10-21T15:00:00Z",
+      "last_area_change_hour": 0.25,
+      "first_exhausted_hour": 0.25,
+      "final_area_ha": 0.09,
+      "frame_npz_hashes_pass": true,
+      "samples": [
+        {
+          "elapsed_s": 10800,
+          "expected_area_ha": 0.09,
+          "hour": 3.0,
+          "index": 12,
+          "path": "frame-012.npz",
+          "png_sha256": "95efd5ff4955bb2c203768193cf9cd8849786fc4b7362ef0c22e8c703aea4b9b",
+          "positive_cells": 1,
+          "queued_front_events": 0,
+          "realizations_with_front": 0,
+          "sha256": "e30b864e72d1c64c699e2f1fad8acbf103aee9ef654f0faf0f899b448de013ab",
+          "url": "/api/firelab/job-1c79b102d9df4586b687fa5bad75c8ef/frame-012.png"
+        },
+        {
+          "elapsed_s": 21600,
+          "expected_area_ha": 0.09,
+          "hour": 6.0,
+          "index": 24,
+          "path": "frame-024.npz",
+          "png_sha256": "95efd5ff4955bb2c203768193cf9cd8849786fc4b7362ef0c22e8c703aea4b9b",
+          "positive_cells": 1,
+          "queued_front_events": 0,
+          "realizations_with_front": 0,
+          "sha256": "e30b864e72d1c64c699e2f1fad8acbf103aee9ef654f0faf0f899b448de013ab",
+          "url": "/api/firelab/job-1c79b102d9df4586b687fa5bad75c8ef/frame-024.png"
+        },
+        {
+          "elapsed_s": 43200,
+          "expected_area_ha": 0.09,
+          "hour": 12.0,
+          "index": 48,
+          "path": "frame-048.npz",
+          "png_sha256": "95efd5ff4955bb2c203768193cf9cd8849786fc4b7362ef0c22e8c703aea4b9b",
+          "positive_cells": 1,
+          "queued_front_events": 0,
+          "realizations_with_front": 0,
+          "sha256": "e30b864e72d1c64c699e2f1fad8acbf103aee9ef654f0faf0f899b448de013ab",
+          "url": "/api/firelab/job-1c79b102d9df4586b687fa5bad75c8ef/frame-048.png"
+        },
+        {
+          "elapsed_s": 259200,
+          "expected_area_ha": 0.09,
+          "hour": 72.0,
+          "index": 288,
+          "path": "frame-288.npz",
+          "png_sha256": "95efd5ff4955bb2c203768193cf9cd8849786fc4b7362ef0c22e8c703aea4b9b",
+          "positive_cells": 1,
+          "queued_front_events": 0,
+          "realizations_with_front": 0,
+          "sha256": "e30b864e72d1c64c699e2f1fad8acbf103aee9ef654f0faf0f899b448de013ab",
+          "url": "/api/firelab/job-1c79b102d9df4586b687fa5bad75c8ef/frame-288.png"
+        }
+      ]
+    }
+  ]
+}

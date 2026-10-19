@@ -1,0 +1,24 @@
+{
+  "run_id": "tab-playback-20261019",
+  "source_git_sha": "2f9f7808df292b203b9e278bf81bb4638936f9bd",
+  "mode": "Read-only concurrent HTTP clients, not multi-worker simulation benchmark",
+  "clients": [
+    {
+      "client": 12,
+      "status": "PASS",
+      "bytes": 6811,
+      "sha256": "7e39461c1566f20825e914935d221f87e4b334aa38ceca3d1af7011cbde0ecee",
+      "elapsed_s": 0.02010786801110953
+    },
+    {
+      "client": 24,
+      "status": "PASS",
+      "bytes": 7543,
+      "sha256": "3f06def0fc86e13526722fd3cc4dd250c072e13fbc760bf7d5fa8bb552643324",
+      "elapsed_s": 0.018144307017792016
+    }
+  ],
+  "elapsed_s": 0.024754863989073783,
+  "workspace_unchanged": true,
+  "job_count": 90
+}

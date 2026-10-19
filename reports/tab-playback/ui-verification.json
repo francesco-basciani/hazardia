@@ -1,0 +1,135 @@
+{
+  "run_id": "tab-playback-20261019",
+  "independent_clocks": {
+    "primaryClock": 10.981475000003,
+    "secondaryClock": 10,
+    "independent": true,
+    "primaryAdvancedPast3": true,
+    "secondStayed10": true
+  },
+  "reload_preserved_hour": 10,
+  "layouts": [
+    {
+      "bodyWidth": 355,
+      "borders": [
+        "rgb(184, 197, 207)",
+        "rgb(216, 226, 231)"
+      ],
+      "controls": [
+        {
+          "height": 44,
+          "id": "playback-start",
+          "width": 67
+        },
+        {
+          "height": 44,
+          "id": "back",
+          "width": 67
+        },
+        {
+          "height": 44,
+          "id": "play",
+          "width": 100
+        },
+        {
+          "height": 44,
+          "id": "forward",
+          "width": 67
+        }
+      ],
+      "scrollWidth": 355,
+      "startButton": true,
+      "viewport": 355
+    },
+    {
+      "bodyWidth": 556,
+      "borders": [
+        "rgb(184, 197, 207)",
+        "rgb(216, 226, 231)"
+      ],
+      "controls": [
+        {
+          "height": 44,
+          "id": "playback-start",
+          "width": 125.5
+        },
+        {
+          "height": 44,
+          "id": "back",
+          "width": 125.5
+        },
+        {
+          "height": 44,
+          "id": "play",
+          "width": 125.5
+        },
+        {
+          "height": 44,
+          "id": "forward",
+          "width": 125.5
+        }
+      ],
+      "scrollWidth": 556,
+      "startButton": true,
+      "viewport": 556
+    },
+    {
+      "bodyWidth": 1188,
+      "borders": [
+        "rgb(184, 197, 207)",
+        "rgb(216, 226, 231)"
+      ],
+      "controls": [
+        {
+          "height": 44,
+          "id": "playback-start",
+          "width": 53.546875
+        },
+        {
+          "height": 44,
+          "id": "back",
+          "width": 33.171875
+        },
+        {
+          "height": 44,
+          "id": "play",
+          "width": 100
+        },
+        {
+          "height": 44,
+          "id": "forward",
+          "width": 33.171875
+        }
+      ],
+      "scrollWidth": 1188,
+      "startButton": true,
+      "viewport": 1188
+    }
+  ],
+  "safari": {
+    "initial_workspace_clock": 2.822832,
+    "initial_workspace_replay_observed_hours": [
+      2.877582,
+      11.334,
+      16.829
+    ],
+    "reload_clock": 16.829,
+    "start_button_clock": 0,
+    "optimized_case_entry_clock": 0,
+    "optimized_case_replay_observed_hours": [
+      0.05875,
+      21.06825,
+      25.7775
+    ],
+    "optimized_case_areas_at_25_75h": [
+      376.5,
+      376.41
+    ],
+    "observed_error": false
+  },
+  "limitations": [
+    "No injected playback exception test",
+    "First layout probe targeted inactive tab; discarded",
+    "Safari native slider setValue did not trigger input; not counted as seek PASS"
+  ]
+}
