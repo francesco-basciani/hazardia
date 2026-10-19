@@ -121,3 +121,6 @@ Nello studio, **Strumenti e confronto** raccoglie inserimento di inneschi/squadr
 **Caso ideale con ottimizzazione e priorità:** in Simulazioni e risorse aprire **Priorità territoriali e piano ideale**. Il caso verificato si carica esplicitamente solo in un workspace vuoto; offre4mezzi ipotetici, pesi modificabili, cartografia OSM parziale e ricalcolo con unità indisponibili. HiGHS ottimizza punti di priorità, non persone salvate; il confronto nativo è distinto e usa forzanti congelate. [Risultati e riproduzione](reports/CASO-IDEALE-E-PRIORITA.md), [contratto0.6](reports/ADR-0013-ideal-spatial-policy.md).
 
 La superficie colorata negli scenari è l’**area cumulativamente raggiunta**, non le fiamme attive: un Canadair non cancella il bruciato precedente. [Correzioni del replay e prove Canadair/barriera](reports/MODIFICHE-DURANTE-LA-SIMULAZIONE.md).
+
+
+Catalogo territoriale OSM: nel Monitoraggio e negli scenari, aprire **Territorio ed esposizione → Catalogo OpenStreetMap · livelli** per sanità/assistenza, soccorso, istruzione, reti, trasporti, edifici e altri oggetti; cercare nomi o tag e selezionare un risultato. Tutti i tag disponibili restano consultabili. Estratti locali parziali, capacità sanitaria non verificata; nessun nuovo simulatore sanitario. [Evidenze e ripetibilità](reports/CATALOGO-OPENSTREETMAP.md).

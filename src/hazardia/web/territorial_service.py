@@ -14,7 +14,7 @@ class TerritorialService:
    if self.app.store.get(body['job_id'])['state']!='SUCCEEDED':raise HazardError('DEPENDENCY_UNAVAILABLE','Completed physical result required')
   elif set(body)=={'bounds'}:bounds_checked(body['bounds'])
   else:raise HazardError('INVALID_INPUT','job_id or bounds required')
-  key='context-'+hashlib.sha256(json.dumps(['territorial/6',body, int(time.time()//300) if refresh else None if 'job_id' in body else dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d')+str(dt.datetime.now(dt.timezone.utc).hour//3)],sort_keys=True).encode()).hexdigest()[:24];dest=self.root/key;dest.mkdir(exist_ok=True)
+  key='context-'+hashlib.sha256(json.dumps(['territorial/7',body, int(time.time()//300) if refresh else None if 'job_id' in body else dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d')+str(dt.datetime.now(dt.timezone.utc).hour//3)],sort_keys=True).encode()).hexdigest()[:24];dest=self.root/key;dest.mkdir(exist_ok=True)
   with self.lock:
    if (dest/'result.json').exists():return dict(id=key,status='SUCCEEDED')
    if key in self.active:return dict(id=key,status='RUNNING')

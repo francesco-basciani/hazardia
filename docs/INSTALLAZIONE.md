@@ -256,3 +256,7 @@ PollIntervalMaxSec=120
 ```
 
 Dopo una modifica autorizzata: `sudo systemctl restart systemd-timesyncd`, verificare l’offset NTP e `sudo hwclock --systohc --utc` soltanto dopo l’allineamento. Per una correzione manuale usare l’ora UTC verificata del riferimento esterno, disabilitando temporaneamente NTP e riabilitandolo subito dopo. Non copiare l’ora del vecchio esperimento o presumere che il solo cambio di fuso corregga un ritardo. Il runtime HTTP e i simulatori non richiedono privilegi amministrativi.
+
+
+### Catalogo OpenStreetMap generico
+L’importatore precedente ora conserva tutti i tag e gli oggetti rappresentabili (anche sanità e categorie non note), con archivio raw `territorial-sources/<sha>.json` e derivato `<sha>-catalog2.json`. Limiti:32MiBraw,20.000feature,16MiBderivato;20import letti dal servizio. Relazioni valide multipoligono supportate; centri-proxy espliciti, geometrie non ricostruibili contate e conservate nelraw. Non attribuire una data di disponibilità non documentata a `--source-available-at`: omettere l’opzione se sconosciuta. `source_data_at` e data d’import restano distinti. API e UI conservano quote/provenienza/missing; la querylive generica è limitata a2.000oggetti/2MiB, non è un estrattore nazionale. Per dataset più ampi pianificare estratti autorizzati e un consumer specifico; nessun planetdownload automatico. OSM non certifica posti letto disponibili, percorribilità o volabilità. [Report catalogo](../reports/CATALOGO-OPENSTREETMAP.md).

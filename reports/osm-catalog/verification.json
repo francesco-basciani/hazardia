@@ -1,0 +1,85 @@
+{
+  "checks": [
+    {
+      "id": "all-represented-tags-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "no-silent-tagged-object-loss",
+      "status": "PASS"
+    },
+    {
+      "id": "no-road-or-unknown-optimizer-priority",
+      "status": "PASS"
+    },
+    {
+      "id": "real-healthcare-present",
+      "status": "PASS"
+    },
+    {
+      "id": "versioned-real-catalogue-through-api",
+      "status": "PASS"
+    },
+    {
+      "id": "healthcare-through-api",
+      "status": "PASS"
+    },
+    {
+      "id": "raw-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "user-workspaces-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "all-engine-pins-unchanged",
+      "status": "PASS"
+    }
+  ],
+  "features": 9525,
+  "tagged": 9722,
+  "skipped_tagged": 197,
+  "summary": {
+    "version": "osm-catalog/2",
+    "groups": {
+      "settlements": 21,
+      "transport": 2457,
+      "other": 4589,
+      "electrical": 34,
+      "environment": 516,
+      "healthcare": 14,
+      "education": 12,
+      "emergency": 47,
+      "buildings": 1824,
+      "utilities": 3,
+      "boundaries": 8
+    },
+    "geometry_proxies": 0,
+    "scope": "All tagged objects representable in this bounded extract; not a complete territorial census"
+  },
+  "api_summary": {
+    "geometry_proxies": 0,
+    "groups": {
+      "boundaries": 8,
+      "buildings": 1824,
+      "education": 12,
+      "electrical": 17,
+      "emergency": 47,
+      "environment": 516,
+      "healthcare": 14,
+      "other": 4572,
+      "settlements": 21,
+      "transport": 2440,
+      "utilities": 3
+    },
+    "scope": "All tagged objects representable in this bounded extract; not a complete territorial census",
+    "version": "osm-catalog/2"
+  },
+  "api_id": "context-379fe580b09cc76569e5e6a7",
+  "source_sha256": "4c3c76309a724f2fbdb95e4e793ede0eaa7f752c55c33ea5a54885eb73aa9cf7",
+  "elapsed_api_s": 1.052378502994543,
+  "engine_pins": 145,
+  "source_available_at": null,
+  "scope": "Real cached local extract; no new physical run, health-capacity inference or national download"
+}

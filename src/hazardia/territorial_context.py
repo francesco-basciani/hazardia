@@ -12,24 +12,7 @@ def bounds_checked(b):
  if X-x>1 or Y-y>1:raise HazardError('AREA_TOO_LARGE','Ingrandisci la mappa: contesto dettagliato disponibile per aree fino a1°×1°')
  return b
 
-def parse_osm(raw):
- features=[];skipped=0
- for e in raw.get('elements',[]):
-  t=e.get('tags',{});power=t.get('power');g=e.get('geometry',[]);category=None;geometry=None
-  if power in ('line','minor_line','cable'):
-   if t.get('location') in ('underground','underwater') or power=='cable' and t.get('location')!='overhead':continue
-   if 2<=len(g)<=2000:category='power_line';geometry=dict(type='LineString',coordinates=[[p['lon'],p['lat']] for p in g])
-  elif power in ('tower','pole') and 'lat' in e:category='power_tower';geometry=dict(type='Point',coordinates=[e['lon'],e['lat']])
-  else:
-   category={'hospital':'hospital','school':'school','fire_station':'fire_station'}.get(t.get('amenity'),'residential' if t.get('landuse')=='residential' else 'settlement' if t.get('place') in ('city','town','village','hamlet') else None)
-   c=e.get('center',e)
-   if category and c.get('lat') is not None:geometry=dict(type='Point',coordinates=[c['lon'],c['lat']])
-   if category and 4<=len(g)<=2000 and g[0]==g[-1]:geometry=dict(type='Polygon',coordinates=[[[p['lon'],p['lat']] for p in g]])
-  if not category or not geometry:skipped+=1;continue
-  props=dict(name=t.get('name') or t.get('ref') or {'power_line':'Linea elettrica','power_tower':'Sostegno elettrico'}.get(category,category+' OSM'),category=category,source='OpenStreetMap',osm_type=e['type'],osm_id=e['id'])
-  for k in ('voltage','height','operator','ref','location','power','cables','wires'):props[k]=t.get(k)
-  features.append(dict(type='Feature',id=f'osm-{e["type"]}-{e["id"]}',geometry=geometry,properties=props))
- return features,skipped
+from hazardia.osm_catalog import parse_osm,summary
 
 def local_context(root,bounds):
  """Reuse verified existing snapshots; never extrapolate their geographic coverage."""
@@ -41,38 +24,32 @@ def local_context(root,bounds):
     features.append(dict(type='Feature',id='geonames-'+str(f['id']),geometry=dict(type='Point',coordinates=[f['lon'],f['lat']]),properties=dict(name=f['name'],category='settlement',source='GeoNames CC BY4.0; cached locality point, not a town boundary',optimization_eligible=False)))
  raw=root/'runs/map-detail-20261015T204352Z/osm-map-final-raw.json';catalog=root/'web-assets/priority-areas.json'
  if raw.exists() and catalog.exists() and sha256(raw)==load(catalog).get('source_sha256'):
-  data=load(raw);nodes={e['id']:dict(lat=e['lat'],lon=e['lon']) for e in data['elements'] if e['type']=='node'};elements=[]
-  for e in data['elements']:
-   e=dict(e)
-   if e['type']=='way':
-    g=[nodes[n] for n in e.get('nodes',[]) if n in nodes]
-    if not g:continue
-    e.update(geometry=g,center=dict(lat=sum(p['lat'] for p in g)/len(g),lon=sum(p['lon'] for p in g)/len(g)))
-   elements.append(e)
-  mapped,_=parse_osm(dict(elements=elements))
+  mapped,_=parse_osm(load(raw))
   for f in mapped:
-   g=f['geometry'];pts=[g['coordinates']] if g['type']=='Point' else g['coordinates'][0] if g['type']=='Polygon' else g['coordinates']
+   g=f['geometry'];pts=[g['coordinates']] if g['type']=='Point' else g['coordinates'][0] if g['type']=='Polygon' else g['coordinates'][0][0] if g['type']=='MultiPolygon' else g['coordinates']
    if max(p[0] for p in pts)>=x and min(p[0] for p in pts)<=X and max(p[1] for p in pts)>=y and min(p[1] for p in pts)<=Y:
     f['properties']['source']='OpenStreetMap cached extract15Oct2026, partial';features.append(f)
   sources.append(dict(name='OSM cached local extract',sha256=sha256(raw),coverage_bbox=load(catalog)['coverage_bbox_wgs84'],source_url=load(catalog)['source_url']))
  for file in sorted((root/'territorial-imports').glob('*.json'),key=lambda p:p.stat().st_mtime,reverse=True)[:20]:
-  if file.stat().st_size>4*1024**2:continue
+  if file.stat().st_size>16*1024**2:continue
   imported=load(file)
   if imported.get('license')!='ODbL-1.0':continue
-  sources.append({k:imported.get(k) for k in ['source_url','source_sha256','source_available_at','source_data_at','available_at','coverage_bbox_wgs84']})
+  sources.append({k:imported.get(k) for k in ['source_url','source_sha256','source_available_at','source_data_at','available_at','coverage_bbox_wgs84','skipped']})
   for f in imported['features']:
    def points(a):return [a] if isinstance(a[0],(int,float)) else [p for child in a for p in points(child)]
    pts=points(f['geometry']['coordinates'])
    if max(p[0] for p in pts)>=x and min(p[0] for p in pts)<=X and max(p[1] for p in pts)>=y and min(p[1] for p in pts)<=Y:features.append(f)
- unique={f['id']:f for f in features};return list(unique.values()),sources
+ unique={}
+ for f in features:unique.setdefault(f['id'],f)
+ return list(unique.values()),sources
 
 def acquire(root,bounds,terrain_id=None):
- root=Path(root);bounds_checked(bounds);key=hashlib.sha256(json.dumps([bounds,terrain_id,'context/5'],sort_keys=True).encode()).hexdigest()[:24];dest=root/'web-state/territorial-cache'/key;dest.mkdir(parents=True,exist_ok=True)
+ root=Path(root);bounds_checked(bounds);key=hashlib.sha256(json.dumps([bounds,terrain_id,'context/6'],sort_keys=True).encode()).hexdigest()[:24];dest=root/'web-state/territorial-cache'/key;dest.mkdir(parents=True,exist_ok=True)
  for p in sorted(dest.glob('snapshot-*.json'),key=lambda p:p.stat().st_mtime,reverse=True):
   v=load(p)
   if (dt.datetime.now(dt.timezone.utc)-dt.datetime.fromisoformat(v['available_at'].replace('Z','+00:00'))).total_seconds()<(300 if v.get('osm_status')=='MISSING' else 10800):return v
  x,y,X,Y=bounds;box=f'{y},{x},{Y},{X}'
- query=f'[out:json][timeout:12];(nwr[amenity~"^(hospital|school|fire_station)$"]({box});way[landuse=residential]({box});node[place~"^(city|town|village|hamlet)$"]({box});way[power~"^(line|minor_line|cable)$"]({box});node[power~"^(tower|pole)$"]({box}););out center geom 2000;'
+ query=f'[out:json][timeout:12];nwr[~"."~"."]({box});out meta center geom 2000;'
  errors=[];features=[];source=None;truncated=False;raw_hash=None;quota=root/'web-state/priority-requests';quota.mkdir(parents=True,exist_ok=True);today=dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d');skipped=0
  for url in PROVIDERS:
   if len(list(quota.glob(today+'-*')))>=10:errors.append('SOURCE_QUOTA: local daily OSM budget reached');break
@@ -111,7 +88,7 @@ def acquire(root,bounds,terrain_id=None):
   fallback=builtup(root,terrain_id,bounds,'; '.join(errors) or 'No mapped residential geometry in this query',limit=1200,min_area=900)
   features+=fallback['features'];missing+=fallback['missing']
  local,sources=local_context(root,bounds);known={f['id'] for f in features};features=[f for f in local if f['id'] not in known]+features
- result=dict(type='FeatureCollection',sources=sources,schema='territorial-context/1',features=features,coverage_bbox_wgs84=bounds,osm_coverage_bbox_wgs84=osm_bounds if source else None,available_at=utcnow(),source_url=source or ('https://esa-worldcover.org/en/data-access' if any('WorldCover' in f['properties'].get('source','') for f in features) else 'https://www.openstreetmap.org/copyright' if any(f['id'].startswith('osm-') for f in features) else 'https://www.geonames.org/' if features else None),source_data_at=raw.get('osm3s',{}).get('timestamp_osm_base') if source else None,source_sha256=raw_hash or hashlib.sha256(json.dumps(features,sort_keys=True).encode()).hexdigest(),osm_status='PARTIAL' if source else 'CACHED_PARTIAL' if any(f['id'].startswith('osm-') for f in features) else 'MISSING',truncated_possible=truncated,errors=errors,missing=missing,license='ODbL OpenStreetMap; GeoNames CC BY4.0; WorldCover2021 CC BY4.0 where present',qualification='PARTIAL_MAPPED_EXPOSURE_NOT_OPERATIONAL_RISK',aviation=dict(qualified=False,missing=AVIATION_MISSING,absence_of_mapped_lines_proves_clearance=False))
+ result=dict(catalog=summary(features),type='FeatureCollection',sources=sources,schema='territorial-context/1',features=features,coverage_bbox_wgs84=bounds,osm_coverage_bbox_wgs84=osm_bounds if source else None,available_at=utcnow(),source_url=source or ('https://esa-worldcover.org/en/data-access' if any('WorldCover' in f['properties'].get('source','') for f in features) else 'https://www.openstreetmap.org/copyright' if any(f['id'].startswith('osm-') for f in features) else 'https://www.geonames.org/' if features else None),source_data_at=raw.get('osm3s',{}).get('timestamp_osm_base') if source else None,source_sha256=raw_hash or hashlib.sha256(json.dumps(features,sort_keys=True).encode()).hexdigest(),osm_status='PARTIAL' if source else 'CACHED_PARTIAL' if any(f['id'].startswith('osm-') for f in features) else 'MISSING',truncated_possible=truncated,errors=errors,missing=missing,license='ODbL OpenStreetMap; GeoNames CC BY4.0; WorldCover2021 CC BY4.0 where present',qualification='PARTIAL_MAPPED_EXPOSURE_NOT_OPERATIONAL_RISK',aviation=dict(qualified=False,missing=AVIATION_MISSING,absence_of_mapped_lines_proves_clearance=False))
  write_new(dest/('snapshot-'+uuid.uuid4().hex+'.json'),result);return result
 
 def assess(root,job_id):
@@ -128,7 +105,7 @@ def assess(root,job_id):
  with np.load(job/'fire-output.npz',allow_pickle=False) as a:p=a['probability'];arrival=a['arrival'];burned=a['fire']
  duration=req['options']['duration_s'];times=np.arange(0,duration+1,900);count=0
  for f in data['features']:
-  if f['properties']['category'].startswith('power_'):continue
+  if f['properties'].get('exposure_eligible') is False or f['properties']['category'].startswith('power_'):continue
   if count>=1600:f['exposure']=dict(status='NOT_EVALUATED_LIMIT');continue
   geom=transform(project,shape(f['geometry']));geom=geom.buffer(75 if geom.geom_type=='Point' else 100);mask=geometry_mask([mapping(geom)],p.shape,tr,invert=True);n=int(mask.sum());count+=1
   if not n:f['exposure']=dict(status='OUTSIDE_MODEL_GRID');continue
