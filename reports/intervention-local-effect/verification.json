@@ -1,0 +1,55 @@
+{
+  "run_id": "intervention-local-effect-20261019",
+  "status": "PASS",
+  "comparison_id": "ideal-native-ee81c4a50a2847288db97f06f9904d32",
+  "rows": [
+    {
+      "unit_id": "unit-07566430",
+      "effect": "fuel_removal",
+      "activation_minutes": 60,
+      "cells": 100,
+      "geometry_area_ha": 9.0,
+      "cases": {
+        "A": {
+          "positive_cells": 96,
+          "mean_probability": 0.4375,
+          "max_probability": 0.5,
+          "expected_reached_area_ha": 3.9375,
+          "first_native_contact_minutes": 1591.2333333333333
+        },
+        "B": {
+          "positive_cells": 0,
+          "mean_probability": 0.0,
+          "max_probability": 0.0,
+          "expected_reached_area_ha": 0.0,
+          "first_native_contact_minutes": null
+        }
+      }
+    },
+    {
+      "unit_id": "unit-027eb4bc",
+      "effect": "fuel_removal",
+      "activation_minutes": 60,
+      "cells": 100,
+      "geometry_area_ha": 9.0,
+      "cases": {
+        "A": {
+          "positive_cells": 91,
+          "mean_probability": 0.4312500059604645,
+          "max_probability": 0.5,
+          "expected_reached_area_ha": 3.88125,
+          "first_native_contact_minutes": 1508.1333333333334
+        },
+        "B": {
+          "positive_cells": 0,
+          "mean_probability": 0.0,
+          "max_probability": 0.0,
+          "expected_reached_area_ha": 0.0,
+          "first_native_contact_minutes": null
+        }
+      }
+    }
+  ],
+  "engine_pins": 145,
+  "qualification": "Exact native fuel-removal masks; local effect is an ideal barrier, not category effectiveness or global containment; no new model run."
+}

@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "638d10e50830c821769e01b136f735ba39afd71c",
+  "source_git_sha": "2f9f7808df292b203b9e278bf81bb4638936f9bd",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,20 +11,20 @@
       "sha256": "7a64cf19bdff0146fd1fdd1467ab80a053114b174237993b5db7d57803d5dbc2"
     },
     "CHECKLIST.md": {
-      "bytes": 155357,
-      "sha256": "668602d28587394598ea15a5bdb843f937ac314863c472d5b820248e0af7aef3"
+      "bytes": 156651,
+      "sha256": "46e2224a0eb6fb7df2afcd63accdde0d54adaa07a468f642dc219e12db7f0232"
     },
     "MEMORY.md": {
-      "bytes": 110549,
-      "sha256": "20bb7bbddf686cda962e28088e2228a24c04639ebb4b4202aab57ec89e9963c1"
+      "bytes": 111843,
+      "sha256": "e39ee60bbabf14125a76b793d46d6612793e10e023295bd8e74eacbfd65471ef"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 115665,
-      "sha256": "0ea91c7bfaa1363442f56b4df66453c2d8facb0ce7e446f0aad1fa71aecb89cd"
+      "bytes": 116959,
+      "sha256": "4e618ba81cab62326667fe0b632b2b61b7ba949d08869e57b1cf358e8c3c76cb"
     },
     "README.md": {
       "bytes": 22191,
@@ -221,6 +221,10 @@
     "reports/DOMINI-DINAMICI-E-FORZANTI.md": {
       "bytes": 13937,
       "sha256": "e5f5ecc3a4f498112a7bbf4cd4fb4f9e071d62a600b24ee3202e3dd0ed422aa1"
+    },
+    "reports/EFFETTO-LOCALE-DELLE-DUE-SQUADRE.md": {
+      "bytes": 5199,
+      "sha256": "19145d2d58ebea866f18ead44167b03eb5026f63f88e30271c26fbdfbd203940"
     },
     "reports/FIRE-WORKSPACE.md": {
       "bytes": 4593,
@@ -501,6 +505,18 @@
     "reports/forecast-case/verification.json": {
       "bytes": 3818,
       "sha256": "c68ec756f83fc488ab6db06eed73679e6e53a72eefc33855c2586bb9f15a025e"
+    },
+    "reports/intervention-local-effect/integrity.json": {
+      "bytes": 88,
+      "sha256": "8876ebb0a712033ced92e35b6c7d625b71ffa0b786219dc2d9bc9110f0cdd007"
+    },
+    "reports/intervention-local-effect/ui-verification.json": {
+      "bytes": 1803,
+      "sha256": "36096278b8ec5eb71038e3df07658bfd86313a6938e13db355dda657c775f5a5"
+    },
+    "reports/intervention-local-effect/verification.json": {
+      "bytes": 1626,
+      "sha256": "aa411ae2d3b92c07324712345f1d34cafbbc3737af97eacbc6f46a6d88e8e5fe"
     },
     "reports/intervention-plan/integrity.json": {
       "bytes": 164,
@@ -787,8 +803,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 127050,
-      "sha256": "e01e14507bd1f1294f4925a4c32a1a24eef36097a578203ac2a37128208f6046"
+      "bytes": 128344,
+      "sha256": "b2aa06d651d14c510cded513cba866042eff2c0c6481a0978aabc209dd4d3d2d"
     },
     "research/RESEARCH.md": {
       "bytes": 33312,
@@ -1235,8 +1251,8 @@
       "sha256": "15998082a93786ceecb9f4ea29375a1b3ac4683f613ea3001787dba12c735079"
     },
     "src/hazardia/web/static/fire-studio.js": {
-      "bytes": 73281,
-      "sha256": "442f4d40b9219c2ddb9f48cb1132e34ea04f75ba26f4fa0d5df9ff7e4ca422ef"
+      "bytes": 73942,
+      "sha256": "1b013c678f3bb3bcc50e09e13d550b48c61e742068c1781a02c3889a5032f148"
     },
     "src/hazardia/web/static/forecast-playback.js": {
       "bytes": 5181,
@@ -1693,6 +1709,10 @@
     "tests/native/hmc_storage_probe.f90": {
       "bytes": 3003,
       "sha256": "472c97b674312029cf52232f824aa69a94293debdbca9c93c7b27047b38f9c6c"
+    },
+    "tests/native/intervention_local_effect_audit.py": {
+      "bytes": 2692,
+      "sha256": "9036e3efee400b5632917cecc0205beb3989d55665b293a8db65f735e6e22d5a"
     },
     "tests/native/intervention_plan_audit.py": {
       "bytes": 4388,

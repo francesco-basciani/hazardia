@@ -1,0 +1,72 @@
+{
+  "run_id": "intervention-local-effect-20261019",
+  "status": "PASS",
+  "reviewer": "Codex self-check",
+  "view": {
+    "hour": "48",
+    "maps": [
+      {
+        "center": "[42.40765462624829,13.738508758094927]",
+        "zoom": "15"
+      },
+      {
+        "center": "[42.40765462624829,13.738508758094927]",
+        "zoom": "15"
+      }
+    ],
+    "resources": 2,
+    "states": [
+      "Scenario nominaleSenza interventiModificaRisultato calcolato · 962,30 ha medi · campione +48 h · +5,95 ha / 15 min · +48 hDettaglio inneschiDettaglio interventiInquadra scenari",
+      "AlternativaDue squadre · piano ottimizzatoreRisultato calcolato · 940,03 ha medi · campione +48 h · +5,60 ha / 15 min · +48 hModificaElimina"
+    ]
+  },
+  "layouts": [
+    {
+      "outer": {
+        "scroll": 1440,
+        "width": 1440
+      },
+      "inner": {
+        "detailVisible": true,
+        "maps": 2,
+        "scroll": 1188,
+        "width": 1188
+      },
+      "status": "PASS"
+    },
+    {
+      "outer": {
+        "scroll": 768,
+        "width": 768
+      },
+      "inner": {
+        "detailVisible": true,
+        "maps": 2,
+        "scroll": 556,
+        "width": 556
+      },
+      "status": "PASS"
+    },
+    {
+      "outer": {
+        "scroll": 375,
+        "width": 375
+      },
+      "inner": {
+        "detailVisible": true,
+        "maps": 2,
+        "scroll": 355,
+        "width": 355
+      },
+      "status": "PASS"
+    }
+  ],
+  "scope": "Read-only native effect diagnosis plus shared intervention framing; no new simulation or efficacy calibration",
+  "not_run": [
+    "new physical plan search",
+    "effectiveness calibration",
+    "operational logistics",
+    "new axe/FPS/p95 matrix"
+  ],
+  "screenshot": "experiments/runs/intervention-local-effect-20261019/local-effect-48h.png"
+}
