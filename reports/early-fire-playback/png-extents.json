@@ -1,0 +1,116 @@
+[
+  {
+    "job": "job-c7999234d3e74a63845d3439a0eba08c",
+    "hour": 3.0,
+    "png_size": [
+      1024,
+      1024
+    ],
+    "alpha_bounds": [
+      503,
+      501,
+      520,
+      520
+    ],
+    "displayed_extent_at_observed_zoom12_pixels": [
+      18.33,
+      20.56
+    ],
+    "icon_pixels": 30
+  },
+  {
+    "job": "job-c7999234d3e74a63845d3439a0eba08c",
+    "hour": 6.0,
+    "png_size": [
+      1024,
+      1024
+    ],
+    "alpha_bounds": [
+      493,
+      481,
+      531,
+      526
+    ],
+    "displayed_extent_at_observed_zoom12_pixels": [
+      40.97,
+      48.69
+    ],
+    "icon_pixels": 30
+  },
+  {
+    "job": "job-c7999234d3e74a63845d3439a0eba08c",
+    "hour": 12.0,
+    "png_size": [
+      1024,
+      1024
+    ],
+    "alpha_bounds": [
+      481,
+      464,
+      557,
+      540
+    ],
+    "displayed_extent_at_observed_zoom12_pixels": [
+      81.94,
+      82.23
+    ],
+    "icon_pixels": 30
+  },
+  {
+    "job": "job-4bcbd12dc46d4fa4b6d0ffa18142551c",
+    "hour": 3.0,
+    "png_size": [
+      1024,
+      1024
+    ],
+    "alpha_bounds": [
+      503,
+      501,
+      520,
+      520
+    ],
+    "displayed_extent_at_observed_zoom12_pixels": [
+      18.33,
+      20.56
+    ],
+    "icon_pixels": 30
+  },
+  {
+    "job": "job-4bcbd12dc46d4fa4b6d0ffa18142551c",
+    "hour": 6.0,
+    "png_size": [
+      1024,
+      1024
+    ],
+    "alpha_bounds": [
+      493,
+      481,
+      531,
+      526
+    ],
+    "displayed_extent_at_observed_zoom12_pixels": [
+      40.97,
+      48.69
+    ],
+    "icon_pixels": 30
+  },
+  {
+    "job": "job-4bcbd12dc46d4fa4b6d0ffa18142551c",
+    "hour": 12.0,
+    "png_size": [
+      1024,
+      1024
+    ],
+    "alpha_bounds": [
+      481,
+      464,
+      557,
+      540
+    ],
+    "displayed_extent_at_observed_zoom12_pixels": [
+      81.94,
+      82.23
+    ],
+    "icon_pixels": 30
+  }
+]

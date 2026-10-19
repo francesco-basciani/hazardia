@@ -1,0 +1,195 @@
+{
+  "run_id": "early-fire-playback-20261019",
+  "status": "PASS",
+  "reviewer": "Codex self-check",
+  "samples": [
+    {
+      "hour": "3",
+      "markers": [
+        {
+          "anchorOffset": "-47px",
+          "width": 30
+        },
+        {
+          "anchorOffset": "-47px",
+          "width": 30
+        }
+      ],
+      "rasters": [
+        {
+          "complete": true,
+          "source": "/api/firelab/job-c7999234d3e74a63845d3439a0eba08c/frame-012.png"
+        },
+        {
+          "complete": true,
+          "source": "/api/firelab/job-4bcbd12dc46d4fa4b6d0ffa18142551c/frame-012.png"
+        }
+      ],
+      "states": [
+        "Scenario nominaleSenza interventiModificaRisultato calcolato · 3,99 ha medi · campione +3 h · +0,64 ha / 15 min · +3 hDettaglio inneschiInquadra scenari",
+        "AlternativaDue squadre · piano ottimizzatoreRisultato calcolato · 3,99 ha medi · campione +3 h · +0,64 ha / 15 min · +3 hModificaElimina"
+      ],
+      "zoom": "15"
+    },
+    {
+      "hour": "6",
+      "markers": [
+        {
+          "anchorOffset": "-47px",
+          "width": 30
+        },
+        {
+          "anchorOffset": "-47px",
+          "width": 30
+        }
+      ],
+      "rasters": [
+        {
+          "complete": true,
+          "source": "/api/firelab/job-c7999234d3e74a63845d3439a0eba08c/frame-024.png"
+        },
+        {
+          "complete": true,
+          "source": "/api/firelab/job-4bcbd12dc46d4fa4b6d0ffa18142551c/frame-024.png"
+        }
+      ],
+      "states": [
+        "Scenario nominaleSenza interventiModificaRisultato calcolato · 23,05 ha medi · campione +6 h · +2,16 ha / 15 min · +6 hDettaglio inneschiInquadra scenari",
+        "AlternativaDue squadre · piano ottimizzatoreRisultato calcolato · 23,05 ha medi · campione +6 h · +2,16 ha / 15 min · +6 hModificaElimina"
+      ],
+      "zoom": "15"
+    },
+    {
+      "hour": "12",
+      "markers": [
+        {
+          "anchorOffset": "-47px",
+          "width": 30
+        },
+        {
+          "anchorOffset": "-47px",
+          "width": 30
+        }
+      ],
+      "rasters": [
+        {
+          "complete": true,
+          "source": "/api/firelab/job-c7999234d3e74a63845d3439a0eba08c/frame-048.png"
+        },
+        {
+          "complete": true,
+          "source": "/api/firelab/job-4bcbd12dc46d4fa4b6d0ffa18142551c/frame-048.png"
+        }
+      ],
+      "states": [
+        "Scenario nominaleSenza interventiModificaRisultato calcolato · 103,49 ha medi · campione +12 h · +3,62 ha / 15 min · +12 hDettaglio inneschiInquadra scenari",
+        "AlternativaDue squadre · piano ottimizzatoreRisultato calcolato · 103,49 ha medi · campione +12 h · +3,62 ha / 15 min · +12 hModificaElimina"
+      ],
+      "zoom": "15"
+    }
+  ],
+  "layouts": [
+    {
+      "width": 1440,
+      "outer": {
+        "scroll": 1440,
+        "width": 1440
+      },
+      "inner": {
+        "detailVisible": true,
+        "maps": 2,
+        "scroll": 1188,
+        "width": 1188
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "outer": {
+        "scroll": 768,
+        "width": 768
+      },
+      "inner": {
+        "detailVisible": true,
+        "maps": 2,
+        "scroll": 556,
+        "width": 556
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 375,
+      "outer": {
+        "scroll": 375,
+        "width": 375
+      },
+      "inner": {
+        "detailVisible": true,
+        "maps": 2,
+        "scroll": 355,
+        "width": 355
+      },
+      "status": "PASS"
+    },
+    {
+      "mode": "plan",
+      "width": 1440,
+      "outer": {
+        "scroll": 1440,
+        "width": 1440
+      },
+      "inner": {
+        "detailVisible": true,
+        "maps": 1,
+        "scroll": 1188,
+        "width": 1188
+      },
+      "status": "PASS"
+    },
+    {
+      "mode": "plan",
+      "width": 768,
+      "outer": {
+        "scroll": 768,
+        "width": 768
+      },
+      "inner": {
+        "detailVisible": true,
+        "maps": 1,
+        "scroll": 556,
+        "width": 556
+      },
+      "status": "PASS"
+    },
+    {
+      "mode": "plan",
+      "width": 375,
+      "outer": {
+        "scroll": 375,
+        "width": 375
+      },
+      "inner": {
+        "detailVisible": true,
+        "maps": 1,
+        "scroll": 355,
+        "width": 355
+      },
+      "status": "PASS"
+    }
+  ],
+  "checks": {
+    "correct_source_frames_12_24_48": "PASS",
+    "same_zoom15_in_both_maps": "PASS",
+    "sampled_area_increases_3_6_12h": "PASS",
+    "ignition_icon_offset_preserves_geographic_point": "PASS DOM offset and unchanged input audit",
+    "comparison_restored_two_maps": "PASS"
+  },
+  "not_run": [
+    "new native simulations",
+    "drag editing regression",
+    "new axe matrix",
+    "FPS and30-runp95",
+    "heldout effectiveness"
+  ],
+  "screenshot": "experiments/runs/early-fire-playback-20261019/detail-final.png"
+}

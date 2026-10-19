@@ -1,0 +1,232 @@
+{
+  "status": "PASS",
+  "run_id": "early-fire-playback-20261019",
+  "checks": [
+    {
+      "id": "optimized-pair-a-hashes-3",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-a-area-3",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-a-hashes-3.25",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-a-area-3.25",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-a-hashes-6",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-a-area-6",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-a-hashes-12",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-a-area-12",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-a-native-grows-after3h",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-a-pngs-change",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-b-hashes-3",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-b-area-3",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-b-hashes-3.25",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-b-area-3.25",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-b-hashes-6",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-b-area-6",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-b-hashes-12",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-b-area-12",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-b-native-grows-after3h",
+      "status": "PASS"
+    },
+    {
+      "id": "optimized-pair-b-pngs-change",
+      "status": "PASS"
+    },
+    {
+      "id": "engine-pins-unchanged",
+      "status": "PASS"
+    }
+  ],
+  "rows": [
+    {
+      "job_id": "job-c7999234d3e74a63845d3439a0eba08c",
+      "frames": [
+        {
+          "hour": 3,
+          "area_ha": 3.99375,
+          "positive_cells": 188,
+          "alpha_bounds": [
+            503,
+            501,
+            520,
+            520
+          ],
+          "png_size": [
+            1024,
+            1024
+          ],
+          "png_sha256": "7e39461c1566f20825e914935d221f87e4b334aa38ceca3d1af7011cbde0ecee"
+        },
+        {
+          "hour": 3.25,
+          "area_ha": 4.71375,
+          "positive_cells": 219,
+          "alpha_bounds": [
+            502,
+            498,
+            520,
+            520
+          ],
+          "png_size": [
+            1024,
+            1024
+          ],
+          "png_sha256": "64d3c63dff4de63b2a7c708c56adef75aeceec84606794b1b6e53d8e629775f8"
+        },
+        {
+          "hour": 6,
+          "area_ha": 23.05125,
+          "positive_cells": 957,
+          "alpha_bounds": [
+            493,
+            481,
+            531,
+            526
+          ],
+          "png_size": [
+            1024,
+            1024
+          ],
+          "png_sha256": "3f06def0fc86e13526722fd3cc4dd250c072e13fbc760bf7d5fa8bb552643324"
+        },
+        {
+          "hour": 12,
+          "area_ha": 103.48875,
+          "positive_cells": 3549,
+          "alpha_bounds": [
+            481,
+            464,
+            557,
+            540
+          ],
+          "png_size": [
+            1024,
+            1024
+          ],
+          "png_sha256": "54c8665a16ee05d39ee07eb3717dcf3b061e947c455d69033b2e638518297837"
+        }
+      ]
+    },
+    {
+      "job_id": "job-4bcbd12dc46d4fa4b6d0ffa18142551c",
+      "frames": [
+        {
+          "hour": 3,
+          "area_ha": 3.99375,
+          "positive_cells": 188,
+          "alpha_bounds": [
+            503,
+            501,
+            520,
+            520
+          ],
+          "png_size": [
+            1024,
+            1024
+          ],
+          "png_sha256": "7e39461c1566f20825e914935d221f87e4b334aa38ceca3d1af7011cbde0ecee"
+        },
+        {
+          "hour": 3.25,
+          "area_ha": 4.71375,
+          "positive_cells": 219,
+          "alpha_bounds": [
+            502,
+            498,
+            520,
+            520
+          ],
+          "png_size": [
+            1024,
+            1024
+          ],
+          "png_sha256": "64d3c63dff4de63b2a7c708c56adef75aeceec84606794b1b6e53d8e629775f8"
+        },
+        {
+          "hour": 6,
+          "area_ha": 23.05125,
+          "positive_cells": 957,
+          "alpha_bounds": [
+            493,
+            481,
+            531,
+            526
+          ],
+          "png_size": [
+            1024,
+            1024
+          ],
+          "png_sha256": "3f06def0fc86e13526722fd3cc4dd250c072e13fbc760bf7d5fa8bb552643324"
+        },
+        {
+          "hour": 12,
+          "area_ha": 103.48875,
+          "positive_cells": 3549,
+          "alpha_bounds": [
+            481,
+            464,
+            557,
+            540
+          ],
+          "png_size": [
+            1024,
+            1024
+          ],
+          "png_sha256": "54c8665a16ee05d39ee07eb3717dcf3b061e947c455d69033b2e638518297837"
+        }
+      ]
+    }
+  ],
+  "engine_pins": 145,
+  "qualification": "Display diagnosis only; no new physical model run or efficacy claim"
+}
