@@ -57,7 +57,9 @@ class ResearchControl:
     def apply(self,p):
         f=set(self.state['faults'])
         if 'safety_unknown' in f:raise HazardError('SAFETY_UNVERIFIED','Controlled missing critical safety input; maps remain readable')
-        if 'solver_down' in f:raise HazardError('DEPENDENCY_UNAVAILABLE','Controlled solver outage; historical maps remain readable')
+        if 'solver_down' in f:
+            if p.get('schema_version')=='0.6.0':p['settings']['solver']='controlled-unavailable' # Verified ideal fallback only, legacy mode still fails closed.
+            else:raise HazardError('DEPENDENCY_UNAVAILABLE','Controlled solver outage; historical maps remain readable')
         if 'source_stale' in f:raise HazardError('STALE_PRODUCT','Controlled stale source: cached maps are historical, no new proposal')
         if 'flood_worker' in f and any(e['hazard']=='FLOOD' for e in p['events']):raise HazardError('DEPENDENCY_UNAVAILABLE','Controlled flood forecast outage; FIRE remains available')
         homes={r['id']:r['home_region'] for r in p['resources']};regions={e['id']:e['region'] for e in p['events']}

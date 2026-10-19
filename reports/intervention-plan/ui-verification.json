@@ -1,0 +1,110 @@
+{
+  "run_id": "intervention-plan-20261019",
+  "reviewer": "Codex self-check",
+  "status": "PASS",
+  "layouts": [
+    {
+      "view": "plan",
+      "scrollWidth": 1440,
+      "width": 1440,
+      "inner": {
+        "frameWidth": 1188,
+        "mapHeight": 660,
+        "mapWidth": 820,
+        "maps": 1,
+        "mode": "plan",
+        "scrollWidth": 1188,
+        "units": "2"
+      },
+      "status": "PASS"
+    },
+    {
+      "view": "plan",
+      "scrollWidth": 768,
+      "width": 768,
+      "inner": {
+        "frameWidth": 556,
+        "mapHeight": 440,
+        "mapWidth": 522,
+        "maps": 1,
+        "mode": "plan",
+        "scrollWidth": 556,
+        "units": "2"
+      },
+      "status": "PASS"
+    },
+    {
+      "view": "plan",
+      "scrollWidth": 375,
+      "width": 375,
+      "inner": {
+        "frameWidth": 355,
+        "mapHeight": 440,
+        "mapWidth": 321,
+        "maps": 1,
+        "mode": "plan",
+        "scrollWidth": 355,
+        "units": "2"
+      },
+      "status": "PASS"
+    },
+    {
+      "view": "compare",
+      "scrollWidth": 1440,
+      "width": 1440,
+      "inner": {
+        "frameWidth": 1188,
+        "maps": 2,
+        "mode": "compare",
+        "scrollWidth": 1188
+      },
+      "status": "PASS"
+    },
+    {
+      "view": "compare",
+      "scrollWidth": 768,
+      "width": 768,
+      "inner": {
+        "frameWidth": 556,
+        "maps": 2,
+        "mode": "compare",
+        "scrollWidth": 556
+      },
+      "status": "PASS"
+    },
+    {
+      "view": "compare",
+      "scrollWidth": 375,
+      "width": 375,
+      "inner": {
+        "frameWidth": 355,
+        "maps": 2,
+        "mode": "compare",
+        "scrollWidth": 355
+      },
+      "status": "PASS"
+    }
+  ],
+  "checks": {
+    "single_map_two_verified_proposals": "PASS",
+    "comparison_two_maps_same_scenarios": "PASS",
+    "return_preserves_two_proposals": "PASS",
+    "availability_change_clears_old_proposals": "PASS",
+    "unavailable_unit_excluded_after_recompute": "PASS",
+    "selected_time_60_minutes_aligns_both_activations": "PASS",
+    "viewport_restored": "PASS"
+  },
+  "decisions": [
+    "decision-54166e4f65344e27a583eff7ea43a80c",
+    "decision-18d02c1164f34bf1aadb7b781c3387e1",
+    "decision-d22818d65e2f40b9987ee72f7643186e"
+  ],
+  "scope": "Two hypothetical ground units entered explicitly for UI verification; not operational inventory. No new physical simulations.",
+  "not_run": [
+    "late-response race timing in browser",
+    "new axe matrix",
+    "30-run p95",
+    "new physical-effect validation"
+  ],
+  "screenshot": "experiments/runs/intervention-plan-20261019/iab-plan.png"
+}

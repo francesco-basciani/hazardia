@@ -124,3 +124,6 @@ La superficie colorata negli scenari è l’**area cumulativamente raggiunta**, 
 
 
 Catalogo territoriale OSM: nel Monitoraggio e negli scenari, aprire **Territorio ed esposizione → Catalogo OpenStreetMap · livelli** per sanità/assistenza, soccorso, istruzione, reti, trasporti, edifici e altri oggetti; cercare nomi o tag e selezionare un risultato. Tutti i tag disponibili restano consultabili. Estratti locali parziali, capacità sanitaria non verificata; nessun nuovo simulatore sanitario. [Evidenze e ripetibilità](reports/CATALOGO-OPENSTREETMAP.md).
+
+
+Il flusso **Simulazioni e risorse → Piano d’intervento** offre una sola mappa: dichiarare i mezzi in **Mezzi**, rivedere priorità/ipotesi e premere **Calcola posizionamento**. Le proposte numerate sono sperimentali e verificate rispetto ai vincoli dichiarati; dati mancanti e fallback sono espliciti. **Confronto scenari** conserva la vista multipla. [Funzionamento, prove e limiti](reports/PIANO-INTERVENTO-E-PRIORITA.md). L’inventario del modulo è di sessione, le decisioni sono archiviate nel backend; non è un sistema di invio operativo.
