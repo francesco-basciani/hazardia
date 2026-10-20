@@ -56,3 +56,49 @@ class MapWeatherTests(unittest.TestCase):
    with s.connect() as db:
     for i in range(48):db.execute('INSERT INTO attempts VALUES(?)',(now-now%86400+i,))
    s.acquire(B);self.assertIn('WEATHER_QUOTA',s.snapshot()['error']);self.assertEqual(s.snapshot()['quota']['attempts_today'],48)
+
+
+class CompressedMapWeatherTests(unittest.TestCase):
+ def test_lossless_compaction_and_reuse(self):
+  from pathlib import Path
+  import gzip
+  class Response(io.BytesIO):
+   status=200
+   def geturl(self):return 'https://api.open-meteo.com/v1/forecast'
+  with tempfile.TemporaryDirectory() as root:
+   calls=[]
+   def get(*a,**k):calls.append(1);return Response(json.dumps(fixture()).encode())
+   store=MapWeatherStore(root,opener=get);store.acquire(B)
+   before=store.snapshot()['forecast'];original={p.name:p.read_bytes() for p in Path(root).glob('*.json')};size=store.storage_bytes()
+   self.assertEqual(store.compact(),len(original));self.assertLess(store.storage_bytes(),size)
+   for name,data in original.items():self.assertEqual(gzip.decompress((Path(root)/(name+'.gz')).read_bytes()),data)
+   self.assertEqual(store.read(before['id']+'.json'),before);store.acquire(B);self.assertEqual(len(calls),1)
+   self.assertEqual(store.snapshot()['forecast'],before);self.assertEqual(store.snapshot()['quota']['attempts_today'],1)
+   next(Path(root).glob('raw-*.json.gz')).write_bytes(gzip.compress(b'[]'))
+   with self.assertRaises(HazardError):store.snapshot()
+ def test_retry_after_respects_global_cooldown(self):
+  with tempfile.TemporaryDirectory() as root:
+   now=1792195000;store=MapWeatherStore(root,clock=lambda:now)
+   with store.connect() as db:db.execute('INSERT INTO attempts VALUES(?)',(now-20,))
+   self.assertEqual(store.snapshot()['retry_after_s'],45)
+ def test_compaction_conflict_preserves_original(self):
+  from pathlib import Path
+  import gzip
+  with tempfile.TemporaryDirectory() as root:
+   store=MapWeatherStore(root);p=Path(root)/'raw-test.json';p.write_bytes(b'original');p.with_name(p.name+'.gz').write_bytes(gzip.compress(b'different'))
+   with self.assertRaises(HazardError):store.compact()
+   self.assertEqual(p.read_bytes(),b'original')
+
+ def test_smallest_complete_fresh_field_is_reused(self):
+  import time
+  class Response(io.BytesIO):
+   status=200
+   def geturl(self):return 'https://api.open-meteo.com/v1/forecast'
+  with tempfile.TemporaryDirectory() as root:
+   now=[time.time()];calls=[]
+   def get(request,**kwargs):
+    calls.append(1);r=fixture();q=parse_qs(urlsplit(request.full_url).query)
+    for n,y,x in zip(r,q['latitude'][0].split(','),q['longitude'][0].split(',')):n.update(latitude=float(y),longitude=float(x))
+    return Response(json.dumps(r).encode())
+   store=MapWeatherStore(root,opener=get,clock=lambda:now[0]);store.acquire(B);first=store.snapshot()['forecast']['id'];now[0]+=66;store.acquire([[36.,4.],[50.,23.]])
+   self.assertNotEqual(store.snapshot()['forecast']['id'],first);store.acquire(B);self.assertEqual(store.snapshot()['forecast']['id'],first);self.assertEqual(len(calls),2)

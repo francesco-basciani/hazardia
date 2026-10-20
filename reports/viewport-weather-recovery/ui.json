@@ -1,0 +1,35 @@
+{
+  "coverage": [
+    {
+      "cloudPixels": "0",
+      "coverage": "1",
+      "field": "map-weather-2fd11f8120107a24b2d03db3",
+      "variable": "temperature,humidity,precipitation",
+      "wetPixels": "1753"
+    }
+  ],
+  "forecastTime": "Previsioni meteo−1 h▶ Riproduci meteo+1 h20/10, 14:00 RomaVelocità1 h / 1,5 s1 h / 0,75 s1 h / 3 sTransizione visiva fra previsioni orarie · pioggia, raffiche e radiazione riferite alle finestre orarie, non ai minuti.",
+  "notice": "",
+  "status": "PASS",
+  "viewport": {
+    "height": 1034,
+    "width": 721
+  },
+  "visibleReadings": [
+    "11,1 °CUR 84,7 %",
+    "8,9 °CUR 76,8 %",
+    "13,8 °CUR 74,5 %",
+    "12,9 °CUR 87,7 %",
+    "13,9 °CUR 76,3 %",
+    "16,2 °CUR 63,6 %",
+    "17,6 °CUR 75,7 %",
+    "22,8 °CUR 76,2 %",
+    "19,2 °CUR 63,5 %",
+    "19,4 °CUR 60,6 %",
+    "24,6 °CUR 80,4 %",
+    "21,3 °CUR 67,9 %",
+    "22,2 °CUR 42,9 %",
+    "26,7 °CUR 68,3 %",
+    "23,6 °CUR 63,1 %"
+  ]
+}

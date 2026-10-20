@@ -1,12 +1,12 @@
 """Bounded global viewport display forecast. Never simulator forcing."""
-import datetime as dt,hashlib,json,math,sqlite3,threading,time,urllib.request,urllib.error
+import datetime as dt,gzip,hashlib,json,math,os,sqlite3,tempfile,threading,time,urllib.request,urllib.error
 from pathlib import Path
 from urllib.parse import urlencode,parse_qs,urlsplit
-from hazardia.io import HazardError,load,write_new,utcnow,timestamp
+from hazardia.io import HazardError,load,loads,write_new,utcnow,timestamp
 from hazardia.ingest.wind import vector,finite
 VARS={'wind_speed_10m':'m/s','wind_direction_10m':'°','temperature_2m':'°C','precipitation':'mm'}
 EXTRA={'relative_humidity_2m':('%','humidity',0,100),'surface_pressure':('hPa','pressure',300,1200),'cloud_cover':('%','cloud',0,100),'wind_gusts_10m':('m/s','gusts',0,200),'shortwave_radiation':('W/m²','radiation',0,2000)}
-CAP=1024**2;TTL=10800;LIMIT=48
+CAP=1024**2;TTL=10800;LIMIT=48;ARCHIVE_LIMIT=64*1024**2
 
 def grid(bounds):
     if not isinstance(bounds,list) or len(bounds)!=2 or any(not isinstance(p,list) or len(p)!=2 for p in bounds):raise HazardError('INVALID_INPUT','Two WGS84 bounds required')
@@ -63,34 +63,74 @@ class MapWeatherStore:
         self.root=Path(root);self.root.mkdir(parents=True,exist_ok=True);self.opener=opener;self.clock=clock;self.busy=threading.Lock()
         with self.connect() as db:db.executescript('CREATE TABLE IF NOT EXISTS attempts(at REAL PRIMARY KEY); CREATE TABLE IF NOT EXISTS state(id INTEGER PRIMARY KEY CHECK(id=1),snapshot TEXT,error TEXT); INSERT OR IGNORE INTO state VALUES(1,NULL,NULL);')
     def connect(self):return sqlite3.connect(self.root/'quota.sqlite',timeout=10)
+    def archived_bytes(self,name):
+        try:return (self.root/name).read_bytes()
+        except FileNotFoundError:
+            try:
+                with gzip.open(self.root/(name+'.gz'),'rb') as stream:data=stream.read(8*CAP+1)
+                if len(data)>8*CAP:raise HazardError('CACHE_CORRUPT','Expanded weather archive exceeds bound')
+                return data
+            except (OSError,EOFError) as e:raise HazardError('CACHE_CORRUPT','Weather archive unavailable') from e
+    def cached(self,name):return loads(self.archived_bytes(name).decode('utf-8'))
+    def exists(self,name):return (self.root/name).exists() or (self.root/(name+'.gz')).exists()
+    def storage_bytes(self):return sum(p.stat().st_size for p in self.root.glob('*.json*') if not p.name.endswith('.tmp'))
+    def cache_names(self,prefix):
+        names={p.name.removesuffix('.gz') for p in self.root.glob(prefix+'*.json*') if p.name.endswith(('.json','.json.gz'))}
+        def modified(name):
+            for p in (self.root/name,self.root/(name+'.gz')):
+                try:return p.stat().st_mtime
+                except FileNotFoundError:pass
+            return 0
+        return sorted(names,key=modified,reverse=True)
+    def compact(self):
+        # Lossless representation only: retain every snapshot/receipt and raw SHA.
+        count=0
+        for path in self.root.glob('*.json'):
+            data=path.read_bytes();target=self.root/(path.name+'.gz')
+            packed=gzip.compress(data,mtime=0)
+            if target.exists():
+                if gzip.decompress(target.read_bytes())!=data:raise HazardError('CACHE_CORRUPT','Conflicting compressed weather archive')
+            else:
+                with tempfile.NamedTemporaryFile(dir=self.root,suffix='.tmp',delete=False) as f:
+                    tmp=Path(f.name);f.write(packed)
+                try:
+                    if gzip.decompress(tmp.read_bytes())!=data:raise HazardError('CACHE_CORRUPT','Weather compaction differs')
+                    os.replace(tmp,target)
+                finally:tmp.unlink(missing_ok=True)
+            path.unlink();count+=1
+        return count
     def read(self,name):
-        f=load(self.root/name);r=f['source'];raw=self.root/('raw-'+r['sha256']+'.json')
-        if hashlib.sha256(raw.read_bytes()).hexdigest()!=r['sha256'] or load(self.root/('receipt-'+r['sha256']+'.json'))!=r or normalize(load(raw),r)!=f:raise HazardError('CACHE_CORRUPT','Map forecast integrity differs')
+        f=self.cached(name);r=f['source'];raw='raw-'+r['sha256']+'.json'
+        if hashlib.sha256(self.archived_bytes(raw)).hexdigest()!=r['sha256'] or self.cached('receipt-'+r['sha256']+'.json')!=r or normalize(self.cached(raw),r)!=f:raise HazardError('CACHE_CORRUPT','Map forecast integrity differs')
         return f
     def snapshot(self):
         now=self.clock()
         with self.connect() as db:
-            name,error=db.execute('SELECT snapshot,error FROM state WHERE id=1').fetchone();count=db.execute('SELECT count(*) FROM attempts WHERE at>=?',(now-now%86400,)).fetchone()[0]
+            name,error=db.execute('SELECT snapshot,error FROM state WHERE id=1').fetchone();last=db.execute('SELECT max(at) FROM attempts').fetchone()[0];count=db.execute('SELECT count(*) FROM attempts WHERE at>=?',(now-now%86400,)).fetchone()[0]
         f=self.read(name) if name else None;age=now-timestamp(f['available_at']).timestamp() if f else None
-        return dict(status='EMPTY' if not f else 'FRESH' if 0<=age<TTL else 'STALE',forecast=f,error=error,age_s=age,fetching=self.busy.locked(),quota=dict(attempts_today=count,local_daily_limit=LIMIT,location_equivalents_per_refresh=81,max_location_equivalents_daily=3888,refresh_s=65))
+        return dict(status='EMPTY' if not f else 'FRESH' if 0<=age<TTL else 'STALE',forecast=f,error=error,age_s=age,fetching=self.busy.locked(),retry_after_s=max(0,math.ceil((now-now%86400+86400-now) if count>=LIMIT else (65-(now-last) if last is not None else 0))),cache_bytes=self.storage_bytes(),quota=dict(attempts_today=count,local_daily_limit=LIMIT,location_equivalents_per_refresh=81,max_location_equivalents_daily=3888,refresh_s=65))
     def acquire(self,bounds):
         address=url(bounds) # validate even if already busy
         requested_y,requested_x=grid(bounds)
         if not self.busy.acquire(False):return
         try:
             now=self.clock()
-            # Reuse any fresh field containing the entire requested viewport.
-            for path in sorted(self.root.glob('map-weather-*.json'),key=lambda p:p.stat().st_mtime,reverse=True):
-                f=load(path);a,b=f['bounds'];age=now-timestamp(f['available_at']).timestamp()
+            if self.storage_bytes()>ARCHIVE_LIMIT-3*CAP:self.compact()
+            # Prefer the finest fresh cached field covering the entire viewport.
+            candidates=[]
+            for name in self.cache_names('map-weather-'):
+                f=self.cached(name);a,b=f['bounds'];age=now-timestamp(f['available_at']).timestamp()
                 if f['source'].get('normalization_version',1)>=2 and set(EXTRA)<=set(parse_qs(urlsplit(f['source']['url']).query).get('hourly',[''])[0].split(',')) and (b[0]-a[0])<=4*(requested_y[-1]-requested_y[0]) and (b[1]-a[1])<=4*(requested_x[-1]-requested_x[0]) and 0<=age<TTL and all(a[i]<=bounds[0][i] and b[i]>=bounds[1][i] for i in range(2)):
-                    self.read(path.name)
-                    with self.connect() as db:db.execute('UPDATE state SET snapshot=?,error=NULL WHERE id=1',(path.name,))
-                    return
+                    candidates.append(((b[0]-a[0])*(b[1]-a[1]),-timestamp(f['available_at']).timestamp(),name))
+            if candidates:
+                name=min(candidates)[2];self.read(name)
+                with self.connect() as db:db.execute('UPDATE state SET snapshot=?,error=NULL WHERE id=1',(name,))
+                return
             with self.connect() as db:
                 db.execute('BEGIN IMMEDIATE');last=db.execute('SELECT max(at) FROM attempts').fetchone()[0];count=db.execute('SELECT count(*) FROM attempts WHERE at>=?',(now-now%86400,)).fetchone()[0]
                 if last is not None and now-last<65:raise HazardError('WEATHER_THROTTLED','Attendi fino a65s per una nuova area; cache disponibile conservata')
                 if count>=LIMIT:raise HazardError('WEATHER_QUOTA','Budget giornaliero gratuito esaurito per nuove aree')
-                if sum(p.stat().st_size for p in self.root.glob('*.json'))>64*1024**2-3*CAP:raise HazardError('WEATHER_CACHE_FULL','Archivio meteo pieno; nessun download aggiuntivo')
+                if self.storage_bytes()>ARCHIVE_LIMIT-3*CAP:raise HazardError('WEATHER_CACHE_FULL','Archivio meteo pieno; nessun download aggiuntivo')
                 db.execute('INSERT INTO attempts VALUES(?)',(now,))
             request=urllib.request.Request(address,headers={'User-Agent':'HAZARDIA/0.1 https://github.com/francesco-basciani/hazardia','Accept-Encoding':'identity'})
             with self.opener(request,timeout=30) as response:
@@ -99,10 +139,10 @@ class MapWeatherStore:
                 if len(data)>CAP:raise HazardError('DOWNLOAD_BUDGET','Map weather response exceeds1MiB')
             digest=hashlib.sha256(data).hexdigest();receipt=dict(normalization_version=2,provider='Open-Meteo',url=address,sha256=digest,bytes=len(data),available_at=utcnow(),license_url='https://open-meteo.com/en/terms',model_initialization='NOT_SUPPLIED')
             raw=self.root/('raw-'+digest+'.json');rec=self.root/('receipt-'+digest+'.json')
-            if not raw.exists():raw.write_bytes(data)
-            if not rec.exists():write_new(rec,receipt)
-            receipt=load(rec);f=normalize(json.loads(data),receipt);name=f['id']+'.json'
-            if not (self.root/name).exists():write_new(self.root/name,f)
+            if not self.exists(raw.name):raw.write_bytes(data)
+            if not self.exists(rec.name):write_new(rec,receipt)
+            receipt=self.cached(rec.name);f=normalize(json.loads(data),receipt);name=f['id']+'.json'
+            if not self.exists(name):write_new(self.root/name,f)
             with self.connect() as db:db.execute('UPDATE state SET snapshot=?,error=NULL WHERE id=1',(name,))
         except urllib.error.HTTPError as e:
             body=e.read(4096).decode('utf-8','replace');write_new(self.root/('error-'+str(int(self.clock()*1000))+'.json'),dict(status=e.code,body=body,url=address,at=utcnow()))

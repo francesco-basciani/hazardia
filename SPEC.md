@@ -439,3 +439,7 @@ FR-24/26: la mappa è il contenuto principale di Monitoraggio e Simulazioni. Evi
 
 ## Controlli cartografici sovrapposti — precisazione2026-10-20
 FR-24/26: i comandi secondari possono sovrapporsi alla mappa in pannelli a scomparsa, contenuti nei bordi anche su touch. Mantenere nome/stato, indicazione di ricerca, accessibilità e timeline unica; evitare righe permanenti di configurazione sopra la mappa. Pausa/ripresa deve funzionare anche su campioni già in cache, senza ricalcolare o alterare prodotti fisici.
+
+
+### FR-WX-VIEW-01 — chiarimento copertura e densità (2026-10-20)
+La consultazione meteo segue l’intera inquadratura, comprese viste nazionali e internazionali, con acquisizione/retry limitati e avviso visibile di copertura parziale, attesa, dati scaduti o indisponibili anche a pannelli chiusi. Cache lossless e provenienza preservate. Copertura spaziale completa non equivale a densità/risoluzione locale costante: dichiarare passo campionato e interpolazione alle scale ampie. Le mappe dei risultati fisici conservano le forzanti congelate del run e il proprio dominio; il meteo consultativo non può sostituirle o fingere di avere influenzato un risultato già calcolato. Antimeridiano/poli richiedono verifica specifica prima di dichiararne il supporto.

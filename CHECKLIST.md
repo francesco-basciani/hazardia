@@ -1080,3 +1080,20 @@ PASS UI: navigazione orizzontale senza colonna permanente; palette e gestione sc
 
 ## Pausa/ripresa e controlli sovrapposti — overlay-resume-20261020
 FAIL riprodotto a cache calda: renderTimeline booleano, .then inesistente, stop37h dopo pausa/rewind. Corretto con Promise.resolve; PASS38assert veri handler con render sync/async e controllo negativo precedente, +28regressioni. PASS IAB14,5→28,35h e seconda ripresa34,41h; Safari6,25→22,78h, rewind22,5→40,852h. Pulsante Riprendi a punto intermedio. PASS6layout Piano/Confronto1440/768/375, mappa inizio110/163/163px, nessun overflow, timeline sovrapposta e pannello Scenari e risorse richiudibile; palette interna/stacking Leaflet corretti. RiferimentoGeospace riesaminato, nessuna parità dichiarata. Mainrev119/hash e90job invariati, nessun calcoloQA/install/restart/costo. FAILharness handle/callcoordinate/timeout recuperati e misure scartate documentati. BLOCKED solo ultimo refreshSafari daMacbloccato, prove precedenti concluse; nessun tentativo sblocco. NOT RUN nuovi p95/FPS/axe/soak/dragcompleto/retepilotata/ricalcolo-modifiche/fisica; fullM5–M7BLOCKED invariati, efficacia/logistica non qualificate. Report reports/PAUSA-RIPRESA-E-CONTROLLI-SULLA-MAPPA.md, reports/overlay-resume; raw experiments/runs/overlay-resume-20261020. Basea0dd31d+dirty, SHAfinaleGit/PUBLICATION.json, reviewerCodexself-check. Prossimo incremento scientifico invariato: qualificazione input/interventi e feedbackfisico secondo piano originale.
+
+
+## Verifiche meteo viewport — viewport-weather-recovery-20261020
+
+| Verifica | Esito | Evidenza |
+|---|---|---|
+| Diagnosi archivio pieno/campoAbruzzo scaduto | FAIL iniziale corretto | reports/METEO-INTERA-AREA-VISIBILE.md |
+| Compattazione130JSON e integrità raw/receipt44campi | PASS | reports/viewport-weather-recovery/compaction.json |
+| Italia/Europa/Senegal reali,81nodi95ore9variabili | PASS | reports/viewport-weather-recovery/live-views.json |
+| Copertura intera vista Italia/Europa, avviso attesa38s | PASS | reports/viewport-weather-recovery/ui.json; screenshot privati run |
+|34testVM+16assertclient/sintassi | PASS | comandi nel report |
+| Migrazione(age_s), importtest e controlloIDglobale concorrente | FAIL harness, verifiche corrette successive PASS | negativi nel report/script privato |
+| Stato finale90job/rev119, limiti invariati | PASS | reports/viewport-weather-recovery/final.json |
+| Safari, nuova matrice breakpoint/axe/FPS/p95/soak/poli/antimeridiano/skill | NOT RUN | ambito esplicito nel report |
+| Qualificazione fisica/operativa e fullgateM5–M7 | BLOCKED | limiti precedenti invariati |
+
+Base8af90af+dirty, commit finaleGit/PUBLICATION.json; reviewerCodexself-check.

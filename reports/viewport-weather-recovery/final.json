@@ -1,0 +1,22 @@
+{
+  "run_id": "viewport-weather-recovery-20261020",
+  "status": "PASS",
+  "cached_italy_validated_no_extra_provider_request": true,
+  "quota": {
+    "attempts_today": 6,
+    "local_daily_limit": 48,
+    "location_equivalents_per_refresh": 81,
+    "max_location_equivalents_daily": 3888,
+    "refresh_s": 65
+  },
+  "cache_bytes": 21468207,
+  "field": "map-weather-09f69bb6d5cf5eb71c175b15",
+  "workspace_sha256": "4247a5f71d3a7daca55ccf0efff7ce1b446f40060e6ffe51f4aec6b34a8570de",
+  "workspace_revision": 119,
+  "jobs": {
+    "CANCELLED": 8,
+    "ERROR": 5,
+    "SUCCEEDED": 77
+  },
+  "job_directories": 90
+}
