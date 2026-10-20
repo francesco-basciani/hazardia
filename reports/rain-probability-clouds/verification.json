@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "run_id": "rain-probability-clouds-20261020",
+  "source_base": "7c9317f+dirty",
+  "field": "map-weather-6a591483e0ca8c01be41de18",
+  "bounds": [
+    [
+      40.0,
+      11.7
+    ],
+    [
+      44.0,
+      17.6
+    ]
+  ],
+  "source": {
+    "available_at": "2026-10-20T20:28:16.406991Z",
+    "bytes": 546072,
+    "license_url": "https://open-meteo.com/en/terms",
+    "model_initialization": "NOT_SUPPLIED",
+    "normalization_version": 2,
+    "provider": "Open-Meteo",
+    "sha256": "6a591483e0ca8c01be41de18fa0a6805e9cd72b5858c0216bf40652e1b2171b8",
+    "url": "https://api.open-meteo.com/v1/forecast?latitude=40.0,40.0,40.0,40.0,40.0,40.0,40.0,40.0,40.0,40.5,40.5,40.5,40.5,40.5,40.5,40.5,40.5,40.5,41.0,41.0,41.0,41.0,41.0,41.0,41.0,41.0,41.0,41.5,41.5,41.5,41.5,41.5,41.5,41.5,41.5,41.5,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.0,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,42.5,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.0,43.5,43.5,43.5,43.5,43.5,43.5,43.5,43.5,43.5,44.0,44.0,44.0,44.0,44.0,44.0,44.0,44.0,44.0&longitude=11.7,12.4375,13.175,13.9125,14.65,15.3875,16.125,16.8625,17.6,11.7,12.4375,13.175,13.9125,14.65,15.3875,16.125,16.8625,17.6,11.7,12.4375,13.175,13.9125,14.65,15.3875,16.125,16.8625,17.6,11.7,12.4375,13.175,13.9125,14.65,15.3875,16.125,16.8625,17.6,11.7,12.4375,13.175,13.9125,14.65,15.3875,16.125,16.8625,17.6,11.7,12.4375,13.175,13.9125,14.65,15.3875,16.125,16.8625,17.6,11.7,12.4375,13.175,13.9125,14.65,15.3875,16.125,16.8625,17.6,11.7,12.4375,13.175,13.9125,14.65,15.3875,16.125,16.8625,17.6,11.7,12.4375,13.175,13.9125,14.65,15.3875,16.125,16.8625,17.6&hourly=wind_speed_10m,wind_direction_10m,temperature_2m,precipitation,relative_humidity_2m,surface_pressure,cloud_cover,wind_gusts_10m,shortwave_radiation,precipitation_probability&timezone=UTC&wind_speed_unit=ms&forecast_days=4&models=icon_global&cell_selection=nearest&elevation=nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan"
+  },
+  "nodes": 81,
+  "hours": 95,
+  "probability_range": [
+    0.0,
+    100.0
+  ],
+  "cloud_range": [
+    0.0,
+    100.0
+  ],
+  "all_cache_fields_validated": 53,
+  "old_fields_preserved": 50,
+  "jobs": {
+    "CANCELLED": 8,
+    "ERROR": 5,
+    "SUCCEEDED": 77
+  },
+  "workspace_sha256": "4247a5f71d3a7daca55ccf0efff7ce1b446f40060e6ffe51f4aec6b34a8570de",
+  "workspace_revision": 119,
+  "quota": {
+    "attempts_today": 11,
+    "local_daily_limit": 48,
+    "location_equivalents_per_refresh": 81,
+    "max_location_equivalents_daily": 3888,
+    "refresh_s": 65
+  },
+  "cache_bytes": 30265151
+}

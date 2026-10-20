@@ -5,7 +5,7 @@ from urllib.parse import urlencode,parse_qs,urlsplit
 from hazardia.io import HazardError,load,loads,write_new,utcnow,timestamp
 from hazardia.ingest.wind import vector,finite
 VARS={'wind_speed_10m':'m/s','wind_direction_10m':'°','temperature_2m':'°C','precipitation':'mm'}
-EXTRA={'relative_humidity_2m':('%','humidity',0,100),'surface_pressure':('hPa','pressure',300,1200),'cloud_cover':('%','cloud',0,100),'wind_gusts_10m':('m/s','gusts',0,200),'shortwave_radiation':('W/m²','radiation',0,2000)}
+EXTRA={'relative_humidity_2m':('%','humidity',0,100),'surface_pressure':('hPa','pressure',300,1200),'cloud_cover':('%','cloud',0,100),'wind_gusts_10m':('m/s','gusts',0,200),'shortwave_radiation':('W/m²','radiation',0,2000),'precipitation_probability':('%','rain_probability',0,100)}
 CAP=1024**2;TTL=10800;LIMIT=48;ARCHIVE_LIMIT=64*1024**2
 
 def grid(bounds):
@@ -55,8 +55,8 @@ def normalize(raw,receipt):
     for n,t in enumerate(times[:-1]):
         uv=[vector(h['wind_speed_10m'][n],h['wind_direction_10m'][n]) for h in series]
         mix=lambda values:[round(sum(values[i]*w for i,w in ws),4) for ws in weights]
-        records.append(dict(at=t+':00Z',u=mix([v[0] for v in uv]),v=mix([v[1] for v in uv]),temperature=mix([h['temperature_2m'][n] for h in series]),precipitation=mix([h['precipitation'][n+1] for h in series]),**{v[1]:mix([h[k][n+1 if k=='shortwave_radiation' or k=='wind_gusts_10m' and receipt.get('normalization_version',1)>=2 else n] for h in series]) for k,v in extra.items()}))
-    return dict(kind='viewport_weather_display',schema_version='0.1.0',id='map-weather-'+receipt['sha256'][:24],model='DWD ICON Global via Open-Meteo',issued_at=None,issued_at_status='UNKNOWN_PROVIDER',available_at=receipt['available_at'],requested_nodes=81,lats=ys,lons=xs,bounds=[[ys[0],xs[0]],[ys[-1],xs[-1]]],model_nodes=nodes,records=records,units=dict(wind='m/s',temperature='°C',precipitation='mm/h',**{v[1]:v[0] for v in extra.values()}),source=receipt,interval_semantics='temperature/wind instantaneous; precipitation from following provider end-hour, representing hour starting at at'+('; gusts maximum and radiation mean for following hour' if receipt.get('normalization_version',1)>=2 else ''),qualification='DISPLAY_ONLY_UNCALIBRATED')
+        records.append(dict(at=t+':00Z',u=mix([v[0] for v in uv]),v=mix([v[1] for v in uv]),temperature=mix([h['temperature_2m'][n] for h in series]),precipitation=mix([h['precipitation'][n+1] for h in series]),**{v[1]:mix([h[k][n+1 if k in ('precipitation_probability','shortwave_radiation') or k=='wind_gusts_10m' and receipt.get('normalization_version',1)>=2 else n] for h in series]) for k,v in extra.items()}))
+    return dict(kind='viewport_weather_display',schema_version='0.1.0',id='map-weather-'+receipt['sha256'][:24],model='DWD ICON Global via Open-Meteo'+(' · probabilità da ensemble Open-Meteo' if 'precipitation_probability' in extra else ''),issued_at=None,issued_at_status='UNKNOWN_PROVIDER',available_at=receipt['available_at'],requested_nodes=81,lats=ys,lons=xs,bounds=[[ys[0],xs[0]],[ys[-1],xs[-1]]],model_nodes=nodes,records=records,units=dict(wind='m/s',temperature='°C',precipitation='mm/h',**{v[1]:v[0] for v in extra.values()}),source=receipt,interval_semantics='temperature/wind instantaneous; precipitation from following provider end-hour, representing hour starting at at'+('; gusts maximum and radiation mean for following hour' if receipt.get('normalization_version',1)>=2 else '')+('; precipitation probability >0.1mm for following hour; provider ensemble, not deterministic rainfall' if 'precipitation_probability' in extra else ''),qualification='DISPLAY_ONLY_UNCALIBRATED')
 
 class MapWeatherStore:
     def __init__(self,root,*,opener=urllib.request.urlopen,clock=time.time):

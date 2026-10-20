@@ -3,7 +3,7 @@ export function viewportWeatherState(snapshot,bounds,{now=Date.now(),nextRequest
  const f=snapshot?.forecast;
  const contains=!!f&&bounds.every((p,i)=>p.every((v,j)=>i?v<=f.bounds[1][j]:v>=f.bounds[0][j]));
  const adequate=!!f&&[0,1].every(j=>f.bounds[1][j]-f.bounds[0][j]<=4*Math.max(.8,(bounds[1][j]-bounds[0][j])*1.3));
- const complete=!!f&&['u','v','temperature','precipitation','humidity','pressure','cloud','gusts','radiation'].every(k=>Array.isArray(f.records?.[0]?.[k]));
+ const complete=!!f&&['u','v','temperature','precipitation','humidity','pressure','cloud','gusts','radiation','rain_probability'].every(k=>Array.isArray(f.records?.[0]?.[k]));
  const needed=!contains||!adequate||!complete||snapshot?.status!=='FRESH';
  if(!needed)return{kind:'ready',contains,adequate,complete,delayMs:0};
  if(snapshot?.fetching)return{kind:'poll',contains,adequate,complete,delayMs:1200};

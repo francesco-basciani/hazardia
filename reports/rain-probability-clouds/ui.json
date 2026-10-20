@@ -1,0 +1,53 @@
+{
+  "monitor": {
+    "canvas": {
+      "cloudPixels": "8949",
+      "coverage": "1",
+      "field": "map-weather-0f4abd197e52627ee2a4a506",
+      "variable": "temperature,humidity,precipitation,cloud,rain_probability",
+      "wetPixels": "2511"
+    },
+    "cloudToggle": true,
+    "overflow": false,
+    "probabilityToggle": true,
+    "probabilityValues": [
+      68.14565117422192,
+      20.228254872853807,
+      0,
+      0,
+      6.535874699615301,
+      5.9145212112428585,
+      79.5138394560617,
+      28.88476819358423,
+      1.5108235827801653,
+      0,
+      0.04226342672327063,
+      15.123986978167943,
+      92.22869832192774,
+      45.35299326099134,
+      1.9898672758260625,
+      0,
+      0.000528691924922271,
+      0.19779807958702716
+    ],
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "replayStart": {
+    "at": "2026-10-20T20:05:00.000Z",
+    "probability": 68.46196745174177
+  },
+  "replayPaused": {
+    "at": "2026-10-22T14:50:18.240Z",
+    "cloudPixels": "8949",
+    "probability": "2.64369351049945"
+  },
+  "toggles": {
+    "cloudOffPixels": 0,
+    "cloudOnPixels": 6783,
+    "probabilityOffLabels": 0
+  },
+  "status": "PASS"
+}

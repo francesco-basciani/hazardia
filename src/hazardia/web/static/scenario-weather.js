@@ -6,11 +6,11 @@ import {checkedForecastTime} from '/weather-clock.js?v=1';
 
 // One VM cache and acquisition request shared by all synchronized scenario windows.
 // Display-only: no atmospheric field is silently substituted into a physical run.
-const fields={wind:['Vento','m/s',0,20,[92,227,214]],temperature:['Temperatura','°C',-10,40,[245,130,64]],precipitation:['Pioggia nell’ora successiva','mm',0,10,[70,145,245]],humidity:['Umidità aria','%',0,100,[67,201,179]],gusts:['Raffica massima nell’ora successiva','m/s',0,30,[202,133,243]],cloud:['Nubi','%',0,100,[208,218,230]],pressure:['Pressione al suolo','hPa',800,1050,[167,145,236]],radiation:['Radiazione media nell’ora successiva','W/m²',0,1000,[255,211,76]]};
+const fields={wind:['Vento','m/s',0,20,[92,227,214]],temperature:['Temperatura','°C',-10,40,[245,130,64]],precipitation:['Pioggia nell’ora successiva','mm',0,10,[70,145,245]],rain_probability:['Probabilità di pioggia · prossima ora','%',0,100,[146,212,255]],humidity:['Umidità aria','%',0,100,[67,201,179]],gusts:['Raffica massima nell’ora successiva','m/s',0,30,[202,133,243]],cloud:['Nubi','%',0,100,[208,218,230]],pressure:['Pressione al suolo','hPa',800,1050,[167,145,236]],radiation:['Radiazione media nell’ora successiva','W/m²',0,1000,[255,211,76]]};
 const clock=at=>new Date(at).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' Roma';
 const number=v=>Number.isFinite(v)?v.toLocaleString('it-IT',{maximumFractionDigits:1}):'non disponibile';
 export function scenarioWeather(primary){
- const $=id=>document.getElementById(id),layers=new Map(),selected=new Set(['wind','temperature','humidity','precipitation']),reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const $=id=>document.getElementById(id),layers=new Map(),selected=new Set(['wind','temperature','humidity','precipitation','rain_probability','cloud']),reduced=matchMedia('(prefers-reduced-motion: reduce)');
  let snapshot=null,requestedAt=null,busy=false,refreshAt=0,timer=null,poll=null,paused=reduced.matches;
  const options=$('map-weather-options'),rainKey=$('scenario-rain-key');rainLegend(rainKey);
  for(const [key,[label,unit,min,max,rgb]] of Object.entries(fields)){
@@ -49,7 +49,7 @@ export function scenarioWeather(primary){
    const covered=this.map.getBounds().intersects(f.bounds),full=L.latLngBounds(f.bounds).contains(this.map.getBounds());
    const center=this.map.getCenter(),vector=sampleVector(f,r,center.lat,center.lng),values=document.createElement('details'),summary=document.createElement('summary');values.open=!!detailsOpen;summary.textContent='Valori al centro';values.append(summary);this.legendEl.append(values);
    for(const key of selected){const line=document.createElement('span'),v=key==='wind'?(vector?Math.hypot(...vector):null):sampleScalar(f,r,key,center.lat,center.lng);line.textContent=fields[key][0]+': '+number(v)+' '+fields[key][1]+(key==='wind'&&vector?' · da '+number((Math.atan2(-vector[0],-vector[1])*180/Math.PI+360)%360)+'°':'');values.append(line);}
-   const note=document.createElement('small');note.textContent=covered?''+(full?'':'COPERTURA PARZIALE · ')+'etichette interpolate, modello ~11km'+(r.display_interpolation?' · transizione fra quadri orari':''):'FUORI COPERTURA · nessun dato estrapolato';this.legendEl.append(note);
+   const note=document.createElement('small');note.textContent=covered?''+(full?'':'COPERTURA PARZIALE · ')+'etichette interpolate, modello ~11km'+(r.display_interpolation?' · transizione fra quadri orari':''):'FUORI COPERTURA · nessun dato estrapolato';this.legendEl.append(note);if(selected.has('rain_probability')){const info=document.createElement('small');info.textContent=Array.isArray(r.rain_probability)?'Prob. pioggia: >0,1 mm nella prossima ora · ensemble Open-Meteo':'Prob. pioggia: n/d nello snapshot · consulta Previsioni aggiornate.';this.legendEl.append(info);}
   },
   arrows(){const w=this.width,h=this.height;
    for(let y=25;y<h;y+=45)for(let x=25;x<w;x+=45){const v=this.velocity(x,y);if(!v)continue;const s=Math.hypot(...v);if(s<.1)continue;const dx=v[0]/s*10,dy=-v[1]/s*10,c=this.wctx;c.strokeStyle='#9ceee1';c.lineWidth=2;c.lineCap='round';c.shadowColor='#071929';c.shadowBlur=2;c.beginPath();c.moveTo(x-dx/2,y-dy/2);c.lineTo(x+dx/2,y+dy/2);c.lineTo(x+dx/2-dx*.4+dy*.25,y+dy/2-dy*.4-dx*.25);c.stroke();}

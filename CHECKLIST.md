@@ -1097,3 +1097,19 @@ FAIL riprodotto a cache calda: renderTimeline booleano, .then inesistente, stop3
 | Qualificazione fisica/operativa e fullgateM5–M7 | BLOCKED | limiti precedenti invariati |
 
 Base8af90af+dirty, commit finaleGit/PUBLICATION.json; reviewerCodexself-check.
+
+
+## Probabilità e nuvole — rain-probability-clouds-20261020
+
+| Verifica | Esito | Evidenza |
+|---|---|---|
+| Probabilità reale0–100%,10variabili81nodi95ore | PASS | reports/rain-probability-clouds/verification.json |
+|36testVM:allineamento n+1, indipendenza mm, invalidi elegacy | PASS | reports/rain-probability-clouds/unit-tests.log |
+|12controlli cloud/probabilità e16policyviewport/sintassi | PASS | tests/browser/cloud-probability.mjs; viewport-weather-state.mjs, comandi nel report |
+| IAB1280×720copertura/toggle/replay/legende | PASS | reports/rain-probability-clouds/ui.json e screenshotprivato |
+|2mappe frozen dichiarano probabilitàassente, archivipreservati | PASS | reports/rain-probability-clouds/frozen-ui.json; audit53campi |
+| Workspace119/hash e90job invariati,1restartcodevuote | PASS | verification.json e beforeprivato |
+| BrowserSafari/matricebreakpoint/axe/FPS/p95/soak/skill/nuovafisica | NOT RUN | report PROBABILITA-PIOGGIA-E-NUVOLE.md |
+| FullgateM5–M7/qualificazionefisica | BLOCKED | limiti precedenti invariati |
+
+Base7c9317f+dirty; reviewerCodexself-check, SHAfinaleGit/PUBLICATION.json.

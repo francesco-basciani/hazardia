@@ -5,7 +5,7 @@ from urllib.parse import parse_qs,urlsplit
 B=[[39.,8.],[46.,20.]]
 def fixture():
  q=parse_qs(urlsplit(url(B)).query);ys=q['latitude'][0].split(',');xs=q['longitude'][0].split(',');times=[(dt.datetime(2026,10,16)+dt.timedelta(hours=i)).strftime('%Y-%m-%dT%H:%M') for i in range(24)]
- return [dict(location_id=i,latitude=float(y),longitude=float(x),utc_offset_seconds=0,timezone='GMT',hourly_units={'time':'iso8601','wind_speed_10m':'m/s','wind_direction_10m':'°','temperature_2m':'°C','precipitation':'mm',**{k:v[0] for k,v in EXTRA.items()}},hourly=dict(time=times,wind_speed_10m=[5]*24,wind_direction_10m=[90]*24,temperature_2m=[20]*24,precipitation=list(range(24)),**{k:[{'humidity':65,'pressure':950,'cloud':30,'gusts':8,'radiation':100}[v[1]]]*24 for k,v in EXTRA.items()})) for i,(y,x) in enumerate(zip(ys,xs))]
+ return [dict(location_id=i,latitude=float(y),longitude=float(x),utc_offset_seconds=0,timezone='GMT',hourly_units={'time':'iso8601','wind_speed_10m':'m/s','wind_direction_10m':'°','temperature_2m':'°C','precipitation':'mm',**{k:v[0] for k,v in EXTRA.items()}},hourly=dict(time=times,wind_speed_10m=[5]*24,wind_direction_10m=[90]*24,temperature_2m=[20]*24,precipitation=list(range(24)),**{k:[{'humidity':65,'pressure':950,'cloud':30,'gusts':8,'radiation':100,'rain_probability':40}[v[1]]]*24 for k,v in EXTRA.items()})) for i,(y,x) in enumerate(zip(ys,xs))]
 def receipt():return dict(normalization_version=2,url=url(B),sha256='a'*64,available_at='2026-10-16T00:00:00Z')
 class MapWeatherTests(unittest.TestCase):
  def test_global_geography_and_bounds(self):
@@ -26,6 +26,21 @@ class MapWeatherTests(unittest.TestCase):
   for node in r:
    node['hourly']['wind_gusts_10m']=list(range(24));node['hourly']['shortwave_radiation']=list(range(24))
   f=normalize(r,receipt());self.assertEqual(f['records'][0]['gusts'],[1.]*81);self.assertEqual(f['records'][0]['radiation'],[1.]*81)
+ def test_probability_is_independent_and_next_hour_aligned(self):
+  r=fixture()
+  for node in r:
+   node['hourly']['precipitation_probability']=[0,80]+[20]*22
+   node['hourly']['precipitation']=[0]*24
+  f=normalize(r,receipt());self.assertEqual(f['records'][0]['rain_probability'],[80.]*81);self.assertEqual(f['records'][0]['precipitation'],[0.]*81)
+  self.assertEqual(f['units']['rain_probability'],'%');self.assertIn('ensemble',f['model']);self.assertIn('>0.1mm',f['interval_semantics'])
+ def test_probability_missing_invalid_and_legacy(self):
+  for value in [None,-1,101,True]:
+   r=fixture();r[0]['hourly']['precipitation_probability'][1]=value
+   with self.assertRaises(HazardError):normalize(r,receipt())
+  r=fixture();rec=receipt();rec['url']=rec['url'].replace(',precipitation_probability','')
+  for n in r:
+   n['hourly'].pop('precipitation_probability');n['hourly_units'].pop('precipitation_probability')
+  f=normalize(r,rec);self.assertNotIn('rain_probability',f['records'][0]);self.assertEqual(f['model'],'DWD ICON Global via Open-Meteo')
  def test_supporting_weather_values(self):
   f=normalize(fixture(),receipt());self.assertEqual(f['records'][0]['humidity'],[65.]*81);self.assertEqual(f['units']['pressure'],'hPa')
   r=fixture();r[0]['hourly']['relative_humidity_2m'][0]=101

@@ -443,3 +443,7 @@ FR-24/26: i comandi secondari possono sovrapporsi alla mappa in pannelli a scomp
 
 ### FR-WX-VIEW-01 — chiarimento copertura e densità (2026-10-20)
 La consultazione meteo segue l’intera inquadratura, comprese viste nazionali e internazionali, con acquisizione/retry limitati e avviso visibile di copertura parziale, attesa, dati scaduti o indisponibili anche a pannelli chiusi. Cache lossless e provenienza preservate. Copertura spaziale completa non equivale a densità/risoluzione locale costante: dichiarare passo campionato e interpolazione alle scale ampie. Le mappe dei risultati fisici conservano le forzanti congelate del run e il proprio dominio; il meteo consultativo non può sostituirle o fingere di avere influenzato un risultato già calcolato. Antimeridiano/poli richiedono verifica specifica prima di dichiararne il supporto.
+
+
+### FR-WX-VIEW-01 — probabilità e nuvole (2026-10-20)
+Mostrare probabilità di precipitazione acquisita come tale dalla fonte, separata dai mm previsti, con soglia/evento e finestra oraria dichiarati. Non stimarla da pioggia deterministica o copertura nuvolosa. Copertura nuvolosa con scala0–100%, colori/opacità leggibili e continui, territorio visibile, livello indipendente e legenda distinta dalla pioggia. I dati mancanti, inclusa la probabilità nei risultati già congelati, restano mancanti e segnalati; nessuna sostituzione o retrodatazione dei dati del run per migliorare la grafica. Le transizioni interpolate restano soltanto visuali.

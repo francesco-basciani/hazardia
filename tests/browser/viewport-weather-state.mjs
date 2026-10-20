@@ -1,7 +1,7 @@
 import {readFileSync} from 'node:fs';import assert from 'node:assert/strict';
 const {viewportWeatherState:state,retainCoveredForecast:retain}=await import('data:text/javascript;base64,'+readFileSync('src/hazardia/web/static/viewport-weather-state.js').toString('base64'));
 const now=Date.parse('2026-10-20T09:00:00Z'),view=[[35,6],[48,20]],large=[[-5,-30],[72,55]];
-const field=bounds=>({bounds,available_at:'2026-10-20T08:00:00Z',records:[Object.fromEntries(['u','v','temperature','precipitation','humidity','pressure','cloud','gusts','radiation'].map(k=>[k,[1]]))]});
+const field=bounds=>({bounds,available_at:'2026-10-20T08:00:00Z',records:[Object.fromEntries(['u','v','temperature','precipitation','humidity','pressure','cloud','gusts','radiation','rain_probability'].map(k=>[k,[1]]))]});
 let n=0;const eq=(a,b)=>{assert.equal(a,b);n++;};const fresh={status:'FRESH',forecast:field(view)};
 eq(state(fresh,view).kind,'ready');eq(state(fresh,large).kind,'fetch');eq(state({...fresh,fetching:true},large).kind,'poll');eq(state({...fresh,fetching:true},large).delayMs,1200);
 eq(state({...fresh,retry_after_s:45},large).kind,'wait');eq(state({...fresh,retry_after_s:45},large).delayMs,45000);

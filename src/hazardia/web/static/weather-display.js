@@ -10,18 +10,21 @@ export const rainClasses=[
 const mix=(stops,value)=>{if(value<=stops[0][0])return stops[0][1];for(let i=1;i<stops.length;i++){if(value<=stops[i][0]){const [a,x]=stops[i-1],[b,y]=stops[i],t=(value-a)/(b-a);return x.map((v,j)=>Math.round(v+(y[j]-v)*t));}}return stops.at(-1)[1];};
 export function temperatureColor(v){return Number.isFinite(v)?mix([[-20,[170,162,255]],[0,[112,213,255]],[10,[133,240,209]],[20,[255,230,117]],[30,[255,167,98]],[40,[255,112,135]]],v):[255,255,255];}
 export function rainColor(value){if(!Number.isFinite(value)||value<.1)return null;return mix(rainClasses.map(c=>[c.min,c.color]),value);}
+export const cloudStops=[[0,[104,169,196]],[25,[132,184,211]],[50,[180,206,238]],[75,[217,205,246]],[100,[246,237,255]]];
+export function cloudColor(value){return Number.isFinite(value)?mix(cloudStops,Math.max(0,Math.min(100,value))):null;}
+export function cloudOpacity(value){return Number.isFinite(value)?Math.pow(Math.max(0,Math.min(1,value/100)),1.25)*.68:0;}
 export function paintRain(ctx,map,field,record,{rain=true,cloud=false}={}){
  const w=ctx.canvas.width,h=ctx.canvas.height,size=map.getSize();if(!w||!h||!size.x||!size.y){ctx.canvas.dataset.wetPixels='0';ctx.canvas.dataset.cloudPixels='0';return 0;}const image=ctx.createImageData(w,h);let covered=0,wet=0,cloudy=0;
  for(let y=0;y<h;y++)for(let x=0;x<w;x++){const p=map.containerPointToLatLng([(x+.5)*size.x/w,(y+.5)*size.y/h]),v=rain?sampleScalar(field,record,'precipitation',p.lat,p.lng):null,c=cloud?sampleScalar(field,record,'cloud',p.lat,p.lng):null;if(!Number.isFinite(v)&&!Number.isFinite(c))continue;covered++;
-  const ca=Number.isFinite(c)?Math.max(0,Math.min(1,c/100))*.34:0,cr=mix([[0,[125,166,204]],[100,[225,234,246]]],c||0),rgb=rainColor(v),ra=rgb?(35+120*Math.min(1,(v-.1)/.9))/255:0,a=ra+ca*(1-ra);if(ca)cloudy++;if(ra)wet++;if(a)image.data.set([...(rgb||[0,0,0]).map((n,j)=>Math.round((n*ra+cr[j]*ca*(1-ra))/a)),Math.round(a*255)],(y*w+x)*4);
+  const ca=cloudOpacity(c),cr=cloudColor(c)||[0,0,0],rgb=rainColor(v),ra=rgb?(35+120*Math.min(1,(v-.1)/.9))/255:0,a=ra+ca*(1-ra);if(ca)cloudy++;if(ra)wet++;if(a)image.data.set([...(rgb||[0,0,0]).map((n,j)=>Math.round((n*ra+cr[j]*ca*(1-ra))/a)),Math.round(a*255)],(y*w+x)*4);
  }
  ctx.putImageData(image,0,0);ctx.canvas.dataset.wetPixels=String(wet);ctx.canvas.dataset.cloudPixels=String(cloudy);return covered/Math.max(1,w*h);
 }
 const n=v=>v.toLocaleString('it-IT',{maximumFractionDigits:1});
-const short={temperature:['','°C'],humidity:['UR','%'],gusts:['Raff.','m/s'],cloud:['Nubi','%'],pressure:['','hPa'],radiation:['Sole','W/m²'],precipitation:['Pioggia','mm']};
+const short={temperature:['','°C'],humidity:['UR','%'],gusts:['Raff.','m/s'],cloud:['Nubi','%'],rain_probability:['Prob. pioggia','%'],pressure:['','hPa'],radiation:['Sole','W/m²'],precipitation:['Pioggia','mm']};
 export function weatherLabels(host,map,field,record,keys){
  host.replaceChildren();if(!field||!record||!keys.length)return;
- keys=keys.filter(k=>k!=='precipitation'||keys.length===1);
+ keys=keys.filter(k=>(!['precipitation','cloud'].includes(k)||keys.length===1)&&(k!=='rain_probability'||Array.isArray(record.rain_probability)));
  const rect=map.getContainer().getBoundingClientRect(),obstacles=[...map.getContainer().querySelectorAll('.map-place-name,.geo-label.place,.region-name')].map(el=>el.getBoundingClientRect());
  const size=map.getSize(),cols=Math.max(1,Math.floor(size.x/190)),rows=Math.max(1,Math.floor(size.y/(keys.length>4?155:125))),cw=size.x/cols,ch=size.y/rows;
  // At most 32 indicators/window; pointer-transparent so map authoring remains usable.
@@ -39,5 +42,5 @@ export function positionLabels(host,map){L.DomUtil.setPosition(host,map.containe
 // Low winds retain their direction but are visually amplified; calm has no flow.
 export function windGain(speed){return speed<.1?0:Math.max(22,48/speed);}
 export function rainLegend(host){
- for(const [name,gradient,ticks] of [['Temperatura · °C','rgb(170,162,255) 0%,rgb(112,213,255) 33.33%,rgb(133,240,209) 50%,rgb(255,230,117) 66.67%,rgb(255,167,98) 83.33%,rgb(255,112,135) 100%','−20 · 0 · 10 · 20 · 30 · 40'],['Pioggia · mm nell’ora successiva','rgb(64,174,244) 0%,rgb(36,108,228) 9.09%,rgb(118,71,216) 24.24%,rgb(207,62,157) 49.49%,rgb(229,68,56) 100%','0,1 · 1 · 2,5 · 5 · ≥10'],['Nubi · copertura %','rgba(125,166,204,0),rgba(225,234,246,.34)','0 · 50 · 100']]){const el=document.createElement('div');el.className='weather-color-key';const label=document.createElement('span'),ramp=document.createElement('i'),values=document.createElement('small');label.textContent=name;ramp.style.background='linear-gradient(90deg,'+gradient+')';values.textContent=ticks;el.append(label,ramp,values);host.append(el);}
+ for(const [name,gradient,ticks] of [['Temperatura · °C','rgb(170,162,255) 0%,rgb(112,213,255) 33.33%,rgb(133,240,209) 50%,rgb(255,230,117) 66.67%,rgb(255,167,98) 83.33%,rgb(255,112,135) 100%','−20 · 0 · 10 · 20 · 30 · 40'],['Pioggia · mm nell’ora successiva','rgb(64,174,244) 0%,rgb(36,108,228) 9.09%,rgb(118,71,216) 24.24%,rgb(207,62,157) 49.49%,rgb(229,68,56) 100%','0,1 · 1 · 2,5 · 5 · ≥10'],['Nuvole · copertura %','rgba(104,169,196,0) 0%,rgba(132,184,211,.12) 25%,rgba(180,206,238,.29) 50%,rgba(217,205,246,.47) 75%,rgba(246,237,255,.68) 100%','0 · 25 · 50 · 75 · 100'],['Prob. pioggia · prossima ora','rgb(185,222,247),rgb(71,150,220)','0–100% · precipitazioni >0,1 mm · ensemble']]){const el=document.createElement('div');el.className='weather-color-key';const label=document.createElement('span'),ramp=document.createElement('i'),values=document.createElement('small');label.textContent=name;ramp.style.background='linear-gradient(90deg,'+gradient+')';values.textContent=ticks;el.append(label,ramp,values);host.append(el);}
 }
