@@ -1,0 +1,183 @@
+{
+  "run_id": "overlay-resume-20261020",
+  "source_git_sha": "a0dd31d2e9214e3d93d67362634ffaf0e22a9b04+dirty",
+  "pre_fix": {
+    "button": "▶ Riproduci",
+    "hour": 37,
+    "status": "Riproduzione interrotta: renderTimeline(...).then is not a function. Riprova Riproduci; i risultati fisici non vengono ricalcolati."
+  },
+  "browser_resume": [
+    {
+      "hour": 14.9615499999911,
+      "label": "▶ Riproduci",
+      "phase": "paused-first",
+      "status": "Risultati disponibili a +14 h 45 min."
+    },
+    {
+      "hour": 14.5,
+      "phase": "rewound-cached"
+    },
+    {
+      "hour": 28.352974999994,
+      "label": "Ⅱ Pausa",
+      "phase": "resumed-cached",
+      "status": "Risultati disponibili a +28 h 15 min."
+    },
+    {
+      "hour": 28.382374999994,
+      "phase": "paused-again"
+    },
+    {
+      "hour": 34.406600000003,
+      "label": "Ⅱ Pausa",
+      "phase": "resumed-second",
+      "status": "Risultati disponibili a +34 h 15 min."
+    }
+  ],
+  "safari": {
+    "entry_hour": 6.25,
+    "first_pause_hour": 22.78,
+    "cached_rewind_hour": 22.5,
+    "resumed_pause_hour": 40.852,
+    "observed_error_after_fix": false
+  },
+  "layouts": [
+    {
+      "name": "phone-compare",
+      "bodyScroll": 375,
+      "bodyWidth": 375,
+      "frameTop": 117,
+      "frameWidth": 367,
+      "viewport": 375,
+      "frameScroll": 367,
+      "mapHeight": 680,
+      "mapWidth": 365,
+      "mapY": 46,
+      "menuOpen": false,
+      "mode": "compare",
+      "researchLabel": "Prova ipotetica",
+      "timelineY": 598,
+      "mapTop": 163,
+      "timelineInsideMap": true
+    },
+    {
+      "name": "phone-plan",
+      "bodyScroll": 375,
+      "bodyWidth": 375,
+      "frameTop": 117,
+      "frameWidth": 367,
+      "viewport": 375,
+      "frameScroll": 367,
+      "mapHeight": 680,
+      "mapWidth": 365,
+      "mapY": 46,
+      "menuOpen": false,
+      "mode": "plan",
+      "researchLabel": "Prova ipotetica",
+      "timelineY": 598,
+      "mapTop": 163,
+      "timelineInsideMap": true
+    },
+    {
+      "name": "tablet-plan",
+      "bodyScroll": 768,
+      "bodyWidth": 768,
+      "frameTop": 117,
+      "frameWidth": 744,
+      "viewport": 768,
+      "frameScroll": 744,
+      "mapHeight": 680,
+      "mapWidth": 742,
+      "mapY": 46,
+      "menuOpen": false,
+      "mode": "plan",
+      "researchLabel": "Prova ipotetica",
+      "timelineY": 598,
+      "mapTop": 163,
+      "timelineInsideMap": true
+    },
+    {
+      "name": "tablet-compare",
+      "bodyScroll": 768,
+      "bodyWidth": 768,
+      "frameTop": 117,
+      "frameWidth": 744,
+      "viewport": 768,
+      "frameScroll": 744,
+      "mapHeight": 680,
+      "mapWidth": 742,
+      "mapY": 46,
+      "menuOpen": false,
+      "mode": "compare",
+      "researchLabel": "Prova ipotetica",
+      "timelineY": 598,
+      "mapTop": 163,
+      "timelineInsideMap": true
+    },
+    {
+      "name": "desktop-compare",
+      "bodyScroll": 1440,
+      "bodyWidth": 1440,
+      "frameTop": 64,
+      "frameWidth": 1416,
+      "viewport": 1440,
+      "frameScroll": 1416,
+      "mapHeight": 800,
+      "mapWidth": 1414,
+      "mapY": 46,
+      "menuOpen": false,
+      "mode": "compare",
+      "researchLabel": "Prova ipotetica",
+      "timelineY": 750,
+      "mapTop": 110,
+      "timelineInsideMap": true
+    },
+    {
+      "name": "desktop-plan",
+      "bodyScroll": 1440,
+      "bodyWidth": 1440,
+      "frameTop": 64,
+      "frameWidth": 1416,
+      "viewport": 1440,
+      "frameScroll": 1416,
+      "mapHeight": 800,
+      "mapWidth": 1414,
+      "mapY": 46,
+      "menuOpen": false,
+      "mode": "plan",
+      "researchLabel": "Prova ipotetica",
+      "timelineY": 750,
+      "mapTop": 110,
+      "timelineInsideMap": true
+    }
+  ],
+  "palette": {
+    "phone_expanded_inside_drawer": true,
+    "labels": [
+      "Innesco",
+      "Squadra a terra",
+      "Canadair",
+      "Elicottero",
+      "Mezzo pesante"
+    ],
+    "escape_closed_drawer": true,
+    "leaflet_legend_overlap_corrected": true
+  },
+  "tests": {
+    "playback_handlers_assertions": 38,
+    "regression_assertions": 28
+  },
+  "integrity": {
+    "workspace_revision": 119,
+    "workspace_unchanged": true,
+    "job_directory_count": 90
+  },
+  "negative_results": [
+    "Original cached render returned boolean; .then threw and stopped at next sample",
+    "Initial nested menu could overflow left; expands inside capped drawer now",
+    "Leaflet weather legend rendered above drawer; stacking context/z-index corrected",
+    "Reassigned test handles retained old closures; discarded those measurements and used stable handles on isolated QA URL",
+    "Coordinate helper attempted offscreen interaction; used fresh native AX and screenshot-grounded clicks",
+    "QA tab navigation timed out once; recovered same tab, HTTP health/JS200 verified"
+  ]
+}

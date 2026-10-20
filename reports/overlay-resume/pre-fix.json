@@ -1,0 +1,5 @@
+{
+  "button": "▶ Riproduci",
+  "hour": 37,
+  "status": "Riproduzione interrotta: renderTimeline(...).then is not a function. Riprova Riproduci; i risultati fisici non vengono ricalcolati."
+}

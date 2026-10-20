@@ -435,3 +435,7 @@ In Simulazioni separare Piano d’intervento (una mappa con proposte sui mezzi d
 
 ## Priorità cartografica e comandi a richiesta — 2026-10-20
 FR-24/26: la mappa è il contenuto principale di Monitoraggio e Simulazioni. Evitare colonne di navigazione o palette permanenti che ne sottraggano larghezza; gestione scenari, inserimento risorse e inquadrature restano accessibili da comandi compatti. Pannelli di contesto a richiesta, timeline vicina alla mappa e note estese sotto. Preservare accessibilità, responsive, distinzione ricerca/operatività, stato dei dati e configurazioni esistenti; nessuna modifica implicita alle simulazioni.
+
+
+## Controlli cartografici sovrapposti — precisazione2026-10-20
+FR-24/26: i comandi secondari possono sovrapporsi alla mappa in pannelli a scomparsa, contenuti nei bordi anche su touch. Mantenere nome/stato, indicazione di ricerca, accessibilità e timeline unica; evitare righe permanenti di configurazione sopra la mappa. Pausa/ripresa deve funzionare anche su campioni già in cache, senza ricalcolare o alterare prodotti fisici.
