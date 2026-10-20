@@ -1,0 +1,157 @@
+{
+  "run_id": "map-first-20261020",
+  "source_git_sha": "0c00e639bbf962cfc132211c4f1e6391ca6f10a6+dirty",
+  "studio": [
+    {
+      "label": "tablet-compare-final",
+      "bodyWidth": 768,
+      "frameTop": 165,
+      "frameWidth": 744,
+      "scrollWidth": 768,
+      "viewport": 768,
+      "canvasDisplay": "block",
+      "frameScrollWidth": 744,
+      "mapCenter": "[42.414481311889105,13.74454842932319]",
+      "mapHeight": 520,
+      "mapOffsetTop": 256,
+      "mapWidth": 740,
+      "mode": "compare",
+      "toolsOpen": false,
+      "mapTop": 421
+    },
+    {
+      "label": "phone-compare-final",
+      "bodyWidth": 375,
+      "frameTop": 163,
+      "frameWidth": 367,
+      "scrollWidth": 375,
+      "viewport": 375,
+      "canvasDisplay": "block",
+      "frameScrollWidth": 367,
+      "mapCenter": "[42.41458571012514,13.744411468505861]",
+      "mapHeight": 520,
+      "mapOffsetTop": 256,
+      "mapWidth": 363,
+      "mode": "compare",
+      "toolsOpen": false,
+      "mapTop": 419
+    },
+    {
+      "label": "phone-plan-final",
+      "bodyWidth": 375,
+      "frameTop": 163,
+      "frameWidth": 367,
+      "scrollWidth": 375,
+      "viewport": 375,
+      "canvasDisplay": "block",
+      "frameScrollWidth": 367,
+      "mapCenter": "[42.41458571012514,13.744411468505861]",
+      "mapHeight": 520,
+      "mapOffsetTop": 304,
+      "mapWidth": 363,
+      "mode": "plan",
+      "toolsOpen": false,
+      "mapTop": 467
+    },
+    {
+      "label": "tablet-plan-final",
+      "bodyWidth": 768,
+      "frameTop": 165,
+      "frameWidth": 744,
+      "scrollWidth": 768,
+      "viewport": 768,
+      "canvasDisplay": "block",
+      "frameScrollWidth": 744,
+      "mapCenter": "[42.41458571012514,13.744583129882814]",
+      "mapHeight": 520,
+      "mapOffsetTop": 256,
+      "mapWidth": 740,
+      "mode": "plan",
+      "toolsOpen": false,
+      "mapTop": 421
+    },
+    {
+      "label": "desktop-plan-final",
+      "bodyWidth": 1440,
+      "frameTop": 112,
+      "frameWidth": 1416,
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "canvasDisplay": "block",
+      "frameScrollWidth": 1416,
+      "mapCenter": "[42.41458571012514,13.744583129882814]",
+      "mapHeight": 720,
+      "mapOffsetTop": 224,
+      "mapWidth": 1412,
+      "mode": "plan",
+      "toolsOpen": false,
+      "mapTop": 336
+    },
+    {
+      "label": "desktop-compare-final",
+      "bodyWidth": 1440,
+      "frameTop": 112,
+      "frameWidth": 1416,
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "canvasDisplay": "block",
+      "frameScrollWidth": 1416,
+      "mapCenter": "[42.41458571012514,13.744583129882814]",
+      "mapHeight": 720,
+      "mapOffsetTop": 224,
+      "mapWidth": 1412,
+      "mode": "compare",
+      "toolsOpen": false,
+      "mapTop": 336
+    }
+  ],
+  "monitor": [
+    {
+      "dockHidden": true,
+      "height": 715,
+      "scrollWidth": 1440,
+      "top": 236,
+      "viewport": 1440,
+      "width": 1414
+    },
+    {
+      "dockHidden": true,
+      "height": 585,
+      "scrollWidth": 375,
+      "top": 413,
+      "viewport": 375,
+      "width": 365
+    }
+  ],
+  "commands": {
+    "palette_categories": 5,
+    "scenario_actions": [
+      "create",
+      "duplicate",
+      "undo",
+      "optimization",
+      "layers"
+    ],
+    "view_actions": 3,
+    "canadair_selected_without_insertion": true,
+    "palette_closed_after_choice": true,
+    "palette_selection_cancelled": true,
+    "monitor_dock_toggle": true,
+    "playback": {
+      "hour": 13.2999000000089,
+      "max": 72
+    }
+  },
+  "regressions": {
+    "browser_pure_assertions": 28,
+    "workspace_revision": 119,
+    "workspace_unchanged_since_previous_delivery": true,
+    "job_directories": 90
+  },
+  "negative_results": [
+    "Uncapped iframe viewport height caused growing geometry; map heights capped at720/520px and rechecked",
+    "IAB Playwright click failed; used native accessibility actions",
+    "Cross-frame contentDocument unavailable in DOM bridge; used separate DOM measurements",
+    "Viewport changes preserved scroll anchor; returned to page top before final measurements"
+  ]
+}
