@@ -1113,3 +1113,11 @@ Base8af90af+dirty, commit finaleGit/PUBLICATION.json; reviewerCodexself-check.
 | FullgateM5–M7/qualificazionefisica | BLOCKED | limiti precedenti invariati |
 
 Base7c9317f+dirty; reviewerCodexself-check, SHAfinaleGit/PUBLICATION.json.
+
+
+## Riquadro iniziale — remove-notice-20261020
+
+- FAIL prima verifica: riferimento .notice p residuo fermava avvioUI; corretto in ui-layout.js.
+- PASS rimozioneHTML/riferimenti, avvioMonitoraggio e mappa senza riquadro: reports/remove-notice/ui.json e screenshotprivato runomonimo; base dbcf9a9+dirty, commitGit/PUBLICATION.json, reviewerCodexself-check.
+- PASS sintassiJS e gitdiff; NOT RUN nuove prove unit/browsermatrix/axe/FPS/p95/fisica.
+- BLOCKED gatecompletiM5–M7 invariati. Nessun restart/install/jobfisico.

@@ -18,7 +18,6 @@ export function arrangeWorkspace(){
  document.querySelector('.evac-controls').open=true;document.querySelector('label[for=disabled]').hidden=true;$('disabled').hidden=true;
  document.querySelector('.evac-controls summary').textContent='Unità di evacuazione';
 
- document.querySelector('.notice p').innerHTML='<strong>Ambiente di ricerca.</strong> Fonti, previsioni e simulazioni sono identificate separatamente.';
  const old=document.querySelector('.monitor-panel'),dialog=document.createElement('dialog');dialog.id='map-settings';dialog.className='monitor-panel settings-dialog';dialog.setAttribute('aria-labelledby','settings-title');while(old.firstChild)dialog.append(old.firstChild);old.replaceWith(dialog);
  dialog.querySelector('.section-label').remove();dialog.querySelector('h2').id='settings-title';dialog.querySelector('h2').textContent='Configurazione';dialog.querySelector('.monitor-disclaimer').remove();
  const close=document.createElement('button');close.type='button';close.className='small-button settings-close';close.textContent='Chiudi';close.onclick=()=>dialog.close();dialog.prepend(close);

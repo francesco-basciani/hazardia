@@ -447,3 +447,7 @@ La consultazione meteo segue l’intera inquadratura, comprese viste nazionali e
 
 ### FR-WX-VIEW-01 — probabilità e nuvole (2026-10-20)
 Mostrare probabilità di precipitazione acquisita come tale dalla fonte, separata dai mm previsti, con soglia/evento e finestra oraria dichiarati. Non stimarla da pioggia deterministica o copertura nuvolosa. Copertura nuvolosa con scala0–100%, colori/opacità leggibili e continui, territorio visibile, livello indipendente e legenda distinta dalla pioggia. I dati mancanti, inclusa la probabilità nei risultati già congelati, restano mancanti e segnalati; nessuna sostituzione o retrodatazione dei dati del run per migliorare la grafica. Le transizioni interpolate restano soltanto visuali.
+
+
+### FR-UI-ROOM-01 — riquadro iniziale (2026-10-20)
+Su richiesta utente rimuovere la sezione «Ambiente di ricerca» sopra la mappa, evitando spazio verticale dedicato. Qualificazione e provenienza continuano nelle informazioni pertinenti ai dati, ai risultati e alla guida; nessuna nuova qualificazione operativa implicita.
