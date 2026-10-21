@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "3d224787197fe7ce18f4f069454c81575f8fc4fb",
+  "source_git_sha": "f7da679f5d39193f77eb619468f1e67fb51ab655",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,20 +11,20 @@
       "sha256": "7a64cf19bdff0146fd1fdd1467ab80a053114b174237993b5db7d57803d5dbc2"
     },
     "CHECKLIST.md": {
-      "bytes": 166416,
-      "sha256": "bd33afc68c46c7741cb6e231ea55dc20cabb0bed9d9ed388fec1549bb7304b85"
+      "bytes": 167023,
+      "sha256": "8a55709e7d20b1e2865bad5ed542182e3f472fe1c9af5d82a89049e625e2407b"
     },
     "MEMORY.md": {
-      "bytes": 122770,
-      "sha256": "6672dd23d071b94706988cbb22eefb1f30e79e453776f73ccfc98a8b7f733c8a"
+      "bytes": 123377,
+      "sha256": "277419ef8a650bebf3aefc641e4ebe26d39e2ce87ee8143ed96aeb9ed9df7b74"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 127886,
-      "sha256": "e5b42636e4f9a28c10cf01ca5f76e3af0a37e70295c44207d8ad49658b8b21ae"
+      "bytes": 128493,
+      "sha256": "017558d8eb49ddea4187172cc931ac150cd051079ffeb1175b0488f29a7e804a"
     },
     "README.md": {
       "bytes": 22743,
@@ -261,6 +261,10 @@
     "reports/INTERVENTI-FISICI-E-GIORNI.md": {
       "bytes": 6127,
       "sha256": "e7a34bab39516bd6a63d4d6e471b90f7066074abd3db8fb735e67eb7c12da818"
+    },
+    "reports/LEGENDA-OGGETTI-MAPPA.md": {
+      "bytes": 3498,
+      "sha256": "67b3608256edb525b3e70eb73cf8e22ebb5292000f38cb3b9fa4f8e10b073c79"
     },
     "reports/M0-continuation.md": {
       "bytes": 21073,
@@ -955,8 +959,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 139271,
-      "sha256": "db807434732bf29aa7f6b0b7386f54c23fd41c2a36ac0d5e9a571c0b9ac72159"
+      "bytes": 139878,
+      "sha256": "c9c32757f32446c72c62bd418e9dbf0d555c1665c553560229849f3ca3243549"
     },
     "research/RESEARCH.md": {
       "bytes": 33312,
@@ -1391,8 +1395,8 @@
       "sha256": "6f90494dd1d08d7948e66b462930fe880099dd02e4b0f53ef48da0edd08abc8c"
     },
     "src/hazardia/web/static/event-markers.js": {
-      "bytes": 3704,
-      "sha256": "85fffc4fbbe667ec7ff711cd79437893682e3ced7f2c6094547e022592f28e3f"
+      "bytes": 4300,
+      "sha256": "f7039c373afe067f8d226c81e7299d73e729a734c781d47a7c4e57157cb66f99"
     },
     "src/hazardia/web/static/fire-comparison-status.js": {
       "bytes": 2556,
@@ -1446,9 +1450,17 @@
       "bytes": 2131,
       "sha256": "14eedd8bc5c2788ebc22cff70123481c4bce1e894c516c95d67fbd96ee27582c"
     },
+    "src/hazardia/web/static/map-symbols.css": {
+      "bytes": 2222,
+      "sha256": "876a4ee603f3ddca98613af180a411ac726e21f4799c9491ac354c61e074d77c"
+    },
+    "src/hazardia/web/static/map-symbols.js": {
+      "bytes": 7081,
+      "sha256": "52b631d0dfb78e55755073dd0545ffdfdbc1e130fc47ba45050310dddbdfddd4"
+    },
     "src/hazardia/web/static/monitoring.js": {
-      "bytes": 15833,
-      "sha256": "3b1589c93148bc93a5e8d737df979a9c71a63c3c7531dba04d88cd15b168e0f6"
+      "bytes": 16158,
+      "sha256": "f67b0590cd1f96a98a53065b440b4d07aea980265bb926246bf1ecdc3ab270ea"
     },
     "src/hazardia/web/static/physical-fire.css": {
       "bytes": 3634,
@@ -1479,8 +1491,8 @@
       "sha256": "82021cfb00eb2af2cbe4683aed2ca0f54fc5ccf853d21a42073babae5f9359ff"
     },
     "src/hazardia/web/static/region-boundaries.js": {
-      "bytes": 3585,
-      "sha256": "28e6c567dc5f7e05cdddaf6d369e3110d2a969868845019fe1f4819fe8ae6cc4"
+      "bytes": 3839,
+      "sha256": "10fe6c26c0c723313b25701acca766ee884dd69af7a78222957188988cb37dc7"
     },
     "src/hazardia/web/static/resource-editor.js": {
       "bytes": 3055,
@@ -1499,8 +1511,8 @@
       "sha256": "1fa0f3c61d2df4cea09608ece0ea833020db78f5c8013ec2435c898c198e2bfd"
     },
     "src/hazardia/web/static/territorial-layers.js": {
-      "bytes": 19095,
-      "sha256": "cb5225d8eace9d0e20d2db73daec246007ca3c4477721680bb6a4513449cd3a1"
+      "bytes": 18971,
+      "sha256": "76c29858a0d1215d19ccc65cb8a67df99c8f446325ab91caaae8f52b109a873c"
     },
     "src/hazardia/web/static/tile-retry.js": {
       "bytes": 768,
@@ -1661,6 +1673,10 @@
     "tests/browser/map-detail.cjs": {
       "bytes": 6962,
       "sha256": "8b8f3836ab6b206bde77bd9eabf82eb70f89d206c87bae4bcb5da7620204e14f"
+    },
+    "tests/browser/map-symbols.mjs": {
+      "bytes": 2969,
+      "sha256": "fe1b19e59f736bca7e8d92e1ee0cee7a17865ef34750e81ead50b9b2236d8226"
     },
     "tests/browser/map-touch.cjs": {
       "bytes": 2537,

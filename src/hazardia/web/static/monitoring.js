@@ -1,3 +1,4 @@
+import {mapSymbols} from '/map-symbols.js?v=1';
 import {rainZones} from '/rain-zones.js?v=1';
 import {territorialLayers} from '/territorial-layers.js';
 import {territorialAttention} from '/attention.js?v=1';
@@ -75,9 +76,10 @@ export function monitoringMap(initial,feedback){
  $('monitor-opacity').oninput=()=>{const t=performance.now();$('monitor-opacity-value').textContent=$('monitor-opacity').value+'%';const opacity=Number($('monitor-opacity').value)/100;Object.values(products).forEach(g=>g.eachLayer(l=>{if(l.setOpacity)l.setOpacity(opacity);else if(l.setStyle)l.setStyle({fillOpacity:opacity});}));feedback(t,'monitor-opacity');};
  $('monitor-fit').onclick=fit;
  $('monitor-basemap').onchange=()=>{const t=performance.now();osmErrors=0;osm.remove();if($('monitor-basemap').value==='osm'&&visible)osm.addTo(map);if($('monitor-basemap').value==='ortho'&&visible){ortho.addTo(map);regional.addTo(map);}else{ortho.remove();regional.remove();}source();renderLabels();feedback(t,'monitor-basemap');};
- function renderLabels(){labels.clearLayers();roads.clearLayers();if(!$('monitor-labels').checked||!visible||$('monitor-basemap').value==='osm')return;const bounds=map.getBounds(),z=map.getZoom(),occupied=[];let roadCount=0;
+ function renderLabels(){labels.clearLayers();roads.clearLayers();if(!$('monitor-labels').checked||!visible||$('monitor-basemap').value==='osm'){mapSymbols(map).set('place-labels',[]);return;}const bounds=map.getBounds(),z=map.getZoom(),occupied=[];let roadCount=0;
   for(const f of context){if(f.kind==='place'&&bounds.contains([f.lat,f.lon])&&(z>=13||['city','town','capoluogo amministrativo'].includes(f.type))&&occupied.length<80){const px=map.latLngToContainerPoint([f.lat,f.lon]);if(occupied.some(p=>Math.abs(px.x-p.x)<100&&Math.abs(px.y-p.y)<24))continue;occupied.push(px);L.marker([f.lat,f.lon],{pane:'monitorNames',interactive:false,keyboard:false,icon:L.divIcon({className:'geo-label place',html:escape(f.name),iconSize:[140,22],iconAnchor:[70,11]})}).addTo(labels);}
    if(z>=14&&f.kind==='road'&&roadCount<150&&f.geometry.some(p=>bounds.contains([p[1],p[0]]))){roadCount++;L.polyline(f.geometry.map(p=>[p[1],p[0]]),{color:'#fff',weight:2,opacity:.65,interactive:false}).addTo(roads);}}
+  mapSymbols(map).set('place-labels',occupied.length?[{label:'Nome di località',kind:'point',priority:3,color:'#fff',fill:'#19334c',fillOpacity:1,note:'Punto scuro e nome geografico: non è un evento o un valore meteorologico.'}]:[]);
   map.fire('contextnames');
  }
  $('monitor-labels').onchange=renderLabels;map.on('moveend',()=>{clearTimeout(labelsTimer);labelsTimer=setTimeout(renderLabels,100)});

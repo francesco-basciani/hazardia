@@ -495,3 +495,7 @@ FAIL presentazione precedente segnalata dall’utente: nuvole/pioggia mescolate,
 ## Monitoraggio pioggia per zona — 2026-10-21
 
 Run `rain-zones-20261021`: PASS tecnico per accumuli1/3/6/12/24/48h su geometrie DPC, bollettino ufficiale distinto e limitato alla propria validità, missing/invalid/stale espliciti;25testVM e due esecuzioni con fonti reali.187zone del prodotto,44integralmente coperte nel campo del pilot. Cache ufficiale piena recuperata con compressione lossless e106hash invariati. Piano spaziale e geometrie condivise per evitare duplicazioni a ogni ora. Nessun nuovo job fisico o modifica ai casi. BLOCKED: classificazione idraulica autonoma/soglie e impatti qualificati; p95≥30run/Safari/smartphone NOT RUN, fullM5–M7 invariati. Report e limiti: `reports/PIOGGIA-ZONE-E-ALLERTE.md`; reviewerCodexself-check. Prossimo incremento: soglie locali correnti e stato antecedente qualificati, poi validazione indipendente.
+
+## Legenda degli oggetti cartografici — 2026-10-21
+
+Run `map-symbols-20261021`: PASS UI per legenda sulla mappa coerente con simboli/livelli, colori distinti tra abitati/sanità/scuole/emergenze, etichette specifiche idranti/DAE, linee elettriche fucsia tratteggiate e sostegni.25controlliNode sul client e QA browser contro VM con contesto reale e filtro elettrico; dettagli/fonti e geometrie punto/area distinti. Report `reports/LEGENDA-OGGETTI-MAPPA.md`. Nessun nuovo job fisico/caso modificato; nuove prove fisiche,p95,Safari/telefono NOT RUN, fullM5–M7 BLOCKED invariati. ReviewerCodexself-check.

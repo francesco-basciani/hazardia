@@ -1,0 +1,35 @@
+/* One vocabulary for drawn territorial styles and their visible legend. */
+const legends=new WeakMap();
+const palette={settlements:'#9b70cc',healthcare:'#087f8c',emergency:'#bd6a16',education:'#3567b2',transport:'#596c7d',utilities:'#93642b',buildings:'#796c60',environment:'#43805d',boundaries:'#667b8d',other:'#667286'};
+const labels={settlement:'Località / centro abitato',residential:'Area residenziale OSM',hospital:'Ospedale',clinic:'Clinica',doctors:'Ambulatorio',pharmacy:'Farmacia',healthcare:'Struttura sanitaria',social_facility:'Struttura assistenziale',emergency_service:'Emergenze / soccorso',fire_station:'Sede di soccorso',school:'Scuola / istruzione',transport:'Strade e trasporti',utility:'Reti e impianti',building:'Edificio OSM',environment:'Ambiente e acque',boundary:'Confine OSM',other:'Altro oggetto OSM'};
+export function featureSymbol(f,hour=0){
+ const p=f.properties||{},category=p.category||'other',kind=f.geometry?.type?.includes('Point')?'point':f.geometry?.type?.includes('Line')?'line':'area';
+ const group=p.catalog_group||(category.startsWith('power_')?'electrical':['hospital','clinic','doctors','pharmacy','healthcare','social_facility'].includes(category)?'healthcare':category==='school'?'education':['fire_station','emergency_service'].includes(category)?'emergency':'settlements');
+ let label=labels[category]||'Altro oggetto OSM',color=palette[group]||palette.other,dash=null,note=kind==='point'?'Posizione puntuale: non è il confine della struttura o dell’abitato.':kind==='area'?'Geometria cartografata, non area di pericolo.':'Tracciato cartografato.';
+ if(category==='power_line'){label='Linea elettrica aerea OSM';color='#f557c1';dash='8 5';note='Tensione nei dettagli, se disponibile. Tracciato parziale; quota e sicurezza del volo non verificate.';}
+ if(category==='power_tower'){label='Sostegno elettrico OSM';color='#f557c1';note='Palo o traliccio cartografato; quote non certificate.';}
+ if(category==='settlement'&&p.source?.includes('WorldCover')){label='Edificato da satellite · 2021';note='Copertura edificata WorldCover: non è un confine urbano ufficiale o una stima della popolazione.';}
+ if(category==='transport'&&p.osm_tags?.railway&&kind==='line'){label='Ferrovia OSM';dash='3 4';}
+ if(category==='emergency_service'){const tag=p.osm_tags?.emergency;label=({fire_hydrant:'Idrante antincendio',defibrillator:'Defibrillatore (DAE)',phone:'Colonnina SOS',assembly_point:'Punto di raccolta',fire_extinguisher:'Estintore',fire_hose:'Manichetta antincendio',water_tank:'Riserva d’acqua antincendio',suction_point:'Punto di prelievo acqua',first_aid:'Punto di primo soccorso'})[tag]||(p.osm_tags?.amenity==='police'?'Polizia':'Oggetto di emergenza OSM');note+=' Non indica una squadra disponibile o un presidio attivo verificato.';}
+ if(category==='boundary')dash='4 4';
+ let fill=color,exposure='';const values=f.exposure?.status==='MODELLED'&&f.exposure.timeline_contact;
+ if(Array.isArray(values)&&values.length&&!category.startsWith('power_')){const v=values[Math.min(Math.max(0,Math.floor(hour*4)),values.length-1)];if(Number.isFinite(v)&&v>0){fill=v>.5?'#f04b3a':'#ffb64c';exposure=v>.5?'contatto simulato >50%':'contatto simulato >0–50%';note+=' Riempimento: frequenza di contatto nei membri simulati entro l’ora scelta, non rischio per persone.';}}
+ return {priority:category==='power_line'?0:category==='power_tower'?1:category==='settlement'?2:category==='residential'?3:group==='healthcare'?4:group==='education'?5:6,key:[category,label,kind,color,fill,exposure,p.source?.includes('WorldCover')?'worldcover':''].join('|'),label:label+(exposure?' · '+exposure:''),kind,color,fill,dash,note,fillOpacity:kind==='point'?.22:.14,radius:category==='power_tower'?3:6};
+}
+export function featureStyle(f,hour=0){const s=featureSymbol(f,hour);return {color:s.color,fillColor:s.fill,dashArray:s.dash,weight:f.properties.category==='power_line'?4:s.kind==='line'?2:2.5,opacity:1,fillOpacity:s.fillOpacity,radius:s.radius};}
+export function mapSymbols(map){
+ if(legends.has(map))return legends.get(map);
+ if(!document.querySelector('link[data-map-symbols]')){const css=document.createElement('link');css.rel='stylesheet';css.href='/map-symbols.css?v=1';css.dataset.mapSymbols='1';document.head.append(css);}
+ const providers=new Map(),box=document.createElement('details');box.className='map-symbols';box.open=map.getSize().x>=700;
+ const summary=document.createElement('summary');summary.textContent='Legenda mappa';const count=document.createElement('span');count.className='map-symbol-count';summary.append(count);const body=document.createElement('div');body.className='map-symbol-body';box.append(summary,body);box.setAttribute('aria-label','Legenda dei simboli sulla mappa');
+ const control=L.control({position:'bottomleft'});control.onAdd=()=>box;control.addTo(map);L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);
+ const size=()=>box.style.maxWidth=Math.max(120,Math.min(280,map.getSize().x-32))+'px';map.on('resize',size);size();
+ box.addEventListener('toggle',()=>map.getContainer().classList.toggle('map-symbols-open',box.open));map.getContainer().classList.toggle('map-symbols-open',box.open);
+ let signature='';
+ function render(){const rows=[...providers.values()].flat().sort((a,b)=>(a.priority??30)-(b.priority??30)),key=JSON.stringify(rows);if(key===signature)return;signature=key;body.replaceChildren();count.textContent=' · '+rows.length;
+  const list=document.createElement('ul');for(const row of rows){const li=document.createElement('li'),swatch=document.createElement('span');swatch.className='map-symbol-swatch '+row.kind;swatch.setAttribute('aria-hidden','true');swatch.style.setProperty('--symbol-color',row.color||'#526875');swatch.style.setProperty('--symbol-fill',row.fill||row.color||'#526875');swatch.style.setProperty('--symbol-opacity',String(row.fillOpacity??.22));if(row.dash)swatch.classList.add('dashed');if(row.svg){swatch.className='map-symbol-swatch event';swatch.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+row.svg+'</svg>';}
+   const label=document.createElement('span');label.textContent=row.label+(row.kind==='point'?' · punti':row.kind==='area'?' · aree':'')+(row.count!=null?' · '+row.count:'');const item=document.createElement('details'),title=document.createElement('summary');title.append(swatch,label);item.append(title);if(row.note){const note=document.createElement('small');note.textContent=row.note;item.append(note);}li.append(item);list.append(li);}
+  body.append(list);const note=document.createElement('p');note.textContent=rows.length?'Clicca gli oggetti per nome, fonte e attributi. Inventario cartografico parziale. Meteo e allerte hanno scale dedicate.':'Nessun simbolo aggiuntivo visualizzato. Il contesto territoriale compare dopo il caricamento dell’area.';body.append(note);
+ }
+ const api={set(provider,entries){providers.set(provider,entries);render();},remove(provider){providers.delete(provider);render();}};legends.set(map,api);map.on('unload',()=>legends.delete(map));render();return api;
+}

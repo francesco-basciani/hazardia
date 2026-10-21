@@ -1,3 +1,4 @@
+import {mapSymbols} from '/map-symbols.js?v=1';
 /* Administrative context, never a jurisdiction or physics input. */
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sourceCache=new Map();
@@ -8,6 +9,7 @@ export function regionBoundaries(map,{url='/assets/administrative-regions.json',
  const input=document.getElementById('config-regions'),status=document.getElementById('regions-status')||document.createElement('small');if(input){on=input.checked;input.addEventListener('change',changed);}
  function changed(){on=input.checked;draw();}
  function draw(){if(disposed)return;const z=map.getZoom(),show=on&&data&&z<=maxZoom;map.getContainer().dataset.regionBoundaries=show?'visible':data?'hidden':'unavailable';
+  mapSymbols(map).set('regions',show?[{label:'Confine regionale · Istat',kind:'line',color:'#647584',note:'Linea chiara con bordo scuro; confine amministrativo generalizzato, non zona di pericolo.'}]:[]);
   if(!show){group.remove();labels.remove();if(data)status.textContent=on?'Visibili nella vista d’insieme':'Nascosti';return;}
   if(!outline){const base={pane,fill:false,interactive:false,smoothFactor:1.5};outline=L.geoJSON(data,{...base,style:{color:'#172d3b',weight:4.5,opacity:.8}}).addTo(group);ink=L.geoJSON(data,{...base,style:f=>({color:f.properties.code===highlightCode?'#ffe2a3':'#f1f5f8',weight:1.4,opacity:.95})}).addTo(group);}
   group.addTo(map);labels.addTo(map);labels.clearLayers();outline.setStyle({weight:z===11?3:4.5,opacity:z===11?.45:.8});ink.setStyle(f=>({weight:f.properties.code===highlightCode?2.3:1.4,opacity:z===11?.5:.95}));status.textContent='Istat · 2026 · confini generalizzati';
