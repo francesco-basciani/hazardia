@@ -1,0 +1,300 @@
+{
+  "review_id": "mydewetra-review-20261021",
+  "at_utc": "2026-10-21T12:36:36.701561+00:00",
+  "reviewer": "Codex self-check",
+  "mode": "document and source inspection, no execution of external code",
+  "hazardia_head": "f7da679f5d39193f77eb619468f1e67fb51ab655",
+  "preexisting_dirty_docs": true,
+  "pdf": {
+    "local_path": "/Users/basciani/Downloads/CAiSE2025___GSSI_CIMA.pdf",
+    "pages": 16,
+    "sha256": "6a475b27493f12ca86abad03f713c657e30a63e5f83254a3525466a028fe1c4c",
+    "read": "full extracted text and visual figures1-5/table1",
+    "published_fulltext_identity": "not established, publisher lists18pages"
+  },
+  "repos": [
+    {
+      "name": "caise2025-cima",
+      "commit": "7d69bed33e9a20ade1188c732a29971228685722",
+      "truncated": false,
+      "files": [
+        {
+          "path": ".gitignore",
+          "bytes": 290,
+          "git_blob": "524f0963bd1d8c6149eb6f2dc52a5fc50c7637ad"
+        },
+        {
+          "path": "Evaluation questionnaire and responses.xlsx",
+          "bytes": 63874,
+          "git_blob": "7b7d06bc795ca4ecc93bd4d96b243987e4019705"
+        },
+        {
+          "path": "LICENSE",
+          "bytes": 11357,
+          "git_blob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64"
+        },
+        {
+          "path": "README.md",
+          "bytes": 16,
+          "git_blob": "6054ff96a9d34f995a774c671a06dbffc42e58db"
+        }
+      ]
+    },
+    {
+      "name": "mydewetra-src",
+      "commit": "4c20f78dc20a702defca33e71f23c324be9f417f",
+      "truncated": false,
+      "files": [
+        {
+          "path": "README.md",
+          "bytes": 2303,
+          "git_blob": "2877e6beb59b9602630e991562e0918000a7f7f7"
+        },
+        {
+          "path": "Termini_Condizioni_rev8_WORLD_en_EN.md",
+          "bytes": 6398,
+          "git_blob": "05c1a58040ea38de07c82be2cd60cdb6585ddbac"
+        },
+        {
+          "path": "Termini_Condizioni_rev8_WORLD_en_EN.pdf",
+          "bytes": 149151,
+          "git_blob": "b32c5ab27c6b861fc2202e6d8c1dc352e998f521"
+        },
+        {
+          "path": "docs /dewetra2_be/DOCUMENTAZIONE_algorithms.md",
+          "bytes": 2071,
+          "git_blob": "46d6d001b4f63b337f870fc035ad5bc99e2b3488"
+        },
+        {
+          "path": "docs /dewetra2_be/DOCUMENTAZIONE_core.md",
+          "bytes": 4222,
+          "git_blob": "6584a6e96ab1549f18ed7fff6c219eae61a2d814"
+        },
+        {
+          "path": "docs /dewetra2_be/DOCUMENTAZIONE_dds.md",
+          "bytes": 7248,
+          "git_blob": "41430504c5b96af538ae65248951b8825edc817b"
+        },
+        {
+          "path": "docs /dewetra2_be/DOCUMENTAZIONE_floodproof.md",
+          "bytes": 3300,
+          "git_blob": "4ce8e4f222a8aaa8186607fb427beabeb355a9c2"
+        },
+        {
+          "path": "docs /dewetra2_be/DOCUMENTAZIONE_gs_config.md",
+          "bytes": 4944,
+          "git_blob": "71923fbde566405b0f55da7b0746f5e647b4eaf4"
+        },
+        {
+          "path": "docs /dewetra2_be/DOCUMENTAZIONE_profiles.md",
+          "bytes": 1720,
+          "git_blob": "c767b79f3752691594f69a06d9bb199ca6d99e35"
+        },
+        {
+          "path": "docs /dewetra2_be/backend-dewetra2_lines_report.txt",
+          "bytes": 2327,
+          "git_blob": "c38fe1cf8acf7597b318d400a6162b283249f3f3"
+        },
+        {
+          "path": "docs /dewetra2_be/dewetra2.md",
+          "bytes": 8934,
+          "git_blob": "a339c6d73766b0b8878eb65698cb2b2006d31848"
+        },
+        {
+          "path": "docs /dewetra2_fe/DOCUMENTAZIONE_js.md",
+          "bytes": 15605,
+          "git_blob": "738bded3e51ee7441fac44a8251ca4c4b609fcc0"
+        },
+        {
+          "path": "docs /dewetra2_fe/DOCUMENTAZIONE_views.md",
+          "bytes": 5757,
+          "git_blob": "24a4b54a56387f3acd23ecec2fc9940b4daf6fab"
+        },
+        {
+          "path": "docs /dewetra2_fe/dewetra2-frontend_lines_report.txt",
+          "bytes": 37542,
+          "git_blob": "a21f5688d7cf6051823fb6cc460982d2d76fe3cf"
+        },
+        {
+          "path": "docs /dewetra2_portal/DOCUMENTAZIONE_portal.md",
+          "bytes": 18968,
+          "git_blob": "f1f6d4866c9cc8419431b83d3d4c1afbc75797e7"
+        },
+        {
+          "path": "docs /dewetra2_portal/portal-backend_lines_report.txt",
+          "bytes": 5710,
+          "git_blob": "bfe0112fa4a94c243791763f5003b4e8b1c115a2"
+        },
+        {
+          "path": "version2/dewetra2-backend/dewetra2-backend.zip",
+          "bytes": 85271,
+          "git_blob": "b4c2778453033774524785a33a6b014474ab2083"
+        },
+        {
+          "path": "version2/dewetra2-frontend/dewetra2-frontend.zip",
+          "bytes": 15225398,
+          "git_blob": "626c33a0cc45b6dc4e2d4faccdc3467bd53fcf96"
+        },
+        {
+          "path": "version2/portal-backend/portal-backend.zip",
+          "bytes": 71965,
+          "git_blob": "6f17b878d86586dcd5b1df1a19cda8dc38251515"
+        },
+        {
+          "path": "version3/ps-vm-backend/CHANGELOG.public.md",
+          "bytes": 43,
+          "git_blob": "442d5cb24b6f036171a277d15a65ddb58add9df0"
+        },
+        {
+          "path": "version3/ps-vm-backend/manifest.json",
+          "bytes": 142,
+          "git_blob": "551b288ca949cc48ceb3acd4f2c176f085e206ef"
+        },
+        {
+          "path": "version3/ps-vm-backend/ps-vm-backend-v1.3.4.zip",
+          "bytes": 137529,
+          "git_blob": "85969ad2ea95d8089f4ea0aa949edd0dc15b3331"
+        }
+      ]
+    }
+  ],
+  "scratch_file_hashes": [
+    {
+      "name": "DOCUMENTAZIONE_algorithms.md",
+      "bytes": 2071,
+      "sha256": "05a7a7ed80c4b6b01cd61d27e21569b4c5234620a08cc914207559caa82b6bd6"
+    },
+    {
+      "name": "DOCUMENTAZIONE_dds.md",
+      "bytes": 7248,
+      "sha256": "fa739054875ddf20a8d0983f287ea7ab5d312d46ffd9dd85e0a6093e3f9137d7"
+    },
+    {
+      "name": "Termini_Condizioni_rev8_WORLD_en_EN.md",
+      "bytes": 6398,
+      "sha256": "8bb72690ba15f5154b1d919e91aa84ab46ef6846f97b116916e91be1197f6945"
+    },
+    {
+      "name": "acroweb3-server-api-lib-availability.json",
+      "bytes": 229,
+      "sha256": "14941ce66550eaf0620e122188b8ff43f5381ec14a41a70251fc6d366d440f96"
+    },
+    {
+      "name": "acroweb3-server-lib-availability.json",
+      "bytes": 225,
+      "sha256": "4c88cd90a2708d15460552975233a0fb97986342dbe682da6bc5457310d3fd77"
+    },
+    {
+      "name": "caise2025-cima-commit.json",
+      "bytes": 5657,
+      "sha256": "002d16fc0c236ecdfed937973d1af17b4ab48ed3f2764c054fa4d5177d3ec08d"
+    },
+    {
+      "name": "caise2025-cima-tree.json",
+      "bytes": 1350,
+      "sha256": "ebe48dec51c1e0c45397992ca5eb262d593876d955fa3682045530c760c95211"
+    },
+    {
+      "name": "dewetra2-backend.zip",
+      "bytes": 85271,
+      "sha256": "0ee074bb42beb1140cb3cbd16ee0653824a68cae52ec79df51a37a1e9be91f25"
+    },
+    {
+      "name": "manifest.json",
+      "bytes": 142,
+      "sha256": "7ae638caa1336183151d4e141d959aa34e37edd06ccd5478b4484d3dced8c90c"
+    },
+    {
+      "name": "mydewetra-src-commit.json",
+      "bytes": 7004,
+      "sha256": "bad1f0954a5ac30e23fcd4cfea411bb8ce446c81dd1c087e128ab841881a3eb8"
+    },
+    {
+      "name": "mydewetra-src-tree.json",
+      "bytes": 10010,
+      "sha256": "54605dc1a2a94eda1f6b1d887ad50fc227e16e8b77284b9dbf3307149c269e34"
+    },
+    {
+      "name": "paper.txt",
+      "bytes": 48571,
+      "sha256": "5e5c6d3bac33e413f0bed0c074259d83a1c188f111f056b383ab21be9826e1fe"
+    },
+    {
+      "name": "ps-vm-backend-v1.3.4.zip",
+      "bytes": 137529,
+      "sha256": "ef00d1abdcdbfcd784d8084fb9ab6d3bddcfd2cd04be68433eec18bbf4189715"
+    },
+    {
+      "name": "v2-README.md",
+      "bytes": 47,
+      "sha256": "b0a019d57e05cf16acd88f6299febef3869930e607e6525c2505291cb7bed095"
+    },
+    {
+      "name": "v2-dds_client2.py",
+      "bytes": 13003,
+      "sha256": "60e2375f5986002a994f0a2dbacdb15c494380cf039d27e9548d9b3d88b0d5fa"
+    },
+    {
+      "name": "v2-resources.py",
+      "bytes": 5656,
+      "sha256": "2480237b1748d887e0f5a1c0a4b02f111efe882a556d32eac850791c2bf9a370"
+    },
+    {
+      "name": "v3-README.md",
+      "bytes": 241,
+      "sha256": "e1f26169f3976a9a96349129f1b24ef20ae5f2ef4baf905392d05d1393bd9e05"
+    },
+    {
+      "name": "v3-algoritmo-conversione-qpf-zdv.md",
+      "bytes": 4074,
+      "sha256": "7040fc0616b3230deb2793daf7419045ada497485967c653c46808a22ebf24ff"
+    },
+    {
+      "name": "v3-qpf_conversion.py",
+      "bytes": 1609,
+      "sha256": "fd0d2f105e94ca734b84be604cf6c7bfcf3e4642d2cbe0ce4da48c950106b578"
+    },
+    {
+      "name": "v3-requirements.txt",
+      "bytes": 302,
+      "sha256": "2654f533e1c6f619c70103de2dc7640fb862722cb715f3301a8e127714c1ffbe"
+    }
+  ],
+  "dependency_access": [
+    {
+      "repo": "CIMAFoundation/acroweb3-server-api-lib",
+      "http_status": "404",
+      "body": {
+        "message": "Not Found",
+        "documentation_url": "https://docs.github.com/rest/repos/repos#get-a-repository",
+        "status": "404"
+      }
+    },
+    {
+      "repo": "CIMAFoundation/acroweb3-server-lib",
+      "http_status": "404",
+      "body": {
+        "message": "Not Found",
+        "documentation_url": "https://docs.github.com/rest/repos/repos#get-a-repository",
+        "status": "404"
+      }
+    }
+  ],
+  "checks": {
+    "MD-01": "PASS documentary",
+    "MD-02": "PASS static",
+    "MD-03": "PASS analytical",
+    "MD-04": "FAIL initial Python CA; curl TLS-verified recovery",
+    "MD-05": "BLOCKED full-stack replication assessment",
+    "MD-06": "NOT RUN",
+    "MD-07": "NOT RUN novelty and superiority; existing gates unchanged"
+  },
+  "mutations": {
+    "runtime": false,
+    "simulations": false,
+    "paper": false,
+    "external_messages": false,
+    "push": false,
+    "source_implementation": false
+  }
+}

@@ -1159,3 +1159,53 @@ Run `rain-zones-20261021`: PASS tecnico per accumuli1/3/6/12/24/48h su geometrie
 ## Legenda degli oggetti cartografici — 2026-10-21
 
 Run `map-symbols-20261021`: PASS UI per legenda sulla mappa coerente con simboli/livelli, colori distinti tra abitati/sanità/scuole/emergenze, etichette specifiche idranti/DAE, linee elettriche fucsia tratteggiate e sostegni.25controlliNode sul client e QA browser contro VM con contesto reale e filtro elettrico; dettagli/fonti e geometrie punto/area distinti. Report `reports/LEGENDA-OGGETTI-MAPPA.md`. Nessun nuovo job fisico/caso modificato; nuove prove fisiche,p95,Safari/telefono NOT RUN, fullM5–M7 BLOCKED invariati. ReviewerCodexself-check.
+
+## Confronto MyDewetra / paper CAiSE2025 — 2026-10-21
+
+Revisione `mydewetra-review-20261021`: MD-01…03 PASS documentale/statico/analitico, non esperimento. PDF16p integrale e figure/tabelle, artifactGSSI `7d69bed`, sorgentiCIMA `4c20f78` e archivi backendv2/v3 verificati. Sovrapposizione forte su monitoraggio multi-hazard/fonti/mappe/soglie; nessuna novità da rivendicare su queste sole funzioni. Possibile riuso di catalogo/layer temporali, eventi soglia, classi QPF/zone e metodologia utenti, da qualificare. ModuloQPFv3 successivo al paper, classi meteorologiche non allerte idrauliche: nessuna soglia trasferita. MD-04 FAIL iniziale TLS CA Python, recupero curl con TLS verificato; MD-05 replica completa BLOCKED da stack/dipendenze/dati non ottenuti (due librerieGit404 anonimo), MD-06 esecuzioni/benchmark NOT RUN. Rapporto `reports/CONFRONTO-MYDEWETRA-CAISE2025.md`, metadati/hash `reports/mydewetra-review/audit.json`. Contributi decisionali distinti solo nei limiti descritti, non prova di assenza nel prodotto MyDewetra né originalità globale. Nessuna modifica runtime/manoscritto, installazione, invio ai coautori o push; RQ1–RQ3/pianoM0–M7/gate scientifici invariati. Prossimo incremento suggerito, non avviato: semantica zonale/finestre e verifica artefatti completi prima di riuso o confronto prestazionale. ReviewerCodexself-check.
+
+
+## Baseline funzionale MyDewetra + capacità HAZARDIA — 2026-10-21
+
+Decisione utente recepita in FR-EWS-BASELINE-01. Questa è una ricognizione
+di copertura basata sulle evidenze esistenti, non una nuova campagna di test.
+Reviewer: Codex self-check. Riferimenti: reports/CONFRONTO-MYDEWETRA-CAISE2025.md
+e reports/mydewetra-review/audit.json; base f7da679+documentazione dirty.
+
+| ID | Capacità da coprire integralmente | Esito di completamento corrente / evidenza e lacuna |
+|---|---|---|
+| MB-01 | Osservazioni da stazioni/radar/satellite e previsioni, con qualità/provenienza | BLOCKED per copertura completa: sorgenti meteo/EFFIS/DPC/territorio esistenti; rete osservativa/radar e relativi accessi/diritti ancora da qualificare; report confronto. |
+| MB-02 | Mappe temporali, catalogo livelli, serie puntuali/areali e archivio storico interrogabile | NOT RUN verifica di equivalenza complessiva: mappe/timeline/cache presenti, non dimostrano archivio funzionale equivalente; report confronto. |
+| MB-03 | Cumulate e superamenti di soglia per stazioni/zone, criticità motivate | BLOCKED per soglie locali/qualità: cumulate previste e allerte DPC distinte già verificate in reports/PIOGGIA-ZONE-E-ALLERTE.md; non equivalenza con monitoraggio pluviometrico osservato. |
+| MB-04 | Supporto umano a creazione/revisione/esportazione di bollettini e report | NOT RUN flusso completo equivalente; nessuna autorità di emissione ufficiale derivata dal software. |
+| MB-05 | Ruoli, autorizzazioni applicative, storia degli aggiornamenti e metriche operative | NOT RUN equivalenza multiutente/end-to-end; checker e manifest esistenti non attestano parità del portale industriale. |
+| MB-06 | Simulazioni fisiche interattive con meteo, squadre e confronto su input coerenti | BLOCKED completamento qualificato: prove native PASS nei limiti dei report DOMINI-DINAMICI-E-FORZANTI.md e CONFRONTO-FISICO-PIANO-OTTIMIZZATO.md; effetti/logistica e skill non qualificati. |
+| MB-07 | Ottimizzazione robusta, priorità, rolling horizon, deadline e graceful degradation | BLOCKED gate completi M5–M7; controlli/bank sintetici in CAISE-BASELINES-E-ARCHITETTURA.md non equivalgono a validazione operativa. |
+| MB-08 | Parità delle ulteriori funzioni MyDewetra non descritte nelle fonti lette | NOT RUN inventario completo: identificare versione, moduli e workflow prima di assegnare criteri di equivalenza. |
+
+PASS documentale: requisito additivo e lacune esplicite registrati; non PASS
+delle capacità elencate. Nessun test runtime nuovo o chiusura di gate.
+
+
+## Monitoraggio: andamento orario per zona — 2026-10-21
+
+Run `monitor-zone-series-20261021`, baseline f7da679+documentazione dirty.
+PASS MS-01: serie48ore di precipitazione media da medesimo campo congelato e
+quadratura delle cumulate;23testVM,1496controlli su187zone/83complete nello
+snapshot del pilot, finestre precedenti identiche e shift1h coerente.
+PASS MS-02:14controlliNode+18regressioni meteo;UI contro VM con48barre e tabella,
+selezione per ID, zona evidenziata, configurazione richiudibile, mancanti48/48
+in zona non qualificata. PASS MS-03: richiesta opzionale field_id, lettura
+archivio con integrità/TTL/identità e verifica risposta, senza usare l’ultimo
+campo di un’altra scheda. PASS MS-04:145pinmotori,90job e2stati workspace/casi
+protetti invariati;backend707049,nessuna installazione o nuova simulazione.
+FAIL intermedi di harness/fixture e limite immagini regionali conservati;
+avviso sfondo incompleto visibile,OpenStreetMap verificato,limiti invariati.
+NOT RUN radar/pluviometri nuovi,p95>=30,Safari/devicefisici e nuove prove
+scientifiche. FullMB-01…08/M5–M7 BLOCKED/NOT RUN invariati: non parità
+completa MyDewetra né allerta idraulica qualificata. Report
+`reports/MONITORAGGIO-SERIE-ORARIE-ZONE.md`,sommario
+`reports/monitor-zone-series/verification.json`,raw
+`experiments/runs/monitor-zone-series-20261021` e directoryVMomonima.
+ReviewerCodexself-check. Prossimo: fonti osservative e qualificazione locale
+di soglie/qualità, con disponibilità e diritti espliciti.

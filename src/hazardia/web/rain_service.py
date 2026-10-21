@@ -14,13 +14,22 @@ class RainService:
         if len(raw)>8*1024**2 or hashlib.sha256(raw).hexdigest()!=digest:raise HazardError('CACHE_CORRUPT','Rain geometry checksum differs')
         data=json.loads(raw);self.geometry_cache=(digest,data);return data
     def submit(self, body):
-        if set(body)!={'at'} or not isinstance(body['at'],str):
-            raise HazardError('INVALID_INPUT','Only a whole UTC forecast hour is accepted')
+        if set(body) not in ({'at'},{'at','field_id'}) or not isinstance(body.get('at'),str):
+            raise HazardError('INVALID_INPUT','A whole UTC hour and optional frozen field ID are accepted')
         t=timestamp(body['at'])
         if t.minute or t.second or t.microsecond: raise HazardError('INVALID_INPUT','Whole UTC forecast hour required')
         at=t.isoformat().replace('+00:00','Z')
-        weather=self.app.map_weather.snapshot(); field=weather.get('forecast')
-        if not field or weather['status']!='FRESH': raise HazardError('STALE_FORECAST','Previsione pioggia assente o scaduta: valutazione sospesa')
+        if 'field_id' in body:
+            field_id=body['field_id']
+            if not isinstance(field_id,str) or not re.fullmatch('map-weather-[a-f0-9]{24}',field_id):raise HazardError('INVALID_INPUT','Invalid frozen weather field ID')
+            try:field=self.app.map_weather.read(field_id+'.json')
+            except FileNotFoundError:raise HazardError('SOURCE_MISSING','Campo meteo richiesto non disponibile')
+            if field.get('id')!=field_id:raise HazardError('CACHE_CORRUPT','Frozen weather identity differs')
+            age=time.time()-timestamp(field['available_at']).timestamp()
+            fresh=0<=age<10800
+        else:
+            weather=self.app.map_weather.snapshot(); field=weather.get('forecast');fresh=weather['status']=='FRESH'
+        if not field or not fresh: raise HazardError('STALE_FORECAST','Previsione pioggia assente o scaduta: valutazione sospesa')
         if at not in {r['at'] for r in field['records']}: raise HazardError('SOURCE_MISSING','Ora non coperta dalla previsione')
         attention=self.app.attention.snapshot(); products=attention.get('sources',{}).get('dpc',{}).get('products',[])
         if not products: raise HazardError('SOURCE_MISSING','Geometrie ufficiali delle zone non disponibili')
@@ -45,7 +54,7 @@ class RainService:
         # Warning text and municipalities already reside in the shared frozen geometry.
         if official['status']=='AVAILABLE':
             official['zones']={key:{k:v for k,v in value.items() if k in ['level','levels','reasons']} for key,value in official['zones'].items()}
-        key='rain-'+hashlib.sha256(json.dumps(['rain/5',field['id'],geometry_sha,at,official],sort_keys=True).encode()).hexdigest()[:24]
+        key='rain-'+hashlib.sha256(json.dumps(['rain/6',field['id'],geometry_sha,at,official],sort_keys=True).encode()).hexdigest()[:24]
         dest=self.root/key
         with self.lock:
             if (dest/'receipt.json').exists(): return dict(id=key,status='SUCCEEDED')

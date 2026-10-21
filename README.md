@@ -134,3 +134,14 @@ Il [confronto fisico del piano ottimizzato](reports/CONFRONTO-FISICO-PIANO-OTTIM
 ## Pioggia e allerte nel Monitoraggio
 
 Premi **Pioggia e allerte** sulla mappa: scegli accumuli1/3/6/12/24/48ore e una zona. La barra temporale meteo governa anche questa vista. Riempimento blu/viola: quantità prevista; bordi gialli/arancioni/rossi: bollettino ufficiale DPC valido all’ora iniziale. Copertura incompleta, geometrie invalide e intervalli mancanti sono dichiarati. Il rischio idraulico autonomo HAZARDIA resta non valutabile senza soglie/impatti qualificati. Metodo, comandi ed evidenze: [report](reports/PIOGGIA-ZONE-E-ALLERTE.md).
+
+## Pioggia prevista: andamento per zona
+
+In **Monitoraggio → Pioggia e allerte**, seleziona una zona o cliccala sulla
+mappa: trovi il grafico delle prossime48ore, il massimo orario medio e una
+tabella accessibile dei valori. **Accumuli, legenda e copertura** riapre le
+impostazioni. Il tratteggio indica dati mancanti, non assenza di pioggia.
+Il campo meteo usato è identificato e congelato per la richiesta; le allerte
+DPC restano distinte dalla quantità prevista. Se lo sfondo online non è
+disponibile, un avviso suggerisce un altro sfondo dal selettore.
+[Verifiche e limiti](reports/MONITORAGGIO-SERIE-ORARIE-ZONE.md).

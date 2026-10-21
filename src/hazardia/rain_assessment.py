@@ -75,6 +75,12 @@ def assess(field, zones, at, sampling=None):
                         sampled_min_mm=round(min(v for v,w in values),3),sampled_max_mm=round(max(v for v,w in values),3))
         for hours in WINDOWS:
             p['windows'][str(hours)] = summary(hourly[:hours])
+        # Same frozen field and spatial quadrature as the window summaries.
+        # Keep missing hours separate: a missing observation is never dry weather.
+        p['hourly_forecast'] = [dict(
+            at=(start + dt.timedelta(hours=h)).isoformat().replace('+00:00', 'Z'),
+            until=(start + dt.timedelta(hours=h+1)).isoformat().replace('+00:00', 'Z'),
+            **summary([row])) for h, row in enumerate(hourly)]
         p['previous_24h_forecast'] = summary(past)
         # Previous values are forecasts from this same archive, never observed soil wetness.
         features.append(dict(type='Feature', geometry=feature['geometry'], properties=p))

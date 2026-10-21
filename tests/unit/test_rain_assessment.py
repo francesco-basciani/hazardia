@@ -14,6 +14,21 @@ class RainTests(unittest.TestCase):
   self.assertEqual([p['windows'][str(h)]['mean_mm'] for h in (1,3,6,12,24,48)],[2,6,12,24,48,96]);self.assertEqual(p['previous_24h_forecast']['mean_mm'],48);self.assertEqual(p['risk_status'],'NOT_EVALUABLE')
  def test_reused_spatial_plan_preserves_all_values(self):
   f,z=self.fixture();a=assess(f,z,'2026-10-21T00:00:00Z');b=assess(f,z,'2026-10-21T00:00:00Z',json.loads(json.dumps(a['sampling_plan'])));self.assertEqual(a['features'],b['features'])
+ def test_hourly_series_tracks_variable_rain_not_probability(self):
+  f,z=self.fixture()
+  for i,r in enumerate(f['records']):r['precipitation']=[float(i)]*81
+  p=assess(f,z,'2026-10-21T00:00:00Z')['features'][0]['properties'];s=p['hourly_forecast']
+  self.assertEqual(len(s),48);self.assertEqual([r['mean_mm'] for r in s],list(range(48)))
+  self.assertEqual(s[0]['until'],s[1]['at']);self.assertEqual(s[-1]['until'],'2026-10-23T00:00:00Z')
+  for h in (1,3,6,12,24,48):self.assertAlmostEqual(sum(r['mean_mm'] for r in s[:h]),p['windows'][str(h)]['mean_mm'])
+ def test_hourly_gap_is_unknown_and_later_hours_survive(self):
+  f,z=self.fixture();f['records'].pop(3);s=assess(f,z,'2026-10-21T00:00:00Z')['features'][0]['properties']['hourly_forecast']
+  self.assertEqual(s[3]['status'],'UNAVAILABLE');self.assertNotIn('mean_mm',s[3]);self.assertEqual(s[4]['mean_mm'],2.)
+ def test_hourly_partial_and_end_of_forecast_remain_unknown(self):
+  f,z=self.fixture();s=assess(f,z,'2026-10-23T23:00:00Z')['features'][0]['properties']['hourly_forecast']
+  self.assertEqual(s[0]['mean_mm'],2.);self.assertTrue(all(r['status']=='UNAVAILABLE' for r in s[1:]))
+  z['features'][0]['properties']['source_geometry_valid']=False
+  self.assertTrue(all(r['status']=='UNAVAILABLE' for r in assess(f,z,'2026-10-21T00:00:00Z')['features'][0]['properties']['hourly_forecast']))
  def test_missing_hour_never_zero_and_short_window_survives(self):
   f,z=self.fixture();f['records'].pop(3);p=assess(f,z,'2026-10-21T00:00:00Z')['features'][0]['properties'];self.assertEqual(p['windows']['3']['mean_mm'],6);self.assertEqual(p['windows']['6']['status'],'UNAVAILABLE');self.assertNotIn('mean_mm',p['windows']['6']);self.assertEqual(p['previous_24h_forecast']['status'],'UNAVAILABLE')
  def test_partial_zone_not_extrapolated(self):

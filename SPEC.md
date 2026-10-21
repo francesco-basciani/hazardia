@@ -460,3 +460,31 @@ Nel Monitoraggio privilegiare una vista meteo interpretabile: modalità Pioggia 
 ### FR-MONITOR-FUSION-01 — accumuli per zona e validità distinta, 2026-10-21
 
 La vista Pioggia e allerte associa accumuli previsionali completi1/3/6/12/24/48h alle geometrie ufficiali, all’ora scelta dalla barra meteo. Classi cartografiche quantitative, bollettino ufficiale e rischio idraulico autonomo restano tre significati distinti. Quantità basse del modello non annullano un bollettino; confini datati non prolungano la sua validità. Copertura parziale, geometria invalida e ore mancanti non diventano zero/basso rischio. Estremi dei campioni non sono massimi locali garantiti; precipitazione totale può includere neve equivalente. La nuova consultazione non chiude i requisiti di soglie/antecedenti/impatti qualificati di FR-MONITOR-FUSION-01. Report: reports/PIOGGIA-ZONE-E-ALLERTE.md.
+
+## FR-EWS-BASELINE-01 — MyDewetra come baseline funzionale, 2026-10-21
+
+Decisione esplicita dell’utente: HAZARDIA deve coprire le capacità funzionali di
+MyDewetra documentate nella revisione `mydewetra-review-20261021`, oltre a tutte
+le capacità HAZARDIA già richieste. Il Monitoraggio è un obiettivo di prodotto
+a pieno titolo; la distinzione scientifica del decision engine non ne riduce
+lo scope. La baseline comprende acquisizione di osservazioni/previsioni e
+fonti territoriali, mappe/livelli temporali e serie storiche, soglie e criticità
+spiegabili, supporto umano a bollettini/report e autorizzazioni/tracciabilità.
+Funzioni non documentate del prodotto MyDewetra richiedono ricognizione prima
+di dichiarare equivalenza; l’assenza dal paper non ne dimostra l’assenza.
+
+Restano additive simulazioni fisiche su territorio e meteo reali, inneschi e
+risorse configurabili, confronto degli interventi, ottimizzazione robusta con
+priorità, rolling horizon, deadline verificata e graceful degradation. Restano
+vincolanti piattaforma generica, primi moduli incendi/alluvioni, portabilità
+geografica, UI responsive con mappa centrale, runtime nella stessa VM e fonti
+gratuite. Non implica clonare lo stack cloud o aggiungere ora altri hazard.
+Il requisito di prodotto non attribuisce autorità per emettere allerte ufficiali,
+non qualifica automaticamente soglie/effetti e non autorizza spese, accessi
+ristretti, installazioni privilegiate o cambiamenti architetturali sostanziali.
+
+La matrice di copertura è registrata in CHECKLIST.md, ID MB-01…MB-08.
+Le priorità precedenti delle singole funzioni, incluso FR-23, non vengono
+silenziosamente riclassificate: la baseline è un obiettivo complessivo, la
+sequenza incrementale resta nel piano M0–M7. Nessuna equivalenza completata
+può essere dichiarata senza verifiche eseguibili per ciascuna capacità.

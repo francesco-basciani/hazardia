@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "protected_states": 2,
+  "native_jobs": 90,
+  "engine_pin_count": 145,
+  "source_hashes": {
+    "src/hazardia/rain_assessment.py": "d1fbb0e44140bf5f78f2886c2b53e7a9c5740b50431199124fbe5aedf2eab5de",
+    "src/hazardia/web/rain_service.py": "61a4c56d38892f98a0d15e04984b288d8635bf71db08f13db508365a8645cf06",
+    "src/hazardia/web/static/rain-zones.js": "36b2511648e91f4ed9436148e8f574f8ff743d7ed059cc65ae4a36fdc0dae683",
+    "src/hazardia/web/static/rain-zones.css": "0cce2b0f4e57a842a5ac4c0f9d5c8cc0fe38bbc6229f6d2f4ee955f585d6a3ea",
+    "src/hazardia/web/static/rain-series.js": "faf530a66672504218173071e07d20f47f49c3ee41a1f08c25ff383a73ea0f26",
+    "src/hazardia/web/static/monitoring.js": "aeb17e27253b0bd499a68f2dfd1d0716854bfb9c29ba59be03f99b59b32864cd",
+    "tests/unit/test_rain_assessment.py": "5a7af49fcd7b7e138f987090f2f6bbf0a3d5f3bb893394dfd1397ce849e682b4",
+    "tests/unit/test_rain_service.py": "850e07c2d564a47b64ee1679dfcdc2740980fec96082f98645a5b69a80ee0682",
+    "tests/browser/rain-series.mjs": "74de4fc1e93420c6a1749f54e6de8d75b0d144375f0f9fb439f24b4e18d8f063"
+  },
+  "rain_archive_bytes": 40061247,
+  "run_id": "monitor-zone-series-20261021",
+  "base": "f7da679f5d39193f77eb619468f1e67fb51ab655",
+  "reviewer": "Codex self-check",
+  "unit_tests": 23,
+  "node_checks": 14,
+  "rain_display_regressions": 18,
+  "real_frozen_field": "map-weather-5c7b71c5afc7a8793df80b46",
+  "frozen_hour": "2026-10-21T13:00:00Z",
+  "zones": 187,
+  "complete_zones_in_pilot": 83,
+  "array_checks": 1496,
+  "existing_windows_identical": true,
+  "one_hour_shift_consistent": true,
+  "single_worker_seconds": 1.7176945659448393,
+  "ui": {
+    "bars": 48,
+    "chartLabel": "48/48 ore coperte. Massimo orario medio 0,06 mm, il 22/10, 17:00 Roma. I valori sono nella tabella oraria.",
+    "chartWidth": 330,
+    "missing": 0,
+    "panelWidth": 358,
+    "selected": "1",
+    "tableRows": 48
+  },
+  "missing_ui": {
+    "label": "Nessuna ora coperta integralmente. I valori sono nella tabella oraria.",
+    "missing": 48,
+    "total": 48
+  },
+  "not_run": [
+    "native fire/flood rerun",
+    "p95>=30",
+    "Safari/physical mobile devices",
+    "new radar or gauge connector",
+    "local alert threshold qualification"
+  ],
+  "negative": [
+    "Host Node16 treats .js as CommonJS: test harness changed to data-URI import",
+    "First explicit-field test used noncanonical +00:00 fixture timestamp: rejected correctly, fixture fixed to Z",
+    "UI changed label between requests: choose stable zone ID",
+    "Regional image consultation DOWNLOAD_LIMIT: cap unchanged; OSM manually verified; visible background warning added"
+  ]
+}

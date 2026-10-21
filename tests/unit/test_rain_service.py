@@ -6,7 +6,7 @@ from hazardia.web.rain_service import RainService
 from hazardia.io import HazardError
 class RainServiceTests(unittest.TestCase):
  def fixture(self,root):
-  field=dict(id='wx',lats=list(range(9)),lons=list(range(9)),available_at=dt.datetime.now(dt.timezone.utc).isoformat(),records=[dict(at='2026-10-21T10:00:00Z')])
+  field=dict(id='wx',lats=list(range(9)),lons=list(range(9)),available_at=dt.datetime.now(dt.timezone.utc).isoformat().replace('+00:00','Z'),records=[dict(at='2026-10-21T10:00:00Z')])
   weather=SimpleNamespace(snapshot=lambda:dict(status='FRESH',forecast=field))
   sources={'dpc':dict(issued_at='2026-10-20T13:00:00Z',source_url='https://example.org',products=[dict(day='2026-10-21',freshness='FRESH',valid_until='2026-10-21T22:00:00Z',url='/dpc-2026-10-21.geojson')])}
   snapshot=dict(id='snapshot-test',sources=sources)
@@ -43,3 +43,20 @@ class RainServiceTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as root:
    service,app,s=self.fixture(root);key='rain-'+'a'*24;dest=service.root/key;dest.mkdir();(dest/'result.json.gz').write_bytes(gzip.compress(b'{}'));(dest/'receipt.json').write_text(json.dumps(dict(raw_sha256={'result.json':'a'*64})))
    with self.assertRaises(HazardError):service.read(key)
+ def test_explicit_field_does_not_read_other_tabs_latest(self):
+  with tempfile.TemporaryDirectory() as root:
+   service,app,s=self.fixture(root);field=app.map_weather.snapshot()['forecast'];field['id']='map-weather-'+'a'*24
+   app.map_weather.read=Mock(return_value=field);app.map_weather.snapshot=Mock(side_effect=AssertionError('Latest field belongs to another tab'))
+   result=service.submit(dict(at='2026-10-21T10:00:00Z',field_id=field['id']))
+   app.map_weather.read.assert_called_once_with(field['id']+'.json');app.map_weather.snapshot.assert_not_called()
+   request=json.loads((service.root/result['id']/'request.json').read_text());self.assertEqual(request['field']['id'],field['id'])
+ def test_explicit_field_stale_missing_bad_identity_rejected(self):
+  for mode in ['stale','future','missing','identity','path']:
+   with tempfile.TemporaryDirectory() as root:
+    service,app,s=self.fixture(root);field=app.map_weather.snapshot()['forecast'];ident='map-weather-'+'a'*24;field['id']=ident
+    app.map_weather.read=Mock(return_value=field)
+    if mode=='stale':field['available_at']='2000-01-01T00:00:00Z'
+    if mode=='future':field['available_at']='2100-01-01T00:00:00Z'
+    if mode=='missing':app.map_weather.read.side_effect=FileNotFoundError()
+    if mode=='identity':field['id']='map-weather-'+'b'*24
+    with self.assertRaises(HazardError):service.submit(dict(at='2026-10-21T10:00:00Z',field_id='../x' if mode=='path' else ident))

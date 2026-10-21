@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const {seriesModel,seriesMarkup}=await import('data:text/javascript;base64,'+Buffer.from(readFileSync(new URL('../../src/hazardia/web/static/rain-series.js',import.meta.url),'utf8')).toString('base64'));
+const row=(status,mean_mm,at='2026-10-21T10:00:00Z')=>({status,mean_mm,at,until:'2026-10-21T11:00:00Z'});
+const a=seriesModel([row('AVAILABLE',0),row('UNAVAILABLE',100),row('AVAILABLE',2),row('AVAILABLE',NaN),row('AVAILABLE',-1)]);
+assert.equal(a.available,2);assert.equal(a.peak.mean_mm,2);assert.equal(a.points[0].known,true);assert.equal(a.points[1].known,false);assert.equal(a.points[3].known,false);assert.equal(a.points[4].known,false);
+assert.equal(seriesModel(Array(72).fill(row('AVAILABLE',1))).points.length,48);
+assert.equal(seriesModel([row('UNAVAILABLE',null)]).peak,null);
+assert.equal(seriesModel([row('AVAILABLE',0)]).scale,1);
+assert.match(seriesMarkup([row('UNAVAILABLE',null)]),/dato mancante/);
+assert.match(seriesMarkup([row('AVAILABLE',0)]),/0 mm medi/);
+assert.match(seriesMarkup([]),/non disponibile/);
+assert.match(seriesMarkup([row('AVAILABLE',2)]),/previsione, non misura/);
+assert.doesNotMatch(seriesMarkup([row('UNAVAILABLE',null,'<script>')]),/<script>/);
+console.log('PASS 14 rain-series checks');
