@@ -1,3 +1,4 @@
+import {rainZones} from '/rain-zones.js?v=1';
 import {territorialLayers} from '/territorial-layers.js';
 import {territorialAttention} from '/attention.js?v=1';
 import {resilientTiles} from '/tile-retry.js?v=1';
@@ -26,6 +27,7 @@ export function monitoringMap(initial,feedback){
  regionBoundaries(map);
  const wind=regionalWind(map);
  const attention=territorialAttention(map);
+ const rain=rainZones(map);
  const references=eventMarkers(map);
  const weatherLayer=L.layerGroup().addTo(map);
  const labels=L.layerGroup().addTo(map),roads=L.layerGroup().addTo(map),point=L.layerGroup().addTo(map),products={FIRE:L.layerGroup().addTo(map),FLOOD:L.layerGroup().addTo(map)};
@@ -86,5 +88,5 @@ export function monitoringMap(initial,feedback){
  fetch('/assets/map-context.json').then(r=>{if(!r.ok)throw Error();return r.json()}).then(v=>{context=v.features;const places=[...new Set(context.filter(f=>f.kind==='place').map(f=>f.name))];$('monitor-places').innerHTML=places.map(n=>'<option value="'+escape(n)+'"></option>').join('');renderLabels();}).catch(()=>{$('monitor-search-status').textContent='Nomi geografici non disponibili. Ricerca per coordinate attiva.';});
  $('monitor-simulated').addEventListener('change',draw);
  update(initial);
- return {update,weather,visible(on){visible=on;attention.visible(on);wind.visible(on);if(!on){ortho.remove();regional.remove();osm.remove();}else if($('monitor-basemap').value==='osm')osm.addTo(map);else if($('monitor-basemap').value==='ortho'){ortho.addTo(map);regional.addTo(map);}requestAnimationFrame(()=>{map.invalidateSize({pan:false});if(on)renderLabels();});}};
+ return {update,weather,visible(on){visible=on;attention.visible(on);rain.visible(on);wind.visible(on);if(!on){ortho.remove();regional.remove();osm.remove();}else if($('monitor-basemap').value==='osm')osm.addTo(map);else if($('monitor-basemap').value==='ortho'){ortho.addTo(map);regional.addTo(map);}requestAnimationFrame(()=>{map.invalidateSize({pan:false});if(on)renderLabels();});}};
 }

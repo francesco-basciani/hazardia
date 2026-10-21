@@ -1151,3 +1151,7 @@ Base6cb05dd+dirty, SHAfinaleGit/PUBLICATION.json; reviewerCodexself-check.
 | FullgateM5–M7 | BLOCKED invariati | piano originale |
 
 Base7754c5b+dirty,SHAfinaleGit/PUBLICATION.json;reviewerCodexself-check.
+
+## Monitoraggio pioggia per zona — 2026-10-21
+
+Run `rain-zones-20261021`: PASS tecnico per accumuli1/3/6/12/24/48h su geometrie DPC, bollettino ufficiale distinto e limitato alla propria validità, missing/invalid/stale espliciti;25testVM e due esecuzioni con fonti reali.187zone del prodotto,44integralmente coperte nel campo del pilot. Cache ufficiale piena recuperata con compressione lossless e106hash invariati. Piano spaziale e geometrie condivise per evitare duplicazioni a ogni ora. Nessun nuovo job fisico o modifica ai casi. BLOCKED: classificazione idraulica autonoma/soglie e impatti qualificati; p95≥30run/Safari/smartphone NOT RUN, fullM5–M7 invariati. Report e limiti: `reports/PIOGGIA-ZONE-E-ALLERTE.md`; reviewerCodexself-check. Prossimo incremento: soglie locali correnti e stato antecedente qualificati, poi validazione indipendente.

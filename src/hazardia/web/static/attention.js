@@ -9,8 +9,8 @@ export function territorialAttention(map){
  const control=L.control({position:'topright'});control.onAdd=()=>panel;control.addTo(map);L.DomEvent.disableClickPropagation(panel);L.DomEvent.disableScrollPropagation(panel);
  const close=document.createElement('button');close.type='button';close.className='small-button attention-close';close.textContent='Chiudi';close.setAttribute('aria-label','Chiudi attenzione territoriale');panel.prepend(close);
  function open(on){panel.hidden=!on;toggle.setAttribute('aria-expanded',String(on));}
- toggle.onclick=()=>open(panel.hidden);close.onclick=()=>{open(false);toggle.focus();};document.querySelector('.monitor-map-toolbar').append(toggle);
- let snapshot=null,selected=null,generation=0,visible=true,loaded={},pending={},poll,renderedKey='',weather=null,forecastDay=null,forecastAt=null;
+ toggle.onclick=()=>{if(panel.hidden)map.fire('rainzonesclose');open(panel.hidden);};close.onclick=()=>{open(false);toggle.focus();};document.querySelector('.monitor-map-toolbar').append(toggle);
+ let snapshot=null,selected=null,generation=0,visible=true,loaded={},pending={},poll,renderedKey='',weather=null,forecastDay=null,forecastAt=null,rainMode=false;
  const layers={effis:L.layerGroup().addTo(map),dpc:L.layerGroup().addTo(map)};
  map.attributionControl.addAttribution('© European Union · EFFIS/Copernicus EMS · DPC · CC BY4.0');
  function fresh(p){return p.freshness==='FRESH'&&Date.now()<Date.parse(p.valid_until)&&Date.now()-Date.parse(snapshot.acquired_at)<snapshot.refresh_s*1000;}
@@ -49,11 +49,12 @@ export function territorialAttention(map){
   html+='<p class="attention-warning">Valutazione d’impatto locale non disponibile: mancano suolo e vulnerabilità qualificati, radar/idrometri e osservazioni satellitari live.</p><a href="'+esc(source.source_url)+'" target="_blank" rel="noreferrer">Fonte e metodologia ↗</a>';
   $('attention-inspector').innerHTML=html;$('attention-detail').open=true;
  }
+ map.on('rainzonesmode',e=>{rainMode=e.enabled;if(rainMode)open(false);draw();});
  function draw(){
   generation++;const current=generation;for(const l of Object.values(layers))l.clearLayers();
   const kind=$('attention-fire-field').value,showLow=$('attention-low').checked;
   for(const key of ['effis','dpc']){
-   const p=product(key);if(!visible||!p||!$('attention-enabled').checked||!$(key==='effis'?'monitor-fire':'monitor-flood').checked||!loaded[p.url])continue;
+   const p=product(key);if(rainMode||!visible||!p||!$('attention-enabled').checked||!$(key==='effis'?'monitor-fire':'monitor-flood').checked||!loaded[p.url])continue;
    const stale=!fresh(p),geo=loaded[p.url];
    L.geoJSON(geo,{pane:key==='effis'?'attentionFire':'attentionFlood',filter:f=>{if(key==='dpc')return true;const level=f.properties[kind==='dc'?'dc_level':'level'];return L.geoJSON(f).getBounds().intersects(map.getBounds().pad(.15))&&(showLow||level===null||level>=1);},style:f=>{const level=f.properties[key==='effis'&&kind==='dc'?'dc_level':'level'],unknown=level===null;return {color:stale||unknown?'#6c7d8b':key==='effis'?fireColors[level]:floodColors[level],weight:1.3,opacity:.8,fillColor:stale||unknown?'#83909b':key==='effis'?fireColors[level]:floodColors[level],fillOpacity:key==='effis'?.32:level===0?.025:.28,dashArray:stale||unknown?'4 4':undefined};},onEachFeature:(f,l)=>{const p=f.properties,level=p[key==='effis'&&kind==='dc'?'dc_level':'level'];l.bindTooltip(esc(key==='effis'?(p.name?p.name+' · ':'')+(kind==='dc'?'Secchezza DC':'Pericolosità FWI')+' · '+(level===null?'Dati mancanti':labels[level]):p.name+' · '+(level===null?'Non classificata':['Nessuna allerta nel bollettino','Gialla','Arancione','Rossa'][level])));l.on('click',e=>select(f,key,e.latlng));}}).addTo(layers[key]);
   }

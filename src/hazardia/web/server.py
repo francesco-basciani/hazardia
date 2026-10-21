@@ -8,6 +8,7 @@ from hazardia.jobs import JobStore
 from hazardia.web.osm_tiles import OSMTiles
 from hazardia.web.maps import Orthophotos,RegionalSatellite
 from hazardia.web.territorial_service import TerritorialService
+from hazardia.web.rain_service import RainService
 from hazardia.web.notebook import Notebook
 from hazardia.web.fire_workspace import FireWorkspace
 from hazardia.web.fire_cases import FireCases
@@ -27,6 +28,7 @@ from hazardia.firelab import stage as stage_firelab,validate as validate_firelab
 class App:
     def __init__(self,root):
         self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.osm_tiles=OSMTiles(self.state);self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.fire_cases=FireCases(self.root);self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock();from hazardia.web.dynamic_fire import DynamicFire;self.dynamic_fire=DynamicFire(self);self.territorial=TerritorialService(self)
+        self.rain=RainService(self)
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
     def models(self):
@@ -203,6 +205,7 @@ class Handler(BaseHTTPRequestHandler):
                 if path=='/api/monitoring/refresh':
                     if body:raise HazardError('INVALID_INPUT','Configured monitoring profile only')
                     return self.send(202,app.attention.refresh())
+                if path=='/api/monitoring/rain':return self.send(202,app.rain.submit(body))
                 if path=='/api/weather/map/refresh':
                     if set(body)!={'bounds'}:raise HazardError('INVALID_INPUT','Only viewport bounds allowed')
                     return self.send(202,app.refresh_map_weather(body['bounds']))
@@ -259,6 +262,7 @@ class Handler(BaseHTTPRequestHandler):
             tile=re.fullmatch(r'/api/maps/ortho/(\d{1,2})/(\d{1,6})/(\d{1,6})',path)
             if tile:return self.send(200,app.orthophotos.tile(*map(int,tile.groups())),'image/jpeg')
             if path=='/api/monitoring':return self.send(200,app.attention.snapshot())
+            if path.startswith('/api/monitoring/rain/'):return self.send(200,app.rain.read(path.split('/')[-1]))
             attention_layer=re.fullmatch(r'/api/monitoring/layers/(snapshot-[a-f0-9]{32})/((?:dpc|effis)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.geojson)',path)
             if attention_layer:return self.send(200,app.attention.layer(*attention_layer.groups()))
             if path=='/api/weather/map':return self.send(200,app.map_weather.snapshot())

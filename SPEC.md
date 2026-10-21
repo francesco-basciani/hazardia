@@ -455,3 +455,8 @@ Su richiesta utente rimuovere la sezione «Ambiente di ricerca» sopra la mappa,
 
 ### FR-WX-VIEW-01 — leggibilità della precipitazione (2026-10-21)
 Nel Monitoraggio privilegiare una vista meteo interpretabile: modalità Pioggia con quantità e scala inmm per la finestra oraria dichiarata, legenda sempre raggiungibile sulla mappa e opzioni separate per nuvole,vento,temperatura,umidità e probabilità. Evitare la fusione automatica dei colori di nuvole/pioggia e la sovrapposizione predefinita di tutti i valori. Una copertura meteo incompleta non deve sembrare il confine di una perturbazione: nascondere la grafica incompleta della vista e dichiarare il caricamento/missing, senza estrapolare o suggerire assenza di pioggia. Le previsioni di precipitazione non sono osservazioni radar. Questo chiarimento supera i default grafici precedenti, preservando livelli selezionabili e forzanti scientifiche.
+
+
+### FR-MONITOR-FUSION-01 — accumuli per zona e validità distinta, 2026-10-21
+
+La vista Pioggia e allerte associa accumuli previsionali completi1/3/6/12/24/48h alle geometrie ufficiali, all’ora scelta dalla barra meteo. Classi cartografiche quantitative, bollettino ufficiale e rischio idraulico autonomo restano tre significati distinti. Quantità basse del modello non annullano un bollettino; confini datati non prolungano la sua validità. Copertura parziale, geometria invalida e ore mancanti non diventano zero/basso rischio. Estremi dei campioni non sono massimi locali garantiti; precipitazione totale può includere neve equivalente. La nuova consultazione non chiude i requisiti di soglie/antecedenti/impatti qualificati di FR-MONITOR-FUSION-01. Report: reports/PIOGGIA-ZONE-E-ALLERTE.md.

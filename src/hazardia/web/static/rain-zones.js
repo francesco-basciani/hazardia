@@ -1,0 +1,54 @@
+/* Rain quantities and official warnings: no invented rainfall-to-flood alert. */
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=v=>Number(v).toLocaleString('it-IT',{maximumFractionDigits:1});
+const date=v=>new Date(v).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+export function rainBand(mm){return mm<1?0:mm<10?1:mm<30?2:mm<60?3:4;}
+const colors=['#dceaf3','#acd7ee','#68b3dc','#367faf','#614b99'],warnings=['Nessuna allerta nel bollettino','Allerta gialla','Allerta arancione','Allerta rossa'];
+export function rainZones(map){
+ let visible=true,enabled=false,result=null,hour=null,hours=24,generation=0,timer,busy=false,selected=null;
+ map.createPane('rainZones');map.getPane('rainZones').style.zIndex=395;
+ const layer=L.layerGroup().addTo(map),button=document.createElement('button');button.type='button';button.className='small-button';button.textContent='Pioggia e allerte';button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls','rain-zones-panel');document.querySelector('.monitor-map-toolbar').append(button);
+ const panel=document.createElement('section');panel.id='rain-zones-panel';panel.className='rain-zones-panel';panel.hidden=true;
+ panel.innerHTML='<div class="rain-zone-heading"><strong>Pioggia e allerte</strong><button type="button" aria-label="Chiudi pioggia e allerte">Chiudi</button></div><label>Accumulo previsto<select aria-label="Intervallo accumulo pioggia">'+[1,3,6,12,24,48].map(n=>'<option value="'+n+'"'+(n===24?' selected':'')+'>Prossime '+n+' ore</option>').join('')+'</select></label><p class="rain-zone-state" role="status"></p><div class="rain-zone-key"><span>Precipitazioni medie · mm</span>'+['<1','1–10','10–30','30–60','≥60'].map((v,i)=>'<span><i style="background:'+colors[i]+'"></i>'+v+'</span>').join('')+'</div><p class="rain-zone-note">Blu/viola: quantità di pioggia. Bordo giallo/arancio/rosso: allerta ufficiale valida all’ora scelta. Le classi in mm servono solo a leggere la mappa.</p><label>Esamina zona<select aria-label="Zona da esaminare"><option>In attesa dei dati…</option></select></label><div class="rain-zone-detail" aria-live="polite">Seleziona una zona sulla mappa.</div><details><summary>Metodo e dati mancanti</summary><p>Accumuli da previsione Open-Meteo/ICON sul campo acquisito. Precipitazione totale in equivalente d’acqua: può includere neve, non soltanto pioggia liquida. Media pesata per area e min/max dei campioni interpolati: non sono osservazioni o massimi locali garantiti. I valori precedenti sono previsioni dello stesso snapshot, non misure del suolo.</p><p>Rischio idraulico HAZARDIA: non valutabile finché mancano soglie locali attuali qualificate, saturazione del suolo e validazione. Nessun colore della pioggia equivale a un’allerta.</p><div class="rain-zone-provenance"></div></details>';
+ const control=L.control({position:'topright'});control.onAdd=()=>panel;control.addTo(map);L.DomEvent.disableClickPropagation(panel);L.DomEvent.disableScrollPropagation(panel);
+ const state=panel.querySelector('.rain-zone-state'),detail=panel.querySelector('.rain-zone-detail');
+ function mode(on){enabled=on;if(on&&!document.getElementById('monitor-weather').checked){document.getElementById('monitor-weather').checked=true;document.getElementById('monitor-weather').dispatchEvent(new Event('change'));}map.getContainer().classList.toggle('rain-zones-active',on);panel.hidden=!on;button.setAttribute('aria-expanded',String(on));map.fire('rainzonesmode',{enabled:on});if(on){hour=document.getElementById('wind-hour').value||hour;refresh();}else{generation++;layer.clearLayers();}}
+ map.on('rainzonesclose',()=>{if(enabled)mode(false);});
+ document.getElementById('monitor-weather').addEventListener('change',()=>{if(enabled&&!document.getElementById('monitor-weather').checked)mode(false);});
+ button.onclick=()=>mode(!enabled);panel.querySelector('button').onclick=()=>mode(false);
+ panel.querySelector('[aria-label="Zona da esaminare"]').onchange=e=>{const f=result?.features.find(f=>f.properties.id===e.target.value);if(f){inspect(f);map.fitBounds(L.geoJSON(f).getBounds(),{padding:[25,25],animate:false});}};
+ panel.querySelector('select').onchange=e=>{hours=Number(e.target.value);draw();};
+ function official(p){return result?.official?.status==='AVAILABLE'?result.official.zones[p.id]:null;}
+ function inspect(f){selected=f;const p=f.properties,o=official(p),valid=o?.level!=null;
+  detail.innerHTML='<h4>'+esc(p.name)+'</h4><p><strong>'+esc(valid?warnings[o.level]:o?'Classificazione cartografica non disponibile':'Allerta ufficiale non disponibile per l’ora scelta')+'</strong></p>'+(o?'<p class="rain-zone-note">'+Object.entries(o.reasons).map(([k,v])=>esc(k)+': '+esc(v)).join('<br>')+'</p>':'')+'<dl>'+[1,3,6,12,24,48].map(h=>{const v=p.windows[String(h)];return '<dt>Prossime '+h+' h</dt><dd>'+(v.status==='AVAILABLE'?fmt(v.mean_mm)+' mm medi · campioni '+fmt(v.sampled_min_mm)+'–'+fmt(v.sampled_max_mm)+' mm':esc(v.reason||'Intervallo o copertura incompleti'))+'</dd>';}).join('')+'</dl><p>Copertura: '+fmt(p.coverage_fraction*100)+'% · '+p.weather_cells+' celle meteo intersecate.</p><p class="rain-zone-note">Rischio d’allagamento HAZARDIA: non valutabile. Mancano: '+p.missing.map(esc).join('; ')+'.</p>';
+  const past=p.previous_24h_forecast;detail.innerHTML+='<p class="rain-zone-note">24 h precedenti nello stesso snapshot: '+(past.status==='AVAILABLE'?fmt(past.mean_mm)+' mm medi previsti · non osservati':'non coperte integralmente')+'.</p>';
+  if(o)detail.innerHTML+='<p class="rain-zone-note">DPC · emissione '+esc(date(result.official.issued_at))+' · valido fino '+esc(date(result.official.valid_until))+' Roma. Validità del bollettino distinta dall’intervallo di accumulo. Un accumulo ICON basso non annulla l’allerta DPC.</p>';
+ }
+ function draw(){layer.clearLayers();if(!enabled||!visible||!result)return;
+  const within=f=>{const b=f.properties.bounds_wgs84;if(b)return L.latLngBounds([[b[1],b[0]],[b[3],b[2]]]).intersects(map.getBounds());return L.geoJSON(f).getBounds().intersects(map.getBounds());};
+  const local=result.features.filter(within),valid=local.filter(f=>f.properties.windows[String(hours)].status==='AVAILABLE');
+  const select=panel.querySelector('[aria-label="Zona da esaminare"]');select.innerHTML='<option value="">Seleziona una zona…</option>'+local.slice().sort((a,b)=>(b.properties.windows[String(hours)].mean_mm??-1)-(a.properties.windows[String(hours)].mean_mm??-1)).map(f=>'<option value="'+esc(f.properties.id)+'">'+esc(f.properties.name)+' · '+(f.properties.windows[String(hours)].status==='AVAILABLE'?fmt(f.properties.windows[String(hours)].mean_mm)+' mm':'dati incompleti')+'</option>').join('');if(selected)select.value=selected.properties.id;
+  state.textContent=(local.length?'':'Nessuna geometria di zona disponibile nell’inquadratura. ')+date(result.at)+' → '+date(new Date(Date.parse(result.at)+hours*3600000).toISOString())+' Roma · '+valid.length+'/'+local.length+' zone nell’inquadratura complete. '+(result.official.status==='AVAILABLE'?'Bollettino DPC valido all’ora iniziale.':'Bollettino DPC assente/scaduto per l’ora scelta.');
+  panel.querySelector('.rain-zone-provenance').textContent=result.model+' · acquisito '+date(result.forecast_available_at)+' Roma · '+result.assessment_id+' · geometrie DPC '+result.geometry_day+' · passo campo '+result.grid_spacing_degrees.map(v=>fmt(v)+'°').join(' × ')+'. '+result.method;
+  L.geoJSON(result,{pane:'rainZones',bubblingMouseEvents:false,filter:within,style:f=>{const p=f.properties,w=p.windows[String(hours)],o=official(p),known=w.status==='AVAILABLE',alert=o?.level;return {fillColor:known?colors[rainBand(w.mean_mm)]:'#8c98a3',fillOpacity:known?.30:.08,color:alert>0?['','#d1aa00','#e47923','#c13745'][alert]:known?'#427491':'#7e8c96',weight:alert>0?3:1,dashArray:known?undefined:'4 5'};},onEachFeature:(f,l)=>{const p=f.properties,w=p.windows[String(hours)],o=official(p);l.bindTooltip(esc(p.name)+'<br>'+(w.status==='AVAILABLE'?fmt(w.mean_mm)+' mm medi / '+hours+' h':'Pioggia non valutabile · copertura incompleta')+'<br>'+esc(o?.level!=null?warnings[o.level]:'Allerta ufficiale non disponibile'));l.on('click',()=>inspect(f));}}).addTo(layer);
+  if(selected){const next=result.features.find(f=>f.properties.name===selected.properties.name);if(next)inspect(next);}
+  map.getContainer().dataset.rainZones=String(valid.length);map.getContainer().dataset.rainAssessment=result.assessment_id;
+ }
+ async function api(url,body){const r=await fetch(url,body?{method:'POST',headers:{'Content-Type':'application/json','X-Hazardia-Research':'1'},body:JSON.stringify(body)}:undefined);const v=await r.json();if(!r.ok||v.status==='ERROR')throw Error(v.detail||'Valutazione non disponibile');return v;}
+ async function refresh(){
+  if(!enabled||!visible||busy)return;busy=true;const token=++generation;layer.clearLayers();state.textContent='Calcolo degli accumuli sulle zone nella VM…';
+  try{let at=hour;if(!at){const weather=await api('/api/weather/map');at=weather.forecast?.records.find(r=>Date.parse(r.at)+3600000>Date.now())?.at;}if(!at)throw Error('Ora meteo non disponibile');
+   const initial=await api('/api/monitoring/rain',{at});let value=initial;
+   for(let i=0;i<45;i++){if(token!==generation||!enabled)return;value=await api('/api/monitoring/rain/'+initial.id);if(value.status==='SUCCEEDED')break;await new Promise(r=>setTimeout(r,1000));}
+   if(value.status!=='SUCCEEDED')throw Error('Tempo massimo di valutazione superato');if(value.freshness!=='FRESH')throw Error('Previsione scaduta: valutazione sospesa');
+   if(token!==generation)return;result=value.data;draw();
+  }catch(e){if(token===generation){result=null;layer.clearLayers();detail.textContent='Nessuna indicazione di sicurezza dai dati mancanti.';state.textContent=e.message;}}
+  finally{busy=false;if(enabled&&token!==generation)schedule();}
+ }
+ function schedule(){clearTimeout(timer);timer=setTimeout(refresh,350);}
+ document.addEventListener('hazardia-weather-time',e=>{if(!e.detail?.at)return;const next=new Date(Math.floor(Date.parse(e.detail.at)/3600000)*3600000).toISOString().replace('.000Z','Z');if(next===hour)return;hour=next;if(enabled){generation++;result=null;layer.clearLayers();state.textContent='Aggiornamento per l’ora selezionata…';schedule();}});
+ document.addEventListener('hazardia-weather-field',e=>{hour=e.detail?.at||document.getElementById('wind-hour').value||hour;if(enabled){generation++;result=null;layer.clearLayers();schedule();}});
+ map.on('moveend',()=>{if(enabled)draw();});
+ setInterval(()=>{if(enabled&&visible&&!document.hidden)refresh();},65000);
+ return {visible(on){visible=on;if(!on){generation++;layer.clearLayers();}else if(enabled)refresh();}};
+}

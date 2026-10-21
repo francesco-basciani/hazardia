@@ -130,3 +130,7 @@ Il flusso **Simulazioni e risorse → Piano d’intervento** offre una sola mapp
 
 
 Il [confronto fisico del piano ottimizzato](reports/CONFRONTO-FISICO-PIANO-OTTIMIZZATO.md) documenta due run reali72h×8 con meteo congelato, differenze degli array, risultato negativo sul criterio prudenziale e limiti del proxy. Il generatore `scripts/prepare_optimized_comparison_case.py` crea una prova opt-in a due mappe dai risultati locali, senza sovrascrivere casi.
+
+## Pioggia e allerte nel Monitoraggio
+
+Premi **Pioggia e allerte** sulla mappa: scegli accumuli1/3/6/12/24/48ore e una zona. La barra temporale meteo governa anche questa vista. Riempimento blu/viola: quantità prevista; bordi gialli/arancioni/rossi: bollettino ufficiale DPC valido all’ora iniziale. Copertura incompleta, geometrie invalide e intervalli mancanti sono dichiarati. Il rischio idraulico autonomo HAZARDIA resta non valutabile senza soglie/impatti qualificati. Metodo, comandi ed evidenze: [report](reports/PIOGGIA-ZONE-E-ALLERTE.md).

@@ -1,0 +1,79 @@
+{
+  "scope": "Two sequential hours on one frozen field, not p95/load benchmark",
+  "rows": [
+    {
+      "id": "rain-c0a4d5e08cef7c4bdfd781e4",
+      "at": "2026-10-21T09:00:00Z",
+      "worker_s": 0.7512557600275613,
+      "submit_http_s": 0.613391769991722,
+      "complete_24h_zones": 44,
+      "official": "AVAILABLE",
+      "weather": "map-weather-b9fa72f6bfca3d8d32310b36",
+      "archive_bytes": 364546,
+      "examples": [
+        {
+          "name": "Bacini Tordino Vomano",
+          "mean_mm": 0.131,
+          "official": 1
+        },
+        {
+          "name": "Bacino dell'Aterno",
+          "mean_mm": 1.21,
+          "official": 1
+        },
+        {
+          "name": "Bacino Alto del Sangro",
+          "mean_mm": 3.067,
+          "official": 1
+        },
+        {
+          "name": "Bacino Basso del Sangro",
+          "mean_mm": 0.102,
+          "official": 1
+        },
+        {
+          "name": "Marsica",
+          "mean_mm": 3.585,
+          "official": 1
+        }
+      ]
+    },
+    {
+      "id": "rain-f8a84e22d3fedef0de8385b1",
+      "at": "2026-10-21T10:00:00Z",
+      "worker_s": 0.593635095981881,
+      "submit_http_s": 0.7979337410070002,
+      "complete_24h_zones": 44,
+      "official": "AVAILABLE",
+      "weather": "map-weather-b9fa72f6bfca3d8d32310b36",
+      "archive_bytes": 363985,
+      "examples": [
+        {
+          "name": "Bacini Tordino Vomano",
+          "mean_mm": 0.129,
+          "official": 1
+        },
+        {
+          "name": "Bacino dell'Aterno",
+          "mean_mm": 1.132,
+          "official": 1
+        },
+        {
+          "name": "Bacino Alto del Sangro",
+          "mean_mm": 2.636,
+          "official": 1
+        },
+        {
+          "name": "Bacino Basso del Sangro",
+          "mean_mm": 0.099,
+          "official": 1
+        },
+        {
+          "name": "Marsica",
+          "mean_mm": 3.202,
+          "official": 1
+        }
+      ]
+    }
+  ]
+}

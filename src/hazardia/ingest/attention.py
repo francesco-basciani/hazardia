@@ -1,6 +1,7 @@
 """Shared bounded VM attention cache. Acquisition is isolated from HTTP threads."""
 import datetime as dt
 import hashlib
+import gzip
 import json
 import os
 import re
@@ -8,6 +9,7 @@ import subprocess
 import threading
 import time
 import uuid
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from hazardia.io import HazardError,load
 
@@ -15,6 +17,24 @@ class AttentionStore:
     def __init__(self,root,runtime,*,clock=time.time):
         self.root=Path(root);self.root.mkdir(parents=True,exist_ok=True);self.runtime=Path(runtime);self.clock=clock;self.busy=threading.Lock();self.lock=threading.Lock();self.cached=None
         self.profile=Path(__file__).resolve().parents[3]/'profiles/monitoring/italy.json'
+    def raw(self,path):
+        try:return path.read_bytes()
+        except FileNotFoundError:
+            with gzip.open(str(path)+'.gz','rb') as f:data=f.read(32*1024**2+1)
+            if len(data)>32*1024**2:raise HazardError('CACHE_CORRUPT','Attention expanded file too large')
+            return data
+    def compact(self):
+        # Lossless storage representation; source names and raw SHA manifests unchanged.
+        for path in self.root.glob('snapshot-*/*'):
+            if path.suffix not in ['.json','.geojson']:continue
+            raw=path.read_bytes();packed=gzip.compress(raw,mtime=0);target=Path(str(path)+'.gz')
+            if len(packed)>=len(raw):continue
+            if target.exists():
+                if gzip.decompress(target.read_bytes())!=raw:raise HazardError('CACHE_CORRUPT','Conflicting attention archive')
+            else:
+                temp=Path(str(target)+'.tmp');temp.write_bytes(packed);temp.replace(target)
+            if gzip.decompress(target.read_bytes())!=raw:raise HazardError('CACHE_CORRUPT','Attention compaction differs')
+            path.unlink()
     def state(self):
         path=self.root/'state.json'
         return load(path) if path.exists() else {}
@@ -24,9 +44,9 @@ class AttentionStore:
         state=self.state();ident=state.get('snapshot')
         if not ident:return None,None
         if not re.fullmatch('snapshot-[a-f0-9]{32}',ident):raise HazardError('CACHE_CORRUPT','Invalid attention snapshot')
-        path=self.root/ident/'result.json';digest=hashlib.sha256(path.read_bytes()).hexdigest()
+        path=self.root/ident/'result.json';raw=self.raw(path);digest=hashlib.sha256(raw).hexdigest()
         if digest!=state.get('sha256'):raise HazardError('CACHE_CORRUPT','Attention manifest checksum differs')
-        if not self.cached or self.cached[0]!=digest:self.cached=(digest,load(path))
+        if not self.cached or self.cached[0]!=digest:self.cached=(digest,json.loads(raw))
         return ident,self.cached[1]
     def snapshot(self):
         with self.lock:
@@ -37,6 +57,9 @@ class AttentionStore:
             out=json.loads(json.dumps(data));out.pop('files',None);out.pop('receipts',None)
             for key,source in out['sources'].items():
                 for p in source.get('products',[]):
+                    if 'valid_from' not in p:
+                        zone=dt.timezone.utc if key!='dpc' else ZoneInfo('Europe/Rome')
+                        p['valid_from']=dt.datetime.fromisoformat(p['day']).replace(tzinfo=zone).astimezone(dt.timezone.utc).isoformat().replace('+00:00','Z')
                     p['url']='/api/monitoring/layers/'+ident+'/'+p.pop('file')
                     p['freshness']='FRESH' if fresh and effective<dt.datetime.fromisoformat(p['valid_until'].replace('Z','+00:00')).timestamp() else 'STALE'
                 source['freshness']='FRESH' if fresh else 'STALE'
@@ -51,8 +74,8 @@ class AttentionStore:
             current,data=self.bundle()
             if current!=ident:raise HazardError('STALE_CONTEXT','Attention snapshot changed; reload the layer list')
             path=self.root/ident/name
-            if not data or name not in data['files'] or not path.is_file():raise HazardError('NOT_FOUND','Attention layer unavailable')
-            raw=path.read_bytes()
+            if not data or name not in data['files']:raise HazardError('NOT_FOUND','Attention layer unavailable')
+            raw=self.raw(path)
             if hashlib.sha256(raw).hexdigest()!=data['files'][name]:raise HazardError('CACHE_CORRUPT','Attention layer checksum differs')
         return json.loads(raw)
     def refresh(self):
@@ -60,6 +83,8 @@ class AttentionStore:
         def acquire():
             try:
                 now=self.clock()
+                if sum(p.stat().st_size for p in self.root.rglob('*') if p.is_file())>240*1024**2:
+                    self.compact()
                 with self.lock:
                     state=self.state();last=state.get('attempt_at')
                     if last is not None and -300<now-last<10800:return

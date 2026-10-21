@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "id": "rain-a58b1d0a6e6ce00948d99b99",
+  "forecast_id": "map-weather-b9fa72f6bfca3d8d32310b36",
+  "at": "2026-10-21T09:00:00Z",
+  "freshness": "FRESH",
+  "official_status": "AVAILABLE",
+  "source_revision": "ba96e9a25d5a2390a46de8f76d627059876aa29d",
+  "zone_count": 187,
+  "complete_24h_zones": 44,
+  "examples": [
+    {
+      "name": "Bacini Tordino Vomano",
+      "mean_mm": 0.131,
+      "sampled_max_mm": 0.304,
+      "sampled_min_mm": 0.003,
+      "status": "AVAILABLE"
+    },
+    {
+      "name": "Bacino dell'Aterno",
+      "mean_mm": 1.21,
+      "sampled_max_mm": 3.956,
+      "sampled_min_mm": 0.071,
+      "status": "AVAILABLE"
+    },
+    {
+      "name": "Bacino Alto del Sangro",
+      "mean_mm": 3.067,
+      "sampled_max_mm": 9.906,
+      "sampled_min_mm": 0.073,
+      "status": "AVAILABLE"
+    },
+    {
+      "name": "Bacino Basso del Sangro",
+      "mean_mm": 0.102,
+      "sampled_max_mm": 0.221,
+      "sampled_min_mm": 0.078,
+      "status": "AVAILABLE"
+    },
+    {
+      "name": "Marsica",
+      "mean_mm": 3.585,
+      "sampled_max_mm": 5.094,
+      "sampled_min_mm": 1.942,
+      "status": "AVAILABLE"
+    },
+    {
+      "name": "Basi-A1",
+      "mean_mm": 3.88,
+      "sampled_max_mm": 8.17,
+      "sampled_min_mm": 2.639,
+      "status": "AVAILABLE"
+    },
+    {
+      "name": "Basi-A2",
+      "mean_mm": 9.859,
+      "sampled_max_mm": 11.689,
+      "sampled_min_mm": 9.613,
+      "status": "AVAILABLE"
+    },
+    {
+      "name": "Basi-B",
+      "mean_mm": 4.412,
+      "sampled_max_mm": 5.008,
+      "sampled_min_mm": 3.775,
+      "status": "AVAILABLE"
+    },
+    {
+      "name": "Basi-E1",
+      "mean_mm": 6.692,
+      "sampled_max_mm": 6.692,
+      "sampled_min_mm": 6.692,
+      "status": "AVAILABLE"
+    },
+    {
+      "name": "Basi-E2",
+      "mean_mm": 11.948,
+      "sampled_max_mm": 16.198,
+      "sampled_min_mm": 11.68,
+      "status": "AVAILABLE"
+    }
+  ],
+  "native_jobs_unchanged": true,
+  "workspace_unchanged": true,
+  "job_directory_count": 90,
+  "snapshot_hashes_verified": 2,
+  "elapsed": {
+    "seconds": 5.791159907996189
+  },
+  "python": "3.10.12",
+  "platform": "Linux-5.15.0-198-generic-aarch64-with-glibc2.35",
+  "cpu": 4,
+  "qualification": "FORECAST_RAIN_EVIDENCE_NOT_FLOOD_ALERT"
+}
