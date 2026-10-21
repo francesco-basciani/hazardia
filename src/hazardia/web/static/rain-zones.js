@@ -1,4 +1,5 @@
 /* Rain quantities and official warnings: no invented rainfall-to-flood alert. */
+import {observedRain} from './observed-rain.js';
 import {seriesMarkup} from './rain-series.js';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=v=>Number(v).toLocaleString('it-IT',{maximumFractionDigits:1});
@@ -12,13 +13,14 @@ export function rainZones(map){
  const panel=document.createElement('section');panel.id='rain-zones-panel';panel.className='rain-zones-panel';panel.hidden=true;
  panel.innerHTML='<div class="rain-zone-heading"><strong>Pioggia e allerte</strong><button type="button" aria-label="Chiudi pioggia e allerte">Chiudi</button></div><details class="rain-zone-config" open><summary>Accumuli, legenda e copertura</summary><label>Accumulo previsto<select aria-label="Intervallo accumulo pioggia">'+[1,3,6,12,24,48].map(n=>'<option value="'+n+'"'+(n===24?' selected':'')+'>Prossime '+n+' ore</option>').join('')+'</select></label><p class="rain-zone-state" role="status"></p><div class="rain-zone-key"><span>Precipitazioni medie · mm</span>'+['<1','1–10','10–30','30–60','≥60'].map((v,i)=>'<span><i style="background:'+colors[i]+'"></i>'+v+'</span>').join('')+'</div><p class="rain-zone-note">Blu/viola: quantità di pioggia. Bordo giallo/arancio/rosso: allerta ufficiale valida all’ora scelta. Le classi in mm servono solo a leggere la mappa.</p></details><label>Esamina zona<select aria-label="Zona da esaminare"><option>In attesa dei dati…</option></select></label><div class="rain-zone-detail" aria-live="polite">Seleziona una zona sulla mappa.</div><details><summary>Metodo e dati mancanti</summary><p>Accumuli da previsione Open-Meteo/ICON sul campo acquisito. Precipitazione totale in equivalente d’acqua: può includere neve, non soltanto pioggia liquida. Media pesata per area e min/max dei campioni interpolati: non sono osservazioni o massimi locali garantiti. I valori precedenti sono previsioni dello stesso snapshot, non misure del suolo.</p><p>Rischio idraulico HAZARDIA: non valutabile finché mancano soglie locali attuali qualificate, saturazione del suolo e validazione. Nessun colore della pioggia equivale a un’allerta.</p><div class="rain-zone-provenance"></div></details>';
  const control=L.control({position:'topright'});control.onAdd=()=>panel;control.addTo(map);L.DomEvent.disableClickPropagation(panel);L.DomEvent.disableScrollPropagation(panel);
+ const observedHost=document.createElement('div');panel.querySelector('.rain-zone-heading').after(observedHost);const observed=observedRain(map,observedHost);
  const state=panel.querySelector('.rain-zone-state'),detail=panel.querySelector('.rain-zone-detail');
  function mode(on){enabled=on;if(on&&!document.getElementById('monitor-weather').checked){document.getElementById('monitor-weather').checked=true;document.getElementById('monitor-weather').dispatchEvent(new Event('change'));}map.getContainer().classList.toggle('rain-zones-active',on);panel.hidden=!on;button.setAttribute('aria-expanded',String(on));map.fire('rainzonesmode',{enabled:on});if(on){hour=document.getElementById('wind-hour').value||hour;refresh();}else{generation++;layer.clearLayers();}}
  map.on('rainzonesclose',()=>{if(enabled)mode(false);});
  document.getElementById('monitor-weather').addEventListener('change',()=>{if(enabled&&!document.getElementById('monitor-weather').checked)mode(false);});
  button.onclick=()=>mode(!enabled);panel.querySelector('button').onclick=()=>mode(false);
  panel.querySelector('[aria-label="Zona da esaminare"]').onchange=e=>{const f=result?.features.find(f=>f.properties.id===e.target.value);if(f){inspect(f);map.fitBounds(L.geoJSON(f).getBounds(),{padding:[25,25],animate:false});}};
- panel.querySelector('select').onchange=e=>{hours=Number(e.target.value);draw();};
+ panel.querySelector('[aria-label="Intervallo accumulo pioggia"]').onchange=e=>{hours=Number(e.target.value);draw();};
  function official(p){return result?.official?.status==='AVAILABLE'?result.official.zones[p.id]:null;}
  function inspect(f,focus=true){selected=f;const p=f.properties,o=official(p),valid=o?.level!=null;
   panel.querySelector('[aria-label="Zona da esaminare"]').value=p.id;
@@ -54,5 +56,5 @@ export function rainZones(map){
  document.addEventListener('hazardia-weather-field',e=>{fieldId=e.detail?.id||null;hour=e.detail?.at||document.getElementById('wind-hour').value||hour;if(enabled){generation++;result=null;layer.clearLayers();schedule();}});
  map.on('moveend',()=>{if(enabled)draw();});
  setInterval(()=>{if(enabled&&visible&&!document.hidden)refresh();},65000);
- return {visible(on){visible=on;if(!on){generation++;layer.clearLayers();}else if(enabled)refresh();}};
+ return {visible(on){visible=on;observed.visible(on);if(!on){generation++;layer.clearLayers();}else if(enabled)refresh();}};
 }

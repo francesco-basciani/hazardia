@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "run_id": "observed-rain-20261021",
+  "source_id": "observed-1244e935ebf10d23dfe5b9cd",
+  "acquired_at": "2026-10-21T21:58:10.636014Z",
+  "raw_sha256": "1244e935ebf10d23dfe5b9cd369c6b6107f0e0ce1caec65d8e127cd4214b3da9",
+  "catalog_sha256": "6be3e371e55b3439a05df9807c04992c55e7389383dd16edb94f7c215a6432c3",
+  "stations": 4068,
+  "abruzzo_bounding_box_stations": 115,
+  "bbox_networks": {
+    "mnw": 37,
+    "dpcn-marche": 21,
+    "dpcn-umbria": 4,
+    "dpcn-lazio": 37,
+    "dpcn-molise": 16
+  },
+  "unchanged_engine_files": 145,
+  "preserved_workspace_files": 8,
+  "http_cached_30": {
+    "p50_ms": 152.81740049249493,
+    "p95_ms": 233.18788403412327,
+    "max_ms": 471.1934980005026
+  },
+  "refresh_no_new_download": true,
+  "platform": "Linux-5.15.0-198-generic-aarch64-with-glibc2.35",
+  "python": "3.10.12",
+  "limits": "Engineering replay, not skill or operational qualification; bounding box not administrative regional membership"
+}

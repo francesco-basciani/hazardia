@@ -481,3 +481,7 @@ completa MyDewetra né allerta idraulica qualificata. Report
 `experiments/runs/monitor-zone-series-20261021` e directoryVMomonima.
 ReviewerCodexself-check. Prossimo: fonti osservative e qualificazione locale
 di soglie/qualità, con disponibilità e diritti espliciti.
+
+
+## Pioggia osservata nel Monitoraggio — 22 ottobre 2026
+PASS integrazione tecnica MeteoHub, anonima/free, dati e backend nella stessa VM. UI: Monitoraggio → Pioggia e allerte → Mostra le misure delle stazioni; cerchi misurati, colori in mm, rete/licenza/intervallo/ritardo, menu sensore accessibile e assenze future esplicite. Snapshot observed-1244e935ebf10d23dfe5b9cd, acquisito2026-10-21T21:58:10.636014Z,4.068 stazioni;115 nel bbox Abruzzo+dintorni (non conteggio amministrativo),37MNW e78reti confinanti. Catalogo senza rete regionale Abruzzo dedicata; portale regionale pubblico ritardato15giorni, diritti AgroAmbiente non risolti. SoloCCBY4.0 attribuita, nessuna autenticazione/esportazionePOST. Refresh condiviso1h,2MiB/risposta,64MiB budget persistente/64snapshot,90min freshness; cache scaduta/errore mai sicuro o zero. PASS36testVM/14JS/UI/replay e145pin/8workspacefile,90job preservati. FAIL intermedi e p95precompatto556,9ms conservati; dopo compattazione p95API233,2ms(n30). Nessuna install/sudo/costi/deploy, nessuna nuova assimilazione nei motori. Report reports/MONITORAGGIO-PIOGGIA-OSSERVATA.md; reviewerCodex self-check. FullM5–M7 BLOCKED; prossimo confronto/qualifica soglie locali, non allerta inventata dai mm.

@@ -1209,3 +1209,19 @@ completa MyDewetra né allerta idraulica qualificata. Report
 `experiments/runs/monitor-zone-series-20261021` e directoryVMomonima.
 ReviewerCodexself-check. Prossimo: fonti osservative e qualificazione locale
 di soglie/qualità, con disponibilità e diritti espliciti.
+
+
+## Incremento observed-rain-20261021 — 22 ottobre 2026
+Parent44bc591+patch, commit di consegna nella cronologia/PUBLICATION.json; reviewer Codex self-check. Report reports/MONITORAGGIO-PIOGGIA-OSSERVATA.md.
+
+| Verifica | Esito | Evidenza |
+|---|---|---|
+| Fonte osservata gratuita con unità/tempo/attribuzione CC BY 4.0 per rete | PASS | MeteoHub GET reale, raw/ricevute run; 4.068stazioni |
+| Dati mancanti/trace/qualità/licenza/futuro/cache/quota e regressioni zone | PASS | 36testVM, tests-compact.log;14checkNode rain-series |
+| UI punti misurati distinta da forecast/DPC; dettagli sensore, toggle, futuro assente, legenda unica | PASS | reports/observed-rain/ui.json e screenshot |
+| Replay input congelati e preservazione motori/workspace | PASS | reports/observed-rain/verification.json;145pin,8file e90job |
+| QR-12 API osservazioni prima della compattazione | FAIL | verification-before-compact.json: p95 556,9ms; timeoutHTTP/UI precedente registrato |
+| QR-12 API osservazioni dopo compattazione, n30 | PASS | verification.json: p50 152,8/p95 233,2/max471,2ms |
+| Dati ufficiali regionali Abruzzo completi/correnti e diritti alternativa AgroAmbiente | BLOCKED | rete Abruzzo non presente nel catalogo; portale15giorni/diritti irrisolti |
+| Soglie idrologiche locali/skill nuova delle allerte e fullM5–M7 | BLOCKED | nessuna qualifica nuova dalle sole misure dei pluviometri |
+| Nuovi run fisici/assimilazione, dispositivi fisici/FPS/soak/benchmark globale | NOT RUN | questo incremento è Monitoraggio, non qualifica dei motori né piena chiusura QR-11–14 |

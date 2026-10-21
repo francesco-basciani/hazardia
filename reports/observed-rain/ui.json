@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "run_id": "observed-rain-20261021",
+  "browser": "Codex IAB",
+  "viewport": "1280x720 screenshot",
+  "observed_stations": 186,
+  "monitor_legend_count": 1,
+  "station_detail": "abr133\n0,3 mm osservati / 1 h\n21/10, 22:00 → 21/10, 23:00 Roma\nmeteonetwork · MNW - Data from the amateur weather stations of the MeteoNetwork network\nMeteoNetwork Association OdV · CC BY 4.0\nDato recente · ritardo 88 min\nControllo sorgente rel=1; misura provvisoria non validata. Equivalente d’acqua, può includere neve.\nNessuna indicazione di rischio per le aree circostanti.\nFonte: ItaliaMeteo / MeteoHub",
+  "forecast_window": "Intervallo accumulo pioggia",
+  "checks": [
+    "Real observed quantities/interval/network/license visible",
+    "Single monitor legend",
+    "Station selector opens accessible details",
+    "Observation toggle removes all points",
+    "Global Meteo toggle removes all points",
+    "Future +2h has zero points and explicit missing-observation message",
+    "Separate forecast accumulation selector does not replace station action"
+  ],
+  "limitations": [
+    "Physical devices, new FPS/soak/axe audits NOT RUN",
+    "Screenshot uses OSM: existing satellite download cap is unchanged"
+  ]
+}

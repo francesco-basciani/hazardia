@@ -6,3 +6,7 @@
 .rain-zones-panel .rain-zone-heading{position:sticky;top:-14px;z-index:2;background:#fff;padding:8px 0;border-bottom:1px solid #e0e8ee}
 
 .leaflet-control.rain-zones-panel{max-height:min(60svh,570px)}.rain-zone-config{margin-bottom:8px}.rain-zone-detail h4{margin-top:8px}.rain-zone-detail>details summary{padding-top:4px;min-height:30px}.rain-zone-detail>p:first-of-type{margin:6px 0}
+
+.observed-rain-config{border-bottom:1px solid #d7e2e8;margin-bottom:10px;padding-bottom:8px}.observed-rain-config label{justify-content:flex-start;min-height:44px;font-weight:600}.observed-rain-config input{width:18px;height:18px;flex:none}.observed-rain-state{font-size:12px;color:#284d63;overflow-wrap:anywhere}
+
+.observed-rain-config select{min-width:0;max-width:200px}.observed-rain-config label{flex-wrap:wrap}

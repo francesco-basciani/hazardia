@@ -264,3 +264,9 @@ L’importatore precedente ora conserva tutti i tag e gli oggetti rappresentabil
 
 ### Interfaccia pulita e sfondo stradale
 Il Monitoraggio espone ricerca, sfondo, Configura/Criticità/Livelli vicino alla mappa; meteo e catalogo nel dockdesktop o sotto mappa sui formati stretti. `OpenStreetMap · cartografia stradale` è opzionale, usa `/api/maps/osm/{z}/{x}/{y}` con cache nellaVM `web-state/osm-tiles`,7giorni, massimo32MiB, senza prefetch/offline. Non cancellare la cache per forzare download, non ampliare i limiti senza valutazione e autorizzazione. Tessere/servizio non disponibili restano errori espliciti: scegliere satellite/ritaglio locale. Nessun nuovo pacchetto richiesto. Il servizio deve essere riavviato a coda fisica vuota per caricare il nuovo proxyPython; le modifiche statiche richiedono ricaricamento del browser. [Verifiche e limiti](../reports/INTERFACCIA-MAPPA-PULITA.md).
+
+
+## Pioggia osservata (Monitoraggio)
+Il connettore MeteoHub usa soltanto la libreria standard Python già inclusa nella VM: nessun pacchetto o account aggiuntivo. Dopo la normale installazione/aggiornamento dell’app e riavvio del servizio nella VM, ricaricare il browser e aprire Monitoraggio → Pioggia e allerte → Mostra le misure delle stazioni. Il primo click avvia un’acquisizione pubblica gratuita condivisa, senza esportazioni autenticate. Consultare `reports/MONITORAGGIO-PIOGGIA-OSSERVATA.md` per API, test, licenze e semantica.
+
+Cache e ricevute risiedono nel runtime sotto `web-state/observed-rain/`. Limiti persistenti:2MiB/risposta,64MiB acquisizioni totali e64snapshot; aggiornamento massimo una volta/ora, catalogo ogni24h. A budget/archivio pieno il sistema mantiene le evidenze e mostra errore/scadenza: non azzerare i contatori automaticamente e non confondere dati vecchi/mancanti con zero pioggia. Misure regionali e amatoriali restano distinguibili; non rappresentano allerte idrauliche validate.

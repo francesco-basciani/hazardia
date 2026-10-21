@@ -523,3 +523,7 @@ completa MyDewetra né allerta idraulica qualificata. Report
 `experiments/runs/monitor-zone-series-20261021` e directoryVMomonima.
 ReviewerCodexself-check. Prossimo: fonti osservative e qualificazione locale
 di soglie/qualità, con disponibilità e diritti espliciti.
+
+
+## Incremento Monitoraggio: pioggia osservata — 22 ottobre 2026
+Richiesta «Facciamolo»: prima fonte osservata gratuita nella VM, rispetto a FR-EWS-BASELINE-01/FR-MONITOR-FUSION-01 e M5–M7 originali. PASS tecnico per GET pubblico MeteoHub CC BY 4.0, 4.068 stazioni, pluviometri distinti da previsione/allerte DPC, tempi/unità/qualità/assenze espliciti. PASS36 test VM,14 controlli serie JS, UI reale e replay/hash; API calda n30 p95 233,2 ms dopo FAIL iniziale556,9 ms e compattazione dei metadati. Nessuna nuova fisica/operazione. Report reports/MONITORAGGIO-PIOGGIA-OSSERVATA.md, run observed-rain-20261021. Prossimo incremento: confronto osservato/previsto su intervalli comparabili e qualificazione idrologica/soglie; full M5–M7 BLOCKED invariati.
