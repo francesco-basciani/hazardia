@@ -1,0 +1,5 @@
+PASS 18 checks: rain quantity vs probability, transparent dry cells, visible intensity, separate cloud/rain modes and coverage without overlays
+PASS 6008 checks: exact bilinear equivalence, no extrapolation, changing values, geometry reuse, pan invalidation and separate wind plans
+PASS 6013 total checks including retained DOM nodes, changed values and missing-data clearing
+PASS 12 checks: distinct cloud colours, stronger transparent alpha, clear sky, toggles, probability interpolation and missing legacy data
+PASS 16 assertions: coverage, pending acquisition, retries, free cooldown, complete variables and per-view retention

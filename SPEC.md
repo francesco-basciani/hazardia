@@ -451,3 +451,7 @@ Mostrare probabilità di precipitazione acquisita come tale dalla fonte, separat
 
 ### FR-UI-ROOM-01 — riquadro iniziale (2026-10-20)
 Su richiesta utente rimuovere la sezione «Ambiente di ricerca» sopra la mappa, evitando spazio verticale dedicato. Qualificazione e provenienza continuano nelle informazioni pertinenti ai dati, ai risultati e alla guida; nessuna nuova qualificazione operativa implicita.
+
+
+### FR-WX-VIEW-01 — leggibilità della precipitazione (2026-10-21)
+Nel Monitoraggio privilegiare una vista meteo interpretabile: modalità Pioggia con quantità e scala inmm per la finestra oraria dichiarata, legenda sempre raggiungibile sulla mappa e opzioni separate per nuvole,vento,temperatura,umidità e probabilità. Evitare la fusione automatica dei colori di nuvole/pioggia e la sovrapposizione predefinita di tutti i valori. Una copertura meteo incompleta non deve sembrare il confine di una perturbazione: nascondere la grafica incompleta della vista e dichiarare il caricamento/missing, senza estrapolare o suggerire assenza di pioggia. Le previsioni di precipitazione non sono osservazioni radar. Questo chiarimento supera i default grafici precedenti, preservando livelli selezionabili e forzanti scientifiche.

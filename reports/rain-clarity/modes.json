@@ -1,0 +1,104 @@
+{
+  "modes": [
+    {
+      "canvas": {
+        "cloudPixels": "8949",
+        "coverage": "1",
+        "field": "map-weather-b7c01afc6b762c8a96251d5b",
+        "variable": "cloud",
+        "wetPixels": "0"
+      },
+      "legend": "Nuvolosità · Copertura nuvolosa · %21/10, 09:00 Roma · previsione Open-Meteo0% sereno · 25 · 50 · 75 · 100% copertoSeleziona un punto per i valori locali · dati interpolati.",
+      "mode": "cloud",
+      "readings": [
+        "100 %",
+        "100 %",
+        "100 %",
+        "100 %",
+        "100 %",
+        "99,4 %",
+        "100 %",
+        "100 %",
+        "100 %",
+        "100 %",
+        "100 %",
+        "73,5 %",
+        "100 %",
+        "100 %",
+        "100 %",
+        "100 %"
+      ]
+    },
+    {
+      "canvas": {
+        "cloudPixels": "0",
+        "coverage": "1",
+        "field": "map-weather-b7c01afc6b762c8a96251d5b",
+        "variable": "rain_probability",
+        "wetPixels": "0"
+      },
+      "legend": "Probabilità di pioggia · Probabilità >0,1 mm · prossima ora · %21/10, 09:00 Roma · previsione Open-MeteoProbabilità da ensemble · non quantità di pioggiaSeleziona un punto per i valori locali · dati interpolati.",
+      "mode": "rain_probability",
+      "readings": [
+        "70,5 %",
+        "31,3 %",
+        "13,9 %",
+        "57 %",
+        "90 %",
+        "55,5 %",
+        "40,3 %",
+        "32,2 %",
+        "49,1 %",
+        "82,7 %",
+        "94,2 %",
+        "28,8 %",
+        "55,2 %",
+        "64 %",
+        "62,8 %",
+        "46,3 %"
+      ]
+    },
+    {
+      "canvas": {
+        "cloudPixels": "0",
+        "coverage": "1",
+        "field": "map-weather-b7c01afc6b762c8a96251d5b",
+        "variable": "",
+        "wetPixels": "0"
+      },
+      "legend": "Vento · Vento a 10 m · m/s21/10, 09:00 Roma · previsione Open-MeteoScie: direzione del vento · colore: 0–3 / 3–7 / 7–12 / ≥12 m/sSeleziona un punto per i valori locali · dati interpolati.",
+      "mode": "wind",
+      "readings": 0,
+      "windEnabled": true
+    }
+  ],
+  "rain": {
+    "canvas": {
+      "cloudPixels": "0",
+      "coverage": "1",
+      "field": "map-weather-b7c01afc6b762c8a96251d5b",
+      "variable": "precipitation",
+      "wetPixels": "5412"
+    },
+    "legend": "Pioggia prevista · mm nella prossima ora21/10, 10:00 Roma · previsione Open-Meteo0,1–11–2,52,5–55–10≥10Trasparente: meno di 0,1 mmSeleziona un punto per i valori locali · dati interpolati.",
+    "mode": "rain",
+    "overflow": false,
+    "values": [
+      0.4218138618666012,
+      0.8697375996889605,
+      1.2262391609243657,
+      0.3926911385204323,
+      0.45097154092134806
+    ],
+    "viewport": [
+      1280,
+      720
+    ],
+    "windEnabled": false
+  },
+  "masterOff": {
+    "focusHidden": true,
+    "labels": 0,
+    "legendHidden": true
+  }
+}

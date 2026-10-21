@@ -1136,3 +1136,18 @@ Base7c9317f+dirty; reviewerCodexself-check, SHAfinaleGit/PUBLICATION.json.
 | FullgateM5–M7/QRglobali/qualificazionefisica | BLOCKED invariati | piano originale |
 
 Base6cb05dd+dirty, SHAfinaleGit/PUBLICATION.json; reviewerCodexself-check.
+
+
+## Pioggia leggibile — rain-clarity-20261021
+
+| Verifica | Esito | Evidenza |
+|---|---|---|
+| Presentazione precedente confondeva campi/quantità/copertura | FAIL segnalato, corretto tecnicamente | report METEO-LEGGIBILE-PIOGGIA.md |
+|18assertnuovi +6013bilineare/DOM+12colori/buffer+16viewport/sintassi | PASS | reports/rain-clarity/js-tests.log |
+| Pioggia quantitativa/legenda e modecloud/probabilità/vento/ritorno | PASS | reports/rain-clarity/modes.json e screenshotprivato |
+| Copertura parziale nascosta+stato esplicito | PASS | reports/rain-clarity/partial.json |
+| SorgenteSHA/main119/hash/90job/quote | PASS | reports/rain-clarity/runtime.json |
+| Accettazioneutente/Safari/DPR2/axe/nuovoFPS/p95/heap/soak/skill/fisica | NOT RUN | limiti nel report |
+| FullgateM5–M7 | BLOCKED invariati | piano originale |
+
+Base7754c5b+dirty,SHAfinaleGit/PUBLICATION.json;reviewerCodexself-check.
