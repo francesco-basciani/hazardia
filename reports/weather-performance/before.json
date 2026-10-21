@@ -1,0 +1,57 @@
+{
+  "small": {
+    "canvas": {
+      "cloudPixels": "8949",
+      "coverage": "1",
+      "field": "map-weather-2ca5531ecfcc0eb385c5c3dd",
+      "variable": "temperature,humidity,precipitation,rain_probability,cloud",
+      "wetPixels": "4404"
+    },
+    "clock": {
+      "at": "2026-10-24T21:36:22.080Z",
+      "fraction": "0.6061333333335313",
+      "frameP95Ms": "5.100000023841858",
+      "frameSamples": "120",
+      "from": "2026-10-24T21:00:00Z",
+      "lastFrameCostMs": "4.899999976158142",
+      "to": "2026-10-24T22:00:00Z"
+    },
+    "labels": 18,
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "wide": {
+    "clock": {
+      "at": "2026-10-23T19:11:00.960Z",
+      "fraction": "0.1835999999998421",
+      "frameP95Ms": "12.5",
+      "frameSamples": "120",
+      "from": "2026-10-23T19:00:00Z",
+      "lastFrameCostMs": "12.5",
+      "to": "2026-10-23T20:00:00Z"
+    },
+    "dpr": 1,
+    "labels": 32,
+    "scalar": {
+      "cloudPixels": "15836",
+      "coverage": "1",
+      "field": "map-weather-2ca5531ecfcc0eb385c5c3dd",
+      "variable": "temperature,humidity,precipitation,rain_probability,cloud",
+      "wetPixels": "3179"
+    },
+    "viewport": [
+      1736,
+      875
+    ],
+    "wind": {
+      "at": "2026-10-23T19:11:00.960Z",
+      "field": "map-weather-2ca5531ecfcc0eb385c5c3dd",
+      "fineField": "openmeteo-wind-5d227c8382c46b2e52c0cb12",
+      "frameIntervalP95Ms": "66.60000000000582",
+      "frameP95Ms": "0.10000002384185791",
+      "frames": "3941"
+    }
+  }
+}

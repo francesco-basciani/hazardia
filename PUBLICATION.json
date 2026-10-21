@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "6cb05dd7f17f3ae7efe1e4e4a79ec7f8f0fd14c6",
+  "source_git_sha": "7754c5bccd20da69bcb96df1900cd6ef9538ed87",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,20 +11,20 @@
       "sha256": "7a64cf19bdff0146fd1fdd1467ab80a053114b174237993b5db7d57803d5dbc2"
     },
     "CHECKLIST.md": {
-      "bytes": 163747,
-      "sha256": "446f78ab3901c92421cf6ec801e55ab62151430b8dda89476a38e10217fe1da7"
+      "bytes": 164658,
+      "sha256": "9d2dfe6896376aada9e0ecb74604c05273dcdc1e53acb0ee9ee8c904a863dd29"
     },
     "MEMORY.md": {
-      "bytes": 119617,
-      "sha256": "77a0601950f7ad7f7124304fb531d46e91cea370277aad112021ec2b198034f6"
+      "bytes": 120722,
+      "sha256": "de091230c33fb18361aa058818fae4d464b0566fba2e1a2e8dc5a91224128945"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 124733,
-      "sha256": "e161f9dfe23bfb00615e7a2a89a60c3101158353cffb4022425564746093c6f9"
+      "bytes": 125838,
+      "sha256": "e4ae0cf2b3e9c499d72fd4261036cc3796f645755f76873c2c5c8efd20b809d5"
     },
     "README.md": {
       "bytes": 22191,
@@ -389,6 +389,10 @@
     "reports/PREREQUISITI-E-INVASI.md": {
       "bytes": 7226,
       "sha256": "4474d575903e0fe270867d9e120d3bfc37fef01099ff7446387ea3ec1a75f387"
+    },
+    "reports/PRESTAZIONI-RENDERING-METEO.md": {
+      "bytes": 5259,
+      "sha256": "d95c26e65147cb9cfa73653c9baf9b4d37b05798667e90609658bab2082bd11a"
     },
     "reports/PREVISIONE-CON-DATI-REALI.md": {
       "bytes": 10185,
@@ -770,6 +774,26 @@
       "bytes": 961,
       "sha256": "61ee8da134043dd6de33269501eb91a7e25f25e33ed644556acd854ff17247e7"
     },
+    "reports/weather-performance/after.json": {
+      "bytes": 892,
+      "sha256": "daee36d1b40cecf67b812502074053e12703f7efcd17e45e4b545c3a71b046b4"
+    },
+    "reports/weather-performance/before.json": {
+      "bytes": 1499,
+      "sha256": "9e326dc9ba953a3d4342cd6147df672e1748988373f98239b43b1fabfe75b90c"
+    },
+    "reports/weather-performance/js-tests.log": {
+      "bytes": 487,
+      "sha256": "cf602a6d58259fff8531ae490c51270df1188134b89a62c88b01ba23d47b5a38"
+    },
+    "reports/weather-performance/responsive.json": {
+      "bytes": 254,
+      "sha256": "5d835689e5a82a07062f649d49a5a58f65f8464e2443046bedf4ecbef3234d0d"
+    },
+    "reports/weather-performance/runtime.json": {
+      "bytes": 670,
+      "sha256": "69bc2b98c73d2de19228ad2dfb42090e3b4a8aca8b07497e012c185e0a1ec6ae"
+    },
     "reports/weather/layers-verification.json": {
       "bytes": 1239,
       "sha256": "10b9ca4f606ac5cd925b1c750028753c75349d65b9fb341cadc17d08fb09d9ba"
@@ -887,8 +911,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 136118,
-      "sha256": "180924c317e906245ea23826ccf56b91a8a0d9f43b1b648df54531a5cd026bda"
+      "bytes": 137223,
+      "sha256": "e0f8ffd5ed5a6af7adac733e997272b3af2040a54a32fc612a33ed045a3b277c"
     },
     "research/RESEARCH.md": {
       "bytes": 33312,
@@ -1339,8 +1363,8 @@
       "sha256": "85c55e3f0062fa7f0506f069876e500a9b7431714af3deee7bb4866d7beafd70"
     },
     "src/hazardia/web/static/forecast-playback.js": {
-      "bytes": 5195,
-      "sha256": "86c3a2d5a05a8704a5a6a1a4e7f6e58b6e7c33bca63bdca3d04e2382c33331ac"
+      "bytes": 5415,
+      "sha256": "8aab75c53d4b751ffe2c493e86380426130e3603679ca4303a8ceb5e3f01fdc9"
     },
     "src/hazardia/web/static/ideal-planner.js": {
       "bytes": 15988,
@@ -1403,8 +1427,8 @@
       "sha256": "34706363e037115fd8456bd0ffae302a9ca99e4af7763e511f4c6f73b42a7381"
     },
     "src/hazardia/web/static/scenario-weather.js": {
-      "bytes": 13123,
-      "sha256": "efac6295836e237eee407e21a6e3c562a2c4d6fe1051c78ffbdb3c083eaa0a6c"
+      "bytes": 13413,
+      "sha256": "1434574dbc9818b750afb17c001df01e5bacc39c6072482e0097960c25fd4f5f"
     },
     "src/hazardia/web/static/studio-view-state.js": {
       "bytes": 410,
@@ -1439,24 +1463,24 @@
       "sha256": "d0b78d6a1f83dc75d5a182334e94aa6176e26a9588066360255ddb4a6763f31e"
     },
     "src/hazardia/web/static/weather-display.js": {
-      "bytes": 6109,
-      "sha256": "376a95fdcf6d07e0373577ac2926f2a9c3c937ae37c66c368e46797e32d42e88"
+      "bytes": 6705,
+      "sha256": "387556ec8ea11d9d6486e96387b9d9cbef471e4d7ad14cb72b4bc30a5746eea2"
     },
     "src/hazardia/web/static/weather-interpolation.js": {
       "bytes": 1435,
       "sha256": "6f2970c2321184259cb665d200566ed2b9d02fc0e299103da55748240201fa63"
     },
     "src/hazardia/web/static/weather-sampling.js": {
-      "bytes": 848,
-      "sha256": "3c07757314ae7b281fdfed41cf692ae47270c06431ec54c59d2be96e325e6d0d"
+      "bytes": 2486,
+      "sha256": "7db3ce6a90bbefb358defb9e334ae69fd11741a4134bfa4e37c21678aeae812b"
     },
     "src/hazardia/web/static/weather.js": {
       "bytes": 4903,
       "sha256": "093d2c0db9ae0374ed76e29b7af5781fdae3c80a55ec054ea078613943810a99"
     },
     "src/hazardia/web/static/wind-particles.js": {
-      "bytes": 17413,
-      "sha256": "6fdef9fa67b060da21476575494d7dde63fee346a3ae4ba47cba0d980ca35a83"
+      "bytes": 18341,
+      "sha256": "53c2816edc29bbe965ffd2a3406e5ac1cca58f02c57a509105aae8b2fc3245af"
     },
     "src/hazardia/web/static/workbench.js": {
       "bytes": 13530,
@@ -1499,8 +1523,8 @@
       "sha256": "ddc936e22f976e641cb41a6d7a9780f9db7bfaf966cad141fcf6e55d497b738d"
     },
     "tests/browser/cloud-probability.mjs": {
-      "bytes": 2095,
-      "sha256": "ffd2571b240540f9798cb7eabce08564a09d30b55456f57387c2fa457deee2f0"
+      "bytes": 2112,
+      "sha256": "23f1fba229948b702473f20f32dde3aa0a444ded2443c1ac7c4755a998181981"
     },
     "tests/browser/control-room.cjs": {
       "bytes": 10554,
@@ -1701,6 +1725,10 @@
     "tests/browser/weather-readable.cjs": {
       "bytes": 10682,
       "sha256": "7751d840f40ad773f3352b3fe75ba580e022362c099316767fa441e66b717dc0"
+    },
+    "tests/browser/weather-render-plan.mjs": {
+      "bytes": 3225,
+      "sha256": "afcc222a45c3d45d18f8c75692fed82ae88236d828d10cddbd63588ae4f91404"
     },
     "tests/browser/weather.cjs": {
       "bytes": 8219,

@@ -1121,3 +1121,18 @@ Base7c9317f+dirty; reviewerCodexself-check, SHAfinaleGit/PUBLICATION.json.
 - PASS rimozioneHTML/riferimenti, avvioMonitoraggio e mappa senza riquadro: reports/remove-notice/ui.json e screenshotprivato runomonimo; base dbcf9a9+dirty, commitGit/PUBLICATION.json, reviewerCodexself-check.
 - PASS sintassiJS e gitdiff; NOT RUN nuove prove unit/browsermatrix/axe/FPS/p95/fisica.
 - BLOCKED gatecompletiM5–M7 invariati. Nessun restart/install/jobfisico.
+
+
+## Rendering meteo — weather-performance-20261021
+
+| Verifica | Esito | Evidenza |
+|---|---|---|
+| Bilineare/coverage/mancanti/cache/nodiDOM | PASS |6013assert tests/browser/weather-render-plan.mjs, reports/weather-performance/js-tests.log |
+| Colori/buffer/viewport/sintassi | PASS |12+16assert e comandi nel report |
+| PilotIAB1736×875DPR1 prima/dopo,120campioni | PASS nel pilot | reports/weather-performance/before.json, after.json |
+| Pausa/inizio/zoom e responsive768/375coverage1 | PASS | responsive.json, screenshotprivato, report |
+| StatoVM/main119/hash/90job/HTTPpuntuale | PASS confronto precedente | reports/weather-performance/runtime.json |
+| Safari/DPR2/GPU/4K/heap/soak/axe/p95globale/fisica | NOT RUN | limiti nel report |
+| FullgateM5–M7/QRglobali/qualificazionefisica | BLOCKED invariati | piano originale |
+
+Base6cb05dd+dirty, SHAfinaleGit/PUBLICATION.json; reviewerCodexself-check.

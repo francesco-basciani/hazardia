@@ -7,8 +7,8 @@ import {checkedForecastTime} from '/weather-clock.js?v=1';
 // One VM cache and acquisition request shared by all synchronized scenario windows.
 // Display-only: no atmospheric field is silently substituted into a physical run.
 const fields={wind:['Vento','m/s',0,20,[92,227,214]],temperature:['Temperatura','°C',-10,40,[245,130,64]],precipitation:['Pioggia nell’ora successiva','mm',0,10,[70,145,245]],rain_probability:['Probabilità di pioggia · prossima ora','%',0,100,[146,212,255]],humidity:['Umidità aria','%',0,100,[67,201,179]],gusts:['Raffica massima nell’ora successiva','m/s',0,30,[202,133,243]],cloud:['Nubi','%',0,100,[208,218,230]],pressure:['Pressione al suolo','hPa',800,1050,[167,145,236]],radiation:['Radiazione media nell’ora successiva','W/m²',0,1000,[255,211,76]]};
-const clock=at=>new Date(at).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' Roma';
-const number=v=>Number.isFinite(v)?v.toLocaleString('it-IT',{maximumFractionDigits:1}):'non disponibile';
+const dates=new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}),numbers=new Intl.NumberFormat('it-IT',{maximumFractionDigits:1});const clock=at=>dates.format(new Date(at))+' Roma';
+const number=v=>Number.isFinite(v)?numbers.format(v):'non disponibile';
 export function scenarioWeather(primary){
  const $=id=>document.getElementById(id),layers=new Map(),selected=new Set(['wind','temperature','humidity','precipitation','rain_probability','cloud']),reduced=matchMedia('(prefers-reduced-motion: reduce)');
  let snapshot=null,requestedAt=null,busy=false,refreshAt=0,timer=null,poll=null,paused=reduced.matches;
@@ -27,7 +27,7 @@ export function scenarioWeather(primary){
   reset(){
    if(!this.map)return;this.hide();const size=this.map.getSize(),w=size.x,h=size.y;this.width=w;this.height=h;if(w<1||h<1){this.readings.replaceChildren();return;}
    for(const el of [this.canvas,this.wind]){el.style.width=w+'px';el.style.height=h+'px';el.style.visibility='visible';L.DomUtil.setPosition(el,this.map.containerPointToLayerPoint([0,0]));}
-   positionLabels(this.readings,this.map);this.readings.style.visibility='visible';this.readings.replaceChildren();
+   positionLabels(this.readings,this.map);this.readings.style.visibility='visible';
    this.canvas.width=Math.ceil(w/8);this.canvas.height=Math.ceil(h/8);this.wind.width=w;this.wind.height=h;
    this.draw();
    const r=this.record(),f=this.field();
@@ -39,9 +39,9 @@ export function scenarioWeather(primary){
   draw(){
    if(!this.map||!this.width||!this.height)return;
    const detailsOpen=this.legendEl.querySelector('details')?.open;const r=this.record(),f=this.field();this.canvas.dataset.at=r?.at||'';this.canvas.dataset.requestedAt=this.at||requestedAt||'';this.canvas.dataset.field=f?.id||'';this.canvas.dataset.origin=this.forcing?'FROZEN_JOB':'LIVE_CONSULTATION';this.canvas.dataset.job=this.forcing?.id||'';this.canvas.dataset.fields=[...selected].join(',');this.wind.dataset.at=r?.at||'';this.wind.dataset.active='false';this.legendEl.replaceChildren();this.legendEl.hidden=!selected.size;
-   if(!selected.size)return;
+   if(!selected.size){this.readings.replaceChildren();this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);this.canvas.dataset.coverage='0';return;}
    const title=document.createElement('strong');title.textContent=r?(this.forcing?'METEO USATO · ':snapshot?.status==='FRESH'?'PREVISIONE · ':'CACHE SCADUTA · ')+clock(r.at):'METEO NON DISPONIBILE A QUEST’ORA';this.legendEl.append(title);
-   if(!r||!f)return;
+   if(!r||!f){this.readings.replaceChildren();this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);this.canvas.dataset.coverage='0';return;}
    const keys=[...selected].filter(k=>k!=='wind');
    const coverage=paintRain(this.ctx,this.map,f,r,{rain:selected.has('precipitation'),cloud:selected.has('cloud')});
    this.canvas.dataset.coverage=String(coverage);

@@ -1,0 +1,37 @@
+{
+  "clock": {
+    "at": "2026-10-23T08:26:19.920Z",
+    "fraction": "0.43886666666775653",
+    "frameP95Ms": "8.800000011920929",
+    "frameSamples": "120",
+    "from": "2026-10-23T08:00:00Z",
+    "lastFrameCostMs": "7.399999976158142",
+    "to": "2026-10-23T09:00:00Z"
+  },
+  "dpr": 1,
+  "labelCreation": [
+    {
+      "createdLabels": "32"
+    }
+  ],
+  "labels": 32,
+  "scalar": {
+    "cloudPixels": "15836",
+    "coverage": "1",
+    "field": "map-weather-2ca5531ecfcc0eb385c5c3dd",
+    "variable": "temperature,humidity,precipitation,rain_probability,cloud",
+    "wetPixels": "0"
+  },
+  "viewport": [
+    1736,
+    875
+  ],
+  "wind": {
+    "at": "2026-10-23T08:26:19.920Z",
+    "field": "map-weather-2ca5531ecfcc0eb385c5c3dd",
+    "fineField": "openmeteo-wind-5d227c8382c46b2e52c0cb12",
+    "frameIntervalP95Ms": "33.5",
+    "frameP95Ms": "0.19999998807907104",
+    "frames": "5731"
+  }
+}

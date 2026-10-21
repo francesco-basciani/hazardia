@@ -1,5 +1,5 @@
 // Continuous visual replay of hourly VM snapshots: no acquisition or jobs per frame.
-const clock=at=>new Date(at).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' Roma';
+const dates=new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});const clock=at=>dates.format(new Date(at))+' Roma';
 export function forecastPlayback({select,mount,getTimes,getCurrent,active=()=>true}){
  const bar=document.createElement('section');bar.className='forecast-playback';bar.setAttribute('aria-label','Riproduzione previsioni meteorologiche');
  const title=document.createElement('strong');title.textContent='Previsioni meteo';const back=document.createElement('button'),play=document.createElement('button'),next=document.createElement('button'),slider=document.createElement('input'),out=document.createElement('output'),speedLabel=document.createElement('label'),speed=document.createElement('select'),note=document.createElement('small');
@@ -27,7 +27,7 @@ export function forecastPlayback({select,mount,getTimes,getCurrent,active=()=>tr
  function tick(now){
   if(document.hidden||!active()||!bar.getClientRects().length||window.frameElement&&!window.frameElement.getClientRects().length){stop();return;}
   if(previous!==null){const delta=(now-previous)/Number(speed.value);position=Math.min(times.length-1,position+delta);}previous=now;
-  if(now-lastPaint>=50||position>=times.length-1){lastPaint=now;const started=performance.now();set(position);const costs=bar._frameCosts||(bar._frameCosts=[]);costs.push(performance.now()-started);if(costs.length>120)costs.shift();}
+  if(now-lastPaint>=50||position>=times.length-1){lastPaint=now;const started=performance.now();set(position);const costs=bar._frameCosts||(bar._frameCosts=[]);costs.push(performance.now()-started);if(costs.length>120)costs.shift();bar.dataset.frameSamples=String(costs.length);bar.dataset.frameP95Ms=String([...costs].sort((a,b)=>a-b)[Math.ceil(costs.length*.95)-1]);bar.dataset.lastFrameCostMs=String(costs.at(-1));}
   if(position>=times.length-1||timer===null){stop();return;}timer=requestAnimationFrame(tick);
  }
  function start(){if(timer!==null){stop();return;}sync();if(!times.length||!active())return;if(position>=times.length-1)set(0);previous=null;timer=requestAnimationFrame(tick);playing();}

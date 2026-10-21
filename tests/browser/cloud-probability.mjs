@@ -11,7 +11,7 @@ const record={at:'2026-10-20T12:00:00Z',rain_probability:[20,40,60,80],precipita
 check(weatherAt([record,next],'2026-10-20T12:30:00Z').rain_probability[0]===30);
 check(weatherAt([{at:record.at},{at:next.at}],'2026-10-20T12:30:00Z').rain_probability===undefined);
 const field={lats:[0,1],lons:[0,1]},map={getSize:()=>({x:8,y:8}),containerPointToLatLng:()=>({lat:.5,lng:.5})};let image;
-const ctx={canvas:{width:1,height:1,dataset:{}},createImageData:()=>({data:new Uint8ClampedArray(4)}),putImageData:x=>image=x};
+const ctx={canvas:{width:1,height:1,dataset:{}},createImageData:()=>({width:1,height:1,data:new Uint8ClampedArray(4)}),putImageData:x=>image=x};
 check(display.paintRain(ctx,map,field,record,{rain:false,cloud:true})===1);check(image.data[3]>100&&image.data[3]<200);check(ctx.canvas.dataset.cloudPixels==='1'&&ctx.canvas.dataset.wetPixels==='0');
 display.paintRain(ctx,map,field,{...record,cloud:[0,0,0,0]},{rain:false,cloud:true});check(image.data[3]===0);
 display.paintRain(ctx,map,field,record,{rain:false,cloud:false});check(image.data[3]===0);

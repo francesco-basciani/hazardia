@@ -1,14 +1,14 @@
 import {viewportWeatherState,retainCoveredForecast} from '/viewport-weather-state.js';
 import {interpolateWeather} from '/weather-interpolation.js';
 import {forecastPlayback} from '/forecast-playback.js';
-import {sampleVector,sampleScalar} from '/weather-sampling.js';
+import {sampleVector,sampleScalar,screenSamplePlan,plannedScalar} from '/weather-sampling.js';
 export {sampleVector,sampleScalar} from '/weather-sampling.js';
 import {paintRain,weatherLabels,labelSurface,positionLabels,windGain,rainLegend} from '/weather-display.js';
 import {checkedForecastTime} from '/weather-clock.js?v=1';
 /* Bounded transparent display advection, not physical air-parcel trajectories. */
 const $=id=>document.getElementById(id);
 const scalarFields={temperature:['Temperatura a 2 m','°C',-10,40],precipitation:['Pioggia nell’ora successiva','mm',0,10],rain_probability:['Probabilità di pioggia · prossima ora','%',0,100],humidity:['Umidità relativa aria','%',0,100],gusts:['Raffica massima nell’ora successiva','m/s',0,30],cloud:['Copertura nuvolosa','%',0,100],pressure:['Pressione al suolo','hPa',800,1050],radiation:['Radiazione media nell’ora successiva','W/m²',0,1000]};
-const clock=t=>new Date(t).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' Roma';
+const dates=new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}),numbers=new Intl.NumberFormat('it-IT',{maximumFractionDigits:1});const clock=t=>dates.format(new Date(t))+' Roma';
 export function regionalWind(map){
  let field=null,record=null,fieldStatus=null,visible=true,canvas=null,ctx=null,frame=null,last=0,previous=0,particles=[],screen=null,cols=0,width=0,height=0,busy=false,poll=null,disposed=false;
  const reduced=matchMedia('(prefers-reduced-motion: reduce)'),metrics={active:false,frames:0,particleCount:0,lastFrameCostMs:0,frameIntervals:[],frameCosts:[],updates:0};
@@ -23,13 +23,13 @@ export function regionalWind(map){
  function color(s){return colors[s<3?0:s<7?1:s<12?2:3];}
  function viewport(){const b=map.getBounds();return [[Math.max(-85,b.getSouth()),Math.max(-180,b.getWest())],[Math.min(85,b.getNorth()),Math.min(180,b.getEast())]];}
  function acquisitionBounds(){return viewport();}
- function weatherText(p,keys=Object.keys(scalarFields)){const n=x=>Number(x).toLocaleString('it-IT',{maximumFractionDigits:1});return Object.entries(scalarFields).filter(([key])=>keys.includes(key)).map(([key,[label,unit]])=>{const v=sampleScalar(field,record,key,p.lat,p.lng);return label+': '+(v===null?'non disponibile':n(v)+' '+unit);}).join(' · ');}
+ function weatherText(p,keys=Object.keys(scalarFields)){const n=x=>numbers.format(Number(x));return Object.entries(scalarFields).filter(([key])=>keys.includes(key)).map(([key,[label,unit]])=>{const v=sampleScalar(field,record,key,p.lat,p.lng);return label+': '+(v===null?'non disponibile':n(v)+' '+unit);}).join(' · ');}
  function readout(){const el=$('map-weather-readout');if(!el)return;el.hidden=!$('monitor-weather').checked;if(!record||!field){el.textContent='Meteo in caricamento';return;}const p=map.getCenter(),v=(fineRecord&&Date.now()-Date.parse(fineField.available_at)>=0&&Date.now()-Date.parse(fineField.available_at)<10800000&&sampleVector(fineField,fineRecord,p.lat,p.lng))||sampleVector(field,record,p.lat,p.lng);el.textContent=(!L.latLngBounds(field.bounds).contains(map.getBounds())?'COPERTURA PARZIALE · ':'')+(fieldStatus==='FRESH'?'':'CACHE METEO NON ATTUALE · ')+(v?'Vento '+Math.hypot(...v).toFixed(1)+' m/s · ':'Vento non disponibile · ')+weatherText(p,[...chosen])+' · '+clock(record.at)+' · centro della mappa';}
  function scalar(){
   if(!scalarCanvas){scalarCanvas=L.DomUtil.create('canvas','weather-field',map.getPane('mapWeatherFill'));scalarCanvas.setAttribute('aria-hidden','true');scalarCtx=scalarCanvas.getContext('2d');}
-  scalarCanvas.width=Math.ceil(width/8);scalarCanvas.height=Math.ceil(height/8);scalarCanvas.style.width=width+'px';scalarCanvas.style.height=height+'px';L.DomUtil.setPosition(scalarCanvas,map.containerPointToLayerPoint([0,0]));
-  scalarCtx.clearRect(0,0,scalarCanvas.width,scalarCanvas.height);readings.replaceChildren();positionLabels(readings,map);
-  if(!width||!height||!visible||!$('monitor-weather').checked||!record)return;
+  const rw=Math.ceil(width/8),rh=Math.ceil(height/8);if(scalarCanvas.width!==rw)scalarCanvas.width=rw;if(scalarCanvas.height!==rh)scalarCanvas.height=rh;scalarCanvas.style.width=width+'px';scalarCanvas.style.height=height+'px';L.DomUtil.setPosition(scalarCanvas,map.containerPointToLayerPoint([0,0]));
+  scalarCtx.clearRect(0,0,scalarCanvas.width,scalarCanvas.height);positionLabels(readings,map);
+  if(!width||!height||!visible||!$('monitor-weather').checked||!record){readings.replaceChildren();return;}
   const coverage=paintRain(scalarCtx,map,field,record,{rain:chosen.has('precipitation'),cloud:chosen.has('cloud')});
   weatherLabels(readings,map,field,record,[...chosen]);scalarCanvas.dataset.field=field.id;scalarCanvas.dataset.variable=[...chosen].join(',');scalarCanvas.dataset.coverage=String(coverage);
  }
@@ -54,9 +54,10 @@ export function regionalWind(map){
   frame=requestAnimationFrame(tick);if(last&&t-last<32)return;
   const started=performance.now(),dt=last?Math.min(.08,(t-last)/1000):.033;last=t;
   if(previous){metrics.frameIntervals.push(t-previous);if(metrics.frameIntervals.length>120)metrics.frameIntervals.shift();}previous=t;
-  ctx.globalCompositeOperation='destination-in';ctx.fillStyle='rgba(0,0,0,0.92)';ctx.fillRect(0,0,width,height);ctx.globalCompositeOperation='source-over';ctx.globalAlpha=.95;ctx.lineWidth=2;ctx.lineCap='round';ctx.shadowColor='#071929';ctx.shadowBlur=2;
-  for(const p of particles){const v=velocity(p.x,p.y);if(!v||p.age>p.life||p.x<0||p.x>width||p.y<0||p.y>height){spawn(p);continue;}const speed=Math.hypot(...v),x=p.x+v[0]*dt*windGain(speed),y=p.y-v[1]*dt*windGain(speed);p.age+=dt;if(speed<.1)continue;ctx.strokeStyle=color(speed);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(x,y);ctx.stroke();p.x=x;p.y=y;}
-  ctx.globalAlpha=1;metrics.frames++;metrics.lastFrameCostMs=performance.now()-started;metrics.frameCosts.push(metrics.lastFrameCostMs);if(metrics.frameCosts.length>120)metrics.frameCosts.shift();metrics.active=true;
+  ctx.globalCompositeOperation='destination-in';ctx.fillStyle='rgba(0,0,0,0.92)';ctx.fillRect(0,0,width,height);ctx.globalCompositeOperation='source-over';ctx.globalAlpha=.95;ctx.lineWidth=2;ctx.lineCap='round';ctx.shadowBlur=0;const paths=colors.map(()=>[]);
+  for(const p of particles){const v=velocity(p.x,p.y);if(!v||p.age>p.life||p.x<0||p.x>width||p.y<0||p.y>height){spawn(p);continue;}const speed=Math.hypot(...v),x=p.x+v[0]*dt*windGain(speed),y=p.y-v[1]*dt*windGain(speed);p.age+=dt;if(speed<.1)continue;paths[speed<3?0:speed<7?1:speed<12?2:3].push(p.x,p.y,x,y);p.x=x;p.y=y;}
+  for(let j=0;j<paths.length;j++){const path=paths[j];if(!path.length)continue;ctx.beginPath();for(let i=0;i<path.length;i+=4){ctx.moveTo(path[i],path[i+1]);ctx.lineTo(path[i+2],path[i+3]);}ctx.globalAlpha=.35;ctx.strokeStyle='#071929';ctx.lineWidth=3.5;ctx.stroke();ctx.globalAlpha=.95;ctx.strokeStyle=colors[j];ctx.lineWidth=2;ctx.stroke();}
+  ctx.globalAlpha=1;metrics.frames++;metrics.lastFrameCostMs=performance.now()-started;metrics.frameCosts.push(metrics.lastFrameCostMs);if(metrics.frameCosts.length>120)metrics.frameCosts.shift();canvas.dataset.frameP95Ms=String([...metrics.frameCosts].sort((a,b)=>a-b)[Math.ceil(metrics.frameCosts.length*.95)-1]);canvas.dataset.frameIntervalP95Ms=String([...metrics.frameIntervals].sort((a,b)=>a-b)[Math.ceil(metrics.frameIntervals.length*.95)-1]);canvas.dataset.frames=String(metrics.frames);metrics.active=true;
  }
  function button(){const b=$('wind-animation');b.textContent=paused?'Riprendi particelle':'Pausa particelle';b.setAttribute('aria-pressed',String(!paused));}
  function reset(){
@@ -71,7 +72,8 @@ export function regionalWind(map){
  function updateScreen(){
   cols=Math.ceil(width/16)+2;const rows=Math.ceil(height/16)+2;screen=new Float32Array(cols*rows*2);screen.fill(NaN);
   const useFine=fineRecord&&Date.now()-Date.parse(fineField.available_at)>=0&&Date.now()-Date.parse(fineField.available_at)<10800000;
-  for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){const ll=map.containerPointToLatLng([x*16,y*16]),v=(useFine&&sampleVector(fineField,fineRecord,ll.lat,ll.lng))||sampleVector(field,record,ll.lat,ll.lng);if(v){screen[(y*cols+x)*2]=v[0];screen[(y*cols+x)*2+1]=v[1];}}
+  const main=screenSamplePlan(map,field,cols,rows,16,16,0,'wind-main'),fine=useFine?screenSamplePlan(map,fineField,cols,rows,16,16,0,'wind-fine'):null;
+  for(let i=0;i<cols*rows;i++){let u=plannedScalar(fine,fineRecord?.u,i),v=plannedScalar(fine,fineRecord?.v,i);if(u===null||v===null){u=plannedScalar(main,record.u,i);v=plannedScalar(main,record.v,i);}if(u!==null&&v!==null){screen[i*2]=u;screen[i*2+1]=v;}}
  }
  function render(s){
   s=checkedForecastTime(s,10800);
