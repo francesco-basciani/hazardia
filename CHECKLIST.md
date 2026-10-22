@@ -1165,7 +1165,13 @@ Run `map-symbols-20261021`: PASS UI per legenda sulla mappa coerente con simboli
 Revisione `mydewetra-review-20261021`: MD-01…03 PASS documentale/statico/analitico, non esperimento. PDF16p integrale e figure/tabelle, artifactGSSI `7d69bed`, sorgentiCIMA `4c20f78` e archivi backendv2/v3 verificati. Sovrapposizione forte su monitoraggio multi-hazard/fonti/mappe/soglie; nessuna novità da rivendicare su queste sole funzioni. Possibile riuso di catalogo/layer temporali, eventi soglia, classi QPF/zone e metodologia utenti, da qualificare. ModuloQPFv3 successivo al paper, classi meteorologiche non allerte idrauliche: nessuna soglia trasferita. MD-04 FAIL iniziale TLS CA Python, recupero curl con TLS verificato; MD-05 replica completa BLOCKED da stack/dipendenze/dati non ottenuti (due librerieGit404 anonimo), MD-06 esecuzioni/benchmark NOT RUN. Rapporto `reports/CONFRONTO-MYDEWETRA-CAISE2025.md`, metadati/hash `reports/mydewetra-review/audit.json`. Contributi decisionali distinti solo nei limiti descritti, non prova di assenza nel prodotto MyDewetra né originalità globale. Nessuna modifica runtime/manoscritto, installazione, invio ai coautori o push; RQ1–RQ3/pianoM0–M7/gate scientifici invariati. Prossimo incremento suggerito, non avviato: semantica zonale/finestre e verifica artefatti completi prima di riuso o confronto prestazionale. ReviewerCodexself-check.
 
 
-## Baseline funzionale MyDewetra + capacità HAZARDIA — 2026-10-21
+## Ricognizione storica MyDewetra — 2026-10-21, parità ritirata il 22 ottobre
+
+**Rettifica 22 ottobre 2026:** questa interpretazione di parità funzionale è
+superata. MyDewetra è un riferimento architetturale; restano i requisiti HAZARDIA
+richiesti autonomamente. Vedere FR-EWS-BASELINE-01 rettificato e
+reports/MYDEWETRA-RIFERIMENTO-ARCHITETTURALE.md. Il testo seguente conserva la
+traccia storica della precedente interpretazione, non un mandato corrente.
 
 Decisione utente recepita in FR-EWS-BASELINE-01. Questa è una ricognizione
 di copertura basata sulle evidenze esistenti, non una nuova campagna di test.
@@ -1225,3 +1231,18 @@ Parent44bc591+patch, commit di consegna nella cronologia/PUBLICATION.json; revie
 | Dati ufficiali regionali Abruzzo completi/correnti e diritti alternativa AgroAmbiente | BLOCKED | rete Abruzzo non presente nel catalogo; portale15giorni/diritti irrisolti |
 | Soglie idrologiche locali/skill nuova delle allerte e fullM5–M7 | BLOCKED | nessuna qualifica nuova dalle sole misure dei pluviometri |
 | Nuovi run fisici/assimilazione, dispositivi fisici/FPS/soak/benchmark globale | NOT RUN | questo incremento è Monitoraggio, non qualifica dei motori né piena chiusura QR-11–14 |
+
+
+## MyDewetra come riferimento architetturale — 22 ottobre 2026
+Revisione mydewetra-architecture-20261022, parent e614da4+documentazione preesistente dirty; reviewer Codex self-check. Report reports/MYDEWETRA-RIFERIMENTO-ARCHITETTURALE.md, hash/source review.json. Nessuna nuova equivalenza funzionale richiesta.
+
+| ID | Verifica | Esito / evidenza |
+|---|---|---|
+| MD-ARCH-01 | Paper identificato e architettura pp7–8/fig1–2 verificata | PASS documentale; SHA256PDF, testo completo delle pagine e figure |
+| MD-ARCH-02 | Distinguere avvio algoritmi e lettura output nei sorgenti storici | PASS statico; algorithms/resources.py e layers/floodproof/resources.py congelati |
+| MD-ARCH-03 | Connettore PROPAGATOR degli autori eseguito/verificato | NOT RUN: non specificato nelle evidenze lette; nessun giudizio sull’intero prodotto |
+| MD-ARCH-04 | Mappare responsabilità ai contratti/job/adapter/prodotti HAZARDIA | PASS statico; report, nessuna nuova esecuzione dei motori |
+| MD-ARCH-05 | Correggere l’obiettivo improprio di parità funzionale | PASS documentale; SPEC/AGENTS/PLAN/MEMORY aggiornati, MBstorico senza cancellare gli esiti |
+| MD-ARCH-06 | Replica MyDewetra/nuove installazioni/benchmark/manoscritto | NOT RUN, non richiesti da questo incremento |
+
+Requisiti HAZARDIA autonomi e relativi esiti/gate restano invariati; fullM5–M7 scientifici BLOCKED. Il ritiro della parità non converte verifiche incomplete in PASS.

@@ -461,24 +461,30 @@ Nel Monitoraggio privilegiare una vista meteo interpretabile: modalità Pioggia 
 
 La vista Pioggia e allerte associa accumuli previsionali completi1/3/6/12/24/48h alle geometrie ufficiali, all’ora scelta dalla barra meteo. Classi cartografiche quantitative, bollettino ufficiale e rischio idraulico autonomo restano tre significati distinti. Quantità basse del modello non annullano un bollettino; confini datati non prolungano la sua validità. Copertura parziale, geometria invalida e ore mancanti non diventano zero/basso rischio. Estremi dei campioni non sono massimi locali garantiti; precipitazione totale può includere neve equivalente. La nuova consultazione non chiude i requisiti di soglie/antecedenti/impatti qualificati di FR-MONITOR-FUSION-01. Report: reports/PIOGGIA-ZONE-E-ALLERTE.md.
 
-## FR-EWS-BASELINE-01 — MyDewetra come baseline funzionale, 2026-10-21
+## FR-EWS-BASELINE-01 — Riferimento architetturale MyDewetra, rettifica 2026-10-22
 
-Decisione esplicita dell’utente: HAZARDIA deve coprire le capacità funzionali di
-MyDewetra documentate nella revisione `mydewetra-review-20261021`, oltre a tutte
-le capacità HAZARDIA già richieste. Il Monitoraggio è un obiettivo di prodotto
-a pieno titolo; la distinzione scientifica del decision engine non ne riduce
-lo scope. La baseline comprende acquisizione di osservazioni/previsioni e
-fonti territoriali, mappe/livelli temporali e serie storiche, soglie e criticità
-spiegabili, supporto umano a bollettini/report e autorizzazioni/tracciabilità.
-Funzioni non documentate del prodotto MyDewetra richiedono ricognizione prima
-di dichiarare equivalenza; l’assenza dal paper non ne dimostra l’assenza.
+L’utente chiarisce che dal paper MyDewetra si riprende l’architettura di
+integrazione di applicazioni, servizi e dati. Questa decisione sostituisce la
+precedente interpretazione del 21 ottobre come obbligo di parità funzionale.
+L’ID resta stabile per la tracciabilità; i registri MB-01…08 sono storici e
+non introducono ulteriori criteri di accettazione per la replica del prodotto.
 
-Restano additive simulazioni fisiche su territorio e meteo reali, inneschi e
-risorse configurabili, confronto degli interventi, ottimizzazione robusta con
-priorità, rolling horizon, deadline verificata e graceful degradation. Restano
-vincolanti piattaforma generica, primi moduli incendi/alluvioni, portabilità
-geografica, UI responsive con mappa centrale, runtime nella stessa VM e fonti
-gratuite. Non implica clonare lo stack cloud o aggiungere ora altri hazard.
+Il riferimento riguarda la separazione tra UI/API applicative, acquisizione
+delle fonti, pubblicazione cartografica temporale, elaborazioni e aggiornamenti
+dei client. In HAZARDIA l’avvio dei simulatori passa dai contratti versionati,
+dai job e dagli adapter/worker isolati; la lettura dei risultati è distinta
+dall’esecuzione del motore. Il paper non specifica un connettore PROPAGATOR:
+non dedurre un protocollo eseguibile dalla sola architettura di alto livello,
+né l’assenza di integrazioni nel prodotto completo dall’assenza nel paper.
+
+Restano tutti i requisiti HAZARDIA originari e le richieste autonome successive:
+Monitoraggio e Simulazioni, meteo/territorio reali, inneschi e risorse configurabili,
+confronti, ottimizzazione robusta e priorità, rolling horizon, deadline e graceful
+degradation. Restano AR-EXT-01, piattaforma generica, primi moduli incendi/alluvioni,
+portabilità geografica, UI responsive con mappa centrale, stessa VM e fonti gratuite.
+Nessuna nuova funzione, dipendenza da MyDewetra, copia del suo stack cloud o
+installazione è implicita nel riferimento. Non viene modificato il manoscritto.
+Analisi e mappatura: reports/MYDEWETRA-RIFERIMENTO-ARCHITETTURALE.md.
 Il requisito di prodotto non attribuisce autorità per emettere allerte ufficiali,
 non qualifica automaticamente soglie/effetti e non autorizza spese, accessi
 ristretti, installazioni privilegiate o cambiamenti architetturali sostanziali.

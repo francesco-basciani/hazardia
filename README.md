@@ -145,3 +145,7 @@ Il campo meteo usato è identificato e congelato per la richiesta; le allerte
 DPC restano distinte dalla quantità prevista. Se lo sfondo online non è
 disponibile, un avviso suggerisce un altro sfondo dal selettore.
 [Verifiche e limiti](reports/MONITORAGGIO-SERIE-ORARIE-ZONE.md).
+
+
+## Riferimento architetturale MyDewetra
+Il [paper MyDewetra è usato come riferimento per integrare applicazioni, dati e servizi](reports/MYDEWETRA-RIFERIMENTO-ARCHITETTURALE.md), non come requisito di parità funzionale. Gli adapter che avviano PROPAGATOR/HMC/REFlEx sono distinti dalle API che pubblicano i risultati. Restano il piano e le funzionalità HAZARDIA concordate; nessuna dipendenza dal prodotto MyDewetra o installazione del suo stack è implicita. Chiarimento dell’utente del22ottobre2026, recepito in FR-EWS-BASELINE-01.

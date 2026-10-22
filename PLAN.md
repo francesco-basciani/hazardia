@@ -483,7 +483,13 @@ Run `map-symbols-20261021`: PASS UI per legenda sulla mappa coerente con simboli
 Revisione `mydewetra-review-20261021`: MD-01…03 PASS documentale/statico/analitico, non esperimento. PDF16p integrale e figure/tabelle, artifactGSSI `7d69bed`, sorgentiCIMA `4c20f78` e archivi backendv2/v3 verificati. Sovrapposizione forte su monitoraggio multi-hazard/fonti/mappe/soglie; nessuna novità da rivendicare su queste sole funzioni. Possibile riuso di catalogo/layer temporali, eventi soglia, classi QPF/zone e metodologia utenti, da qualificare. ModuloQPFv3 successivo al paper, classi meteorologiche non allerte idrauliche: nessuna soglia trasferita. MD-04 FAIL iniziale TLS CA Python, recupero curl con TLS verificato; MD-05 replica completa BLOCKED da stack/dipendenze/dati non ottenuti (due librerieGit404 anonimo), MD-06 esecuzioni/benchmark NOT RUN. Rapporto `reports/CONFRONTO-MYDEWETRA-CAISE2025.md`, metadati/hash `reports/mydewetra-review/audit.json`. Contributi decisionali distinti solo nei limiti descritti, non prova di assenza nel prodotto MyDewetra né originalità globale. Nessuna modifica runtime/manoscritto, installazione, invio ai coautori o push; RQ1–RQ3/pianoM0–M7/gate scientifici invariati. Prossimo incremento suggerito, non avviato: semantica zonale/finestre e verifica artefatti completi prima di riuso o confronto prestazionale. ReviewerCodexself-check.
 
 
-## Obiettivo confermato: MyDewetra + HAZARDIA — 2026-10-21
+## Interpretazione storica superata: MyDewetra + HAZARDIA — 2026-10-21
+
+**Rettifica 22 ottobre 2026:** questa interpretazione di parità funzionale è
+superata. MyDewetra è un riferimento architetturale; restano i requisiti HAZARDIA
+richiesti autonomamente. Vedere FR-EWS-BASELINE-01 rettificato e
+reports/MYDEWETRA-RIFERIMENTO-ARCHITETTURALE.md. Il testo seguente conserva la
+traccia storica della precedente interpretazione, non un mandato corrente.
 
 L’utente richiede copertura funzionale MyDewetra più tutte le capacità già
 definite per HAZARDIA. FR-EWS-BASELINE-01 rende esplicito che il Monitoraggio
@@ -527,3 +533,7 @@ di soglie/qualità, con disponibilità e diritti espliciti.
 
 ## Incremento Monitoraggio: pioggia osservata — 22 ottobre 2026
 Richiesta «Facciamolo»: prima fonte osservata gratuita nella VM, rispetto a FR-EWS-BASELINE-01/FR-MONITOR-FUSION-01 e M5–M7 originali. PASS tecnico per GET pubblico MeteoHub CC BY 4.0, 4.068 stazioni, pluviometri distinti da previsione/allerte DPC, tempi/unità/qualità/assenze espliciti. PASS36 test VM,14 controlli serie JS, UI reale e replay/hash; API calda n30 p95 233,2 ms dopo FAIL iniziale556,9 ms e compattazione dei metadati. Nessuna nuova fisica/operazione. Report reports/MONITORAGGIO-PIOGGIA-OSSERVATA.md, run observed-rain-20261021. Prossimo incremento: confronto osservato/previsto su intervalli comparabili e qualificazione idrologica/soglie; full M5–M7 BLOCKED invariati.
+
+
+## Rettifica MyDewetra: solo riferimento architetturale — 22 ottobre 2026
+L’utente conferma il riesame dell’architettura del paper, non la replica funzionale del prodotto. PASS documentale/statico MD-ARCH-01/02/04/05: pp.7–8/fig.1–2, integrazione applicazioni/API/DDS/eventi, endpoint algoritmi storico distinto dalla lettura di prodotti FloodProof, mappatura ai contratti/job/worker/prodotti HAZARDIA. Connettore PROPAGATOR specificato dagli autori NOT RUN/non documentato nelle fonti lette; nessuna deduzione sul prodotto completo. SPEC e mandato AGENTS rettificati; MB-01…08 conservati come ricognizione storica, non gate di parità. M0–M7/AR-EXT-01 e requisiti autonomi invariati, fullM5–M7BLOCKED; nessuna modifica runtime/manoscritto o nuova installazione. Report reports/MYDEWETRA-RIFERIMENTO-ARCHITETTURALE.md, revisione mydewetra-architecture-20261022, parent e614da4+dirty. Prossimo incremento proposto, non implementato: inventario/metadati coerenti dei prodotti/layer esistenti separato dagli adapter di esecuzione, senza imporre nuovo stack. ReviewerCodexself-check.

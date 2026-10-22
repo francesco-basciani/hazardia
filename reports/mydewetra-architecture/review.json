@@ -1,0 +1,33 @@
+{
+  "review_id": "mydewetra-architecture-20261022",
+  "at": "2026-10-22T04:25:04.726526+00:00",
+  "base_git_sha": "e614da452e57f219a7e5111be6604e6a34d63e91",
+  "scope": "Architectural reference only, user correction supersedes functional parity; no runtime or paper edits",
+  "pdf_sha256": "6a475b27493f12ca86abad03f713c657e30a63e5f83254a3525466a028fe1c4c",
+  "pages_reviewed": "7\u20138 complete, figures1\u20132; context pp5\u20136",
+  "paper_engine_name_matches": {
+    "PROPAGATOR": 0,
+    "Continuum": 0,
+    "HMC": 0,
+    "REFlEx": 0,
+    "FloodProof": 0
+  },
+  "source_archive_sha256": "0ee074bb42beb1140cb3cbd16ee0653824a68cae52ec79df51a37a1e9be91f25",
+  "upstream_commit": "4c20f78dc20a702defca33e71f23c324be9f417f",
+  "members": {
+    "backend-dewetra2/dewetra2/algorithms/resources.py": {
+      "sha256": "d1ce737ef4684b6f121f124820786647e8b00155e3617ff08dd94beaac247756",
+      "review": "static only; never imported/executed"
+    },
+    "backend-dewetra2/dewetra2/layers/floodproof/resources.py": {
+      "sha256": "4e708aa00db8238915d429c69d5350e4a7586290dceef21d832f31c1f3ca658f",
+      "review": "static only; never imported/executed"
+    }
+  },
+  "limitations": [
+    "Paper does not specify a PROPAGATOR adapter; no absence claim about full product",
+    "Legacy source not assumed identical to reengineered 2025 architecture",
+    "No installations, model runs, performance/skill experiments, external messages or manuscript modifications"
+  ],
+  "reviewer": "Codex self-check"
+}
