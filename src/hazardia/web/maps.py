@@ -64,7 +64,7 @@ class Orthophotos:
             if acquired:self.slots.release()
             self.admission.release()
     def status(self):
-        with self.lock:return dict(source='Regione Abruzzo · ortofoto 2018–2019 · 20 cm/px dichiarati',downloaded_bytes=self.downloaded,download_limit_bytes=self.download_limit,cache_bytes=self.size,cache_limit_bytes=self.memory_limit,tiles=len(self.cache),upstream_requests=self.requests,errors=self.errors,mode='Live consultation; bounded RAM cache, no persistent imagery archive')
+        with self.lock:return dict(source='Regione Abruzzo · ortofoto 2018–2019 · 20 cm/px dichiarati',downloaded_bytes=self.downloaded,download_limit_bytes=self.download_limit,can_download_tiles=self.downloaded+4*self.tile_limit<=self.download_limit,cache_bytes=self.size,cache_limit_bytes=self.memory_limit,tiles=len(self.cache),upstream_requests=self.requests,errors=self.errors,mode='Live consultation; bounded RAM cache, no persistent imagery archive')
 
 
 class RegionalSatellite(Orthophotos):

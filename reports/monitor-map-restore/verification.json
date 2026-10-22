@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "engine_pins": 145,
+  "preserved_files": 8,
+  "satellite_status": {
+    "source": "Sentinel-2 cloudless2024 by EOX; Contains modified Copernicus Sentinel data2024",
+    "downloaded_bytes": 65017285,
+    "download_limit_bytes": 67108864,
+    "can_download_tiles": false,
+    "cache_bytes": 0,
+    "cache_limit_bytes": 8388608,
+    "tiles": 0,
+    "upstream_requests": 0,
+    "errors": 0,
+    "mode": "Live consultation; bounded RAM cache, no persistent imagery archive",
+    "license": "CC-BY-NC-SA-4.0",
+    "license_url": "https://www.eox.at/2025/03/sentinel-2-cloudless-2024/"
+  }
+}

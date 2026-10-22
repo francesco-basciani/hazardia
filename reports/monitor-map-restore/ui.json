@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "run_id": "monitor-map-restore-20261022",
+  "basemap": "osm",
+  "preset": "overview",
+  "variables": [
+    "temperature",
+    "humidity",
+    "rain_probability"
+  ],
+  "labels": 21,
+  "wind": {
+    "frames": "3372",
+    "p95DrawMs": "0.20000004768371582",
+    "p95IntervalMs": "33.40000000000873"
+  },
+  "responsive": [
+    {
+      "width": 375,
+      "height": 812,
+      "bodyWidth": 375,
+      "scrollWidth": 375
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "bodyWidth": 768,
+      "scrollWidth": 768
+    }
+  ],
+  "checks": [
+    "Satellite budget fallback automatically selected OSM with explicit reason",
+    "Temperature/RH/rain probability distributed; wind particles and rain fill enabled",
+    "Temperature checkbox removes numeric layer",
+    "Cloud checkbox unchecks rain to avoid conflation",
+    "Preset restores chosen fields",
+    "Weather legend collapsed without hiding time/status",
+    "Mobile/tablet no horizontal overflow, viewport override reset",
+    "User tab restored after VM reboot, same case URL"
+  ],
+  "limitations": [
+    "Brief canvas sample, not full QR11–14 benchmark",
+    "Physical devices/Safari and soak NOT RUN"
+  ],
+  "userViewport": {
+    "height": 1034,
+    "scrollWidth": 2252,
+    "width": 2252
+  }
+}

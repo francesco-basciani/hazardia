@@ -1246,3 +1246,19 @@ Revisione mydewetra-architecture-20261022, parent e614da4+documentazione preesis
 | MD-ARCH-06 | Replica MyDewetra/nuove installazioni/benchmark/manoscritto | NOT RUN, non richiesti da questo incremento |
 
 Requisiti HAZARDIA autonomi e relativi esiti/gate restano invariati; fullM5–M7 scientifici BLOCKED. Il ritiro della parità non converte verifiche incomplete in PASS.
+
+
+## Monitoraggio: recupero sfondo e meteo — monitor-map-restore-20261022
+Parent0ac55b1+dirtypreesistente, reviewerCodexself-check. Report reports/RIPRISTINO-MONITORAGGIO-MAPPA-E-METEO.md.
+
+| Verifica | Esito | Evidenza |
+|---|---|---|
+| Fallback sfondo reale quando la riserva di quota impedisce altri tile | PASS | Contatore65.017.285byte/limite64MiB invariato, flagfalse, OSMautomatico, zero nuovi fetch satellite |
+| Meteo combinato e selezione/leggibilità dei livelli | PASS | UIreale: T/UR/probabilità, vento e pioggia, checkbox, nuvole alternative, legenda espandibile |
+| Regressioni dati/mappe/rendering | PASS | 27testVM/6061checkJSpuri; stubDOMclassList corretto dopo FAIL iniziale |
+| Desktop/tablet/telefono senza overflow e campione canvas | PASS | Screenshot1280×720/768×1024/375×812; p95draw0,2ms/intervallo33,4ms, non prova universale |
+| Motori, workspace/casi, job preesistenti | PASS | 145pin/8file/90job preservati; riavvio inattivo,0interruzioni |
+| Nuovi run fisici/skill/benchmarkcompleti/Safarifisico/soak | NOT RUN | Incremento di visualizzazione e fallback, nessuna nuova qualifica |
+| FullM5–M7 | BLOCKED | Limiti scientifici precedenti invariati |
+
+Incidente finale: VM trovata stopped e SSH rifiutato; causa non determinata. Riavviata la stessa VM con utmctl e ripristinati servizio/tunnel loopback. PASS verifica post-boot:8fileworkspace/145pin/90job e contatore satellite invariati; nessun job interrotto. Evidenza after-vm-restart.json.
