@@ -1,0 +1,188 @@
+{
+  "run_id": "layers-traffic-20261023",
+  "base_commit": "f213132bc9c93bad021760aefcef203b608a4f29",
+  "reviewer": "Codex self-check",
+  "python_tests": {
+    "status": "PASS",
+    "count": 68,
+    "environment": "Linux VM core-env",
+    "command": "PYTHONPATH=src:tests/unit:tests/web ../core-env/bin/python -m unittest test_traffic test_recent_imagery test_consultation_cache test_radar_service test_map_navigation test_maps test_regional_satellite test_osm_tiles test_map_weather test_bootstrap test_fire_workspace test_fire_cases -v"
+  },
+  "js_tests": [
+    {
+      "status": "PASS",
+      "trials": 30,
+      "vehicles": 400,
+      "segments": 12000,
+      "step_and_positions_ms_p50": 0.010073750019073487,
+      "step_and_positions_ms_p95": 0.020015276670455932,
+      "scope": "pure model; canvas/map/frame latency measured separately"
+    },
+    {
+      "real_graph_status": "PASS",
+      "segments": 1221,
+      "vehicles": 400,
+      "simulation_steps": 36000,
+      "closed_way": "28404014",
+      "source_sha256": "19563207f82f4d4788b5c077628327fba283f0b1223e215d4c4fa128ff4d17ed"
+    }
+  ],
+  "js_environment": "Node16.20.2 development client, visual module tests only",
+  "browser_visible_traffic": {
+    "at": "2026-10-23T11:24:42.029Z",
+    "metrics": {
+      "vehicles": 400,
+      "draw_ms_p95": 0.7000000476837158,
+      "interval_ms_p95": 48.69999999999709,
+      "samples": 300,
+      "elapsed": 56.50000000000053
+    },
+    "canvas": {
+      "bottom": 688,
+      "height": 575,
+      "left": 13,
+      "right": 1267,
+      "top": 113,
+      "width": 1254,
+      "x": 13,
+      "y": 113
+    },
+    "viewport": {
+      "height": 720,
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    "groups": [
+      "Meteo e osservazioni",
+      "Territorio ed esposizione",
+      "Risorse e accessibilit\u00e0",
+      "Scenari e simulazioni"
+    ]
+  },
+  "preserved": {
+    "files": 311,
+    "changed": [],
+    "jobs": [
+      [
+        "CANCELLED",
+        8
+      ],
+      [
+        "ERROR",
+        5
+      ],
+      [
+        "SUCCEEDED",
+        82
+      ]
+    ]
+  },
+  "imagery": {
+    "text": "Immagini recenti \u00b7 Sentinel-2\nCerca acquisizioni nell\u2019area visibile\n\n2 anteprime \u00b7 Copernicus Sentinel \u00b7 nuvolosit\u00e0 riferita all\u2019intera tessera.\n\n2026-10-21T10:00:41.025000Z \u00b7 nuvole 99.46% \u00b7 MGRS-33TUH\nS2C_MSIL2A_20261021T100041_N0513_R122_T33TUH_20261021T140303\n Impronta 2026-10-21T10:00:41.025000Z\n2026-10-16T10:00:29.024000Z \u00b7 nuvole 20.01% \u00b7 MGRS-33TUH\nS2B_MSIL2A_20261016T100029_N0513_R122_T33TUH_20261016T142358\n Impronta 2026-10-16T10:00:29.024000Z\nAnteprima a bassa risoluzione, non sovrapposta perch\u00e9 non \u00e8 un raster analitico georettificato. Il confronto \u00e8 fra acquisizioni; non un cambiamento automaticamente classificato.",
+    "images": [
+      {
+        "complete": true,
+        "height": 343,
+        "src": "/api/monitoring/recent-imagery/7418b5f9fa53abb2b052e102.jpg",
+        "width": 343
+      },
+      {
+        "complete": true,
+        "height": 343,
+        "src": "/api/monitoring/recent-imagery/5f3446d85f3a60c187282864.jpg",
+        "width": 343
+      }
+    ]
+  },
+  "limits": {
+    "max_vehicles": 400,
+    "density_per_km": [
+      0,
+      200
+    ],
+    "max_directed_segments": 12000,
+    "traffic_disk_mib": 48,
+    "imagery_disk_mib": 24,
+    "traffic_queries_day": 8,
+    "imagery_queries_day": 6,
+    "backend_model_coupling": false
+  },
+  "cache_measured_bytes": {
+    "traffic": 1262450,
+    "recent_imagery": 1755530
+  },
+  "negative_attempts": [
+    "OSM response exceeds4MiB (classified, smaller AOI used)",
+    "Quicklook official zipper redirect initially rejected, allowlist corrected",
+    "Canvas CSS strict size containment zeroed visual area; corrected, visible screenshot checked",
+    "FIRMS CSV404, EFFIS WFS timeout, local WMS feature-info empty; no observed fire inference",
+    "Final diff review caught accidental CSS overwrite; original map stylesheet restored, desktop/mobile/tablet rechecked before commit"
+  ],
+  "blocked": [
+    "Local verified thermal detections",
+    "Observed dated local fire perimeters",
+    "Hydrometric series",
+    "Population exposure counts",
+    "Analytical recent georeferenced image overlay",
+    "Verified live road closures"
+  ],
+  "not_run": [
+    "Real Safari/device tests",
+    "Full dashboard30 independent performance trials",
+    "Soak/heap",
+    "Congestion or evacuation validation",
+    "New physical forecasts/model qualification"
+  ],
+  "scientific_gates": "M5-M7 remain BLOCKED",
+  "source_sha256": {
+    "src/hazardia/web/traffic.py": "f0b6e337f0aacd5ec058701af7d715e49ae14146c135cb9bd79193d1eba25e0b",
+    "src/hazardia/web/recent_imagery.py": "bd319d280a396b5c42ca6e7e95312c426330d8273fdb07fb6d396ceb61980d8f",
+    "src/hazardia/web/server.py": "fa5f3a6fb1529c427ac38c826709408383a8d1015b46814389585c259106bbfd",
+    "src/hazardia/web/static/traffic-model.js": "ca3e8e7db2b64adb248846bb5b09581405c346fad1ef84e3f8364bec004a775d",
+    "src/hazardia/web/static/traffic-layer.js": "60ac06809c8bf89c4c12aeaebe118bf1f58ce42461ff92ad2a1f42f92072296b",
+    "src/hazardia/web/static/recent-imagery.js": "9bcada16b37013dc2db1c530ce8ee510c6da2b93f71ade69f6f2db26eaa78d68",
+    "src/hazardia/web/static/monitor-workbench.js": "46e1c21fd5989f0767f47bc975488c489072df6cabb2cdde1b59488ce76c481b",
+    "src/hazardia/web/static/monitor-workbench.css": "186cefe9ea83f992126069e4e0beee40646480b7e676873424d6cb8a63736280",
+    "src/hazardia/web/static/map-symbols.js": "97e123a5d85b45bb142a858495fb078377f36c254aee9e1dfcc9dd6a579e623f"
+  },
+  "responsive": {
+    "mobile": {
+      "canvas": {
+        "bottom": 767,
+        "height": 597,
+        "left": 5,
+        "right": 370,
+        "top": 170,
+        "width": 365,
+        "x": 5,
+        "y": 170
+      },
+      "map": {
+        "bottom": 767,
+        "height": 597,
+        "left": 5,
+        "right": 370,
+        "top": 170,
+        "width": 365,
+        "x": 5,
+        "y": 170
+      },
+      "scrollWidth": 375,
+      "width": 375
+    },
+    "tablet": {
+      "map": {
+        "bottom": 973,
+        "height": 839,
+        "left": 13,
+        "right": 755,
+        "top": 134,
+        "width": 742,
+        "x": 13,
+        "y": 134
+      },
+      "scrollWidth": 768,
+      "width": 768
+    }
+  }
+}
