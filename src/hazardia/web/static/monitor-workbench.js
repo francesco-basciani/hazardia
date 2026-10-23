@@ -1,3 +1,4 @@
+import {mapConsole} from '/map-console.js';
 import {recentImagery} from '/recent-imagery.js';
 import {trafficLayer} from '/traffic-layer.js';
 import {radarLayer} from '/radar-layer.js';
@@ -14,5 +15,5 @@ export function monitorWorkbench(map){
   document.addEventListener('hazardia-weather-time',e=>{const p=body.querySelectorAll('p')[1];if(p)p.textContent='Validità selezionata: '+(e.detail?.at||'ora non coperta');});
   document.addEventListener('hazardia-weather-field',e=>{const id=e.detail?.id||'';body.dataset.field=id;const f=e.detail;body.replaceChildren();for(const text of ['Previsione · '+(f.model||'fonte non disponibile'),'Validità selezionata: '+(f.at||'ora non coperta'),'Emissione: '+(f.issued_at||'non dichiarata dal fornitore'),'Acquisizione: '+(f.available_at||'non disponibile'),'Risoluzione nativa ICON Global ~11 km; griglia di visualizzazione '+(f.lats?.length||0)+'×'+(f.lons?.length||0)+' campioni','Copertura WGS84: '+JSON.stringify(f.bounds||null),'Unità: '+JSON.stringify(f.units||{}),'Snapshot: '+id+' · visualizzazione, nessuna modifica alle forzanti dei simulatori']){const p=document.createElement('p');p.textContent=text;body.append(p);}});
  }
- map.getContainer().dataset.wheelZoom='disabled';return {visible(on){radar?.visible(on);traffic?.visible(on);imagery?.visible(on);}};
+ mapConsole(map);return {visible(on){radar?.visible(on);traffic?.visible(on);imagery?.visible(on);}};
 }

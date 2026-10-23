@@ -21,7 +21,7 @@ export function featureStyle(f,hour=0){const s=featureSymbol(f,hour);return {col
 export function mapSymbols(map){
  if(legends.has(map))return legends.get(map);
  if(!document.querySelector('link[data-map-symbols]')){const css=document.createElement('link');css.rel='stylesheet';css.href='/map-symbols.css?v=1';css.dataset.mapSymbols='1';document.head.append(css);}
- const providers=new Map(),box=document.createElement('details');box.className='map-symbols';box.open=map.getSize().x>=700;
+ const providers=new Map(),box=document.createElement('details');box.className='map-symbols';box.open=map.getSize().x>=700&&!document.body.classList.contains('studio-console');
  const summary=document.createElement('summary');summary.textContent='Legenda mappa';const count=document.createElement('span');count.className='map-symbol-count';summary.append(count);const body=document.createElement('div');body.className='map-symbol-body';box.append(summary,body);box.setAttribute('aria-label','Legenda dei simboli sulla mappa');
  const control=L.control({position:'bottomleft'});control.onAdd=()=>box;control.addTo(map);L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);
  const size=()=>box.style.maxWidth=Math.max(120,Math.min(280,map.getSize().x-32))+'px';map.on('resize',size);size();

@@ -1,0 +1,165 @@
+{
+  "run_id": "map-console-20261023",
+  "base_commit": "4f6b29d10a9f4b186d2021df0c27b0673655bbf3",
+  "browser": {
+    "at": "2026-10-23T12:56:28.860Z",
+    "desktop": {
+      "doc": [
+        1280,
+        720
+      ],
+      "map": {
+        "bottom": 720,
+        "height": 664,
+        "left": 0,
+        "right": 1280,
+        "top": 56,
+        "width": 1280,
+        "x": 0,
+        "y": 56
+      },
+      "viewport": [
+        1280,
+        720
+      ],
+      "wheel": "enabled"
+    },
+    "weather": "Vento 2.2 m/s \u00b7 Temperatura a 2 m: 16 \u00b0C \u00b7 Pioggia nell\u2019ora successiva: 0 mm \u00b7 Probabilit\u00e0 di pioggia \u00b7 prossima ora: 0 % \u00b7 Umidit\u00e0 relativa aria: 68,2 % \u00b7 23/10, 14:00 Roma \u00b7 centro della mappa",
+    "browserErrors": [],
+    "studio": {
+      "doc": [
+        1280,
+        720
+      ],
+      "maps": [
+        {
+          "bottom": 654,
+          "height": 654,
+          "left": 0,
+          "right": 639,
+          "top": 0,
+          "width": 639,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 654,
+          "height": 654,
+          "left": 641,
+          "right": 1280,
+          "top": 0,
+          "width": 639,
+          "x": 641,
+          "y": 0
+        }
+      ],
+      "viewport": [
+        1280,
+        720
+      ]
+    }
+  },
+  "preservation": {
+    "files_checked": 311,
+    "changed": [],
+    "jobs": [
+      [
+        "CANCELLED",
+        8
+      ],
+      [
+        "ERROR",
+        5
+      ],
+      [
+        "SUCCEEDED",
+        82
+      ]
+    ]
+  },
+  "tests": {
+    "vm_python": 68,
+    "client_js_checks": 6041
+  },
+  "manual": {
+    "mobile": {
+      "viewport": [
+        375,
+        812
+      ],
+      "document": [
+        375,
+        812
+      ],
+      "map": [
+        375,
+        699
+      ],
+      "header": 113
+    },
+    "tablet": {
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "map": [
+        768,
+        915
+      ],
+      "header": 109
+    },
+    "wheel_monitor": {
+      "before_scale": "50km",
+      "after_scale": "10km",
+      "page_scroll_top": 0,
+      "panel_scroll_top": 81,
+      "panel_does_not_zoom": true
+    },
+    "wheel_studio": {
+      "nominal_before": 12,
+      "nominal_after": 15,
+      "peer_after": 12,
+      "nominal_synchronized": 12
+    },
+    "inspection": "Simulated fire provenance transferred to right inspector, source dates and coordinates retained",
+    "run_button_visible": true,
+    "model_submissions": 0
+  },
+  "not_run": [
+    "Physical Safari",
+    "Full new axe audit",
+    "Soak/full FPS and memory benchmark",
+    "Historical browser harness adapted execution"
+  ],
+  "qualification": "UI/layout only; no model skill or gate closure",
+  "reviewer": "Codex self-check",
+  "source_sha256": {
+    "map-console.js": "000a50bb5d029fe896ebbba0c15d8cd8f495f55fa936759b3492d59c9dabc189",
+    "map-console.css": "6f175a8463f114b3876bc5c96ee76c374ba71a575a840835eff0c0283782d3a2",
+    "studio-console.js": "1fffcf755616ea527cc452f41b5e87a8506840a839965ec2f75d7584e1f6f8d9",
+    "studio-console.css": "8f5f703222edf1c87757dba0c0f112065e6815ec40c25977c5257f396e5f0e1f",
+    "monitor-workbench.js": "b425db54003c8e086aa21bd89cd0d7f1882d7177cb455a38d3b3d3a6f041f0c5",
+    "fire-studio.js": "104cadd017eb90e1c5bd82fd2069aefe216fed4cf36c797d08e47f0e8dde3538",
+    "ui-layout.js": "cfd5f96472efa636a36cfc7555e3a08924b2cdd16db81b6c82c94d2507308872",
+    "intervention-plan.js": "a6ce834080d67f3caa0903a241af12440a86985d26593ee25566b402aaedc745",
+    "weather-display.js": "82cac86df32c42e8cf97e94ccb71750f90a863d85c674bbd89aeb21442d58508",
+    "map-symbols.js": "831417cad98e9eb78b00d9a05c185c1f78862a890a2333eac1e03450b368a888"
+  },
+  "embedded_studio": {
+    "iframe": [
+      0,
+      56,
+      1280,
+      664
+    ],
+    "document": [
+      1280,
+      720
+    ],
+    "new_jobs": 0
+  }
+}

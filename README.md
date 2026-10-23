@@ -161,3 +161,7 @@ La cache dei tasselli resta nella VM, usa validator/TTL e limiti temporali anzic
 
 ## Livelli e traffico visuale
 Nel Monitoraggio, **Livelli** raggruppa meteo e osservazioni, territorio ed esposizione, risorse e accessibilità, scenari e simulazioni. Le **Immagini recenti · Sentinel-2** mostrano due acquisizioni reali, date, nuvole e impronte; le anteprime sono separate dallo sfondo e non sono raster analitici recenti sovrapposti. Il **Traffico stradale simulato**, spento inizialmente, offre area intorno al centro, preset ipotetici, seed, velocità per categoria, massimo400veicoli, chiusure ipotetiche, pausa/ripresa/reset e salvataggio nella VM. Nessuna coda, evacuazione o influenza su risorse/ottimizzatore. [Uso, fonti, verifiche e dati ancora mancanti](reports/LIVELLI-E-TRAFFICO-20261023.md). Nessuna nuova dipendenza per questi backend: libreria standard Python nella stessa VM.
+
+
+## Console cartografica
+Monitoraggio e studio FIRE usano ora la mappa nello spazio sotto la barra principale: **Livelli** a sinistra, parametri e dettagli a destra, timeline in basso. I pannelli scorrono internamente e si alternano su schermi piccoli. La rotella esegue lo zoom sulla mappa; sopra i pannelli scorre le opzioni. Questa nuova scelta sostituisce il precedente divieto nelle viste convertite a viewport fisso. [Interazione, prove e limiti](reports/MAPPA-A-SCHERMO-INTERO-20261023.md).
