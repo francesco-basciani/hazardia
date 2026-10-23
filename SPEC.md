@@ -515,3 +515,7 @@ Il traffico visuale è un modulo opzionale indipendente, affiancabile ai livelli
 
 ## FR-MONITOR-SECTIONS-04 — rettifica utente23ottobre2026
 Scenari e simulazioni e traffico ipotetico appartengono a Simulazioni e risorse, non ai livelli del Monitoraggio. Supera la collocazione visuale del traffico descritta in FR-MONITOR-MODULES-03, preservandone indipendenza e qualifiche. A sinistra selezione dei livelli, a destra parametri, incluse tutte le variabili meteo. Pioggia/nuvole combinabili con unità/legende distinte. Sismi osservati: attivazione e acquisizione coerenti; dati presenti, catalogo vuoto, errore, loading e fuori copertura distinti; scelta INGV/USGS secondo copertura, senza attribuire completezza mondiale ai piccoli eventi. Nessuna modifica implicita a fisica, ottimizzazione o classificazione delle allerte. Verifica e limiti in reports/MONITORAGGIO-AUDIT-E-SEZIONI-20261023.md.
+
+
+## FR-MONITOR-CLOCK-05 —23ottobre2026
+Il Monitoraggio usa un unico orologio di consultazione per tutte le fonti con dati previsionali, indipendente dall’attivazione del livello meteo. Orizzonte dall’unione delle validità disponibili; ogni prodotto conserva passo, copertura e scadenza, senza interpolare bollettini/classi o sostituire orari mancanti. Osservazioni datate e cataloghi statici non diventano previsioni. Nessun avvio implicito dei simulatori. Report TIMELINE-COMUNE-MONITORAGGIO-20261023.

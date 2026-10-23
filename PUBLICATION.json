@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "28d1eca8cd5ad07b8a57963f13a4baba357245ed",
+  "source_git_sha": "bac27941930881f2cfa0d4624e86277411cc5ce3",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,28 +11,28 @@
       "sha256": "f7d9f01ddf2b4271a5cacaaa4e022588bfb775684a4a05a942ee90a904030e33"
     },
     "CHECKLIST.md": {
-      "bytes": 191943,
-      "sha256": "64884bd6c7ebde1781aa24092cce5574ce73c920c92e003e3804f9ece23f5243"
+      "bytes": 192619,
+      "sha256": "35a9ed72ae8cbc37f374d7bb218b8df04edba8b99e7137d03b41f710c3b236d6"
     },
     "MEMORY.md": {
-      "bytes": 143951,
-      "sha256": "3315e1bcdb6f51d93f33300b46e1ec54e6f8a40dadb42127f59bf6334850eebc"
+      "bytes": 144438,
+      "sha256": "986599744602267b2feefbdebc109d745b6058edaf8414366eb86f1da7ab0e5d"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 148188,
-      "sha256": "c04c3447fbfab8e905469d9c49a1a71a0ec43a4e1c995a29c5c4a8b74a7ca9e1"
+      "bytes": 148648,
+      "sha256": "67e244a35c1d06103ca36bb29f068f9f28a3786aac772056b4399faea4fbe88a"
     },
     "README.md": {
       "bytes": 28048,
       "sha256": "a8b1bab6785f4cbabc8b0c27cddfe19b675ac20aaf6bd0843280aff0bb5ceff6"
     },
     "SPEC.md": {
-      "bytes": 98215,
-      "sha256": "7e44324c6f41c9acb89a8f0362a6fe964325206bf540f964695f75c2906a8fca"
+      "bytes": 98726,
+      "sha256": "b8c3aa11d70a6cfd2dfac002f44888a9bcefaef35bdd13e3eddd30da617e85f0"
     },
     "docs/INSTALLAZIONE.md": {
       "bytes": 29776,
@@ -518,6 +518,10 @@
       "bytes": 3805,
       "sha256": "25118ea47cfd37bcd6e206715a7c42d58ae164899c6aaa48429ce4ce2e2d288d"
     },
+    "reports/TIMELINE-COMUNE-MONITORAGGIO-20261023.md": {
+      "bytes": 2746,
+      "sha256": "67500e447092d70e2b9aefc27840b52dd7b8d7c5e8cbc70372951110337acc1c"
+    },
     "reports/UI-CONTROL-ROOM.md": {
       "bytes": 10925,
       "sha256": "36a01500d59007e09198087f9f01818e1e9044f1d666d139ffd4e29f8605e9a7"
@@ -693,6 +697,10 @@
     "reports/monitor-map-restore/verification.json": {
       "bytes": 608,
       "sha256": "16756e955924fa504d8343faea67c6adabeba2539be84c30873848dd7db8a969"
+    },
+    "reports/monitor-timeline/verification.json": {
+      "bytes": 1864,
+      "sha256": "4a6386a358433d0494ffea22671fa9c2e28593ba56fedb1cbbd34a43200e81e2"
     },
     "reports/monitor-zone-series/verification.json": {
       "bytes": 2648,
@@ -1067,8 +1075,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 161354,
-      "sha256": "431e4717416bf884cc13e401e26f6b1b69c9698cb2c55c16d0ace28a32470a09"
+      "bytes": 162042,
+      "sha256": "3b13fe7ce6fa19c47ff11efcb56363f06d59b02b00c915e348d41da854b5c668"
     },
     "research/RESEARCH.md": {
       "bytes": 34039,
@@ -1523,8 +1531,8 @@
       "sha256": "9e95c25814931e71845363e95d0f6457a72a4d0b356e6a2170d1dd9b4f5561b3"
     },
     "src/hazardia/web/static/attention.js": {
-      "bytes": 17145,
-      "sha256": "84e7eeb6e9bef255c340b98d8c0bb290bc8ffcb1c753a7dc579e8b38362aaa86"
+      "bytes": 17894,
+      "sha256": "7b4ab847f18a8262039a143d78ac2ee92271b5bae23c84bd633b99d4f3c9d351"
     },
     "src/hazardia/web/static/basemap-controller.js": {
       "bytes": 2973,
@@ -1575,8 +1583,8 @@
       "sha256": "a628764a04a214e4e3c35345c254260a8755cb3f17e800a7fe68353654de40f4"
     },
     "src/hazardia/web/static/forecast-playback.js": {
-      "bytes": 5721,
-      "sha256": "0bc62ba664c6e88870840f352aea81449e7829ceb9fa4e73d86eda0808b0adeb"
+      "bytes": 5680,
+      "sha256": "63c4be7568084d5663bc51e6a69be8b136f60e5ebb926372158ca3cce0933257"
     },
     "src/hazardia/web/static/ideal-planner.js": {
       "bytes": 15988,
@@ -1595,8 +1603,8 @@
       "sha256": "a6ce834080d67f3caa0903a241af12440a86985d26593ee25566b402aaedc745"
     },
     "src/hazardia/web/static/map-console.css": {
-      "bytes": 10407,
-      "sha256": "5dba0fd092ad7ef29aa0eafbc8f4895eabcd9269fe4b9efb7b0e419520c7d453"
+      "bytes": 10931,
+      "sha256": "37aa8cf7e32e99d3dd7b32f6e3c0449118e7ce3c3f518c390605a70dcb3a6712"
     },
     "src/hazardia/web/static/map-console.js": {
       "bytes": 7896,
@@ -1638,13 +1646,17 @@
       "bytes": 7600,
       "sha256": "831417cad98e9eb78b00d9a05c185c1f78862a890a2333eac1e03450b368a888"
     },
+    "src/hazardia/web/static/monitor-timeline.js": {
+      "bytes": 1336,
+      "sha256": "be1c7346d590c9ed0c78697e4babed1b3f8a78c3a9af25fdb74b3f09f14050d8"
+    },
     "src/hazardia/web/static/monitor-workbench.css": {
       "bytes": 10468,
       "sha256": "186cefe9ea83f992126069e4e0beee40646480b7e676873424d6cb8a63736280"
     },
     "src/hazardia/web/static/monitor-workbench.js": {
       "bytes": 5884,
-      "sha256": "af15e2f2a0cfecbca50801994885bd7fc05a58a110c99465d6003c69b2d1c72a"
+      "sha256": "71044a5e77d43fc78dd3f7dbdcdef19205df28d876b6350c21a0d25e0eb5bc1d"
     },
     "src/hazardia/web/static/monitoring.js": {
       "bytes": 16980,
@@ -1660,7 +1672,7 @@
     },
     "src/hazardia/web/static/observed-rain.js": {
       "bytes": 7846,
-      "sha256": "496fbb4ab8426a078a6d8933bbd45bf06d7545fcca6bfdfd0a2ba3c43e6c6c56"
+      "sha256": "78161ccbc9e12e67bcb8fe3efc50920cc60e322ddf589d61de3d7aed88b32ea0"
     },
     "src/hazardia/web/static/physical-fire.css": {
       "bytes": 3634,
@@ -1676,7 +1688,7 @@
     },
     "src/hazardia/web/static/radar-layer.js": {
       "bytes": 4902,
-      "sha256": "f341645c3fa2b7ef7ba4e946d6d4b9039e700f604d688ae7b06cff1c70c51599"
+      "sha256": "5130ce2aef44c6580c91f0d1528db5ee1ed2b081af16ab9f5bcc72d9fce7b9fc"
     },
     "src/hazardia/web/static/rain-series.js": {
       "bytes": 2471,
@@ -1688,7 +1700,7 @@
     },
     "src/hazardia/web/static/rain-zones.js": {
       "bytes": 12163,
-      "sha256": "5c50bf524af816e9550c27c4af736b2473a7dfc0ade6a9ff186d347191daf7c9"
+      "sha256": "423055f660288ddf2f0792975330464dec2e902464df54ac9fa88d4365e0a74c"
     },
     "src/hazardia/web/static/raster-comparison.js": {
       "bytes": 2616,
@@ -1799,8 +1811,8 @@
       "sha256": "093d2c0db9ae0374ed76e29b7af5781fdae3c80a55ec054ea078613943810a99"
     },
     "src/hazardia/web/static/wind-particles.js": {
-      "bytes": 26441,
-      "sha256": "ebf46b7c2a98bc8c939256de746d984e587d09881a44d4956d9e04aef51efd51"
+      "bytes": 28237,
+      "sha256": "360794868710716ad726cd24d75a0715025f35f48fd790ad89ea43e3ee83565a"
     },
     "src/hazardia/web/static/workbench.js": {
       "bytes": 13530,
@@ -1919,8 +1931,8 @@
       "sha256": "e090fc04acd705685771e64f4d2402cb4482821f62039a3b6eb0dff7c613d448"
     },
     "tests/browser/forecast-map-first.cjs": {
-      "bytes": 11507,
-      "sha256": "89a6e440ae3bb61f5883cdc05c4f1583c45566435e3c84972fbfa136ba83eec4"
+      "bytes": 11465,
+      "sha256": "8c73847f4dbf3c3d8e45ccdb45b7cb51f03886e65feca74cbead5ee15d586fd2"
     },
     "tests/browser/forecast-profile.cjs": {
       "bytes": 4307,
@@ -1957,6 +1969,14 @@
     "tests/browser/model-jobs.cjs": {
       "bytes": 3012,
       "sha256": "34e043aee403bce4dc0651bba1cfdb1824c38bea7bc5df1ed658607a2b968592"
+    },
+    "tests/browser/monitor-playback.mjs": {
+      "bytes": 2610,
+      "sha256": "66fd79bb761a888f254b72f938700d301624e61b527faf944008a03f2c96c545"
+    },
+    "tests/browser/monitor-timeline.mjs": {
+      "bytes": 1854,
+      "sha256": "2ca803f4e1dbfd7306d835629799f7189e545279f55c57df03d2335a43d4c91a"
     },
     "tests/browser/monitoring.cjs": {
       "bytes": 6267,
@@ -2075,8 +2095,8 @@
       "sha256": "d84186293541498626454ab816b93f59f546699dd22493a17ea6615e02d43ad1"
     },
     "tests/browser/weather-continuity.cjs": {
-      "bytes": 9038,
-      "sha256": "f553e91a45df8122d8af21bcf11e131cd933b463d092fc2d32f5ff5957c19e31"
+      "bytes": 9002,
+      "sha256": "92d1c0e44df91eaefc9bc7f5078fd5a2ecbda60b5c0c3c3f60486abb37851560"
     },
     "tests/browser/weather-readable.cjs": {
       "bytes": 10682,

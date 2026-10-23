@@ -1,0 +1,60 @@
+{
+  "run_id": "monitor-timeline-20261023",
+  "base": "28d1eca8cd5ad07b8a57963f13a4baba357245ed",
+  "status": "PASS",
+  "client_suites": 15,
+  "ui": {
+    "weatherHiddenPlayback": {
+      "clock": {
+        "at": "2026-10-24T13:22:41.203Z",
+        "fraction": "0.37811199999979195",
+        "frameP95Ms": "3.200000047683716",
+        "frameSamples": "120",
+        "from": "2026-10-24T13:00:00Z",
+        "lastFrameCostMs": "0.7999999523162842",
+        "to": "2026-10-24T14:00:00Z"
+      },
+      "map": {
+        "attention": "effis,dpc",
+        "attentionReady": "true",
+        "basemap": "ortho",
+        "basemapLoadedAt": "308",
+        "center": "[41.91454130182335,14.282226562500002]",
+        "dpcDay": "2026-10-24",
+        "effisDay": "2026-10-24",
+        "hazards": "FIRE,FLOOD",
+        "monitorTime": "2026-10-24T13:22:41.203Z",
+        "observedRainStations": "0",
+        "powerLines": "0",
+        "products": "",
+        "radarAt": "",
+        "regionBoundaries": "visible",
+        "regionCount": "20",
+        "territorialAssets": "0",
+        "tileQueue": "{\"started\":26,\"cancelled\":0,\"peak\":4,\"active\":0,\"queued\":0,\"limit\":4}",
+        "wheelZoom": "enabled",
+        "zoom": "8"
+      },
+      "weatherEnabled": false
+    },
+    "manualSelect": {
+      "clock": {
+        "at": "2026-10-24T14:00:00Z",
+        "fraction": "0",
+        "frameP95Ms": "3.200000047683716",
+        "frameSamples": "120",
+        "from": "2026-10-24T14:00:00Z",
+        "lastFrameCostMs": "0.7999999523162842",
+        "to": "2026-10-24T14:00:00Z"
+      },
+      "dpc": "2026-10-24",
+      "effis": "2026-10-24",
+      "mapTime": "2026-10-24T14:00:00Z",
+      "overflow": 0
+    }
+  },
+  "preserved_files": 311,
+  "unchanged_jobs": 95,
+  "scope": "Consultation clock; no new physical job or forecasting source",
+  "reviewer": "Codex self-check"
+}

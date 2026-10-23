@@ -10,3 +10,5 @@ body.map-console{height:100dvh;overflow:hidden}body.map-console .shell{position:
 .map-console .console-search{min-width:0!important}@media(max-width:700px){.map-console .console-search{max-width:none!important;min-width:0!important}}
 
 .console-modules-heading{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--console-muted);margin:18px 12px 6px}.console-layer-entry[data-enabled=true] .console-layer-icon{color:#66d7be}.observed-layer-info{font-size:11px;color:var(--console-muted);overflow-wrap:anywhere}.observed-layer-info p{margin:6px 0}
+
+.timeline-coverage{position:relative;font:11px system-ui;flex:0 0 auto}.timeline-coverage>summary{cursor:pointer;padding:8px;min-height:28px;box-sizing:border-box}.timeline-coverage>div{position:absolute;bottom:100%;right:0;width:285px;max-width:calc(100vw - 40px);padding:12px;background:#122332f5;color:#e5edf2;border:1px solid #36505f;border-radius:7px;max-height:250px;overflow:auto;box-shadow:0 3px 20px #0004}.timeline-coverage p{margin:7px 0;line-height:1.5}.map-time-dock:has(.timeline-coverage[open]){z-index:960}

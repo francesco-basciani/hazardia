@@ -52,7 +52,7 @@ export function rainZones(map){
   finally{busy=false;if(enabled&&token!==generation)schedule();}
  }
  function schedule(){clearTimeout(timer);timer=setTimeout(refresh,350);}
- document.addEventListener('hazardia-weather-time',e=>{if(!e.detail?.at)return;const next=new Date(Math.floor(Date.parse(e.detail.at)/3600000)*3600000).toISOString().replace('.000Z','Z');if(next===hour)return;hour=next;if(enabled){generation++;result=null;layer.clearLayers();state.textContent='Aggiornamento per l’ora selezionata…';schedule();}});
+ document.addEventListener('hazardia-monitor-time',e=>{if(!e.detail?.at)return;const next=new Date(Math.floor(Date.parse(e.detail.at)/3600000)*3600000).toISOString().replace('.000Z','Z');if(next===hour)return;hour=next;if(enabled){generation++;result=null;layer.clearLayers();state.textContent='Aggiornamento per l’ora selezionata…';schedule();}});
  document.addEventListener('hazardia-weather-field',e=>{fieldId=e.detail?.id||null;hour=e.detail?.at||document.getElementById('wind-hour').value||hour;if(enabled){generation++;result=null;layer.clearLayers();schedule();}});
  map.on('moveend',()=>{if(enabled)draw();});
  setInterval(()=>{if(enabled&&visible&&!document.hidden)refresh();},65000);

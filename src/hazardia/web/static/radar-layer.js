@@ -21,6 +21,6 @@ export function radarLayer(map,host){
  }
  function schedule(value){if(value)at=value;gen++;abort?.abort();clearTimeout(timer);clear();if(enabled&&visible)timer=setTimeout(()=>load(),600);}
  check.onchange=()=>{enabled=check.checked;if(enabled){map.attributionControl.addAttribution(credit);at=document.getElementById('wind-hour')?.value||at;if(!at)state.textContent='Seleziona un’ora dalla timeline meteo.';schedule();}else{map.attributionControl.removeAttribution(credit);schedule();state.textContent='Radar nascosto.';}};
- document.addEventListener('hazardia-weather-time',e=>schedule(e.detail?.at));document.addEventListener('hazardia-weather-field',e=>schedule(e.detail?.at));map.on('moveend',()=>schedule());
+ document.addEventListener('hazardia-monitor-time',e=>schedule(e.detail?.at));document.addEventListener('hazardia-weather-field',e=>schedule(e.detail?.at));map.on('moveend',()=>schedule());
  return {visible(on){visible=on;schedule();}};
 }

@@ -44,7 +44,7 @@ export function observedRain(map,host){
  check.onchange=()=>{enabled=check.checked;if(enabled)map.attributionControl.addAttribution(attribution);else map.attributionControl.removeAttribution(attribution);selectedHour=document.getElementById('wind-hour')?.value||selectedHour;if(enabled){state.textContent='Acquisizione delle misure nella VM…';refresh();}else{state.textContent='Misure nascoste.';draw();}};
  map.on('moveend',draw);
  document.addEventListener('hazardia-weather-field',e=>{selectedHour=e.detail?.at||selectedHour;draw();});
- document.addEventListener('hazardia-weather-time',e=>{selectedHour=e.detail?.at||null;draw();});
+ document.addEventListener('hazardia-monitor-time',e=>{selectedHour=e.detail?.at||null;draw();});
  setInterval(()=>{if(enabled&&visible)refresh();},65000);
  return {visible(on){visible=on;draw();if(on&&enabled)refresh();}};
 }

@@ -539,3 +539,7 @@ Run `imagery-loading-20261023`, base6381777+dirty, report `reports/OTTIMIZZAZION
 
 ## 23ottobre2026 — collocazione moduli e audit reale
 Ultima autorità UI: FR-MONITOR-SECTIONS-04. Monitoraggio esclude scenari/traffico; traffico integrato come iframe same-origin nella sezione Simulazioni e risorse, spento inizialmente. Meteo apre tutte le scelte a destra, rain/cloud simultanei. Terremoti: il pulsante prima acquisiva senza abilitare; corretto,156eventiINGV verificati. AutomaticoINGVinItalia/USGSaltrove, zero/errori distinti.303testVM+15suiteclientPASS; radarDPC reale e pluviometriFRESH. Non reinstallare simulatori né lanciare job per provare i menu;311file/95job invariati. Archivio vento fine legacy64MiB pieno: campo principale della vista FRESH, fallback segnalato, nessuna cancellazione di snapshot. Completamento scientificoM5–M7 e fonti mancanti ancoraBLOCKED. Report MONITORAGGIO-AUDIT-E-SEZIONI-20261023; run monitor-audit-20261023. Manoscritto e altre modifiche concorrenti preservati.
+
+
+## 23ottobre2026 — tempo comune, non solo meteo
+FR-MONITOR-CLOCK-05:Previsioni e criticità/unicoRiproduci. monitor-timeline.js registra validità meteo/EFFIS/DPC; evento unicohazardia-monitor-time condiviso anche daaccumuli/radar/pluviometri. MeteoOFF non ferma il clock; fontefuorivalidità non riutilizza prodotti vecchi. Cataloghi osservati non proiettati. PASS15suiteclient/UI,311file/95job invariati; report TIMELINE-COMUNE-MONITORAGGIO-20261023. Blocchi precedenti invariati.

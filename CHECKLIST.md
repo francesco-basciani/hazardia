@@ -1323,3 +1323,7 @@ Reviewer Codex self-check; base2927927+dirty; comandi/log nel report MONITORAGGI
 - PASS —311file/95job/pinmotori invariati. Nessun nuovo job fisico.
 - BLOCKED — finewindlegacyWEATHER_CACHE_FULL; fallbackesplicito al campo globaleFRESH, archivio conservato. HotspotMAP_KEY/perimetri/idrometri/esposizionequalificata eATregionale restanoBLOCKED.
 - NOT RUN — nuovi job nativi e qualificazione fisica, script verify_m* di integrazione (unittest ne scopre0), Safari/caricoend-to-end/nuovaacquisizioneimmaginirecenti/nuovareteelettricaestesa. Non dichiarare tutti i componenti scientificamente qualificati da questo audit.
+
+
+## monitor-timeline-20261023 — tempo comune
+ReviewerCodexself-check;base28d1eca+dirty;reports/TIMELINE-COMUNE-MONITORAGGIO-20261023.md e reports/monitor-timeline/verification.json. PASSFR-MONITOR-CLOCK-05:playbackindipendentedalMeteo, orizzontiuniti, meteo/effis/dpc/accumuli coordinati, copertura e missing espliciti, nessuna previsione inventata per osservazioni. PASS15suiteclientNode, UI1280×720 conMeteoOFF/pause/seek/selezionemanuale,311file/95job invariati. NOTRUN nuovi job/testfisici, Safari, caricoend-to-end e replay integrali dei due script browser con etichette aggiornate. BLOCKEDqualificazionescientificaM5–M7/fonti mancanti/archivioventofine comeprima.

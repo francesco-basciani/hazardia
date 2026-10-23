@@ -581,3 +581,7 @@ Run `imagery-loading-20261023`, base6381777+dirty, report `reports/OTTIMIZZAZION
 
 ## Monitoraggio: separazione moduli e audit —23ottobre2026
 Run `monitor-audit-20261023`, base2927927+dirty. FR-MONITOR-SECTIONS-04 confermato dall’utente. PASS: traffico solo in Simulazioni e risorse, scenari esclusi dai livelli Monitoraggio, meteo a destra, pioggia/nuvole combinabili; terremoti156INGV, catalogo vuoto e rifiuto fuori copertura distinti. PASS303testPythonVM/15suiteclient/controlliUI1280e375, radar reale14:25UTC e3979pluviometri freschi,311file/95job/pinCIMA invariati. BLOCKED archivio vento fine regionale pieno (fallback al campo della vista FRESH esplicitato), fonti mancanti/ATcertificata/qualificazioneM5–M7 invariati. NOT RUN nuovi job fisici, scriptgateintegrazione, Safari e carico completo. Report MONITORAGGIO-AUDIT-E-SEZIONI-20261023; estratto reports/monitor-audit/verification.json. Prossimo incremento: archiviazione lossless verificata del vento fine e completamento delle fonti mancanti, senza promuovere disponibilità a validazione scientifica.
+
+
+## Orologio comune del Monitoraggio —23ottobre2026
+Run monitor-timeline-20261023/base28d1eca+dirty:PASSFR-MONITOR-CLOCK-05, barraPrevisioni e criticità, meteo/EFFIS/DPC/accumuli all’ora comune, playbackancheMeteoOFF, coperture/validità esplicite. PASS15suiteJSclient eUIintegrata;311file/95job preservati. Nessun nuovo job o fonte; NOTRUN nuovi test fisici/Safari/caricocompleto; blocchiM5–M7 invariati. Report TIMELINE-COMUNE-MONITORAGGIO-20261023.

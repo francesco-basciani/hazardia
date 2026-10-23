@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const {MonitorTimeline}=await import('data:text/javascript;base64,'+Buffer.from(readFileSync('src/hazardia/web/static/monitor-timeline.js','utf8')).toString('base64'));
+const now=Date.parse('2026-10-23T14:30:00Z'),events=[],timeline=new MonitorTimeline(d=>events.push(d),now);let changes=0;timeline.subscribe(()=>changes++);
+timeline.update('weather',[['2026-10-23T14:00:00Z','2026-10-23T16:00:00Z']]);assert.equal(timeline.times().length,2);assert.equal(timeline.at,'2026-10-23T14:00:00Z');
+timeline.update('effis',[['2026-10-23T00:00:00Z','2026-10-25T00:00:00Z']]);assert.equal(timeline.times().length,34);assert.equal(timeline.times()[0],'2026-10-23T14:00:00Z');
+timeline.select('2026-10-24T15:30:00Z');assert.equal(timeline.at,events.at(-1).at);assert(timeline.covered('effis'));assert(!timeline.covered('weather'));assert.equal(events.length,1);
+const old=changes;timeline.update('weather',[]);assert.equal(timeline.at,'2026-10-24T15:30:00Z');assert.equal(changes,old);assert(!timeline.covered('weather'));
+timeline.update('effis',[]);assert.equal(timeline.times().length,0);assert(!timeline.covered('effis'));assert.equal(changes,old+1);
+timeline.update('invalid',[['bad','bad'],['2026-10-23','2026-11-23']]);assert.equal(timeline.times().length,0);
+timeline.select(null);assert.equal(events.length,1);
+const gaps=new MonitorTimeline(()=>{},now);gaps.update('weather',[['2026-10-23T14:00Z','2026-10-23T15:00Z'],['2026-10-23T17:00Z','2026-10-23T18:00Z']]);assert.equal(gaps.times().length,2);assert(!gaps.covered('weather','2026-10-23T16:00Z'));assert(!gaps.covered('weather','2026-10-23T15:00Z'));
+console.log('PASS 19 shared-clock assertions: union of actual validity windows, independent horizons, no invented coverage, gaps, missing/invalid source, retained time');
