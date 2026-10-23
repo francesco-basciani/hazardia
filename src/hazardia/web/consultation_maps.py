@@ -7,7 +7,7 @@ from hazardia.io import HazardError
 
 class CachedImagery:
     def __init__(self,state,provider):
-        self.provider=provider;self.state=Path(state);self.legacy=provider(state);self.cache=ConsultationCache(self.state/('consultation-'+provider.traffic_name.removesuffix('.json')),disk_limit=16*1024**2,memory_limit=provider.memory_limit,ttl=86400)
+        self.provider=provider;self.state=Path(state);self.legacy=provider(state);self.cache=ConsultationCache(self.state/('consultation-'+provider.traffic_name.removesuffix('.json')),disk_limit=64*1024**2,memory_limit=provider.memory_limit,ttl=86400,tile_limit=provider.tile_limit)
     def tile(self,z,x,y):
         bbox=self.provider.bounds(z,x,y);url=self.legacy.url(z,x,y,bbox)
         return self.cache.get(f'{z}-{x}-{y}',url,b'\xff\xd8','image/jpeg')
@@ -16,7 +16,7 @@ class CachedImagery:
 
 class OSMTiles:
     def __init__(self,state):
-        self.root=Path(state)/'osm-tiles';self.root.mkdir(exist_ok=True);self.cache=ConsultationCache(self.root)
+        self.root=Path(state)/'osm-tiles';self.root.mkdir(exist_ok=True);self.cache=ConsultationCache(self.root,disk_limit=64*1024**2,tile_limit=512*1024)
         # Convert the previous bounded PNG cache once; retain every fresh object.
         import hashlib
         for old in self.root.glob('*.png'):

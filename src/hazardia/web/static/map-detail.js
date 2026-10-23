@@ -1,3 +1,4 @@
+import {scheduledTiles} from '/scheduled-tiles.js';
 /* Geographic context is separate from simulator products; all snapshot data served by VM. */
 const $=id=>document.getElementById(id);
 const safe=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -26,7 +27,7 @@ export async function geographicMaps(maps,feedback){
   // Renderer pane keeps roads below model layers; labels remain legible above them.
   contextGroups[i].on('layeradd',e=>{if(e.layer.options)e.layer.options.pane='geographicRoads';});
   names[i].on('layeradd',e=>{if(e.layer.options)e.layer.options.pane='geographicNames';});
-  imagery[i]=L.tileLayer('/api/maps/ortho/{z}/{x}/{y}',{minZoom:8,maxZoom:20,maxNativeZoom:19,tileSize:256,keepBuffer:1,updateWhenIdle:true,updateWhenZooming:false,zIndex:2,bounds:[[41.6607,12.9714],[42.9053,14.7922]],attribution:'Ortofoto 2018–2019 © Regione Abruzzo · <a href="https://geoportale.regione.abruzzo.it/Cartanet/catalogo/cartografia-di-sfondo-raster/copy_of_ortofoto-regione-abruzzo-2007-a-colori-1">20 cm/px</a>'});
+  imagery[i]=scheduledTiles('/api/maps/ortho/{z}/{x}/{y}',{minZoom:8,maxZoom:20,maxNativeZoom:19,tileSize:256,keepBuffer:1,updateWhenIdle:true,updateWhenZooming:false,zIndex:2,bounds:[[41.6607,12.9714],[42.9053,14.7922]],attribution:'Ortofoto 2018–2019 © Regione Abruzzo · <a href="https://geoportale.regione.abruzzo.it/Cartanet/catalogo/cartografia-di-sfondo-raster/copy_of_ortofoto-regione-abruzzo-2007-a-colori-1">20 cm/px</a>'});
   imagery[i].on('loading',status);imagery[i].on('tileerror',()=>{failures++;status()});imagery[i].on('load',status).addTo(m);
   m.attributionControl.addAttribution('<a href="https://www.geonames.org/">GeoNames · CC BY 4.0</a> · © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> · ODbL');
   L.control.scale({imperial:false,maxWidth:110}).addTo(m);

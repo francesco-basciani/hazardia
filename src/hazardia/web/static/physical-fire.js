@@ -1,3 +1,4 @@
+import {scheduledTiles} from '/scheduled-tiles.js';
 // The archived physical comparison also opens directly on its maps.
 const physicalHeading=document.querySelector('main>h1'),physicalPair=document.querySelector('.pair');physicalHeading.after(physicalPair);physicalPair.after(document.querySelector('.timeline'),document.querySelector('.controls'),document.querySelector('.stats'));
 import {regionBoundaries} from '/region-boundaries.js?v=workspace1';
@@ -8,7 +9,7 @@ async function main(){const response=await fetch('/assets/physical-days-20261016
  for(const [i,id] of ['physical-map-a','physical-map-b'].entries()){
   const m=L.map(id,{preferCanvas:true,scrollWheelZoom:false}).setView(data.ignition,14);maps.push(m);regionBoundaries(m);eventMarkers(m).update([{kind:'FIRE',point:data.ignition,label:'Innesco simulato',meaning:'Innesco ipotetico configurato nell’esperimento; non rilevamento reale.',detail:data.run_id}]);m.attributionControl.setPrefix('HAZARDIA · ricerca');L.control.scale({imperial:false}).addTo(m);
   L.imageOverlay('/assets/satellite.png',[[42.30,13.32],[42.40,13.44]],{opacity:1}).addTo(m);m.createPane('ortho');m.getPane('ortho').style.zIndex=410;
-  const tiles=L.tileLayer('/api/maps/ortho/{z}/{x}/{y}',{pane:'ortho',minZoom:8,maxZoom:20,maxNativeZoom:19,keepBuffer:1,updateWhenIdle:true,updateWhenZooming:false,bounds:[[41.6607,12.9714],[42.9053,14.7922]],attribution:'© Regione Abruzzo · ortofoto 2018–2019'}).addTo(m);backgrounds.push(tiles);tiles.on('loading',imageryStatus);tiles.on('load',imageryStatus);tiles.on('tileerror',()=>{imageryErrors++;imageryStatus()});
+  const tiles=scheduledTiles('/api/maps/ortho/{z}/{x}/{y}',{pane:'ortho',minZoom:8,maxZoom:20,maxNativeZoom:19,keepBuffer:1,updateWhenIdle:true,updateWhenZooming:false,bounds:[[41.6607,12.9714],[42.9053,14.7922]],attribution:'© Regione Abruzzo · ortofoto 2018–2019'}).addTo(m);backgrounds.push(tiles);tiles.on('loading',imageryStatus);tiles.on('load',imageryStatus);tiles.on('tileerror',()=>{imageryErrors++;imageryStatus()});
   m.createPane('physical');m.getPane('physical').style.zIndex=450;m.on('move',()=>{if(syncing||!$('physical-sync').checked)return;syncing=true;const other=maps[1-i];if(other)other.setView(m.getCenter(),m.getZoom(),{animate:false});syncing=false});
  }
  let labels=[];try{const r=await fetch('/assets/map-context.json');if(r.ok){const c=await r.json();labels=c.features.filter(f=>f.kind==='place');maps.forEach(m=>m.attributionControl.addAttribution('© OSM contributors · ODbL / GeoNames · CC BY 4.0'));}}catch{}

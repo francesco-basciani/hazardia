@@ -53,3 +53,24 @@ class Tests(unittest.TestCase):
         c=OSMTiles(self.temp.name)
         with patch('urllib.request.urlopen') as fetch:self.assertEqual(c.tile(8,137,94,'http://localhost/'),raw);fetch.assert_not_called()
         self.assertGreater(c.status()['cache_bytes'],0)
+
+class AdmissionTests(unittest.TestCase):
+    def test_reservations_wait_for_other_images_instead_of_false_full(self):
+        with tempfile.TemporaryDirectory() as root:
+            def fetch(*a,**kw):time.sleep(.025);return Response(raw=b'\x89PNG\r\n\x1a\n'+b'x'*100000)
+            c=ConsultationCache(root,disk_limit=1500000,tile_limit=500000,opener=fetch)
+            c.get('seed','https://fixture/seed',b'\x89PNG','image/png')
+            with concurrent.futures.ThreadPoolExecutor(4) as pool:
+                values=list(pool.map(lambda k:c.get(k,'https://fixture/'+k,b'\x89PNG','image/png'),['a','b','c','d']))
+            self.assertEqual(len(values),4);self.assertEqual(c.status()['errors'],0);self.assertLessEqual(c.status()['cache_bytes'],1500000);self.assertEqual(c.reserved,0)
+    def test_real_full_and_traffic_quota_stay_blocked(self):
+        with tempfile.TemporaryDirectory() as root:
+            c=ConsultationCache(root,disk_limit=500000,tile_limit=500000,opener=lambda *a,**kw:Response())
+            c.get('seed','https://fixture/seed',b'\x89PNG','image/png')
+            with self.assertRaises(HazardError):c.get('new','https://fixture/new',b'\x89PNG','image/png')
+            self.assertEqual(c.reserved,0);self.assertTrue(c.get('seed','https://fixture/seed',b'\x89PNG','image/png'))
+    def test_oversize_per_provider_not_cached(self):
+        with tempfile.TemporaryDirectory() as root:
+            c=ConsultationCache(root,tile_limit=20,opener=lambda *a,**kw:Response(raw=b'\x89PNG'+b'x'*30))
+            with self.assertRaises(OSError):c.get('a','https://fixture/a',b'\x89PNG','image/png')
+            self.assertEqual(c.status()['tiles'],0)

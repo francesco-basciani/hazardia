@@ -1,3 +1,4 @@
+import {scheduledTiles} from '/scheduled-tiles.js';
 import {monitorWorkbench} from '/monitor-workbench.js';
 import {basemapController} from '/basemap-controller.js';
 import {mapSymbols} from '/map-symbols.js?v=1';
@@ -24,9 +25,9 @@ export function monitoringMap(initial,feedback){
  const satellite=L.imageOverlay('/assets/satellite.png',[[42.30,13.32],[42.40,13.44]],{opacity:1,pane:'monitorSatellite',attribution:'Contains modified Copernicus Sentinel data2024'});
  // Keep flood below fire independent of filter/case toggle order.
  for(const [name,z] of [['monitorFlood',410],['monitorFire',420],['monitorNames',610]]){map.createPane(name);map.getPane(name).style.zIndex=z;}
- const ortho=L.tileLayer('/api/maps/ortho/{z}/{x}/{y}',{minZoom:12,maxZoom:20,maxNativeZoom:19,keepBuffer:1,updateWhenIdle:true,updateWhenZooming:false,bounds:[[41.6607,12.9714],[42.9053,14.7922]],attribution:'Ortofoto Regione Abruzzo 2018–2019 · 20 cm/px dichiarati'});
- const regional=L.tileLayer('/api/maps/regional/{z}/{x}/{y}',{minZoom:2,maxZoom:20,maxNativeZoom:14,keepBuffer:0,updateWhenIdle:true,updateWhenZooming:false,bounds:[[-85,-180],[85,180]],attribution:'<a href="https://s2maps.eu">Sentinel-2 cloudless</a> by EOX IT Services GmbH (Contains modified Copernicus Sentinel data 2024) · CC BY-NC-SA4.0'});
- const osm=L.tileLayer('/api/maps/osm/{z}/{x}/{y}?v=2',{minZoom:2,maxZoom:20,maxNativeZoom:19,keepBuffer:0,updateWhenIdle:true,updateWhenZooming:false,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> · ODbL'});let osmErrors=0;
+ const ortho=scheduledTiles('/api/maps/ortho/{z}/{x}/{y}',{minZoom:12,maxZoom:20,maxNativeZoom:19,keepBuffer:1,updateWhenIdle:true,updateWhenZooming:false,bounds:[[41.6607,12.9714],[42.9053,14.7922]],attribution:'Ortofoto Regione Abruzzo 2018–2019 · 20 cm/px dichiarati'});
+ const regional=scheduledTiles('/api/maps/regional/{z}/{x}/{y}',{minZoom:2,maxZoom:20,maxNativeZoom:14,keepBuffer:0,updateWhenIdle:true,updateWhenZooming:false,bounds:[[-85,-180],[85,180]],attribution:'<a href="https://s2maps.eu">Sentinel-2 cloudless</a> by EOX IT Services GmbH (Contains modified Copernicus Sentinel data 2024) · CC BY-NC-SA4.0'});
+ const osm=scheduledTiles('/api/maps/osm/{z}/{x}/{y}?v=2',{minZoom:2,maxZoom:20,maxNativeZoom:19,keepBuffer:0,updateWhenIdle:true,updateWhenZooming:false,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> · ODbL'});let osmErrors=0;
  regionBoundaries(map);
  const wind=regionalWind(map);
  const attention=territorialAttention(map);

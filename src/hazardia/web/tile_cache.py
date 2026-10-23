@@ -10,9 +10,9 @@ UA='HAZARDIA-local-research/0.1 (+https://github.com/francesco-basciani/hazardia
 
 class ConsultationCache:
     tile_limit=1024**2
-    def __init__(self,root,*,disk_limit=32*1024**2,memory_limit=4*1024**2,ttl=7*86400,opener=None,clock=time.time):
-        self.root=Path(root);self.root.mkdir(parents=True,exist_ok=True);self.disk_limit=disk_limit;self.memory_limit=memory_limit;self.ttl=ttl;self.clock=clock;self.opener=opener or urllib.request.urlopen
-        self.lock=threading.RLock();self.slots=threading.BoundedSemaphore(4);self.admission=threading.BoundedSemaphore(16);self.pending={};self.memory=collections.OrderedDict();self.memory_bytes=0;self.hits=0;self.requests=0;self.errors=0;self.reserved=0;self.cooldown={}
+    def __init__(self,root,*,disk_limit=32*1024**2,memory_limit=4*1024**2,ttl=7*86400,tile_limit=1024**2,opener=None,clock=time.time):
+        self.tile_limit=tile_limit;self.root=Path(root);self.root.mkdir(parents=True,exist_ok=True);self.disk_limit=disk_limit;self.memory_limit=memory_limit;self.ttl=ttl;self.clock=clock;self.opener=opener or urllib.request.urlopen
+        self.lock=threading.RLock();self.reservations=threading.Condition(self.lock);self.slots=threading.BoundedSemaphore(4);self.admission=threading.BoundedSemaphore(16);self.pending={};self.memory=collections.OrderedDict();self.memory_bytes=0;self.hits=0;self.requests=0;self.errors=0;self.reserved=0;self.cooldown={}
         self.hour_limit=16*1024**2;self.day_limit=32*1024**2
         self.traffic_path=self.root/'consultation-traffic.json'
         self.traffic=json.loads(self.traffic_path.read_text()) if self.traffic_path.exists() else {'total_bytes':0,'events':[]}
@@ -48,6 +48,11 @@ class ConsultationCache:
             if not admitted:raise HazardError('QUEUE_FULL','Map consultation busy; retry')
             with self.slots:
                 with self.lock:
+                    deadline=time.monotonic()+10
+                    while self.reserved and ((self._used(3600)+self.reserved+self.tile_limit>self.hour_limit and self._used(3600)+self.tile_limit<=self.hour_limit) or (self.disk_bytes+self.reserved+self.tile_limit>self.disk_limit and self.disk_bytes+self.tile_limit<=self.disk_limit)):
+                        remaining=deadline-time.monotonic()
+                        if remaining<=0:raise HazardError('SOURCE_BUSY','Map requests pending; retry after completion')
+                        self.reservations.wait(remaining)
                     if self._used(3600)+self.reserved+self.tile_limit>self.hour_limit or self._used(86400)+self.reserved+self.tile_limit>self.day_limit:raise HazardError('DOWNLOAD_LIMIT','Rolling map traffic limit; cached tiles remain available, retry after the window')
                     # Retain fresh cached objects; evict only expired entries, never prefetch replacements.
                     for name,info in sorted(list(self.disk.items()),key=lambda x:x[1][1]):
@@ -89,7 +94,7 @@ class ConsultationCache:
             future.set_exception(e);raise
         finally:
             with self.lock:
-                if reserved:self.reserved-=self.tile_limit
+                if reserved:self.reserved-=self.tile_limit;self.reservations.notify_all()
                 self.pending.pop(key,None)
                 if len(self.cooldown)>256:self.cooldown={k:v for k,v in self.cooldown.items() if v>self.clock()}
             if admitted:self.admission.release()

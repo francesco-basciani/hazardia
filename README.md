@@ -173,3 +173,7 @@ Dal23ottobre2026 la VM locale usa **6vCPU e16GiB RAM**. Il disco resta19GiB: l�
 
 ## Moduli opzionali nel Monitoraggio
 Nel pannello sinistro trovi **Traffico simulato**, **Terremoti osservati** e **Rete alta tensione**: controlli a destra, attivazione indipendente e combinabile con meteo/incendi/alluvioni. Sismi reali INGV/USGS con filtro anche sotto magnitudo1; rete elettrica OSM con tensioni dichiarate/sconosciute distinte. Il traffico resta ipotetico e non modifica l’ottimizzatore. La rete AT completa non è ancora qualificata: gli estratti locali verificati non riportano i voltaggi e Overpass regionale non risponde. [Uso, prove reali e limiti](reports/MODULI-TRAFFICO-SISMI-RETE-ELETTRICA-20261023.md).
+
+
+## Caricamento degli sfondi
+Le immagini vengono caricate progressivamente, con al massimo4richieste attive per documento e cancellazione delle viste abbandonate. Il satellite mantiene le tessere riuscite e usa cartografia di supporto dove necessario; il ritaglio Sentinel locale si seleziona esplicitamente. Cache nella VM64MiB per fonte, quote/TTL invariati. Ricaricare la pagina per attivare il nuovo gestore. [Prove, misure e limiti](reports/OTTIMIZZAZIONE-CARICAMENTO-IMMAGINI-20261023.md).

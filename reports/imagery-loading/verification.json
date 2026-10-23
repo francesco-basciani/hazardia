@@ -1,0 +1,237 @@
+{
+  "warm": {
+    "regional": {
+      "n": 30,
+      "states": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "p50_ms": 0.3387069996279024,
+      "p95_ms": 0.5396230003498204,
+      "qualification": "Sequential warm consultation in guest; no cache deletion or forced upstream refetch"
+    },
+    "ortho": {
+      "n": 30,
+      "states": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "p50_ms": 0.33450000000811997,
+      "p95_ms": 0.6387059997905453,
+      "qualification": "Sequential warm consultation in guest; no cache deletion or forced upstream refetch"
+    }
+  },
+  "status_after": {
+    "regional": {
+      "source": "Sentinel-2 cloudless2024 by EOX; Contains modified Copernicus Sentinel data2024",
+      "downloaded_bytes": 78755780,
+      "can_download_tiles": true,
+      "cache_bytes": 13738495,
+      "cache_limit_bytes": 67108864,
+      "tiles": 909,
+      "upstream_requests": 53,
+      "errors": 0,
+      "mode": "On-demand consultation; no prefetch/export",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "https://www.eox.at/2025/03/sentinel-2-cloudless-2024/",
+      "memory_bytes": 1557380,
+      "memory_limit_bytes": 8388608,
+      "cache_hits": 89,
+      "last_hour_bytes": 1074753,
+      "last_day_bytes": 13738495,
+      "hour_limit_bytes": 16777216,
+      "day_limit_bytes": 33554432,
+      "new_policy_downloaded_bytes": 13738495,
+      "legacy_downloaded_bytes": 65017285,
+      "legacy_limit_bytes": 67108864,
+      "policy": "Rolling traffic and bounded consultation cache; old cumulative counter preserved, not reset"
+    },
+    "ortho": {
+      "source": "Regione Abruzzo \u00b7 ortofoto 2018\u20132019 \u00b7 20 cm/px dichiarati",
+      "downloaded_bytes": 129614667,
+      "can_download_tiles": true,
+      "cache_bytes": 15396985,
+      "cache_limit_bytes": 67108864,
+      "tiles": 698,
+      "upstream_requests": 48,
+      "errors": 0,
+      "mode": "On-demand consultation; no prefetch/export",
+      "memory_bytes": 1770356,
+      "memory_limit_bytes": 16777216,
+      "cache_hits": 59,
+      "last_hour_bytes": 2146823,
+      "last_day_bytes": 15396985,
+      "hour_limit_bytes": 16777216,
+      "day_limit_bytes": 33554432,
+      "new_policy_downloaded_bytes": 15396985,
+      "legacy_downloaded_bytes": 114217682,
+      "legacy_limit_bytes": 268435456,
+      "policy": "Rolling traffic and bounded consultation cache; old cumulative counter preserved, not reset"
+    },
+    "osm": {
+      "mode": "On-demand consultation; no prefetch/export",
+      "tiles": 1430,
+      "cache_bytes": 28590764,
+      "cache_limit_bytes": 67108864,
+      "memory_bytes": 0,
+      "memory_limit_bytes": 4194304,
+      "upstream_requests": 0,
+      "cache_hits": 0,
+      "errors": 0,
+      "downloaded_bytes": 28590764,
+      "last_hour_bytes": 12711492,
+      "last_day_bytes": 26589768,
+      "hour_limit_bytes": 16777216,
+      "day_limit_bytes": 33554432,
+      "can_download_tiles": true,
+      "legacy_downloaded_bytes": 2000996,
+      "new_policy_downloaded_bytes": 26589768
+    }
+  },
+  "preserved_files": 311,
+  "changed_files": [],
+  "jobs": 95,
+  "jobs_unchanged": true,
+  "run_id": "imagery-loading-20261023",
+  "base_commit": "6381777",
+  "unit_tests": {
+    "passed": 81
+  },
+  "client_checks": {
+    "basemap": 17,
+    "queue": 15,
+    "image_adapter": 7,
+    "weather_viewport": 16,
+    "weather_render": 6013
+  },
+  "controlled_admission": {
+    "before": {
+      "outcomes": [
+        "PASS",
+        "PASS",
+        "CACHE_FULL",
+        "CACHE_FULL"
+      ],
+      "cache_bytes": 300012,
+      "reserved": 0
+    },
+    "after": {
+      "outcomes": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "cache_bytes": 500020,
+      "reserved": 0
+    },
+    "qualification": "Controlled synthetic I/O admission regression, not network benchmark"
+  },
+  "browser": {
+    "viewport": [
+      2560,
+      1100
+    ],
+    "loaded": 110,
+    "total": 110,
+    "queue": {
+      "active": 0,
+      "cancelled": 275,
+      "limit": 4,
+      "peak": 4,
+      "queued": 0,
+      "started": 315
+    },
+    "mode": "ortho",
+    "resource_samples": 148,
+    "resource_p50_ms": 169.7,
+    "resource_p95_ms": 321.7,
+    "raf_p95_ms": 17.60000000000582,
+    "qualification": "Single correlated IAB session; resource durations exclude admission queue; not full-load timing or Safari benchmark"
+  },
+  "studio": {
+    "maps": [
+      {
+        "loaded": 1,
+        "queue": "{\"started\":17,\"cancelled\":15,\"peak\":4,\"active\":0,\"queued\":0,\"limit\":4}",
+        "total": 1
+      },
+      {
+        "loaded": 1,
+        "queue": "{\"started\":17,\"cancelled\":15,\"peak\":4,\"active\":0,\"queued\":0,\"limit\":4}",
+        "total": 1
+      },
+      {
+        "loaded": 0,
+        "queue": "{\"started\":17,\"cancelled\":15,\"peak\":4,\"active\":0,\"queued\":0,\"limit\":4}",
+        "total": 0
+      }
+    ],
+    "size": [
+      1280,
+      720
+    ]
+  },
+  "limitations": [
+    "Provider failures and real quotas still possible",
+    "No independent cold-start browser benchmark",
+    "No physical Safari/device/soak validation",
+    "New helper initial tileabort stall corrected; negative artifact retained"
+  ]
+}
