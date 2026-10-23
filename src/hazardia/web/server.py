@@ -10,6 +10,7 @@ from hazardia.web.map_navigation import Geocoder,terrain_metadata
 from hazardia.web.maps import Orthophotos,RegionalSatellite
 from hazardia.web.territorial_service import TerritorialService
 from hazardia.web.traffic import Traffic
+from hazardia.web.observed_layers import ObservedLayers
 from hazardia.web.recent_imagery import RecentImagery
 from hazardia.web.rain_service import RainService
 from hazardia.web.radar_service import RadarService
@@ -34,7 +35,7 @@ from hazardia.firelab import stage as stage_firelab,validate as validate_firelab
 class App:
     def __init__(self,root):
         self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.osm_tiles=OSMTiles(self.state);self.orthophotos=CachedImagery(self.state,Orthophotos);self.regional_satellite=CachedImagery(self.state,RegionalSatellite);self.geocoder=Geocoder(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.fire_cases=FireCases(self.root);self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock();from hazardia.web.dynamic_fire import DynamicFire;self.dynamic_fire=DynamicFire(self);self.territorial=TerritorialService(self)
-        self.recent_imagery=RecentImagery(self.state);self.traffic=Traffic(self.state);self.rain=RainService(self);self.radar=RadarService(self);self.terrain_trial=TerrainTrial(self.state)
+        self.earthquakes=ObservedLayers(self.state,'earthquakes');self.power_network=ObservedLayers(self.state,'power');self.recent_imagery=RecentImagery(self.state);self.traffic=Traffic(self.state);self.rain=RainService(self);self.radar=RadarService(self);self.terrain_trial=TerrainTrial(self.state)
         self.observed_rain=ObservedRainStore(self.state/'observed-rain')
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
@@ -207,6 +208,8 @@ class Handler(BaseHTTPRequestHandler):
                         result=(app.fire_cases.workspace(case_id) if case_id is not None else app.fire_workspace).save(body)
                     return self.send(200,result)
                 if path=='/api/monitoring/recent-imagery/refresh':return self.send(202,app.recent_imagery.prepare(body))
+                if path=='/api/monitoring/earthquakes/prepare':return self.send(202,app.earthquakes.prepare(body))
+                if path=='/api/monitoring/power/prepare':return self.send(202,app.power_network.prepare(body))
                 if path=='/api/traffic/config':return self.send(200,app.traffic.save(body))
                 if path=='/api/traffic/prepare':return self.send(202,app.traffic.prepare(body))
                 if path=='/api/notebook':
@@ -262,6 +265,8 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/monitoring/recent-imagery':return self.send(200,app.recent_imagery.snapshot())
             preview=re.fullmatch(r'/api/monitoring/recent-imagery/([a-f0-9]{24}).jpg',path)
             if preview:return self.send(200,app.recent_imagery.image(preview[1]),'image/jpeg')
+            if path=='/api/monitoring/earthquakes':return self.send(200,app.earthquakes.snapshot(parse_qs(urlsplit(self.path).query).get('request',[''])[0]))
+            if path=='/api/monitoring/power':return self.send(200,app.power_network.snapshot(parse_qs(urlsplit(self.path).query).get('request',[''])[0]))
             if path=='/api/traffic/config':return self.send(200,app.traffic.config())
             if path=='/api/traffic':return self.send(200,app.traffic.snapshot())
             if path.startswith('/api/territorial-context/'):return self.send(200,app.territorial.read(path.split('/')[-1]))

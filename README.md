@@ -165,3 +165,11 @@ Nel Monitoraggio, **Livelli** raggruppa meteo e osservazioni, territorio ed espo
 
 ## Console cartografica
 Monitoraggio e studio FIRE usano ora la mappa nello spazio sotto la barra principale: **Livelli** a sinistra, parametri e dettagli a destra, timeline in basso. I pannelli scorrono internamente e si alternano su schermi piccoli. La rotella esegue lo zoom sulla mappa; sopra i pannelli scorre le opzioni. Questa nuova scelta sostituisce il precedente divieto nelle viste convertite a viewport fisso. [Interazione, prove e limiti](reports/MAPPA-A-SCHERMO-INTERO-20261023.md).
+
+
+## Risorse dell’istanza locale
+Dal23ottobre2026 la VM locale usa **6vCPU e16GiB RAM**. Il disco resta19GiB: l’espansione a40GiB è rinviata per spazio insufficiente sul Mac. I requisiti minimi e le misure storiche restano distinti da questa configurazione. [Verifica e limiti](reports/AUMENTO-RISORSE-VM-20261023.md).
+
+
+## Moduli opzionali nel Monitoraggio
+Nel pannello sinistro trovi **Traffico simulato**, **Terremoti osservati** e **Rete alta tensione**: controlli a destra, attivazione indipendente e combinabile con meteo/incendi/alluvioni. Sismi reali INGV/USGS con filtro anche sotto magnitudo1; rete elettrica OSM con tensioni dichiarate/sconosciute distinte. Il traffico resta ipotetico e non modifica l’ottimizzatore. La rete AT completa non è ancora qualificata: gli estratti locali verificati non riportano i voltaggi e Overpass regionale non risponde. [Uso, prove reali e limiti](reports/MODULI-TRAFFICO-SISMI-RETE-ELETTRICA-20261023.md).

@@ -89,3 +89,11 @@ Chiarimento esplicito dell’utente: prendere dal paper il modello di integrazio
 
 ## Console cartografica e rotella — nuova decisione23ottobre2026
 L’utente richiede mappa a viewport fisso sotto la barra superiore, livelli/palette a sinistra e parametri a destra. **Riabilitare la rotella nelle viste convertite Monitoraggio/studio FIRE e peer**: il divieto storico di scrollWheelZoom è superato per queste viste. Il documento non scorre, solo i pannelli interni; la rotella sopra i pannelli non deve zoomare. Non estendere la nuova politica a pagine legacy ancora lunghe senza verificarne il layout. Preservare tutto il backend, le forzanti e gli scenari. FR-MAP-CONSOLE-01/report MAPPA-A-SCHERMO-INTERO-20261023 sono il riferimento aggiornato.
+
+
+## Risorse VM autorizzate —23ottobre2026
+L’utente autorizza l’aumento proposto. Configurazione applicata:6vCPU/16384MiB RAM; disco19GiB invariato perché sul Mac restano circa13GiB liberi. Disco40GiB autorizzato ma subordinato a spazio fisico sufficiente, senza cancellazioni implicite. Le vecchie indicazioni4CPU/8GiB sono storiche; benchmark precedenti immutati. Nessun aumento automatico di worker, quote o download. Report reports/AUMENTO-RISORSE-VM-20261023.md.
+
+
+## Moduli osservati e traffico — nuova autorizzazione23 ottobre 2026
+L’utente richiede terremoti anche piccoli e livello dedicato AT, oltre al traffico come modulo indipendente. È superata l’esclusione precedente dei terremoti per il catalogo osservato; non è autorizzato implicitamente un nuovo simulatore sismico. Riusare il traffico indipendente e separare moduli visuali/forzanti/modelli/decisioni. Tensione assente resta sconosciuta, mai AT certificata o area libera; rispettare acquisizioni limitate e missing. Report MODULI-TRAFFICO-SISMI-RETE-ELETTRICA-20261023, FR-MONITOR-MODULES-03.

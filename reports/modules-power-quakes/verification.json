@@ -1,0 +1,147 @@
+{
+  "cached_api": {
+    "earthquakes": {
+      "samples": 30,
+      "sequential_correlated": true,
+      "p50_ms": 0.6265750000693515,
+      "p95_ms": 0.8802800000466959,
+      "max_bytes": 42665,
+      "features": 95
+    },
+    "power": {
+      "samples": 30,
+      "sequential_correlated": true,
+      "p50_ms": 0.6080339999243733,
+      "p95_ms": 2.3299269998915406,
+      "max_bytes": 44441,
+      "features": 53
+    }
+  },
+  "negative": {
+    "bad-provider": {
+      "http": 400,
+      "body": {
+        "status": "ERROR",
+        "code": "INVALID_INPUT",
+        "detail": "Use1/7/30days, magnitude-1..9 and INGV/USGS"
+      }
+    },
+    "ingv-outside": {
+      "http": 400,
+      "body": {
+        "status": "ERROR",
+        "code": "OUTSIDE_COVERAGE",
+        "detail": "INGV regional consultation: select Italy (6\u201319E,35\u201348N) or USGS global; small-event completeness is not global"
+      }
+    },
+    "power-too-large": {
+      "http": 400,
+      "body": {
+        "status": "ERROR",
+        "code": "AREA_TOO_LARGE",
+        "detail": "Power inventory: zoom to \u22643\u00b0 per side and \u22646 square degrees; no complete world network cached"
+      }
+    }
+  },
+  "preserved_files": 311,
+  "changed_files": [],
+  "jobs_unchanged": true,
+  "jobs": 95,
+  "run_id": "modules-power-quakes-20261023",
+  "base_commit": "faf2703",
+  "unit_tests": {
+    "status": "PASS",
+    "count": 78
+  },
+  "display_filter_tests": {
+    "status": "PASS",
+    "count": 18
+  },
+  "earthquakes": {
+    "source": "INGV ISIDe",
+    "bounds": [
+      12.8,
+      41.6,
+      14.9,
+      43.1
+    ],
+    "window": [
+      "2026-10-16T13:20:00+00:00",
+      "2026-10-23T13:20:00+00:00"
+    ],
+    "count": 95,
+    "minimum_magnitude": 0.2,
+    "below_one": 34,
+    "raw_sha256": "66443e8c881a193215d02dfa33c9bdf29192870e05d2a73f76b192bcf2859294"
+  },
+  "power": {
+    "source": "OSM API bounded map extract",
+    "bounds": [
+      13.36,
+      42.34,
+      13.39,
+      42.36
+    ],
+    "objects": 53,
+    "known_voltage_objects": 0,
+    "raw_sha256": "38d39187dded784a8cfb17932a7cb7511dc36905b1293777e69751a0229ea4d8",
+    "qualification": "Voltage missing: do not infer high-voltage status"
+  },
+  "usgs": {
+    "italian_query_count": 0,
+    "california_day_count": 84
+  },
+  "responsive": {
+    "desktop": [
+      1280,
+      720
+    ],
+    "desktop_map": [
+      1280,
+      664
+    ],
+    "phone": [
+      375,
+      812
+    ],
+    "tablet": [
+      768,
+      1024
+    ],
+    "overflow": false
+  },
+  "limits": {
+    "regional_power_acquisition": "BLOCKED: Overpass timeouts/HTTP406/502/504",
+    "certified_local_high_voltage": "BLOCKED: missing voltage and operator-certified completeness",
+    "new_physical_simulations": "NOT RUN",
+    "Safari_full_benchmark": "NOT RUN",
+    "400_vehicle_combined_load": "NOT RUN (prior standalone traffic limit test retained)"
+  },
+  "browser_combined": {
+    "document": [
+      1280,
+      720
+    ],
+    "enabled": [
+      {
+        "enabled": "true",
+        "name": "\u2301Traffico simulato\u203a"
+      },
+      {
+        "enabled": "true",
+        "name": "\u25ceTerremoti osservati\u203a"
+      },
+      {
+        "enabled": "true",
+        "name": "\u03dfRete alta tensione\u203a"
+      }
+    ],
+    "traffic": {
+      "draw_ms_p95": 0.30000007152557373,
+      "elapsed": 89.49999999999919,
+      "interval_ms_p95": 33.5,
+      "samples": 300,
+      "vehicles": 38
+    }
+  }
+}
