@@ -18,3 +18,13 @@ display.weatherLabels(host,labelMap,field,{...record,at:'2026-10-21T06:00:00Z'},
 display.weatherLabels(host,labelMap,field,{temperature:record.temperature.map(v=>v+2),at:'2026-10-21T07:00:00Z'},['temperature']);check(host.children[0]===first);check(host.dataset.createdLabels==='4');check(first.children[0].textContent==='7 °C');
 display.weatherLabels(host,labelMap,field,null,['temperature']);check(host.children.length===0);
 console.log(`PASS ${checks} total checks including retained DOM nodes, changed values and missing-data clearing`);
+
+// Clouds and rain remain independently composited; no wet pixel invented in dry cells.
+const rasterMap={getSize:()=>({x:20,y:20}),getBounds:()=>({getSouth:()=>-1,getWest:()=>-1,getNorth:()=>1,getEast:()=>1}),containerPointToLatLng:([x,y])=>({lat:1-y/10,lng:-1+x/10})};
+const context={canvas:{width:2,height:2,dataset:{}},createImageData:(w,h)=>({width:w,height:h,data:new Uint8ClampedArray(w*h*4)}),putImageData(im){this.image=im;}};
+const wetRecord={precipitation:Array(9).fill(4),cloud:Array(9).fill(80)};
+check(display.paintRain(context,rasterMap,field,wetRecord,{rain:true,cloud:true})===1);check(context.canvas.dataset.wetPixels==='4');check(context.canvas.dataset.cloudPixels==='4');
+const bothAlpha=context.image.data[3];display.paintRain(context,rasterMap,field,wetRecord,{rain:false,cloud:true});check(context.canvas.dataset.wetPixels==='0');check(context.canvas.dataset.cloudPixels==='4');
+display.paintRain(context,rasterMap,field,{...wetRecord,precipitation:Array(9).fill(0)},{rain:true,cloud:true});check(context.canvas.dataset.wetPixels==='0');check(context.canvas.dataset.cloudPixels==='4');check(context.image.data[3]<bothAlpha);
+display.paintRain(context,rasterMap,field,wetRecord,{rain:true,cloud:false});check(context.canvas.dataset.wetPixels==='4');check(context.canvas.dataset.cloudPixels==='0');
+console.log(`PASS ${checks} total checks including independent cloud/rain compositing and dry-cell semantics`);

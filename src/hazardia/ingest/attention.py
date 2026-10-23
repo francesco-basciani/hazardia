@@ -55,6 +55,8 @@ class AttentionStore:
             reference=data.get('reference_epoch');effective=max(now,(reference or now)+max(0,now-data['local_epoch']))
             age=effective-(reference or data['local_epoch']);fresh=reference is not None and now>=data['local_epoch']-300 and 0<=age<10800
             out=json.loads(json.dumps(data));out.pop('files',None);out.pop('receipts',None)
+            # Current integration qualifications; preserve the immutable source bundle.
+            out['missing']=['Observed radar/rain gauges available separately, not assimilated into this assessment; river gauges not connected' if item=='Radar / rain and river gauges' else item for item in out.get('missing',[])]
             for key,source in out['sources'].items():
                 for p in source.get('products',[]):
                     if 'valid_from' not in p:

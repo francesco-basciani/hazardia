@@ -97,3 +97,7 @@ L’utente autorizza l’aumento proposto. Configurazione applicata:6vCPU/16384M
 
 ## Moduli osservati e traffico — nuova autorizzazione23 ottobre 2026
 L’utente richiede terremoti anche piccoli e livello dedicato AT, oltre al traffico come modulo indipendente. È superata l’esclusione precedente dei terremoti per il catalogo osservato; non è autorizzato implicitamente un nuovo simulatore sismico. Riusare il traffico indipendente e separare moduli visuali/forzanti/modelli/decisioni. Tensione assente resta sconosciuta, mai AT certificata o area libera; rispettare acquisizioni limitate e missing. Report MODULI-TRAFFICO-SISMI-RETE-ELETTRICA-20261023, FR-MONITOR-MODULES-03.
+
+
+## Monitoraggio e simulazioni — rettifica23ottobre2026
+FR-MONITOR-SECTIONS-04: traffico ipotetico e scenari appartengono alla sezione Simulazioni e risorse; non reintrodurli nei livelli Monitoraggio. Parametri meteo sempre nel pannello destro, rain/cloud indipendenti. Sismi osservati: attivazione/acquisizione coerenti, zeroeventi distinto da errore/missing, catalogo scelto per copertura. Conservare archivi scientifici anche quando impediscono refresh; esplicitare fallback/limiti. Report MONITORAGGIO-AUDIT-E-SEZIONI-20261023.

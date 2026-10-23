@@ -1,0 +1,96 @@
+{
+  "run_id": "monitor-audit-20261023",
+  "base": "2927927d70e7df6029d74214539fef1a8db200dc",
+  "scope": "Technical/source/UI audit; no new physics qualification",
+  "reviewer": "Codex self-check",
+  "python_vm": {
+    "unit": 186,
+    "web": 47,
+    "domain": 19,
+    "decision": 51,
+    "total": 303,
+    "status": "PASS"
+  },
+  "client_development": {
+    "suites": 15,
+    "status": "PASS",
+    "weather_renderer_checks": 6023
+  },
+  "live": {
+    "quake-positive": {
+      "status": "READY",
+      "http": null,
+      "detail": null,
+      "error": null,
+      "count": 156
+    },
+    "quake-empty": {
+      "status": "ERROR",
+      "http": 400,
+      "detail": "Wait5seconds between new acquisitions; cached requests remain available",
+      "error": null,
+      "count": 0
+    },
+    "quake-invalid-region": {
+      "status": "ERROR",
+      "http": 400,
+      "detail": "INGV regional consultation: select Italy (6\u201319E,35\u201348N) or USGS global; small-event completeness is not global",
+      "error": null,
+      "count": 0
+    },
+    "radar": {
+      "status": "AVAILABLE",
+      "error": null,
+      "selected_at": "2026-10-23T14:27:22Z"
+    },
+    "preserved_files": 311,
+    "engine_pins": "PASS",
+    "jobs_unchanged": "PASS",
+    "quake-empty-final": {
+      "status": "READY",
+      "count": 0
+    }
+  },
+  "radar": {
+    "at": "2026-10-23T14:25:00Z",
+    "kind": "OBSERVATION",
+    "units": "mm/h",
+    "valid_fraction": 0.49201666666666666,
+    "wet_fraction": 0.036473809523809526,
+    "max_mm_h": 66.96499633789062,
+    "sha256": "3dbb82d2f5db005c755774a8d6598fce8132a8a86b72f874634e6f45c0fdbb94"
+  },
+  "traffic_ui": {
+    "vehicles": 400,
+    "draw_ms_p95": 0.8000000715255737,
+    "interval_ms_p95": 50,
+    "samples": 300,
+    "elapsed": 55.70000000000052
+  },
+  "ui": {
+    "desktop": [
+      1280,
+      720
+    ],
+    "mobile": [
+      375,
+      812
+    ],
+    "document_overflow_px": 0,
+    "combined_raster": {
+      "precipitation_pixels": 6600,
+      "cloud_pixels": 13280
+    }
+  },
+  "blocked": [
+    "Legacy fine regional wind cache full; current viewport global wind used",
+    "FIRMS key absent, observed local perimeters/hydrometers absent",
+    "Regional certified HV coverage and scientific/operational qualification unavailable"
+  ],
+  "not_run": [
+    "New native physical jobs",
+    "Script-based integration gates",
+    "Safari",
+    "Full end-to-end load benchmark"
+  ]
+}

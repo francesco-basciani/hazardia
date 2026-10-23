@@ -1310,3 +1310,16 @@ Run `modules-power-quakes-20261023`, basefaf2703+dirty, report `reports/MODULI-T
 
 ## Ottimizzazione caricamento immagini —23 ottobre 2026
 Run `imagery-loading-20261023`, base6381777+dirty, report `reports/OTTIMIZZAZIONE-CARICAMENTO-IMMAGINI-20261023.md`. PASS: riproduzione controllata del falso CACHE_FULL2/4richieste→4/4stessolimite; attesa riserve concorrenti, limiti payload del provider, cache consultazione64MiB/fonte (192MiB totale per3sfondi), TTL/validator/quote16MiBora32MiBgiorno e contatori storici preservati. Coda immagini native equa≤4perdocumento, aborti/viste abbandonate, niente retryURLcasuali nello studio; tessere riuscite conservate, OSMdi supporto e nessun passaggio automatico al ritaglio locale. PASS81testVM/17controller+15queue+7adapter+16viewport+6013renderJS; IAB2560×1100/zoom14,110/110tessere,coda0/picco4, studio/confronto esistente senza errori.148risorse browser p50~170ms/p95~322ms esclusa coda, RAFp95~17,6ms, singola sessione correlata;30GETcaldi/source p95satellite0,54ms/ortho0,64ms, non benchmark rete o caricamento completo. FAIL iniziale helper bloccato su tileabort corretto e coperto da test, negativo conservato. PASS311file e95job invariati. NOT RUN Safari fisico,benchmark freddo indipendente/soak/nuova fisica; disponibilità esterna non garantita, M5–M7BLOCKED invariati. VM6vCPU/16GiB/disco19GiB, nessun aumento risorse assegnate, nuovi provider, costi o dispatch. Estratto reports/imagery-loading/verification.json, rawrunhost/VM. Reviewer Codex self-check.
+
+
+## Audit monitoraggio e sezioni — monitor-audit-20261023
+Reviewer Codex self-check; base2927927+dirty; comandi/log nel report MONITORAGGIO-AUDIT-E-SEZIONI-20261023 e run omonimo host/VM; estratto reports/monitor-audit/verification.json.
+- PASS — FR-MONITOR-SECTIONS-04: nessuno scenario/traffico nei livelli Monitoraggio; traffico dentro Simulazioni, nessun duplicato o accoppiamento scientifico.
+- PASS — meteo a destra,9scelte indipendenti; raster simultaneo6600pixelpioggia/13280nuvole e celle asciutte trasparenti verificate.
+- PASS — sismi156INGV,0eventiREADY per vista stretta/24h/M≥4, errore fuori copertura e throttle5s distinti; pulsante attiva la visualizzazione.
+- PASS — meteoFRESH,3979pluviometri freschi, radarSRI14:25UTC/1km e futuroOUTSIDE_VALIDITY; EFFIS/DPCPARTIAL senza simulare completezza.
+- PASS —303testPythonVM(186unit/47web/19domain/51decision),15suiteJSclient; runnerCommonJS inizialmenteFAIL corretto conservando7asserzioni.
+- PASS — traffico1221segmenti,400veicoli, pausa/ripresa, seed/vincoli nei test;300campioni p95disegno0,8ms/intervallo50ms, non benchmark operativo. UI1280×720/375×812 senza scroll del documento.
+- PASS —311file/95job/pinmotori invariati. Nessun nuovo job fisico.
+- BLOCKED — finewindlegacyWEATHER_CACHE_FULL; fallbackesplicito al campo globaleFRESH, archivio conservato. HotspotMAP_KEY/perimetri/idrometri/esposizionequalificata eATregionale restanoBLOCKED.
+- NOT RUN — nuovi job nativi e qualificazione fisica, script verify_m* di integrazione (unittest ne scopre0), Safari/caricoend-to-end/nuovaacquisizioneimmaginirecenti/nuovareteelettricaestesa. Non dichiarare tutti i componenti scientificamente qualificati da questo audit.

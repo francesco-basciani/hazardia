@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
-import {solarAltitude,intersectsWire} from '../../src/hazardia/web/static/territorial-layers.js';
+import {readFileSync} from 'node:fs';
+const uri=s=>'data:text/javascript;base64,'+Buffer.from(s).toString('base64');
+const symbols=uri(readFileSync(new URL('../../src/hazardia/web/static/map-symbols.js',import.meta.url),'utf8'));
+const {solarAltitude,intersectsWire}=await import(uri(readFileSync(new URL('../../src/hazardia/web/static/territorial-layers.js',import.meta.url),'utf8').replace("'/map-symbols.js?v=1'",JSON.stringify(symbols))));
 assert(solarAltitude('2026-03-20T12:00:00Z',0,0)>85);
 assert(solarAltitude('2026-03-20T00:00:00Z',0,0)<-85);
 assert(solarAltitude('2026-12-21T12:00:00Z',80,0)<0);

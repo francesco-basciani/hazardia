@@ -1,0 +1,12 @@
+import {trafficLayer} from '/traffic-layer.js';
+import {scheduledTiles} from '/scheduled-tiles.js';
+const map=L.map('traffic-map',{preferCanvas:true,scrollWheelZoom:true,minZoom:2,maxZoom:19}).setView([42.35,13.38],14);
+const tiles=scheduledTiles('/api/maps/osm/{z}/{x}/{y}',{maxZoom:19,keepBuffer:0,updateWhenIdle:true,updateWhenZooming:false,attribution:'© OpenStreetMap contributors · ODbL'}).addTo(map);
+const traffic=trafficLayer(map,document.getElementById('traffic-controls')),panel=document.querySelector('aside'),toggle=document.getElementById('traffic-options');
+document.querySelector('.traffic-config').open=true;
+let studioVisible=true;
+const show=on=>{panel.hidden=!on;toggle.setAttribute('aria-expanded',String(on));};show(!matchMedia('(max-width:700px)').matches);toggle.onclick=()=>show(panel.hidden);document.getElementById('traffic-close').onclick=()=>show(false);
+L.DomEvent.disableClickPropagation(panel);L.DomEvent.disableScrollPropagation(panel);L.control.scale({imperial:false}).addTo(map);new ResizeObserver(()=>map.invalidateSize({pan:false})).observe(document.body);
+fetch('/api/traffic/config').then(r=>{if(!r.ok)throw Error('Configurazione non disponibile');return r.json();}).then(c=>{map.fitBounds([[c.bounds[1],c.bounds[0]],[c.bounds[3],c.bounds[2]]],{maxZoom:16,animate:false});}).catch(()=>{});
+window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent||e.data?.type!=='hazardia-traffic-visible')return;studioVisible=e.data.visible===true;traffic.visible(studioVisible);if(studioVisible){tiles.addTo(map);map.invalidateSize({pan:false});}else tiles.remove();});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)traffic.visible(false);else traffic.visible(studioVisible);});
