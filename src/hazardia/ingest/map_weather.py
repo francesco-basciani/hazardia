@@ -1,5 +1,5 @@
 """Bounded global viewport display forecast. Never simulator forcing."""
-import datetime as dt,gzip,hashlib,json,math,os,sqlite3,tempfile,threading,time,urllib.request,urllib.error
+import collections,datetime as dt,gzip,hashlib,json,math,os,sqlite3,tempfile,threading,time,urllib.request,urllib.error
 from pathlib import Path
 from urllib.parse import urlencode,parse_qs,urlsplit
 from hazardia.io import HazardError,load,loads,write_new,utcnow,timestamp
@@ -60,8 +60,8 @@ def normalize(raw,receipt):
 
 class MapWeatherStore:
     def __init__(self,root,*,opener=urllib.request.urlopen,clock=time.time):
-        self.root=Path(root);self.root.mkdir(parents=True,exist_ok=True);self.opener=opener;self.clock=clock;self.busy=threading.Lock()
-        with self.connect() as db:db.executescript('CREATE TABLE IF NOT EXISTS attempts(at REAL PRIMARY KEY); CREATE TABLE IF NOT EXISTS state(id INTEGER PRIMARY KEY CHECK(id=1),snapshot TEXT,error TEXT); INSERT OR IGNORE INTO state VALUES(1,NULL,NULL);')
+        self.root=Path(root);self.root.mkdir(parents=True,exist_ok=True);self.opener=opener;self.clock=clock;self.busy=threading.Lock();self.memo_lock=threading.RLock();self.verified=collections.OrderedDict();self.coverage_index={}
+        with self.connect() as db:db.executescript('CREATE TABLE IF NOT EXISTS display_headers(name TEXT PRIMARY KEY, signature TEXT, metadata TEXT); CREATE TABLE IF NOT EXISTS attempts(at REAL PRIMARY KEY); CREATE TABLE IF NOT EXISTS state(id INTEGER PRIMARY KEY CHECK(id=1),snapshot TEXT,error TEXT); INSERT OR IGNORE INTO state VALUES(1,NULL,NULL);')
     def connect(self):return sqlite3.connect(self.root/'quota.sqlite',timeout=10)
     def archived_bytes(self,name):
         try:return (self.root/name).read_bytes()
@@ -100,13 +100,50 @@ class MapWeatherStore:
             path.unlink();count+=1
         return count
     def read(self,name):
-        f=self.cached(name);r=f['source'];raw='raw-'+r['sha256']+'.json'
-        if hashlib.sha256(self.archived_bytes(raw)).hexdigest()!=r['sha256'] or self.cached('receipt-'+r['sha256']+'.json')!=r or normalize(self.cached(raw),r)!=f:raise HazardError('CACHE_CORRUPT','Map forecast integrity differs')
+        # Verify all three byte streams even on a memo hit. Reuse normalization
+        # only for identical hashes; two entries bound additional memory.
+        encoded=self.archived_bytes(name);normal_sha=hashlib.sha256(encoded).hexdigest()
+        with self.memo_lock:memo=self.verified.get(name)
+        f=memo[1] if memo and memo[0][0]==normal_sha else loads(encoded.decode('utf-8'))
+        r=f['source'];raw=self.archived_bytes('raw-'+r['sha256']+'.json');receipt=self.archived_bytes('receipt-'+r['sha256']+'.json')
+        fingerprints=(normal_sha,hashlib.sha256(raw).hexdigest(),hashlib.sha256(receipt).hexdigest())
+        if memo and memo[0]==fingerprints:
+            with self.memo_lock:
+                if name in self.verified:self.verified.move_to_end(name)
+            return f
+        if fingerprints[1]!=r['sha256'] or loads(receipt.decode('utf-8'))!=r or normalize(loads(raw.decode('utf-8')),r)!=f:raise HazardError('CACHE_CORRUPT','Map forecast integrity differs')
+        with self.memo_lock:
+            self.verified[name]=(fingerprints,f);self.verified.move_to_end(name)
+            while len(self.verified)>2:self.verified.popitem(last=False)
         return f
-    def snapshot(self):
+    def coverage_metadata(self,name):
+        path=self.root/name
+        if not path.exists():path=self.root/(name+'.gz')
+        stat=path.stat();signature=(str(path),stat.st_size,stat.st_mtime_ns)
+        with self.memo_lock:cached=self.coverage_index.get(name)
+        if cached and cached[0]==signature:return cached[1]
+        encoded_signature=json.dumps(signature)
+        with self.connect() as db:row=db.execute('SELECT metadata FROM display_headers WHERE name=? AND signature=?',(name,encoded_signature)).fetchone()
+        if row:summary=loads(row[0])
+        else:
+            f=self.cached(name);summary={k:f[k] for k in ('source','bounds','available_at')}
+            with self.connect() as db:db.execute('INSERT OR REPLACE INTO display_headers VALUES(?,?,?)',(name,encoded_signature,json.dumps(summary)))
+        with self.memo_lock:
+            if len(self.coverage_index)>=128:self.coverage_index.pop(next(iter(self.coverage_index)))
+            self.coverage_index[name]=(signature,summary)
+        return summary
+    def covering(self,bounds):
+        requested_y,requested_x=grid(bounds);now=self.clock();candidates=[]
+        for name in self.cache_names('map-weather-'):
+            f=self.coverage_metadata(name);a,b=f['bounds'];age=now-timestamp(f['available_at']).timestamp()
+            if f['source'].get('normalization_version',1)>=2 and set(EXTRA)<=set(parse_qs(urlsplit(f['source']['url']).query).get('hourly',[''])[0].split(',')) and (b[0]-a[0])<=4*(requested_y[-1]-requested_y[0]) and (b[1]-a[1])<=4*(requested_x[-1]-requested_x[0]) and 0<=age<TTL and all(a[i]<=bounds[0][i] and b[i]>=bounds[1][i] for i in range(2)):
+                candidates.append(((b[0]-a[0])*(b[1]-a[1]),-timestamp(f['available_at']).timestamp(),name))
+        return min(candidates)[2] if candidates else None
+    def snapshot(self,bounds=None):
         now=self.clock()
         with self.connect() as db:
             name,error=db.execute('SELECT snapshot,error FROM state WHERE id=1').fetchone();last=db.execute('SELECT max(at) FROM attempts').fetchone()[0];count=db.execute('SELECT count(*) FROM attempts WHERE at>=?',(now-now%86400,)).fetchone()[0]
+        if bounds is not None:name=self.covering(bounds) or name
         f=self.read(name) if name else None;age=now-timestamp(f['available_at']).timestamp() if f else None
         return dict(status='EMPTY' if not f else 'FRESH' if 0<=age<TTL else 'STALE',forecast=f,error=error,age_s=age,fetching=self.busy.locked(),retry_after_s=max(0,math.ceil((now-now%86400+86400-now) if count>=LIMIT else (65-(now-last) if last is not None else 0))),cache_bytes=self.storage_bytes(),quota=dict(attempts_today=count,local_daily_limit=LIMIT,location_equivalents_per_refresh=81,max_location_equivalents_daily=3888,refresh_s=65))
     def acquire(self,bounds):
@@ -117,13 +154,9 @@ class MapWeatherStore:
             now=self.clock()
             if self.storage_bytes()>ARCHIVE_LIMIT-3*CAP:self.compact()
             # Prefer the finest fresh cached field covering the entire viewport.
-            candidates=[]
-            for name in self.cache_names('map-weather-'):
-                f=self.cached(name);a,b=f['bounds'];age=now-timestamp(f['available_at']).timestamp()
-                if f['source'].get('normalization_version',1)>=2 and set(EXTRA)<=set(parse_qs(urlsplit(f['source']['url']).query).get('hourly',[''])[0].split(',')) and (b[0]-a[0])<=4*(requested_y[-1]-requested_y[0]) and (b[1]-a[1])<=4*(requested_x[-1]-requested_x[0]) and 0<=age<TTL and all(a[i]<=bounds[0][i] and b[i]>=bounds[1][i] for i in range(2)):
-                    candidates.append(((b[0]-a[0])*(b[1]-a[1]),-timestamp(f['available_at']).timestamp(),name))
-            if candidates:
-                name=min(candidates)[2];self.read(name)
+            name=self.covering(bounds)
+            if name:
+                self.read(name)
                 with self.connect() as db:db.execute('UPDATE state SET snapshot=?,error=NULL WHERE id=1',(name,))
                 return
             with self.connect() as db:

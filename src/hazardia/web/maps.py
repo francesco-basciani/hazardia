@@ -76,7 +76,7 @@ class RegionalSatellite(Orthophotos):
     tile_limit=512*1024
     traffic_name='regional-satellite-traffic.json'
     extent=(-180.,-85.,180.,85.)
-    min_zoom=4
+    min_zoom=0
     max_zoom=14
     def url(self,z,x,y,bbox):
         if z>14:raise HazardError('INVALID_INPUT','Satellite background native zoom4–14')

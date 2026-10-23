@@ -12,7 +12,7 @@ export function forecastPlayback({select,mount,getTimes,getCurrent,active=()=>tr
  function sync(){
   const fresh=[...new Set(getTimes()||[])].filter(at=>Number.isFinite(Date.parse(at))).sort();
   if(times.join()!==fresh.join()){stop();phase=null;}times=fresh;
-  const current=getCurrent(),i=times.indexOf(current);if(!phase||current!==phase.at){phase=null;position=Math.max(0,i);}
+  const current=getCurrent(),i=times.indexOf(current);if(!phase||current!==phase.at){phase=null;position=Math.max(0,i);if(i<0&&current){const t=Date.parse(current),j=times.findIndex((at,n)=>n+1<times.length&&Date.parse(at)<t&&t<Date.parse(times[n+1]));if(j>=0){const fraction=(t-Date.parse(times[j]))/(Date.parse(times[j+1])-Date.parse(times[j]));phase={from:times[j],to:times[j+1],fraction,at:current};position=j+fraction;}}}
   slider.max=Math.max(0,times.length-1);slider.value=position;slider.setAttribute('aria-valuetext',current?clock(current):'Ora non disponibile');out.textContent=times.length?(current?clock(current):'Seleziona un’ora'):'Previsioni non disponibili';
   for(const el of [back,play,next,slider,speed])el.disabled=!times.length;
   if(!times.length||!active())stop();back.disabled=!times.length||position<=0;next.disabled=!times.length||position>=times.length-1;play.disabled=!times.length||!active();bar.dataset.at=current||'';bar.dataset.from=phase?.from||current||'';bar.dataset.to=phase?.to||current||'';bar.dataset.fraction=String(phase?.fraction||0);playing();

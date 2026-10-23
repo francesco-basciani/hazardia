@@ -149,3 +149,11 @@ disponibile, un avviso suggerisce un altro sfondo dal selettore.
 
 ## Riferimento architetturale MyDewetra
 Il [paper MyDewetra è usato come riferimento per integrare applicazioni, dati e servizi](reports/MYDEWETRA-RIFERIMENTO-ARCHITETTURALE.md), non come requisito di parità funzionale. Gli adapter che avviano PROPAGATOR/HMC/REFlEx sono distinti dalle API che pubblicano i risultati. Restano il piano e le funzionalità HAZARDIA concordate; nessuna dipendenza dal prodotto MyDewetra o installazione del suo stack è implicita. Chiarimento dell’utente del22ottobre2026, recepito in FR-EWS-BASELINE-01.
+
+
+## Monitoraggio: mappa, livelli e radar —23ottobre2026
+La mappa occupa lo spazio principale. Il selettore Sfondo offre cartografia OSM, mosaico EOX2024 e ortofoto regionali dove disponibili; il fallback è dichiarato e conserva posizione, zoom e ora. La ricerca accetta nomi di località e coordinate anche fuori Italia. Non è una garanzia di copertura dei dati scientifici.
+
+Apri **Livelli → Osservazioni → Radar osservato · Italia**, poi attiva **Pioggia radar SRI**. I colori rappresentano intensità osservata inmm/h; il tratteggio indica dati mancanti. Il radar segue l'ora della timeline quando disponibile: nel futuro viene dichiarato assente, mentre restano consultabili le previsioni. Pluviometri e contesto territoriale sono nello stesso pannello. **Strumenti → Pioggia e allerte** contiene gli accumuli zonali e le allerte ufficiali distinte dalle quantità di pioggia.
+
+La cache dei tasselli resta nella VM, usa validator/TTL e limiti temporali anziché un tetto di traffico permanente; nessun prefetch/offline di territori. Le fonti mantengono i propri limiti e licenze. Esri è escluso per la scelta dell'utente senza licenza; il laboratorio3D è sperimentale e non adottato perché la verifica visiva fallisce. Simulatori e scenari esistenti sono preservati. [Risultati, fonti, comandi e limiti](reports/MAPPA-E-MONITORAGGIO-20261023.md).

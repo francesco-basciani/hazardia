@@ -5,10 +5,13 @@ from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
 from hazardia.io import load,loads,write_new,utcnow,HazardError,sha256,verify_asset
 from hazardia.jobs import JobStore
-from hazardia.web.osm_tiles import OSMTiles
+from hazardia.web.consultation_maps import OSMTiles,CachedImagery
+from hazardia.web.map_navigation import Geocoder,terrain_metadata
 from hazardia.web.maps import Orthophotos,RegionalSatellite
 from hazardia.web.territorial_service import TerritorialService
 from hazardia.web.rain_service import RainService
+from hazardia.web.radar_service import RadarService
+from hazardia.web.terrain_trial import TerrainTrial
 from hazardia.ingest.observed_rain import ObservedRainStore
 from hazardia.web.notebook import Notebook
 from hazardia.web.fire_workspace import FireWorkspace
@@ -28,8 +31,8 @@ from hazardia.firelab import stage as stage_firelab,validate as validate_firelab
 
 class App:
     def __init__(self,root):
-        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.osm_tiles=OSMTiles(self.state);self.orthophotos=Orthophotos(self.state);self.regional_satellite=RegionalSatellite(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.fire_cases=FireCases(self.root);self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock();from hazardia.web.dynamic_fire import DynamicFire;self.dynamic_fire=DynamicFire(self);self.territorial=TerritorialService(self)
-        self.rain=RainService(self)
+        self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.osm_tiles=OSMTiles(self.state);self.orthophotos=CachedImagery(self.state,Orthophotos);self.regional_satellite=CachedImagery(self.state,RegionalSatellite);self.geocoder=Geocoder(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.fire_cases=FireCases(self.root);self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock();from hazardia.web.dynamic_fire import DynamicFire;self.dynamic_fire=DynamicFire(self);self.territorial=TerritorialService(self)
+        self.rain=RainService(self);self.radar=RadarService(self);self.terrain_trial=TerrainTrial(self.state)
         self.observed_rain=ObservedRainStore(self.state/'observed-rain')
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
@@ -171,9 +174,12 @@ class App:
 class Handler(BaseHTTPRequestHandler):
     server_version='HAZARDIA-Research/0.1'
     def log_message(self,*args):pass
-    def send(self,status,value,content_type='application/json',etag=None):
+    def send(self,status,value,content_type='application/json',etag=None,cache_age=None):
         raw=json.dumps(value,allow_nan=False).encode() if content_type=='application/json' and not isinstance(value,bytes) else value
-        self.send_response(status);self.send_header('Content-Type',content_type);self.send_header('Content-Length',str(len(raw)));self.send_header('Cache-Control','private, max-age=604800' if self.path.startswith('/api/maps/osm/') and status==200 and content_type=='image/png' else 'no-cache' if content_type=='application/json' else ('no-store' if self.path.startswith('/api/maps/ortho/') else 'no-cache' if not self.path.startswith('/assets/') else 'public, max-age=3600'));self.send_header('X-Content-Type-Options','nosniff');self.send_header('Referrer-Policy','same-origin');self.send_header('Content-Security-Policy',"default-src 'self'; img-src 'self' data: blob:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; frame-ancestors "+("'self'" if urlsplit(self.path).path=='/fire-studio.html' else "'none'"))
+        if cache_age is not None:
+            etag=etag or '"'+hashlib.sha256(raw).hexdigest()+'"'
+            if status==200 and self.headers.get('If-None-Match')==etag:status=304;raw=b''
+        self.send_response(status);self.send_header('Content-Type',content_type);self.send_header('Content-Length',str(len(raw)));self.send_header('Cache-Control','private, max-age='+str(cache_age) if cache_age is not None else 'no-cache' if content_type=='application/json' else ('no-store' if self.path.startswith('/api/maps/ortho/') else 'no-cache' if not self.path.startswith('/assets/') else 'public, max-age=3600'));self.send_header('X-Content-Type-Options','nosniff');self.send_header('Referrer-Policy','same-origin');self.send_header('Content-Security-Policy',"default-src 'self'; img-src 'self' data: blob:; script-src 'self'"+(" 'wasm-unsafe-eval'" if urlsplit(self.path).path=='/map-lab.html' else '')+"; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; frame-ancestors "+("'self'" if urlsplit(self.path).path=='/fire-studio.html' else "'none'")+("; worker-src 'self' blob:" if urlsplit(self.path).path=='/map-lab.html' else ''))
         if etag:self.send_header('ETag',etag)
         self.end_headers()
         if self.command!='HEAD':self.wfile.write(raw)
@@ -210,6 +216,9 @@ class Handler(BaseHTTPRequestHandler):
                 if path=='/api/monitoring/observed-rain/refresh':
                     if body:raise HazardError('INVALID_INPUT','No source or time overrides accepted')
                     return self.send(202,app.observed_rain.refresh())
+                if path=='/api/monitoring/radar/refresh':
+                    if set(body)!={'at'}:raise HazardError('INVALID_INPUT','Radar requires selected UTC time only')
+                    return self.send(202,app.radar.refresh(body['at']))
                 if path=='/api/monitoring/rain':return self.send(202,app.rain.submit(body))
                 if path=='/api/weather/map/refresh':
                     if set(body)!={'bounds'}:raise HazardError('INVALID_INPUT','Only viewport bounds allowed')
@@ -259,19 +268,34 @@ class Handler(BaseHTTPRequestHandler):
                 with app.lock:result=app.replay.snapshot()
                 return self.send(200,result)
             osm=re.fullmatch(r'/api/maps/osm/(\d{1,2})/(\d{1,6})/(\d{1,6})',path)
-            if osm:return self.send(200,app.osm_tiles.tile(*map(int,osm.groups()),referer='http://'+self.headers.get('Host')+'/'),'image/png')
+            if osm:
+                raw=app.osm_tiles.tile(*map(int,osm.groups()),referer='http://'+self.headers.get('Host')+'/');return self.send(200,raw,'image/png',cache_age=app.osm_tiles.cache.remaining('-'.join(osm.groups())))
+            if path=='/api/monitoring/radar':return self.send(200,app.radar.snapshot(parse_qs(urlsplit(self.path).query).get('at',[''])[0]))
+            radar=re.fullmatch(r'/api/monitoring/radar/(\d{10})/(rain.png|missing.png)',path)
+            if radar:return self.send(200,app.radar.image(*radar.groups()),'image/png')
+            if path=='/api/maps/osm/status':return self.send(200,app.osm_tiles.status())
+            if path=='/api/maps/search':return self.send(200,app.geocoder.search(parse_qs(urlsplit(self.path).query).get('q',[''])[0]))
+            if path=='/api/map-lab/terrain/status':return self.send(200,app.terrain_trial.cache.status())
+            if path=='/api/map-lab/terrain/layer.json':return self.send(200,app.terrain_trial.layer())
+            terrain=re.fullmatch(r'/api/map-lab/terrain/(\d{1,2})/(\d{1,6})/(\d{1,6}).terrain',path)
+            if terrain:return self.send(200,app.terrain_trial.tile(*map(int,terrain.groups())),'application/vnd.quantized-mesh')
+            if path=='/api/map-lab/terrain':return self.send(200,terrain_metadata())
             if path=='/api/maps/regional/status':return self.send(200,app.regional_satellite.status())
             regional=re.fullmatch(r'/api/maps/regional/(\d{1,2})/(\d{1,6})/(\d{1,6})',path)
-            if regional:return self.send(200,app.regional_satellite.tile(*map(int,regional.groups())),'image/jpeg')
+            if regional:
+                raw=app.regional_satellite.tile(*map(int,regional.groups()));return self.send(200,raw,'image/jpeg',cache_age=app.regional_satellite.cache.remaining('-'.join(regional.groups())))
             if path=='/api/maps/status':return self.send(200,app.orthophotos.status())
             tile=re.fullmatch(r'/api/maps/ortho/(\d{1,2})/(\d{1,6})/(\d{1,6})',path)
-            if tile:return self.send(200,app.orthophotos.tile(*map(int,tile.groups())),'image/jpeg')
+            if tile:
+                raw=app.orthophotos.tile(*map(int,tile.groups()));return self.send(200,raw,'image/jpeg',cache_age=app.orthophotos.cache.remaining('-'.join(tile.groups())))
             if path=='/api/monitoring':return self.send(200,app.attention.snapshot())
             if path=='/api/monitoring/observed-rain':return self.send(200,app.observed_rain.snapshot())
             if path.startswith('/api/monitoring/rain/'):return self.send(200,app.rain.read(path.split('/')[-1]))
             attention_layer=re.fullmatch(r'/api/monitoring/layers/(snapshot-[a-f0-9]{32})/((?:dpc|effis)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.geojson)',path)
             if attention_layer:return self.send(200,app.attention.layer(*attention_layer.groups()))
-            if path=='/api/weather/map':return self.send(200,app.map_weather.snapshot())
+            if path=='/api/weather/map':
+                query=parse_qs(urlsplit(self.path).query);bounds=loads(query['bounds'][0]) if 'bounds' in query else None
+                return self.send(200,app.map_weather.snapshot(bounds))
             if path=='/api/weather/wind':return self.send(200,app.wind.snapshot())
             if path=='/api/weather':return self.send(200,app.weather.snapshot())
             if path.startswith('/api/fire-preparations/'):return self.send(200,app.dynamic_fire.get(path.split('/')[-1]))

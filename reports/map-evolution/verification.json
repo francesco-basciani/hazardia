@@ -1,0 +1,81 @@
+{
+  "run": "map-evolution-20261023",
+  "base_source_git": "bbb33922ea8b6ef10c3921e5974df0ec77e7126a",
+  "reference_git": "224745bd0aa1050f73bded841ecc467c3ad1ce7c",
+  "core_vm_tests": 52,
+  "geo_vm_tests": 2,
+  "pure_js_checks": 6073,
+  "ui": "IAB desktop1280x720/tablet768x1024/mobile375x812 emulated; not physical devices",
+  "before": {
+    "viewport": [
+      1280,
+      720
+    ],
+    "map_height_px": 450,
+    "map_top_px": 214.796875,
+    "first_tile_ms": 502.2000000476837,
+    "first_weather_ms": 502.2000000476837,
+    "raf_p95_ms": 18.19999999999709
+  },
+  "after": {
+    "map_height_px": 575,
+    "map_top_px": 113,
+    "first_tile_ms": 501.1999999284744,
+    "first_weather_ms": 1002.1999999284744,
+    "raf_p95_ms": 17.59999999999127,
+    "timeline_bottom_px": 688
+  },
+  "tile_cache_pilot": {
+    "scope": "Single previously viewed EOX tile, isolated empty proxy cache, then10RAMhits and restart/diskhit; internet cold n1, not p95 qualification",
+    "cold_ms": 609.9252380008693,
+    "warm_median_ms": 0.018812501366483048,
+    "restart_disk_ms": 0.19908400281565264,
+    "sha256": "b2d93c6312fa5fc0e9031578758146159b1cd3371d9387a0dde22898840993db",
+    "bytes": 24276
+  },
+  "weather_cache_pilot": {
+    "ms": [
+      19.608885995694436,
+      16.39594600419514,
+      16.414445999544114,
+      16.468861998873763,
+      16.01274000131525,
+      15.910366004391108,
+      16.195405994949397,
+      16.25765499920817,
+      15.950614993926138,
+      16.06640700629214
+    ],
+    "median_ms": 16.195405994949397,
+    "field": "map-weather-18d0ee759620bf66145b0689",
+    "scope": "10 sequential HTTP reads; first coverage-index build and9 warm, descriptive pilot"
+  },
+  "preserved_files": 170,
+  "jobs": {
+    "CANCELLED": 8,
+    "ERROR": 5,
+    "SUCCEEDED": 82
+  },
+  "workspace_files_preserved_from_previous_audit": 8,
+  "conditional_http_status": 304,
+  "per_view_cache": {
+    "seconds": 0.6439565680047963,
+    "quota_unchanged": true,
+    "shared_snapshot_unchanged": true,
+    "selected_field": "map-weather-18d0ee759620bf66145b0689"
+  },
+  "cesium": {
+    "version": "1.138.0",
+    "visual_status": "FAIL",
+    "adopted": false,
+    "reason": "Loaded metadata/meshes/layers, sky-only output not acceptable"
+  },
+  "esri": {
+    "status": "BLOCKED",
+    "user_decision": "No licence; use free alternatives"
+  },
+  "full_scientific_gates": "M5-M7 BLOCKED unchanged",
+  "extended_performance_qualification": "NOT RUN; correlated short windows and sequential pilot reads, not independent release benchmark",
+  "new_physical_runs": 0,
+  "deployment": "Existing loopback-only VM, unchanged resources"
+}

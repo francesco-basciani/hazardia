@@ -13,5 +13,5 @@ export function viewportWeatherState(snapshot,bounds,{now=Date.now(),nextRequest
 export function retainCoveredForecast(snapshot,previous,bounds,now=Date.now()){
  const usable=f=>{if(!f)return false;const age=now-Date.parse(f.available_at);return age>=0&&age<10800000&&bounds.every((p,i)=>p.every((v,j)=>i?v<=f.bounds[1][j]:v>=f.bounds[0][j]));};
  if(usable(snapshot?.forecast)||!usable(previous))return snapshot;
- return{...snapshot,forecast:previous,status:'FRESH',age_s:(now-Date.parse(previous.available_at))/1000,error:null};
+ return{...snapshot,forecast:previous,status:'FRESH',age_s:(now-Date.parse(previous.available_at))/1000,error:snapshot.error,retained_previous:true};
 }

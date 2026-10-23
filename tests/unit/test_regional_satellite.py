@@ -10,8 +10,9 @@ class RegionalSatelliteTests(unittest.TestCase):
     def test_global_coverage_with_bounded_zoom_and_coordinates(self):
         with tempfile.TemporaryDirectory() as tmp:
             s=RegionalSatellite(tmp,fetch=lambda url:b'\xff\xd8bounded-test')
+            self.assertTrue(s.tile(2,0,0).startswith(b'\xff\xd8'))
             self.assertTrue(s.tile(8,0,0).startswith(b'\xff\xd8'))
             self.assertTrue(s.tile(14,8192,8192).startswith(b'\xff\xd8'))
-            for args in [(3,0,0),(15,0,0),(8,-1,0),(8,256,0),(8,'137',94)]:
+            for args in [(-1,0,0),(15,0,0),(8,-1,0),(8,256,0),(8,'137',94)]:
                 with self.assertRaises(HazardError):s.tile(*args)
             with self.assertRaises(HazardError):s.url(15,1,1,[])
