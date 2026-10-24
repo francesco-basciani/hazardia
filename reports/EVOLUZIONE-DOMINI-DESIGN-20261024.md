@@ -125,3 +125,7 @@ La tabella precedente conserva il progetto Stage 1. Stato attuale A2: **PASS tec
 
 ## Aggiornamento dopo autorizzazione A3 —24 ottobre 2026
 A3 **PASS tecnico implementato**: lookup catalogo→tabella worker compatibile, ricevute, guard e supervisione preservati. [Report](DOMAIN-DISPATCH-A3-20261024.md):329testVM/11suiteJS e replay nativi, con FAIL esatto REFlEx conservato. A4–A6 restano NOT RUN/DEFER; nessuna migrazione schema o qualificazione nuova.
+
+
+## Aggiornamento dopo autorizzazione A4 —24 ottobre 2026
+A4 **PASS tecnico implementato**: policy 0.5/0.6 locali/immutabili, input e MILP equivalenti, verifier indipendente immutato. [Report](DECISION-POLICIES-A4-20261024.md):338testVM,122validator,6LP/soluzioni e8flussi equivalenti, pilot60decisioni. A5/A6 NOT RUN/DEFER per necessità concreta e qualificazione non dimostrate; nessuna rinomina/migrazione degli archivi.

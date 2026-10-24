@@ -2,16 +2,12 @@
 import json,math
 from hazardia.io import HazardError,timestamp
 from hazardia.domain.contracts import validate_record,require
+from hazardia.decision.policies import validate_header
 
 def validate(p):
     try:json.dumps(p,allow_nan=False)
     except (TypeError,ValueError) as e:raise HazardError('INVALID_INPUT',str(e)) from e
-    ideal=isinstance(p,dict) and p.get('schema_version')=='0.6.0'
-    fields={'schema_version','kind','id','planning_at','data_cutoff','mode','resources','events','scenarios','options','regions','commitments','settings'}
-    if ideal:fields.add('policy')
-    require(isinstance(p,dict) and set(p)==fields and p['schema_version'] in ['0.5.0','0.6.0'] and p['kind']=='decision_problem','INVALID_INPUT','Strict decision_problem0.5.0 required')
-    if ideal:require(p['policy']==dict(domain='FIRE_IDEAL_ASSIGNMENT',loss_unit='weighted_priority_points',benefit_model='EXCLUSIVE_AREA_COVERAGE_PROXY'),'INVALID_INPUT','Explicit ideal priority policy required')
-    require(p['mode']==('RESEARCH_IDEAL' if ideal else 'RESEARCH_RETROSPECTIVE'),'INVALID_INPUT','Only retrospective research decisions enabled')
+    policy=validate_header(p)
     timestamp(p['planning_at']);timestamp(p['data_cutoff']);s=p['settings']
     require(set(s)=={'budget_s','lambda','cost_weight','horizon_slots','slot_s','seed','solver'},'INVALID_INPUT','Strict settings required')
     require(0<s['budget_s']<=60 and 0<=s['lambda']<=1 and s['cost_weight']>=0 and isinstance(s['horizon_slots'],int) and 1<=s['horizon_slots']<=12 and s['slot_s']>0,'INVALID_INPUT','Invalid limits/preferences')
@@ -21,8 +17,8 @@ def validate(p):
     require(all(w is None for w in weights) or all(w is not None and isinstance(w,(int,float)) and 0<=w<=1 for w in weights) and abs(sum(weights)-1)<1e-9,'INVALID_INPUT','Scenario weights unknown or normalized')
     for w in p['scenarios']:require(set(w)=={'id','weight','qualification'} and w['qualification']=='SYNTHETIC_RESEARCH','INVALID_INPUT','Stress scenarios explicitly synthetic')
     for r in p['resources']:
-        require(set(r)==({'id','home_region','record','category'} if ideal else {'id','home_region','record'}),'INVALID_INPUT','Resource wrapper fields');validate_record(r['record']);require(r['record']['kind']=='resource' and r['id']==r['record']['id'],'INVALID_INPUT','Resource identity')
-        if ideal:require(r['category'] in ['waterline_action','canadair','helicopter','heavy_action'],'INVALID_INPUT','Unknown ideal resource category')
+        require(set(r)==policy.resource_fields,'INVALID_INPUT','Resource wrapper fields');validate_record(r['record']);require(r['record']['kind']=='resource' and r['id']==r['record']['id'],'INVALID_INPUT','Resource identity')
+        if policy.resource_categories:require(r['category'] in policy.resource_categories,'INVALID_INPUT','Unknown ideal resource category')
         require(r['home_region'] in {x['id'] for x in p['regions']},'INVALID_INPUT','Unknown home region')
     for region in p['regions']:require(set(region)=={'id','minimum_donor_reserve'} and isinstance(region['minimum_donor_reserve'],int) and region['minimum_donor_reserve']>=0,'INVALID_INPUT','Region reserve required')
     for e in p['events']:

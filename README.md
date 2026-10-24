@@ -196,3 +196,8 @@ Il tag `stable-2026-10-24-pre-domain-evolution` conserva la versione precedente 
 ## Collegamento dei moduli all’esecuzione
 
 [A3 implementato](reports/DOMAIN-DISPATCH-A3-20261024.md): selezione dei worker FIRE/FLOOD attraverso il catalogo validato e una tabella fissa approvata, ricevuta per run e regressioni native. Comandi, input, scenari e motori preservati; errori del catalogo classificati senza fallback. [Guida aggiornata](docs/DOMAIN-PACKAGES.md). Il confronto esatto REFlEx resta FAIL documentato, distinto dall’esecuzione tecnica riuscita.
+
+
+## Policy decisionali modulari
+
+[A4 implementato](docs/DECISION-POLICIES.md): policy esposizione0.5 e assegnazione ideale incendi0.6 separate, stessi modelli/assegnazioni/unità e verificatore indipendente. [Report ed evidenze](reports/DECISION-POLICIES-A4-20261024.md), inclusi60replay decisionali sui due carichi piccoli fissati. Nessuna migrazione dei propri scenari o modifica dei motori fisici.

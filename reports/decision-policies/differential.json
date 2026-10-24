@@ -1,0 +1,242 @@
+{
+  "controller_flows": [
+    {
+      "degradation": {
+        "optimality_proven": true,
+        "reason": null,
+        "state": "NORMAL"
+      },
+      "mode": "enumeration",
+      "policy": "exposure",
+      "response_status": "VALIDATED_FOR_SIMULATION",
+      "selected": [
+        "unit-1-fire-event",
+        "unit-2-fire-event",
+        "unit-3-fire-event"
+      ],
+      "status": "PASS"
+    },
+    {
+      "degradation": {
+        "optimality_proven": true,
+        "reason": null,
+        "state": "NORMAL"
+      },
+      "mode": "unknown-safety",
+      "policy": "exposure",
+      "response_status": "VALIDATED_FOR_SIMULATION",
+      "selected": [],
+      "status": "PASS"
+    },
+    {
+      "degradation": {
+        "optimality_proven": true,
+        "reason": null,
+        "state": "NORMAL"
+      },
+      "mode": "no-resources",
+      "policy": "exposure",
+      "response_status": "VALIDATED_FOR_SIMULATION",
+      "selected": [],
+      "status": "PASS"
+    },
+    {
+      "degradation": {
+        "optimality_proven": false,
+        "reason": null,
+        "state": "NORMAL"
+      },
+      "mode": "missing-solver",
+      "policy": "exposure",
+      "response_status": "DEPENDENCY_UNAVAILABLE",
+      "selected": [],
+      "status": "PASS"
+    },
+    {
+      "degradation": {
+        "optimality_proven": true,
+        "reason": null,
+        "state": "NORMAL"
+      },
+      "mode": "enumeration",
+      "policy": "ideal",
+      "response_status": "VALIDATED_FOR_SIMULATION",
+      "selected": [
+        "unit-2-fire-event"
+      ],
+      "status": "PASS"
+    },
+    {
+      "degradation": {
+        "optimality_proven": true,
+        "reason": null,
+        "state": "NORMAL"
+      },
+      "mode": "unknown-safety",
+      "policy": "ideal",
+      "response_status": "NO_ADMISSIBLE_ACTION",
+      "selected": [],
+      "status": "PASS"
+    },
+    {
+      "degradation": {
+        "optimality_proven": true,
+        "reason": null,
+        "state": "NORMAL"
+      },
+      "mode": "no-resources",
+      "policy": "ideal",
+      "response_status": "NO_ADMISSIBLE_ACTION",
+      "selected": [],
+      "status": "PASS"
+    },
+    {
+      "degradation": {
+        "optimality_proven": false,
+        "reason": "DEPENDENCY_UNAVAILABLE: Solver environment unavailable",
+        "state": "DEGRADED"
+      },
+      "mode": "missing-solver",
+      "policy": "ideal",
+      "response_status": "VALIDATED_FOR_SIMULATION",
+      "selected": [
+        "unit-2-fire-event"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "model_cases": [
+    {
+      "LP_sha256": "2e53deb1623bd6be21e8c0de86226003c3e02cf1d41bd3b6a71c550f0b06ffcd",
+      "case": "fire",
+      "loss": {
+        "by_scenario": {
+          "nominal": 9,
+          "stress": 30
+        },
+        "cost": 3.3,
+        "expected": 17.4,
+        "objective": 23.733,
+        "unit": "synthetic remaining exposed people; configured research cost preference",
+        "worst": 30
+      },
+      "selected": [
+        "unit-1-fire-event",
+        "unit-2-fire-event",
+        "unit-3-fire-event"
+      ],
+      "status": "PASS",
+      "verifier_status": "VALIDATED_FOR_SIMULATION"
+    },
+    {
+      "LP_sha256": "9ca8b01bc8ab1e70c9e8f8cf613d33d60f7d95c9986a66ea358b38e009fedff4",
+      "case": "flood",
+      "loss": {
+        "by_scenario": {
+          "nominal": 9,
+          "stress": 30
+        },
+        "cost": 3.3,
+        "expected": 17.4,
+        "objective": 23.733,
+        "unit": "synthetic remaining exposed people; configured research cost preference",
+        "worst": 30
+      },
+      "selected": [
+        "unit-1-flood-event",
+        "unit-2-flood-event",
+        "unit-3-flood-event"
+      ],
+      "status": "PASS",
+      "verifier_status": "VALIDATED_FOR_SIMULATION"
+    },
+    {
+      "LP_sha256": "3563e96b3d90af600e59206f3ddfe85a2ae5e54caf64abbfa02b5036081a4537",
+      "case": "joint",
+      "loss": {
+        "by_scenario": {
+          "nominal": 25,
+          "stress": 73
+        },
+        "cost": 3.3,
+        "expected": 44.2,
+        "objective": 58.633,
+        "unit": "synthetic remaining exposed people; configured research cost preference",
+        "worst": 73
+      },
+      "selected": [
+        "unit-1-fire-event",
+        "unit-2-flood-event",
+        "unit-3-flood-event"
+      ],
+      "status": "PASS",
+      "verifier_status": "VALIDATED_FOR_SIMULATION"
+    },
+    {
+      "LP_sha256": "26905a2403f08bfb16808344a1fcc77e33f73280ab75e5e4d30c19594c4cc1e9",
+      "case": "ideal",
+      "loss": {
+        "by_scenario": {
+          "nominal": 23,
+          "stress": 40
+        },
+        "cost": 1.1,
+        "expected": 29.799999999999997,
+        "objective": 34.911,
+        "unit": "weighted priority points, ideal coverage proxy; not people or physical benefit",
+        "worst": 40
+      },
+      "selected": [
+        "unit-2-fire-event"
+      ],
+      "status": "PASS",
+      "verifier_status": "VALIDATED_FOR_SIMULATION"
+    },
+    {
+      "LP_sha256": "9f2dffd9b40af0e0b9acc61225e6e2596da9677c33774f21862a43db3945a406",
+      "case": "saved-exposure",
+      "loss": {
+        "by_scenario": {
+          "nominal": 3,
+          "stress": 26.0
+        },
+        "cost": 4.6,
+        "expected": 12.2,
+        "objective": 19.146,
+        "unit": "synthetic remaining exposed people; configured research cost preference",
+        "worst": 26.0
+      },
+      "selected": [
+        "unit-1-fire-event",
+        "unit-2-fire-event",
+        "unit-3-fire-event",
+        "unit-4-fire-event"
+      ],
+      "status": "PASS",
+      "verifier_status": "VALIDATED_FOR_SIMULATION"
+    },
+    {
+      "LP_sha256": "820dae4135278e21c5e59f0fd4bbdab310a2d576942c549ad15f55492ec62489",
+      "case": "saved-ideal",
+      "loss": {
+        "by_scenario": {
+          "nominal": 1.569444441795349,
+          "stress": 1.7847222208976745
+        },
+        "cost": 1.0,
+        "expected": null,
+        "objective": 1.7848222208976745,
+        "unit": "weighted priority points, ideal coverage proxy; not people or physical benefit",
+        "worst": 1.7847222208976745
+      },
+      "selected": [
+        "ground-asset-619"
+      ],
+      "status": "PASS",
+      "verifier_status": "VALIDATED_FOR_SIMULATION"
+    }
+  ],
+  "scope": "SOFTWARE_POLICY_EQUIVALENCE_NOT_PHYSICAL_OR_OPERATIONAL_SKILL",
+  "status": "PASS",
+  "validation_comparisons": 122
+}

@@ -559,3 +559,7 @@ Il catalogo domain-package/0.1.0 descrive soltanto FIRE/FLOOD esistenti: metadat
 
 ## AR-EXT-A3 — binding compatibile dei worker esistenti
 Il catalogo è consumato nel processo pipeline isolato da una tabella locale recensita: nessuna esecuzione di riferimenti arbitrari. Conservare comandi, ambienti, hash engine pre/post, guard FLOOD, validator, JobStore e qualifica. Errori dei metadati o revisioni incompatibili causano fallimento classificato. Ogni nuova esecuzione conserva una ricevuta esclusiva con identità/versione/digest del descriptor e hash degli input/runtime; nessuna migrazione dei run o contratti legacy. Freeze descriptor a execution-time distinto dal freeze request/runtime alla submit.
+
+
+## AR-EXT-A4 — semantica delle policy decisionali esistenti
+Le policy versionate 0.5/0.6 sono definite localmente e immutabili; unità/effetto/semantica non sono intercambiabili. Unknown policy/versione/unità sono rifiutati. L’estrazione conserva le formule, i vincoli, solver/backends, watchdog e verifier indipendente; non introduce predicate/righe condivise col checker, modelli d’efficacia o migrazioni dei contratti. Il modulo policy non richiede dipendenze numeriche/geospaziali/JSON Schema nell’ambiente solver.

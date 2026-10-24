@@ -113,3 +113,7 @@ L’utente autorizza a procedere dopo Stage 1 preservando PROPAGATOR e ogni funz
 
 ## A3 autorizzato e verificato —24ottobre2026
 La pipeline consuma il catalogo tramite tabella locale approvata, mai import/shell da descriptor. Conservare guard SHA prima/dopo, patch FLOOD, comandi/env, codici legacy, isolamento e supervisore. Errori catalogo/revisioni devono fallire esplicitamente, mai fallback silenzioso. Ricevute nuove immutabili adapter-binding.json a execution-time, vecchi run/workspace invariati; retry crea nuovo ID. Report DOMAIN-DISPATCH-A3-20261024. A4 policy e A5 schemi non ancora implementati; non modificare RNG o tolleranze REFlEx per cancellare il FAIL esatto già registrato.
+
+
+## A4 policy esistenti —24ottobre2026
+Policy 0.5/0.6 ora isolate in decision/policies.py, immutabili e locali. Mantenere unità persone/proxy prioritario distinte, payload/versioni e tutti i vincoli. Il verifier non importa policy/predicati del solver; input validation condivisa come prima, checks/loss indipendenti invariati. Policy module solo stdlib/io: non introdurre jsonschema nel decision-env o installazioni implicite. A4 tecnico verificato (report DECISION-POLICIES-A4-20261024); A5 schema/workspace non avviato senza bisogno concreto, nessun nuovo dominio o universalità dichiarata. Non cancellare il FAIL di ripetibilità REFlEx.

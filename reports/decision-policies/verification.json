@@ -1,0 +1,39 @@
+{
+  "increment": "A4_REVIEWED_DECISION_POLICIES",
+  "status": "PASS",
+  "scope": "Software refactoring of two existing policies; not universal policy generation or physical validation",
+  "tests": {
+    "unit": 212,
+    "web": 47,
+    "decision": 60,
+    "domain": 19,
+    "total": 338,
+    "new_policy": 9,
+    "client_suites": 11
+  },
+  "differential": {
+    "validator_comparisons": 122,
+    "identical_LP_models": 6,
+    "identical_solver_selections_and_losses": 6,
+    "identical_controller_flows": 8
+  },
+  "deadline_pilot": {
+    "requests": 60,
+    "requests_per_policy": 30,
+    "all_within_60s": true,
+    "scope": "Small fixed workloads; not general service/load/qualification benchmark"
+  },
+  "verifier_source_changed": false,
+  "CIMA_workers_or_dispatch_changed": false,
+  "legacy_payload_schemas_changed": false,
+  "new_dependencies": false,
+  "negative_results": [
+    "Initial policy import indirectly required jsonschema in solver environment; removed dependency before successful real solver audit, added fresh-process import guard",
+    "First audit tried importing full core validation from decision-env; redesigned driver in core-env and clean solver subprocesses without added dependencies"
+  ],
+  "native_CIMA_reexecution": "NOT_RUN",
+  "browser_interaction": "NOT_RUN",
+  "new_VM_install": "NOT_RUN",
+  "full_M5_M7_qualification": "BLOCKED_UNCHANGED",
+  "A5_schema_migration": "NOT_RUN_NO_DEMONSTRATED_NEED"
+}

@@ -2,9 +2,10 @@
 import copy,datetime as dt,json,re,math,sys
 from pathlib import Path
 from hazardia.io import HazardError,load,write_new,sha256,utcnow,timestamp
-CATEGORIES=('waterline_action','canadair','helicopter','heavy_action')
 from hazardia.decision.fire_priorities import WEIGHTS,LEGACY_WEIGHTS,priority_category
-POLICY=dict(domain='FIRE_IDEAL_ASSIGNMENT',loss_unit='weighted_priority_points',benefit_model='EXCLUSIVE_AREA_COVERAGE_PROXY')
+from hazardia.decision.policies import FIRE_IDEAL
+CATEGORIES=FIRE_IDEAL.resource_categories
+POLICY=FIRE_IDEAL.declaration()
 def available_for_automatic_plan(unit):
     return unit['available'] and unit['category'] not in ('canadair','helicopter')
 

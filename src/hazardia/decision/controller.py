@@ -4,6 +4,7 @@ from pathlib import Path
 from hazardia.io import write_new,load,HazardError,utcnow
 from hazardia.domain.state import identity
 from hazardia.decision.problem import validate
+from hazardia.decision.policies import policy_for
 from hazardia.decision.verifier import verify,losses
 
 def verified_fallback(problem,start):
@@ -22,9 +23,9 @@ def verified_fallback(problem,start):
 
 def decide(problem,directory,solver_python,*,accepted_monotonic=None):
     start=time.monotonic() if accepted_monotonic is None else accepted_monotonic;directory=Path(directory);directory.mkdir(parents=True,exist_ok=False)
-    write_new(directory/'problem.json',problem);status='ERROR';detail='';selection=[];raw={};validation={}
+    write_new(directory/'problem.json',problem);status='ERROR';detail='';selection=[];raw={};validation={};policy=None
     try:
-        validate(problem);remaining=problem['settings']['budget_s']-(time.monotonic()-start)-(2 if problem.get('schema_version')=='0.6.0' else .1)
+        validate(problem);policy=policy_for(problem);remaining=problem['settings']['budget_s']-(time.monotonic()-start)-policy.verification_reserve_s
         if remaining<=0:raise TimeoutError('Acceptance queue exhausted deadline')
         backend=problem['settings']['solver']
         if backend=='highs':
@@ -59,10 +60,10 @@ def decide(problem,directory,solver_python,*,accepted_monotonic=None):
         else:status='VALIDATED_FOR_SIMULATION'
     except TimeoutError as e:status,detail='TIMEOUT_UNPROVEN',str(e)
     except (HazardError,KeyError,TypeError,ValueError) as e:status,detail=(e.code if isinstance(e,HazardError) and e.code=='DEPENDENCY_UNAVAILABLE' else 'INVALID_INPUT'),str(e)
-    if problem.get('schema_version')=='0.6.0' and status=='VALIDATED_FOR_SIMULATION' and not selection:
+    if policy is not None and policy.empty_is_no_action and status=='VALIDATED_FOR_SIMULATION' and not selection:
         status='NO_ADMISSIBLE_ACTION';detail='No improving admissible assignment for the declared resources and constraints'
     degradation=dict(state='NORMAL',reason=None,optimality_proven=bool(raw.get('optimal',False)))
-    if problem.get('schema_version')=='0.6.0' and status in ('DEPENDENCY_UNAVAILABLE','TIMEOUT_UNPROVEN') and time.monotonic()-start<problem['settings']['budget_s']-.4:
+    if policy is not None and policy.verified_fallback and status in ('DEPENDENCY_UNAVAILABLE','TIMEOUT_UNPROVEN') and time.monotonic()-start<problem['settings']['budget_s']-.4:
         failure=status+': '+(detail or raw.get('termination','No verified incumbent'))
         selection,validation,checks=verified_fallback(problem,start)
         status='VALIDATED_FOR_SIMULATION' if selection and validation['status']=='VALIDATED_FOR_SIMULATION' else 'SAFETY_UNVERIFIED' if validation['status']!='VALIDATED_FOR_SIMULATION' else 'NO_ADMISSIBLE_ACTION'
