@@ -47,6 +47,7 @@ def main():
                     timeout_s_per_case=900, platform=platform.platform())
     if args.only:protocol['cases']=[c for c in protocol['cases'] if c['hazard']==args.only]
     protocol['verifier_sha256']=digest(Path(__file__))
+    protocol['execution_source_files']={str(p.relative_to(source)):digest(p) for p in [source/'src/hazardia/adapters/pipeline.py',source/'src/hazardia/adapters/dispatch.py',source/'src/hazardia/package_catalog.py',*sorted((source/'src/hazardia/domain_packages').glob('*.json'))]}
     for case in protocol['cases']:
         baseline = root/'jobs'/case['job']
         for name in ['request.json','runtime.json','product.json']:
@@ -70,6 +71,10 @@ def main():
         product=json.loads((target/'product.json').read_bytes());validate_product(product,req,target)
         old=json.loads((baseline/'product.json').read_bytes());checks={}
         assert product['engine']==old['engine']
+        receipt=json.loads((target/'adapter-binding.json').read_bytes())
+        assert receipt['package']['legacy_hazard']==case['hazard']
+        assert receipt['request_sha256']==digest(target/'request.json') and receipt['runtime_sha256']==digest(target/'runtime.json')
+        checks['catalog_binding_receipt']=True
         for layer,previous in zip(product['layers'],old['layers'],strict=True):
             assert layer['name']==previous['name'] and layer['unit']==previous['unit']
             with rasterio.open(verify_asset(target,layer)) as a,rasterio.open(verify_asset(baseline,previous)) as b:

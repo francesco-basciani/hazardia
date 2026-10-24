@@ -1,6 +1,7 @@
 """Read-only descriptions of existing domains; never dispatch or import adapters.
 
-Discovery is opt-in, not part of web/worker startup or request admission. Digests
+Discovery remains metadata-only. A reviewed consumer now uses it in the isolated
+pipeline; it is not imported at web startup or request admission. Digests
 check bundled bytes, not publisher authenticity or scientific qualification.
 """
 from dataclasses import dataclass
@@ -114,6 +115,7 @@ class DomainCatalog:
             reject('PACKAGE_NOT_FOUND', 'Unknown local package')
 
     def describe(self):
+        """Metadata view; dispatch_changed describes this query's side effects only."""
         return dict(schema='hazardia.domain-catalog/0.1.0', mode='READ_ONLY_DESCRIPTIONS',
                     packages=[p.describe() for p in self._entries.values()],
                     runtime_assessed=False, data_assessed=False, dispatch_changed=False)

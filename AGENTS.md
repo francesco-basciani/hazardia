@@ -109,3 +109,7 @@ Rettifica vincolante: lista uniforme dei livelli a sinistra; parametri in pannel
 
 ## Evoluzione A2 autorizzata —24ottobre2026
 L’utente autorizza a procedere dopo Stage 1 preservando PROPAGATOR e ogni funzionalità. A2 implementato come catalogo descrittivo opt-in locale FIRE/FLOOD; non chiamato dal percorso di esecuzione esistente. Conservare espliciti NOT_ASSESSED/UNQUALIFIED_RESEARCH/NOT_GRANTED; non convertire i riferimenti stringa in import o shell arbitrari. A3 è il prossimo incremento distinto con guard ed equivalenza verificati; nessun cambiamento implicito della fisica. Il FAIL di replay esatto REFlEx è evidenza da preservare (report DOMAIN-PACKAGES-A2-20261024), non permesso per cambiare upstream/semi/tolleranze.
+
+
+## A3 autorizzato e verificato —24ottobre2026
+La pipeline consuma il catalogo tramite tabella locale approvata, mai import/shell da descriptor. Conservare guard SHA prima/dopo, patch FLOOD, comandi/env, codici legacy, isolamento e supervisore. Errori catalogo/revisioni devono fallire esplicitamente, mai fallback silenzioso. Ricevute nuove immutabili adapter-binding.json a execution-time, vecchi run/workspace invariati; retry crea nuovo ID. Report DOMAIN-DISPATCH-A3-20261024. A4 policy e A5 schemi non ancora implementati; non modificare RNG o tolleranze REFlEx per cancellare il FAIL esatto già registrato.

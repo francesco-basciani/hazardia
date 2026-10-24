@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "files": 311,
+  "changed": [],
+  "jobs": 95,
+  "jobs_unchanged": true,
+  "engine_files": 145,
+  "engine_changes": [],
+  "health": "RUNNING",
+  "existing_runtime_files_compared": 14,
+  "intentional_source_changes": [
+    "adapters/pipeline.py"
+  ],
+  "studio_frames": 288,
+  "receipts": [
+    {
+      "package_id": "hazardia.wildfire",
+      "package_version": "0.1.0",
+      "descriptor_digest": "f1f10e6353a1e93c4c293131c81771075d0c9a7b9a762b1ddb362b45528c846a",
+      "request_hash_verified": true,
+      "runtime_hash_verified": true
+    },
+    {
+      "package_id": "hazardia.flood",
+      "package_version": "0.1.0",
+      "descriptor_digest": "0498c3adc940f75c2634136df829737a39197beea061c67123cdad9ea00a2c43",
+      "request_hash_verified": true,
+      "runtime_hash_verified": true
+    },
+    {
+      "package_id": "hazardia.wildfire",
+      "package_version": "0.1.0",
+      "descriptor_digest": "f1f10e6353a1e93c4c293131c81771075d0c9a7b9a762b1ddb362b45528c846a",
+      "request_hash_verified": true,
+      "runtime_hash_verified": true
+    }
+  ],
+  "flood_exact_comparison": "FAIL",
+  "flood_diagnosis": {
+    "changed_cells": 105,
+    "max_abs_difference_m": 7.450580596923828e-09,
+    "wet_mask_equal": true,
+    "maximum_equal": true,
+    "grid_equal": true
+  }
+}

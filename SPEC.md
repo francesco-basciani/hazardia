@@ -555,3 +555,7 @@ L’elenco dei livelli è uniforme a sinistra; ogni selezione apre le opzioni in
 
 ## AR-EXT-A2 — descrittori locali informativi
 Il catalogo domain-package/0.1.0 descrive soltanto FIRE/FLOOD esistenti: metadati rigidi/digest, versioni e riferimenti approvati, senza import/esecuzione dinamica. Discovery opt-in; i validator, runtime hash, worker, JobStore e verifier attuali restano autorità. Presenza del descriptor distinta da installazione/dati/qualifica/autorizzazione. Nessuna migrazione di contratti o scenari. Schema `schemas/domain_package.schema.json`, guida `docs/DOMAIN-PACKAGES.md`.
+
+
+## AR-EXT-A3 — binding compatibile dei worker esistenti
+Il catalogo è consumato nel processo pipeline isolato da una tabella locale recensita: nessuna esecuzione di riferimenti arbitrari. Conservare comandi, ambienti, hash engine pre/post, guard FLOOD, validator, JobStore e qualifica. Errori dei metadati o revisioni incompatibili causano fallimento classificato. Ogni nuova esecuzione conserva una ricevuta esclusiva con identità/versione/digest del descriptor e hash degli input/runtime; nessuna migrazione dei run o contratti legacy. Freeze descriptor a execution-time distinto dal freeze request/runtime alla submit.

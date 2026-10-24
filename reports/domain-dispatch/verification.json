@@ -1,0 +1,46 @@
+{
+  "increment": "A3_COMPATIBLE_CATALOG_DISPATCH",
+  "status": "PASS",
+  "scope": "Technical worker selection and preserved runtime contracts; not complete domain-agnostic platform or physical qualification",
+  "tests": {
+    "unit": 212,
+    "web": 47,
+    "decision": 51,
+    "domain": 19,
+    "total": 329,
+    "new_dispatch": 11,
+    "client_suites": 11
+  },
+  "new_guards": [
+    "PACKAGE_IO",
+    "PACKAGE_INVALID",
+    "PACKAGE_DIGEST",
+    "PACKAGE_BINDING",
+    "PACKAGE_CONTRACT",
+    "PACKAGE_RUNTIME"
+  ],
+  "legacy_guards_preserved": [
+    "ENGINE_SOURCE_DRIFT",
+    "UNSUPPORTED_HAZARD",
+    "UNSUPPORTED_CONFIGURATION"
+  ],
+  "native_fire_600s": "PASS",
+  "native_fire_72h_2_resources_288_frames": "PASS",
+  "native_flood_execution_validation_HMC_bridge": "PASS",
+  "native_flood_exact_raster_comparison": "FAIL",
+  "api_health": "PASS",
+  "legacy_schemas_changed": false,
+  "scientific_workers_changed": false,
+  "JobStore_changed": false,
+  "new_dependencies": false,
+  "qualification": "BLOCKED_UNCHANGED",
+  "A4": "NOT_RUN",
+  "A5": "NOT_RUN",
+  "new_VM_install": "NOT_RUN",
+  "interactive_browser_regression": "NOT_RUN",
+  "negative_results": [
+    "Initial parallel SSH attempt failed banner exchange before native protocol; retained and retried sequentially",
+    "First microbenchmark invocation missing repository root on PYTHONPATH; corrected to src:.",
+    "Exact REFlEx repeatability FAIL retained; no new tolerance or RNG patch"
+  ]
+}

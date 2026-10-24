@@ -113,9 +113,9 @@ print('PASS no network, writes, subprocesses or scientific/runtime imports')
         p = subprocess.run([sys.executable, '-B', '-c', code], capture_output=True, text=True)
         self.assertEqual(p.returncode, 0, p.stderr)
 
-    def test_existing_runtime_does_not_depend_on_discovery(self):
-        # Discovery cannot prevent old startup/dispatch when its files are absent.
-        files = ['jobs.py', 'adapters/pipeline.py', 'web/server.py', 'firelab.py',
+    def test_api_and_scientific_workers_do_not_import_discovery(self):
+        # Catalog failures do not prevent API startup; pipeline failures are classified.
+        files = ['jobs.py', 'web/server.py', 'firelab.py',
                  'adapters/workers/fire.py', 'adapters/workers/fire_studio.py', 'adapters/workers/flood.py']
         for name in files:
             self.assertNotIn('package_catalog', (ROOT / name).read_text())

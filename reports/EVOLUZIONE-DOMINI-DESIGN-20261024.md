@@ -121,3 +121,7 @@ Residui da risolvere in A2: granularità package dominio vs capacità trasversal
 
 ## Aggiornamento dopo autorizzazione A2 —24 ottobre 2026
 La tabella precedente conserva il progetto Stage 1. Stato attuale A2: **PASS tecnico implementato**, con risultato negativo di replay esatto REFlEx esplicitamente conservato; [report](DOMAIN-PACKAGES-A2-20261024.md) e [contratto implementato](../docs/DOMAIN-PACKAGES.md). A3–A6 restano NOT RUN/DEFER. Non è ancora implementato un dispatch o un motore di composizione universale.
+
+
+## Aggiornamento dopo autorizzazione A3 —24 ottobre 2026
+A3 **PASS tecnico implementato**: lookup catalogo→tabella worker compatibile, ricevute, guard e supervisione preservati. [Report](DOMAIN-DISPATCH-A3-20261024.md):329testVM/11suiteJS e replay nativi, con FAIL esatto REFlEx conservato. A4–A6 restano NOT RUN/DEFER; nessuna migrazione schema o qualificazione nuova.

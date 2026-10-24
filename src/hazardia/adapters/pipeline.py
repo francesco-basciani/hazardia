@@ -8,17 +8,12 @@ def main(directory):
     try:
         for path,digest in cfg['engine_files'].items():
             if sha256(path)!=digest:raise HazardError('ENGINE_SOURCE_DRIFT',path)
-        env=dict(os.environ)
-        if request['hazard']=='FIRE':
-            env['PYTHONPATH']=env['PYTHONPATH']+os.pathsep+cfg['fire_source']
-            command=[cfg['fire_python'],'-m','hazardia.adapters.workers.fire',str(root)]
-        elif request['hazard']=='FLOOD':
-            if not request['options']['allow_experimental_patch']:
-                raise HazardError('UNSUPPORTED_CONFIGURATION','Current terrain adapter requires declared experimental HAND/merge compatibility patch')
-            command=[cfg['geo_python'],'-m','hazardia.adapters.workers.flood',str(root)]
-        else:raise HazardError('UNSUPPORTED_HAZARD','No adapter for '+request['hazard'])
+        from hazardia.adapters.dispatch import prepare
+        command,product,env,receipt=prepare(request,cfg,root,os.environ)
+        receipt.update(request_sha256=sha256(root/'request.json'),runtime_sha256=sha256(root/'runtime.json'))
+        write_new(root/'adapter-binding.json',receipt)
         subprocess.run(command,env=env,check=True)
-        subprocess.run([cfg['geo_python'],'-m','hazardia.adapters.workers.product',str(root)],env=env,check=True)
+        subprocess.run(product,env=env,check=True)
         for path,digest in cfg['engine_files'].items():
             if sha256(path)!=digest:raise HazardError('ENGINE_SOURCE_DRIFT',path)
     except Exception as exc:

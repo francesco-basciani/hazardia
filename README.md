@@ -191,3 +191,8 @@ Il tag `stable-2026-10-24-pre-domain-evolution` conserva la versione precedente 
 ## Descrittori dei domini esistenti
 
 [A2 implementato](docs/DOMAIN-PACKAGES.md): `PYTHONPATH=src ../core-env/bin/python -B -m hazardia.package_catalog` nella VM elenca i descrittori locali FIRE/FLOOD in sola lettura. Non cambia il percorso dei simulatori e non certifica disponibilità o fisica. [Regressioni native e limiti](reports/DOMAIN-PACKAGES-A2-20261024.md), incluso il confronto esatto REFlEx non superato.
+
+
+## Collegamento dei moduli all’esecuzione
+
+[A3 implementato](reports/DOMAIN-DISPATCH-A3-20261024.md): selezione dei worker FIRE/FLOOD attraverso il catalogo validato e una tabella fissa approvata, ricevuta per run e regressioni native. Comandi, input, scenari e motori preservati; errori del catalogo classificati senza fallback. [Guida aggiornata](docs/DOMAIN-PACKAGES.md). Il confronto esatto REFlEx resta FAIL documentato, distinto dall’esecuzione tecnica riuscita.
