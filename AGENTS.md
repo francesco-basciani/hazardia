@@ -101,3 +101,7 @@ L’utente richiede terremoti anche piccoli e livello dedicato AT, oltre al traf
 
 ## Monitoraggio e simulazioni — rettifica23ottobre2026
 FR-MONITOR-SECTIONS-04: traffico ipotetico e scenari appartengono alla sezione Simulazioni e risorse; non reintrodurli nei livelli Monitoraggio. Parametri meteo sempre nel pannello destro, rain/cloud indipendenti. Sismi osservati: attivazione/acquisizione coerenti, zeroeventi distinto da errore/missing, catalogo scelto per copertura. Conservare archivi scientifici anche quando impediscono refresh; esplicitare fallback/limiti. Report MONITORAGGIO-AUDIT-E-SEZIONI-20261023.
+
+
+## Livelli, orario ed evoluzione — 24 ottobre 2026
+Rettifica vincolante: lista uniforme dei livelli a sinistra; parametri in pannello separato a DESTRA. Niente gruppo “Altri livelli territoriali”. Ora monitorata con data/secondi/offset UTC distinta dall’orologio attuale e marcata futura quando applicabile. Conservare motori, dati, job, contratti, verificatore e gate scientifici. Per l’evoluzione domain-agnostic seguire `docs/tasks/DOMAIN-AGNOSTIC-EVOLUTION.md`: Stage 1 audit/design; presentare migrazione concreta prima di Stage 2, non implementare subito un framework sostitutivo.

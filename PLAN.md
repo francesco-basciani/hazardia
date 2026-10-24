@@ -641,3 +641,8 @@ Valutazione `layer-selection-20261024` PASS: selezione documentata di filtri OSM
 
 ## Interfaccia bilingue —24ottobre2026
 PASS `i18n-20261024`: selettore persistente IT/EN, italiano predefinito, catalogo1535messaggi e adattatore comune sui5ingressi; verificati Monitoraggio/Dati/Guida/studio incorporato e mobile375px. PASS10suiteclient e preservazione311file/95job/145hashmotori. NOT RUN Safari fisico, tutti i rami fornitori e benchmark UI completo; nessun run fisico o cambiamento dei gate M0–M7. Report reports/ITALIANO-E-INGLESE-20261024.md.
+
+
+## Checkpoint ed evoluzione controllata — 24 ottobre 2026
+PASS: checkpoint Git/GitHub `stable-2026-10-24-pre-domain-evolution` (pubblico `4bdd161`, 633 file verificati da clone remoto). Prompt aggiornato con cinque salvaguardie in `docs/tasks/DOMAIN-AGNOSTIC-EVOLUTION.md`; audit/design Stage 1 in `reports/EVOLUZIONE-DOMINI-DESIGN-20261024.md`. Stage 2 NOT RUN: descrittori locali in sola lettura proposti per revisione, nessuna migrazione runtime/schema avviata.
+PASS UI: elenco uniforme a sinistra, opzioni del livello in pannello separato a destra; ora monitorata prominente con data/secondi/offset UTC, previsione futura distinta dall’orologio attuale. 11 suite client PASS; 311 file scientifici, 95 job e 145 file motori invariati. Report `reports/LIVELLI-DESTRA-E-ORARIO-20261024.md`, evidenze JSON `reports/domain-evolution/`. Nuova installazione VM, qualificazione fisica e benchmark quantitativo NOT RUN. M0–M7 e gate scientifici invariati.

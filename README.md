@@ -181,3 +181,8 @@ Le immagini vengono caricate progressivamente, con al massimo4richieste attive p
 
 ## Italiano / English
 La dashboard usa italiano come lingua predefinita. Il selettore **Italiano / English** nella barra superiore cambia lingua senza ricaricare scenari e salva la preferenza nel browser; gli studi incorporati seguono la stessa scelta. Nomi assegnati agli scenari, toponimi e testi ufficiali delle fonti restano originali e riconoscibili. [Implementazione e verifiche](reports/ITALIANO-E-INGLESE-20261024.md).
+
+
+## Checkpoint e progetto dell’evoluzione
+
+Il tag `stable-2026-10-24-pre-domain-evolution` conserva la versione precedente all’evoluzione. [Prompt corretto](docs/tasks/DOMAIN-AGNOSTIC-EVOLUTION.md), [audit e design Stage 1](reports/EVOLUZIONE-DOMINI-DESIGN-20261024.md), [verifica livelli e ora](reports/LIVELLI-DESTRA-E-ORARIO-20261024.md). I parametri dei livelli si aprono a destra; l’ora monitorata è separata dall’ora attuale. Stage 2 non avviato.

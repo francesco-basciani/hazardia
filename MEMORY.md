@@ -599,3 +599,8 @@ Rivalutato Gods Eye View ufficiale alla revisione 9d3548c27c2cd4bf80ea39cbb3f063
 
 ## Lingua interfaccia —24ottobre2026
 PASS `i18n-20261024`: italiano default, selettore Italiano/English vicino a connessione/configurazione; localStorage hazardia.language e propagazione agli iframe, senza reload/scenari modificati.1535messaggi locali, nomi utenti/toponimi/bollettini originali protetti, formatter di lingua senza cambio timezone. Osservatore disconnesso inIT/cache limitata inEN. PASS10suiteclient/browser e mobile senza sovrapposizione;311file/95job/145enginehashinvariati. Report reports/ITALIANO-E-INGLESE-20261024.md. NOT RUN Safari/benchmarkcomplessivo/nuoverun; qualifiche fisicheinvariate. Dashboard lasciataIT.
+
+
+## Checkpoint ed evoluzione controllata — 24 ottobre 2026
+PASS: checkpoint Git/GitHub `stable-2026-10-24-pre-domain-evolution` (pubblico `4bdd161`, 633 file verificati da clone remoto). Prompt aggiornato con cinque salvaguardie in `docs/tasks/DOMAIN-AGNOSTIC-EVOLUTION.md`; audit/design Stage 1 in `reports/EVOLUZIONE-DOMINI-DESIGN-20261024.md`. Stage 2 NOT RUN: descrittori locali in sola lettura proposti per revisione, nessuna migrazione runtime/schema avviata.
+PASS UI: elenco uniforme a sinistra, opzioni del livello in pannello separato a destra; ora monitorata prominente con data/secondi/offset UTC, previsione futura distinta dall’orologio attuale. 11 suite client PASS; 311 file scientifici, 95 job e 145 file motori invariati. Report `reports/LIVELLI-DESTRA-E-ORARIO-20261024.md`, evidenze JSON `reports/domain-evolution/`. Nuova installazione VM, qualificazione fisica e benchmark quantitativo NOT RUN. M0–M7 e gate scientifici invariati.

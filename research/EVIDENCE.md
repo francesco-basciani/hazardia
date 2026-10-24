@@ -661,3 +661,8 @@ PASS `layer-catalog-20261024`: rimossa Risorse e accessibilità, iconaSVGmeteo;1
 
 ## Localizzazione UI —24ottobre2026
 `i18n-20261024`: PASS tecnico di presentazione, nessun nuovo risultato scientifico. Catalogo1535messaggi, testIT/EN e significato delle qualificazioni preservati;10suiteclient e verifica browser su VM, slider/scenari invariati. Preservazione311file/95job/145hashmotori. Corrette sostituzioni di nomi fonte/zone e lettureUItradotte; originali ufficiali separati dalla traduzione. Limiti: nessuno studio di comprensione, Safari reale/benchmark completo/ramosità fornitori NOT RUN. Nessuna deduzione RQ1–RQ3 o qualificazione M5–M7. Report reports/ITALIANO-E-INGLESE-20261024.md e reports/i18n/verification.json, revisoreCodex.
+
+
+## Checkpoint ed evoluzione controllata — 24 ottobre 2026
+PASS: checkpoint Git/GitHub `stable-2026-10-24-pre-domain-evolution` (pubblico `4bdd161`, 633 file verificati da clone remoto). Prompt aggiornato con cinque salvaguardie in `docs/tasks/DOMAIN-AGNOSTIC-EVOLUTION.md`; audit/design Stage 1 in `reports/EVOLUZIONE-DOMINI-DESIGN-20261024.md`. Stage 2 NOT RUN: descrittori locali in sola lettura proposti per revisione, nessuna migrazione runtime/schema avviata.
+PASS UI: elenco uniforme a sinistra, opzioni del livello in pannello separato a destra; ora monitorata prominente con data/secondi/offset UTC, previsione futura distinta dall’orologio attuale. 11 suite client PASS; 311 file scientifici, 95 job e 145 file motori invariati. Report `reports/LIVELLI-DESTRA-E-ORARIO-20261024.md`, evidenze JSON `reports/domain-evolution/`. Nuova installazione VM, qualificazione fisica e benchmark quantitativo NOT RUN. M0–M7 e gate scientifici invariati.

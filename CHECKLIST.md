@@ -1386,3 +1386,8 @@ PASS `layer-selection-20261024`: confronto documentale official reference + audi
 
 ## AT-I18N-01 —24ottobre2026
 PASS `i18n-20261024`, base4a1243a, revisoreCodex:28controlli bilingui+9suiteregressione client; browserIT↔EN/persistenza/replayUIimmutato, mobile375senzaoverflow conmenuinglesileggibili. PASS311file/95job/145hashmotori invariati. FAILesplorativi corretti: fixtureimport, frammenti su nomi/provenienza, testoUIricopiato, menumobile/clickispezione. NOT RUN Safari fisico, tutti i rami fornitori, flussi legacy completi/benchmarkframe-memoria e nuovirun nativi. Evidenze reports/i18n/{verification,client-tests,preservation}.json e reportITALIANO-E-INGLESE-20261024.md.
+
+
+## Checkpoint ed evoluzione controllata — 24 ottobre 2026
+PASS: checkpoint Git/GitHub `stable-2026-10-24-pre-domain-evolution` (pubblico `4bdd161`, 633 file verificati da clone remoto). Prompt aggiornato con cinque salvaguardie in `docs/tasks/DOMAIN-AGNOSTIC-EVOLUTION.md`; audit/design Stage 1 in `reports/EVOLUZIONE-DOMINI-DESIGN-20261024.md`. Stage 2 NOT RUN: descrittori locali in sola lettura proposti per revisione, nessuna migrazione runtime/schema avviata.
+PASS UI: elenco uniforme a sinistra, opzioni del livello in pannello separato a destra; ora monitorata prominente con data/secondi/offset UTC, previsione futura distinta dall’orologio attuale. 11 suite client PASS; 311 file scientifici, 95 job e 145 file motori invariati. Report `reports/LIVELLI-DESTRA-E-ORARIO-20261024.md`, evidenze JSON `reports/domain-evolution/`. Nuova installazione VM, qualificazione fisica e benchmark quantitativo NOT RUN. M0–M7 e gate scientifici invariati.

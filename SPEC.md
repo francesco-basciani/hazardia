@@ -547,3 +547,7 @@ Ultima richiesta utente prevale sulla precedente collocazione a destra: selezion
 
 ## FR-I18N-01 — italiano e inglese
 Italiano predefinito senza preferenza salvata; selettore Italiano/English nella barra comune, preferenza del browser persistita e condivisa con gli studi incorporati. Tradurre navigazione, controlli, legende, messaggi e guida; preservare valori/ID/payload scientifici, nomi assegnati dagli utenti, toponimi e testo ufficiale originale chiaramente identificato. Cambiare lingua non ricarica gli scenari o esegue modelli. Modelli CIMA/solver e VM unica invariati. Report reports/ITALIANO-E-INGLESE-20261024.md; futuri testi UI devono mantenere il catalogo.
+
+
+## FR-MAP-CLOCK-AND-LAYERS-20261024
+L’elenco dei livelli è uniforme a sinistra; ogni selezione apre le opzioni in un pannello separato a destra, mai annidate nella lista. Su schermi piccoli i pannelli si alternano. Mostrare sempre il tempo monitorato (data, secondi, offset UTC), distinguendo futuro e ora reale. Un timestamp mancante non va sostituito silenziosamente con l’ora attuale. La progettazione domain-agnostic preserva AR-EXT-01, contratti e compatibilità correnti; Stage 1 documentario non autorizza migrazioni implicite dei dati.

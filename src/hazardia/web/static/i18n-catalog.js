@@ -1534,5 +1534,12 @@ export const messages = {
   "Epicentro osservato": "Observed epicentre",
   "0,1–1": "0.1–1",
   "1–2,5": "1–2.5",
-  "2,5–5": "2.5–5"
+  "2,5–5": "2.5–5",
+  "Orario monitorato": "Monitored time",
+  "Previsione futura · ora selezionata": "Future forecast · selected time",
+  "Ora selezionata": "Selected time",
+  "Orario dei dati non disponibile": "Data time unavailable",
+  "Adesso:": "Now:",
+  "Apri catalogo territoriale": "Open territorial catalogue",
+  "Oggetti OpenStreetMap disponibili nell’estratto caricato. La copertura può essere parziale; nessun oggetto non significa assenza sul territorio.": "OpenStreetMap objects available in the loaded extract. Coverage may be partial; no objects does not mean absence in the territory."
 };

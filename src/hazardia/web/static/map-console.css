@@ -74,13 +74,13 @@ body.map-console{height:100dvh;overflow:hidden}body.map-console .shell{position:
 @media(max-width:1000px){.map-console .console-search{width:auto!important}}
 .map-console #monitor-map .leaflet-control-zoom{margin:0!important}
 
-/* Latest layout: layer switches and layer options both live on the left. */
+/* Uniform layer switches on the left; dedicated options on the right. */
 .console-layer-row{display:flex;align-items:center;gap:0;flex-shrink:0}
 .console-layer-row>input{width:17px;height:17px;min-width:17px;margin:8px 3px 8px 7px;accent-color:#64c8be;cursor:pointer}
 .console-layer-row>.console-layer-entry{flex:1;min-width:0;width:auto;padding:10px 7px;min-height:42px}
 .console-layer-icon svg{width:23px;height:23px;display:block}
 .console-panel-head .console-back{font:600 11px system-ui;padding:5px 7px;min-height:30px;color:#d9eee9;border:1px solid #4f7380;border-radius:4px}
-.map-console .console-right[data-side=left]{left:12px;right:auto}
+.map-console .console-right[data-side=right]{left:auto;right:12px}
 .console-territory-toggles{padding:6px 7px;border:1px solid #36505f;border-radius:5px;color:#d8e7ef}
 .console-territory-toggles>summary{font:600 11px system-ui;cursor:pointer;padding:6px 0}
 .console-territory-toggles .territorial-catalog-filters{display:grid;grid-template-columns:1fr;gap:0}
@@ -88,6 +88,18 @@ body.map-console{height:100dvh;overflow:hidden}body.map-console .shell{position:
 .console-territory-toggles input{width:16px;height:16px;accent-color:#64c8be}
 .console-settlements label{display:flex;gap:8px;align-items:center;min-height:40px}
 .console-settlements button{width:100%;padding:8px}
-.map-console #monitor-section:has(.console-right[data-side=left]:not([hidden])) .leaflet-bottom.leaflet-left{left:375px}
-.map-console #monitor-section:has(.console-right[data-side=left]:not([hidden])) .leaflet-bottom.leaflet-right{right:12px}
-@media(max-width:700px){.map-console .console-right[data-side=left]{left:8px;right:auto;width:calc(100% - 16px)}}
+.map-console #monitor-section:has(.console-right[data-side=right]:not([hidden])) .leaflet-bottom.leaflet-right{right:375px}
+
+@media(max-width:700px){.map-console .console-right[data-side=right]{left:auto;right:8px;width:calc(100% - 16px)}}
+
+.console-category-options>button{width:100%;min-height:40px;margin:5px 0}.console-category-options>label{display:flex;align-items:center;gap:8px;min-height:42px}
+.monitor-clock{position:absolute;left:calc(50% - 50px);transform:translateX(-50%);top:58px;z-index:860;display:grid;gap:3px;padding:8px 14px;border:1px solid #476572;border-radius:7px;background:#122332ee;color:#e5edf2;text-align:center;pointer-events:none;box-shadow:0 3px 16px #08121d33;max-width:calc(100% - 32px);box-sizing:border-box;font:500 11px/1.25 system-ui}
+.monitor-clock-selected{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.monitor-clock-mode{font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:#a7dcd4}
+.monitor-clock[data-future=true] .monitor-clock-mode{color:#ffda83}.monitor-clock-now{font-size:10px;color:#b5c9d3;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media(max-width:1000px){.monitor-clock{top:104px;left:50%}.map-console .console-left,.map-console .console-right{top:184px}}
+@media(max-width:700px){.monitor-clock{top:104px;width:calc(100% - 16px);padding:6px 8px}.monitor-clock-selected{font-size:14px}.map-console .console-left,.map-console .console-right{top:178px}.map-console .console-panel-body{font-size:12px}}
+
+/* Leaflet controls use z-index 1000: inspectors must remain above legends. */
+.map-console .console-left,.map-console .console-right{z-index:1100}
+@media(max-width:700px){.map-console #monitor-section:has(:is(.console-left,.console-right):not([hidden])) .leaflet-bottom{display:none}}

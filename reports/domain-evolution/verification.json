@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "scope": "UI and documentary Stage 1; not physical qualification",
+  "desktop": {
+    "viewport": [
+      1011,
+      1034
+    ],
+    "options_side": "right",
+    "options_right": 999,
+    "left_list_retained": true
+  },
+  "mobile": {
+    "viewport": [
+      375,
+      812
+    ],
+    "options_title": "Edifici",
+    "options_side": "right",
+    "options_right": 367,
+    "horizontal_overflow": false
+  },
+  "layers": {
+    "switches": 19,
+    "rows": 20,
+    "legacy_territory_subgroups": 0
+  },
+  "clock": {
+    "selected": "2026-10-24T17:00:00Z",
+    "display": "24/10/2026, 19:00:00 UTC+02:00",
+    "future": true,
+    "wall_clock_separate": true
+  },
+  "client_suites": 11,
+  "stage2": "NOT RUN",
+  "fresh_vm_install": "NOT RUN",
+  "physical_requalification": "NOT RUN",
+  "negative_results": [
+    "Node 16 ICU shortOffset unsupported: replaced with explicit offset calculation and DST test",
+    "Mobile Leaflet legend z-index 1000 over inspector 920 intercepted layer clicks: raised inspectors and hide bottom legends while mobile panel open; verified Edifici",
+    "Preservation audit first used incorrect runtime-v2 path; corrected to runtime root and reran PASS"
+  ]
+}
