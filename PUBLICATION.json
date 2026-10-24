@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "45c735ca2df9faabefbae47e48ed41da09ddb294",
+  "source_git_sha": "c08909019995c1b1ec0f267c338cb268c4611241",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,20 +11,20 @@
       "sha256": "f1f295f103a7453378ff9174c470da572224a70e410b8fc8d3fcba5e201e77aa"
     },
     "CHECKLIST.md": {
-      "bytes": 209171,
-      "sha256": "5ef3969c4b71e972293c66acfaa2b51e8db5c45c66e21631bc8a2a596969d36c"
+      "bytes": 210099,
+      "sha256": "e28352d1b6fc0450b2e7c8b39d17c4420ce894fe71813818421833cae04c3eec"
     },
     "MEMORY.md": {
-      "bytes": 160923,
-      "sha256": "e765faeddf596bfd683dffd7f1a667eb6611ae22901cbb9b364b11650c7ded60"
+      "bytes": 161851,
+      "sha256": "fc597b0cd670d5965b43114152792b7595e4bc7999611fc2f06fd34a8b185df3"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 164819,
-      "sha256": "90d564c69602f276d7753a4e68b79e44936eacb546e063031b80795a7d909166"
+      "bytes": 165747,
+      "sha256": "14671bb3240cfe830b7775afeba1a38b26c8792eff86387fe6e3432c7e14a3bf"
     },
     "README.md": {
       "bytes": 30765,
@@ -541,6 +541,10 @@
     "reports/PUBBLICAZIONE-GITHUB.md": {
       "bytes": 8076,
       "sha256": "6ae9c3837ee79ecee23ff5bc9f354cffaaa89c127cfb0f801abf7c606d8d484c"
+    },
+    "reports/QUAKE-VIEWPORT-20261024.md": {
+      "bytes": 2690,
+      "sha256": "deb33cf3cb606fc813f0aed659fd79ea81ec99e7dcf2c4d9bea58937287478e8"
     },
     "reports/REGIONI-UTF8-20261024.md": {
       "bytes": 1629,
@@ -1074,6 +1078,18 @@
       "bytes": 539,
       "sha256": "b1469455d05ab86ceee050cf6b206d9e8d77c7a1ddb7cca6cb42e833f3b3d1b5"
     },
+    "reports/quake-viewport/browser.json": {
+      "bytes": 1551,
+      "sha256": "76b6381a1048a869e788556b90c42d03cd5f6db8b439c6f3f95545763a7de960"
+    },
+    "reports/quake-viewport/live.json": {
+      "bytes": 2664,
+      "sha256": "1b1755215880b96432232d6bc71c07a025a09396eabc05aa0328292fcef63bed"
+    },
+    "reports/quake-viewport/verification.json": {
+      "bytes": 1531,
+      "sha256": "9ecd19788c5f68bf0137731fe29d63731ac0d964c978f1f52986a436886809a1"
+    },
     "reports/rain-clarity/js-tests.log": {
       "bytes": 631,
       "sha256": "3b0572245404dc98514e9e7e0f28a5ebb0b7b6490887ee6ff1fa55579fc9f6e2"
@@ -1363,8 +1379,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 179050,
-      "sha256": "ed015b011804099505b1e0476aa92b2ac81966019c356eda2fe78be8973c71a7"
+      "bytes": 179978,
+      "sha256": "e61d153b574e2b5db431137324af4cf0e84f79dedb9acc592f1641a713aaf74b"
     },
     "research/RESEARCH.md": {
       "bytes": 34039,
@@ -1939,8 +1955,8 @@
       "sha256": "eb69dde9ffb0649d882a9ce00624dfd2dcdd3c28400254b8ff736d9b8fa992ac"
     },
     "src/hazardia/web/static/i18n-catalog.js": {
-      "bytes": 118496,
-      "sha256": "0c498126f0c31bf3f458f2d6b46a7dc4ef6a8f2c336b4ebb27873fcc21201456"
+      "bytes": 118878,
+      "sha256": "cf4035dc3cfc90351ad2a61421e19c89b7d32ece851abb3633d22a82c6b0c5f0"
     },
     "src/hazardia/web/static/i18n.css": {
       "bytes": 1786,
@@ -2035,12 +2051,12 @@
       "sha256": "c417ba8b059ac0234121b02283598e5b5d7b144a670f387c4644825e73054287"
     },
     "src/hazardia/web/static/observed-layer-model.js": {
-      "bytes": 1369,
-      "sha256": "443f287fa816c4316d923e8962bb2e8e270e2a94b418a40d7cc200cbbfa6fbe5"
+      "bytes": 2380,
+      "sha256": "e0849969097996e116c156f6ad14b9481e5c11fb4648d9e1349a06151547cff4"
     },
     "src/hazardia/web/static/observed-layers.js": {
-      "bytes": 15584,
-      "sha256": "9589e9623974c905b69d68e2970fafbc343af9ad10c6a4deed8885ea9f692eef"
+      "bytes": 16908,
+      "sha256": "2431e319f558ab3cffc7e20dfa162397bdb7d050aec143520aeeda8d3be31f7f"
     },
     "src/hazardia/web/static/observed-rain.js": {
       "bytes": 7827,
@@ -2787,8 +2803,8 @@
       "sha256": "591b7d54fdae1e5ae20d104c3ab9a2b269bcd10ba1a28f4b3228a76547abf079"
     },
     "tests/web/observed-layer-model.test.mjs": {
-      "bytes": 3136,
-      "sha256": "b7372da1640d971e666a23915bcc8586efc76181d2e3bbd4efd970800054d4a0"
+      "bytes": 5084,
+      "sha256": "b7a1b8674d5773c93f6d99a0d39a5e49da9f48c8cac73c1101c8179f7b039ded"
     },
     "tests/web/test_bootstrap.py": {
       "bytes": 1405,

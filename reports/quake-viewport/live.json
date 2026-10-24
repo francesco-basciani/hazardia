@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "run_id": "quake-viewport-20261024",
+  "at": "2026-10-24T21:22:54.485860+00:00",
+  "results": [
+    {
+      "name": "safari_local",
+      "body": {
+        "bounds": [
+          13.26942,
+          42.28315,
+          13.57018,
+          42.408
+        ],
+        "provider": "ingv",
+        "days": 7,
+        "min_magnitude": 0
+      },
+      "status": "READY",
+      "count": 0,
+      "in_wide_view": 0,
+      "source": "https://webservices.ingv.it/fdsnws/event/1/query?format=text&starttime=2026-10-17T21%3A20%3A00&endtime=2026-10-24T21%3A20%3A00&minlatitude=42.28315&maxlatitude=42.408&minlongitude=13.26942&maxlongitude=13.57018&minmagnitude=0&limit=1000&orderby=time",
+      "raw_sha256": "4c30f1504c79c2d8afdc21ca9d9987ea4bf612751524ea89a02a63cee5116d7d",
+      "request_id": "5ae3b0dd118d1703f7d36057",
+      "acquired_at": "2026-10-24T21:22:47.059670Z",
+      "quality": {
+        "skipped": 0,
+        "limit_reached": false,
+        "coverage": "Regional Italian catalogue",
+        "window_start": "2026-10-17T21:20:00+00:00",
+        "window_end": "2026-10-24T21:20:00+00:00",
+        "min_magnitude": 0,
+        "provider": "ingv",
+        "license": "INGV CC BY4.0 (open-data policy)",
+        "missing": [
+          "Felt intensity",
+          "Damage and site vulnerability",
+          "Detection completeness and catalogue revision history"
+        ]
+      }
+    },
+    {
+      "name": "buffered_wide",
+      "body": {
+        "bounds": [
+          10,
+          39,
+          17,
+          45
+        ],
+        "provider": "ingv",
+        "days": 7,
+        "min_magnitude": 0
+      },
+      "status": "READY",
+      "count": 244,
+      "in_wide_view": 219,
+      "source": "https://webservices.ingv.it/fdsnws/event/1/query?format=text&starttime=2026-10-17T21%3A20%3A00&endtime=2026-10-24T21%3A20%3A00&minlatitude=39&maxlatitude=45&minlongitude=10&maxlongitude=17&minmagnitude=0&limit=1000&orderby=time",
+      "raw_sha256": "830b45642156bfa7bafe017c5e44b20dea8f3f00f0cae309232e402200baaef6",
+      "request_id": "441d2840b4c9a0fb2210a6c8",
+      "acquired_at": "2026-10-24T21:22:53.585856Z",
+      "quality": {
+        "skipped": 0,
+        "limit_reached": false,
+        "coverage": "Regional Italian catalogue",
+        "window_start": "2026-10-17T21:20:00+00:00",
+        "window_end": "2026-10-24T21:20:00+00:00",
+        "min_magnitude": 0,
+        "provider": "ingv",
+        "license": "INGV CC BY4.0 (open-data policy)",
+        "missing": [
+          "Felt intensity",
+          "Damage and site vulnerability",
+          "Detection completeness and catalogue revision history"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# Terremoti — aggiornamento della vista (24 ottobre 2026)
+
+Run `quake-viewport-20261024`, baseline `45c735c`, reviewer Codex self-check.
+
+FAIL iniziale riprodotto direttamente nel Safari dell'utente: livello attivo, fonte INGV raggiunta,0eventi acquisiti nei bounds [13.26942,42.28315,13.57018,42.408]; successiva vista più ampia non coperta. Il dato vuoto era valido per la piccola area, ma veniva riutilizzato dopo zoom senza acquisire la nuova area. Il PASS precedente sull'area più ampia non copriva questa sequenza.
+
+PASS correzione: per i soli terremoti, acquisizione su area con margine0,5° e allineata al grado, limiti geografici espliciti; refresh debounced dopo movimento/filtro/riapertura/ritorno al monitoraggio, riuso se vista/filtri/fonte/freschezza compatibili. Attesa minima5,5s fra tentativi automatici, debounce900ms, nessun loop automatico su errore. Fonte mancante,0eventi e copertura parziale restano distinti. Contatore mostra eventi nella vista rispetto agli acquisiti; errori azzerano anche il contatore dei simboli disegnati. Rete elettrica conserva acquisizione manuale. Nessuna variazione delle quote/cache backend o dei motori.
+
+PASS API reale nella VM: stesso piccolo rettangolo0eventi; bounds [10,39,17,45]244eventi INGV,216 nella vista campionata. SHA raw/query/finestre in `reports/quake-viewport/live.json`. PASS IAB: clic attiva e mostra cerchi; zoomout acquisisce automaticamente USGS su vista più ampia (4eventi), zoomin torna automaticamente a INGV244 con stesso timestamp del cache snapshot. Simboli visibili nello screenshot locale e dati DOM in browser.json. Il cambio automatico di fonte preesistente resta dichiarato: USGS non dà la completezza dei piccoli eventi INGV quando la vista supera i confini di consultazione italiani; non implementata una fusione multi-catalogo. Limite1000eventi e quote24/giorno,32MiB invariati e dichiarati; nessuna copertura esaustiva o previsione sismica dedotta.
+
+PASS 10 test backend osservazioni nella VM, suite client observed-layer-model con regressioni per snapshot vuoto/copertura, margini/cache, filtro/fonte/periodo, dati scaduti o futuri, confini regionali/globali, immutabilità; suite i18n PASS. Log `experiments/runs/quake-viewport-20261024/`. Protocollo prima delle nuove prove live. Nessuna installazione, spesa o modifica amministrativa.
+
+BLOCKED verifica Safari finale: Mac bloccato durante reload, richiesto sblocco manuale. Non dichiarato PASS Safari finale dall'IAB. NOT RUN nuovi benchmark FPS o replay fisici; nessun cambiamento ai simulatori. Stato scientifico e FAIL storico REFlEx invariati. Screenshot locale `reports/quake-viewport/delivery.png` escluso dalla pubblicazione curata.

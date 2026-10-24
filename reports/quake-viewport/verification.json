@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "run_id": "quake-viewport-20261024",
+  "baseline": "45c735c",
+  "reviewer": "Codex self-check",
+  "cause": "Safari kept valid empty small-area snapshot after zoom out; acquisition was manual only",
+  "backend_tests": 10,
+  "client_suites": [
+    "observed-layer-model (viewport regression added)",
+    "i18n"
+  ],
+  "native_safari_before": {
+    "bounds": [
+      13.26942,
+      42.28315,
+      13.57018,
+      42.408
+    ],
+    "events": 0,
+    "coverage": "partial after zoom out"
+  },
+  "live_ingv": {
+    "small_count": 0,
+    "buffered_count": 244,
+    "buffered_bounds": [
+      10,
+      39,
+      17,
+      45
+    ]
+  },
+  "iab_after": {
+    "rendered": 244,
+    "visible": 216,
+    "automatic_zoom_out": "PASS; USGS 4 returned on broader world-catalogue view",
+    "automatic_zoom_back": "PASS; INGV 244 snapshot reused with unchanged acquisition timestamp"
+  },
+  "native_safari_after": "BLOCKED: Mac locked; manual unlock requested; no successful final native Safari verification claimed",
+  "unchanged": [
+    "model physics",
+    "decision code",
+    "server API",
+    "backend acquisition quotas",
+    "seismic observation period independent from forecast timeline"
+  ],
+  "limits": [
+    "INGV auto only when viewport lies within configured Italy region; broader views use USGS with incomplete small-event coverage",
+    "1000-event/source, 24 acquisitions/day, 32MiB cache limits retained; errors shown without automatic retry loop",
+    "No FPS or scientific qualification inferred"
+  ]
+}

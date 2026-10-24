@@ -1544,5 +1544,10 @@ export const messages = {
   "Oggetti OpenStreetMap disponibili nell’estratto caricato. La copertura può essere parziale; nessun oggetto non significa assenza sul territorio.": "OpenStreetMap objects available in the loaded extract. Coverage may be partial; no objects does not mean absence in the territory.",
   "Ora monitorata": "Monitored time",
   "Orario non disponibile": "Time unavailable",
-  "Terremoti · acquisizione in corso…": "Earthquakes · loading observations…"
+  "Terremoti · acquisizione in corso…": "Earthquakes · loading observations…",
+  "nella vista /": "in view /",
+  "NESSUN EVENTO NELLA VISTA": "NO EVENTS IN VIEW",
+  "Dati acquisiti; prova 30 giorni o allarga la vista.": "Data loaded; try 30 days or zoom out.",
+  "COPERTURA DELLA VISTA PARZIALE: aggiornamento automatico in attesa.": "PARTIAL VIEW COVERAGE: automatic refresh pending.",
+  "Aggiornamento del filtro sismico…": "Updating earthquake filter…"
 };
