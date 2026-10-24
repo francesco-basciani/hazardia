@@ -1,0 +1,44 @@
+{
+  "run": "layer-catalog-20261024",
+  "base": "ada94cb",
+  "runtime": "Linux VM",
+  "status": "PASS",
+  "checks": {
+    "removed_resources_entry": true,
+    "weather_svg_icon": true,
+    "root_switches": 10,
+    "osm_category_switches": 9,
+    "settlements_on": 41,
+    "settlements_off": 0,
+    "settlements_reenabled": 41,
+    "switch_and_native_control_sync": true,
+    "left_options_desktop_x": 12,
+    "left_options_mobile_x": 8,
+    "mobile_width": 375,
+    "mobile_document_width": 375,
+    "mobile_options_width": 350,
+    "back_to_list": true,
+    "options_do_not_auto_enable_power": true,
+    "power_first_enable_uses_aerial_preset": true,
+    "imagery_master_on_off": [
+      true,
+      false
+    ],
+    "forecast_off_gauge_points": 1,
+    "center_no_unintended_inspector": true,
+    "console_errors": [],
+    "client_suites": [
+      "territorial-math",
+      "map-symbols",
+      "observed-layer-model",
+      "weather-render-plan",
+      "cloud-probability"
+    ]
+  },
+  "not_run": [
+    "new native model runs",
+    "new operational/scientific qualification",
+    "dedicated Safari",
+    "global settlement census"
+  ]
+}

@@ -1,5 +1,6 @@
+import {dateTimeFormatter} from "/i18n.js";
 // Continuous visual replay of hourly VM snapshots: no acquisition or jobs per frame.
-const dates=new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});const clock=at=>dates.format(new Date(at))+' Roma';
+const dates=dateTimeFormatter({timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});const clock=at=>dates.format(new Date(at))+' Roma';
 export function forecastPlayback({select,mount,getTimes,getCurrent,active=()=>true,onTime=null}){
  const bar=document.createElement('section');bar.className='forecast-playback';bar.setAttribute('aria-label','Riproduzione temporale del monitoraggio');
  const title=document.createElement('strong');title.textContent='Previsioni e criticità';const back=document.createElement('button'),play=document.createElement('button'),next=document.createElement('button'),slider=document.createElement('input'),out=document.createElement('output'),speedLabel=document.createElement('label'),speed=document.createElement('select'),note=document.createElement('small');

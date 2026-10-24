@@ -1,0 +1,995 @@
+{
+  "run_id": "layer-selection-20261024",
+  "acquired_at": "2026-10-24T14:06:13.710348+00:00",
+  "reference_commit": "9d3548c27c2cd4bf80ea39cbb3f0634ab1c5a06b",
+  "receipts": [
+    {
+      "url": "https://raw.githubusercontent.com/bilawalsidhu/gods-eye-view/9d3548c27c2cd4bf80ea39cbb3f0634ab1c5a06b/README.md",
+      "bytes": 68591,
+      "sha256": "6e0f4de35e7c1b233e324de05788cd832aa0ad5cc495c02015216f393055a2be"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/bilawalsidhu/gods-eye-view/9d3548c27c2cd4bf80ea39cbb3f0634ab1c5a06b/DATA_SOURCES.md",
+      "bytes": 115697,
+      "sha256": "1fb43ff067728b0c59483485371c88e0e8be3f796801319500c042d1574616c8"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/bilawalsidhu/gods-eye-view/9d3548c27c2cd4bf80ea39cbb3f0634ab1c5a06b/LICENSE",
+      "bytes": 3281,
+      "sha256": "b231bb38e2d4eab741643126087cbe9df2b58e2f2e5abf27ad613d05f52b01ca"
+    }
+  ],
+  "scope": "Deduplicated objects from existing bounded cached extracts with SW corner in Abruzzo vicinity; not a regional census; zero does not mean absent",
+  "snapshot_count": 79,
+  "unique_objects": 10157,
+  "counts": {
+    "fire_hydrant": 44,
+    "fire_water_other": 0,
+    "bridge": 30,
+    "tunnel": 71,
+    "ford": 1,
+    "road_dimensions": 12,
+    "dam_weir_dyke": 5,
+    "waterway": 16,
+    "hospital_clinic": 2,
+    "education": 12,
+    "social_facility": 1,
+    "assembly_point": 0,
+    "fuel": 4,
+    "industrial": 1,
+    "substation": 5,
+    "helipad": 0,
+    "datacenter": 0,
+    "railway": 65
+  },
+  "snapshots": [
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/26b5dc289044e392b645a794/snapshot-915aa866fdd7419185c69eb192cc4e5a.json",
+      "sha256": "51c97c7d7a0c686dd0c7087a0f83581e328bd9751d4c5d52582199a5f474cfe1",
+      "bbox": [
+        13.377,
+        42.347,
+        13.385,
+        42.349
+      ],
+      "available_at": "2026-10-23T12:24:31.687412Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/5c773a4b9873d3b9eb4734cc/snapshot-434405bb4d614e0aafd6b0d2c7e4aa6b.json",
+      "sha256": "80e65ed11db16ade8834f3e4b54985c22f39b32ea93a2fdc0e3dc7425633274a",
+      "bbox": [
+        13.223,
+        42.346,
+        13.758,
+        42.483
+      ],
+      "available_at": "2026-10-23T12:12:46.108778Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/0080a41c42fc64dfdde61ba0/snapshot-a016175c514c4d13b29d22cecdea7bc7.json",
+      "sha256": "632e84f40de5eba8b5178802361db1168ce79aa4885e3b06e7841946e47de5bb",
+      "bbox": [
+        13.315,
+        42.331,
+        13.449,
+        42.365
+      ],
+      "available_at": "2026-10-23T12:24:56.158941Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/79e45eede6726f90efb7694a/snapshot-04b677ad92d24ce381b606fb44a4ea54.json",
+      "sha256": "58492a1ff22457698d06324fcc1eb34d843815c9fc895b24b723b5417611d684",
+      "bbox": [
+        13.37,
+        42.345,
+        13.41,
+        42.36
+      ],
+      "available_at": "2026-10-21T10:22:35.211270Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/797515058b98b99431a6ad22/snapshot-c2f4207f4f204ea491037ccace1720ea.json",
+      "sha256": "264e811051865b069d59af0506d833cd8e541fc68ece632f5d89bb17a9959079",
+      "bbox": [
+        13.364,
+        42.33,
+        13.396,
+        42.374
+      ],
+      "available_at": "2026-10-24T13:27:42.953287Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/ac2a407b6dce7013a28747f9/snapshot-b190abb65e2a475daa28956e5038e5ec.json",
+      "sha256": "247ea144be91858b920dce185933937af7c61ce074f1521146e00e972978026d",
+      "bbox": [
+        13.366,
+        42.345,
+        13.394,
+        42.355
+      ],
+      "available_at": "2026-10-23T13:38:14.304788Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/1806501cbf520c4b44cb8d35/snapshot-cf38a60b609944f5885730cc337a669b.json",
+      "sha256": "10de2143937497b0af4f0e38634a977f69aa5d858c6b6774812f54056d9e001b",
+      "bbox": [
+        13.383,
+        42.348,
+        13.397,
+        42.357
+      ],
+      "available_at": "2026-10-19T09:19:13.403576Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/c974ed160c3c3328fa075905/snapshot-60a6c9dcdb834cae9eecc85c9af3d664.json",
+      "sha256": "12ba53b79f2a88ecc78f876b0aa33e60b5ba5c3ac4c1dd24356d18c116e1d9b0",
+      "bbox": [
+        13.26,
+        42.33,
+        13.528,
+        42.399
+      ],
+      "available_at": "2026-10-23T12:22:29.039156Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/05ea922ca69cdbe39083ad74/snapshot-1e03a516601847ec92f65077317b2d74.json",
+      "sha256": "ace3a2038722c00617f659581b73b18fb85049dd4af441431cc002ad8cbd9a54",
+      "bbox": [
+        13.367,
+        42.34,
+        13.383,
+        42.362
+      ],
+      "available_at": "2026-10-23T13:40:13.661066Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/5f54f4228e27736124256311/snapshot-5998e4f1390d4acebe7ae80aa0cd70c2.json",
+      "sha256": "e2d26140095013f7ee7ef78f5952b34ae514759725f09fc6fcf8abdfbf0c521b",
+      "bbox": [
+        13.36,
+        42.341,
+        13.42,
+        42.364
+      ],
+      "available_at": "2026-10-19T08:16:02.311746Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/c4d773bd347f6f5bc0486578/snapshot-2b491cdb44e2495ba5fc91c5a69574fa.json",
+      "sha256": "68ae70d9fe06d205d94f34bce241190f9ac741de0f9b0d4579c93ca5156e8b1f",
+      "bbox": [
+        13.27,
+        42.338,
+        13.537,
+        42.407
+      ],
+      "available_at": "2026-10-23T12:22:26.501026Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/ad310cd8f964a05da9b4882c/snapshot-43af43ca64b843aebcf70b5a968af3a2.json",
+      "sha256": "5025229cfb768375d44cca0f7fc5582073b9a2895db5e9be356aa295c5a5a535",
+      "bbox": [
+        13.379,
+        42.346,
+        13.388,
+        42.348
+      ],
+      "available_at": "2026-10-23T12:24:33.066167Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/e81a3f37f3d9867c928bb6d7/snapshot-b77ba891a604462183afec062d029104.json",
+      "sha256": "7a4e095c091c81369ed6a187827fcf91861a4d87be9bab9646dab78a8e72f987",
+      "bbox": [
+        13.757363638258882,
+        42.34821072459628,
+        14.135749812984928,
+        42.62825787618284
+      ],
+      "available_at": "2026-10-19T09:35:48.910202Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/7d8d0c6c4a4f6e6380fd203a/snapshot-6fa8dd39bb414e638c8a90f31fdd9067.json",
+      "sha256": "df98c9f1f05df54fdf67147e81b94954d3c9e673967edf333d0b98ee384864d2",
+      "bbox": [
+        13.375,
+        42.345,
+        13.405,
+        42.36
+      ],
+      "available_at": "2026-10-19T09:19:36.005278Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/9c968993d67238c5c3a9f1db/snapshot-59f22a7323ca46fa9646a4159b76be90.json",
+      "sha256": "0225ed681a530c84450deb9db2379653a4c53378d70d945c2e1c930d9cd6c90b",
+      "bbox": [
+        13.351,
+        42.334,
+        13.425,
+        42.358
+      ],
+      "available_at": "2026-10-21T08:50:36.477675Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/67e332e22275985488aeec81/snapshot-dbb0bd45923f412fa3ef94b59e6cc4f8.json",
+      "sha256": "b0ce89c9352ff61fc9a6460fda7c945b8800a36283c87f48ceffa8e39bd29fb6",
+      "bbox": [
+        13.55176605422152,
+        42.28502900037539,
+        13.930644110067503,
+        42.56572390528209
+      ],
+      "available_at": "2026-10-19T04:56:21.258533Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/e416898d807c930fa76ed998/snapshot-8e3d345a48ac4b0f8919ffce80975e3e.json",
+      "sha256": "7e48cbad58974f8cdcb86625a38296dba0f3428eb268a1bd07ba71f5b3c4dd86",
+      "bbox": [
+        13.377,
+        42.349,
+        13.403,
+        42.356
+      ],
+      "available_at": "2026-10-21T10:21:25.660437Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/34b94822fb7340e240eabdc3/snapshot-9c39fc02006848b9bf7eabab7ee824da.json",
+      "sha256": "9623eec0dd704b4465f5cf09cce256827024a0b069a5a73d6d6701c9b94eee67",
+      "bbox": [
+        13.367,
+        42.345,
+        13.393,
+        42.355
+      ],
+      "available_at": "2026-10-23T10:59:39.126670Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/654acc812453fb1e3c500b40/snapshot-db94936df0af4f49bb2bd5744908a7b5.json",
+      "sha256": "a6a7d684f176e41227ebfb6ff6117165b9ea876f66b132fbb0cad45cf99a390d",
+      "bbox": [
+        13.348,
+        42.339,
+        13.402,
+        42.361
+      ],
+      "available_at": "2026-10-23T13:39:54.941726Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/bcc8227406ffa4fc8c7012df/snapshot-23edbf1e3f254c1882ccb24fd2d6233d.json",
+      "sha256": "f114fb1e782656f54dd21d587adccca5b8ccbb65abc9fceff8576a0a450c3c8b",
+      "bbox": [
+        13.372,
+        42.347,
+        13.388,
+        42.352
+      ],
+      "available_at": "2026-10-23T12:24:28.586631Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/55860199397aa0fb027cbccf/snapshot-57cb56750f7e4a95a2eaf494958c1634.json",
+      "sha256": "46d747ed32dd5e8467aff538fe09c0572e88a247eb1d62ce2ac82dc8db9cdeeb",
+      "bbox": [
+        13.55176605422152,
+        42.28502900037539,
+        13.930644110067503,
+        42.56572390528209
+      ],
+      "available_at": "2026-10-19T07:49:15.622218Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/73dcfdcd923338c9767ed12a/snapshot-3d87f348ff754004ba9106710a3dda74.json",
+      "sha256": "15d7d17451db77ad80fa5c8add1a2bb4a2645905bfa32ba85057ec5a6cb0a4a0",
+      "bbox": [
+        13.36,
+        42.343,
+        13.4,
+        42.357
+      ],
+      "available_at": "2026-10-23T11:14:03.339365Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/9352b7c29f2b90f79f56bfbe/snapshot-c963b63394654484907939b16da1609e.json",
+      "sha256": "154c13697c8511bcda9d033780fc08c9eac5d5a7ec953df61a357961f8c82502",
+      "bbox": [
+        13.181,
+        42.282,
+        13.717,
+        42.42
+      ],
+      "available_at": "2026-10-23T12:12:53.262281Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/7f70be9cdeb5fca28b96bda5/snapshot-2a7e0142cfe749c28f93a9a802b26f4a.json",
+      "sha256": "974a1961ff3e3e03688c5b3aae41ec3ea1fab150658ce68d7dff7a912fedbf29",
+      "bbox": [
+        13.362,
+        42.338,
+        13.429,
+        42.355
+      ],
+      "available_at": "2026-10-23T12:14:56.247293Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/dbbf1399c4857e050f6d95f4/snapshot-a7ce9b5100cf412597cc1f9e28a7af03.json",
+      "sha256": "59f7bc98a2357512010a8b020199fcf03e8eaf0b530120dfd9a93cf7ed57f19f",
+      "bbox": [
+        13.52,
+        42.439,
+        13.654,
+        42.473
+      ],
+      "available_at": "2026-10-23T12:11:54.450282Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/db622c0de27cb38724ce0e06/snapshot-fa1825d83c5e439fbfb8c99f8fa07788.json",
+      "sha256": "4e62103cb88d961e772b2ba83c0799388bfde12f56c6698cf162f5516ace0d11",
+      "bbox": [
+        13.373,
+        42.338,
+        13.44,
+        42.355
+      ],
+      "available_at": "2026-10-23T12:13:19.992203Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/f3ee3a796d82b6ed9bea09e4/snapshot-f642bdcc159642769afe8c2800f3cf47.json",
+      "sha256": "a59cacb6c4c5c8e0d364635d26d651011bc1f392d4abf9d796029e71879f8e33",
+      "bbox": [
+        13.757363638258882,
+        42.34821072459628,
+        14.135749812984928,
+        42.62825787618284
+      ],
+      "available_at": "2026-10-19T08:31:07.464670Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/f3ee3a796d82b6ed9bea09e4/snapshot-b94be95c3a2245559a38279942a82df6.json",
+      "sha256": "9b7563af7f54dc473e373d7985faea1303803983b8f96136bfc1a153aa738873",
+      "bbox": [
+        13.757363638258882,
+        42.34821072459628,
+        14.135749812984928,
+        42.62825787618284
+      ],
+      "available_at": "2026-10-19T09:05:10.959510Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/f3ee3a796d82b6ed9bea09e4/snapshot-7b704405c0874cc895f88a11d3594dfa.json",
+      "sha256": "3bc75148d179e1e6f27373c5b3e8a9948ec3f824ffe936204c64b0257449b8fd",
+      "bbox": [
+        13.757363638258882,
+        42.34821072459628,
+        14.135749812984928,
+        42.62825787618284
+      ],
+      "available_at": "2026-10-19T08:31:07.440739Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/569845aaee4ef34cd91c1e91/snapshot-9bcc14e337194729ada31dc2879d676a.json",
+      "sha256": "1d033238ba1ab1577f56c6a85ef12ec4a3c774903e7f1c98e8e111ea3ac05471",
+      "bbox": [
+        13.363,
+        42.345,
+        13.417,
+        42.36
+      ],
+      "available_at": "2026-10-21T10:22:06.680406Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/cbb259aebe4abb3c9e29ac4e/snapshot-dda5b6ca8c814106bbd0a4cc71d57aad.json",
+      "sha256": "2bd49dde994af3e0df11846d6ce856d960d37d1c95ec3890fb1dd082458f5831",
+      "bbox": [
+        13.363,
+        42.346,
+        13.397,
+        42.354
+      ],
+      "available_at": "2026-10-23T12:23:32.534748Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/64e3d110cdeffd29c67801fd/snapshot-002cc9cc22394fac84e9f2dcd27ac809.json",
+      "sha256": "48372dd82b8fc2b5fa03a49be2bab4ea77e3a30a599ff8866931da685f2d7d68",
+      "bbox": [
+        13.296,
+        42.241,
+        13.836,
+        42.39
+      ],
+      "available_at": "2026-10-23T13:54:27.786788Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/a828a6d61773602874dd2e4d/snapshot-fbb70e99c6054c1b9aa5180b3a194373.json",
+      "sha256": "241024479e3643925d34d7245b1edd64d4d0347fe2e122511ae8fc093292f925",
+      "bbox": [
+        13.55176605422152,
+        42.28502900037539,
+        13.930644110067503,
+        42.56572390528209
+      ],
+      "available_at": "2026-10-19T07:51:07.587459Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/704cfdaa11bcd1adb5020dd5/snapshot-d92d67b7d1df4231b56a469845063d8a.json",
+      "sha256": "3ed3fdf0d8bfb19dab63d92689aa2e81dbb14b7fe3920b190e3a362b60e54f1c",
+      "bbox": [
+        13.11,
+        42.167,
+        13.989,
+        42.432
+      ],
+      "available_at": "2026-10-23T14:07:25.037610Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/79f08ce75c1998c2af4439f6/snapshot-5d3d034d3703443cbb9cd8071a8ca4e8.json",
+      "sha256": "0c01d05f381da40783a5b7d565ba104ff0a9b0df51cb9a8ea508ec2e71d1736e",
+      "bbox": [
+        13.361,
+        42.335,
+        13.419,
+        42.37
+      ],
+      "available_at": "2026-10-19T09:20:00.784506Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/f76e7b2c4abaaaaf3effd8cb/snapshot-ac97b6d14f05481e927ac32440a410d8.json",
+      "sha256": "26cd0b308577980aa9ff540504f469224cf0707d4a5e4767ba928edfa72d6861",
+      "bbox": [
+        13.378,
+        42.346,
+        13.386,
+        42.348
+      ],
+      "available_at": "2026-10-23T12:24:37.839328Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/4c24db4cb381c3b2e969b92b/snapshot-fc53de74d06e48a18e312aefed511d3e.json",
+      "sha256": "5fd268de542ccac542b0824a8393be76742617e332054994c1e747af09b716e1",
+      "bbox": [
+        13.382,
+        42.346,
+        13.39,
+        42.348
+      ],
+      "available_at": "2026-10-23T12:24:34.664050Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/8b1b81a6aad61845be56d444/snapshot-4d2f870e50db4934bcec44f8f90eb35a.json",
+      "sha256": "9d128c4effac69d2f88540a25f232e954f25272b9d96155a8d7265f4739742ab",
+      "bbox": [
+        13.348,
+        42.338,
+        13.412,
+        42.362
+      ],
+      "available_at": "2026-10-21T08:45:08.659103Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/c69476af13e05ccc1da99c8d/snapshot-9d6b3c34c2e94430aa5e947d975250be.json",
+      "sha256": "dfd611182c4de731a590d3638f4e6e7212c4d25ff2ede65621f28aaa31b77089",
+      "bbox": [
+        13.246,
+        42.316,
+        13.514,
+        42.384
+      ],
+      "available_at": "2026-10-23T10:43:20.121865Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/db7dc0facf398b746d64ac03/snapshot-3d868c7e288f49a7a61e7f806dbc71c8.json",
+      "sha256": "ba8f205b5f012eaa94560bc38de6a6636ea2862d09167b9b9345eed63c0f8e00",
+      "bbox": [
+        13.492,
+        42.379,
+        13.76,
+        42.448
+      ],
+      "available_at": "2026-10-23T12:22:59.875520Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/95fd013582e3f79f5e65eeb9/snapshot-5ca996a6f4f94267a3057cdf5ac32d96.json",
+      "sha256": "22520d24d629a667bae1243c4b769f530b7d5f315c4dccbe195f5b153cf100c8",
+      "bbox": [
+        13.462,
+        42.401,
+        13.596,
+        42.435
+      ],
+      "available_at": "2026-10-23T12:12:34.034471Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/d0bb85ba81aed97e14aa841f/snapshot-0d9678caeaa34f0cba893c0a21439547.json",
+      "sha256": "01e35b62f7921fab89b18fa8da8bac4e23e7ae68e52cd6929dc69489c7c6d49c",
+      "bbox": [
+        13.55176605422152,
+        42.28502900037539,
+        13.930644110067503,
+        42.56572390528209
+      ],
+      "available_at": "2026-10-19T07:54:48.441097Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/d0bb85ba81aed97e14aa841f/snapshot-e4179596690f4ae5a2421b38e35952ad.json",
+      "sha256": "46ee7fe31abeec5ddeb71c597ef76bf1e688fc8e6ca4d9b8a277eee2da18d5e9",
+      "bbox": [
+        13.55176605422152,
+        42.28502900037539,
+        13.930644110067503,
+        42.56572390528209
+      ],
+      "available_at": "2026-10-19T08:00:13.965353Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/02269c2c05665d03e309ee49/snapshot-ce06df7026d443bcb2c341e80d0eb73a.json",
+      "sha256": "7e55aea1d228d6aaae89f568cf28f7f6418dcd24373f3730a2ae254411e5adb7",
+      "bbox": [
+        13.376,
+        42.378,
+        13.912,
+        42.516
+      ],
+      "available_at": "2026-10-23T12:11:05.188654Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/43323ba6ef1e8a13248d2868/snapshot-09cb1ff0e68549c0848cb3c22a8fc9c4.json",
+      "sha256": "14979971a0593379615f17bf32ba75a2a6fc746d5d56aa404edbf2c9aa5c8e7b",
+      "bbox": [
+        13.55176605422152,
+        42.28502900037539,
+        13.930644110067503,
+        42.56572390528209
+      ],
+      "available_at": "2026-10-19T09:17:47.713784Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/43323ba6ef1e8a13248d2868/snapshot-2db6c7444c3f4c559fd47a9a09a41ce7.json",
+      "sha256": "a5c539e10950cba3071882590b5dea32b7f1f468e44176d3a757bace01f0d700",
+      "bbox": [
+        13.55176605422152,
+        42.28502900037539,
+        13.930644110067503,
+        42.56572390528209
+      ],
+      "available_at": "2026-10-19T09:17:47.866797Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/6564d7847655a83020a829e3/snapshot-f34807d985c04b96aa45f412425abaf6.json",
+      "sha256": "d8b175df135a0148129c12793cff933f36c80d8512b8f452d01ce1dca63589d1",
+      "bbox": [
+        13.533,
+        42.409,
+        13.6,
+        42.426
+      ],
+      "available_at": "2026-10-23T12:23:09.442951Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/1c096bd3a972170a10e08f3e/snapshot-fafc4425227a4470866d8643347b634f.json",
+      "sha256": "0aa2d76c414c141026028c40607e016b07beae446a0822f18e957f2268497ae4",
+      "bbox": [
+        13.499,
+        42.433,
+        13.633,
+        42.467
+      ],
+      "available_at": "2026-10-23T12:12:03.669204Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/c48f37a04d6b9484ab79bc48/snapshot-ee225321325d480faa57797f461293eb.json",
+      "sha256": "fc49891c41f5a79b2a29f6078e944f340ba7db149c5353b62d2ee7f4c49354b0",
+      "bbox": [
+        13.361,
+        42.334,
+        13.428,
+        42.351
+      ],
+      "available_at": "2026-10-23T12:20:22.419245Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/5036b6440089bc3d1b84ef10/snapshot-636606210c2c4d32868b0fc834e98e9c.json",
+      "sha256": "19a19b0a5026d995e429bae9003cfed63c771fe1f4950df5a91ce772f33ee30a",
+      "bbox": [
+        13.375,
+        42.345,
+        13.405,
+        42.36
+      ],
+      "available_at": "2026-10-19T08:00:12.779034Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/ee0952ba3abb1a2c4cf4d94a/snapshot-e254199d606b4a7c99b730df038f9695.json",
+      "sha256": "6141e1313f60109f8280d61b1fe38a8495cc1884cde0e48ed5a4486b143db654",
+      "bbox": [
+        13.397,
+        42.34,
+        13.411,
+        42.349
+      ],
+      "available_at": "2026-10-19T09:20:52.619283Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/27d6f54ba4feec72c79c2abc/snapshot-da55ffb2094b415db1752c9c93f00f38.json",
+      "sha256": "812a7e19a8a5969c233b841c0143653032677d7926d0c81585a34e7c04a90776",
+      "bbox": [
+        13.33,
+        42.234,
+        13.77,
+        42.366
+      ],
+      "available_at": "2026-10-23T14:04:55.012965Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/7b7a6a88df54cd5bfa3bc8bc/snapshot-3a88e3db1ae44a69a92ddd0b5e3a7a60.json",
+      "sha256": "8bace4d32791928bc1438da4c61cda29d3ce7489e9103491e80b73d8abf499db",
+      "bbox": [
+        13.55176605422152,
+        42.28502900037539,
+        13.930644110067503,
+        42.56572390528209
+      ],
+      "available_at": "2026-10-19T08:06:47.787080Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/7b7a6a88df54cd5bfa3bc8bc/snapshot-0ffe797982fd4b02a92bae3414c15e03.json",
+      "sha256": "910a6ea24ca82935b761a386040d130aee1afa4f6680e141b86aeff608cf5796",
+      "bbox": [
+        13.55176605422152,
+        42.28502900037539,
+        13.930644110067503,
+        42.56572390528209
+      ],
+      "available_at": "2026-10-19T08:06:47.787198Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/7b7a6a88df54cd5bfa3bc8bc/snapshot-83f4cf2ad1c74325a3bee1401a4aca8f.json",
+      "sha256": "922e170652a4549d3531bb65e606c40c82fe37a28007ef9ec2a31c568785eb89",
+      "bbox": [
+        13.55176605422152,
+        42.28502900037539,
+        13.930644110067503,
+        42.56572390528209
+      ],
+      "available_at": "2026-10-19T08:22:21.927499Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/5b567fbc4f2457216ccdb810/snapshot-e78190f6795a47e682d01dd00c09dd30.json",
+      "sha256": "a0cd8a38aa52699b755a194d8cb5acf93bc224ea45689c51338abb61c2ba8d33",
+      "bbox": [
+        13.469,
+        42.422,
+        13.603,
+        42.456
+      ],
+      "available_at": "2026-10-23T12:12:06.457306Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/44f249ad863d04789dc1539f/snapshot-dc646735b2cf4f4db2e16a258448e514.json",
+      "sha256": "ecc1f2ad00952a212d72b8740a583cdc18a866adfde3b09a19e175b56d6cbbb2",
+      "bbox": [
+        13.428,
+        41.866,
+        13.472,
+        41.897
+      ],
+      "available_at": "2026-10-24T09:54:05.959599Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/abce8506779ba66bab455761/snapshot-16152981472d48b3adfeccf34c075973.json",
+      "sha256": "641b40c789400f669920f37d0bde5bfb5174288aa0504447d62196a067451989",
+      "bbox": [
+        13.495,
+        42.409,
+        13.562,
+        42.426
+      ],
+      "available_at": "2026-10-23T12:23:13.498459Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/67f1989627fced6d74e09b63/snapshot-42810d6a133b4c0788a3094074d70e44.json",
+      "sha256": "eb80d49ba0f01e40783297cf6e7a1f2de456dbaa3595012ff6ae79f10af5bf21",
+      "bbox": [
+        13.424,
+        42.397,
+        13.558,
+        42.432
+      ],
+      "available_at": "2026-10-23T12:12:41.863246Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/a1040ac06bc6b4062a397847/snapshot-2238fc9906914b1e9da5a79b2016fdd2.json",
+      "sha256": "6adc1bc25df4ed07fc0cc859b4e079eff15e7fa422b0347b4333b0e54f512ad6",
+      "bbox": [
+        13.259,
+        41.684,
+        13.861,
+        41.935
+      ],
+      "available_at": "2026-10-24T11:45:17.412997Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/d37172ba47239249bbf6f7a4/snapshot-00a68a8e6c58470fa0ddf312bd582431.json",
+      "sha256": "67851027ea72f3415ade01b3406396d43f9590b7449d9355d81e9e0fab173f8c",
+      "bbox": [
+        13.116,
+        42.286,
+        13.652,
+        42.424
+      ],
+      "available_at": "2026-10-23T12:22:42.544121Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/4b8ec0e59f40d949a73eef8e/snapshot-a2fd2a00b0994d088009212b3cf09b9b.json",
+      "sha256": "a8398ab7b800d4373cdec09b980dd342d8ee416f854aa71a5c7022e6cbfd0f4d",
+      "bbox": [
+        13.452,
+        42.383,
+        13.72,
+        42.452
+      ],
+      "available_at": "2026-10-23T12:23:01.728519Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/498a7a34354584b56740f3b8/snapshot-1b6cedcc3d674231abd6634655f75fb5.json",
+      "sha256": "e57954d4024984d9e691d8a9e56f267aafe7436593e529fa4fa25b4d4d316721",
+      "bbox": [
+        13.46,
+        42.401,
+        13.594,
+        42.436
+      ],
+      "available_at": "2026-10-23T12:12:38.719075Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/edd7c362652e4c3fa9af5133/snapshot-d10030b97c9146829e2b9dfb31a54a7c.json",
+      "sha256": "720bb7657055d783e6eced1fc12483b1e05935b0da4b5eb134e891f0fc06f180",
+      "bbox": [
+        13.13,
+        42.304,
+        13.666,
+        42.441
+      ],
+      "available_at": "2026-10-23T12:12:50.393363Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/4a2e960c837e343011dc4492/snapshot-270045c44e434eb1982c6f6ed3eca1d5.json",
+      "sha256": "e79bd14fcb0657679d1dc23df4a3594550707a9ac8157d2335849634ad58a65a",
+      "bbox": [
+        13.376,
+        42.348,
+        13.384,
+        42.35
+      ],
+      "available_at": "2026-10-23T12:24:30.096636Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/fc57a69e09ff4cf5ea54e835/snapshot-61c85208cb98420793c1606563fffdf0.json",
+      "sha256": "f2b3e20a563e9d31f833eada4cb154078c7f52c98b422f337bd6c693ae3eb525",
+      "bbox": [
+        13.455,
+        42.403,
+        13.589,
+        42.437
+      ],
+      "available_at": "2026-10-23T12:12:09.931097Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/be2eb58df420ef1d081e7778/snapshot-bb8baa983db8424391e7e502d1d61ba5.json",
+      "sha256": "c6745dd63d4eae1dbc02a37ef252cc795fec0a6b121cabb919d4ac1aa2ca62f7",
+      "bbox": [
+        13.293,
+        42.317,
+        13.561,
+        42.386
+      ],
+      "available_at": "2026-10-23T12:12:59.761884Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/155eddcea9d93f3d06342a3c/snapshot-6e96ffd3a12b4bfe821d753d01c240a0.json",
+      "sha256": "9d34ed5e7ed0ddf7738d3a425167aba9ca85d8172a5bff05c45d9566cb9c2c66",
+      "bbox": [
+        13.422,
+        42.399,
+        13.556,
+        42.434
+      ],
+      "available_at": "2026-10-23T12:12:40.552279Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/ecc14c658902a3cbc3c961ea/snapshot-7848976f6e9d41d999c28f64ae40eb5a.json",
+      "sha256": "4fcc4e9b48a7fa415476687257af593ee65e096c278f83ed94bcf70415b26480",
+      "bbox": [
+        13.432,
+        42.383,
+        13.7,
+        42.452
+      ],
+      "available_at": "2026-10-23T12:23:03.442884Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/720bc464f03003675e648467/snapshot-71d2b8dff77349e5ac7f42c2fec73f04.json",
+      "sha256": "a97b67e924ec5da20639f645adf9839b2634d7f69beda5b09e3306740154e430",
+      "bbox": [
+        13.315,
+        42.316,
+        13.583,
+        42.385
+      ],
+      "available_at": "2026-10-23T12:12:57.129585Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/ea45fed441304f647cb7bb8d/snapshot-9e9514d54a094b1aaa8312c6186a2560.json",
+      "sha256": "497fac910982737ec2af66932c6fc48d9d85d77b0e02e7d62bb1b008df71fc9d",
+      "bbox": [
+        13.336,
+        42.338,
+        13.444,
+        42.367
+      ],
+      "available_at": "2026-10-21T10:25:37.347117Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/53b2fcfd2bccaa73cc5c2bfd/snapshot-002a598c4db94e34b7170d7b3668a6ab.json",
+      "sha256": "5384a89050e08f850a1084367ff11e3e812e9393f1b00be1962fe71e71059457",
+      "bbox": [
+        13.378,
+        42.347,
+        13.387,
+        42.349
+      ],
+      "available_at": "2026-10-23T12:24:45.571380Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/c0467c5e5ae8500d52960b39/snapshot-066de3de61054a5fa2ae53b6f4f7e68b.json",
+      "sha256": "5d7de3981a8f1dd28a29176fe0bb571f213a7e6b2cd702a3309188400e1fc6ad",
+      "bbox": [
+        13.363,
+        42.345,
+        13.397,
+        42.354
+      ],
+      "available_at": "2026-10-23T12:24:25.336260Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/bae6815456c304094ae6e253/snapshot-02f6c8f0f05a409d98e7d4c6af398645.json",
+      "sha256": "2635983e077158d24a8045dd9f2ecc66135cf1f1ba4e0ed99b10c2557161d182",
+      "bbox": [
+        13.155,
+        42.266,
+        13.595,
+        42.434
+      ],
+      "available_at": "2026-10-23T13:36:32.765712Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/d1f432bdc5e5ac816f350690/snapshot-b42179f85128431fad5ec62350b293cc.json",
+      "sha256": "813d7932479b8ef384e8d2ef822b88b4ac50dcabb13467de1ffaffafe4f0e257",
+      "bbox": [
+        13.376,
+        42.345,
+        13.384,
+        42.355
+      ],
+      "available_at": "2026-10-23T11:13:21.466537Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/7a842483057d2329535cc82a/snapshot-866472194c0b4ca5bd168ae9aee9f487.json",
+      "sha256": "3a146f2207756c74142404f88012b5baa6c9d3101ef0ccd7a138179ce3207558",
+      "bbox": [
+        13.316,
+        42.326,
+        13.444,
+        42.374
+      ],
+      "available_at": "2026-10-21T08:28:53.743271Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/67109a68cbe979786121c655/snapshot-e9083679f4224835853e2c95ef64f39b.json",
+      "sha256": "6731267e9347d1aac2cc4bcb0cf2f38dcafc5a06303f27df2367ecf2c4f5e7b0",
+      "bbox": [
+        13.337,
+        42.319,
+        13.423,
+        42.381
+      ],
+      "available_at": "2026-10-24T13:42:27.471603Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/5c5a258948864ebaadc1fc25/snapshot-317ad0985ba34c2a9925895a48674350.json",
+      "sha256": "b04d33527a84f659f22e1b22f2a851bb00913c882769f95c7c2bfc7b999e3386",
+      "bbox": [
+        13.44,
+        42.267,
+        13.66,
+        42.333
+      ],
+      "available_at": "2026-10-23T14:08:16.570795Z",
+      "source_data_at": null
+    },
+    {
+      "path": "/home/hazardia/hazardia-runtime/web-state/territorial-cache/ae309b2270caba4beba74adf/snapshot-af25cfa673d644ad860ba2d6eec3f31b.json",
+      "sha256": "2a0efe362fbcd477541c2d319fc6169503b43fea86f3f9701f71fd31d7ceba97",
+      "bbox": [
+        13.393,
+        42.343,
+        13.46,
+        42.36
+      ],
+      "available_at": "2026-10-23T12:13:06.979926Z",
+      "source_data_at": null
+    }
+  ]
+}

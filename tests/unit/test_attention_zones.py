@@ -1,6 +1,6 @@
 import json,tempfile,unittest
 from pathlib import Path
-from hazardia.ingest.attention_worker import zone_summary,qualify_footprints
+from hazardia.ingest.attention_worker import zone_summary,qualify_footprints,recover_official_shapes,geometry_coverage
 
 def polygon(coords,**props):return dict(type='Feature',geometry=dict(type='Polygon',coordinates=[coords]),properties=props)
 class ZonalTests(unittest.TestCase):
@@ -20,4 +20,27 @@ class ZonalTests(unittest.TestCase):
   original=shape(z['geometry']);bad=Polygon([[0,0],[2,1],[0,1],[2,0],[0,0]])
   with patch.object(BaseGeometry,'simplify',return_value=bad):f=qualify_footprints(dict(features=[z]))['features'][0]
   self.assertTrue(shape(f['geometry']).equals_exact(original,0));self.assertTrue(f['properties']['display_geometry_valid']);self.assertEqual(f['properties']['cartographic_simplification_degrees'],0);self.assertEqual(f['properties']['level'],1)
+class OfficialGeometryTests(unittest.TestCase):
+ def fixtures(self):
+  z=polygon([[10,40],[11,41],[10,41],[11,40],[10,40]],id='z',name='Zona',level=1,levels={'Per rischio idraulico':0,'Per rischio temporali':1,'Per rischio idrogeologico':0})
+  row=polygon([[10,40],[11,40],[11,41],[10,41],[10,40]],Nome_zona='Zona',Zona_all='TEST',Idraulico='NESSUNA ALLERTA',Temporali='ALLERTA GIALLA',Idrogeo='NESSUNA ALLERTA')
+  return dict(features=[z]),row
+ def test_valid_same_bulletin_fallback_preserves_level(self):
+  geo,row=self.fixtures();self.assertEqual(recover_official_shapes(geo,[row],'pinned'),1);qualify_footprints(geo)
+  p=geo['features'][0]['properties'];self.assertEqual(p['level'],1);self.assertTrue(p['source_geometry_valid']);self.assertFalse(p['topology_geometry_valid']);self.assertEqual(p['geometry_source_url'],'pinned')
+  self.assertEqual(geometry_coverage(geo)['geometry_qualified_zones'],1)
+ def test_invalid_alternative_stays_unqualified_with_bulletin(self):
+  geo,row=self.fixtures();row['geometry']=geo['features'][0]['geometry'];self.assertEqual(recover_official_shapes(geo,[row],'pinned'),0);qualify_footprints(geo)
+  p=geo['features'][0]['properties'];self.assertIsNone(p['level']);self.assertEqual(p['source_level'],1);self.assertEqual(geometry_coverage(geo)['bulletin_known_zones'],1)
+ def test_mismatched_warning_or_name_rejected(self):
+  geo,row=self.fixtures();row['properties']['Temporali']='ALLERTA ROSSA'
+  with self.assertRaises(ValueError):recover_official_shapes(geo,[row],'pinned')
+  geo,row=self.fixtures();row['properties']['Nome_zona']='Other'
+  with self.assertRaises(ValueError):recover_official_shapes(geo,[row],'pinned')
+  geo,row=self.fixtures();geo['features']*=2
+  with self.assertRaises(ValueError):recover_official_shapes(geo,[row,row],'pinned')
+ def test_distant_valid_geometry_never_substituted(self):
+  geo,row=self.fixtures();row['geometry']['coordinates']=[[[12,40],[13,40],[13,41],[12,41],[12,40]]]
+  self.assertEqual(recover_official_shapes(geo,[row],'pinned'),0)
+
 if __name__=='__main__':unittest.main()

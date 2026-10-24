@@ -16,3 +16,78 @@ body.map-console{height:100dvh;overflow:hidden}body.map-console .shell{position:
 .quake-scale{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;font:11px system-ui;margin:12px 0}.quake-scale span{display:flex;gap:8px;align-items:center;min-height:22px}.quake-scale i{flex-shrink:0}
 
 .console-panel-body .weather-quick-levels fieldset{margin:8px 0;padding:9px;border:1px solid #46606e;border-radius:6px}.console-panel-body .weather-quick-levels fieldset label{display:flex;align-items:center;margin:0;padding:4px;min-height:34px;gap:8px}.console-panel-body .weather-quick-levels legend{font:600 11px system-ui;color:#bcd1dd;padding:0 5px}.console-panel-body .weather-quick-levels fieldset input{flex:0 0 auto;width:16px;height:16px}
+
+/* Credits live in Info; the map keeps a compact, keyboard-accessible entry. */
+#monitor-map .leaflet-control-attribution.map-credit-collapsed{display:none}
+#monitor-map .map-credit-link{background:rgba(19,39,53,.9);color:#edf4f7;border:1px solid #536a79;border-radius:5px;padding:5px 9px;font:500 11px/1.4 system-ui;cursor:pointer;box-shadow:0 1px 4px #0003}
+#monitor-map .map-credit-link:focus-visible{outline:2px solid #70c8e4;outline-offset:2px}
+#map-credit-details{line-height:1.9;overflow-wrap:anywhere}
+#map-credit-info{margin-bottom:20px}
+
+/* Background is a map setting; hazard and warning products are separate layers. */
+.console-left>.console-basemap{padding:8px 12px;border-bottom:1px solid #36505f}
+.console-hazards .console-hazard-filters{display:flex;flex-wrap:wrap;gap:8px;padding:8px 0;border:0}
+.critical-map-legend{background:rgba(17,35,49,.94);color:#eff5f8;border:1px solid #5a7180;border-radius:6px;padding:9px 12px;max-width:320px;max-height:38vh;overflow:auto;font:12px/1.45 system-ui;box-shadow:0 2px 8px #0003}
+.critical-map-legend[hidden]{display:none!important}
+.critical-map-legend summary{font-weight:700;cursor:pointer}
+.critical-map-legend strong,.critical-map-legend small{display:block;margin-top:6px}
+.critical-map-legend small{font-size:10px;color:#d0dce5}
+.critical-map-legend .critical-key{display:flex;flex-wrap:wrap;gap:5px 12px;margin:6px 0}
+.critical-map-legend span{display:inline-flex;align-items:center;gap:5px}
+.critical-map-legend i{display:inline-block;width:13px;height:13px;border:1px solid #ffffffb0;border-radius:2px;flex-shrink:0}
+@media(max-width:700px){.critical-map-legend{max-width:250px;max-height:28vh}}
+
+/* The dark inspector uses its own chip palette, including inherited label text. */
+.map-console .console-panel-body .console-hazards .hazard-chip{display:flex;align-items:center;gap:8px;min-height:44px;padding:10px 12px!important;font-size:13px;font-weight:600;cursor:pointer}
+.map-console .console-panel-body .console-hazards .hazard-chip.fire-chip{background:#422e22!important;color:#ffe0c5!important;border:1px solid #d88750}
+.map-console .console-panel-body .console-hazards .hazard-chip.flood-chip{background:#203e59!important;color:#d9edff!important;border:1px solid #6da9e1}
+.map-console .console-panel-body .console-hazards .hazard-chip:has(input:not(:checked)){background:#192d3b!important;color:#d7e4ed!important;border-color:#617887}
+.map-console .console-panel-body .console-hazards .hazard-chip:focus-within{outline:2px solid #70d5c9;outline-offset:2px}
+.map-console .console-panel-body .console-hazards .hazard-chip input{flex-shrink:0;width:18px;height:18px;margin:0}
+
+/* Dark controls must not inherit the light theme's pale hover background. */
+.map-console :is(.console-left,.console-right,.map-time-dock) button:not(:disabled):is(:hover,:focus-visible){background:#2b5268!important;color:#fff!important;border-color:#84b5c9!important}
+.map-console :is(.console-left,.console-right,.map-time-dock) button:not(:disabled):active{background:#1b3a4d!important;color:#fff!important}
+.map-console :is(.console-left,.console-right,.map-time-dock) button[aria-pressed=true]:not(:disabled):is(:hover,:focus-visible){background:#326575!important;color:#fff!important}
+
+.map-console .console-panel-body .attention-warning{background:#413822!important;color:#ffe5b3!important;border-left:3px solid #d9ac59}
+.map-console .console-panel-body #attention-coverage{border:1px solid #6c8190;border-radius:5px;padding:9px;font-size:11px;line-height:1.6}
+.map-console .console-panel-body #attention-zone-select{width:100%;min-height:38px;margin-top:6px}
+
+/* Map actions, source documentation and global settings have distinct homes. */
+.map-console .console-map-actions{position:absolute;z-index:930;top:12px;left:12px;display:flex;align-items:stretch;gap:6px}
+.map-console .console-map-actions .console-layers-toggle{position:static}
+.map-console .console-rain-toggle{background:var(--console-bg);color:var(--console-text);border:1px solid var(--console-border);border-radius:6px;padding:8px 11px;min-height:36px;font:600 12px system-ui}
+.map-console #monitor-map .leaflet-control-zoom{align-items:stretch}
+.map-console #monitor-map .console-center{background:#fff;color:#233e50;border:0;border-left:1px solid #ccd5db;border-radius:0;min-height:32px;margin:0;padding:0 10px;font:600 11px system-ui}
+.map-console #monitor-map .console-center:hover{background:#e6eff4;color:#153448}
+.map-console .topmeta{display:flex;align-items:center;gap:8px}
+.map-console .console-header-settings{background:#f1f6f7;color:#294d58;border:1px solid #b8cbd1;border-radius:5px;padding:6px 9px;min-height:32px;font:600 11px system-ui}
+.map-console .console-header-settings:hover{background:#dfeef0;color:#183e48}
+.map-console .console-search{max-width:min(420px,calc(100% - 480px))}
+.monitor-source-panels>details{padding:12px 0;border-bottom:1px solid #d4dfe6}
+.monitor-source-panels>details>summary{font-weight:600;cursor:pointer}
+.monitor-source-panels .monitor-metadata,.monitor-source-panels .map-data-body,.monitor-source-panels #monitor-point{position:static;max-height:none;overflow:visible;width:auto;overflow-wrap:anywhere}
+@media(max-width:1000px){.map-console .console-search{top:58px;left:12px;right:12px;transform:none;max-width:none!important}.map-console .console-left,.map-console .console-right{top:104px}}
+@media(max-width:700px){.map-console .console-map-actions{left:8px;gap:5px}.map-console .console-map-actions button{padding:8px;font-size:11px}.map-console .console-search{left:8px;right:8px}.map-console .console-header-settings{padding:5px 7px;min-height:30px}.map-console .topmeta{gap:5px}}
+.map-console .console-search{width:min(420px,calc(100% - 480px))}
+@media(max-width:1000px){.map-console .console-search{width:auto!important}}
+.map-console #monitor-map .leaflet-control-zoom{margin:0!important}
+
+/* Latest layout: layer switches and layer options both live on the left. */
+.console-layer-row{display:flex;align-items:center;gap:0;flex-shrink:0}
+.console-layer-row>input{width:17px;height:17px;min-width:17px;margin:8px 3px 8px 7px;accent-color:#64c8be;cursor:pointer}
+.console-layer-row>.console-layer-entry{flex:1;min-width:0;width:auto;padding:10px 7px;min-height:42px}
+.console-layer-icon svg{width:23px;height:23px;display:block}
+.console-panel-head .console-back{font:600 11px system-ui;padding:5px 7px;min-height:30px;color:#d9eee9;border:1px solid #4f7380;border-radius:4px}
+.map-console .console-right[data-side=left]{left:12px;right:auto}
+.console-territory-toggles{padding:6px 7px;border:1px solid #36505f;border-radius:5px;color:#d8e7ef}
+.console-territory-toggles>summary{font:600 11px system-ui;cursor:pointer;padding:6px 0}
+.console-territory-toggles .territorial-catalog-filters{display:grid;grid-template-columns:1fr;gap:0}
+.console-territory-toggles label{display:flex!important;align-items:center;gap:7px;min-height:34px;font:500 11px system-ui!important;color:#e5edf2!important;background:transparent!important;padding:4px 0}
+.console-territory-toggles input{width:16px;height:16px;accent-color:#64c8be}
+.console-settlements label{display:flex;gap:8px;align-items:center;min-height:40px}
+.console-settlements button{width:100%;padding:8px}
+.map-console #monitor-section:has(.console-right[data-side=left]:not([hidden])) .leaflet-bottom.leaflet-left{left:375px}
+.map-console #monitor-section:has(.console-right[data-side=left]:not([hidden])) .leaflet-bottom.leaflet-right{right:12px}
+@media(max-width:700px){.map-console .console-right[data-side=left]{left:8px;right:auto;width:calc(100% - 16px)}}

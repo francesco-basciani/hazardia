@@ -1,3 +1,4 @@
+import {locale} from "/i18n.js";
 import {cleanRoom} from '/clean-room.js';
 import {arrangeWorkspace} from '/ui-layout.js?v=1';
 import {resourceEditor} from '/resource-editor.js?v=1';
@@ -7,7 +8,7 @@ import {weatherPanel} from '/weather.js?v=workspace1';
 import {monitoringMap} from '/monitoring.js?v=workspace1';
 import {workbench} from '/workbench.js?v=workspace1';
 import {geographicMaps} from '/map-detail.js?v=regional' ;
-const fmt=v=>typeof v==='number'?Number(v.toFixed(3)).toLocaleString('it-IT'):String(v);const $=id=>document.getElementById(id);const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=v=>typeof v==='number'?Number(v.toFixed(3)).toLocaleString(locale()):String(v);const $=id=>document.getElementById(id);const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let catalog=null,current=[],maps=[],layers=[],pointLayers=[],unitLayers=[],decision=null,generation=0,syncing=false,playing=null,knownCatalog='',lastJobJSON='',research=null,lastCatalogPoll=0;
 arrangeWorkspace();
 let unitEditor=null;
@@ -17,7 +18,7 @@ const bounded=(array,value,n=300)=>{array.push(value);if(array.length>n)array.sp
 function feedback(start,action){requestAnimationFrame(()=>bounded(qa.feedback,{action,ms:performance.now()-start}));}
 function message(id,text,error=false){$(id).textContent=text;$(id).classList.toggle('error',error)}
 async function api(path,body){const response=await fetch(path,{headers:body?{'Content-Type':'application/json','X-Hazardia-Research':'1'}:{},method:body?'POST':'GET',body:body?JSON.stringify(body):undefined});const data=await response.json();if(!response.ok)throw Error(data.code+': '+data.detail);return data}
-function stamp(v){return new Date(v).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' (Roma)'}
+function stamp(v){return new Date(v).toLocaleString(locale(),{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' (Roma)'}
 function setupMaps(){maps=['map-a','map-b'].map(id=>L.map(id,{preferCanvas:true,zoomControl:true,attributionControl:true,scrollWheelZoom:false,keyboard:true}).setView([42.35,13.38],14));
  maps.forEach((m,i)=>{let frameTimes=[],frame=null;function tick(t){frameTimes.push(t);frame=requestAnimationFrame(tick)}m.on('movestart',()=>{frameTimes=[];frame=requestAnimationFrame(tick)});m.on('moveend',()=>{if(frame)cancelAnimationFrame(frame);if(frameTimes.length>2){const ms=frameTimes.at(-1)-frameTimes[0];bounded(qa.mapframes,{map:i,frames:frameTimes.length,elapsed_ms:ms,fps:1000*(frameTimes.length-1)/ms})}});m.on('move',()=>{if(!catalog||syncing||!$('sync').checked)return;syncing=true;maps[1-i].setView(m.getCenter(),m.getZoom(),{animate:false});syncing=false});m.attributionControl.setPrefix('HAZARDIA · Ricerca');m.createPane('satelliteBase');m.getPane('satelliteBase').style.zIndex=190;L.imageOverlay('/assets/satellite.png',[[42.30,13.32],[42.40,13.44]],{opacity:1,interactive:false,pane:'satelliteBase'}).addTo(m).on('load',()=>{if(qa.ready_at===null)qa.ready_at=performance.now()});regionBoundaries(m);eventReferences[i]=eventMarkers(m);pointLayers[i]=L.layerGroup().addTo(m);unitLayers[i]=L.layerGroup().addTo(m);layers[i]=L.layerGroup().addTo(m);});}
 function activeScenarios(){const h=$('hazard').value;if(h==='JOINT'){const fires=catalog.scenarios.filter(s=>s.hazard==='FIRE'),floods=catalog.scenarios.filter(s=>s.hazard==='FLOOD');for(const fire of fires){const flood=floods.find(f=>Math.min(Date.parse(f.valid_until),Date.parse(fire.valid_until))-Math.max(Date.parse(f.valid_from),Date.parse(fire.valid_from))>=600000&&f.reference.weather_hash===fire.reference.weather_hash);if(flood)return [fire,flood];}return [];}return [catalog.scenarios.find(s=>s.id===$('scenario').value)].filter(Boolean)}

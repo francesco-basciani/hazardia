@@ -1,3 +1,4 @@
+import {dateTimeFormatter,numberFormatter} from "/i18n.js";
 import {viewportWeatherState,retainCoveredForecast} from '/viewport-weather-state.js';
 import {weatherAt} from '/weather-interpolation.js';
 import {sampleScalar,sampleVector} from '/wind-particles.js';
@@ -7,7 +8,7 @@ import {checkedForecastTime} from '/weather-clock.js?v=1';
 // One VM cache and acquisition request shared by all synchronized scenario windows.
 // Display-only: no atmospheric field is silently substituted into a physical run.
 const fields={wind:['Vento','m/s',0,20,[92,227,214]],temperature:['Temperatura','°C',-10,40,[245,130,64]],precipitation:['Pioggia nell’ora successiva','mm',0,10,[70,145,245]],rain_probability:['Probabilità di pioggia · prossima ora','%',0,100,[146,212,255]],humidity:['Umidità aria','%',0,100,[67,201,179]],gusts:['Raffica massima nell’ora successiva','m/s',0,30,[202,133,243]],cloud:['Nubi','%',0,100,[208,218,230]],pressure:['Pressione al suolo','hPa',800,1050,[167,145,236]],radiation:['Radiazione media nell’ora successiva','W/m²',0,1000,[255,211,76]]};
-const dates=new Intl.DateTimeFormat('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}),numbers=new Intl.NumberFormat('it-IT',{maximumFractionDigits:1});const clock=at=>dates.format(new Date(at))+' Roma';
+const dates=dateTimeFormatter({timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}),numbers=numberFormatter({maximumFractionDigits:1});const clock=at=>dates.format(new Date(at))+' Roma';
 const number=v=>Number.isFinite(v)?numbers.format(v):'non disponibile';
 export function scenarioWeather(primary){
  const $=id=>document.getElementById(id),layers=new Map(),selected=new Set(['wind','temperature','humidity','precipitation']),reduced=matchMedia('(prefers-reduced-motion: reduce)');

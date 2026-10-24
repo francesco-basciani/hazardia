@@ -1,0 +1,59 @@
+{
+  "run": "layer-options-20261024",
+  "base": "ce77fc8",
+  "runtime": "VM",
+  "status": "PASS",
+  "name": "Incendi e alluvioni",
+  "actual_dom_colors": {
+    "fire": {
+      "fg": [
+        255,
+        224,
+        197
+      ],
+      "bg": [
+        66,
+        46,
+        34
+      ],
+      "contrast": 10.16
+    },
+    "flood": {
+      "fg": [
+        217,
+        237,
+        255
+      ],
+      "bg": [
+        32,
+        62,
+        89
+      ],
+      "contrast": 9.24
+    },
+    "unchecked": {
+      "fg": [
+        215,
+        228,
+        237
+      ],
+      "bg": [
+        25,
+        45,
+        59
+      ],
+      "contrast": 10.95
+    }
+  },
+  "height_px": 44,
+  "checkbox_off_on": "PASS",
+  "mobile": {
+    "width": 375,
+    "document_width": 375
+  },
+  "syntax": "PASS",
+  "not_run": [
+    "native simulations",
+    "dedicated Safari"
+  ]
+}

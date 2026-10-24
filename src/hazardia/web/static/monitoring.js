@@ -1,3 +1,5 @@
+import {locale} from "/i18n.js";
+import {compactMapCredits} from '/map-credits.js';
 import {scheduledTiles} from '/scheduled-tiles.js';
 import {monitorWorkbench} from '/monitor-workbench.js';
 import {basemapController} from '/basemap-controller.js';
@@ -13,14 +15,14 @@ import {regionalWind} from '/wind-particles.js?v=workspace1';
 const $=id=>document.getElementById(id);
 const escape=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const names={FIRE:'Incendio',FLOOD:'Alluvione'};
-function date(v){return new Date(v).toLocaleString('it-IT',{timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})+' · Roma';}
+function date(v){return new Date(v).toLocaleString(locale(),{timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})+' · Roma';}
 export function monitoringMap(initial,feedback){
  let catalog=initial,context=[],selected=null,failures=0,visible=true,labelsTimer,weatherRecord=null,weatherForecast=null,workbenchUI=null;
  const map=L.map('monitor-map',{preferCanvas:true,scrollWheelZoom:false,keyboard:true,worldCopyJump:false}).setView([42.35,13.38],8);
  const territoryHost=document.createElement('div');map.getContainer().parentElement.append(territoryHost);const territory=territorialLayers({api:async(path,body)=>{const r=await fetch(path,{method:body?'POST':'GET',headers:body?{'Content-Type':'application/json','X-Hazardia-Research':'1'}:{},body:body?JSON.stringify(body):undefined});const v=await r.json();if(!r.ok)throw Error(v.detail);return v;},host:territoryHost,monitor:true});territory.add(map);
  window.addEventListener('hazardia-map-resize',()=>map.invalidateSize({pan:false}));
  map.getContainer().dataset.zoom=String(map.getZoom());map.getContainer().dataset.center=JSON.stringify([map.getCenter().lat,map.getCenter().lng]);map.on('moveend zoomend',()=>{map.getContainer().dataset.zoom=String(map.getZoom());map.getContainer().dataset.center=JSON.stringify([map.getCenter().lat,map.getCenter().lng]);});
- map.setMinZoom(2);map.setMaxZoom(20);map.setMaxBounds([[-85,-180],[85,180]]);map.options.maxBoundsViscosity=1;const worldZoom=()=>map.setMinZoom(Math.max(2,Math.ceil(Math.log2(Math.max(256,map.getSize().x)/256))));worldZoom();map.on('resize',worldZoom);map.attributionControl.setPrefix('HAZARDIA · Ricerca');
+ map.setMinZoom(2);map.setMaxZoom(20);map.setMaxBounds([[-85,-180],[85,180]]);map.options.maxBoundsViscosity=1;const worldZoom=()=>map.setMinZoom(Math.max(2,Math.ceil(Math.log2(Math.max(256,map.getSize().x)/256))));worldZoom();map.on('resize',worldZoom);map.attributionControl.setPrefix('');compactMapCredits(map);
  map.createPane('monitorSatellite');map.getPane('monitorSatellite').style.zIndex=190;
  const satellite=L.imageOverlay('/assets/satellite.png',[[42.30,13.32],[42.40,13.44]],{opacity:1,pane:'monitorSatellite',attribution:'Contains modified Copernicus Sentinel data2024'});
  // Keep flood below fire independent of filter/case toggle order.
@@ -47,7 +49,7 @@ export function monitoringMap(initial,feedback){
  function draw(){
   for(const kind of ['FIRE','FLOOD']){const key=kind.toLowerCase(),s=chosen(kind),enabled=$('monitor-'+key).checked;products[kind].clearLayers();$('monitor-'+key+'-case').disabled=!enabled||!s;const info=$('monitor-'+key+'-info');
    if(!s){info.textContent='Nessun risultato disponibile nel catalogo.';continue;}
-   const legend=kind==='FIRE'?'Arancio · probabilità di combustione 0–1':(s.maximum===0?'Nessun allagamento mappato dal modello; non è una garanzia di sicurezza':'Blu · profondità massima 0–'+Number(s.maximum).toLocaleString('it-IT',{maximumFractionDigits:3})+' m');
+   const legend=kind==='FIRE'?'Arancio · probabilità di combustione 0–1':(s.maximum===0?'Nessun allagamento mappato dal modello; non è una garanzia di sicurezza':'Blu · profondità massima 0–'+Number(s.maximum).toLocaleString(locale(),{maximumFractionDigits:3})+' m');
    info.textContent=(enabled?'Visibile':'Nascosto')+' · '+legend+'\n'+date(s.valid_from)+' → '+date(s.valid_until)+'\n'+(kind==='FIRE'?'PROPAGATOR':'HMC + REFlEx')+' · '+(s.mode==='RESEARCH_FORECAST'?'METEO REALE · ':'STORICO · ')+s.positive_cells+' celle positive · non calibrato';
    if(!enabled||!$('monitor-simulated').checked)continue;const opacity=Number($('monitor-opacity').value)/100,pane=kind==='FIRE'?'monitorFire':'monitorFlood';
    if(s.overlay)L.imageOverlay(s.overlay,s.bounds,{opacity,pane}).addTo(products[kind]);

@@ -1,0 +1,62 @@
+[
+  {
+    "command": "node tests/browser/i18n.mjs",
+    "exit_code": 0,
+    "stdout": "PASS 28 bilingual checks: Italian default, exact/composed messages, safety meaning, immutable IDs/numbers, dynamic locale formatters, fallback and all five entry points; 1535 catalogue entries\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/browser/territorial-math.mjs",
+    "exit_code": 0,
+    "stdout": "PASS7 solar/intersection checks; geometric screening only, no aviation qualification\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/browser/weather-render-plan.mjs",
+    "exit_code": 0,
+    "stdout": "PASS 6008 checks: exact bilinear equivalence, no extrapolation, changing values, geometry reuse, pan invalidation and separate wind plans\nPASS 6013 total checks including retained DOM nodes, changed values and missing-data clearing\nPASS 6023 total checks including independent cloud/rain compositing and dry-cell semantics\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/browser/cloud-probability.mjs",
+    "exit_code": 0,
+    "stdout": "PASS 12 checks: distinct cloud colours, stronger transparent alpha, clear sky, toggles, probability interpolation and missing legacy data\nPASS 31 total weather-semantics checks: real probability/rain independence, neutral clouds, combination and absent data\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/browser/monitor-playback.mjs",
+    "exit_code": 0,
+    "stdout": "PASS shared playback: continuous clock, no weather-select dependency, pause/resume, reverse/seek, inactive view, no interpolation across gaps and empty horizon\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/browser/fire-comparison-status.mjs",
+    "exit_code": 0,
+    "stdout": "PASS 20 assertions: horizon, honest verdicts and sampled growth without invented interpolation\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/browser/rain-series.mjs",
+    "exit_code": 0,
+    "stdout": "PASS 14 rain-series checks\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/browser/rain-clarity.mjs",
+    "exit_code": 0,
+    "stdout": "PASS 18 checks: rain quantity vs probability, transparent dry cells, visible intensity, separate cloud/rain modes and coverage without overlays\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/browser/map-symbols.mjs",
+    "exit_code": 0,
+    "stdout": "{\"status\":\"PASS\",\"checks\":25,\"scope\":\"symbol meaning, actual style/legend identity, category separation, geometry and simulated contact semantics\"}\n",
+    "stderr": ""
+  },
+  {
+    "command": "node tests/web/observed-layer-model.test.mjs",
+    "exit_code": 0,
+    "stdout": "PASS18 display-filter checks (not physical qualification)\nPASS magnitude radius ordering, six exact colour boundaries, missing/nonfinite values, bounds and negative magnitudes; display scale only\nPASS aerial obstacles preset: all overhead voltages, supports, underground/unknown placement excluded; no flight clearance claim\n",
+    "stderr": ""
+  }
+]

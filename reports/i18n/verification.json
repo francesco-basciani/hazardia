@@ -1,0 +1,61 @@
+{
+  "run_id": "i18n-20261024",
+  "base_commit": "4a1243ad20f9f315c332f9ace7660d4d23ee89d0",
+  "reviewer": "Codex self-check",
+  "catalogue_entries": 1535,
+  "entry_points": [
+    "/",
+    "/fire-studio.html",
+    "/traffic-studio.html",
+    "/physical-fire.html",
+    "/map-lab.html"
+  ],
+  "browser_verified": [
+    "Monitoring main UI and layer panel",
+    "English choice retained on reload",
+    "Data and sources",
+    "Info and help",
+    "embedded wildfire studio EN to IT and back without reload",
+    "UI scenario IDs, names, selected value, hour and checkboxes unchanged",
+    "geographic and source labels protected",
+    "mobile 375x812"
+  ],
+  "mobile": {
+    "document_width": 375,
+    "scroll_width": 375,
+    "map_top": 125,
+    "language_select": {
+      "x": 267,
+      "right": 365,
+      "height": 36
+    },
+    "layer_options": {
+      "x": 8,
+      "width": 350,
+      "title": "Weather and observations"
+    },
+    "navigation_cell_width": 87.25,
+    "navigation_scroll_width": 85
+  },
+  "console_errors": 0,
+  "not_run": [
+    "physical Safari session",
+    "exhaustive provider/error branches",
+    "legacy full physical and traffic/3D end-to-end flows",
+    "fresh native physical jobs",
+    "complete frame-rate/memory benchmark"
+  ],
+  "preservation": "preservation.json",
+  "tests": "client-tests.json",
+  "screenshots": [
+    "desktop-en.png",
+    "mobile-en.png"
+  ],
+  "failures_corrected": [
+    "Node fixture initially could not resolve new absolute locale import",
+    "proper source names and Open-Meteo initially hit fragment substitutions; protected",
+    "UI text copied from translated labels initially failed Italian restore; canonical source reads",
+    "mobile English header initially overlapped; compact grid and wrapping added",
+    "mobile layer activation also opened a map inspection; button and map-inspection event guards added"
+  ]
+}

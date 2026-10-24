@@ -1,3 +1,4 @@
+import {withI18n} from "./i18n-fixture.mjs";
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 class Element extends EventTarget{
@@ -10,7 +11,7 @@ globalThis.document=Object.assign(new EventTarget(),{hidden:false,createElement:
 globalThis.window=Object.assign(new EventTarget(),{frameElement:null});
 let id=0;const frames=new Map();globalThis.requestAnimationFrame=fn=>{frames.set(++id,fn);return id;};globalThis.cancelAnimationFrame=id=>frames.delete(id);
 const step=t=>{const callbacks=[...frames.values()];frames.clear();callbacks.forEach(fn=>fn(t));};
-const {forecastPlayback}=await import('data:text/javascript;base64,'+Buffer.from(readFileSync('src/hazardia/web/static/forecast-playback.js','utf8')).toString('base64'));
+const {forecastPlayback}=await import('data:text/javascript;base64,'+Buffer.from(withI18n(readFileSync('src/hazardia/web/static/forecast-playback.js','utf8'))).toString('base64'));
 const times=['2026-10-23T14:00:00Z','2026-10-23T15:00:00Z','2026-10-23T16:00:00Z'];let current=times[0],active=true;const ticks=[];
 const select=new Element('select'),mount=new Element('div');const player=forecastPlayback({select,mount,getTimes:()=>times,getCurrent:()=>current,active:()=>active,onTime:(at,phase)=>{current=at;ticks.push({at,phase});}});
 const [title,back,play,next,slider]=player.element.children;

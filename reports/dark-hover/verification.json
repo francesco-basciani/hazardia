@@ -1,0 +1,32 @@
+{
+  "run": "dark-hover-20261024",
+  "base": "f1941c2",
+  "runtime": "Linux VM",
+  "status": "PASS",
+  "actual_browser_checks": {
+    "inspect_center": {
+      "hover": true,
+      "foreground": "#ffffff",
+      "background": "#2b5268"
+    },
+    "fit_source_coverage": {
+      "focus_visible": true,
+      "foreground": "#ffffff",
+      "background": "#2b5268"
+    },
+    "selected_layer": {
+      "hover": true,
+      "aria_pressed": true,
+      "foreground": "#ffffff",
+      "background": "#326575"
+    }
+  },
+  "contrast": {
+    "hover_focus": 8.37,
+    "selected_hover": 6.45
+  },
+  "not_run": [
+    "physical simulations",
+    "dedicated Safari"
+  ]
+}

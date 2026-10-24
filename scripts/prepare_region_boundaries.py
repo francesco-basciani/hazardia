@@ -27,7 +27,9 @@ def main():
   names=[n for n in z.namelist() if Path(n).name.startswith('Reg01012026_g_WGS84.')]
   if not names or sum(z.getinfo(n).file_size for n in names)>8*1024**2:raise RuntimeError('Missing/oversized region shapefile')
   for n in names:(cache/Path(n).name).write_bytes(z.read(n))
- with fiona.open(cache/'Reg01012026_g_WGS84.shp') as src:
+ # The pinned Istat DBF stores UTF-8 without a CPG sidecar. GDAL's default
+ # fallback misreads accented bilingual names as Latin-1.
+ with fiona.open(cache/'Reg01012026_g_WGS84.shp',encoding='UTF-8') as src:
   print('SOURCE',src.crs,dict(src.schema));project=Transformer.from_crs(src.crs,'EPSG:4326',always_xy=True).transform;features=[]
   for f in src:
    props=dict(f['properties']);g=shape(f['geometry'])
@@ -36,7 +38,7 @@ def main():
    if not geo.is_valid:raise RuntimeError('Invalid projected region')
    features.append(dict(type='Feature',properties=dict(code=str(int(props['COD_REG'])),name=props['DEN_REG'],label_point=[label.y,label.x]),geometry=mapping(geo)))
  if len(features)!=20 or {f['properties']['code'] for f in features}!={str(i) for i in range(1,21)}:raise RuntimeError('Expected all20Italian regions')
- output=dict(type='FeatureCollection',features=features,metadata=dict(source=source,territory='italy',meaning='Administrative boundaries for statistical purposes; generalized source; display only, no jurisdiction/dispatch inference',attribution='© Istat · Confini amministrativi2026 · CC BY4.0'))
+ output=dict(type='FeatureCollection',features=features,metadata=dict(source=source,territory='italy',meaning='Administrative boundaries for statistical purposes; generalized source; display only, no jurisdiction/dispatch inference',attribution='© Istat · Confini amministrativi2026 · CC BY4.0',source_text_encoding='UTF-8'))
  dest=r/'web-assets/administrative-regions.json';data=json.dumps(output,ensure_ascii=False,separators=(',',':')).encode()
  if len(data)>4*1024**2:raise RuntimeError('Display asset exceeds4MiB')
  dest.write_bytes(data);result=dict(status='PASS',regions=20,bytes=len(data),sha256=hashlib.sha256(data).hexdigest(),source=source,source_crs=str(src.crs),output_crs='EPSG:4326',fiona=fiona.__version__)

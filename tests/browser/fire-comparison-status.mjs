@@ -1,6 +1,7 @@
+import {withI18n} from "./i18n-fixture.mjs";
 import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
-const {propagationStatus,comparisonVerdict,growthReadout}=await import('data:text/javascript;base64,'+readFileSync('src/hazardia/web/static/fire-comparison-status.js').toString('base64'));
+const {propagationStatus,comparisonVerdict,growthReadout}=await import('data:text/javascript;base64,'+Buffer.from(withI18n(readFileSync('src/hazardia/web/static/fire-comparison-status.js','utf8'))).toString('base64'));
 const series={options:{duration_s:259200,realizations:8},frames:[{hour:1,queued_front_events:8,realizations_with_front:4},{hour:72,queued_front_events:2,realizations_with_front:3}]};
 assert.equal(propagationStatus(series,0),'');assert.equal(propagationStatus(series,1),'');
 assert.match(propagationStatus(series,72),/fine previsione 72 h.*3\/8/);

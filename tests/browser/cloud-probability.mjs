@@ -1,8 +1,9 @@
+import {withI18n} from "./i18n-fixture.mjs";
 import {readFileSync} from 'node:fs';import assert from 'node:assert/strict';
 const uri=s=>'data:text/javascript;base64,'+Buffer.from(s).toString('base64');
-const sampler=uri(readFileSync('src/hazardia/web/static/weather-sampling.js','utf8'));
-const display=await import(uri(readFileSync('src/hazardia/web/static/weather-display.js','utf8').replace("'/weather-sampling.js'",JSON.stringify(sampler))));
-const {weatherAt}=await import(uri(readFileSync('src/hazardia/web/static/weather-interpolation.js','utf8')));
+const sampler=uri(withI18n(readFileSync('src/hazardia/web/static/weather-sampling.js','utf8')));
+const display=await import(uri(withI18n(readFileSync('src/hazardia/web/static/weather-display.js','utf8')).replace("'/weather-sampling.js'",JSON.stringify(sampler))));
+const {weatherAt}=await import(uri(withI18n(readFileSync('src/hazardia/web/static/weather-interpolation.js','utf8'))));
 let checks=0;const check=(v)=>{assert.ok(v);checks++;};
 check(display.cloudOpacity(0)===0);check(display.cloudOpacity(100)>.34&&display.cloudOpacity(100)<.75);
 check(display.cloudOpacity(25)<display.cloudOpacity(50)&&display.cloudOpacity(50)<display.cloudOpacity(75));

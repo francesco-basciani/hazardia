@@ -1,0 +1,55 @@
+{
+  "status": "NOT_INTEGRATED_VERSION_ALIGNMENT_UNVERIFIED",
+  "current_names": [
+    "Iglesiente",
+    "Campidano",
+    "Bacini Montevecchio - Pischilappiu",
+    "Bacini Flumendosa - Flumineddu",
+    "Bacino del Tirso",
+    "Gallura",
+    "Logudoro"
+  ],
+  "comparison": [
+    {
+      "name": "Campidano",
+      "boundary_hausdorff_m": 8698.592485379226,
+      "area_relative_difference": 0.027270705528002866,
+      "regional_valid": true,
+      "official_valid": true
+    },
+    {
+      "name": "Flumendosa-Flumineddu",
+      "status": "NAME_NOT_MATCHED"
+    },
+    {
+      "name": "Gallura",
+      "boundary_hausdorff_m": 11792.029180213482,
+      "area_relative_difference": 0.01112945866598159,
+      "regional_valid": true,
+      "official_valid": false
+    },
+    {
+      "name": "Iglesiente",
+      "boundary_hausdorff_m": 7133.645415553663,
+      "area_relative_difference": 0.0269226421959083,
+      "regional_valid": true,
+      "official_valid": false
+    },
+    {
+      "name": "Montevecchio-Pischilappiu",
+      "status": "NAME_NOT_MATCHED"
+    },
+    {
+      "name": "Tirso",
+      "status": "NAME_NOT_MATCHED"
+    },
+    {
+      "name": "Logudoro",
+      "boundary_hausdorff_m": 11792.029180213482,
+      "area_relative_difference": 0.052085637213824705,
+      "regional_valid": true,
+      "official_valid": true
+    }
+  ],
+  "metadata_reference": "Regional catalogue dates this resource2015; one name differs; no assumption of 2026 equivalence"
+}

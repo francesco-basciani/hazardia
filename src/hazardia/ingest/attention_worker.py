@@ -95,6 +95,49 @@ def qualify_footprints(geo):
             p['source_level']=p['level'];p['level']=None;p['geometry_warning']='Unqualified source or display geometry; classification withheld on this footprint'
     return geo
 
+def official_shapes(archive,layer):
+    """Read bounded, same-bulletin official SHP; never repair coordinates."""
+    import zipfile,fiona
+    from pyproj import CRS
+    with zipfile.ZipFile(archive) as z:
+        if sum(i.file_size for i in z.infolist())>32*1024**2:raise ValueError('SHP archive expansion exceeds32MiB')
+        if len(z.infolist())>32:raise ValueError('Unexpected SHP archive members')
+        if not all(layer+suffix in z.namelist() for suffix in ['.shp','.shx','.dbf','.prj']):raise ValueError('Missing official SHP components')
+    rows=[]
+    with fiona.open('zip://'+str(Path(archive).resolve()),layer=layer) as src:
+        if not CRS(src.crs).equals(CRS.from_epsg(4326),ignore_axis_order=True):raise ValueError('Official SHP CRS differs')
+        if not 50<=len(src)<=250:raise ValueError('Unexpected SHP zone count')
+        for feature in src:
+            rows.append(dict(type='Feature',geometry=dict(feature['geometry']),properties=dict(feature['properties'])))
+    return rows
+
+def recover_official_shapes(geo,rows,source):
+    """Only replace invalid footprints with a valid, matched official counterpart."""
+    from shapely.geometry import shape,mapping
+    from collections import Counter
+    target=[f['properties']['name'] for f in geo['features']];names=[r['properties']['Nome_zona'] for r in rows]
+    if Counter(target)!=Counter(names) or any(v!=1 for v in Counter(names).values()):raise ValueError('SHP zone names do not match uniquely')
+    by_name={r['properties']['Nome_zona']:r for r in rows};recovered=0
+    fields={'Per rischio idraulico':'Idraulico','Per rischio temporali':'Temporali','Per rischio idrogeologico':'Idrogeo'}
+    for f in geo['features']:
+        p=f['properties'];row=by_name[p['name']]
+        if any(level(row['properties'].get(field))!=p['levels'][key] for key,field in fields.items()):raise ValueError('SHP warning levels differ from bulletin')
+    for f in geo['features']:
+        original=shape(f['geometry'])
+        if original.is_valid:continue
+        p=f['properties'];row=by_name[p['name']];candidate=shape(row['geometry'])
+        if candidate.is_empty or not candidate.is_valid:continue
+        if candidate.geom_type not in ('Polygon','MultiPolygon') or max(abs(a-b) for a,b in zip(original.bounds,candidate.bounds))>.002:continue
+        p.update(topology_geometry_valid=False,geometry_source='OFFICIAL_SHP_SAME_BULLETIN',geometry_source_url=source,official_zone_code=row['properties']['Zona_all'])
+        f['geometry']=mapping(candidate);recovered+=1
+    return recovered
+
+def geometry_coverage(geo):
+    features=geo['features'];missing=[f['properties']['name'] for f in features if f['properties'].get('geometry_warning')]
+    return dict(geometry_unavailable_zones=missing,geometry_qualified_zones=len(features)-len(missing),
+                bulletin_known_zones=sum(all(v is not None for v in f['properties']['levels'].values()) for f in features),
+                recovered_geometry_zones=sum(f['properties'].get('geometry_source')=='OFFICIAL_SHP_SAME_BULLETIN' for f in features))
+
 def dpc(acq,profile):
     from shapely.geometry import shape,mapping
     repo=profile['dpc_repository'];commits=acq.js(DPC+repo+'/commits?path=files&per_page=1','dpc-head.json')
@@ -107,16 +150,25 @@ def dpc(acq,profile):
     bulletin=acq.js(prefix+'files/'+ident+'.json','dpc-bulletin.json')
     stamp=dt.datetime.strptime(ident,'%Y%m%d_%H%M').replace(tzinfo=ZoneInfo('Europe/Rome'))
     issued_at=stamp.astimezone(dt.timezone.utc).isoformat().replace('+00:00','Z')
-    products=[]
+    products=[];shape_archive=None;shape_error=None
+    shape_url=prefix+'files/shp/'+ident+'_shp.zip'
     for offset,key in enumerate(['today','tomorrow']):
         # Build pinned paths; ignore arbitrary URLs and all untrusted bulletin HTML.
         path='files/topojson/'+ident+'_'+key+'.json'
         geo=topology(acq.js(prefix+path,'dpc-'+key+'.json'))
+        from shapely.geometry import shape
+        if any(not shape(f['geometry']).is_valid for f in geo['features']):
+            try:
+                if shape_archive is None:
+                    acq.fetch(shape_url,'dpc-official-shapes.zip',8*1024**2);shape_archive=acq.folder/'dpc-official-shapes.zip'
+                recover_official_shapes(geo,official_shapes(shape_archive,ident+'_'+key),shape_url)
+            except Exception as e:shape_error=type(e).__name__+': '+str(e)[:180]
         qualify_footprints(geo)
         valid=(stamp+dt.timedelta(days=offset)).date().isoformat()
         name='dpc-'+valid+'.geojson';(acq.folder/name).write_text(json.dumps(geo,separators=(',',':')))
         end=dt.datetime.combine(stamp.date()+dt.timedelta(days=offset+1),dt.time.min,ZoneInfo('Europe/Rome'))
-        products.append(dict(day=valid,file=name,valid_until=end.astimezone(dt.timezone.utc).isoformat().replace('+00:00','Z'),zones=len(geo['features']),unknown_zones=sum(f['properties']['level'] is None for f in geo['features']),attention_zones=sum(f['properties']['level'] is not None and f['properties']['level']>0 for f in geo['features'])))
+        products.append(dict(day=valid,file=name,valid_until=end.astimezone(dt.timezone.utc).isoformat().replace('+00:00','Z'),zones=len(geo['features']),unknown_zones=sum(f['properties']['level'] is None for f in geo['features']),attention_zones=sum(f['properties']['level'] is not None and f['properties']['level']>0 for f in geo['features']),**geometry_coverage(geo)))
+        if shape_error:products[-1]['geometry_recovery_error']=shape_error
     return dict(provider='Dipartimento della Protezione Civile',kind='OFFICIAL_BULLETIN',license='CC-BY-4.0',source_url='https://github.com/'+repo,issued_at=issued_at,bulletin_metadata_date=bulletin.get('date'),name=bulletin.get('name',ident),revision=head,products=products)
 
 def effis(acq,profile,day):
@@ -195,7 +247,7 @@ def run(folder,profile_path):
             if (acq.folder/product['file']).exists():product=territorialize(acq,product,sources.get('dpc',{}))
             products.append(product)
         except Exception as e:errors.append(dict(day=day,error=type(e).__name__+': '+str(e)[:240]))
-    sources['effis']=dict(status='AVAILABLE' if products and not errors else 'PARTIAL' if products else 'UNAVAILABLE',provider='EFFIS / Copernicus EMS · Météo-France',kind='FIRE_WEATHER_DANGER_FORECAST',license='CC-BY-4.0',source_url='https://forest-fire.emergency.copernicus.eu/about-effis/technical-background/fire-danger-forecast',issued_at=None,issued_at_status='NOT_SUPPLIED_BY_WMS',native_resolution_km=profile['native_resolution_km'],sampling_grid_deg=.1,products=products,errors=errors,bounds=profile['bounds'],zero_policy='Zero/nonfinite is unknown: WMS does not distinguish missing coverage from true zero')
+    sources['effis']=dict(status='AVAILABLE' if products and not errors and all(p.get('spatial_support')=='DPC_METEO_HYDRO_ZONE' and not p.get('unknown_zones') for p in products) else 'PARTIAL' if products else 'UNAVAILABLE',provider='EFFIS / Copernicus EMS · Météo-France',kind='FIRE_WEATHER_DANGER_FORECAST',license='CC-BY-4.0',source_url='https://forest-fire.emergency.copernicus.eu/about-effis/technical-background/fire-danger-forecast',issued_at=None,issued_at_status='NOT_SUPPLIED_BY_WMS',native_resolution_km=profile['native_resolution_km'],sampling_grid_deg=.1,products=products,errors=errors,bounds=profile['bounds'],zero_policy='Zero/nonfinite is unknown: WMS does not distinguish missing coverage from true zero')
     local=max((r['retrieved_local_epoch'] for r in acq.receipts),default=time.time());ref=acq.reference
     result=dict(schema_version='0.1.0',profile=profile['id'],sources=sources,receipts=acq.receipts,download_bytes=acq.total,local_epoch=local,reference_epoch=ref,clock_offset_s=None if ref is None else ref-local,acquired_at=dt.datetime.fromtimestamp(ref or local,dt.timezone.utc).isoformat().replace('+00:00','Z'),missing=['Live satellite hotspots','Radar / rain and river gauges','Qualified soil saturation','Local fuel and vulnerability inventories','Validated local impact-risk model'],qualification='RESEARCH_SITUATIONAL_AWARENESS_NOT_DISPATCH')
     result['files']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in folder.iterdir() if p.is_file()}

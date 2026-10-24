@@ -1,3 +1,4 @@
+import {numberFormatter} from "/i18n.js";
 // Display-only bilinear samples: denser labels never increase model resolution.
 import {sampleScalar,screenSamplePlan,plannedScalar} from '/weather-sampling.js';
 export const rainClasses=[
@@ -27,7 +28,7 @@ export function paintRain(ctx,map,field,record,{rain=true,cloud=false,probabilit
  ctx.putImageData(image,0,0);ctx.canvas.dataset.wetPixels=String(wet);ctx.canvas.dataset.cloudPixels=String(cloudy);ctx.canvas.dataset.probabilityPixels=String(probable);return covered/Math.max(1,w*h);
 }
 export const weatherViews={probability_cloud:{label:'Probabilità pioggia e nuvole',fields:['rain_probability','cloud'],unit:'Probabilità pioggia · %; copertura nuvolosa · %'},rain_cloud:{label:'Pioggia e copertura nuvolosa',fields:['precipitation','cloud'],unit:'Pioggia · mm prossima ora; copertura nuvolosa · %'},overview:{label:'Quadro meteo',fields:['temperature','humidity','precipitation'],wind:true,unit:'Temperatura · UR · vento · pioggia'},rain:{label:'Pioggia prevista',fields:['precipitation'],unit:'mm nella prossima ora'},cloud:{label:'Nuvole previste',fields:['cloud'],unit:'Copertura nuvolosa · %'},wind:{label:'Vento',fields:[],unit:'Vento a 10 m · m/s'},temperature:{label:'Temperatura',fields:['temperature'],unit:'Temperatura a 2 m · °C'},humidity:{label:'Umidità',fields:['humidity'],unit:'Umidità relativa · %'},rain_probability:{label:'Probabilità di pioggia',fields:['rain_probability'],unit:'Probabilità >0,1 mm · prossima ora · %'}};
-const numbers=new Intl.NumberFormat('it-IT',{maximumFractionDigits:1});const n=v=>numbers.format(v);
+const numbers=numberFormatter({maximumFractionDigits:1});const n=v=>numbers.format(v);
 export function rainReading(v){return !Number.isFinite(v)?'n/d':v<.1?'<0,1 mm':n(v)+' mm';}
 const short={temperature:['','°C'],humidity:['UR','%'],gusts:['Raff.','m/s'],cloud:['Nubi','%'],rain_probability:['Prob. pioggia','%'],pressure:['','hPa'],radiation:['Sole','W/m²'],precipitation:['Pioggia','mm']};
 export function weatherLabels(host,map,field,record,keys){

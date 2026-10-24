@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "before": "snapshot-705824c022904e18a20a9a6e31208bea",
+  "after": "snapshot-88c5cfb98c2746a4a3c15749679ca258",
+  "products": [
+    {
+      "day": "2026-10-23",
+      "geometry_unavailable_zones": [
+        "Bacino di Levante / Carso",
+        "Salento",
+        "Iglesiente",
+        "Gallura"
+      ],
+      "geometry_qualified_zones": 183,
+      "bulletin_known_zones": 187,
+      "recovered_geometry_zones": 7
+    },
+    {
+      "day": "2026-10-24",
+      "geometry_unavailable_zones": [
+        "Bacino di Levante / Carso",
+        "Salento",
+        "Iglesiente",
+        "Gallura"
+      ],
+      "geometry_qualified_zones": 183,
+      "bulletin_known_zones": 187,
+      "recovered_geometry_zones": 7
+    }
+  ],
+  "acquired_at": "2026-10-24T11:39:03Z",
+  "note": "All official textual classifications retained; remaining invalid boundaries explicitly unavailable"
+}

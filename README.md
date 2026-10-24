@@ -177,3 +177,7 @@ Nel pannello sinistro trovi **Traffico simulato**, **Terremoti osservati** e **R
 
 ## Caricamento degli sfondi
 Le immagini vengono caricate progressivamente, con al massimo4richieste attive per documento e cancellazione delle viste abbandonate. Il satellite mantiene le tessere riuscite e usa cartografia di supporto dove necessario; il ritaglio Sentinel locale si seleziona esplicitamente. Cache nella VM64MiB per fonte, quote/TTL invariati. Ricaricare la pagina per attivare il nuovo gestore. [Prove, misure e limiti](reports/OTTIMIZZAZIONE-CARICAMENTO-IMMAGINI-20261023.md).
+
+
+## Italiano / English
+La dashboard usa italiano come lingua predefinita. Il selettore **Italiano / English** nella barra superiore cambia lingua senza ricaricare scenari e salva la preferenza nel browser; gli studi incorporati seguono la stessa scelta. Nomi assegnati agli scenari, toponimi e testi ufficiali delle fonti restano originali e riconoscibili. [Implementazione e verifiche](reports/ITALIANO-E-INGLESE-20261024.md).

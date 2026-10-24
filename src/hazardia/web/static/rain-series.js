@@ -1,7 +1,8 @@
+import {locale} from "/i18n.js";
 /* Forecast amounts per complete hour, never observations or alert thresholds. */
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const number=v=>v.toLocaleString('it-IT',{maximumFractionDigits:2});
-const date=v=>new Date(v).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+const number=v=>v.toLocaleString(locale(),{maximumFractionDigits:2});
+const date=v=>new Date(v).toLocaleString(locale(),{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
 export function seriesModel(rows){
  const points=(Array.isArray(rows)?rows:[]).slice(0,48).map(r=>({...r,known:r.status==='AVAILABLE'&&Number.isFinite(r.mean_mm)&&r.mean_mm>=0}));
  const available=points.filter(r=>r.known),peak=available.reduce((best,r)=>!best||r.mean_mm>best.mean_mm?r:best,null);

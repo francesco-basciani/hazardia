@@ -1,0 +1,13 @@
+{
+  "files_checked": 311,
+  "changed_files": [],
+  "jobs": 95,
+  "jobs_identical": true,
+  "engine_hash_mismatches": [],
+  "versions": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "fiona": "1.8.21",
+    "shapely": "1.8.0",
+    "pyproj": "3.3.0"
+  }
+}

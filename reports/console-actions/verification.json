@@ -1,0 +1,27 @@
+{
+  "run": "console-actions-20261024",
+  "base": "98ef7cb",
+  "status": "PASS",
+  "runtime": "Linux VM",
+  "browser_checks": {
+    "rain_next_to_layers": true,
+    "rain_open_close": true,
+    "center_in_zoom_control": true,
+    "center_result_zoom": 14,
+    "settings_next_to_connection": true,
+    "settings_from_sources_returns_to_map": true,
+    "three_panels_in_sources": true,
+    "dates_metadata_populated": true,
+    "mobile_document_width": 375,
+    "tablet_document_width": 768,
+    "mobile_search_right": 367,
+    "mobile_actions_right": 181.55,
+    "mobile_zoom_left": 247.09,
+    "mobile_header_settings_right": 365,
+    "console_errors": []
+  },
+  "not_run": [
+    "native simulations",
+    "dedicated Safari"
+  ]
+}

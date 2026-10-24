@@ -593,3 +593,51 @@ Run quake-opening-20261024/basebac2794+dirty. PASS: fonteINGV216eventi nella vis
 
 ## Sismi, meteo distinto e audit dati —24ottobre2026
 Run map-data-semantics-20261024/base76a55bd+dirty. PASSFR-MAP-DATA-SEMANTICS-06:cerchi e coloriM/legenda, superficie quantità o probabilità, nuvole indipendenti neutre. PASS17suiteclient/UIreale/mobile375, integrità5asset,311file/95job/pinCIMA invariati. Fonti:meteoFRESH,215INGV,3976pluviometrifreschi dopo refresh, radar24ottobre08:40UTC,2Sentinelrecenti, rete192oggetti con3linee150kV/2sottostazioni132–150kV,1221segmentitraffico;187zone/77accumuli24hcompleti sulcampo. BLOCKEDvento fineCACHE_FULL/fonteFIRMS/idrometri/perimetriosservati/esposizionequalificata/ATcertificata, M5–M7 invariati. NOTRUNnuovafisica/Safari/caricocompleto/nuoveacquisizionidiognicategoriaOSM. Report MAPPA-DATI-MAGNITUDO-E-METEO-20261024, prossimo:risolvere archiviazione vento fine e fonti/qualifiche mancanti senza false disponibilità.
+
+
+## Info e attribuzioni compatte —24ottobre2026
+PASS UI mirata: barra estesa nel Monitoraggio collassabile dopo interazione o5secondi; accesso Info e licenze sulla mappa e Info e guida nella navigazione. Attribuzioni Leaflet sincronizzate nella pagina Info, senza alterare fonti, modelli o workspace. Verifica: reports/INFO-E-LICENZE-20261024.md.
+
+
+## Cavi aerei e tralicci —24ottobre2026
+PASS UI `aerial-power-20261024`: voce semplice a sinistra, attivazione/acquisizione al primo accesso, preset che include linee aeree di ogni tensione e sostegni; dettagli tecnici richiudibili a destra, comando Inquadra cavi acquisiti. Esclusi interrati, posa sconosciuta e sottostazioni nel preset. Tensione sconosciuta distinguibile, posa aerea anche dedotta dal tipo OSM line/minor_line: nessuna certificazione di esposizione/isolamento elettrico, quota o clearance. PASS test filtro e UI VM (189 elementi selezionati su192 acquisiti, rete locale parziale). Nessun coupling a ottimizzatore o simulatori. NOT RUN: verifica operativa/ostacoli certificati, fuori ambito. Report reports/CAVI-AEREI-20261024.md.
+
+
+## Correzione UTF-8 delle regioni —24ottobre2026
+PASS `region-utf8-20261024`: Istat DBF privo diCPG letto esplicitamente UTF-8; corretti Valle d’Aosta/Vallée d’Aoste e Trentino-Alto Adige/Südtirol. Tutte20geometrie, codici e punti etichetta identici al precedente asset; esattamente2nomi modificati. Fonte e archivio immutati; nessun download. Browser verifica entrambi i nomi e cache invalidata tramite versione URL. Report reports/REGIONI-UTF8-20261024.md, verifica reports/region-utf8/verification.json. NOT RUN: nuove simulazioni fisiche, non pertinenti.
+
+
+## Livelli e criticità leggibili —24ottobre2026
+PASS `critical-layers-20261024`: Sfondo separato dalla lista sovrapposizioni; Pericoli · simulazioni raccoglie i risultati FIRE/FLOOD, Meteo nel proprio pannello. Criticità territoriali indipendenti dai filtri dei simulatori, con master e scelte DPC/EFFIS; default DPC soltanto per evitare sovrapposizione ambigua. Legenda cartografica visibile con fonte, validità, classi e grigio missing/stale; contorni2px/riempimento42% per classi attive (EFFIS27% se ancheDPC). Pioggia e criticità non si disattivano implicitamente fra loro. PASS browser su VM: entrambe/fonti separate/masterOFF, indipendenza da Incendi, mobile375px senza overflow orizzontale, sintassi moduli. Nessuna modifica a soglie, acquisizione, fisica o solver. NOT RUN qualificazione scientifica/operativa, fuori ambito. Report reports/CRITICITA-E-LIVELLI-20261024.md.
+
+
+## Opzioni incendi/alluvioni leggibili —24ottobre2026
+PASS `layer-options-20261024`: livello rinominato Incendi e alluvioni, intestazione Mostra sulla mappa, breve qualificazione dei risultati. Palette coerente con pannello scuro: contrasto misurato dai colori effettivi DOM Incendi10.16:1, Alluvioni9.24:1, disattivato10.95:1; controlli entrambi44px. PASS checkboxOFF/ON e mobile375px senza overflow orizzontale. Nessuna modifica a filtri scientifici, soglie o simulazioni. Evidenza reports/layer-options/verification.json e delivery.png; revisoreCodex. NOT RUN nuove esecuzioni native, non pertinenti.
+
+
+## Raggruppamento criticità —24ottobre2026
+PASS `critical-grouping-20261024`: su richiesta utente Incendi e alluvioni è un sottogruppo di Criticità territoriali; rimossa la voce autonoma a sinistra. Conservati controlli originali, contrasto e distinzione dai bollettini DPC/indiciEFFIS. PASS browser servizioVM: due checkbox presenti nel pannello criticità, zero voci autonome Incendi e alluvioni, toggleIncendiOFF/ON funzionante. SintassiJS PASS; screenshot reports/critical-grouping/delivery.png. Nessuna modifica a fonti/modelli/solver. NOT RUN prove native, non pertinenti; revisoreCodex.
+
+
+## Contrasto hover/focus pannelli scuri —24ottobre2026
+PASS `dark-hover-20261024`: corretti hover/focus/active dei pulsanti nei pannelli scuri e timeline, senza ereditare lo sfondo chiaro legacy. Browser servizioVM verifica hover reale sul pulsante Esamina il centro della mappa: testo bianco su#2b5268; focus tastiera stesso abbinamento; livello selezionato hover bianco su#326575. Contrasti {'hover_focus': 8.37, 'selected_hover': 6.45}. Evidenza reports/dark-hover/verification.json e delivery.png. Nessuna modifica ai dati o ai modelli. NOT RUN esecuzioni fisiche, non pertinenti; revisoreCodex.
+
+
+## DPC: bollettino disponibile distinto dal confine —24ottobre2026
+PASS `dpc-geometries-20261024`:187/187bollettini testuali,183/187confini qualificati dopo recupero di7zone dalSHP ufficiale del medesimo bollettino, inclusoPescara. Confrontati tutti i nomi e livelli; nessuna riparazione/invenzione o aggiornamento falso della data. Catalogo187zone, copertura e mancanti espliciti nellaUI. EFFIS181/187zone classificabili il24ottobre; prodotti futuri mancanti espliciti. PASS13testVM eUI,311file/95job/enginehash invariati. BLOCKED4confini ufficiali invalidi (Levante/Carso,Salento,Iglesiente,Gallura). AlternativaSardegna2015 verificata ma non equivalente, NOT INTEGRATED. FAIL esplorativoCRS con assi non equivalenti, corretto senza attivare dati difettosi. NOT RUN qualificazione scientifica/operativa. Report reports/DPC-BOLLETTINI-E-CONFINI-20261024.md e rawrunVM; revisoreCodex.
+
+
+## Posizione comandi e pannelli informativi —24ottobre2026
+PASS `console-actions-20261024`: Pioggia e allerte accanto a Livelli; Centra nel controllo +/− in alto a destra; Configura nella barra superiore accanto alla connessioneVM. Date e copertura, Stato delle fonti e Posizione e riferimenti vicini trasferiti con i loro contenuti aggiornabili in Dati e fonti. Rimossi dal menu livelli. PASS apertura/chiusura pioggia, Centra (zoom14 sui risultati disponibili), Configura anche da Dati e fonti, metadati previsionali conservati, mobile375 e tablet768 senza overflow, zero errori console. Report reports/COMANDI-E-DATI-20261024.md, verifica reports/console-actions/verification.json. NOT RUN simulazioni native, non pertinenti. Nessuna modifica a sorgenti scientifiche o solver; revisoreCodex.
+
+
+## Catalogo livelli e centri abitati —24ottobre2026
+PASS `layer-catalog-20261024`: rimossa Risorse e accessibilità, iconaSVGmeteo;10switch principali e9categorieOSM esplicite. Centri abitati indipendenti e opzioni dei livelli a sinistra secondo ultima richiesta utente. PASS41geometrie→0OFF→41ON, sincronizzazione interruttori, indietro all’elenco, mobile375senzaoverflow, osservazioni pluviometriche indipendenti dal forecast, primoenableaereo esplicito. PASS5suiteJS,311file/95job/enginehash invariati. Livelli mancanti restano indicati nei dati, senza controlli fittizi; copertura dei centri parziale e caricata dalzoom11, non censimento globale. NOT RUN qualificazione fisica/operativa/Safari dedicato. Report reports/CATALOGO-LIVELLI-E-CENTRI-ABITATI-20261024.md e verifica reports/layer-catalog/verification.json. RevisoreCodex.
+
+
+## Selezione ulteriori livelli —24ottobre2026
+Valutazione `layer-selection-20261024` PASS: selezione documentata di filtri OSM utili e fonti Gods Eye View, senza nuova implementazione. Prossimo incremento consigliato acqua antincendio/accessi/rete idrica; nuovi filtri, acquisizioni locali opzionali e performance NOT RUN. M0–M7 invariati.
+
+
+## Interfaccia bilingue —24ottobre2026
+PASS `i18n-20261024`: selettore persistente IT/EN, italiano predefinito, catalogo1535messaggi e adattatore comune sui5ingressi; verificati Monitoraggio/Dati/Guida/studio incorporato e mobile375px. PASS10suiteclient e preservazione311file/95job/145hashmotori. NOT RUN Safari fisico, tutti i rami fornitori e benchmark UI completo; nessun run fisico o cambiamento dei gate M0–M7. Report reports/ITALIANO-E-INGLESE-20261024.md.

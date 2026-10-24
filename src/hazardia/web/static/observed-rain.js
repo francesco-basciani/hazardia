@@ -1,7 +1,8 @@
+import {locale} from "/i18n.js";
 import {mapSymbols} from '/map-symbols.js?v=1';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt=n=>Number(n).toLocaleString('it-IT',{maximumFractionDigits:1});
-const date=v=>new Date(v).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+const fmt=n=>Number(n).toLocaleString(locale(),{maximumFractionDigits:1});
+const date=v=>new Date(v).toLocaleString(locale(),{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
 export const observedColor=mm=>mm===0?'#ffffff':mm<1?'#7bc9ed':mm<5?'#228ac1':mm<10?'#7554bb':mm<20?'#bd3977':'#a11e32';
 export function observedRain(map,host){
  let enabled=false,visible=true,result=null,fetching=false,selectedHour=null,pointLayers=new Map();
@@ -13,7 +14,7 @@ export function observedRain(map,host){
  select.onchange=()=>pointLayers.get(select.value)?.openPopup();
  function draw(){
   layer.clearLayers();pointLayers.clear();box.querySelector('.observed-rain-detail').textContent='';select.innerHTML='<option value="">Seleziona un sensore…</option>';mapSymbols(map).set('observed-rain',[]);map.getContainer().dataset.observedRainStations='0';
-  if(!enabled||!visible||!document.getElementById('monitor-weather')?.checked)return;
+  if(!enabled||!visible)return;
   if(!result?.data){state.textContent=result?.error||'Misure non disponibili. Nessuna osservazione sostituita con una previsione.';return;}
   if(selectedHour&&Date.parse(selectedHour)>Date.now()+3600000){state.textContent='Ora futura: osservazioni non ancora disponibili. Torna all’ora attuale per vedere le misure.';return;}
   const inView=result.data.features.filter(f=>map.getBounds().contains([f.geometry.coordinates[1],f.geometry.coordinates[0]]));

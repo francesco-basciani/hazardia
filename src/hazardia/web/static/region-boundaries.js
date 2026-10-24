@@ -2,7 +2,7 @@ import {mapSymbols} from '/map-symbols.js?v=1';
 /* Administrative context, never a jurisdiction or physics input. */
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sourceCache=new Map();
-export function regionBoundaries(map,{url='/assets/administrative-regions.json',highlightCode=null,maxZoom=20}={}){
+export function regionBoundaries(map,{url='/assets/administrative-regions.json?v=utf8-20261024',highlightCode=null,maxZoom=20}={}){
  const pane='regionContext';map.createPane(pane);map.getPane(pane).style.zIndex=530;map.getPane(pane).style.pointerEvents='none';
  const labelPane='regionNames';map.createPane(labelPane);map.getPane(labelPane).style.zIndex=600;map.getPane(labelPane).style.pointerEvents='none';
  const group=L.layerGroup(),labels=L.layerGroup();let data=null,outline,ink,on=true,disposed=false;

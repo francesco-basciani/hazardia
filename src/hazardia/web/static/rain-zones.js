@@ -1,9 +1,10 @@
+import {locale} from "/i18n.js";
 /* Rain quantities and official warnings: no invented rainfall-to-flood alert. */
 import {observedRain} from './observed-rain.js';
 import {seriesMarkup} from './rain-series.js';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt=v=>Number(v).toLocaleString('it-IT',{maximumFractionDigits:1});
-const date=v=>new Date(v).toLocaleString('it-IT',{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+const fmt=v=>Number(v).toLocaleString(locale(),{maximumFractionDigits:1});
+const date=v=>new Date(v).toLocaleString(locale(),{timeZone:'Europe/Rome',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
 export function rainBand(mm){return mm<1?0:mm<10?1:mm<30?2:mm<60?3:4;}
 const colors=['#dceaf3','#acd7ee','#68b3dc','#367faf','#614b99'],warnings=['Nessuna allerta nel bollettino','Allerta gialla','Allerta arancione','Allerta rossa'];
 export function rainZones(map){

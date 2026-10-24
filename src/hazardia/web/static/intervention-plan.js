@@ -1,3 +1,4 @@
+import {sourceText} from "/i18n.js";
 /* Single-map planning and comparison are two views of the same saved scenarios. */
 export function interventionPlan({setMode,addIgnition}){
  const $=id=>document.getElementById(id),make=(tag,cls,text)=>{const e=document.createElement(tag);e.className=cls;if(text)e.textContent=text;return e;};
@@ -16,7 +17,7 @@ export function interventionPlan({setMode,addIgnition}){
  $('ideal-example').closest('.ideal-actions').hidden=true; // Historical example stays callable only from the separate comparison view.
  function mode(name){const on=name==='plan';document.body.dataset.workspaceMode=name;plan.setAttribute('aria-pressed',String(on));compare.setAttribute('aria-pressed',String(!on));
   $('ideal-example').closest('.ideal-actions').hidden=on;if(!document.body.classList.contains('studio-console')){if(on){dock.prepend(nativeSettings);dock.append(panel,contexts);for(const n of contextNodes)contexts.append(n);panel.open=true;nativeSettings.open=false;}else{settingsParent.prepend(nativeSettings);for(const p of [...originalPositions].reverse())p.parent.insertBefore(p.node,p.next?.parentElement===p.parent?p.next:null);original.insertBefore(panel,next?.parentElement===original?next:null);panel.open=false;}}
-  $('ideal-optimize').textContent=on?'Calcola posizionamento':'Ottimizza mezzi e priorità';$('ideal-status').textContent=$('ideal-status').textContent;setMode(on);if(window.parent!==window)window.parent.postMessage({type:'hazardia-studio-section',section:name},location.origin);
+  $('ideal-optimize').textContent=on?'Calcola posizionamento':'Ottimizza mezzi e priorità';$('ideal-status').textContent=sourceText($('ideal-status'));setMode(on);if(window.parent!==window)window.parent.postMessage({type:'hazardia-studio-section',section:name},location.origin);
  }
  plan.onclick=()=>mode('plan');compare.onclick=()=>mode('compare');
  return{mode,initialize(){mode(new URLSearchParams(location.search).get('section')==='compare'?'compare':'plan');}};

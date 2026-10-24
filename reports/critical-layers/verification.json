@@ -1,0 +1,22 @@
+{
+  "run_id": "critical-layers-20261024",
+  "status": "PASS",
+  "browser": "in-app",
+  "runtime": "Linux VM",
+  "checks": {
+    "both": "effis,dpc",
+    "effis_only": "effis",
+    "master_off": "",
+    "master_off_legend_visible": false,
+    "master_on": "effis",
+    "simulated_fire_off": "effis",
+    "mobile_width": 375,
+    "mobile_document_width": 375,
+    "syntax": "PASS"
+  },
+  "not_run": [
+    "Safari dedicated",
+    "native model runs",
+    "scientific qualification"
+  ]
+}

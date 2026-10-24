@@ -1,6 +1,7 @@
+import {withI18n} from "./i18n-fixture.mjs";
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-const {seriesModel,seriesMarkup}=await import('data:text/javascript;base64,'+Buffer.from(readFileSync(new URL('../../src/hazardia/web/static/rain-series.js',import.meta.url),'utf8')).toString('base64'));
+const {seriesModel,seriesMarkup}=await import('data:text/javascript;base64,'+Buffer.from(withI18n(readFileSync(new URL('../../src/hazardia/web/static/rain-series.js',import.meta.url),'utf8'))).toString('base64'));
 const row=(status,mean_mm,at='2026-10-21T10:00:00Z')=>({status,mean_mm,at,until:'2026-10-21T11:00:00Z'});
 const a=seriesModel([row('AVAILABLE',0),row('UNAVAILABLE',100),row('AVAILABLE',2),row('AVAILABLE',NaN),row('AVAILABLE',-1)]);
 assert.equal(a.available,2);assert.equal(a.peak.mean_mm,2);assert.equal(a.points[0].known,true);assert.equal(a.points[1].known,false);assert.equal(a.points[3].known,false);assert.equal(a.points[4].known,false);

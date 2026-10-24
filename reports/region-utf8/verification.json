@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "regions": 20,
+  "identical_geometries": 20,
+  "changed_names": [
+    [
+      "Valle d'Aosta/VallÃ©e d'Aoste",
+      "Valle d'Aosta/Vallée d'Aoste"
+    ],
+    [
+      "Trentino-Alto Adige/SÃ¼dtirol",
+      "Trentino-Alto Adige/Südtirol"
+    ]
+  ],
+  "after_sha256": "fb31b1e6ed4a2f410a88f437e2f1d225b82bf4e98c4b477836195661c1c1ed1f",
+  "fiona_encoding": "UTF-8"
+}

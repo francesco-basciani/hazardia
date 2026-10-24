@@ -28,3 +28,10 @@ assert.equal(new Set(quakeClasses.map(c=>quakeStyle(Number.isFinite(c.min)?c.min
 for(const c of quakeClasses.filter(c=>Number.isFinite(c.min))){assert.equal(quakeStyle(c.min).fillColor,c.color);assert.notEqual(quakeStyle(c.min-.001).fillColor,c.color);}
 assert.equal(quakeStyle(null).fillColor,'#8897a3');assert.equal(quakeStyle(NaN).radius,3);assert.equal(quakeStyle(Infinity).radius,3);assert.equal(quakeStyle(20).radius,quakeStyle(9).radius);assert(quakeStyle(-1).radius>0);
 console.log('PASS magnitude radius ordering, six exact colour boundaries, missing/nonfinite values, bounds and negative magnitudes; display scale only');
+
+// Aviation consultation preset retains unknown and low-voltage overhead obstacles.
+for(const max_voltage of [null,15000,35000,132000,380000])assert.equal(powerVisible({...line,max_voltage},{aerial:true}),true);
+for(const location of ['underground','underwater','unknown'])assert.equal(powerVisible({...line,location},{aerial:true}),false);
+for(const power_kind of ['tower','pole'])assert.equal(powerVisible({...line,power_kind,max_voltage:null},{aerial:true}),true);
+assert.equal(powerVisible({...line,power_kind:'substation'},{aerial:true}),false);
+console.log('PASS aerial obstacles preset: all overhead voltages, supports, underground/unknown placement excluded; no flight clearance claim');

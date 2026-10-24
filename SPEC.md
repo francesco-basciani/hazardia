@@ -523,3 +523,27 @@ Il Monitoraggio usa un unico orologio di consultazione per tutte le fonti con da
 
 ## FR-MAP-DATA-SEMANTICS-06 —24ottobre2026
 Sismi osservati: raggio schermo crescente con M e colori per classe, legenda coerente; nessuna equivalenza con danno/intensità. Meteo: quantità prevista e probabilità di pioggia sono scelte alternative con superfici/unità distinte; copertura nuvolosa indipendente come velo neutro bianco/grigio, non satellite. Nessuna conversione fra probabilità/nuvole/mm e nessun cambiamento implicito alle forzanti fisiche. Rendere espliciti mancanti, validità e copertura; audit dati non equivale a qualificazione scientifica. Report MAPPA-DATI-MAGNITUDO-E-METEO-20261024.
+
+
+## FR-POWER-AERIAL-07 —24ottobre2026
+Comando semplificato Cavi aerei e tralicci per consultazione degli ostacoli mappati relativi agli interventi dall’alto. Preset include linee aeree di qualunque tensione e sostegni; mantiene distinguibili tensione sconosciuta e classi dichiarate. Parametri completi in Filtri avanzati; copertura, origine OSM, timestamp e assenza di quote espliciti. La posa può essere dedotta dal tipo di oggetto OSM e non certifica cavi scoperti, isolamento, corrente presente o sicurezza del volo. Nessun vincolo operativo o modifica automatica a ottimizzazione/propagazione.
+
+
+## FR-MONITOR-LAYERS-08 —24ottobre2026
+Sfondo è un parametro cartografico separato dalle sovrapposizioni. Pericoli/risultati simulati, meteo e criticità territoriali hanno controlli distinti; i filtri FIRE/FLOOD dei risultati non abilitano implicitamente DPC/EFFIS. Le criticità hanno interruttore master, DPC ed EFFIS selezionabili separatamente e legenda visibile sulla mappa con fonte, validità, classi, mancante/scaduto. DPC è allerta ufficiale meteo-idro per zona; EFFIS è pericolosità prevista FWI/DC, non allerta ufficiale o incendio osservato. La legenda segnala l’ambiguità quando si sovrappongono entrambe le fonti; default solo DPC. Nessuna variazione delle soglie native, né rischio d’impatto locale qualificato dedotto dal colore.
+
+
+## FR-ZONE-COVERAGE-09 —24ottobre2026
+Distinguere livelli testuali del bollettino disponibili, geometria della zona qualificata e copertura degli indici previsionali. Rendere consultabili tutte le zone del bollettino anche con confine non qualificato, mostrando nomi/conteggi dei mancanti. Un fallback geometrico automatico è ammesso solo versoSHP ufficiale dello stesso bollettino e revisione, con nomi univoci/livelli concordanti/CRS e bounds controllati/geometria valida; tracciare la provenienza e non inventare il confine con riparazioni. Conservare raw, snapshot precedenti e validità/freschezza originali nelle derivazioni. Fonte disponibile non significa copertura zonale completa. Nessuna estrapolazione di allerte per date non coperte.
+
+
+## FR-UI-ACTIONS-10 —24ottobre2026
+Pioggia e allerte è un accesso sulla mappa allo stesso livello di Livelli, non una voce interna ai livelli. Centra è accanto allozoom+/−. Configura è vicino allo stato connessioneVM nella barra superiore. Date e copertura, Stato delle fonti e Posizione e riferimenti vicini risiedono in Dati e fonti; preservare contenuti e aggiornamenti esistenti, senza pulsanti duplicati nel menu mappa. Responsività e indipendenza dei pannelli conservate.
+
+
+## FR-LAYER-CATALOG-11 —24ottobre2026
+Ultima richiesta utente prevale sulla precedente collocazione a destra: selezione e opzioni dei livelli sono sulla sinistra, con ritorno all’elenco. Rimuovere Risorse e accessibilità, rendere riconoscibile il meteo mediante icona. Centri abitati è un livello indipendente sui dati esistenti, con stato/copertura/conteggio eON/OFF. Elencare esplicitamente i livelli effettivamente integrati con interruttori sincronizzati, e le categorie territorialiOSM disponibili; non introdurre checkbox di feed non acquisiti. Aprire le opzioni non attiva automaticamente un livello. Previsioni e osservazioni meteorologiche indipendenti; immagini recenti distinguono impronte/anteprime dai raster analitici. Dataset/forzanti/solver invariati, nessun censimento o completezza mondiale dedotti dalla cartografia.
+
+
+## FR-I18N-01 — italiano e inglese
+Italiano predefinito senza preferenza salvata; selettore Italiano/English nella barra comune, preferenza del browser persistita e condivisa con gli studi incorporati. Tradurre navigazione, controlli, legende, messaggi e guida; preservare valori/ID/payload scientifici, nomi assegnati dagli utenti, toponimi e testo ufficiale originale chiaramente identificato. Cambiare lingua non ricarica gli scenari o esegue modelli. Modelli CIMA/solver e VM unica invariati. Report reports/ITALIANO-E-INGLESE-20261024.md; futuri testi UI devono mantenere il catalogo.
