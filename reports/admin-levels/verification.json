@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "run_id": "admin-levels-20261024",
+  "baseline": "c089090",
+  "reviewer": "Codex self-check",
+  "source_preparation": "Linux VM, real pinned Istat/NaturalEarth shapefiles; validation before and after coordinate rounding",
+  "source_counts": {
+    "countries": 242,
+    "regions": 20,
+    "provinces": 110
+  },
+  "new_download_bytes": 799734,
+  "client_suites": [
+    "administrative-levels",
+    "i18n"
+  ],
+  "ui": {
+    "three_independent_switches": true,
+    "right_panel": true,
+    "regions_off_other_two_on": "PASS",
+    "viewports": [
+      [
+        1011,
+        1034
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "mobile_overflow": false,
+    "console_errors": []
+  },
+  "not_run": [
+    "native Safari",
+    "FPS/load benchmark",
+    "physical simulator replays",
+    "historical region-boundaries.cjs obsolete UI"
+  ],
+  "limits": [
+    "Countries are NaturalEarth generalized de facto50m polygons",
+    "Regions/provinces currently Italy only",
+    "Source geometry cannot be used as operational/legal jurisdiction proof"
+  ]
+}

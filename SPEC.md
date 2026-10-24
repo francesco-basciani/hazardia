@@ -571,3 +571,7 @@ Il nucleo di scambio per prodotti grigliati usa identificativi opachi di dominio
 
 ## FR-MONITOR-CONTROLS-20261024 — rettifica UI confermata
 Orario dei dati compatto accanto alla ricerca in alto, con istante/fuso completi accessibili nel dettaglio e indicazione futura coerente con la timeline. Sfondo e nomi delle località sono configurazione cartografica, non voci autonome del catalogo livelli. Lingua/configurazione restano nell'header senza sovrapporsi ai controlli della mappa. Il clic sul nome Terremoti attiva le osservazioni e apre parametri nel pannello destro; la casella conserva il controllo di disattivazione. Acquisizione, assenza di eventi e dati mancanti devono restare distinguibili. Report MONITOR-CONTROLS-20261024.
+
+
+## FR-ADMIN-LEVELS-20261024 — Confini
+La voce Confini apre a destra tre opzioni indipendenti: nazioni, regioni, province. Confini amministrativi distinti da zone di allerta/criticità e da input dei simulatori. Copertura e fonte esplicite: nazioni globali NaturalEarth50m, regioni/province Italia Istat2026 nell'attuale incremento; fuori copertura non inventare geometrie. Preserve default regionale e caricamento differito per opzioni aggiuntive. Guida docs/ADMINISTRATIVE-BOUNDARIES.md.

@@ -126,3 +126,5 @@ body.map-console .topbar{height:auto;min-height:56px;gap:12px}
 /* Leaflet controls use z-index 1000: inspectors must remain above legends. */
 .map-console .console-left,.map-console .console-right{z-index:1100}
 @media(max-width:700px){.map-console #monitor-section:has(:is(.console-left,.console-right):not([hidden])) .leaflet-bottom{display:none}}
+
+#administrative-options label{display:flex;align-items:center;gap:10px;min-height:42px;font-size:13px}#administrative-options input{width:17px;height:17px;accent-color:#64c8be}#administrative-options small{display:block;margin:0 0 12px 27px;line-height:1.5}

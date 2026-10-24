@@ -1549,5 +1549,14 @@ export const messages = {
   "NESSUN EVENTO NELLA VISTA": "NO EVENTS IN VIEW",
   "Dati acquisiti; prova 30 giorni o allarga la vista.": "Data loaded; try 30 days or zoom out.",
   "COPERTURA DELLA VISTA PARZIALE: aggiornamento automatico in attesa.": "PARTIAL VIEW COVERAGE: automatic refresh pending.",
-  "Aggiornamento del filtro sismico…": "Updating earthquake filter…"
+  "Aggiornamento del filtro sismico…": "Updating earthquake filter…",
+  "Confini": "Boundaries",
+  "Nazioni": "Countries",
+  "Regioni": "Regions",
+  "Province": "Provinces",
+  "Confini nazionali": "National boundaries",
+  "Confini provinciali": "Provincial boundaries",
+  "Caricamento confini…": "Loading boundaries…",
+  "Confini non disponibili · riprova disattivando e riattivando": "Boundaries unavailable · turn off and on to retry",
+  "Natural Earth · mondiale": "Natural Earth · worldwide"
 };

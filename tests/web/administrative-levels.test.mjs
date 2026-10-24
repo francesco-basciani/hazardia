@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+const source=await fs.readFile('src/hazardia/web/static/region-boundaries.js','utf8');
+const inputs=new Map(['regions','countries','provinces'].map(k=>['config-'+k,Object.assign(new EventTarget(),{checked:k==='regions'})]));
+for(const k of ['regions','countries','provinces'])inputs.set(k+'-status',{textContent:''});
+globalThis.document={getElementById:id=>inputs.get(id),createElement:()=>({textContent:''})};
+let requests=[],failCountries=false;
+globalThis.fetch=async url=>{requests.push(url);const level=url.match(/administrative-(\w+)\.json/)[1];if(level==='countries'&&failCountries){failCountries=false;return {ok:false,status:503};}return {ok:true,text:async()=>JSON.stringify({type:'FeatureCollection',metadata:{attribution:'Fixture display only'},features:Array.from({length:level==='regions'?20:level==='countries'?242:110},(_,i)=>({type:'Feature',properties:{name:'Test <unsafe>',code:String(i),label_point:[42,13]},geometry:{type:'Polygon',coordinates:[[[13,42],[14,42],[14,43],[13,42]]]}}))})};};
+const layer=()=>({addTo(target){if(target.layers)target.layers.add(this);return this;},remove(){},clearLayers(){},setStyle(){}});
+globalThis.L={layerGroup:()=>Object.assign(layer(),{layers:new Set()}),canvas:()=>({}),geoJSON:()=>layer(),marker:()=>layer(),divIcon:o=>{assert(!o.html.includes('<unsafe>'));return o;}};
+const makeMap=()=>({dataset:{},legend:new Map(),panes:{},events:new Map(),createPane(k){this.panes[k]={style:{}};},getPane(k){return this.panes[k];},getContainer(){return {dataset:this.dataset};},getZoom:()=>8,getBounds:()=>({contains:()=>true}),latLngToContainerPoint:()=>({x:200,y:100}),getSize:()=>({x:600,y:400}),attributionControl:{addAttribution(){}},on(k,f){this.events.set(f,k);},off(k,f){this.events.delete(f);}});
+const moduleURI=(source)=>'data:text/javascript;base64,'+Buffer.from(source).toString('base64');
+const importFresh=()=>import(moduleURI(source.replace("import {mapSymbols} from '/map-symbols.js?v=1';","const mapSymbols=map=>({set:(key,value)=>map.legend.set(key,value)});")+`\n// ${Math.random()}`));
+const settle=async()=>{for(let i=0;i<8;i++)await Promise.resolve();};
+const toggle=(level,on)=>{const input=inputs.get('config-'+level);input.checked=on;input.dispatchEvent(new Event('change'));};
+const {regionBoundaries}=await importFresh(),a=makeMap(),b=makeMap();const first=regionBoundaries(a),second=regionBoundaries(b);await settle();
+assert.equal(a.dataset.regionCount,'20');assert.equal(b.dataset.regionCount,'20');assert.equal(requests.length,1);assert.equal(a.dataset.countryBoundaries,'hidden');assert.equal(a.dataset.provinceBoundaries,'hidden');
+toggle('countries',true);await settle();toggle('provinces',true);await settle();
+assert.equal(a.dataset.countryCount,'242');assert.equal(a.dataset.provinceCount,'110');assert.equal(b.dataset.provinceCount,'110');assert.equal(requests.length,3);for(const d of [a.dataset,b.dataset])for(const k of ['region','country','province'])assert.equal(d[k+'Boundaries'],'visible');
+toggle('regions',false);assert.equal(a.dataset.regionBoundaries,'hidden');assert.equal(a.dataset.countryBoundaries,'visible');assert.equal(a.dataset.provinceBoundaries,'visible');toggle('countries',false);assert.equal(a.dataset.countryBoundaries,'hidden');assert.equal(a.dataset.provinceBoundaries,'visible');
+first.remove();second.remove();assert.equal(a.events.size,0);assert.equal(b.events.size,0);assert.equal(a.legend.get('provinces').length,0);
+// Failed assets are not cached forever or marked enabled/available.
+failCountries=true;const retry=await importFresh(),m=makeMap();const handle=retry.regionBoundaries(m);toggle('countries',true);await settle();assert.equal(m.dataset.countryBoundaries,'unavailable');assert.match(inputs.get('countries-status').textContent,/riprova/);toggle('countries',false);toggle('countries',true);await settle();assert.equal(m.dataset.countryBoundaries,'visible');handle.remove();
+console.log('PASS administrative display levels: independent switches, lazy load, shared cache across maps, counts, safe labels, disposal, missing source and retry');

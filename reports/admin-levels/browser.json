@@ -1,0 +1,47 @@
+{
+  "layers": {
+    "attention": "dpc",
+    "attentionReady": "true",
+    "basemap": "ortho",
+    "basemapLoadedAt": "338.39999997615814",
+    "center": "[41.95744765908283,13.450012207031252]",
+    "countryBoundaries": "visible",
+    "countryCount": "242",
+    "dpcDay": "2026-10-24",
+    "effisDay": "2026-10-24",
+    "hazards": "FIRE,FLOOD",
+    "monitorTime": "2026-10-24T21:00:00Z",
+    "observedRainStations": "0",
+    "powerLines": "0",
+    "products": "",
+    "provinceBoundaries": "visible",
+    "provinceCount": "110",
+    "radarAt": "",
+    "regionBoundaries": "visible",
+    "regionCount": "20",
+    "settlements": "0",
+    "territorialAssets": "0",
+    "tileQueue": "{\"started\":27,\"cancelled\":5,\"peak\":4,\"active\":0,\"queued\":0,\"limit\":4}",
+    "wheelZoom": "enabled",
+    "zoom": "8"
+  },
+  "options": [
+    {
+      "checked": true,
+      "name": "Nazioni"
+    },
+    {
+      "checked": true,
+      "name": "Regioni"
+    },
+    {
+      "checked": true,
+      "name": "Province"
+    }
+  ],
+  "panelSide": "right",
+  "viewport": [
+    1011,
+    1034
+  ]
+}
