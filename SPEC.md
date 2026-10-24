@@ -519,3 +519,7 @@ Scenari e simulazioni e traffico ipotetico appartengono a Simulazioni e risorse,
 
 ## FR-MONITOR-CLOCK-05 —23ottobre2026
 Il Monitoraggio usa un unico orologio di consultazione per tutte le fonti con dati previsionali, indipendente dall’attivazione del livello meteo. Orizzonte dall’unione delle validità disponibili; ogni prodotto conserva passo, copertura e scadenza, senza interpolare bollettini/classi o sostituire orari mancanti. Osservazioni datate e cataloghi statici non diventano previsioni. Nessun avvio implicito dei simulatori. Report TIMELINE-COMUNE-MONITORAGGIO-20261023.
+
+
+## FR-MAP-DATA-SEMANTICS-06 —24ottobre2026
+Sismi osservati: raggio schermo crescente con M e colori per classe, legenda coerente; nessuna equivalenza con danno/intensità. Meteo: quantità prevista e probabilità di pioggia sono scelte alternative con superfici/unità distinte; copertura nuvolosa indipendente come velo neutro bianco/grigio, non satellite. Nessuna conversione fra probabilità/nuvole/mm e nessun cambiamento implicito alle forzanti fisiche. Rendere espliciti mancanti, validità e copertura; audit dati non equivale a qualificazione scientifica. Report MAPPA-DATI-MAGNITUDO-E-METEO-20261024.

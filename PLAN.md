@@ -589,3 +589,7 @@ Run monitor-timeline-20261023/base28d1eca+dirty:PASSFR-MONITOR-CLOCK-05, barraPr
 
 ## Terremoti: primo accesso al livello —24ottobre2026
 Run quake-opening-20261024/basebac2794+dirty. PASS: fonteINGV216eventi nella vista utente; primo clic sulla voce ora attiva/acquisisce, senza acquisizione prima dell’apertura. Disabilitazione manuale rispettata alla riapertura, riattivazione riusa cache. Nessuna modifica a fonti/quote/filtri/fisica. NOTRUNSafari/nuovaqualificazionefisica. Report TERREMOTI-APERTURA-LIVELLO-20261024; reviewerCodexself-check.
+
+
+## Sismi, meteo distinto e audit dati —24ottobre2026
+Run map-data-semantics-20261024/base76a55bd+dirty. PASSFR-MAP-DATA-SEMANTICS-06:cerchi e coloriM/legenda, superficie quantità o probabilità, nuvole indipendenti neutre. PASS17suiteclient/UIreale/mobile375, integrità5asset,311file/95job/pinCIMA invariati. Fonti:meteoFRESH,215INGV,3976pluviometrifreschi dopo refresh, radar24ottobre08:40UTC,2Sentinelrecenti, rete192oggetti con3linee150kV/2sottostazioni132–150kV,1221segmentitraffico;187zone/77accumuli24hcompleti sulcampo. BLOCKEDvento fineCACHE_FULL/fonteFIRMS/idrometri/perimetriosservati/esposizionequalificata/ATcertificata, M5–M7 invariati. NOTRUNnuovafisica/Safari/caricocompleto/nuoveacquisizionidiognicategoriaOSM. Report MAPPA-DATI-MAGNITUDO-E-METEO-20261024, prossimo:risolvere archiviazione vento fine e fonti/qualifiche mancanti senza false disponibilità.

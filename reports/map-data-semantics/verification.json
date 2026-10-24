@@ -1,0 +1,299 @@
+{
+  "run_id": "map-data-semantics-20261024",
+  "base": "76a55bdf2cc72260ffc7f56a8e4ce453ad65a7c5",
+  "reviewer": "Codex self-check",
+  "tests": {
+    "client_suites": 17,
+    "status": "PASS"
+  },
+  "quake": {
+    "status": "PASS",
+    "count": 215,
+    "min_magnitude": 0.2,
+    "max_magnitude": 2.9,
+    "acquired_at": "2026-10-24T09:04:03.252237Z",
+    "radius": "3 + 2 * max(0,min(9,M)) screen pixels",
+    "classes": [
+      "<1",
+      "1\u2013<2",
+      "2\u2013<3",
+      "3\u2013<4",
+      "4\u2013<5",
+      "\u22655"
+    ],
+    "not_inferred": [
+      "Damage area",
+      "Felt intensity"
+    ]
+  },
+  "weather": {
+    "status": "FRESH",
+    "field_id": "map-weather-c39eb05c0c283d8c7482e2ae",
+    "records": 95,
+    "variables": [
+      "at",
+      "cloud",
+      "gusts",
+      "humidity",
+      "precipitation",
+      "pressure",
+      "radiation",
+      "rain_probability",
+      "temperature",
+      "u",
+      "v"
+    ],
+    "bounds": [
+      [
+        39.2,
+        9.8
+      ],
+      [
+        44.5,
+        17.1
+      ]
+    ]
+  },
+  "gauges": {
+    "status": "FRESH",
+    "stations": 4039,
+    "fresh": 3976,
+    "acquired_at": "2026-10-24T09:03:29.195005Z",
+    "initial": "STALE; refreshed within existing bounds"
+  },
+  "imagery": {
+    "status": "READY",
+    "items": [
+      {
+        "at": "2026-10-23T10:00:41.024000Z",
+        "cloud_percent": 54.35,
+        "preview_sha256": "8408a8d87769e516016f9ff474941550f49058b9576a96ae5358da64254cde41"
+      },
+      {
+        "at": "2026-10-21T10:00:41.025000Z",
+        "cloud_percent": 99.46,
+        "preview_sha256": "7418b5f9fa53abb2b052e102f60fb0bad3c8ec6c446223e795d7fcb3fd9df0be"
+      }
+    ]
+  },
+  "radar": {
+    "at": "2026-10-24T08:40:00Z",
+    "valid_fraction": 0.49288333333333334,
+    "wet_fraction": 0.017,
+    "sha256": "ef570f48749e6cb9b1ab3cbb7a4f14ccef849eaefc7573705a27ee05c6e133db"
+  },
+  "rain_zones": {
+    "status": "SUCCEEDED",
+    "freshness": "FRESH",
+    "features": 187,
+    "complete_24h": 77,
+    "official": "AVAILABLE"
+  },
+  "power": [
+    {
+      "id": "a764e4b5329f5cd8cf192da4",
+      "count": 192,
+      "bounds": [
+        13.43795,
+        41.87285,
+        13.46208,
+        41.89081
+      ],
+      "acquired_at": "2026-10-24T09:03:11.698928Z",
+      "unknown": 187,
+      "known": [
+        {
+          "kind": "line",
+          "voltage": [
+            150000
+          ]
+        },
+        {
+          "kind": "line",
+          "voltage": [
+            150000
+          ]
+        },
+        {
+          "kind": "line",
+          "voltage": [
+            150000
+          ]
+        },
+        {
+          "kind": "substation",
+          "voltage": [
+            150000
+          ]
+        },
+        {
+          "kind": "substation",
+          "voltage": [
+            132000
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6250d7c465eaf29738fef372",
+      "count": 201,
+      "bounds": [
+        14.5125,
+        42.11165,
+        14.53672,
+        42.12962
+      ],
+      "acquired_at": "2026-10-23T13:53:03.347702Z",
+      "unknown": 200,
+      "known": [
+        {
+          "kind": "line",
+          "voltage": [
+            150000
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6805becd268ad94e18097469",
+      "count": 34,
+      "bounds": [
+        13.36284,
+        42.34102,
+        13.38716,
+        42.35898
+      ],
+      "acquired_at": "2026-10-23T13:36:46.493750Z",
+      "unknown": 34,
+      "known": []
+    }
+  ],
+  "traffic": {
+    "status": "READY",
+    "edges": 1221
+  },
+  "attention": {
+    "status": "PARTIAL",
+    "sources": {
+      "dpc": {
+        "status": "PARTIAL",
+        "products": [
+          {
+            "day": "2026-10-23",
+            "freshness": "STALE"
+          },
+          {
+            "day": "2026-10-24",
+            "freshness": "FRESH"
+          }
+        ]
+      },
+      "effis": {
+        "status": "AVAILABLE",
+        "products": [
+          {
+            "day": "2026-10-24",
+            "freshness": "FRESH"
+          },
+          {
+            "day": "2026-10-25",
+            "freshness": "FRESH"
+          }
+        ]
+      }
+    }
+  },
+  "assets": {
+    "status": "PASS",
+    "checks": 5
+  },
+  "ui": {
+    "rainCloudProof": {
+      "cloudPixels": "15621",
+      "coverage": "1",
+      "field": "map-weather-c39eb05c0c283d8c7482e2ae",
+      "probabilityPixels": "0",
+      "variable": "temperature,humidity,cloud,precipitation",
+      "wetPixels": "1549"
+    },
+    "cloudsOnlyProof": {
+      "cloudPixels": "15621",
+      "coverage": "1",
+      "field": "map-weather-c39eb05c0c283d8c7482e2ae",
+      "probabilityPixels": "0",
+      "variable": "temperature,humidity,cloud",
+      "wetPixels": "0"
+    },
+    "probabilityCloudProof": {
+      "cloudPixels": "15621",
+      "coverage": "1",
+      "field": "map-weather-c39eb05c0c283d8c7482e2ae",
+      "probabilityPixels": "7412",
+      "variable": "temperature,humidity,cloud,rain_probability",
+      "wetPixels": "0"
+    }
+  },
+  "mobile": {
+    "height": 812,
+    "overflowX": 0,
+    "overflowY": 0,
+    "radios": [
+      {
+        "checked": false,
+        "mode": "none"
+      },
+      {
+        "checked": false,
+        "mode": "precipitation"
+      },
+      {
+        "checked": true,
+        "mode": "rain_probability"
+      }
+    ],
+    "right": {
+      "bottom": 702,
+      "height": 531,
+      "left": 17,
+      "right": 367,
+      "top": 171,
+      "width": 350,
+      "x": 17,
+      "y": 171
+    },
+    "width": 375
+  },
+  "playback": {
+    "at": "2026-10-27T22:00:00Z",
+    "fraction": "0",
+    "frameP95Ms": "10.700000047683716",
+    "frameSamples": "120",
+    "from": "2026-10-27T22:00:00Z",
+    "lastFrameCostMs": "10.5",
+    "to": "2026-10-27T22:00:00Z"
+  },
+  "preserved": {
+    "files": 311,
+    "jobs": 95,
+    "engine_pins": "PASS"
+  },
+  "blocked": [
+    "Fine regional wind archive full; fresh global viewport wind available",
+    "Live thermal anomalies require absent FIRMS MAP_KEY",
+    "Local observed fire perimeters, connected river gauges and qualified population/vulnerability unavailable",
+    "Complete certified electric network, cable heights and operating state unavailable"
+  ],
+  "not_run": [
+    "New native physical jobs",
+    "Scientific/operational qualification",
+    "Safari and full end-to-end load benchmark",
+    "New acquisitions for every OSM category or optional feeds"
+  ],
+  "frozen_scenario_ui": {
+    "status": "PASS",
+    "case": "optimized-physical-fonte-vetica-20261019",
+    "probability_missing_explicitly": true,
+    "cloud_center_percent": 1,
+    "new_physical_jobs": 0
+  }
+}

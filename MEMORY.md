@@ -547,3 +547,7 @@ FR-MONITOR-CLOCK-05:Previsioni e criticità/unicoRiproduci. monitor-timeline.js 
 
 ## 24ottobre2026 — sismi, primo clic realmente visibile
 Segnalazione utente riprodotta come pannello aperto ma checkboxspento. INGV nella vista corrente restituisce216eventi. Il primo accesso alla voce Terremoti osservati ora attiva/acquisisce tramite gli handler esistenti; nessuna acquisizione all’avvio, disabilitazione esplicita rispettata alle riaperture. Fonti/quote/filtri e modelli invariati. Run quake-opening-20261024/report TERREMOTI-APERTURA-LIVELLO-20261024, PASSUIreale; NOTRUNSafari/fisicanuova.
+
+
+## 24ottobre2026 — magnitudo e variabili meteo separate
+FR-MAP-DATA-SEMANTICS-06;run map-data-semantics-20261024. quakeStyle unico per renderer/legenda, raggio3+2Mpx e6colori; scala grafica non danno. Pioggia(mm)/probabilità(%) alternative esplicite; nuvolecheckboxindipendente/veloneutro, non immaginesatellitare. Renderer condivisoMonitoraggio/studio, probabilità assente nei vecchisnapshot resta n/d. PASS17suiteclient,UI/mobile,5assetSHA,311file/95job/pinmotori invariati. Audit:meteoFRESH/radar/Sentinel/215INGV/1221strade;pluviometri inizialmenteSTALE→refresh3976freschi/4039. Rete192oggetti/187tensioniND,3linee150kV+2sottostazioni150/132kV, inventario parziale. Vento finearchivio pieno restaBLOCKED, campo globaleattuale usato; FIRMS/idrometri/perimetriosservati/esposizionequalificata mancanti. Report MAPPA-DATI-MAGNITUDO-E-METEO-20261024.

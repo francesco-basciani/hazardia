@@ -1331,3 +1331,7 @@ ReviewerCodexself-check;base28d1eca+dirty;reports/TIMELINE-COMUNE-MONITORAGGIO-2
 
 ## quake-opening-20261024 — primo accesso sismi
 PASS:216INGV osservati nella vista utente; primo clic attiva e acquisisce, nulla prima dell’apertura; disabilitazione manuale rispettata alla riapertura; riattivazione riusa cache. Report TERREMOTI-APERTURA-LIVELLO-20261024/verification.json, basebac2794+dirty, reviewerCodexself-check, browserintegrato. NOTRUNSafari/nuovajobfisici/qualificazionescientifica. Backend/fonti/quote/filtri invariati.
+
+
+## map-data-semantics-20261024 — simboli e dati
+Base76a55bd+dirty;reviewerCodexself-check;report MAPPA-DATI-MAGNITUDO-E-METEO-20261024 e reports/map-data-semantics/verification.json. PASSFR-MAP-DATA-SEMANTICS-06:scaleM/6colori,renderer e legenda condivisi; quantità/probabilità alternative e nuvole neutre indipendenti. PASS17suiteJS/UI1011×1034/mobile375×812senzaoverflow;1549pixelpioggia/7412probabilitàalternativi e15621nuvole;120framep95lavoro10,7ms(nonFPS). PASSfonti reali e5assetSHA:215sismi,3976pluviometrifreschi/4039doporefresh,2JPEGsatellitari,radarSRI,1221segmentitraffico;187zone/77accumuli24hcompleti, bollettinoAVAILABLE;192oggettiOSM/5tensioninote/187ND. PASS311file/95job/pinCIMAinvariati. BLOCKEDventofineregionalepieno,hotspotMAP_KEY/idrometri/perimetriosservati/esposizionequalificata/ATcertificata/qualificazionescientifica. NOTRUNnuovajobfisici/Safari/caricoend-to-end/ognicategoriaOSMriscansita. CachepluviometriSTALEiniziale registrata, non contata comeFRESHprima delrefresh.

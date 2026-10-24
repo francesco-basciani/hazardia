@@ -8,3 +8,6 @@ export function powerVisible(p,{minVoltage=35000,unknown=false,cables=false,stat
  if(p.location!=='overhead'&&!cables)return false;
  return v==null?unknown:v>=minVoltage;
 }
+
+export const quakeClasses=[{min:-Infinity,label:'M < 1',color:'#75d5dd'},{min:1,label:'1 ≤ M < 2',color:'#48bca0'},{min:2,label:'2 ≤ M < 3',color:'#f1d25c'},{min:3,label:'3 ≤ M < 4',color:'#f39a48'},{min:4,label:'4 ≤ M < 5',color:'#ed605c'},{min:5,label:'M ≥ 5',color:'#c97ccf'}];
+export function quakeStyle(m){if(!Number.isFinite(m))return {radius:3,color:'#e8edf1',fillColor:'#8897a3',fillOpacity:.6,weight:1.2};const band=quakeClasses.filter(c=>m>=c.min).at(-1);return {radius:3+2*Math.max(0,Math.min(9,m)),color:'#f2f6fa',fillColor:band.color,fillOpacity:.65,weight:1.2};}

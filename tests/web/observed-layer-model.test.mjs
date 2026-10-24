@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 const source=await fs.readFile(new URL('../../src/hazardia/web/static/observed-layer-model.js',import.meta.url),'utf8');
-const {powerVisible,powerColor}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const {powerVisible,powerColor,quakeClasses,quakeStyle}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
 const line={power_kind:'line',location:'overhead',max_voltage:132000};
 assert.equal(powerVisible(line),true);
 assert.equal(powerVisible(line,{minVoltage:220000}),false);
@@ -22,3 +22,9 @@ assert.equal(powerColor(220000),'#f6a749');
 assert.equal(powerColor(380000),'#ef637d');
 assert.notEqual(powerColor(35000),powerColor(null));
 console.log('PASS18 display-filter checks (not physical qualification)');
+
+for(let m=0;m<9;m+=.25)assert(quakeStyle(m+.25).radius>quakeStyle(m).radius);
+assert.equal(new Set(quakeClasses.map(c=>quakeStyle(Number.isFinite(c.min)?c.min:0).fillColor)).size,6);
+for(const c of quakeClasses.filter(c=>Number.isFinite(c.min))){assert.equal(quakeStyle(c.min).fillColor,c.color);assert.notEqual(quakeStyle(c.min-.001).fillColor,c.color);}
+assert.equal(quakeStyle(null).fillColor,'#8897a3');assert.equal(quakeStyle(NaN).radius,3);assert.equal(quakeStyle(Infinity).radius,3);assert.equal(quakeStyle(20).radius,quakeStyle(9).radius);assert(quakeStyle(-1).radius>0);
+console.log('PASS magnitude radius ordering, six exact colour boundaries, missing/nonfinite values, bounds and negative magnitudes; display scale only');

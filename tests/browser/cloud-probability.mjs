@@ -16,3 +16,13 @@ check(display.paintRain(ctx,map,field,record,{rain:false,cloud:true})===1);check
 display.paintRain(ctx,map,field,{...record,cloud:[0,0,0,0]},{rain:false,cloud:true});check(image.data[3]===0);
 display.paintRain(ctx,map,field,record,{rain:false,cloud:false});check(image.data[3]===0);
 console.log(`PASS ${checks} checks: distinct cloud colours, stronger transparent alpha, clear sky, toggles, probability interpolation and missing legacy data`);
+
+// Probability is a separate real field, not inferred from cloud cover or millimetres.
+const probable={...record,rain_probability:[80,80,80,80],precipitation:[0,0,0,0],cloud:[90,90,90,90]};
+display.paintRain(ctx,map,field,probable,{rain:false,probability:true,cloud:false});check(ctx.canvas.dataset.probabilityPixels==='1');check(ctx.canvas.dataset.wetPixels==='0');check(ctx.canvas.dataset.cloudPixels==='0');const probabilityPixel=[...image.data];check(probabilityPixel[3]>0);
+display.paintRain(ctx,map,field,probable,{rain:false,probability:false,cloud:true});check(ctx.canvas.dataset.probabilityPixels==='0');check(ctx.canvas.dataset.cloudPixels==='1');check(JSON.stringify([...image.data])!==JSON.stringify(probabilityPixel));
+display.paintRain(ctx,map,field,probable,{rain:false,probability:true,cloud:true});check(ctx.canvas.dataset.probabilityPixels==='1'&&ctx.canvas.dataset.cloudPixels==='1'&&ctx.canvas.dataset.wetPixels==='0');
+display.paintRain(ctx,map,field,{...probable,rain_probability:undefined},{rain:false,probability:true,cloud:false});check(image.data[3]===0);check(ctx.canvas.dataset.probabilityPixels==='0');
+for(const [_,color] of display.cloudStops)check(Math.max(...color)-Math.min(...color)<=32);
+check(display.probabilityColor(0)===null);check(display.probabilityOpacity(null)===0);check(display.probabilityOpacity(90)>display.probabilityOpacity(10));check(display.cloudOpacity(0)===0);
+console.log(`PASS ${checks} total weather-semantics checks: real probability/rain independence, neutral clouds, combination and absent data`);
