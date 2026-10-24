@@ -1,0 +1,33 @@
+{
+  "increment": "A2_READ_ONLY_DESCRIPTORS",
+  "status": "PASS",
+  "new_tests": 11,
+  "regression_suites": {
+    "unit": 201,
+    "web": 47,
+    "decision": 51,
+    "domain": 19
+  },
+  "total_tests": 318,
+  "client_suites": 11,
+  "packaging": {
+    "status": "PASS",
+    "scope": "Wheel built without network/install; discovery from unpacked wheel in isolated cwd",
+    "package_ids": [
+      "hazardia.flood",
+      "hazardia.wildfire"
+    ]
+  },
+  "dispatch_modified": false,
+  "schemas_legacy_modified": false,
+  "new_dependencies": false,
+  "scientific_qualification": "BLOCKED_UNCHANGED",
+  "A3": "NOT_RUN",
+  "negative_results": [
+    "Root discovery invocation failed five import fixtures; documented per-suite discovery passed 318 tests",
+    "Native FLOOD exact raster replay FAIL; native execution/validation, HMC discharge and wet mask PASS; diagnosis separate, no post-hoc equivalence threshold",
+    "Initial verifier extension IndentationError before execution; corrected and separate successful 72h studio replay retained"
+  ],
+  "scope": "A2 read-only metadata software only; not universal architecture or scientific qualification",
+  "native_reflex_exact_replay": "FAIL"
+}

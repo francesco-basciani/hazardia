@@ -1,0 +1,17 @@
+{
+  "existing_runtime_files_verified": 14,
+  "changed_runtime_files": [],
+  "descriptor_revisions_match_runtime": true,
+  "studio_frames": 288,
+  "flood_exact_replay": "FAIL",
+  "flood_native_execution_and_validation": "PASS",
+  "flood_changed_cells": 144,
+  "flood_max_abs_difference_m": 4.190951585769653e-09,
+  "flood_wet_mask_equal": true,
+  "flood_grid_equal": true,
+  "flood_HMC_discharge_equal": true,
+  "flood_depth_maxima_equal": true,
+  "upstream_random_initialization": true,
+  "upstream_random_source_sha256": "90b5376109f16a1b5d9d8668fd4546fc9238da2d23349654ddc36bd23e36c106",
+  "interpretation": "Exploratory diagnosis, not post-hoc equivalence tolerance or proof of predictive skill. Random optimizer initialization is pre-existing; catalog is absent from unchanged runtime execution paths."
+}

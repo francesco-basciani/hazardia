@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "hazard": "FIRE",
+      "baseline_job": "job-7f7c35a549494a118219cd98bcf70093",
+      "elapsed_s": 5.393025739998848,
+      "checks": {
+        "products/fire-probability.tif": true,
+        "products/earliest-realization-arrival.tif": true,
+        "probability": true,
+        "fire": true,
+        "arrival": true
+      },
+      "status": "PASS"
+    },
+    {
+      "hazard": "FLOOD",
+      "baseline_job": "job-78cd5d14b5234865b715bd8f090c0caf",
+      "elapsed_s": 45.02484321200609,
+      "checks": {
+        "products/maximum-depth.tif": false,
+        "HMC_REFlEx_discharge_bridge": true
+      },
+      "status": "FAIL"
+    }
+  ],
+  "status": "FAIL"
+}

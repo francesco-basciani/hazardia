@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "hazard": "FIRE",
+      "baseline_job": "job-4bcbd12dc46d4fa4b6d0ffa18142551c",
+      "elapsed_s": 32.51067493700248,
+      "checks": {
+        "products/fire-probability.tif": true,
+        "products/earliest-realization-arrival.tif": true,
+        "probability": true,
+        "fire": true,
+        "arrival": true,
+        "all_studio_probability_frames": true
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

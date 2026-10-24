@@ -1,0 +1,93 @@
+{
+  "descriptor_schema": "hazardia.domain-package/0.1.0",
+  "package_id": "hazardia.flood",
+  "package_version": "0.1.0",
+  "core_versions": [
+    "0.1.0"
+  ],
+  "legacy_hazard": "FLOOD",
+  "labels": {
+    "it": "Alluvioni",
+    "en": "Flood"
+  },
+  "models": [
+    {
+      "id": "hmc",
+      "engine_ref": "HMC",
+      "source_revision": "e6e95ecbc794431c4e6d09a81b3292704f3cca42",
+      "version_basis": "PINNED_SOURCE_REVISION",
+      "adapter_ref": "hazardia.adapters.workers.flood:run"
+    },
+    {
+      "id": "reflex",
+      "engine_ref": "REFLEX",
+      "source_revision": "0dd5aa9803f7c163a4f6c3b42d9f69bce88a53bd",
+      "version_basis": "PINNED_SOURCE_REVISION",
+      "adapter_ref": "hazardia.adapters.workers.flood:run"
+    }
+  ],
+  "contracts": [
+    {
+      "kind": "simulation_request",
+      "versions": [
+        "0.2.0",
+        "0.3.0"
+      ],
+      "validator_ref": "hazardia.contracts:validate_request"
+    },
+    {
+      "kind": "hazard_product",
+      "versions": [
+        "0.2.0"
+      ],
+      "validator_ref": "hazardia.contracts:validate_product"
+    }
+  ],
+  "semantics": {
+    "input_requirements": [
+      "Verified DEM and weather assets; explicit CRS, grid, timestamps, hashes and units",
+      "Complete staged grid, rain pulse, initial discharge reference and declared experimental REFlEx patch"
+    ],
+    "output_meaning": [
+      "Maximum simulated flood depth over the HMC discharge window, not a time-evolving hydraulic perimeter"
+    ],
+    "compatibility_rules": [
+      "Existing validators remain authoritative; metadata is not request admission",
+      "No automatic conversion, extrapolation or substitution for missing data"
+    ]
+  },
+  "execution": {
+    "binding_mode": "DESCRIPTIVE_ONLY",
+    "supervisor_ref": "hazardia.jobs:JobStore",
+    "dispatch_ref": "hazardia.adapters.pipeline:main",
+    "budget_source": "EXISTING_REQUEST_AND_RUNTIME_LIMITS",
+    "side_effects": "NONE"
+  },
+  "decision": {
+    "policy_refs": [
+      "decision_problem/0.5.0"
+    ],
+    "verifier_ref": "hazardia.decision.verifier:verify",
+    "degradation_ref": "hazardia.adaptation.control:ResearchControl",
+    "limitations": [
+      "UNKNOWN constraints never imply authorization; no operational dispatch",
+      "ResearchControl replay is distinct from real runtime health",
+      "Flood intervention efficacy is not established by the hydrology-to-mapping chain"
+    ]
+  },
+  "qualification": {
+    "status": "UNQUALIFIED_RESEARCH",
+    "runtime_availability": "NOT_ASSESSED",
+    "data_availability": "NOT_ASSESSED",
+    "operational_authorization": "NOT_GRANTED",
+    "limitations": [
+      "No physical skill, intervention efficacy or global coverage inferred from discovery",
+      "REFlEx compatibility patch required; initial discharge and parameters remain research assumptions"
+    ]
+  },
+  "evidence_refs": [
+    "scripts/configure_runtime.py",
+    "reports/M0-real-terrain.md",
+    "reports/EVOLUZIONE-DOMINI-DESIGN-20261024.md"
+  ]
+}

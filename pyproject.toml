@@ -16,4 +16,4 @@ hazardia = "hazardia.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-hazardia = ["schemas/*.json", "web/static/*"]
+hazardia = ["schemas/*.json", "domain_packages/*.json", "web/static/*"]

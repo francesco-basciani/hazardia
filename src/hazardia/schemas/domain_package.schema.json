@@ -1,0 +1,313 @@
+{
+  "type": "object",
+  "properties": {
+    "descriptor_schema": {
+      "const": "hazardia.domain-package/0.1.0"
+    },
+    "package_id": {
+      "type": "string",
+      "pattern": "^hazardia\\.[a-z][a-z0-9-]{0,63}$"
+    },
+    "package_version": {
+      "const": "0.1.0"
+    },
+    "core_versions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "maxItems": 32
+    },
+    "legacy_hazard": {
+      "enum": [
+        "FIRE",
+        "FLOOD"
+      ]
+    },
+    "labels": {
+      "type": "object",
+      "properties": {
+        "it": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        }
+      },
+      "required": [
+        "it",
+        "en"
+      ],
+      "additionalProperties": false
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "engine_ref": {
+            "enum": [
+              "PROPAGATOR",
+              "HMC",
+              "REFLEX"
+            ]
+          },
+          "source_revision": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "version_basis": {
+            "const": "PINNED_SOURCE_REVISION"
+          },
+          "adapter_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        },
+        "required": [
+          "id",
+          "engine_ref",
+          "source_revision",
+          "version_basis",
+          "adapter_ref"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "maxItems": 32
+    },
+    "contracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "enum": [
+              "simulation_request",
+              "hazard_product"
+            ]
+          },
+          "versions": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "0.2.0",
+                "0.3.0",
+                "0.4.0"
+              ]
+            },
+            "minItems": 1,
+            "uniqueItems": true,
+            "maxItems": 32
+          },
+          "validator_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        },
+        "required": [
+          "kind",
+          "versions",
+          "validator_ref"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "maxItems": 32
+    },
+    "semantics": {
+      "type": "object",
+      "properties": {
+        "input_requirements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "maxItems": 32
+        },
+        "output_meaning": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "maxItems": 32
+        },
+        "compatibility_rules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "input_requirements",
+        "output_meaning",
+        "compatibility_rules"
+      ],
+      "additionalProperties": false
+    },
+    "execution": {
+      "type": "object",
+      "properties": {
+        "binding_mode": {
+          "const": "DESCRIPTIVE_ONLY"
+        },
+        "supervisor_ref": {
+          "const": "hazardia.jobs:JobStore"
+        },
+        "dispatch_ref": {
+          "const": "hazardia.adapters.pipeline:main"
+        },
+        "budget_source": {
+          "const": "EXISTING_REQUEST_AND_RUNTIME_LIMITS"
+        },
+        "side_effects": {
+          "const": "NONE"
+        }
+      },
+      "required": [
+        "binding_mode",
+        "supervisor_ref",
+        "dispatch_ref",
+        "budget_source",
+        "side_effects"
+      ],
+      "additionalProperties": false
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "policy_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "maxItems": 32
+        },
+        "verifier_ref": {
+          "const": "hazardia.decision.verifier:verify"
+        },
+        "degradation_ref": {
+          "const": "hazardia.adaptation.control:ResearchControl"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "policy_refs",
+        "verifier_ref",
+        "degradation_ref",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "qualification": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "const": "UNQUALIFIED_RESEARCH"
+        },
+        "runtime_availability": {
+          "const": "NOT_ASSESSED"
+        },
+        "data_availability": {
+          "const": "NOT_ASSESSED"
+        },
+        "operational_authorization": {
+          "const": "NOT_GRANTED"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "status",
+        "runtime_availability",
+        "data_availability",
+        "operational_authorization",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "maxItems": 32
+    }
+  },
+  "required": [
+    "descriptor_schema",
+    "package_id",
+    "package_version",
+    "core_versions",
+    "legacy_hazard",
+    "labels",
+    "models",
+    "contracts",
+    "semantics",
+    "execution",
+    "decision",
+    "qualification",
+    "evidence_refs"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:hazardia:domain-package:0.1.0"
+}

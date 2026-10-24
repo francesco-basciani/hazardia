@@ -551,3 +551,7 @@ Italiano predefinito senza preferenza salvata; selettore Italiano/English nella 
 
 ## FR-MAP-CLOCK-AND-LAYERS-20261024
 L’elenco dei livelli è uniforme a sinistra; ogni selezione apre le opzioni in un pannello separato a destra, mai annidate nella lista. Su schermi piccoli i pannelli si alternano. Mostrare sempre il tempo monitorato (data, secondi, offset UTC), distinguendo futuro e ora reale. Un timestamp mancante non va sostituito silenziosamente con l’ora attuale. La progettazione domain-agnostic preserva AR-EXT-01, contratti e compatibilità correnti; Stage 1 documentario non autorizza migrazioni implicite dei dati.
+
+
+## AR-EXT-A2 — descrittori locali informativi
+Il catalogo domain-package/0.1.0 descrive soltanto FIRE/FLOOD esistenti: metadati rigidi/digest, versioni e riferimenti approvati, senza import/esecuzione dinamica. Discovery opt-in; i validator, runtime hash, worker, JobStore e verifier attuali restano autorità. Presenza del descriptor distinta da installazione/dati/qualifica/autorizzazione. Nessuna migrazione di contratti o scenari. Schema `schemas/domain_package.schema.json`, guida `docs/DOMAIN-PACKAGES.md`.

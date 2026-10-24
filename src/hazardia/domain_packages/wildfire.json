@@ -1,0 +1,87 @@
+{
+  "descriptor_schema": "hazardia.domain-package/0.1.0",
+  "package_id": "hazardia.wildfire",
+  "package_version": "0.1.0",
+  "core_versions": [
+    "0.1.0"
+  ],
+  "legacy_hazard": "FIRE",
+  "labels": {
+    "it": "Incendi",
+    "en": "Wildfire"
+  },
+  "models": [
+    {
+      "id": "propagator",
+      "engine_ref": "PROPAGATOR",
+      "source_revision": "48b45078093692aa8dcca98f51849a5fbcd981a5",
+      "version_basis": "PINNED_SOURCE_REVISION",
+      "adapter_ref": "hazardia.adapters.workers.fire:run"
+    }
+  ],
+  "contracts": [
+    {
+      "kind": "simulation_request",
+      "versions": [
+        "0.2.0",
+        "0.3.0",
+        "0.4.0"
+      ],
+      "validator_ref": "hazardia.contracts:validate_request"
+    },
+    {
+      "kind": "hazard_product",
+      "versions": [
+        "0.2.0"
+      ],
+      "validator_ref": "hazardia.contracts:validate_product"
+    }
+  ],
+  "semantics": {
+    "input_requirements": [
+      "Verified DEM and weather assets; explicit CRS, grid, timestamps, hashes and units",
+      "Fuel, meteorological FROM wind direction, speed and fuel moisture; versioned fire_plan for studio runs"
+    ],
+    "output_meaning": [
+      "Simulated probability and earliest realization arrival; studio frame series when explicitly requested"
+    ],
+    "compatibility_rules": [
+      "Existing validators remain authoritative; metadata is not request admission",
+      "No automatic conversion, extrapolation or substitution for missing data"
+    ]
+  },
+  "execution": {
+    "binding_mode": "DESCRIPTIVE_ONLY",
+    "supervisor_ref": "hazardia.jobs:JobStore",
+    "dispatch_ref": "hazardia.adapters.pipeline:main",
+    "budget_source": "EXISTING_REQUEST_AND_RUNTIME_LIMITS",
+    "side_effects": "NONE"
+  },
+  "decision": {
+    "policy_refs": [
+      "decision_problem/0.5.0",
+      "FIRE_IDEAL_ASSIGNMENT/0.6.0"
+    ],
+    "verifier_ref": "hazardia.decision.verifier:verify",
+    "degradation_ref": "hazardia.adaptation.control:ResearchControl",
+    "limitations": [
+      "UNKNOWN constraints never imply authorization; no operational dispatch",
+      "ResearchControl replay is distinct from real runtime health",
+      "Ideal priority points are not people; aircraft/logistics qualification required"
+    ]
+  },
+  "qualification": {
+    "status": "UNQUALIFIED_RESEARCH",
+    "runtime_availability": "NOT_ASSESSED",
+    "data_availability": "NOT_ASSESSED",
+    "operational_authorization": "NOT_GRANTED",
+    "limitations": [
+      "No physical skill, intervention efficacy or global coverage inferred from discovery"
+    ]
+  },
+  "evidence_refs": [
+    "scripts/configure_runtime.py",
+    "reports/DOMINI-DINAMICI-E-FORZANTI.md",
+    "reports/EVOLUZIONE-DOMINI-DESIGN-20261024.md"
+  ]
+}

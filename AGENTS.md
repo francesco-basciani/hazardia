@@ -105,3 +105,7 @@ FR-MONITOR-SECTIONS-04: traffico ipotetico e scenari appartengono alla sezione S
 
 ## Livelli, orario ed evoluzione — 24 ottobre 2026
 Rettifica vincolante: lista uniforme dei livelli a sinistra; parametri in pannello separato a DESTRA. Niente gruppo “Altri livelli territoriali”. Ora monitorata con data/secondi/offset UTC distinta dall’orologio attuale e marcata futura quando applicabile. Conservare motori, dati, job, contratti, verificatore e gate scientifici. Per l’evoluzione domain-agnostic seguire `docs/tasks/DOMAIN-AGNOSTIC-EVOLUTION.md`: Stage 1 audit/design; presentare migrazione concreta prima di Stage 2, non implementare subito un framework sostitutivo.
+
+
+## Evoluzione A2 autorizzata —24ottobre2026
+L’utente autorizza a procedere dopo Stage 1 preservando PROPAGATOR e ogni funzionalità. A2 implementato come catalogo descrittivo opt-in locale FIRE/FLOOD; non chiamato dal percorso di esecuzione esistente. Conservare espliciti NOT_ASSESSED/UNQUALIFIED_RESEARCH/NOT_GRANTED; non convertire i riferimenti stringa in import o shell arbitrari. A3 è il prossimo incremento distinto con guard ed equivalenza verificati; nessun cambiamento implicito della fisica. Il FAIL di replay esatto REFlEx è evidenza da preservare (report DOMAIN-PACKAGES-A2-20261024), non permesso per cambiare upstream/semi/tolleranze.

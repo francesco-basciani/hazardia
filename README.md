@@ -186,3 +186,8 @@ La dashboard usa italiano come lingua predefinita. Il selettore **Italiano / Eng
 ## Checkpoint e progetto dell’evoluzione
 
 Il tag `stable-2026-10-24-pre-domain-evolution` conserva la versione precedente all’evoluzione. [Prompt corretto](docs/tasks/DOMAIN-AGNOSTIC-EVOLUTION.md), [audit e design Stage 1](reports/EVOLUZIONE-DOMINI-DESIGN-20261024.md), [verifica livelli e ora](reports/LIVELLI-DESTRA-E-ORARIO-20261024.md). I parametri dei livelli si aprono a destra; l’ora monitorata è separata dall’ora attuale. Stage 2 non avviato.
+
+
+## Descrittori dei domini esistenti
+
+[A2 implementato](docs/DOMAIN-PACKAGES.md): `PYTHONPATH=src ../core-env/bin/python -B -m hazardia.package_catalog` nella VM elenca i descrittori locali FIRE/FLOOD in sola lettura. Non cambia il percorso dei simulatori e non certifica disponibilità o fisica. [Regressioni native e limiti](reports/DOMAIN-PACKAGES-A2-20261024.md), incluso il confronto esatto REFlEx non superato.

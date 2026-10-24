@@ -1,38 +1,42 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "1b7b03a20f1a6dff054b78043f0424a01fd2f20d",
+  "source_git_sha": "16955bd3a249c211919065b431f955a7c009cd05",
   "files": {
     ".gitignore": {
       "bytes": 608,
       "sha256": "44f54f50721a0f9d409ce93cd6ac3df0d81c8dc797f3e504b21888694d85aa0e"
     },
     "AGENTS.md": {
-      "bytes": 19108,
-      "sha256": "b6647778f866ebc6311991e8ac0de9d29d7ad742c5338e722d3808f4f6d9a71e"
+      "bytes": 19766,
+      "sha256": "eeef322fb7351c3be54c682e8127c8c2ef16aa70f2656d42278ae5206313f6ee"
     },
     "CHECKLIST.md": {
-      "bytes": 203039,
-      "sha256": "31c7fface2102ff399a10ccc504377be22f2e53c65da67dbb129b6020b1bcf38"
+      "bytes": 204292,
+      "sha256": "f824e88c7c5918cb84785abef1462ab81370f574b2dc0aa278ce6c63f14df3fb"
     },
     "MEMORY.md": {
-      "bytes": 154791,
-      "sha256": "ee832af1388e6c9c219dd0c83fa2e76ab1f436fb0dc37835a428511df1e89917"
+      "bytes": 156044,
+      "sha256": "600af4185c5a397d525afdf4c4b941222264af9dce6163b68f9d32b123e1d8fe"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 158687,
-      "sha256": "52e9d1a152fd08441137324ea7b60bfd20ddcc5699332fea92032673dc110254"
+      "bytes": 159940,
+      "sha256": "94ff79df65bb7feedfce725ef140aa0f02740d3b1dfeb1c46fc41374fd7144b6"
     },
     "README.md": {
-      "bytes": 28940,
-      "sha256": "fdd5bbfe4bcab413e998e9e2744e5dabcaac8a57b0f95745561da34edb2fff00"
+      "bytes": 29358,
+      "sha256": "f04723844971adf3a0c0ebf0a042092ceb5fa81d209ffc74d9f1dbed71230def"
     },
     "SPEC.md": {
-      "bytes": 103935,
-      "sha256": "9ee2f1f5bd23753e8e44d2f68f792f0e493859f972097db719276398566fd042"
+      "bytes": 104452,
+      "sha256": "d333b6a5733277fe105c8582f102dbdb5d071c935244d52a113e209820e80fd7"
+    },
+    "docs/DOMAIN-PACKAGES.md": {
+      "bytes": 4879,
+      "sha256": "248138e22949e268e33fe80a304bfa466c1f2782b351a89c0ba2ec46425fed30"
     },
     "docs/INSTALLAZIONE.md": {
       "bytes": 29776,
@@ -123,8 +127,8 @@
       "sha256": "679bda02fbb6f08032766e1a7f1fe753cf9544adfc410e63499d0815efe98799"
     },
     "pyproject.toml": {
-      "bytes": 449,
-      "sha256": "ab8ceb46094351804371f28f335b69a764b1b8030ceb399cda5ba6e510cef169"
+      "bytes": 475,
+      "sha256": "37c0e6bf051ce661c880110231f43040c17524697bd25f25750a4ac875778190"
     },
     "reports/ABITATI-ESPOSIZIONE-E-LINEE-ELETTRICHE.md": {
       "bytes": 9651,
@@ -246,6 +250,10 @@
       "bytes": 11182,
       "sha256": "6abc348c359f6db19b2580fe8cfed897f04dccdc0757ce49314968322f8dfbb6"
     },
+    "reports/DOMAIN-PACKAGES-A2-20261024.md": {
+      "bytes": 6035,
+      "sha256": "720ae5242b641495ea182b909d93658db1ba48f3faf8d68f1be46ca807b68ad3"
+    },
     "reports/DOMINI-DINAMICI-E-FORZANTI.md": {
       "bytes": 13937,
       "sha256": "e5f5ecc3a4f498112a7bbf4cd4fb4f9e071d62a600b24ee3202e3dd0ed422aa1"
@@ -259,8 +267,8 @@
       "sha256": "19145d2d58ebea866f18ead44167b03eb5026f63f88e30271c26fbdfbd203940"
     },
     "reports/EVOLUZIONE-DOMINI-DESIGN-20261024.md": {
-      "bytes": 15318,
-      "sha256": "4b12f3148a612c23d7b624cc7ad2ddf45a54d18b6482e42dd4c1e3609a73287d"
+      "bytes": 15761,
+      "sha256": "97a4042cd3d873d47cfd4febcb18af49c598d76f7b2f13d0aa184f9a90ca50ee"
     },
     "reports/FIRE-WORKSPACE.md": {
       "bytes": 4593,
@@ -633,6 +641,34 @@
     "reports/domain-evolution/verification.json": {
       "bytes": 1203,
       "sha256": "b459d5caf321351430edbf9e9e6e253cd8d1e69ef8d45ede6bc74f5215db3f68"
+    },
+    "reports/domain-packages/benchmark.json": {
+      "bytes": 3174,
+      "sha256": "86cf48a1dce52e7bb09514333e39ce5782fa43e954651cd560103bea92ad5b12"
+    },
+    "reports/domain-packages/client-tests.json": {
+      "bytes": 3253,
+      "sha256": "9c5fcb7ffd6475fbb104e270e6aa71062edba42e7eb60e1a482cb50daa67d1b2"
+    },
+    "reports/domain-packages/native-diagnosis.json": {
+      "bytes": 809,
+      "sha256": "05bbd9dfbada6502c917c9824252b583bd0e288cfc563a0f56693a52ce5750cb"
+    },
+    "reports/domain-packages/native-replay.json": {
+      "bytes": 686,
+      "sha256": "51a90a4f84611c92edbedaafd7df90ae2f422e1488739dac676ea406766a64a3"
+    },
+    "reports/domain-packages/preservation.json": {
+      "bytes": 146,
+      "sha256": "daa64589c9b8829b2a1904530f6bfd5cccf6d720228e3e2818584b6f56cf6a66"
+    },
+    "reports/domain-packages/studio-replay.json": {
+      "bytes": 456,
+      "sha256": "b0de841e7c6e36783913a751d199489744a1222e93d79d73a6fbfcaa05675a3e"
+    },
+    "reports/domain-packages/verification.json": {
+      "bytes": 1189,
+      "sha256": "0d40716be9ffe9c8971bd96791c12a7c5b2b3d83dd433e01acb1396b5761ccd5"
     },
     "reports/dpc-geometries/final-verification.json": {
       "bytes": 894,
@@ -1219,8 +1255,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 172918,
-      "sha256": "8417b97ad6177840101c395367dee8a85ea454db05dcf2fa694b8b75ef86ca73"
+      "bytes": 174171,
+      "sha256": "404d820f77eb69e9a602bc2bbd7920f0b6fa69881d30863d0b4eaa2d8d22efce"
     },
     "research/RESEARCH.md": {
       "bytes": 34039,
@@ -1482,6 +1518,18 @@
       "bytes": 3451,
       "sha256": "f2232dca541910c81893e73c59e29a2b50d8804eec009048885218ec5b94e4d6"
     },
+    "src/hazardia/domain_packages/flood.json": {
+      "bytes": 2980,
+      "sha256": "0498c3adc940f75c2634136df829737a39197beea061c67123cdad9ea00a2c43"
+    },
+    "src/hazardia/domain_packages/index.json": {
+      "bytes": 174,
+      "sha256": "ccba1af3a2c4166b1ddfcc7076057f8c5306b05d4e334a2cbc086b52962d71cd"
+    },
+    "src/hazardia/domain_packages/wildfire.json": {
+      "bytes": 2714,
+      "sha256": "f1f10e6353a1e93c4c293131c81771075d0c9a7b9a762b1ddb362b45528c846a"
+    },
     "src/hazardia/dynamic_stage.py": {
       "bytes": 7721,
       "sha256": "790a450638fa6dc14672bf33f6881a23dc308a66421b96fe5efa31d952d03aee"
@@ -1562,9 +1610,17 @@
       "bytes": 7002,
       "sha256": "188a1a20f818cce38d000fde99c3bd2b045f8062ab9f9a807bf9edddd4903bc1"
     },
+    "src/hazardia/package_catalog.py": {
+      "bytes": 6684,
+      "sha256": "ff87629e9069540e39e1963214b1d4e2fbdd7dbffed08329cba47ab3e7d3ad45"
+    },
     "src/hazardia/rain_assessment.py": {
       "bytes": 6654,
       "sha256": "d1fbb0e44140bf5f78f2886c2b53e7a9c5740b50431199124fbe5aedf2eab5de"
+    },
+    "src/hazardia/schemas/domain_package.schema.json": {
+      "bytes": 7046,
+      "sha256": "5c384fd34edb12ba1d611fca4bb9f611927d39c7b56f6f054ef7ca692d6fbcfc"
     },
     "src/hazardia/schemas/domain_record.schema.json": {
       "bytes": 28212,
@@ -2342,6 +2398,10 @@
       "bytes": 7837,
       "sha256": "ff3138ef99f13f02a106b003b471779a50ace9bc7b37410e21f124a9be18a6b5"
     },
+    "tests/integration/benchmark_package_catalog.py": {
+      "bytes": 1572,
+      "sha256": "f992a67bfbfd2da0a58c5411ab2f19710f0161397df3ddb45f36cc39f7757b04"
+    },
     "tests/integration/verify_m2.py": {
       "bytes": 8162,
       "sha256": "4bf8ae12e60fb90ee3f91c0319e6ba81fe9b7bbab19ae122975612491d1b71da"
@@ -2361,6 +2421,10 @@
     "tests/integration/verify_m6.py": {
       "bytes": 6071,
       "sha256": "e67d7c51c236bc81ed3357443bb38bbf3fb2f14e8730b929f6a2f00fbc4ce60d"
+    },
+    "tests/integration/verify_package_catalog.py": {
+      "bytes": 5687,
+      "sha256": "deee2b9c7e77f34f4cbc66c8ebcc36433f7ce87245ffd670a23004a00bf45d80"
     },
     "tests/integration/verify_real_run.py": {
       "bytes": 7925,
@@ -2509,6 +2573,10 @@
     "tests/unit/test_osm_tiles.py": {
       "bytes": 2161,
       "sha256": "02c2985cf5faafc9b4467f828f7e814ae7e6757b586ec5b0fa6271f36f8c6564"
+    },
+    "tests/unit/test_package_catalog.py": {
+      "bytes": 6115,
+      "sha256": "c851a44b130084b97dd92d4a76e5cf704763d281bb0dcf7829917b62503a0de2"
     },
     "tests/unit/test_radar_service.py": {
       "bytes": 1951,

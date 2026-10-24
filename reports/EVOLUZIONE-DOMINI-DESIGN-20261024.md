@@ -117,3 +117,7 @@ Regression set obbligatorio: lettura workspaces/versioni legacy; hash archivi/ru
 Scelto progetto additivo con adapter: conserva evidenze e consente rollback. Scartata riscrittura universale di schemi/solver/UI; rinviati hot-plugin, microservizi, ontologia completa/servizio di registry e imposizione degli standard senza consumer. Nessuna necessità di maggiore RAM/CPU dimostrata da questo progetto.
 
 Residui da risolvere in A2: granularità package dominio vs capacità trasversale, binding esatto dei manifest storici, versione minima del core, formato e limiti del descriptor, regole di compatibilità e ownership dei test. Non richiedono ora di cambiare la formulazione scientifica. Research recorder resta lo stesso agente; nessun agente autonomo/nuova ipotesi empirica. Nessun manoscritto modificato.
+
+
+## Aggiornamento dopo autorizzazione A2 —24 ottobre 2026
+La tabella precedente conserva il progetto Stage 1. Stato attuale A2: **PASS tecnico implementato**, con risultato negativo di replay esatto REFlEx esplicitamente conservato; [report](DOMAIN-PACKAGES-A2-20261024.md) e [contratto implementato](../docs/DOMAIN-PACKAGES.md). A3–A6 restano NOT RUN/DEFER. Non è ancora implementato un dispatch o un motore di composizione universale.
