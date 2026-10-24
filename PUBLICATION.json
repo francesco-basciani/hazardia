@@ -1,38 +1,38 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "a146c3c152a9f9b2ef6156e6ce247acccd5a9799",
+  "source_git_sha": "c4992c27c06afebe3575c80b2ec959b559e2dc82",
   "files": {
     ".gitignore": {
       "bytes": 608,
       "sha256": "44f54f50721a0f9d409ce93cd6ac3df0d81c8dc797f3e504b21888694d85aa0e"
     },
     "AGENTS.md": {
-      "bytes": 21030,
-      "sha256": "170f2a72c97f12640758f104e3b942c224c104e484951702c2df840dd665485e"
+      "bytes": 21662,
+      "sha256": "f1f295f103a7453378ff9174c470da572224a70e410b8fc8d3fcba5e201e77aa"
     },
     "CHECKLIST.md": {
-      "bytes": 206594,
-      "sha256": "0c90da97d5b5b3aafbe68d3f7f6eadb83f3615c424c3baf5c1bb73db8a206cc0"
+      "bytes": 208383,
+      "sha256": "5aaec0953c4d36446cf88d068d6be35e3e6b42e6f97d05cd52328ed10ab6097b"
     },
     "MEMORY.md": {
-      "bytes": 158346,
-      "sha256": "13ed5b364893e85ad8befdb6c3c6846917cdba2a47cf40219a6895c18d3bcc28"
+      "bytes": 160135,
+      "sha256": "cae88c430e2d2be40f1e0fead497e12c9f79adf761ce6bbb8f358b78498b9087"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 162242,
-      "sha256": "15db26f47721a3d461f772173693007790c6f81d599a1a12d79e3cf4e11728bd"
+      "bytes": 164031,
+      "sha256": "609fc6acf21f8b505391f1ac9c0dcf2442e939f1a5b063be47e20c0b9bbf7c06"
     },
     "README.md": {
-      "bytes": 30235,
-      "sha256": "de57c5bf1e06285a5fbf6da18c9964ae9bfca66be180dde18e41dc6822d914b8"
+      "bytes": 30765,
+      "sha256": "8dd2f0234145f1623aa663b6d110b966ed0b4dca7b8a396c3660d391ff6175ea"
     },
     "SPEC.md": {
-      "bytes": 105610,
-      "sha256": "ceedd38dd9b841b06cb8c38c499709b52fe4971d5f4f1a0b1bb9719ed8c8113d"
+      "bytes": 106372,
+      "sha256": "a05018c892587001e1a0c98dc8bbbddb995ddc4c08c65b36714f64b5880a8bc4"
     },
     "docs/DECISION-POLICIES.md": {
       "bytes": 5265,
@@ -41,6 +41,10 @@
     "docs/DOMAIN-PACKAGES.md": {
       "bytes": 6856,
       "sha256": "4cdac60da6cbc453cfe2351394fcab16bf877d51f759c9dc4a7ddc0496e85e37"
+    },
+    "docs/EXCHANGE-CONTRACTS.md": {
+      "bytes": 6831,
+      "sha256": "b69beec81cba385681ea1b2f2e96d0bd2868cbb89395d4467844585a44738723"
     },
     "docs/INSTALLAZIONE.md": {
       "bytes": 29776,
@@ -279,8 +283,12 @@
       "sha256": "19145d2d58ebea866f18ead44167b03eb5026f63f88e30271c26fbdfbd203940"
     },
     "reports/EVOLUZIONE-DOMINI-DESIGN-20261024.md": {
-      "bytes": 16566,
-      "sha256": "070a3afa1f2777537aee8916cf2e58ded7cf72cbd75bac572ea38483743b7ba3"
+      "bytes": 18355,
+      "sha256": "ac05e7a4a1bcfc92a9da912656d29a0555a7d33f3139df5dbce3a56e9278f8b9"
+    },
+    "reports/EXCHANGE-CONTRACTS-A5A-20261024.md": {
+      "bytes": 7822,
+      "sha256": "dec7cf70980f9c537873ac9c59116350c509c0fbd41b3fce65b849c35911715f"
     },
     "reports/FIRE-WORKSPACE.md": {
       "bytes": 4593,
@@ -773,6 +781,34 @@
     "reports/event-markers-verification.json": {
       "bytes": 1159,
       "sha256": "18edf10096411a715049d7b057ef2418d5a4644b9f9613b2574c60ee66e3fcc5"
+    },
+    "reports/exchange-contracts/benchmark.json": {
+      "bytes": 7428,
+      "sha256": "0fae2ebcb2f2fe137841745f10b95bdfeb29765bbde123095e2ed58e4ee91e65"
+    },
+    "reports/exchange-contracts/client-tests.json": {
+      "bytes": 3253,
+      "sha256": "9c5fcb7ffd6475fbb104e270e6aa71062edba42e7eb60e1a482cb50daa67d1b2"
+    },
+    "reports/exchange-contracts/facade-native.json": {
+      "bytes": 649,
+      "sha256": "9a9cfc5774292e24dccea0aff714232571288f4fae703e43092effe9203f60b0"
+    },
+    "reports/exchange-contracts/native.json": {
+      "bytes": 1782,
+      "sha256": "9c8f71c253a9fe9770a05d8a386c918447646f7605bc9971fea409c771942a63"
+    },
+    "reports/exchange-contracts/preservation.json": {
+      "bytes": 166,
+      "sha256": "1840a123a39df81048f585114af85037f3a93e32ed944b8559b0cd99691d5db1"
+    },
+    "reports/exchange-contracts/source-boundaries.json": {
+      "bytes": 223,
+      "sha256": "1c3074955ef4658c7bd961c0c6a8ea9039e562cf05056052831c8c50108c699c"
+    },
+    "reports/exchange-contracts/verification.json": {
+      "bytes": 1585,
+      "sha256": "3d4218cf05f5f759f60cde14bdc953a7e2e005057f0fcbe7ac0f36faa0b51fd2"
     },
     "reports/fire-coupling/native-verification.json": {
       "bytes": 8366,
@@ -1315,8 +1351,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 176473,
-      "sha256": "09ecce694482dda0b162fbde2d819d5ee9869bcb39905cc42f01c08b68779089"
+      "bytes": 178262,
+      "sha256": "8d7d11c769c3f7a1f0be83df82bc6adff9466c6097e834ad266fa3fdbf4e1ae4"
     },
     "research/RESEARCH.md": {
       "bytes": 34039,
@@ -1470,9 +1506,17 @@
       "bytes": 4716,
       "sha256": "799736c649a02c4c22e0d5409353802646272cdacbee8480099231241ff7da54"
     },
+    "src/hazardia/adapters/legacy_contracts.py": {
+      "bytes": 10737,
+      "sha256": "0fdd521628375ab7e56deb55ca25ff161582be93e43ddbb442eed308ec97efa6"
+    },
+    "src/hazardia/adapters/legacy_exchange.py": {
+      "bytes": 4876,
+      "sha256": "0b593fbc1af8e19ad4a2485e3b93935dddca7f910bfd9cad0cda96672c0aa74f"
+    },
     "src/hazardia/adapters/pipeline.py": {
-      "bytes": 1284,
-      "sha256": "686bb1c8ba5b225e0b8f65040df75623e8a812fb97cc83b3ba90571beca2b9a3"
+      "bytes": 1396,
+      "sha256": "320eee102783edc52a7ff55d241a51e1c11dcc21857ca42157423447af695bbd"
     },
     "src/hazardia/adapters/workers/__init__.py": {
       "bytes": 82,
@@ -1503,8 +1547,8 @@
       "sha256": "1531a2221541629c9786fb46501c593eb9d65132ec28dcd378634808cafea9da"
     },
     "src/hazardia/contracts.py": {
-      "bytes": 10728,
-      "sha256": "e948ce5db7f61cbc4da483745e78c4fbdda67af122e2d7aa27b8fd3eede605af"
+      "bytes": 951,
+      "sha256": "36581d0d196c962ad37040c582bb47c2a0f17f28f91f52e27ad1f1314fd20e67"
     },
     "src/hazardia/decision/__init__.py": {
       "bytes": 71,
@@ -1606,6 +1650,22 @@
       "bytes": 5342,
       "sha256": "9b6fd04422862a7be52d12a486d2d4b27bebe7c7e5444c10d872342b6ad6df05"
     },
+    "src/hazardia/exchange/__init__.py": {
+      "bytes": 387,
+      "sha256": "a89d9ab1b4a749a6e0f8fad99b3c4f61d33a1a6f8ffeb0e8b8a55339975634bc"
+    },
+    "src/hazardia/exchange/__main__.py": {
+      "bytes": 1921,
+      "sha256": "9058f170e21552711590e0630154ea2fa685b37e262f4fd8be38663aecf1495a"
+    },
+    "src/hazardia/exchange/compatibility.py": {
+      "bytes": 3408,
+      "sha256": "3f0ec72191a45e21dbba6f61fb7736836176a14e2c71c4bbefa29a3f79e9076f"
+    },
+    "src/hazardia/exchange/contracts.py": {
+      "bytes": 3373,
+      "sha256": "99fbee726ea052275646640bc1a69eee7712e7e9b58ae1e2dab189159fd1ef21"
+    },
     "src/hazardia/fire_branch.py": {
       "bytes": 3631,
       "sha256": "f939098d331dfe528f66a05f4963f3ace063896a11b6e5b9d9a029c981bc9002"
@@ -1693,6 +1753,14 @@
     "src/hazardia/schemas/domain_record.schema.json": {
       "bytes": 28212,
       "sha256": "3f36ba7561fea945fe2c0a335bab9449e4e80ee6f513d07aab962be3da1fc28c"
+    },
+    "src/hazardia/schemas/exchange_product.schema.json": {
+      "bytes": 9401,
+      "sha256": "d4f9cc9647fa04f24cdac2603ac50362fd5c6650e8ffccdd2a5d1e71da3cb0a1"
+    },
+    "src/hazardia/schemas/exchange_requirement.schema.json": {
+      "bytes": 5419,
+      "sha256": "98150afe4eebaec5251a1ecff4959e90ecb0596bfb1415ddd60d0fd6a2e9b249"
     },
     "src/hazardia/schemas/hazard_product.schema.json": {
       "bytes": 4875,
@@ -2478,6 +2546,10 @@
       "bytes": 2026,
       "sha256": "c4febcb17b6eb7fba89e48c840aad9317d039d39bc782be8bb4ddc7ee605c1bb"
     },
+    "tests/integration/benchmark_exchange.py": {
+      "bytes": 2197,
+      "sha256": "b6b497d290447cb55e233ca0602e1e09641a41b573e125040a040040b8fd3b9c"
+    },
     "tests/integration/benchmark_package_catalog.py": {
       "bytes": 1572,
       "sha256": "f992a67bfbfd2da0a58c5411ab2f19710f0161397df3ddb45f36cc39f7757b04"
@@ -2485,6 +2557,10 @@
     "tests/integration/verify_decision_policies.py": {
       "bytes": 6643,
       "sha256": "6516955aee932ee4341512b33219d2caf50bd13772d88d287fb8067a6da897a4"
+    },
+    "tests/integration/verify_exchange_runtime.py": {
+      "bytes": 6511,
+      "sha256": "de59ad45ac70b385de94ad9b638029d12a9ddbacb44d35b13ae8e94a6de82692"
     },
     "tests/integration/verify_m2.py": {
       "bytes": 8162,
@@ -2611,8 +2687,8 @@
       "sha256": "61e8db722dad06f74741aa858187e7b029e0b8cad2f0d92f3a607db2f503b5aa"
     },
     "tests/unit/test_dispatch.py": {
-      "bytes": 7511,
-      "sha256": "5edbeba60f8531616164b4183ed3b4a29cc6d5bd762feaa7e3731e8c5a80459a"
+      "bytes": 8338,
+      "sha256": "9d75b108f6ce5e05e6497601a9b2830b4dd9388799378073aeafb06910cbe740"
     },
     "tests/unit/test_dispatch_jobs.py": {
       "bytes": 3924,
@@ -2621,6 +2697,10 @@
     "tests/unit/test_dynamic_fire.py": {
       "bytes": 2264,
       "sha256": "9d3cc77b2ae3d9517118da7b4fac8b7ef3f9b9145674a19e92e5c7c1f3f2fdbf"
+    },
+    "tests/unit/test_exchange.py": {
+      "bytes": 9743,
+      "sha256": "445fdaa4539d1bb743b1317a0c089bd397151825cda21e340caab9113f4cfdc6"
     },
     "tests/unit/test_fire_branch.py": {
       "bytes": 1206,
@@ -2645,6 +2725,10 @@
     "tests/unit/test_jobs.py": {
       "bytes": 6670,
       "sha256": "76d72dba880f06c2454fcacd7dea77f6c4afd1634f1d7828781a0985e7bec6a6"
+    },
+    "tests/unit/test_legacy_exchange.py": {
+      "bytes": 4571,
+      "sha256": "b54fb6d4e24a97b172b210e0a067aa2c9fb0d60766bf0aa775913ab69f9c803d"
     },
     "tests/unit/test_map_navigation.py": {
       "bytes": 1149,

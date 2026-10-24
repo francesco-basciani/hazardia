@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "baseline_commit": "a146c3c152a9f9b2ef6156e6ce247acccd5a9799",
+  "legacy_functions_AST_equal": true,
+  "legacy_functions": 7,
+  "legacy_schemas_workers_decisions_and_API_files": 28,
+  "changed": []
+}

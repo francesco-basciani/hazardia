@@ -16,6 +16,8 @@ def main(directory):
         subprocess.run(product,env=env,check=True)
         for path,digest in cfg['engine_files'].items():
             if sha256(path)!=digest:raise HazardError('ENGINE_SOURCE_DRIFT',path)
+        from hazardia.adapters.legacy_exchange import write_legacy_exchange
+        write_legacy_exchange(root)
     except Exception as exc:
         if not (root/'worker-error.json').exists():write_new(root/'worker-error.json',dict(code=exc.code if isinstance(exc,HazardError) else 'WORKER_EXIT',message=str(exc)))
         return 1

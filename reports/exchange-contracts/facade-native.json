@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "case": "fire",
+      "compatibility": "PASS",
+      "diagnostics": {},
+      "elapsed_s": 5.048659123000107,
+      "exchange_status": "PASS",
+      "execution_status": "PASS",
+      "isolated_job": "job-7db51207384b4d93b60f7c6c34751a48",
+      "manifest_hash_verified": true,
+      "native_checks": {
+        "ARRIVAL_TIME": true,
+        "FIRE_PROBABILITY": true,
+        "all_probability_frames": true,
+        "arrival": true,
+        "fire": true,
+        "probability": true
+      },
+      "native_exact_comparison": "PASS"
+    }
+  ],
+  "scope": "NATIVE_TECHNICAL_REGRESSION_AND_METADATA_ONLY",
+  "status": "PASS"
+}

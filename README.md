@@ -201,3 +201,7 @@ Il tag `stable-2026-10-24-pre-domain-evolution` conserva la versione precedente 
 ## Policy decisionali modulari
 
 [A4 implementato](docs/DECISION-POLICIES.md): policy esposizione0.5 e assegnazione ideale incendi0.6 separate, stessi modelli/assegnazioni/unità e verificatore indipendente. [Report ed evidenze](reports/DECISION-POLICIES-A4-20261024.md), inclusi60replay decisionali sui due carichi piccoli fissati. Nessuna migrazione dei propri scenari o modifica dei motori fisici.
+
+
+### Contratti di interoperabilità (A5a)
+Il [confine di scambio](docs/EXCHANGE-CONTRACTS.md) descrive prodotti grigliati senza enumerare i domini nel nucleo e controlla compatibilità di metadati, tempo, griglie, unità e incertezza. Gli adapter esistenti mantengono i contratti storici e aggiungono un sidecar ai nuovi job. Non comprende ancora ammissione generica o composizione automatica di modelli; la compatibilità non certifica validità fisica. [Report e limiti verificati](reports/EXCHANGE-CONTRACTS-A5A-20261024.md).

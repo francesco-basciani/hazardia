@@ -117,3 +117,7 @@ La pipeline consuma il catalogo tramite tabella locale approvata, mai import/she
 
 ## A4 policy esistenti —24ottobre2026
 Policy 0.5/0.6 ora isolate in decision/policies.py, immutabili e locali. Mantenere unità persone/proxy prioritario distinte, payload/versioni e tutti i vincoli. Il verifier non importa policy/predicati del solver; input validation condivisa come prima, checks/loss indipendenti invariati. Policy module solo stdlib/io: non introdurre jsonschema nel decision-env o installazioni implicite. A4 tecnico verificato (report DECISION-POLICIES-A4-20261024); A5 schema/workspace non avviato senza bisogno concreto, nessun nuovo dominio o universalità dichiarata. Non cancellare il FAIL di ripetibilità REFlEx.
+
+
+## A5a scambio grigliato —24ottobre2026
+Kernel `hazardia.exchange` indipendente dai domini; mantenere unità, supporto temporale, provenienza, disponibilità e incertezza espliciti. Non equiparare COMPATIBLE a qualificazione fisica o operativa. Facciata contratti compatibile, validator legacy negli adapter, sidecar solo nuovi job dopo guard. Preservare UNKNOWN di licenza/calibrazione e FAIL replay esatto REFlEx. Ingressi job generici/composizione/workspace non implementati: non dichiarare l'intera piattaforma già universale. Report EXCHANGE-CONTRACTS-A5A-20261024, 357 test VM/11 suite client; nessuna fisica modificata.

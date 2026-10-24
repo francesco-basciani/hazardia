@@ -87,11 +87,19 @@ class DispatchTests(unittest.TestCase):
                 self.assertEqual(load(root/'worker-error.json')['code'],'ENGINE_SOURCE_DRIFT')
                 self.assertEqual(run.call_count,0 if when=='before' else 2)
 
+    def test_exchange_failure_is_classified_after_unchanged_native_calls(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);write_new(root/'request.json',self.req());write_new(root/'runtime.json',self.cfg)
+            with patch.dict(os.environ,self.env),patch('hazardia.adapters.pipeline.subprocess.run') as run,patch('hazardia.adapters.legacy_exchange.write_legacy_exchange',side_effect=HazardError('INVALID_EXCHANGE','metadata failure')):
+                self.assertEqual(main(root),1);self.assertEqual(run.call_count,2)
+            self.assertEqual(load(root/'worker-error.json')['code'],'INVALID_EXCHANGE')
+            self.assertTrue((root/'adapter-binding.json').exists())
+
     def test_receipt_frozen_and_calls_match_old_path(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);req=self.req();write_new(root/'request.json',req);write_new(root/'runtime.json',self.cfg)
-            with patch.dict(os.environ,self.env),patch('hazardia.adapters.pipeline.subprocess.run') as run:
-                self.assertEqual(main(root),0)
+            with patch.dict(os.environ,self.env),patch('hazardia.adapters.pipeline.subprocess.run') as run,patch('hazardia.adapters.legacy_exchange.write_legacy_exchange') as exchange:
+                self.assertEqual(main(root),0);exchange.assert_called_once_with(root)
                 commands,product,env=legacy(req,self.cfg,root,os.environ)
                 self.assertEqual(run.call_args_list[0].args[0],commands)
                 self.assertEqual(run.call_args_list[1].args[0],product)

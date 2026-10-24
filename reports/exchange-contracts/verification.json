@@ -1,0 +1,42 @@
+{
+  "increment": "A5A_GENERIC_GRIDDED_EXCHANGE_BOUNDARY",
+  "status": "PASS",
+  "scope": "Domain-independent product metadata and compatibility; not universal model composition or new hazard execution",
+  "tests": {
+    "unit": 231,
+    "web": 47,
+    "decision": 60,
+    "domain": 19,
+    "total": 357,
+    "new": 19,
+    "client_suites": 11
+  },
+  "legacy_validator_functions_AST_equal": true,
+  "legacy_schemas_or_scenarios_migrated": false,
+  "native_CIMA_execution": "PASS",
+  "fire_exact_replays": "PASS",
+  "HMC_bridge": "PASS",
+  "REFLEX_exact_depth_replay": "FAIL",
+  "wheel": {
+    "status": "PASS",
+    "scope": "Offline wheel build and read-only generic CLI from extracted wheel; not a fresh VM install",
+    "unknown_fields": [
+      "provenance.license",
+      "variables[0].uncertainty.calibration",
+      "variables[1].uncertainty.calibration"
+    ]
+  },
+  "unknown_license_and_calibration_preserved": true,
+  "implicit_conversion_or_execution": false,
+  "negative_results": [
+    "Mac tar generated four AppleDouble ._*.py sidefiles, removed only those generated files and used COPYFILE_DISABLE=1",
+    "jsonschema3.2 failed local fragment references under URN schema IDs; local-only definition expansion added, remote/missing/cyclic refs rejected and regression tested"
+  ],
+  "new_domains_simulated": "NOT_RUN",
+  "automatic_model_composition": "NOT_RUN",
+  "generic_job_admission": "NOT_RUN",
+  "full_schema_workspace_migration": "NOT_RUN",
+  "new_VM_install": "NOT_RUN",
+  "interactive_browser": "NOT_RUN",
+  "M5_M7_scientific_qualification": "BLOCKED_UNCHANGED"
+}

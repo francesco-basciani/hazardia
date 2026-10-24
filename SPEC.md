@@ -563,3 +563,7 @@ Il catalogo è consumato nel processo pipeline isolato da una tabella locale rec
 
 ## AR-EXT-A4 — semantica delle policy decisionali esistenti
 Le policy versionate 0.5/0.6 sono definite localmente e immutabili; unità/effetto/semantica non sono intercambiabili. Unknown policy/versione/unità sono rifiutati. L’estrazione conserva le formule, i vincoli, solver/backends, watchdog e verifier indipendente; non introduce predicate/righe condivise col checker, modelli d’efficacia o migrazioni dei contratti. Il modulo policy non richiede dipendenze numeriche/geospaziali/JSON Schema nell’ambiente solver.
+
+
+## AR-EXT-01 — A5a exchange boundary (2026-10-24)
+Il nucleo di scambio per prodotti grigliati usa identificativi opachi di dominio e quantità, contratti versionati e verifica esplicita di unità, griglia, tempo, provenienza e incertezza. I consumatori dichiarano requisiti; incompatibilità e dati critici ignoti non diventano compatibilità implicita. Nessuna conversione, composizione o esecuzione è dedotta dal metadata match. Semantica FIRE/FLOOD e validator storici restano negli adapter legacy con facciata compatibile. Il sidecar non riscrive prodotti/archivi. Questo confine non sostituisce ancora gli ingressi legacy dei job o il verificatore indipendente. Guida: docs/EXCHANGE-CONTRACTS.md; verifiche: reports/EXCHANGE-CONTRACTS-A5A-20261024.md.

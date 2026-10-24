@@ -1,0 +1,64 @@
+{
+  "cases": [
+    {
+      "case": "fire",
+      "compatibility": "PASS",
+      "diagnostics": {},
+      "elapsed_s": 5.60630559099809,
+      "exchange_status": "PASS",
+      "execution_status": "PASS",
+      "isolated_job": "job-fbbb13b145594e3fb3429700f22fd499",
+      "manifest_hash_verified": true,
+      "native_checks": {
+        "ARRIVAL_TIME": true,
+        "FIRE_PROBABILITY": true,
+        "all_probability_frames": true,
+        "arrival": true,
+        "fire": true,
+        "probability": true
+      },
+      "native_exact_comparison": "PASS"
+    },
+    {
+      "case": "flood",
+      "compatibility": "PASS",
+      "diagnostics": {
+        "changed_cells": 80,
+        "max_abs_difference_m": 7.450580596923828e-09,
+        "maximum_equal": true,
+        "wet_mask_equal": true
+      },
+      "elapsed_s": 46.25018457599799,
+      "exchange_status": "PASS",
+      "execution_status": "PASS",
+      "isolated_job": "job-b78aa4f1fccd4ce6b2857e7f8be3a5b3",
+      "manifest_hash_verified": true,
+      "native_checks": {
+        "HMC_bridge": true,
+        "MAXIMUM_DEPTH": false
+      },
+      "native_exact_comparison": "FAIL"
+    },
+    {
+      "case": "studio",
+      "compatibility": "PASS",
+      "diagnostics": {},
+      "elapsed_s": 34.80690448899986,
+      "exchange_status": "PASS",
+      "execution_status": "PASS",
+      "isolated_job": "job-0caa272f79654125b0c5b1d0fc0f4826",
+      "manifest_hash_verified": true,
+      "native_checks": {
+        "ARRIVAL_TIME": true,
+        "FIRE_PROBABILITY": true,
+        "all_probability_frames": true,
+        "arrival": true,
+        "fire": true,
+        "probability": true
+      },
+      "native_exact_comparison": "PASS"
+    }
+  ],
+  "scope": "NATIVE_TECHNICAL_REGRESSION_AND_METADATA_ONLY",
+  "status": "PASS"
+}
