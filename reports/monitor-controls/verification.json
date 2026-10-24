@@ -1,0 +1,54 @@
+{
+  "run_id": "monitor-controls-20261024",
+  "baseline": "c4992c27c06afebe3575c80b2ec959b559e2dc82",
+  "reviewer": "Codex self-check",
+  "status": "PASS",
+  "vm_web_tests": 47,
+  "client_suites": [
+    "monitor-clock",
+    "i18n",
+    "observed-layer-model"
+  ],
+  "ui": {
+    "viewports": [
+      [
+        1440,
+        900
+      ],
+      [
+        1011,
+        1034
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "same_row_search_time": true,
+    "header_language_inside_header": true,
+    "settings_basemap_names": true,
+    "earthquake_name_click_enables": true,
+    "earthquake_source": "INGV",
+    "earthquake_features_and_rendered": 214,
+    "future_clock_checked": "24 ott, 21:00",
+    "english_clock_checked": "24 Oct, 21:00",
+    "mobile_horizontal_overflow": false
+  },
+  "not_run": [
+    "Safari native direct verification",
+    "native model replays",
+    "FPS/load benchmark"
+  ],
+  "unchanged": [
+    "model physics",
+    "decision verifier",
+    "job/schema contracts",
+    "source quotas"
+  ],
+  "screenshots": {
+    "desktop.png": "ea0a236bd8fe13410033368811a3c2f753ac47cf23e1058d4544ece35fe5521b",
+    "tablet.png": "e0ef75f16d2bec9c0b15132fece593d13c43d6eac479b404be6d44eab6db4754",
+    "mobile.png": "f57138b5a791d54a214e107e15572aa6c76143c6d91912576509441b78ff9209",
+    "delivery.png": "80d4757fa3605572aedd17164e29c7074a0a5b376e92e2eadae579b7e625367c"
+  }
+}

@@ -12,3 +12,6 @@ const first=monitoredTime('2026-10-25T00:30:00Z',now),second=monitoredTime('2026
 assert.equal(monitoredTime(future.at,now,'Europe/Rome','en-GB').at,future.at);
 assert.equal(monitoredTime(future.at,now+1000).selected,future.selected);assert.notEqual(monitoredTime(future.at,now+1000).now,future.now);
 console.log('PASS monitored time vs wall clock, missing/invalid time, future horizon, exact seconds, unchanged UTC instant and DST repeated-hour offset');
+
+assert(current.compact.includes('16:00'));assert(!current.compact.includes('UTC'));assert(!current.compact.includes('2026'));assert.notEqual(first.selected,second.selected);assert.equal(monitoredTime(null,now).compact,null);
+console.log('PASS compact clock keeps canonical UTC instant and detailed DST offset separately');

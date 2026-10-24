@@ -567,3 +567,7 @@ Le policy versionate 0.5/0.6 sono definite localmente e immutabili; unità/effet
 
 ## AR-EXT-01 — A5a exchange boundary (2026-10-24)
 Il nucleo di scambio per prodotti grigliati usa identificativi opachi di dominio e quantità, contratti versionati e verifica esplicita di unità, griglia, tempo, provenienza e incertezza. I consumatori dichiarano requisiti; incompatibilità e dati critici ignoti non diventano compatibilità implicita. Nessuna conversione, composizione o esecuzione è dedotta dal metadata match. Semantica FIRE/FLOOD e validator storici restano negli adapter legacy con facciata compatibile. Il sidecar non riscrive prodotti/archivi. Questo confine non sostituisce ancora gli ingressi legacy dei job o il verificatore indipendente. Guida: docs/EXCHANGE-CONTRACTS.md; verifiche: reports/EXCHANGE-CONTRACTS-A5A-20261024.md.
+
+
+## FR-MONITOR-CONTROLS-20261024 — rettifica UI confermata
+Orario dei dati compatto accanto alla ricerca in alto, con istante/fuso completi accessibili nel dettaglio e indicazione futura coerente con la timeline. Sfondo e nomi delle località sono configurazione cartografica, non voci autonome del catalogo livelli. Lingua/configurazione restano nell'header senza sovrapporsi ai controlli della mappa. Il clic sul nome Terremoti attiva le osservazioni e apre parametri nel pannello destro; la casella conserva il controllo di disattivazione. Acquisizione, assenza di eventi e dati mancanti devono restare distinguibili. Report MONITOR-CONTROLS-20261024.

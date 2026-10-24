@@ -93,12 +93,35 @@ body.map-console{height:100dvh;overflow:hidden}body.map-console .shell{position:
 @media(max-width:700px){.map-console .console-right[data-side=right]{left:auto;right:8px;width:calc(100% - 16px)}}
 
 .console-category-options>button{width:100%;min-height:40px;margin:5px 0}.console-category-options>label{display:flex;align-items:center;gap:8px;min-height:42px}
-.monitor-clock{position:absolute;left:calc(50% - 50px);transform:translateX(-50%);top:58px;z-index:860;display:grid;gap:3px;padding:8px 14px;border:1px solid #476572;border-radius:7px;background:#122332ee;color:#e5edf2;text-align:center;pointer-events:none;box-shadow:0 3px 16px #08121d33;max-width:calc(100% - 32px);box-sizing:border-box;font:500 11px/1.25 system-ui}
-.monitor-clock-selected{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
-.monitor-clock-mode{font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:#a7dcd4}
-.monitor-clock[data-future=true] .monitor-clock-mode{color:#ffda83}.monitor-clock-now{font-size:10px;color:#b5c9d3;font-variant-numeric:tabular-nums;white-space:nowrap}
-@media(max-width:1000px){.monitor-clock{top:104px;left:50%}.map-console .console-left,.map-console .console-right{top:184px}}
-@media(max-width:700px){.monitor-clock{top:104px;width:calc(100% - 16px);padding:6px 8px}.monitor-clock-selected{font-size:14px}.map-console .console-left,.map-console .console-right{top:178px}.map-console .console-panel-body{font-size:12px}}
+/* Search and validity time share one compact map toolbar. */
+.map-console .console-top-tools{position:absolute;top:12px;left:250px;right:155px;z-index:1050;display:flex;justify-content:center;align-items:center;gap:8px;pointer-events:none}
+.map-console .console-top-tools .console-search{position:relative;inset:auto;transform:none;width:auto!important;max-width:420px!important;flex:1;pointer-events:auto}
+.monitor-clock{flex:0 0 auto;display:flex;flex-direction:column;justify-content:center;gap:1px;height:36px;padding:3px 10px;box-sizing:border-box;border:1px solid #627987;border-radius:6px;background:#122332ed;color:#eef5f8;pointer-events:auto;font:500 10px/1.15 system-ui;white-space:nowrap}
+.monitor-clock-selected{font-size:13px;font-weight:650;font-variant-numeric:tabular-nums}
+.monitor-clock-mode{font-size:9px;color:#b4d8d5}.monitor-clock[data-future=true] .monitor-clock-mode{color:#ffda83}
+.monitor-clock-now{display:none}
+/* Keep language/settings in the application header, away from map zoom. */
+body.map-console .topbar{height:auto;min-height:56px;gap:12px}
+.map-console .topbar .topmeta{flex-direction:row;align-items:center;flex-wrap:nowrap;gap:8px;align-self:center}
+.map-console .topbar .language-switch{margin:0}.map-console .topbar .language-switch>span{display:none}
+.map-console .topbar .language-switch select{height:32px;min-height:32px;width:94px;font-size:11px}
+@media(max-width:1200px){
+ body.map-console .topbar{flex-wrap:wrap;padding:4px 12px;gap:2px 10px}
+ .map-console .topbar .main-nav{order:3;width:100%;justify-content:center;flex-direction:row}
+ .map-console .topbar .main-nav button{height:38px;min-height:38px}
+ .map-console .topbar .topmeta{margin-left:auto;order:1}
+}
+@media(max-width:850px){.map-console .console-top-tools{left:12px;right:12px;top:56px}.map-console .console-left,.map-console .console-right{top:104px}}
+@media(max-width:700px){
+ .map-console .topbar .topmeta{display:flex!important;gap:5px}.map-console .topbar .connection{font-size:9px}
+ .map-console .topbar .language-switch select{width:84px!important;font-size:11px!important}
+ .map-console .console-top-tools{left:8px;right:8px;gap:5px}
+ .map-console .console-top-tools .console-search{max-width:none!important;min-width:0}
+ .monitor-clock{padding:3px 7px}.monitor-clock-selected{font-size:11px}
+ .map-console .console-left,.map-console .console-right{top:102px}
+}
+@media(max-width:420px){.map-console .topbar .connection{max-width:14px;overflow:hidden;white-space:nowrap}.map-console .console-header-settings{font-size:10px}}
+.console-settings .room-basemap{display:flex;flex-direction:column;gap:8px;margin:8px 0 20px}.console-settings .console-cartography>label{display:flex;align-items:center;gap:8px}
 
 /* Leaflet controls use z-index 1000: inspectors must remain above legends. */
 .map-console .console-left,.map-console .console-right{z-index:1100}

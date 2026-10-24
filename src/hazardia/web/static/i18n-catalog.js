@@ -1541,5 +1541,8 @@ export const messages = {
   "Orario dei dati non disponibile": "Data time unavailable",
   "Adesso:": "Now:",
   "Apri catalogo territoriale": "Open territorial catalogue",
-  "Oggetti OpenStreetMap disponibili nell’estratto caricato. La copertura può essere parziale; nessun oggetto non significa assenza sul territorio.": "OpenStreetMap objects available in the loaded extract. Coverage may be partial; no objects does not mean absence in the territory."
+  "Oggetti OpenStreetMap disponibili nell’estratto caricato. La copertura può essere parziale; nessun oggetto non significa assenza sul territorio.": "OpenStreetMap objects available in the loaded extract. Coverage may be partial; no objects does not mean absence in the territory.",
+  "Ora monitorata": "Monitored time",
+  "Orario non disponibile": "Time unavailable",
+  "Terremoti · acquisizione in corso…": "Earthquakes · loading observations…"
 };
