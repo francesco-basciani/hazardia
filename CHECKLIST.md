@@ -1327,3 +1327,7 @@ Reviewer Codex self-check; base2927927+dirty; comandi/log nel report MONITORAGGI
 
 ## monitor-timeline-20261023 — tempo comune
 ReviewerCodexself-check;base28d1eca+dirty;reports/TIMELINE-COMUNE-MONITORAGGIO-20261023.md e reports/monitor-timeline/verification.json. PASSFR-MONITOR-CLOCK-05:playbackindipendentedalMeteo, orizzontiuniti, meteo/effis/dpc/accumuli coordinati, copertura e missing espliciti, nessuna previsione inventata per osservazioni. PASS15suiteclientNode, UI1280×720 conMeteoOFF/pause/seek/selezionemanuale,311file/95job invariati. NOTRUN nuovi job/testfisici, Safari, caricoend-to-end e replay integrali dei due script browser con etichette aggiornate. BLOCKEDqualificazionescientificaM5–M7/fonti mancanti/archivioventofine comeprima.
+
+
+## quake-opening-20261024 — primo accesso sismi
+PASS:216INGV osservati nella vista utente; primo clic attiva e acquisisce, nulla prima dell’apertura; disabilitazione manuale rispettata alla riapertura; riattivazione riusa cache. Report TERREMOTI-APERTURA-LIVELLO-20261024/verification.json, basebac2794+dirty, reviewerCodexself-check, browserintegrato. NOTRUNSafari/nuovajobfisici/qualificazionescientifica. Backend/fonti/quote/filtri invariati.

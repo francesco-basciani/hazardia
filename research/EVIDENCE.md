@@ -605,3 +605,7 @@ Base2927927+dirty, reviewerCodexself-check; report MONITORAGGIO-AUDIT-E-SEZIONI-
 
 ## monitor-timeline-20261023 — unified consultation clock
 Base28d1eca+dirty;Codexself-check. Foundweather-onlyactivityguard despitepartialexistingterritorialsync. Sharedregistry/event now unions actualweather/EFFIS/DPC validitywindows; hides unavailableproducts ratherthanprojectingobservations. PASS15client suites and integratedbrowser: weatherOFFplayback, identicalclock/map time, correct24Oct products, uncoveredEFFIS/DPC explicitatend. p95UIwork3.2ms/120correlatedframes(weatherOFF), nottotalFPS or scientificbenchmark.311files/95jobspreserved; no newphysicaljobs/Safari/operationalqualification. Report TIMELINE-COMUNE-MONITORAGGIO-20261023; rawrun and publicverification.json.
+
+
+## quake-opening-20261024 — visibility versus source availability
+Basebac2794+dirty;Codexself-check. Userpage earthquake panel initiallyoff; explicitacquisition returned216realINGVevents, not a reproduced source failure. First menu opening now activates/acquires once through existing handlers; beforeopening no acquisition, explicitdisable respected onreopen. PASSactualbrowserUI, source/quotas/filter/models unchanged; NOTRUNSafari/newphysics. Report TERREMOTI-APERTURA-LIVELLO-20261024, public reports/quake-opening/verification.json.

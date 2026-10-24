@@ -543,3 +543,7 @@ Ultima autorità UI: FR-MONITOR-SECTIONS-04. Monitoraggio esclude scenari/traffi
 
 ## 23ottobre2026 — tempo comune, non solo meteo
 FR-MONITOR-CLOCK-05:Previsioni e criticità/unicoRiproduci. monitor-timeline.js registra validità meteo/EFFIS/DPC; evento unicohazardia-monitor-time condiviso anche daaccumuli/radar/pluviometri. MeteoOFF non ferma il clock; fontefuorivalidità non riutilizza prodotti vecchi. Cataloghi osservati non proiettati. PASS15suiteclient/UI,311file/95job invariati; report TIMELINE-COMUNE-MONITORAGGIO-20261023. Blocchi precedenti invariati.
+
+
+## 24ottobre2026 — sismi, primo clic realmente visibile
+Segnalazione utente riprodotta come pannello aperto ma checkboxspento. INGV nella vista corrente restituisce216eventi. Il primo accesso alla voce Terremoti osservati ora attiva/acquisisce tramite gli handler esistenti; nessuna acquisizione all’avvio, disabilitazione esplicita rispettata alle riaperture. Fonti/quote/filtri e modelli invariati. Run quake-opening-20261024/report TERREMOTI-APERTURA-LIVELLO-20261024, PASSUIreale; NOTRUNSafari/fisicanuova.

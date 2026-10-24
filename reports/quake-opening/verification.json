@@ -1,0 +1,20 @@
+{
+  "run_id": "quake-opening-20261024",
+  "base": "bac27941930881f2cfa0d4624e86277411cc5ce3",
+  "reviewer": "Codex self-check",
+  "first_open": "PASS",
+  "disabled_before_open": "PASS",
+  "manual_disable_on_reopen": "PASS",
+  "events": 216,
+  "provider": "INGV",
+  "bounds": [
+    10.67322,
+    39.85072,
+    16.22681,
+    43.85037
+  ],
+  "window_start": "2026-10-17T08:40:00Z",
+  "window_end": "2026-10-24T08:40:00Z",
+  "acquired_at": "2026-10-24T08:47:16Z",
+  "scope": "UI activation only; source, quota, filters and models unchanged"
+}

@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "bac27941930881f2cfa0d4624e86277411cc5ce3",
+  "source_git_sha": "76a55bdf2cc72260ffc7f56a8e4ce453ad65a7c5",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,20 +11,20 @@
       "sha256": "f7d9f01ddf2b4271a5cacaaa4e022588bfb775684a4a05a942ee90a904030e33"
     },
     "CHECKLIST.md": {
-      "bytes": 192619,
-      "sha256": "35a9ed72ae8cbc37f374d7bb218b8df04edba8b99e7137d03b41f710c3b236d6"
+      "bytes": 193071,
+      "sha256": "30ad91f4706177dfd0f18a80bb14ab9ed46e954b7bb0e099edaa24e7c30f807d"
     },
     "MEMORY.md": {
-      "bytes": 144438,
-      "sha256": "986599744602267b2feefbdebc109d745b6058edaf8414366eb86f1da7ab0e5d"
+      "bytes": 144955,
+      "sha256": "10a100add6a1ecb56d0d93e05498f29e8955ea9114536c400db1f21d8d033956"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 148648,
-      "sha256": "67e244a35c1d06103ca36bb29f068f9f28a3786aac772056b4399faea4fbe88a"
+      "bytes": 149118,
+      "sha256": "5e6e9cc75c7c4c63050bdc2066215386a68eaa1f13d11d75524e04ad9d33e406"
     },
     "README.md": {
       "bytes": 28048,
@@ -518,6 +518,10 @@
       "bytes": 3805,
       "sha256": "25118ea47cfd37bcd6e206715a7c42d58ae164899c6aaa48429ce4ce2e2d288d"
     },
+    "reports/TERREMOTI-APERTURA-LIVELLO-20261024.md": {
+      "bytes": 1590,
+      "sha256": "39f548325f39ce7cb5cce922c56b57cbd51b07a8d57afd6f813d717bc945386d"
+    },
     "reports/TIMELINE-COMUNE-MONITORAGGIO-20261023.md": {
       "bytes": 2746,
       "sha256": "67500e447092d70e2b9aefc27840b52dd7b8d7c5e8cbc70372951110337acc1c"
@@ -789,6 +793,10 @@
     "reports/prerequisites/verification.json": {
       "bytes": 9432,
       "sha256": "9da07165bd8183af88bce7d7adf1010ce6bb82c0f826312c8fd09458fefd31a5"
+    },
+    "reports/quake-opening/verification.json": {
+      "bytes": 539,
+      "sha256": "b1469455d05ab86ceee050cf6b206d9e8d77c7a1ddb7cca6cb42e833f3b3d1b5"
     },
     "reports/rain-clarity/js-tests.log": {
       "bytes": 631,
@@ -1075,8 +1083,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 162042,
-      "sha256": "3b13fe7ce6fa19c47ff11efcb56363f06d59b02b00c915e348d41da854b5c668"
+      "bytes": 162584,
+      "sha256": "bc3815b4bbe41df652fe2702d1acd872324329fb439c317068a811407701865b"
     },
     "research/RESEARCH.md": {
       "bytes": 34039,
@@ -1607,8 +1615,8 @@
       "sha256": "37aa8cf7e32e99d3dd7b32f6e3c0449118e7ce3c3f518c390605a70dcb3a6712"
     },
     "src/hazardia/web/static/map-console.js": {
-      "bytes": 7896,
-      "sha256": "f1c6a5f8cdd6664bd7782ffb1032b3050ebbc3288a801390ceb6c596b6d19e15"
+      "bytes": 7949,
+      "sha256": "f7285e073ba9f258e22a1e6a1ea239ef253b0c7d9db7eee00fd2b77e5a92dcff"
     },
     "src/hazardia/web/static/map-detail.js": {
       "bytes": 9583,
@@ -1667,8 +1675,8 @@
       "sha256": "21a3c4c87fb83af47d78edac52e442ca5d421a4b46ea9f35702b1b897cf68899"
     },
     "src/hazardia/web/static/observed-layers.js": {
-      "bytes": 12695,
-      "sha256": "2a5d30a87bf2efb23c041432544f1c0fa4f6caa0a003b98479f283cf68b1b391"
+      "bytes": 12870,
+      "sha256": "2b09b1a26f83a6a5a8acc2fae4cd35ab06995590ddf7f7c9d9d9d07978068e7b"
     },
     "src/hazardia/web/static/observed-rain.js": {
       "bytes": 7846,

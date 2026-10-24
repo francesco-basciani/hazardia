@@ -585,3 +585,7 @@ Run `monitor-audit-20261023`, base2927927+dirty. FR-MONITOR-SECTIONS-04 conferma
 
 ## Orologio comune del Monitoraggio —23ottobre2026
 Run monitor-timeline-20261023/base28d1eca+dirty:PASSFR-MONITOR-CLOCK-05, barraPrevisioni e criticità, meteo/EFFIS/DPC/accumuli all’ora comune, playbackancheMeteoOFF, coperture/validità esplicite. PASS15suiteJSclient eUIintegrata;311file/95job preservati. Nessun nuovo job o fonte; NOTRUN nuovi test fisici/Safari/caricocompleto; blocchiM5–M7 invariati. Report TIMELINE-COMUNE-MONITORAGGIO-20261023.
+
+
+## Terremoti: primo accesso al livello —24ottobre2026
+Run quake-opening-20261024/basebac2794+dirty. PASS: fonteINGV216eventi nella vista utente; primo clic sulla voce ora attiva/acquisisce, senza acquisizione prima dell’apertura. Disabilitazione manuale rispettata alla riapertura, riattivazione riusa cache. Nessuna modifica a fonti/quote/filtri/fisica. NOTRUNSafari/nuovaqualificazionefisica. Report TERREMOTI-APERTURA-LIVELLO-20261024; reviewerCodexself-check.
