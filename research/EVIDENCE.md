@@ -704,3 +704,7 @@ PASS: voce Confini apre pannello destro con Nazioni/Regioni/Province indipendent
 
 ## Verifica nativa Safari completata —25 ottobre 2026
 PASS Safari effettivo, risolto il precedente BLOCKED: reload/attivazione/zoomout/zoomin con simboli visibili. FAIL aggiuntivo riprodotto e corretto: oltre il rettangolo italiano auto selezionava soloUSGS, perdendo piccoli eventi INGV. Ora composizione client INGV per sottovista regionale +USGS per esterno, priorità spaziale senza duplicare sovrapposizione, provenienza/finestre separate, riuso snapshot. PASS reale193visibili/216sismici iniziali; zoomout422visibili/447sismici, ritorno193/447. PASS10testVM e2suiteclient estese. Quote/backend/motori invariati; fonte fallita resta errore esplicito, fallback parziale NOT RUN. Report reports/QUAKE-SAFARI-20261025.md, run quake-safari-20261025, reviewer Codex self-check; nessuna qualificazione scientifica aggiunta.
+
+
+## UI-LAYER-CONSOLE-20261025
+Run `layer-console-20261025`, baseline `ac8f6709a8d429e336a71bcdb409480165751daa`, reviewer Codex self-check. PASS7suite client pure (Node Mac; Node VM assente e tentativo fallito conservato),10test backend osservazioni VM, UI19voci/4gruppi/3legende/zero float Monitoraggio, soglia14/15, OSM reale Municipio+1203aree edificio nel viewport verificato, mobile/EN/Safari. Log/protocollo `experiments/runs/layer-console-20261025/`, report `reports/LAYER-CONSOLE-20261025.md`. Screenshot locali esclusi dall’export. NOT RUN prestazioni/nuovi replay; nessuna claim scientifica o di completezza OSM.

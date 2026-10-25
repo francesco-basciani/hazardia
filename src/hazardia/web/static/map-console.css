@@ -128,3 +128,42 @@ body.map-console .topbar{height:auto;min-height:56px;gap:12px}
 @media(max-width:700px){.map-console #monitor-section:has(:is(.console-left,.console-right):not([hidden])) .leaflet-bottom{display:none}}
 
 #administrative-options label{display:flex;align-items:center;gap:10px;min-height:42px;font-size:13px}#administrative-options input{width:17px;height:17px;accent-color:#64c8be}#administrative-options small{display:block;margin:0 0 12px 27px;line-height:1.5}
+
+/* Compact, grouped catalogue. Visibility and parameter selection are separate. */
+.map-console .console-left{width:278px;background:rgba(16,31,43,.97)}
+.console-layer-list{padding:4px 8px 16px!important;gap:0!important}
+.console-layer-group{padding:6px 0 8px;border-bottom:1px solid #ffffff12}
+.console-layer-group h3{font:650 10px/1.4 system-ui;letter-spacing:.1em;text-transform:uppercase;color:#96b1bf;margin:10px 9px 7px}
+.console-layer-row{border-radius:6px;min-height:38px;margin:2px 0;transition:background .12s}
+.console-layer-row:hover{background:#ffffff08}
+.console-layer-row:has([aria-pressed=true]){background:#274957;box-shadow:inset 2px 0 #7edbcc}
+.console-layer-row>.console-layer-entry{padding:8px 7px;min-height:38px;font-size:12px;gap:10px;background:transparent;border:0;text-align:left}
+.console-layer-icon{width:20px!important;flex:0 0 20px!important}.console-layer-icon svg{width:20px;height:20px}
+.console-layer-entry>span:nth-child(2){flex:1;line-height:1.4}
+.console-chevron{opacity:.5;font-size:17px}
+.console-visibility{position:relative;flex:0 0 30px;width:30px;height:34px;display:grid;place-items:center;cursor:pointer;margin:0!important}
+.console-visibility input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;margin:0}
+.console-visibility svg{width:17px;height:17px;display:block;color:#7793a4;pointer-events:none}
+.console-visibility input:checked+span svg{color:#80dfc9}.console-visibility input:checked+span .eye-off{display:none}
+.console-visibility:focus-within{outline:2px solid #8de0d0;border-radius:4px}
+.console-zoom-badge{font:600 10px system-ui;color:#acc9d8!important;border:1px solid #526b79;border-radius:4px;padding:2px 4px;white-space:nowrap}
+[data-zoom-available=false] .console-zoom-badge{background:#514128;color:#ffe2a5!important;border-color:#a38753}
+.console-zoom-note{border-left:2px solid #8cb6c8;padding-left:9px!important;line-height:1.6}
+.map-console .console-panel-body h4{color:#e7f1f6;font-size:12px;line-height:1.5;margin:18px 0 8px}
+.console-panel-body #attention-heading,.console-panel-body .attention-close,.console-panel-body .rain-zone-heading{display:none}
+.map-console .console-legend-toggle{position:absolute;bottom:70px;right:12px;z-index:1050;background:#122332ed;color:#e7f1f6;border:1px solid #617987;border-radius:6px;padding:9px 12px;font:600 12px system-ui;box-shadow:0 2px 8px #0003;cursor:pointer}
+.map-console .console-map-key>:is(.critical-map-legend,.map-symbols,.weather-map-legend,.traffic-badge){position:static!important;float:none!important;clear:both!important;max-width:none!important;max-height:none!important;width:100%!important;margin:0 0 12px!important;padding:12px 0!important;background:transparent!important;color:#e7f1f6!important;box-shadow:none!important;border:0!important;border-bottom:1px solid #45606e!important;box-sizing:border-box}
+.console-map-key summary{cursor:pointer;font:650 13px/1.5 system-ui;padding:6px 0;color:#e7f1f6}
+.console-map-key .weather-map-legend strong,.console-map-key .weather-map-legend span{color:#e7f1f6!important}
+.console-map-key .weather-legend-body,.console-map-key .map-symbol-body{max-height:none!important;overflow:visible!important}
+.console-map-key .map-credit-link{background:#213e4e;color:#e7f1f6;border:1px solid #617987;padding:9px;border-radius:5px;margin:8px 0}
+.console-panel-body .rain-zones-panel{max-height:none!important;overflow:visible!important}.console-rain-visible{display:flex;align-items:center;gap:9px;min-height:42px}
+@media(max-width:700px){.map-console .console-left{max-width:300px;width:calc(100% - 16px)}.map-console .console-legend-toggle{bottom:110px;right:8px;font-size:11px}}
+
+.console-legend-toggle[data-warning=true]{border-color:#dfba73!important}.console-legend-toggle[data-warning=true]::after{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#ffd27a;margin-left:8px}
+/* Keep the legend action outside both the timeline and the inspector hit area. */
+.map-console .console-right{bottom:116px!important}
+.map-console .console-legend-toggle{z-index:1150}
+@media(max-width:700px){.map-console .console-right{bottom:158px!important}}
+
+.console-zoom-badge{display:inline-flex;align-items:center;gap:3px}.console-zoom-badge svg{width:11px;height:11px}

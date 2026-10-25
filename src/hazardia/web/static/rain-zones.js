@@ -16,7 +16,8 @@ export function rainZones(map){
  const control=L.control({position:'topright'});control.onAdd=()=>panel;control.addTo(map);L.DomEvent.disableClickPropagation(panel);L.DomEvent.disableScrollPropagation(panel);
  const observedHost=document.createElement('div');panel.querySelector('.rain-zone-heading').after(observedHost);const observed=observedRain(map,observedHost);
  const state=panel.querySelector('.rain-zone-state'),detail=panel.querySelector('.rain-zone-detail');
- function mode(on){enabled=on;if(on&&!document.getElementById('monitor-weather').checked){document.getElementById('monitor-weather').checked=true;document.getElementById('monitor-weather').dispatchEvent(new Event('change'));}map.getContainer().classList.toggle('rain-zones-active',on);panel.hidden=!on;button.setAttribute('aria-expanded',String(on));map.fire('rainzonesmode',{enabled:on});if(on){hour=document.getElementById('wind-hour').value||hour;refresh();}else{generation++;layer.clearLayers();}}
+ function mode(on){enabled=on;if(on&&!document.getElementById('monitor-weather').checked){document.getElementById('monitor-weather').checked=true;document.getElementById('monitor-weather').dispatchEvent(new Event('change'));}map.getContainer().classList.toggle('rain-zones-active',on);panel.hidden=!on;button.setAttribute('aria-expanded',String(on));map.fire('rainzonesmode',{enabled:on});if(on){hour=document.getElementById('wind-hour').value||hour;refresh();}else{generation++;layer.clearLayers();state.textContent='Accumuli nascosti. Attiva il livello per aggiornare i dati.';}}
+ map.on('rainzonesopen',()=>{if(!enabled)mode(true);});
  map.on('rainzonesclose',()=>{if(enabled)mode(false);});
  document.getElementById('monitor-weather').addEventListener('change',()=>{if(enabled&&!document.getElementById('monitor-weather').checked)mode(false);});
  button.onclick=()=>mode(!enabled);panel.querySelector('button').onclick=()=>mode(false);

@@ -74,6 +74,7 @@ function install(){
  if(embedded)try{const preferred=localStorage.getItem(LANGUAGE_KEY);setLanguage(preferred,{persist:false});}catch{}
 }
 if(typeof document!=='undefined'&&document.head&&document.documentElement){
+ for(const [rel,href,type] of [['icon','/favicon.svg','image/svg+xml'],['alternate icon','/favicon.ico','image/x-icon']]){if(document.querySelector('link[href="'+href+'"]'))continue;const icon=document.createElement('link');icon.rel=rel;icon.href=href;icon.type=type;document.head.append(icon);}
  const link=document.createElement('link');link.rel='stylesheet';link.href='/i18n.css';document.head.append(link);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
 }

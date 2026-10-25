@@ -179,3 +179,7 @@ E-WORKFLOW-001…004 registra un incremento tecnico preregistrato, non un nuovo 
 
 ## Ruolo del riferimento MyDewetra — chiarimento 22 ottobre 2026
 Il paper è una fonte per l’architettura d’integrazione di applicazioni, dati e servizi, non un obbligo di parità funzionale. Non confondere richiami algoritmici, esecuzione di simulatori e pubblicazione dei risultati. Il paper non specifica un adapter PROPAGATOR; tale mancanza di dettaglio non dimostra assenza nel prodotto completo. Manteniamo RQ, baseline e qualificazioni del piano HAZARDIA: nessun claim di originalità o superiorità nasce da questa mappatura. Report reports/MYDEWETRA-RIFERIMENTO-ARCHITETTURALE.md, revisione documentale/statica mydewetra-architecture-20261022. Nessuna modifica del manoscritto né nuova evidenza sperimentale.
+
+
+## Verifica presentazione25ottobre2026
+UI-LAYER-CONSOLE-20261025 distingue gate di rappresentazione da qualificazione scientifica: soglia cartografica edifici15 nel Monitoraggio non filtra input/esposizione del modello. Riordino usa nodi originali e dati acquisiti; categorie/legenda non attestano copertura completa. Protocollo finale dichiara precedenti controlli esplorativi e tentativo Node VM fallito. PASS client/UI e backend osservazioni; NOT RUN benchmark/replay fisici. Conservare FAIL REFlEx e gate M0–M7. Report `reports/LAYER-CONSOLE-20261025.md`.

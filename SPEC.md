@@ -575,3 +575,7 @@ Orario dei dati compatto accanto alla ricerca in alto, con istante/fuso completi
 
 ## FR-ADMIN-LEVELS-20261024 — Confini
 La voce Confini apre a destra tre opzioni indipendenti: nazioni, regioni, province. Confini amministrativi distinti da zone di allerta/criticità e da input dei simulatori. Copertura e fonte esplicite: nazioni globali NaturalEarth50m, regioni/province Italia Istat2026 nell'attuale incremento; fuori copertura non inventare geometrie. Preserve default regionale e caricamento differito per opzioni aggiuntive. Guida docs/ADMINISTRATIVE-BOUNDARIES.md.
+
+
+## FR-MAP-LAYER-GROUPS-20261025 — livelli, scala e legende
+Richiesta confermata: Monitoraggio con voci uniformi raggruppate per previsioni/criticità, osservazioni, territorio/infrastrutture, cartografia/catalogo; visibilità separata dai parametri nel pannello destro unico. Legende/stati raccolti in un accesso compatto, mantenendo scale, tempi e missing. Indicatore di zoom solo per restrizioni realmente applicate; edifici da zoom15 nel solo Monitoraggio, senza alterare acquisizione, esposizione o simulatori. Favicon coerente con marchio HAZARDIA. Report [LAYER-CONSOLE-20261025](reports/LAYER-CONSOLE-20261025.md).

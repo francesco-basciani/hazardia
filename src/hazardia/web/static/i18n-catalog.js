@@ -1,5 +1,23 @@
 /* Reviewed Italian → English interface messages. No remote translation service. */
 export const messages = {
+  "Precipitazioni medie · mm": "Mean precipitation · mm",
+  "Aggiornamento della zona per lo snapshot e l’ora selezionati…": "Updating the zone for the selected snapshot and time…",
+  "Dati mancanti o copertura parziale: apri la legenda.": "Missing data or partial coverage: open the legend.",
+  "Scale, simboli e stato dei livelli attivi.": "Scales, symbols and status of active layers.",
+  "Accumuli nascosti. Attiva il livello per aggiornare i dati.": "Accumulation is hidden. Enable the layer to refresh its data.",
+  "Previsioni e criticità": "Forecasts and warnings",
+  "Osservazioni": "Observations",
+  "Territorio e infrastrutture": "Territory and infrastructure",
+  "Cartografia e catalogo": "Cartography and catalogue",
+  "Legenda e stato": "Legend and status",
+  "ⓘ  Legenda e stato": "ⓘ  Legend and status",
+  "Simboli, scale e stato dei livelli attivi. I dati previsti, osservati e simulati restano distinti.": "Symbols, scales and status of active layers. Forecast, observed and simulated data remain distinct.",
+  "Mostra accumuli sulla mappa": "Show rainfall accumulation on the map",
+  "Visibile a questo zoom": "Visible at this zoom",
+  "Visibile da zoom 15": "Visible from zoom 15",
+  "Zoom sufficiente per mostrare gli edifici disponibili nell’estratto.": "Zoom is sufficient to show the buildings available in the extract.",
+  "Edifici visibili da zoom 15. Avvicina la mappa; i dati scientifici restano invariati.": "Buildings are visible from zoom 15. Zoom in; scientific data remain unchanged.",
+
   "Testo originale della fonte (italiano)": "Original source text (Italian)",
   "Monitoraggio": "Monitoring",
   "Simulazioni e risorse": "Simulations and resources",
