@@ -1,5 +1,18 @@
 /* Reviewed Italian → English interface messages. No remote translation service. */
 export const messages = {
+  "Dati non ancora caricati. Carica l’area visibile.": "Data not loaded yet. Load the visible area.",
+  "visibili nella vista": "visible in view",
+  "nello snapshot.": "in snapshot.",
+  "Nessun oggetto di questa categoria nel catalogo parziale. Non dimostra assenza sul territorio.": "No objects of this category in the partial catalogue. This does not establish absence on the ground.",
+  "Intorno al centro · raggio 1 km (filtro elettrico)": "Around centre · 1 km radius (power filter)",
+  "FALLBACK DA SNAPSHOT OSM VERIFICATO": "VERIFIED OSM SNAPSHOT FALLBACK",
+  "snapshot disponibile dal": "snapshot available since",
+  "data osservazione OSM": "OSM observation time",
+  "aggiornamento remoto fallito:": "remote update failed:",
+  "Copertura parziale, nessuna nuova osservazione.": "Partial coverage; no new observation.",
+  "Errori anteprime:": "Preview errors:",
+  "Riserva disco: contesti gia acquisiti consultabili; nuova acquisizione sospesa": "Disk reserve: cached contexts remain readable; new acquisition suspended",
+
   "Riferimento per Centra e zoom. Non è un innesco, un evento osservato o una risorsa dello scenario.": "Reference for Centre and zoom. It is not an ignition, an observed event or a scenario resource.",
   "Posiziona pin sulla mappa": "Place pin on map",
   "Clicca sulla mappa per posizionare il pin": "Click the map to place the pin",

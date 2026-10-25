@@ -654,3 +654,8 @@ VM connessa ultima nella barra (DOM/CSS), niente taglio mobile. Ora reale HH:mm:
 
 ##25ottobre2026 — pin e scala
 Monitoraggio: select ZoomN2–20 entro limiti effettivi vicino +/−/Centra,15 richiama Edifici. Pin di navigazione unico/rimovibile/trascinabile, non innesco o dato di scenario. Centra conserva zoom e torna al pin, preset cambia scala e centra pin; senza pin comportamento precedente. Disabilitata animazione zoom Monitoraggio per evitare override dopo ricerca; meteo/playback invariati. PASS4suite client e UI desktop/mobile IT/EN; gesto drag/Safari/replay/benchmark NOT RUN. Report `reports/MAP-PIN-ZOOM-20261025.md`.
+
+
+## Audit framework — 25 ottobre 2026
+
+[Rapporto](reports/FRAMEWORK-AUDIT-20261025.md), run privato `framework-audit-20261025`: esito PARZIALE. 363 test core VM + 110 WII locali e 22 suite client PASS; UI zoom p95 196,7 ms, API p95 massimo 101,35 ms. DPC/EFFIS STALE per CACHE_FULL 256 MiB; vento fine pieno; rete elettrica solo fallback OSM parziale datato. Soak 30 min con 8 assenze listener e 3 cambi PID: continuità non qualificata. Cold-cache, compositore/Safari e nuovi replay fisici NOT RUN. Gate scientifici invariati. Auto-caricamento Sentinel, query power filtrata con fallback SHA verificato, riuso layer Monitor e ridisegno vento accorpato. Deduplica 114 coppie mantiene path/contenuti e recupera 957.257.021 byte; 368 file archivio invariati. Lavoro WII concorrente preservato ed escluso dal commit audit.

@@ -696,3 +696,10 @@ FR-MAP-DUAL-CLOCK-20261025 implementato: VM ultimo controllo; due orari distinti
 
 ##25ottobre2026 — zoom e pin
 FR-MAP-PIN-ZOOM-20261025 implementato nel Monitoraggio: zoom corrente/preset reali, pin distinto, Centra e cambio scala sul pin. PASS4suite client, UI desktop/mobile IT/EN e ritorno al pin dopo pan. Drag manuale/Safari/benchmark/replay NOT RUN. Report `reports/MAP-PIN-ZOOM-20261025.md`; gate invariati.
+
+
+## Audit framework — 25 ottobre 2026
+
+[Rapporto](reports/FRAMEWORK-AUDIT-20261025.md), run privato `framework-audit-20261025`: esito PARZIALE. 363 test core VM + 110 WII locali e 22 suite client PASS; UI zoom p95 196,7 ms, API p95 massimo 101,35 ms. DPC/EFFIS STALE per CACHE_FULL 256 MiB; vento fine pieno; rete elettrica solo fallback OSM parziale datato. Soak 30 min con 8 assenze listener e 3 cambi PID: continuità non qualificata. Cold-cache, compositore/Safari e nuovi replay fisici NOT RUN. Gate scientifici invariati.
+
+Follow-up: gestire archivi DPC/EFFIS e vento fine senza perdere evidenze o aumentare implicitamente le quote; verificare rete elettrica live/copertura; completare inglese dinamico; soak/Safari senza riavvii concorrenti; replay fisici con riserva disco sufficiente.

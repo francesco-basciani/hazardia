@@ -1453,3 +1453,14 @@ Run `dual-clock-20261025`, baseline `9d561d8`, reviewer Codex self-check; report
 - [x] PASS ricerca→Zoom15, pan→Centra conserva15, pin unico/clic/rimozione, mobile EN→16 centra pin, no overflow.
 - [ ] NOT RUN gesto drag manuale/Safari/replay/benchmark; drag abilitato nel DOM, nessuna claim scientifica.
 Run `map-pin-zoom-20261025`, baseline `302c49f`, reviewer Codex self-check; report `reports/MAP-PIN-ZOOM-20261025.md`.
+
+
+## FRAMEWORK-AUDIT-20261025
+
+- [x] 363 core VM + 110 WII locali e 22 suite client PASS; 368 SHA archivio invariati.
+- [x] Livelli attivati con dati/copertura/freschezza distinti; auto-caricamento Sentinel e rendering ottimizzati.
+- [x] 114 coppie JSON byte-identiche deduplicate, 957.257.021 byte recuperati, guardia riserva territoriale aggiunta.
+- [x] 30 zoom p95 196,7 ms; 13 API × 30 GET validi p95 massimo 101,35 ms.
+- [ ] BLOCKED aggiornamento DPC/EFFIS CACHE_FULL e vento fine; power live timeout / snapshot parziale.
+- [ ] FAIL continuità servizio: 8 assenze listener e 3 cambi PID in 30 min; QR14 non chiuso.
+- [ ] NOT RUN cold-cache completo, compositore/Safari, nuovi replay fisici, revisione indipendente. Inglese dinamico PARZIALE.

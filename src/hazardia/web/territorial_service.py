@@ -18,6 +18,8 @@ class TerritorialService:
   with self.lock:
    if (dest/'result.json').exists():return dict(id=key,status='SUCCEEDED')
    if key in self.active:return dict(id=key,status='RUNNING')
+   space=os.statvfs(self.app.root)
+   if space.f_bavail*space.f_frsize<2*1024**3+64*1024**2:raise HazardError('STORAGE_RESERVE','Riserva disco: contesti gia acquisiti consultabili; nuova acquisizione sospesa')
    if len(self.active)>=2 or not self.app.capacity.acquire(False):raise HazardError('QUEUE_FULL','Territorial workers busy; retry later')
    self.active.add(key)
   if not (dest/'request.json').exists():write_new(dest/'request.json',body)
@@ -27,7 +29,8 @@ class TerritorialService:
     # New attempt file avoids overwriting scientific source artifacts or stale errors.
     out=dest/('attempt-'+uuid.uuid4().hex+'.json')
     with (dest/(out.stem+'.log')).open('xb') as log:subprocess.run([cfg['geo_python'],'-m','hazardia.territorial_context',str(self.app.root),str(dest/'request.json'),str(out)],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=100)
-    write_new(dest/'result.json',load(out))
+    # Immutable read-model output: same bytes/path without a second full JSON copy.
+    os.link(out,dest/'result.json')
    except Exception as e:
     error=load(str(out)+'.error') if 'out' in locals() and Path(str(out)+'.error').exists() else dict(code='CONTEXT_FAILED',detail=str(e))
     # Status record is replaceable service state, never physical evidence.

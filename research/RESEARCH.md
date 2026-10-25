@@ -191,3 +191,8 @@ Doppio orario distingue wall clock client da validità di consultazione; nessuna
 
 ## Riferimenti di navigazione25ottobre2026
 Pin/zoom UI non sono input né risultati scientifici; non serializzare il pin come innesco o risorsa. Verifica UI distinta da qualificazione geografica/fisica: report `reports/MAP-PIN-ZOOM-20261025.md`; gate/FAIL storici preservati.
+
+
+## Audit applicativo — 25 ottobre 2026
+
+[Rapporto](../reports/FRAMEWORK-AUDIT-20261025.md), run privato `framework-audit-20261025`: esito PARZIALE. 363 test core VM + 110 WII locali e 22 suite client PASS; UI zoom p95 196,7 ms, API p95 massimo 101,35 ms. DPC/EFFIS STALE per CACHE_FULL 256 MiB; vento fine pieno; rete elettrica solo fallback OSM parziale datato. Soak 30 min con 8 assenze listener e 3 cambi PID: continuità non qualificata. Cold-cache, compositore/Safari e nuovi replay fisici NOT RUN. Gate scientifici invariati. Verifica applicativa distinta dalla validazione dei modelli; dati reali e animazione non dimostrano accuratezza o efficacia operativa delle squadre. Revisione indipendente non eseguita.

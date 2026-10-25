@@ -716,3 +716,8 @@ Run `dual-clock-20261025`, baseline `9d561d8`, Codex self-check: PASS3suite clie
 
 ## UI-MAP-PIN-ZOOM-20261025
 Run `map-pin-zoom-20261025`, baseline `302c49f`, Codex self-check. PASS4suite client; browser ricerca→15 centro42.35/13.4, pan→Centra stesso pin a15, rimozione/clic1marker, mobile EN→16 e assenza overflow. Drag-enabled DOM osservato, gesto manuale NOT RUN come Safari/replay/benchmark. Raw `experiments/runs/map-pin-zoom-20261025/`, report `reports/MAP-PIN-ZOOM-20261025.md`; gate invariati.
+
+
+## FRAMEWORK-AUDIT-20261025
+
+[Rapporto](../reports/FRAMEWORK-AUDIT-20261025.md), run privato `framework-audit-20261025`: esito PARZIALE. 363 test core VM + 110 WII locali e 22 suite client PASS; UI zoom p95 196,7 ms, API p95 massimo 101,35 ms. DPC/EFFIS STALE per CACHE_FULL 256 MiB; vento fine pieno; rete elettrica solo fallback OSM parziale datato. Soak 30 min con 8 assenze listener e 3 cambi PID: continuità non qualificata. Cold-cache, compositore/Safari e nuovi replay fisici NOT RUN. Gate scientifici invariati. Protocollo fissato prima delle misure; 30 campioni/serie, 3 documenti con cache condivisa e 3 viewport. Riepilogo pubblico `reports/framework-audit/verification.json`; prove grezze private e tentativi falliti conservati.

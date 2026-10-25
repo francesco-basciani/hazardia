@@ -1,0 +1,332 @@
+{
+  "run_id": "framework-audit-20261025",
+  "base_git": "182b3c447bc4427c11b37e51d5bb4e5075369592",
+  "overall": "PARTIAL",
+  "scope": "Research framework audit, not scientific/operational certification",
+  "tests": {
+    "core_python": 363,
+    "local_optional_wii": 110,
+    "client_suites": 22,
+    "failed_client": []
+  },
+  "performance": {
+    "zoom_before": {
+      "n": 30,
+      "p50_ms": 449.4000000357628,
+      "p95_ms": 497.7999999523163,
+      "max_ms": 505.2999999523163
+    },
+    "zoom_intermediate": {
+      "n": 30,
+      "p50_ms": 184.4000000357628,
+      "p95_ms": 203.59999990463257,
+      "max_ms": 206.60000002384183
+    },
+    "zoom_final": {
+      "n": 30,
+      "p50_ms": 179.75000005960464,
+      "p95_ms": 196.70000004768372,
+      "max_ms": 202.79999995231628
+    },
+    "api": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "state": "RUNNING",
+        "p95_ms": 0.8283929928438738,
+        "bytes": 3111
+      },
+      {
+        "path": "/api/catalog",
+        "status": 200,
+        "state": null,
+        "p95_ms": 2.7254640008322895,
+        "bytes": 66960
+      },
+      {
+        "path": "/api/monitoring",
+        "status": 200,
+        "state": "STALE",
+        "p95_ms": 0.9040160075528547,
+        "bytes": 3872
+      },
+      {
+        "path": "/api/monitoring/observed-rain",
+        "status": 200,
+        "state": "STALE",
+        "p95_ms": 28.9947090059286,
+        "bytes": 1734100
+      },
+      {
+        "path": "/api/monitoring/recent-imagery",
+        "status": 200,
+        "state": "IDLE",
+        "p95_ms": 0.6121489859651774,
+        "bytes": 18
+      },
+      {
+        "path": "/api/weather/wind",
+        "status": 200,
+        "state": "STALE",
+        "p95_ms": 101.3470990001224,
+        "bytes": 520336
+      },
+      {
+        "path": "/api/weather/map",
+        "status": 200,
+        "state": "FRESH",
+        "p95_ms": 22.160895008710213,
+        "bytes": 635645
+      },
+      {
+        "path": "/api/traffic",
+        "status": 200,
+        "state": "IDLE",
+        "p95_ms": 0.5742350040236488,
+        "bytes": 18
+      },
+      {
+        "path": "/api/traffic/config",
+        "status": 200,
+        "state": null,
+        "p95_ms": 0.5373610038077459,
+        "bytes": 296
+      },
+      {
+        "path": "/api/wii/status",
+        "status": 200,
+        "state": null,
+        "p95_ms": 5.066280995379202,
+        "bytes": 2931
+      },
+      {
+        "path": "/api/monitoring/radar?at=2026-10-25T09:00:00Z",
+        "status": 200,
+        "state": "AVAILABLE",
+        "p95_ms": 0.5189860094105825,
+        "bytes": 1343
+      },
+      {
+        "path": "/api/monitoring/earthquakes?request=2cb8b36e7e139e53c3884a27",
+        "status": 200,
+        "state": "READY",
+        "p95_ms": 1.1033040063921362,
+        "bytes": 43513
+      },
+      {
+        "path": "/api/monitoring/power?request=2524d1c0f9f9bc5dc1f787e8",
+        "status": 200,
+        "state": "READY",
+        "p95_ms": 0.43898800504393876,
+        "bytes": 4719
+      }
+    ],
+    "soak": {
+      "duration_s": 1800.0202310189925,
+      "samples": 121,
+      "errors": [
+        {
+          "elapsed_s": 180.33898150498862,
+          "at": "2026-10-25T09:29:03.319036+00:00",
+          "error": "'NoneType' object has no attribute 'group'"
+        },
+        {
+          "elapsed_s": 195.36210384499282,
+          "at": "2026-10-25T09:29:18.342167+00:00",
+          "error": "'NoneType' object has no attribute 'group'"
+        },
+        {
+          "elapsed_s": 210.39476707199356,
+          "at": "2026-10-25T09:29:33.374828+00:00",
+          "error": "'NoneType' object has no attribute 'group'"
+        },
+        {
+          "elapsed_s": 225.41997775799246,
+          "at": "2026-10-25T09:29:48.400040+00:00",
+          "error": "'NoneType' object has no attribute 'group'"
+        },
+        {
+          "elapsed_s": 240.44396074098768,
+          "at": "2026-10-25T09:30:03.424016+00:00",
+          "error": "'NoneType' object has no attribute 'group'"
+        },
+        {
+          "elapsed_s": 255.47570107199135,
+          "at": "2026-10-25T09:30:18.455752+00:00",
+          "error": "'NoneType' object has no attribute 'group'"
+        },
+        {
+          "elapsed_s": 270.5014618069981,
+          "at": "2026-10-25T09:30:33.481521+00:00",
+          "error": "'NoneType' object has no attribute 'group'"
+        },
+        {
+          "elapsed_s": 285.52327415499894,
+          "at": "2026-10-25T09:30:48.503338+00:00",
+          "error": "'NoneType' object has no attribute 'group'"
+        }
+      ],
+      "pid_changes": [
+        {
+          "at": "2026-10-25T09:31:03.526324+00:00",
+          "pid": 168219
+        },
+        {
+          "at": "2026-10-25T09:34:03.862181+00:00",
+          "pid": 169204
+        },
+        {
+          "at": "2026-10-25T09:52:20.822964+00:00",
+          "pid": 174364
+        }
+      ],
+      "health_p95_ms": 3.802783990977332,
+      "health_max_ms": 4.9871949886437505,
+      "disk_min_bytes": 2085511168,
+      "rss_max_kib": 232760,
+      "meaning": "30-minute service sampling with process changes; not an uninterrupted same-process leak or client/compositor qualification"
+    },
+    "traffic": {
+      "vehicles": 400,
+      "draw_ms_p95": 0.30000007152557373,
+      "interval_ms_p95": 34.19999999999709,
+      "samples": 300,
+      "elapsed": 27.900000000000126
+    },
+    "decision": [
+      {
+        "case": "saved-exposure",
+        "requests": 30,
+        "p95_s": 0.17690289900929201,
+        "max_s": 0.18170712199935224
+      },
+      {
+        "case": "saved-ideal",
+        "requests": 30,
+        "p95_s": 0.12852212799771223,
+        "max_s": 0.13677952699072193
+      }
+    ]
+  },
+  "preservation": {
+    "at": "2026-10-25T09:58:53.755859+00:00",
+    "archive_files": 368,
+    "changed_archives": [],
+    "duplicate_pairs_verified": 114,
+    "bad_duplicate_pairs": [],
+    "free_bytes": 2995507200,
+    "engine_changes": []
+  },
+  "weather": {
+    "state": "FRESH",
+    "id": "map-weather-ccb9fe5de9d5f8bdf2c1a33f",
+    "available_at": "2026-10-25T07:00:59.683796Z",
+    "native_model": "DWD ICON Global via Open-Meteo \u00b7 probabilit\u00e0 da ensemble Open-Meteo",
+    "first": "2026-10-25T00:00:00Z",
+    "last": "2026-10-28T22:00:00Z",
+    "records": 95,
+    "display_grid": [
+      9,
+      9
+    ],
+    "bounds": [
+      [
+        36.5,
+        1.7
+      ],
+      [
+        47.0,
+        26.8
+      ]
+    ],
+    "units": {
+      "cloud": "%",
+      "gusts": "m/s",
+      "humidity": "%",
+      "precipitation": "mm/h",
+      "pressure": "hPa",
+      "radiation": "W/m\u00b2",
+      "rain_probability": "%",
+      "temperature": "\u00b0C",
+      "wind": "m/s"
+    },
+    "fields": {
+      "u": {
+        "total": 7695,
+        "finite": 7695,
+        "missing": 0,
+        "minimum": -6.9859,
+        "maximum": 15.8701
+      },
+      "v": {
+        "total": 7695,
+        "finite": 7695,
+        "missing": 0,
+        "minimum": -14.1791,
+        "maximum": 10.592
+      },
+      "temperature": {
+        "total": 7695,
+        "finite": 7695,
+        "missing": 0,
+        "minimum": -5.7993,
+        "maximum": 25.0968
+      },
+      "humidity": {
+        "total": 7695,
+        "finite": 7695,
+        "missing": 0,
+        "minimum": 24.0432,
+        "maximum": 99.9958
+      },
+      "precipitation": {
+        "total": 7695,
+        "finite": 7695,
+        "missing": 0,
+        "minimum": 0.0,
+        "maximum": 7.8594
+      },
+      "rain_probability": {
+        "total": 7695,
+        "finite": 7695,
+        "missing": 0,
+        "minimum": 0.0,
+        "maximum": 99.9975
+      },
+      "cloud": {
+        "total": 7695,
+        "finite": 7695,
+        "missing": 0,
+        "minimum": 0.0,
+        "maximum": 100.0
+      },
+      "gusts": {
+        "total": 7695,
+        "finite": 7695,
+        "missing": 0,
+        "minimum": 0.4217,
+        "maximum": 25.6963
+      },
+      "pressure": {
+        "total": 7695,
+        "finite": 7695,
+        "missing": 0,
+        "minimum": 749.1104,
+        "maximum": 1024.8514
+      },
+      "radiation": {
+        "total": 7695,
+        "finite": 7695,
+        "missing": 0,
+        "minimum": 0.0,
+        "maximum": 677.9315
+      }
+    }
+  },
+  "gauges": {
+    "status": "FRESH",
+    "acquired_at": "2026-10-25T10:00:00.402326Z",
+    "stations": 3995,
+    "fresh": 3936
+  }
+}

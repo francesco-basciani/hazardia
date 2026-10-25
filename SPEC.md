@@ -587,3 +587,8 @@ Rettifica utente: VM connessa ultimo controllo a destra della barra. Orologio re
 
 ## FR-MAP-PIN-ZOOM-20261025
 Richiesta utente: zoom corrente e selettore di scale accanto a +/−/Centra. Nel Monitoraggio un pin di navigazione unico, distinto dagli inneschi, è riferimento per Centra (zoom conservato) e scelta zoom (centro sul pin); senza pin rimangono centro/fit precedenti. Pin posizionabile, trascinabile e rimovibile, nessun cambiamento agli input scientifici. Report `reports/MAP-PIN-ZOOM-20261025.md`.
+
+
+## Evidenza audit — 25 ottobre 2026
+
+Si applicano le soglie FR24–28 / QR11–14 esistenti, senza riduzioni. [Rapporto](reports/FRAMEWORK-AUDIT-20261025.md), run privato `framework-audit-20261025`: esito PARZIALE. 363 test core VM + 110 WII locali e 22 suite client PASS; UI zoom p95 196,7 ms, API p95 massimo 101,35 ms. DPC/EFFIS STALE per CACHE_FULL 256 MiB; vento fine pieno; rete elettrica solo fallback OSM parziale datato. Soak 30 min con 8 assenze listener e 3 cambi PID: continuità non qualificata. Cold-cache, compositore/Safari e nuovi replay fisici NOT RUN. Gate scientifici invariati. Il PASS di latenza non certifica disponibilità, completezza o aggiornamento del dato.

@@ -39,11 +39,11 @@ export function organiseLayers(map,list,choices){
 export function consolidateMapKeys(map,stage,body,open){
  const host=document.createElement('section');host.className='console-map-key';host.hidden=true;
  const intro=document.createElement('p');intro.textContent='Simboli, scale e stato dei livelli attivi. I dati previsti, osservati e simulati restano distinti.';host.append(intro);
- for(const node of [...map.getContainer().querySelectorAll('.critical-map-legend,.map-symbols,.weather-map-legend,.traffic-badge,.map-credit-link')]){node.classList.remove('leaflet-control');host.append(node);}
+ for(const node of [...map.getContainer().querySelectorAll('.critical-map-legend,.map-symbols,.weather-map-legend,.radar-map-legend,.traffic-badge,.map-credit-link')]){node.classList.remove('leaflet-control');host.append(node);}
  body.append(host);
  const button=document.createElement('button');button.type='button';button.className='console-legend-toggle';button.textContent='ⓘ  Legenda e stato';button.setAttribute('aria-controls','console-inspector');button.onclick=()=>open('Legenda e stato',host);stage.append(button);
  const statusNodes=[...host.querySelectorAll('.weather-map-legend,.traffic-badge')];
- const status=()=>{const incomplete=statusNodes.some(n=>!n.hidden&&/mancant|incomplet|non disponibili|errore|scadut|missing|incomplete|unavailable|error|expired/i.test(n.matches('.traffic-badge')?n.textContent:n.querySelector('[role=status]')?.textContent||''));button.dataset.warning=String(incomplete);const title=incomplete?'Dati mancanti o copertura parziale: apri la legenda.':'Scale, simboli e stato dei livelli attivi.';if(button.title!==title)button.title=title;};
+ const status=()=>{const incomplete=statusNodes.some(n=>!n.hidden&&/mancant|incomplet|non disponibili|errore|scadut|fallback|parzial|partial|missing|incomplete|unavailable|error|expired/i.test(n.matches('.traffic-badge')?n.textContent:n.querySelector('[role=status]')?.textContent||''));button.dataset.warning=String(incomplete);const title=incomplete?'Dati mancanti o copertura parziale: apri la legenda.':'Scale, simboli e stato dei livelli attivi.';if(button.title!==title)button.title=title;};
  const observer=new MutationObserver(status);for(const n of statusNodes)observer.observe(n,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden']});status();map.on('unload',()=>observer.disconnect());
  L.DomEvent.disableClickPropagation(button);L.DomEvent.disableScrollPropagation(button);
 }

@@ -205,3 +205,8 @@ Il tag `stable-2026-10-24-pre-domain-evolution` conserva la versione precedente 
 
 ### Contratti di interoperabilità (A5a)
 Il [confine di scambio](docs/EXCHANGE-CONTRACTS.md) descrive prodotti grigliati senza enumerare i domini nel nucleo e controlla compatibilità di metadati, tempo, griglie, unità e incertezza. Gli adapter esistenti mantengono i contratti storici e aggiungono un sidecar ai nuovi job. Non comprende ancora ammissione generica o composizione automatica di modelli; la compatibilità non certifica validità fisica. [Report e limiti verificati](reports/EXCHANGE-CONTRACTS-A5A-20261024.md).
+
+
+## Audit del framework — 25 ottobre 2026
+
+[Rapporto](reports/FRAMEWORK-AUDIT-20261025.md), run privato `framework-audit-20261025`: esito PARZIALE. 363 test core VM + 110 WII locali e 22 suite client PASS; UI zoom p95 196,7 ms, API p95 massimo 101,35 ms. DPC/EFFIS STALE per CACHE_FULL 256 MiB; vento fine pieno; rete elettrica solo fallback OSM parziale datato. Soak 30 min con 8 assenze listener e 3 cambi PID: continuità non qualificata. Cold-cache, compositore/Safari e nuovi replay fisici NOT RUN. Gate scientifici invariati.

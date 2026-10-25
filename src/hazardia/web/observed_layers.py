@@ -116,8 +116,8 @@ class ObservedLayers:
                 raise HazardError('AREA_TOO_LARGE','Power inventory: zoom to ≤3° per side and ≤6 square degrees; no complete world network cached')
             box=','.join(map(str,[b[1],b[0],b[3],b[2]]))
             query=f'[out:json][timeout:20];(way[power~"^(line|minor_line|cable|substation)$"]({box});node[power~"^(tower|pole|substation)$"]({box}););out meta geom 5001;'
-            url=('https://api.openstreetmap.org/api/0.6/map?bbox='+','.join(map(str,b))) if b[2]-b[0]<=.061 and b[3]-b[1]<=.061 else POWER_SOURCE+'?'+urllib.parse.urlencode({'data':query});ttl=86400
-        key=hashlib.sha256(json.dumps([self.kind,body,int(time.time()//ttl)],sort_keys=True).encode()).hexdigest()[:24]
+            url=POWER_SOURCE+'?'+urllib.parse.urlencode({'data':query});ttl=86400
+        key=hashlib.sha256(json.dumps([self.kind,body,int(time.time()//ttl),*(['power/2-filtered-source-and-verified-fallback'] if self.kind=='power' else [])],sort_keys=True).encode()).hexdigest()[:24]
         path=self.root/(key+'.json')
         with self.lock:
             if path.exists():return json.loads(path.read_text())
@@ -130,13 +130,24 @@ class ObservedLayers:
             quota.write_text(str(n+1));self.active=True;self.last=time.time();self.pending[key]=dict(status='LOADING',request_id=key)
         def work():
             try:
-                raw=self.fetch(url)
-                if len(raw)>8*1024**2:raise ValueError('Source response exceeds8MiB')
-                features,quality=(earthquake_features(raw) if self.kind=='earthquakes' else power_features(raw))
+                actual_bounds=b;actual_source=url;fallback=None
+                try:
+                    raw=self.fetch(url)
+                    if len(raw)>8*1024**2:raise ValueError('Source response exceeds8MiB')
+                    features,quality=(earthquake_features(raw) if self.kind=='earthquakes' else power_features(raw))
+                except Exception as upstream:
+                    if self.kind!='power':raise
+                    from hazardia.web.power_snapshot import cached_power_snapshot
+                    fallback=cached_power_snapshot(self.root.parent.parent,b)
+                    if fallback is None:raise
+                    raw=fallback['raw'];features,quality=power_features(raw);actual_bounds=fallback['bounds'];actual_source=fallback['source'];quality.update(fallback['quality'],upstream_error=str(upstream))
+                    def points(a):return [a] if isinstance(a[0],(int,float)) else [p for child in a for p in points(child)]
+                    features=[f for f in features if (lambda p:max(c[0] for c in p)>=actual_bounds[0] and min(c[0] for c in p)<=actual_bounds[2] and max(c[1] for c in p)>=actual_bounds[1] and min(c[1] for c in p)<=actual_bounds[3])(points(f['geometry']['coordinates']))]
+                    quality['unknown_voltage']=sum(not f['properties']['voltage_values'] for f in features)
                 if self.kind=='earthquakes':
                     quality.update(coverage='Regional Italian catalogue' if provider=='ingv' else 'Global catalogue; small earthquakes incomplete outside well-instrumented regions',window_start=start.isoformat(),window_end=end.isoformat(),min_magnitude=mag,provider=provider,license='INGV CC BY4.0 (open-data policy)' if provider=='ingv' else 'USGS public-domain data; contributor attribution retained',missing=['Felt intensity','Damage and site vulnerability','Detection completeness and catalogue revision history'])
-                else:quality.update(source_mode='OSM API bounded map extract' if 'api.openstreetmap.org' in url else 'Overpass power query',license='ODbL-1.0 © OpenStreetMap contributors',missing=['Complete operator-certified network','Cable heights, sag and aerial clearance','Operating state and real-time outages','Voltage for untagged objects','Substation relations not acquired'])
-                value=dict(status='READY',request_id=key,type='FeatureCollection',features=features,bounds=b,source=url,acquired_at=utcnow(),raw_sha256=hashlib.sha256(raw).hexdigest(),quality=quality,kind=self.kind,coupled_to_optimizer=False)
+                else:quality.update(source_mode=quality.get('source_mode','Overpass power query'),license='ODbL-1.0 © OpenStreetMap contributors',missing=['Complete operator-certified network','Cable heights, sag and aerial clearance','Operating state and real-time outages','Voltage for untagged objects','Substation relations not acquired'])
+                value=dict(status='READY',request_id=key,type='FeatureCollection',features=features,bounds=actual_bounds,source=actual_source,acquired_at=utcnow(),raw_sha256=hashlib.sha256(raw).hexdigest(),quality=quality,kind=self.kind,coupled_to_optimizer=False)
                 encoded=json.dumps(value,allow_nan=False).encode()
                 if sum(p.stat().st_size for p in self.root.iterdir())+len(raw)+len(encoded)>32*1024**2:raise ValueError('32MiB cache admission limit')
                 path.with_suffix('.source').write_bytes(raw);path.write_bytes(encoded)

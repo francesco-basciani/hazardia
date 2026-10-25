@@ -18,3 +18,6 @@ This index links observed software evidence. Author/recorder/reviewer: Codex sel
 | Stability and transport | M7 final checkpoint, only after execution | Byte integrity and measured session, not calibrated/historical validity |
 
 The complete current statuses are in `../../CHECKLIST.md`. H1/H2/H3 remain unconfirmed main-study hypotheses. The code uses rule-based degradation and a single optimal research candidate/counterfactual; general capability optimization and candidate portfolios are not claimed complete. Required principal ablations, independent historical fire/flood hindcasts and second-machine installation remain outstanding.
+
+
+Audit applicativo del 25 ottobre 2026: `reports/FRAMEWORK-AUDIT-20261025.md`, metriche aggregate `reports/framework-audit/verification.json`. Prove grezze private; esito PARZIALE, non risultato scientifico qualificato.
