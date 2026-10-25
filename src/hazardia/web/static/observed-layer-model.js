@@ -23,6 +23,22 @@ export function quakeQueryBounds(view,regional=false){
 }
 export function quakeSnapshotCovers(data,view,{provider,days,min_magnitude},now=Date.now()){
  if(!data||data.status!=='READY'||!data.bounds||!data.quality)return false;
+ if(provider==='auto')return quakeAcquisitionPlan(view,{provider,days,min_magnitude}).every(leg=>(data.catalogues||[data]).some(part=>quakeSnapshotCovers(part,leg.view,leg.body,now)));
  const q=data.quality,age=now-Date.parse(data.acquired_at),duration=Date.parse(q.window_end)-Date.parse(q.window_start);
  return age>=0&&age<600000&&q.provider===provider&&q.min_magnitude===min_magnitude&&duration===days*86400000&&view.every((v,i)=>i<2?v>=data.bounds[i]-.0001:v<=data.bounds[i]+.0001);
+}
+
+const italianCatalogue=[6,35,19,48];
+export function quakeAcquisitionPlan(view,{provider='auto',days=7,min_magnitude=0}={}){
+ const clipped=[Math.max(view[0],6),Math.max(view[1],35),Math.min(view[2],19),Math.min(view[3],48)],intersects=clipped[0]<clipped[2]&&clipped[1]<clipped[3],inside=view.every((v,i)=>i<2?v>=italianCatalogue[i]:v<=italianCatalogue[i]);
+ const part=(p,v)=>({view:v,body:{bounds:quakeQueryBounds(v,p==='ingv'),provider:p,days,min_magnitude}});
+ if(provider!=='auto')return [part(provider,view)];
+ return [...(intersects?[part('ingv',clipped)]:[]),...(!inside?[part('usgs',view)]:[])];
+}
+export function combineQuakeSnapshots(parts){
+ if(parts.length===1)return parts[0];
+ const regional=parts.find(p=>p.quality.provider==='ingv'),global=parts.find(p=>p.quality.provider==='usgs');
+ const features=parts.flatMap(p=>p.features.filter(f=>{const [x,y]=f.geometry.coordinates;return !(p===global&&regional&&x>=regional.bounds[0]&&x<=regional.bounds[2]&&y>=regional.bounds[1]&&y<=regional.bounds[3]);}).map(f=>({...f,id:p.quality.provider+':'+f.id,properties:{...f.properties,catalogue_provider:p.quality.provider}})));
+ features.sort((a,b)=>Date.parse(b.properties.at)-Date.parse(a.properties.at));
+ return {status:'READY',type:'FeatureCollection',features,bounds:(global||regional).bounds,acquired_at:parts.map(p=>p.acquired_at).sort()[0],catalogues:parts,quality:{provider:'ingv+usgs',min_magnitude:parts[0].quality.min_magnitude,window_start:parts.map(p=>p.quality.window_start).sort()[0],window_end:parts.map(p=>p.quality.window_end).sort().at(-1),window_semantics:'ENVELOPE_OF_SOURCE_WINDOWS',license:'INGV CC BY4.0; USGS public-domain data',limit_reached:parts.some(p=>p.quality.limit_reached),skipped:parts.reduce((n,p)=>n+(p.quality.skipped||0),0)}};
 }

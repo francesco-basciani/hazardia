@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 const source=await fs.readFile(new URL('../../src/hazardia/web/static/observed-layer-model.js',import.meta.url),'utf8');
-const {powerVisible,powerColor,quakeClasses,quakeStyle,quakeQueryBounds,quakeSnapshotCovers}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const {powerVisible,powerColor,quakeClasses,quakeStyle,quakeQueryBounds,quakeSnapshotCovers,quakeAcquisitionPlan,combineQuakeSnapshots}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
 const line={power_kind:'line',location:'overhead',max_voltage:132000};
 assert.equal(powerVisible(line),true);
 assert.equal(powerVisible(line,{minVoltage:220000}),false);
@@ -56,3 +56,19 @@ assert.deepEqual(quakeQueryBounds([-179.9,-84.9,179.9,84.9]),[-180,-85,180,85]);
 assert.deepEqual(quakeQueryBounds([5,35,19,48],true),[5,35,19,48]); // explicit outside-coverage retained
 assert.deepEqual(snapshot.features,[]);assert.deepEqual(snapshot.bounds,local);
 console.log('PASS seismic viewport refresh: empty/local vs uncovered, buffered cache area, freshness, filters and source boundaries');
+
+// An Italian view crossing the regional rectangle keeps small INGV events.
+const crossing=[8.8,39.5,19.5,44.5],auto={...opts,provider:'auto'},plan=quakeAcquisitionPlan(crossing,auto);
+assert.deepEqual(plan.map(p=>p.body.provider),['ingv','usgs']);assert.deepEqual(plan[0].body.bounds,[8,39,19,45]);assert.deepEqual(plan[1].body.bounds,[8,39,20,45]);
+assert.deepEqual(quakeAcquisitionPlan(local,auto).map(p=>p.body.provider),['ingv']);assert.deepEqual(quakeAcquisitionPlan([-18,12,-11,17],auto).map(p=>p.body.provider),['usgs']);assert.equal(quakeAcquisitionPlan(crossing,opts).length,1);
+const event=(id,x,y,at)=>({type:'Feature',id,geometry:{type:'Point',coordinates:[x,y]},properties:{at,event_type:'earthquake'}});
+const italian={...snapshot,bounds:[8,39,19,45],features:[event('i',13,42,'2026-10-24T12:00:00Z')]};
+const world={...snapshot,bounds:[8,39,20,45],quality:{...snapshot.quality,provider:'usgs'},features:[event('g-duplicate',13,42,'2026-10-24T12:00:00Z'),event('outside',19.3,42,'2026-10-24T13:00:00Z')]};
+const combined=combineQuakeSnapshots([italian,world]);assert.equal(combined.features.length,2);assert.equal(combined.features[0].id,'usgs:outside');assert.equal(combined.features[1].properties.catalogue_provider,'ingv');assert.equal(combined.quality.provider,'ingv+usgs');assert.equal(italian.features[0].id,'i');assert.equal(world.features.length,2);
+assert.equal(quakeSnapshotCovers(combined,crossing,auto,now),true);assert.equal(quakeSnapshotCovers(world,crossing,auto,now),false);assert.equal(quakeSnapshotCovers(italian,crossing,auto,now),false);assert.equal(quakeSnapshotCovers(combined,[8.8,39.5,20.5,44.5],auto,now),false);
+assert.equal(combineQuakeSnapshots([italian]),italian);assert.equal(quakeSnapshotCovers(italian,local,auto,now),true);
+assert.equal(quakeSnapshotCovers(combineQuakeSnapshots([italian,{...world,acquired_at:'2026-10-24T19:00:00Z'}]),crossing,auto,now),false);
+console.log('PASS composite seismic catalogue: INGV retained at Italy edge, global-only elsewhere, spatial source priority without duplicates, source provenance, reuse and stale/missing-part rejection');
+
+const shifted={...world,quality:{...world.quality,window_start:'2026-10-17T21:20:00Z',window_end:'2026-10-24T21:20:00Z'}};
+const envelope=combineQuakeSnapshots([italian,shifted]);assert.equal(envelope.quality.window_start,italian.quality.window_start);assert.equal(envelope.quality.window_end,shifted.quality.window_end);assert.equal(envelope.quality.window_semantics,'ENVELOPE_OF_SOURCE_WINDOWS');

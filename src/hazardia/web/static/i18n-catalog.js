@@ -1558,5 +1558,6 @@ export const messages = {
   "Confini provinciali": "Provincial boundaries",
   "Caricamento confini…": "Loading boundaries…",
   "Confini non disponibili · riprova disattivando e riattivando": "Boundaries unavailable · turn off and on to retry",
-  "Natural Earth · mondiale": "Natural Earth · worldwide"
+  "Natural Earth · mondiale": "Natural Earth · worldwide",
+  "INGV in Italia + USGS fuori dall’area italiana · piccoli eventi secondo copertura delle reti": "INGV in Italy + USGS outside the Italian area · small events depend on network coverage"
 };

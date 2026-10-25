@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "run_id": "quake-safari-20261025",
+  "baseline": "63798e5",
+  "reviewer": "Codex self-check",
+  "browser": "native macOS Safari via accessibility and screenshot; version not recorded",
+  "initial_failure": "Auto viewport crossing east19E selected USGS alone, 0events, losing Italian small events",
+  "fix": "Auto plans separate INGV intersected regional rectangle and USGS global viewport; regional spatial ownership excludes overlapping USGS entries, source provenance/windows retained",
+  "native_checks": {
+    "reload": "PASS",
+    "activate_by_name": "PASS",
+    "initial_view": "193 visible / 216 earthquake records",
+    "automatic_zoom_out": "422 visible / 447 earthquake records (448 catalogue features before event_type filter)",
+    "zoom_back": "193 visible / 447 earthquake records, no data loss",
+    "source_windows": "INGV and USGS explicitly shown"
+  },
+  "unit_checks": [
+    "10 VM observation backend tests",
+    "observed-layer-model with composite/coverage/provenance/reuse regressions",
+    "i18n suite"
+  ],
+  "resolved": "Safari final BLOCKED from quake-viewport-20261024 superseded by this native PASS",
+  "limits": [
+    "All requested catalogue legs must succeed; a failed source gives explicit acquisition error, not zero events",
+    "Catalogue solutions revisable; magnitude is not felt intensity; no earthquake forecasting",
+    "Regional INGV rectangle6..19E35..48N is catalogue consultation coverage, not national border geometry",
+    "Spatial source priority is not entity matching across uncertain epicentre locations",
+    "Existing 24 acquisitions/day, 1000 response records, 32MiB cache limits retained; mixed acquisition may use two quota slots",
+    "No full release/FPS/scientific validation inferred"
+  ]
+}

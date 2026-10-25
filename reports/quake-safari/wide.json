@@ -1,0 +1,10 @@
+{
+  "observations": [
+    "\t\t\t\t\t\t\t\t\t33 testo Terremoti osservati · 422 nella vista / 447 acquisiti",
+    "\t\t\t\t\t\t\t\t\t127 testo 447 elementi nel filtro / 448 acquisiti · Acquisizione 25/10/2026, 08:00:59 · 2026-10-18T07:00:00+00:00 → 2026-10-25T07:00:00+00:00 · M ≥ 0",
+    "\t\t\t\t\t\t\t\t\t130 testo Area WGS84: 4, 37, 25, 47",
+    "\t\t\t\t\t\t\t\t\t131 testo Fonte: INGV+USGS",
+    "\t\t\t\t\t\t\t\t\t134 testo INGV · 2026-10-18T07:00:00+00:00 → 2026-10-25T07:00:00+00:00 · 447 eventi acquisiti · 2026-10-25T07:00:59.389148Z",
+    "\t\t\t\t\t\t\t\t\t135 testo USGS · 2026-10-18T07:00:00+00:00 → 2026-10-25T07:00:00+00:00 · 5 eventi acquisiti · 2026-10-25T07:01:04.966671Z"
+  ]
+}
