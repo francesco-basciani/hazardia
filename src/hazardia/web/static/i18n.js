@@ -62,7 +62,7 @@ function install(){
   const label=document.createElement('label');label.className='language-switch';label.dataset.i18nSkip='';
   const span=document.createElement('span');span.textContent='IT / EN';
   const select=document.createElement('select');select.dataset.languageSelect='';select.setAttribute('aria-label','Lingua / Language');
-  for(const [value,name] of [['it','Italiano'],['en','English']]){const o=document.createElement('option');o.value=value;o.textContent=name;o.lang=value;select.append(o);}select.value=language;select.addEventListener('change',()=>setLanguage(select.value));label.append(span,select);host.append(label);
+  for(const [value,name] of [['it','Italiano'],['en','English']]){const o=document.createElement('option');o.value=value;o.textContent=name;o.lang=value;select.append(o);}select.value=language;select.addEventListener('change',()=>setLanguage(select.value));label.append(span,select);const connection=host.querySelector('.connection');if(connection)host.insertBefore(label,connection);else host.append(label);
  }
  visit(document.documentElement);
  observer=new MutationObserver(records=>{for(const r of records){if(r.type==='characterData'){const old=originals.get(r.target);if(old?.rendered!==r.target.data)schedule(r.target);}else if(r.type==='attributes'){const old=attributes.get(r.target)?.get(r.attributeName);if(old?.rendered!==r.target.getAttribute(r.attributeName))schedule(r.target);}else for(const node of r.addedNodes)schedule(node);}});

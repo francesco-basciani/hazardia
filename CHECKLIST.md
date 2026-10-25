@@ -1439,3 +1439,10 @@ PASS Safari effettivo, risolto il precedente BLOCKED: reload/attivazione/zoomout
 - [x] PASS7suite client pure sul Mac e10test backend nella VM, desktop/mobile.
 - [ ] NOT RUN nuovi FPS/p95 e replay fisici; M0–M7/REFlEx invariati.
 Evidenza: run `layer-console-20261025`, baseline `ac8f670`, reviewer Codex self-check; comandi, limiti e FAIL esplorativi corretti nel report `reports/LAYER-CONSOLE-20261025.md`.
+
+
+## UI-DUAL-CLOCK-20261025
+- [x] PASS VM ultima a destra, testo/spia leggibili anche390px.
+- [x] PASS ora reale al secondo distinta da validità dati/previsione, missing/DST conservati;3suite client e UI IT/EN desktop/mobile.
+- [ ] BLOCKED verifica Safari: Mac bloccato; NOT RUN nuovi replay/benchmark.
+Run `dual-clock-20261025`, baseline `9d561d8`, reviewer Codex self-check; report `reports/DUAL-CLOCK-20261025.md`, log client ed evidenze locali. Gate originali invariati.

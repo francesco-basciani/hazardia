@@ -167,3 +167,15 @@ body.map-console .topbar{height:auto;min-height:56px;gap:12px}
 @media(max-width:700px){.map-console .console-right{bottom:158px!important}}
 
 .console-zoom-badge{display:inline-flex;align-items:center;gap:3px}.console-zoom-badge svg{width:11px;height:11px}
+
+/* Actual wall clock beside the validity of what is being consulted. */
+.map-console .topmeta .connection{order:100;margin-left:4px}
+.monitor-clock{flex-direction:row;height:38px;gap:10px;padding:3px 9px;align-items:center}
+.monitor-clock-real,.monitor-clock-data{display:flex;flex-direction:column;gap:1px;justify-content:center}
+.monitor-clock-data{border-left:1px solid #627987;padding-left:10px}
+.monitor-clock-label,.monitor-clock-mode{font:500 9px/1.2 system-ui;color:#bdd2dc}
+.monitor-clock-wall{font:700 14px/1.2 system-ui;font-variant-numeric:tabular-nums;min-width:65px;color:#fff}
+.monitor-clock-selected{font:600 12px/1.3 system-ui;font-variant-numeric:tabular-nums}
+@media(max-width:700px){.monitor-clock{gap:6px;padding:3px 6px}.monitor-clock-data{padding-left:6px}.monitor-clock-wall{font-size:12px;min-width:57px}.monitor-clock-selected{font-size:10px}.monitor-clock-label,.monitor-clock-mode{font-size:8px}.map-console .console-top-tools{gap:4px}.console-top-tools .console-search .map-search-row{gap:2px}.console-top-tools .console-search button{padding:3px 5px!important}}
+.map-console .topbar .connection{white-space:nowrap}.map-console .topbar .connection i{flex:0 0 7px}
+@media(max-width:420px){.map-console .topbar .connection{max-width:none;overflow:visible;font-size:8px;gap:4px}.map-console .topbar .language-switch select{width:76px!important}}

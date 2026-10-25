@@ -708,3 +708,7 @@ PASS Safari effettivo, risolto il precedente BLOCKED: reload/attivazione/zoomout
 
 ## UI-LAYER-CONSOLE-20261025
 Run `layer-console-20261025`, baseline `ac8f6709a8d429e336a71bcdb409480165751daa`, reviewer Codex self-check. PASS7suite client pure (Node Mac; Node VM assente e tentativo fallito conservato),10test backend osservazioni VM, UI19voci/4gruppi/3legende/zero float Monitoraggio, soglia14/15, OSM reale Municipio+1203aree edificio nel viewport verificato, mobile/EN/Safari. Log/protocollo `experiments/runs/layer-console-20261025/`, report `reports/LAYER-CONSOLE-20261025.md`. Screenshot locali esclusi dall’export. NOT RUN prestazioni/nuovi replay; nessuna claim scientifica o di completezza OSM.
+
+
+## UI-DUAL-CLOCK-20261025
+Run `dual-clock-20261025`, baseline `9d561d8`, Codex self-check: PASS3suite client, UI desktop/mobile IT/EN, +1h dati10:00 con ora reale09:00:36. Testo VM52,7px contenuto in390px, no overflow. Safari BLOCKED Mac bloccato; benchmark/replay NOT RUN. `reports/DUAL-CLOCK-20261025.md`, raw `experiments/runs/dual-clock-20261025/`; screenshot locali esclusi export.

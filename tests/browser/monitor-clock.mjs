@@ -15,3 +15,11 @@ console.log('PASS monitored time vs wall clock, missing/invalid time, future hor
 
 assert(current.compact.includes('16:00'));assert(!current.compact.includes('UTC'));assert(!current.compact.includes('2026'));assert.notEqual(first.selected,second.selected);assert.equal(monitoredTime(null,now).compact,null);
 console.log('PASS compact clock keeps canonical UTC instant and detailed DST offset separately');
+
+assert.equal(current.wallCompact,'16:23:45');
+assert.equal(current.nowAt,'2026-10-24T14:23:45.000Z');
+const later=monitoredTime(current.at,now+1000);
+assert.equal(later.wallCompact,'16:23:46');assert.equal(later.compact,current.compact);
+assert.equal(monitoredTime(null,now).wallCompact,current.wallCompact,'Real clock remains available when data are missing');
+assert.equal(monitoredTime(first.at,now,'Europe/Rome','en-GB').nowAt,current.nowAt);
+console.log('PASS dual clocks: second ticks independently of fixed/missing data; canonical instants preserved');

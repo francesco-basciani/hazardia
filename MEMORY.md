@@ -646,3 +646,7 @@ PASS Safari effettivo, risolto il precedente BLOCKED: reload/attivazione/zoomout
 
 ##25ottobre2026 — menu livelli e legende
 19voci originali riordinate2/4/9/4, SVG e occhio visibilità, opzioni nel solo inspector destro. Edifici prima senza soglia, ora zoom15 solo Monitoraggio con policy condivisa fra renderer e badge; non modifica studi scientifici. Legende originali spostate, mai ricopiate, in Legenda e stato; Pioggia/allerte stesso inspector con visibilità esplicita. Favicon originale SVG/ICO; CSS anticipato nel head per evitare layout tardivo. PASS7suite client/10test VM, UI1011×1034/390×844, IT/EN e Safari AX. OSM parziale con snapshot riusati e quota/timeout presenti, non copertura completa. Report `reports/LAYER-CONSOLE-20261025.md`. Conservati worktree WII e gate originali.
+
+
+##25ottobre2026 — doppio orario
+VM connessa ultima nella barra (DOM/CSS), niente taglio mobile. Ora reale HH:mm:ss dal client e validità selezionata Dati sulla mappa/Previsione sulla mappa distinti; non ultima acquisizione o osservazione. PASS3suite client, UI1011×1034/390×844 IT/EN; Safari BLOCKED Mac bloccato. Report `reports/DUAL-CLOCK-20261025.md`. Nessun cambio VMclock/timeline/modelli, gate invariati.

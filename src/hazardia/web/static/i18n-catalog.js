@@ -1,5 +1,9 @@
 /* Reviewed Italian → English interface messages. No remote translation service. */
 export const messages = {
+  "Ora reale e orario dei dati": "Current time and data time",
+  "Ora reale": "Current time",
+  "Dati sulla mappa": "Data on map",
+  "Previsione sulla mappa": "Forecast on map",
   "Precipitazioni medie · mm": "Mean precipitation · mm",
   "Aggiornamento della zona per lo snapshot e l’ora selezionati…": "Updating the zone for the selected snapshot and time…",
   "Dati mancanti o copertura parziale: apri la legenda.": "Missing data or partial coverage: open the legend.",

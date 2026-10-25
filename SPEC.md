@@ -579,3 +579,7 @@ La voce Confini apre a destra tre opzioni indipendenti: nazioni, regioni, provin
 
 ## FR-MAP-LAYER-GROUPS-20261025 — livelli, scala e legende
 Richiesta confermata: Monitoraggio con voci uniformi raggruppate per previsioni/criticità, osservazioni, territorio/infrastrutture, cartografia/catalogo; visibilità separata dai parametri nel pannello destro unico. Legende/stati raccolti in un accesso compatto, mantenendo scale, tempi e missing. Indicatore di zoom solo per restrizioni realmente applicate; edifici da zoom15 nel solo Monitoraggio, senza alterare acquisizione, esposizione o simulatori. Favicon coerente con marchio HAZARDIA. Report [LAYER-CONSOLE-20261025](reports/LAYER-CONSOLE-20261025.md).
+
+
+## FR-MAP-DUAL-CLOCK-20261025
+Rettifica utente: VM connessa ultimo controllo a destra della barra. Orologio reale del client HH:mm:ss visibile accanto alla validità dei dati sulla mappa, distinta e marcata Previsione quando futura. Non chiamare la validità selezionata ultima acquisizione/osservazione. Tempi/offset dettagliati e missing conservati. Rapporto `reports/DUAL-CLOCK-20261025.md`; nessun cambio timeline/motori.

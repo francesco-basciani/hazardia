@@ -688,3 +688,7 @@ PASS Safari effettivo, risolto il precedente BLOCKED: reload/attivazione/zoomout
 
 ## Incremento cartografico25ottobre2026 — categorie e legende
 Implementato FR-MAP-LAYER-GROUPS-20261025:19voci in4gruppi, occhio visibilità, inspector destro e legenda/stati riuniti; edifici zoom15 solo Monitoraggio, SVG/ICO browser. PASS7suite client/10test VM e UI desktop/mobile/EN/Safari. Nessun nuovo provider o modifica dei motori; gate scientifici invariati. Rapporto `reports/LAYER-CONSOLE-20261025.md`; nessun benchmark prestazionale nuovo dichiarato.
+
+
+##25ottobre2026 — ora reale e dati
+FR-MAP-DUAL-CLOCK-20261025 implementato: VM ultimo controllo; due orari distinti accanto alla ricerca. PASS3suite client e UI desktop/mobile IT/EN; Safari BLOCKED Mac bloccato. Nessun cambio modello, NOT RUN benchmark/replay. Report `reports/DUAL-CLOCK-20261025.md`.

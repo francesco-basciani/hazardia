@@ -183,3 +183,7 @@ Il paper è una fonte per l’architettura d’integrazione di applicazioni, dat
 
 ## Verifica presentazione25ottobre2026
 UI-LAYER-CONSOLE-20261025 distingue gate di rappresentazione da qualificazione scientifica: soglia cartografica edifici15 nel Monitoraggio non filtra input/esposizione del modello. Riordino usa nodi originali e dati acquisiti; categorie/legenda non attestano copertura completa. Protocollo finale dichiara precedenti controlli esplorativi e tentativo Node VM fallito. PASS client/UI e backend osservazioni; NOT RUN benchmark/replay fisici. Conservare FAIL REFlEx e gate M0–M7. Report `reports/LAYER-CONSOLE-20261025.md`.
+
+
+## Semantica temporale UI25ottobre2026
+Doppio orario distingue wall clock client da validità di consultazione; nessuna evidenza di ultima acquisizione o simultaneità delle fonti dedotta. Report `reports/DUAL-CLOCK-20261025.md`; gate scientifici e replay storici invariati.

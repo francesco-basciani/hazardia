@@ -30,7 +30,7 @@ export function mapConsole(map){
  const tools=toolbar.querySelector('.map-tools-content');
  const rainButton=tools?.querySelector('[aria-controls="rain-zones-panel"]');
  const centre=document.getElementById('monitor-fit');if(centre){centre.classList.add('console-center');centre.addEventListener('click',e=>e.stopPropagation());L.DomEvent.disableClickPropagation(centre);centre.setAttribute('aria-label','Centra le aree disponibili');map.zoomControl.getContainer().append(centre);}
- const settingsButton=document.getElementById('map-settings-open');if(settingsButton){settingsButton.classList.add('console-header-settings');document.querySelector('.topmeta .connection')?.after(settingsButton);}
+ const settingsButton=document.getElementById('map-settings-open');if(settingsButton){settingsButton.classList.add('console-header-settings');document.querySelector('.topmeta .connection')?.before(settingsButton);}
  const metadata=section.querySelector('.monitor-metadata'),data=section.querySelector('.map-data-inspector');
  const names=[...section.querySelectorAll('details')].find(e=>e.firstElementChild&&sourceText(e.firstElementChild)==='Posizione e riferimenti vicini');
  const sourcePanels=make('section','panel monitor-source-panels');sourcePanels.append(make('h2','','Informazioni sulla mappa'));
