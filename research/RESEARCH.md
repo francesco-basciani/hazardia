@@ -187,3 +187,7 @@ UI-LAYER-CONSOLE-20261025 distingue gate di rappresentazione da qualificazione s
 
 ## Semantica temporale UI25ottobre2026
 Doppio orario distingue wall clock client da validità di consultazione; nessuna evidenza di ultima acquisizione o simultaneità delle fonti dedotta. Report `reports/DUAL-CLOCK-20261025.md`; gate scientifici e replay storici invariati.
+
+
+## Riferimenti di navigazione25ottobre2026
+Pin/zoom UI non sono input né risultati scientifici; non serializzare il pin come innesco o risorsa. Verifica UI distinta da qualificazione geografica/fisica: report `reports/MAP-PIN-ZOOM-20261025.md`; gate/FAIL storici preservati.

@@ -1,5 +1,13 @@
 /* Reviewed Italian → English interface messages. No remote translation service. */
 export const messages = {
+  "Riferimento per Centra e zoom. Non è un innesco, un evento osservato o una risorsa dello scenario.": "Reference for Centre and zoom. It is not an ignition, an observed event or a scenario resource.",
+  "Posiziona pin sulla mappa": "Place pin on map",
+  "Clicca sulla mappa per posizionare il pin": "Click the map to place the pin",
+  "Rimuovi pin": "Remove pin",
+  "Centra sul pin": "Centre on pin",
+  "Livello di zoom": "Zoom level",
+  "Pin di navigazione": "Navigation pin",
+  "Nessun pin selezionato.": "No pin selected.",
   "Ora reale e orario dei dati": "Current time and data time",
   "Ora reale": "Current time",
   "Dati sulla mappa": "Data on map",

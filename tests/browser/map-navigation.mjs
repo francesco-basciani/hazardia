@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const uri=s=>'data:text/javascript;base64,'+Buffer.from(s).toString('base64');
+const model=uri(readFileSync('src/hazardia/web/static/layer-menu-model.js','utf8'));
+const {zoomChoices,navigationView}=await import(uri(readFileSync('src/hazardia/web/static/map-navigation.js','utf8').replace("'/layer-menu-model.js'",JSON.stringify(model))));
+assert(zoomChoices(4,20).includes(15));assert(!zoomChoices(4,20).includes(3));assert.equal(zoomChoices(5,5).length,1);
+const pin={lat:42.35,lng:13.4},center={lat:45,lng:9};
+assert.deepEqual(navigationView(pin,center,15,4,20),{point:pin,zoom:15});
+assert.deepEqual(navigationView(null,center,8,4,20),{point:center,zoom:8});
+for(const bad of [NaN,Infinity,-1,21])assert.equal(navigationView(pin,center,bad,4,20),null);
+assert.deepEqual(pin,{lat:42.35,lng:13.4});
+console.log('PASS zoom bounds, preset15, pin preference, no-pin center and invalid zoom rejection');

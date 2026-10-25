@@ -692,3 +692,7 @@ Implementato FR-MAP-LAYER-GROUPS-20261025:19voci in4gruppi, occhio visibilità, 
 
 ##25ottobre2026 — ora reale e dati
 FR-MAP-DUAL-CLOCK-20261025 implementato: VM ultimo controllo; due orari distinti accanto alla ricerca. PASS3suite client e UI desktop/mobile IT/EN; Safari BLOCKED Mac bloccato. Nessun cambio modello, NOT RUN benchmark/replay. Report `reports/DUAL-CLOCK-20261025.md`.
+
+
+##25ottobre2026 — zoom e pin
+FR-MAP-PIN-ZOOM-20261025 implementato nel Monitoraggio: zoom corrente/preset reali, pin distinto, Centra e cambio scala sul pin. PASS4suite client, UI desktop/mobile IT/EN e ritorno al pin dopo pan. Drag manuale/Safari/benchmark/replay NOT RUN. Report `reports/MAP-PIN-ZOOM-20261025.md`; gate invariati.

@@ -650,3 +650,7 @@ PASS Safari effettivo, risolto il precedente BLOCKED: reload/attivazione/zoomout
 
 ##25ottobre2026 — doppio orario
 VM connessa ultima nella barra (DOM/CSS), niente taglio mobile. Ora reale HH:mm:ss dal client e validità selezionata Dati sulla mappa/Previsione sulla mappa distinti; non ultima acquisizione o osservazione. PASS3suite client, UI1011×1034/390×844 IT/EN; Safari BLOCKED Mac bloccato. Report `reports/DUAL-CLOCK-20261025.md`. Nessun cambio VMclock/timeline/modelli, gate invariati.
+
+
+##25ottobre2026 — pin e scala
+Monitoraggio: select ZoomN2–20 entro limiti effettivi vicino +/−/Centra,15 richiama Edifici. Pin di navigazione unico/rimovibile/trascinabile, non innesco o dato di scenario. Centra conserva zoom e torna al pin, preset cambia scala e centra pin; senza pin comportamento precedente. Disabilitata animazione zoom Monitoraggio per evitare override dopo ricerca; meteo/playback invariati. PASS4suite client e UI desktop/mobile IT/EN; gesto drag/Safari/replay/benchmark NOT RUN. Report `reports/MAP-PIN-ZOOM-20261025.md`.

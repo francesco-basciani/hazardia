@@ -712,3 +712,7 @@ Run `layer-console-20261025`, baseline `ac8f6709a8d429e336a71bcdb409480165751daa
 
 ## UI-DUAL-CLOCK-20261025
 Run `dual-clock-20261025`, baseline `9d561d8`, Codex self-check: PASS3suite client, UI desktop/mobile IT/EN, +1h dati10:00 con ora reale09:00:36. Testo VM52,7px contenuto in390px, no overflow. Safari BLOCKED Mac bloccato; benchmark/replay NOT RUN. `reports/DUAL-CLOCK-20261025.md`, raw `experiments/runs/dual-clock-20261025/`; screenshot locali esclusi export.
+
+
+## UI-MAP-PIN-ZOOM-20261025
+Run `map-pin-zoom-20261025`, baseline `302c49f`, Codex self-check. PASS4suite client; browser ricerca→15 centro42.35/13.4, pan→Centra stesso pin a15, rimozione/clic1marker, mobile EN→16 e assenza overflow. Drag-enabled DOM osservato, gesto manuale NOT RUN come Safari/replay/benchmark. Raw `experiments/runs/map-pin-zoom-20261025/`, report `reports/MAP-PIN-ZOOM-20261025.md`; gate invariati.

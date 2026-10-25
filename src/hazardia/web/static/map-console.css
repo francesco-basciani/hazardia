@@ -179,3 +179,16 @@ body.map-console .topbar{height:auto;min-height:56px;gap:12px}
 @media(max-width:700px){.monitor-clock{gap:6px;padding:3px 6px}.monitor-clock-data{padding-left:6px}.monitor-clock-wall{font-size:12px;min-width:57px}.monitor-clock-selected{font-size:10px}.monitor-clock-label,.monitor-clock-mode{font-size:8px}.map-console .console-top-tools{gap:4px}.console-top-tools .console-search .map-search-row{gap:2px}.console-top-tools .console-search button{padding:3px 5px!important}}
 .map-console .topbar .connection{white-space:nowrap}.map-console .topbar .connection i{flex:0 0 7px}
 @media(max-width:420px){.map-console .topbar .connection{max-width:none;overflow:visible;font-size:8px;gap:4px}.map-console .topbar .language-switch select{width:76px!important}}
+
+/* Current zoom doubles as a direct scale selector; the pin is consultation only. */
+.map-zoom-extra{display:flex;align-items:stretch;border-left:1px solid #ccd5db}
+.map-console #monitor-map .map-zoom-extra button,.map-console #monitor-map .map-zoom-extra select{height:32px;min-height:32px;margin:0;border:0;border-radius:0;background:#fff;color:#233e50;padding:3px 6px;font:600 11px system-ui;cursor:pointer}
+.map-console #monitor-map .map-zoom-extra select{width:104px;max-width:104px;border-inline:1px solid #ccd5db}
+.map-console #monitor-map .map-zoom-extra button{width:28px;font-size:18px}.map-console #monitor-map .map-zoom-extra button[aria-pressed=true]{background:#d1f1e9;color:#07534e}.map-console #monitor-map .map-zoom-extra button:disabled{opacity:.4;cursor:default}
+.navigation-pin{background:transparent;border:0;filter:drop-shadow(0 2px 3px #0007)}.navigation-pin svg{width:32px;height:40px;display:block}.navigation-pin-armed{cursor:crosshair!important}
+.map-console .console-top-tools{right:300px}
+@media(max-width:850px){.map-console .console-top-tools{right:12px}}
+@media(max-width:700px){.map-console #monitor-map .leaflet-control-zoom{width:154px;flex-wrap:wrap}.map-zoom-extra{flex-basis:100%;border-left:0;border-top:1px solid #ccd5db}.map-console #monitor-map .map-zoom-extra select{width:98px;max-width:98px}.map-console .console-top-tools{top:92px;right:8px}.map-console .console-left,.map-console .console-right{top:138px}}
+.map-console .console-top-tools{align-items:flex-start}
+.map-pin-place svg{width:18px;height:20px;display:block}
+@media(max-width:700px){.map-console #monitor-map .console-center{flex:1 0 auto}}

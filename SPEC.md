@@ -583,3 +583,7 @@ Richiesta confermata: Monitoraggio con voci uniformi raggruppate per previsioni/
 
 ## FR-MAP-DUAL-CLOCK-20261025
 Rettifica utente: VM connessa ultimo controllo a destra della barra. Orologio reale del client HH:mm:ss visibile accanto alla validità dei dati sulla mappa, distinta e marcata Previsione quando futura. Non chiamare la validità selezionata ultima acquisizione/osservazione. Tempi/offset dettagliati e missing conservati. Rapporto `reports/DUAL-CLOCK-20261025.md`; nessun cambio timeline/motori.
+
+
+## FR-MAP-PIN-ZOOM-20261025
+Richiesta utente: zoom corrente e selettore di scale accanto a +/−/Centra. Nel Monitoraggio un pin di navigazione unico, distinto dagli inneschi, è riferimento per Centra (zoom conservato) e scelta zoom (centro sul pin); senza pin rimangono centro/fit precedenti. Pin posizionabile, trascinabile e rimovibile, nessun cambiamento agli input scientifici. Report `reports/MAP-PIN-ZOOM-20261025.md`.

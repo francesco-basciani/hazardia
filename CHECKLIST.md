@@ -1446,3 +1446,10 @@ Evidenza: run `layer-console-20261025`, baseline `ac8f670`, reviewer Codex self-
 - [x] PASS ora reale al secondo distinta da validità dati/previsione, missing/DST conservati;3suite client e UI IT/EN desktop/mobile.
 - [ ] BLOCKED verifica Safari: Mac bloccato; NOT RUN nuovi replay/benchmark.
 Run `dual-clock-20261025`, baseline `9d561d8`, reviewer Codex self-check; report `reports/DUAL-CLOCK-20261025.md`, log client ed evidenze locali. Gate originali invariati.
+
+
+## UI-MAP-PIN-ZOOM-20261025
+- [x] PASS zoom corrente e livelli entro limiti, pin/no-pin e input zoom invalidi;4suite client.
+- [x] PASS ricerca→Zoom15, pan→Centra conserva15, pin unico/clic/rimozione, mobile EN→16 centra pin, no overflow.
+- [ ] NOT RUN gesto drag manuale/Safari/replay/benchmark; drag abilitato nel DOM, nessuna claim scientifica.
+Run `map-pin-zoom-20261025`, baseline `302c49f`, reviewer Codex self-check; report `reports/MAP-PIN-ZOOM-20261025.md`.

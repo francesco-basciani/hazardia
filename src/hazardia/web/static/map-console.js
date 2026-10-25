@@ -1,3 +1,4 @@
+import {mapNavigation} from '/map-navigation.js';
 import {organiseLayers,consolidateMapKeys} from '/layer-menu.js';
 import {monitorClock} from "/monitor-clock.js";
 import {sourceText} from "/i18n.js";
@@ -49,5 +50,5 @@ export function mapConsole(map){
  for(const panel of [left,right]){L.DomEvent.disableClickPropagation(panel);L.DomEvent.disableScrollPropagation(panel);}L.DomEvent.disableClickPropagation(search);L.DomEvent.disableScrollPropagation(search);
  section.addEventListener('keydown',e=>{if(e.key==='Escape'){right.hidden=true;left.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.focus();}});
  map.scrollWheelZoom.enable();map.getContainer().dataset.wheelZoom='enabled';map.getContainer().setAttribute('aria-description','Usa la rotella per lo zoom e trascina per spostare la mappa. I pannelli laterali scorrono indipendentemente.');
- const topTools=make('div','console-top-tools');stage.append(topTools);topTools.append(search);monitorClock(topTools);L.DomEvent.disableClickPropagation(topTools);L.DomEvent.disableScrollPropagation(topTools);document.addEventListener('hazardia-view',()=>{size();});size();
+ mapNavigation(map);const topTools=make('div','console-top-tools');stage.append(topTools);topTools.append(search);monitorClock(topTools);L.DomEvent.disableClickPropagation(topTools);L.DomEvent.disableScrollPropagation(topTools);document.addEventListener('hazardia-view',()=>{size();});size();
 }
