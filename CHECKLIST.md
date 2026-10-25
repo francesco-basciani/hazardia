@@ -1464,3 +1464,10 @@ Run `map-pin-zoom-20261025`, baseline `302c49f`, reviewer Codex self-check; repo
 - [ ] BLOCKED aggiornamento DPC/EFFIS CACHE_FULL e vento fine; power live timeout / snapshot parziale.
 - [ ] FAIL continuità servizio: 8 assenze listener e 3 cambi PID in 30 min; QR14 non chiuso.
 - [ ] NOT RUN cold-cache completo, compositore/Safari, nuovi replay fisici, revisione indipendente. Inglese dinamico PARZIALE.
+
+
+## CITY-ANCHORS-20261025
+
+- [x] Coordinate esistenti L’Aquila/Teramo verificate nell’asset VM; causa nel rendering, non spostamento dei dati.
+- [x] Pallino ancorato alle coordinate in entrambi i renderer; 6 confronti a 3 zoom entro 1,5 px, screenshot zoom 9; `reports/city-anchors/verification.json`.
+- [x] 6023 controlli weather-render-plan PASS; nessun replay fisico o nuovo profiling dichiarato.

@@ -1,0 +1,109 @@
+{
+  "status": "PASS",
+  "scope": "Geographic anchor projection, not city coordinate survey",
+  "base_git": "c85f142",
+  "tolerance_px": 1.5,
+  "checks": [
+    {
+      "cities": [
+        {
+          "actual": [
+            496,
+            467
+          ],
+          "error_px": 0.37154833428081024,
+          "expected": [
+            496.0254956088902,
+            467.37067254907015
+          ],
+          "name": "L'Aquila"
+        },
+        {
+          "actual": [
+            551,
+            390
+          ],
+          "error_px": 0.30338407023832964,
+          "expected": [
+            550.8286648888898,
+            390.25037207067726
+          ],
+          "name": "Teramo"
+        }
+      ],
+      "zoom": 8
+    },
+    {
+      "cities": [
+        {
+          "actual": [
+            486,
+            372
+          ],
+          "error_px": 0.9376292349254426,
+          "expected": [
+            486.5509912177804,
+            371.2413450981403
+          ],
+          "name": "L'Aquila"
+        },
+        {
+          "actual": [
+            596,
+            218
+          ],
+          "error_px": 1.0115655836442226,
+          "expected": [
+            596.1573297777795,
+            217.00074414135452
+          ],
+          "name": "Teramo"
+        }
+      ],
+      "zoom": 9
+    },
+    {
+      "cities": [
+        {
+          "actual": [
+            467,
+            179
+          ],
+          "error_px": 0.6022312529489807,
+          "expected": [
+            467.6019824355608,
+            178.9826901962806
+          ],
+          "name": "L'Aquila"
+        },
+        {
+          "actual": [
+            686,
+            -129
+          ],
+          "error_px": 0.955083307225109,
+          "expected": [
+            686.814659555559,
+            -129.49851171729097
+          ],
+          "name": "Teramo"
+        }
+      ],
+      "zoom": 10
+    }
+  ],
+  "coordinates": [
+    {
+      "name": "L'Aquila",
+      "lat": 42.3489203,
+      "lon": 13.3979672,
+      "source": "OpenStreetMap node70990193"
+    },
+    {
+      "name": "Teramo",
+      "lat": 42.66123,
+      "lon": 13.69901,
+      "source": "GeoNames3165803"
+    }
+  ]
+}

@@ -721,3 +721,8 @@ Run `map-pin-zoom-20261025`, baseline `302c49f`, Codex self-check. PASS4suite cl
 ## FRAMEWORK-AUDIT-20261025
 
 [Rapporto](../reports/FRAMEWORK-AUDIT-20261025.md), run privato `framework-audit-20261025`: esito PARZIALE. 363 test core VM + 110 WII locali e 22 suite client PASS; UI zoom p95 196,7 ms, API p95 massimo 101,35 ms. DPC/EFFIS STALE per CACHE_FULL 256 MiB; vento fine pieno; rete elettrica solo fallback OSM parziale datato. Soak 30 min con 8 assenze listener e 3 cambi PID: continuità non qualificata. Cold-cache, compositore/Safari e nuovi replay fisici NOT RUN. Gate scientifici invariati. Protocollo fissato prima delle misure; 30 campioni/serie, 3 documenti con cache condivisa e 3 viewport. Riepilogo pubblico `reports/framework-audit/verification.json`; prove grezze private e tentativi falliti conservati.
+
+
+## CITY-ANCHORS-20261025
+
+Base c85f142, correzione cartografica segnalata dall’utente. [Rapporto](../reports/CITY-ANCHORS-20261025.md), [confronti](../reports/city-anchors/verification.json): 6 ancore L’Aquila/Teramo misurate contro WebMercator a zoom 8/9/10, massimo 1,02 px / soglia 1,5 px. Screenshot finale zoom 9 entrambe in vista; 6023 controlli client PASS. Nessuna prova scientifica o revisione indipendente nuova.
