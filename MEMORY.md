@@ -669,3 +669,8 @@ Utente segnala pallini L’Aquila/Teramo spostati. Dati corretti: il pallino pse
 ## QUAKE-AUTO-20261026
 
 Rimosso pulsante manuale terremoti; checkbox e selettori agiscono automaticamente. Mappa/lista filtrano subito la magnitudo sui dati completi; richieste mancanti serializzate con revisione per ignorare risposte superate. Riuso solo di snapshot freschi/coperti e non troncati quando cambia soglia; limiti provider invariati. Date leggibili IT/EN con secondi e CET/CEST in pannello/cataloghi/dettagli. Prove INGV193→0→137, test adapter/date/modello/i18n e10 backend PASS; `reports/QUAKE-AUTO-20261026.md`. Modifiche concorrenti WII/TCIP preservate.
+
+
+## Squadre e propagazione · 26 ottobre 2026
+
+Le squadre erano nascoste dal renderer del Piano, non escluse dal motore. Workspace119 contiene Canadair ideale a+36h30 nello scenario chiamato Senza interventi, dopo esaurimento fronti. Prova congelata6h: baseline1,53ha, Canadair nativo intercettante0,18ha, controllo lontano1,53ha. Non previsione attuale né calibrazione categorie. Input utente preservati. Riferimento: [rapporto](reports/FIRE-INTERVENTIONS-20261026.md).

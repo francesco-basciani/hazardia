@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "scope": "Technical coupling on a frozen research fixture, not resource-category efficacy or current forecast qualification",
+  "results": [
+    {
+      "case": "no-intervention",
+      "elapsed_s": 6.803485569980694,
+      "final_ha": 1.53,
+      "positive_cells": 33,
+      "action_events": [
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": null,
+          "spatial_forcing": false,
+          "time": 1800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": null,
+          "wind_grid_range_kmh": null,
+          "wind_kmh": null
+        }
+      ],
+      "output_sha256": "8e350c0860bd617315742d0fb6b5e8aca26d73d95fbe4edc74596590816f6f79",
+      "different_final_cells": 0,
+      "area_change_ha": 0.0,
+      "pre_action_equal": true
+    },
+    {
+      "case": "native-canadair",
+      "elapsed_s": 6.896376819000579,
+      "final_ha": 0.18,
+      "positive_cells": 3,
+      "action_events": [
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 44,
+          "moisture_grid_range_percent": null,
+          "spatial_forcing": false,
+          "time": 1800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": null,
+          "wind_grid_range_kmh": null,
+          "wind_kmh": null
+        }
+      ],
+      "output_sha256": "da1bad64d4a7a4c2f162729531dd74a08ee6a453ab5e067f219d33400e6c4812",
+      "different_final_cells": 30,
+      "area_change_ha": -1.35,
+      "pre_action_equal": true
+    },
+    {
+      "case": "ideal-fuel-barrier",
+      "elapsed_s": 6.797603926999727,
+      "final_ha": 0.18,
+      "positive_cells": 3,
+      "action_events": [
+        {
+          "fuel_removal_geometries": 1,
+          "ignition_count": 0,
+          "moisture_changed_cells": 0,
+          "moisture_grid_range_percent": null,
+          "spatial_forcing": false,
+          "time": 1800,
+          "vegetation_changed_cells": 14,
+          "wind_from_deg": null,
+          "wind_grid_range_kmh": null,
+          "wind_kmh": null
+        }
+      ],
+      "output_sha256": "da1bad64d4a7a4c2f162729531dd74a08ee6a453ab5e067f219d33400e6c4812",
+      "different_final_cells": 30,
+      "area_change_ha": -1.35,
+      "pre_action_equal": true
+    },
+    {
+      "case": "native-far-control",
+      "elapsed_s": 6.771003294008551,
+      "final_ha": 1.53,
+      "positive_cells": 33,
+      "action_events": [
+        {
+          "fuel_removal_geometries": 0,
+          "ignition_count": 0,
+          "moisture_changed_cells": 44,
+          "moisture_grid_range_percent": null,
+          "spatial_forcing": false,
+          "time": 1800,
+          "vegetation_changed_cells": 0,
+          "wind_from_deg": null,
+          "wind_grid_range_kmh": null,
+          "wind_kmh": null
+        }
+      ],
+      "output_sha256": "8e350c0860bd617315742d0fb6b5e8aca26d73d95fbe4edc74596590816f6f79",
+      "different_final_cells": 0,
+      "area_change_ha": 0.0,
+      "pre_action_equal": true
+    }
+  ],
+  "workspace_preserved": true,
+  "source_request_preserved": true,
+  "engine_pins_unchanged": true
+}

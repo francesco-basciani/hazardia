@@ -1,0 +1,91 @@
+{
+  "run_id": "fire-interventions-20261026",
+  "kind": "FROZEN_CONDITIONAL_ENGINE_DIAGNOSTIC",
+  "started_at": "2026-10-26T10:58:57.731034+00:00",
+  "source_job": "job-00a07daae47d42318502b8bc5b074114",
+  "source_request_sha256": "1343d927cf781a98c46cb88781d9d6a28b9479cdbdc6d9dcf70b3a2bc474677b",
+  "seed": 1729,
+  "realizations": 2,
+  "hours": 6,
+  "common_events_seconds": [
+    0,
+    1800
+  ],
+  "cases": [
+    [
+      "no-intervention",
+      []
+    ],
+    [
+      "native-canadair",
+      [
+        {
+          "id": "diagnostic-unit",
+          "category": "canadair",
+          "line": [
+            [
+              42.487934,
+              13.94483
+            ],
+            [
+              42.487891,
+              13.94959
+            ]
+          ],
+          "at_minutes": 30,
+          "effect": "native"
+        }
+      ]
+    ],
+    [
+      "ideal-fuel-barrier",
+      [
+        {
+          "id": "diagnostic-unit",
+          "category": "canadair",
+          "line": [
+            [
+              42.487934,
+              13.94483
+            ],
+            [
+              42.487891,
+              13.94959
+            ]
+          ],
+          "at_minutes": 30,
+          "effect": "fuel_removal"
+        }
+      ]
+    ],
+    [
+      "native-far-control",
+      [
+        {
+          "id": "diagnostic-unit",
+          "category": "canadair",
+          "line": [
+            [
+              42.487934,
+              13.96483
+            ],
+            [
+              42.487891,
+              13.96959
+            ]
+          ],
+          "at_minutes": 30,
+          "effect": "native"
+        }
+      ]
+    ]
+  ],
+  "meaning": "Geometry chosen from an existing authored line known to cross the old footprint; diagnostic rather than held-out strategy optimization or efficacy calibration. Same frozen old forecast, terrain, ignition and seed; not a current forecast.",
+  "checks": [
+    "Actions received with nonzero native cells",
+    "Before-activation prefix unchanged",
+    "Far intervention does not change physical output",
+    "Targeted intervention differences measured, never imposed",
+    "No archive or workspace overwritten"
+  ]
+}

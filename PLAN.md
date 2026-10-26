@@ -713,3 +713,8 @@ Corretto offset cartografico del pallino rispetto all’ancora nei renderer Moni
 ## Terremoti automatici — 26 ottobre 2026
 
 Implementati attivazione/filtri automatici, riuso sicuro del catalogo completo, gestione dell’ultima selezione e date leggibili. Prove reali INGV e test controllati in `reports/QUAKE-AUTO-20261026.md`; quote, modelli e qualifiche invariati.
+
+
+## Squadre e propagazione · 26 ottobre 2026
+
+Corretto il filtro che nascondeva le squadre manuali nel Piano d’intervento; indicatori di attivazione e verifica nativa controllata quattro casi completati. Gate scientifici invariati. Riferimento: [rapporto](reports/FIRE-INTERVENTIONS-20261026.md).

@@ -24,3 +24,16 @@ export function growthReadout(series,hour){
  const delta=f.expected_area_ha-previous.expected_area_ha,minutes=Math.round((f.hour-previous.hour)*60);
  return base+' · '+(delta>0?'+':'')+fmt(delta)+' ha / '+minutes+' min';
 }
+
+// Authored interventions remain visible in both plan and comparison modes.
+export function interventionReadout(resources=[],hour=0){
+ if(!resources.length)return ' · senza squadre';
+ const known=resources.filter(u=>Number.isFinite(u.at_minutes)),active=known.filter(u=>u.at_minutes<=hour*60).length,pending=known.length-active,unknown=resources.length-known.length;
+ return ' · interventi: '+resources.length+' · attivi: '+active+' · futuri: '+pending+(unknown?' · orario da verificare: '+unknown:'');
+}
+
+export function interventionTiming(series,minutes,hour){
+ if(!Number.isFinite(minutes))return 'Orario dell’intervento non disponibile.';
+ const prior=series?.frames?.filter(f=>(f.elapsed_s??f.hour*3600)<minutes*60).at(-1),start='Attivazione: +'+Math.floor(minutes/60)+' h '+Number((minutes%60).toFixed(2)).toLocaleString(locale())+' min.';
+ return (hour*60<minutes?'Non ancora attivo. ':'')+start+(prior?.queued_front_events===0?' Nel risultato calcolato i fronti risultavano già esauriti prima dell’intervento.':'');
+}

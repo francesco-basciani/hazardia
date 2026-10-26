@@ -7,3 +7,6 @@ body.studio-console .studio-panel-body>[hidden]{display:none!important}.studio-c
 
 .studio-console .leaflet-top.leaflet-left{left:auto;right:8px;top:100px}.studio-console .studio-panel-body button[aria-pressed=true]{color:white!important;background:#2b5967!important}
 .studio-console .scenario-map-heading{top:64px!important;left:10px!important;right:52px!important;width:auto!important;max-width:none!important}.studio-console .scenario-map-heading small,.studio-console .scenario-map-heading span{background:transparent!important;box-shadow:none!important}.studio-console .scenario-map-heading button{background:#1c3444!important;color:#e5edf2!important;border:1px solid #4a6371!important}
+
+/* Keep intervention counts readable over imagery, including nominal cards. */
+body.studio-console .scenario-map-heading{background:#122332f5!important;color:#e5edf2!important}

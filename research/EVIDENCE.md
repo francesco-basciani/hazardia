@@ -731,3 +731,8 @@ Base c85f142, correzione cartografica segnalata dall’utente. [Rapporto](../rep
 ## QUAKE-AUTO-20261026
 
 [Rapporto](../reports/QUAKE-AUTO-20261026.md), run privato omonimo, base bd818df. Attivazione INGV senza conferma manuale e filtri193/0/137, cambio periodo/catalogo e date reali verificati nel browser. Test moduloUI controllato per risposta obsoleta/ultimo filtro/spento senza rete, test date IT/EN/DST e modello/composizione, i18n e10 test VM PASS. Nessuna evidenza scientifica o performance nuova dichiarata.
+
+
+## Squadre e propagazione · 26 ottobre 2026
+
+Evidenza fire-interventions-20261026: quattro esecuzioni reali pinned PROPAGATOR, seed1729/2realizzazioni/6h, stesso terreno/meteo storico/innesco; variazione localizzata presente e controllo lontano invariato. Ricevute native e preservazione, confronto grafico da array nativi. Autoverifica tecnica; nessun nuovo gate scientifico chiuso. Riferimento: [rapporto](../reports/FIRE-INTERVENTIONS-20261026.md).

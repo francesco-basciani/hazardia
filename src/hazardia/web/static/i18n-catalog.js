@@ -1,5 +1,14 @@
 /* Reviewed Italian → English interface messages. No remote translation service. */
 export const messages = {
+  "senza squadre": "no resources",
+  "interventi:": "interventions:",
+  "attivi:": "active:",
+  "futuri:": "scheduled:",
+  "orario da verificare:": "time to verify:",
+  "Orario dell’intervento non disponibile.": "Intervention time unavailable.",
+  "Non ancora attivo.": "Not active yet.",
+  "Attivazione:": "Activation:",
+  "Nel risultato calcolato i fronti risultavano già esauriti prima dell’intervento.": "In the calculated result, fronts were already exhausted before this intervention.",
   "Acquisizione": "Acquired",
   "Origine:": "Origin:",
 

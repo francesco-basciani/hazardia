@@ -1480,3 +1480,8 @@ Run `map-pin-zoom-20261025`, baseline `302c49f`, reviewer Codex self-check; repo
 - [x] Date pannello/cataloghi/lista/dettagli in formato locale e fuso Roma; test IT/EN, DST e UTC immutati.
 - [x] Suite modello, adapter, date e i18n PASS;10 test backend VM PASS. Rapporto `reports/QUAKE-AUTO-20261026.md`.
 - [ ] NOT RUN nuovo profiling/Safari/replay fisici; nessuna nuova qualifica operativa.
+
+
+## Squadre e propagazione · 26 ottobre 2026
+
+PASS tecnico: visibilità squadre in piano/confronto; contatori attivi/futuri; test status e ripresa; quattro run PROPAGATOR matched-input con controllo lontano e prefissi preazione identici. PASS preservazione indipendente workspace119/richiesta/pin. NOT RUN validazione operativa e grandi carichi. Riferimento: [rapporto](reports/FIRE-INTERVENTIONS-20261026.md).

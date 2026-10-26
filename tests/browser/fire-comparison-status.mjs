@@ -1,7 +1,7 @@
 import {withI18n} from "./i18n-fixture.mjs";
 import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
-const {propagationStatus,comparisonVerdict,growthReadout}=await import('data:text/javascript;base64,'+Buffer.from(withI18n(readFileSync('src/hazardia/web/static/fire-comparison-status.js','utf8'))).toString('base64'));
+const {propagationStatus,comparisonVerdict,growthReadout,interventionReadout,interventionTiming}=await import('data:text/javascript;base64,'+Buffer.from(withI18n(readFileSync('src/hazardia/web/static/fire-comparison-status.js','utf8'))).toString('base64'));
 const series={options:{duration_s:259200,realizations:8},frames:[{hour:1,queued_front_events:8,realizations_with_front:4},{hour:72,queued_front_events:2,realizations_with_front:3}]};
 assert.equal(propagationStatus(series,0),'');assert.equal(propagationStatus(series,1),'');
 assert.match(propagationStatus(series,72),/fine previsione 72 h.*3\/8/);
@@ -25,3 +25,20 @@ assert.match(growthReadout(growth,3.25),/4,71 ha medi/);
 assert.doesNotMatch(growthReadout(growth,2.75),/ha \//);
 assert.match(growthReadout({frames:[{hour:1,expected_area_ha:1},{hour:2,expected_area_ha:1}]},2),/0,00 ha \/ 60 min/);
 console.log('PASS 20 assertions: horizon, honest verdicts and sampled growth without invented interpolation');
+
+const resources=[{id:'late',at_minutes:2190},{id:'early',at_minutes:0}];
+assert.match(interventionReadout([],0),/senza squadre/);
+assert.match(interventionReadout(resources,0),/interventi: 2.*attivi: 1.*futuri: 1/);
+assert.match(interventionReadout(resources,36.5),/interventi: 2.*attivi: 2.*futuri: 0/);
+assert.match(interventionReadout([{at_minutes:undefined}],0),/attivi: 0.*orario da verificare: 1/);
+assert.deepEqual(resources,[{id:'late',at_minutes:2190},{id:'early',at_minutes:0}]);
+console.log('PASS intervention status: authored counts, activation boundary, unknown time explicit, no input mutation');
+
+const stopped={frames:[{hour:5.25,elapsed_s:18900,queued_front_events:0}]};
+assert.match(interventionTiming(stopped,2190,0),/Non ancora attivo.*36 h 30 min.*già esauriti/);
+assert.doesNotMatch(interventionTiming(stopped,2190,36.5),/Non ancora attivo/);
+assert.doesNotMatch(interventionTiming({frames:[{hour:.5,queued_front_events:0}]},30,1),/già esauriti/); // Do not use an at-action sample as pre-action evidence.
+assert.doesNotMatch(interventionTiming({frames:[{hour:0,queued_front_events:2}]},30,1),/già esauriti/);
+assert.doesNotMatch(interventionTiming(null,30,1),/già esauriti/);
+assert.match(interventionTiming(null,undefined,1),/non disponibile/);
+console.log('PASS activation timing and strictly pre-action exhausted-front evidence; no missing-data inference');
