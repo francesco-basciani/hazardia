@@ -210,3 +210,8 @@ Il [confine di scambio](docs/EXCHANGE-CONTRACTS.md) descrive prodotti grigliati 
 ## Audit del framework — 25 ottobre 2026
 
 [Rapporto](reports/FRAMEWORK-AUDIT-20261025.md), run privato `framework-audit-20261025`: esito PARZIALE. 363 test core VM + 110 WII locali e 22 suite client PASS; UI zoom p95 196,7 ms, API p95 massimo 101,35 ms. DPC/EFFIS STALE per CACHE_FULL 256 MiB; vento fine pieno; rete elettrica solo fallback OSM parziale datato. Soak 30 min con 8 assenze listener e 3 cambi PID: continuità non qualificata. Cold-cache, compositore/Safari e nuovi replay fisici NOT RUN. Gate scientifici invariati.
+
+
+## Audit framework · 26 ottobre 2026
+
+Controllo funzionale e aggiornamenti del26ottobre: rapporto con matrice dei livelli, correzioni, misure e problemi aperti. Esito PARZIALE: non tutte le fonti sono aggiornabili o complete. [Rapporto](reports/FRAMEWORK-AUDIT-20261026.md).

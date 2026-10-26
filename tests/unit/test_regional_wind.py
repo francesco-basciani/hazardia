@@ -57,3 +57,15 @@ class RegionalWindTests(unittest.TestCase):
             self.reject('WEATHER_QUOTA',s.refresh)
         with tempfile.TemporaryDirectory() as tmp:
             s=WindStore(tmp,opener=lambda *a,**k:Response(b'[]'));s.refresh();self.assertIsNone(s.snapshot()['forecast']);self.assertIn('SOURCE_MISSING',s.snapshot()['error'])
+
+class PackedWindTests(unittest.TestCase):
+    def test_packed_active_snapshot_raw_and_receipt_keep_integrity(self):
+        from hazardia.ingest.archive_storage import compact
+        with tempfile.TemporaryDirectory() as tmp:
+            payload=json.dumps(raw()).encode();store=WindStore(tmp,opener=lambda *a,**k:Response(payload));store.refresh();before=store.snapshot()['forecast']
+            compact(Path(tmp).glob('*.json'))
+            self.assertEqual(store.snapshot()['forecast'],before)
+            digest=before['source']['sha256'];p=Path(tmp)/('raw-'+digest+'.json.gz');p.write_bytes(b'corrupt')
+            with self.assertRaises(HazardError):store.snapshot()
+
+if __name__=='__main__':unittest.main()

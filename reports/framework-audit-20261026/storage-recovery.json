@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-26T11:46:44.906080+00:00",
+  "old_pid": 353202,
+  "folders": {
+    "attention": {
+      "logical_files": 769,
+      "decoded_sha256_equal": true,
+      "before_bytes": 270222799,
+      "after_bytes": 75734320,
+      "logical_manifest_sha256": "93a26b966f91e0d3727611fc8bc1b08ceb25c399318fdb44cddcb0d9db5b5388"
+    },
+    "regional-wind": {
+      "logical_files": 102,
+      "decoded_sha256_equal": true,
+      "before_bytes": 64782869,
+      "after_bytes": 9957468,
+      "logical_manifest_sha256": "a7dfae27ade471e4c430524c30d44dff9fa90cb4b676e1668dc59d3db864f909"
+    },
+    "weather": {
+      "logical_files": 1124,
+      "decoded_sha256_equal": true,
+      "before_bytes": 13947892,
+      "after_bytes": 1817041,
+      "logical_manifest_sha256": "55b2b38ecb4b3a2c0287ac50e7590b66d6df44d5745f74bd1ed71a729463a8a4"
+    }
+  },
+  "new_pid": 386666,
+  "health": "RUNNING"
+}

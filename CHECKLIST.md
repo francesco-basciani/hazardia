@@ -1485,3 +1485,11 @@ Run `map-pin-zoom-20261025`, baseline `302c49f`, reviewer Codex self-check; repo
 ## Squadre e propagazione · 26 ottobre 2026
 
 PASS tecnico: visibilità squadre in piano/confronto; contatori attivi/futuri; test status e ripresa; quattro run PROPAGATOR matched-input con controllo lontano e prefissi preazione identici. PASS preservazione indipendente workspace119/richiesta/pin. NOT RUN validazione operativa e grandi carichi. Riferimento: [rapporto](reports/FIRE-INTERVENTIONS-20261026.md).
+
+
+## Audit framework · 26 ottobre 2026
+
+PASS tecnico:374testPythonVM,25suiteNode16,390GETcachep95max96,47ms,90azioniUIp9533ms;12checkottimizzatore/fallback. PASS aggiornamento DPC/vento/punto dopo compattazione, EFFIS27ottobre187zone, attivazioni OSM, radar, pluviometri, Sentinel, terremoti, TCIP e player. PARZIALE WII_STORAGE_FULL/rete elettrica/4geometrie. NOT RUN nuovo replayHMC/REFlEx,Safari,cold-cache,soak30min. Preservati workspace119/configtraffico/372filejob/145pin. [Rapporto](reports/FRAMEWORK-AUDIT-20261026.md).
+
+
+Correzione finale dello stesso audit: ritorno al Monitoraggio dopo il ripristino del layout, camera conservata e stato meteo visibile.30prove calde PASS:23etichette/centro invariato/0errori,p95144ms; niente nuovi dati fisici o qualifiche. Riferimento: `reports/FRAMEWORK-AUDIT-20261026.md`.

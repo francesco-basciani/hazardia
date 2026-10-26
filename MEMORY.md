@@ -674,3 +674,11 @@ Rimosso pulsante manuale terremoti; checkbox e selettori agiscono automaticament
 ## Squadre e propagazione · 26 ottobre 2026
 
 Le squadre erano nascoste dal renderer del Piano, non escluse dal motore. Workspace119 contiene Canadair ideale a+36h30 nello scenario chiamato Senza interventi, dopo esaurimento fronti. Prova congelata6h: baseline1,53ha, Canadair nativo intercettante0,18ha, controllo lontano1,53ha. Non previsione attuale né calibrazione categorie. Input utente preservati. Riferimento: [rapporto](reports/FIRE-INTERVENTIONS-20261026.md).
+
+
+## Audit framework · 26 ottobre 2026
+
+Audit26ottobre: il sospetto dell’utente è confermato da cache DPC e meteo piene, WII_STORAGE_FULL e sorgente powerlive in timeout. Core DPC/vento/punto recuperati senza perdita/quote nuove; EFFIS futuro riusa partizione pubblicata recente, mai allerta. Workspace119 e dati scientifici preservati. Restano WII indipendente pieno,4geometrie ufficiali non qualificate e connettori mancanti; non dichiarare tutto risolto. [Rapporto](reports/FRAMEWORK-AUDIT-20261026.md).
+
+
+Correzione finale dello stesso audit: ritorno al Monitoraggio dopo il ripristino del layout, camera conservata e stato meteo visibile.30prove calde PASS:23etichette/centro invariato/0errori,p95144ms; niente nuovi dati fisici o qualifiche. Riferimento: `reports/FRAMEWORK-AUDIT-20261026.md`.

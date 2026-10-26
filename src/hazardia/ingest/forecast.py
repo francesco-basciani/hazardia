@@ -5,6 +5,7 @@ import datetime as dt,hashlib,json,math,sqlite3,threading,time,urllib.request,ur
 from pathlib import Path
 from urllib.parse import urlencode
 from hazardia.io import HazardError,load,utcnow,write_new,timestamp
+from hazardia.ingest.archive_storage import read_bytes,compact,stored_bytes
 VARIABLES={'temperature_2m':'°C','relative_humidity_2m':'%','precipitation':'mm','wind_speed_10m':'m/s','wind_direction_10m':'°','surface_pressure':'hPa','shortwave_radiation':'W/m²'}
 URL='https://api.open-meteo.com/v1/forecast?'+urlencode(dict(latitude=42.35,longitude=13.38,hourly=','.join(VARIABLES),timezone='UTC',wind_speed_unit='ms',forecast_days=4,models='icon_eu'))
 TTL=1800;DAILY_LIMIT=48;CAP=256*1024;CACHE_CAP=16*1024**2
@@ -36,10 +37,10 @@ class ForecastStore:
     def snapshot(self):
         with self.connect() as db:
             row=db.execute('SELECT snapshot,error FROM state WHERE id=1').fetchone();now=self.clock();count=db.execute('SELECT count(*) FROM attempts WHERE at>=?',(now-now%86400,)).fetchone()[0]
-        data=load(self.root/row[0]) if row[0] else None
+        data=json.loads(read_bytes(self.root/row[0])) if row[0] else None
         if data:
             digest=data['source']['sha256'];raw=self.root/('raw-'+digest+'.json');receipt=self.root/('receipt-'+digest+'.json')
-            if not raw.is_file() or not receipt.is_file() or hashlib.sha256(raw.read_bytes()).hexdigest()!=digest or load(receipt)!=data['source'] or self.normalizer(load(raw),load(receipt))!=data:
+            if hashlib.sha256(read_bytes(raw)).hexdigest()!=digest or json.loads(read_bytes(receipt))!=data['source'] or self.normalizer(json.loads(read_bytes(raw)),json.loads(read_bytes(receipt)))!=data:
                 raise HazardError('CACHE_CORRUPT','Weather raw/receipt/normalized snapshot integrity differs; new simulations blocked')
         age=now-timestamp(data['available_at']).timestamp() if data else None
         return dict(status='EMPTY' if data is None else 'FRESH' if 0<=age<self.ttl else 'STALE',forecast=data,error=row[1],age_s=age,quota=dict(attempts_today=count,local_daily_limit=self.limit,refresh_s=self.ttl,scope=self.scope),fetching=self.busy.locked())
@@ -61,7 +62,8 @@ class ForecastStore:
             if last is not None and now-last<self.ttl:return
             count=db.execute('SELECT count(*) FROM attempts WHERE at>=?',(now-now%86400,)).fetchone()[0]
             if count>=self.limit:raise HazardError('WEATHER_QUOTA','Local daily free-tier safety budget exhausted')
-            if sum(p.stat().st_size for p in self.root.glob('*.json'))>=self.cache_cap-self.cap*2:raise HazardError('WEATHER_CACHE_FULL','Archive weather evidence before further downloads')
+            if stored_bytes(self.root)>=self.cache_cap-self.cap*2:compact(self.root.glob('*.json'))
+            if stored_bytes(self.root)>=self.cache_cap-self.cap*2:raise HazardError('WEATHER_CACHE_FULL','Archive weather evidence before further downloads')
             db.execute('INSERT INTO attempts VALUES(?)',(now,));db.commit()
         try:
             request=urllib.request.Request(self.url,headers={'User-Agent':'HAZARDIA/0.1 https://github.com/francesco-basciani/hazardia','Accept-Encoding':'identity'})
@@ -74,9 +76,9 @@ class ForecastStore:
                 if not final.startswith('https://api.open-meteo.com/'):raise HazardError('SOURCE_URL','Unexpected forecast redirect')
             digest=hashlib.sha256(data).hexdigest();receipt=dict(provider='Open-Meteo',url=self.url,sha256=digest,bytes=len(data),available_at=utcnow(),model_initialization='NOT_SUPPLIED',license_url='https://open-meteo.com/en/terms')
             rawname='raw-'+digest+'.json'
-            if not (self.root/rawname).exists():(self.root/rawname).write_bytes(data)
-            if not (self.root/('receipt-'+digest+'.json')).exists():write_new(self.root/('receipt-'+digest+'.json'),receipt)
-            receipt=load(self.root/('receipt-'+digest+'.json'))
+            if not (self.root/rawname).exists() and not (self.root/(rawname+'.gz')).exists():(self.root/rawname).write_bytes(data)
+            if not (self.root/('receipt-'+digest+'.json')).exists() and not (self.root/('receipt-'+digest+'.json.gz')).exists():write_new(self.root/('receipt-'+digest+'.json'),receipt)
+            receipt=json.loads(read_bytes(self.root/('receipt-'+digest+'.json')))
             forecast=self.normalizer(json.loads(data),receipt)
             name=forecast['id']+'-'+str(int(now))+'.json';write_new(self.root/name,forecast)
             with self.connect() as db:db.execute('UPDATE state SET snapshot=?,error=NULL WHERE id=1',(name,))

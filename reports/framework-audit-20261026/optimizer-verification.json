@@ -1,0 +1,81 @@
+{
+  "checks": [
+    {
+      "id": "real-normal-decision-verified",
+      "status": "PASS"
+    },
+    {
+      "id": "new-priority-inventory-explicit",
+      "status": "PASS"
+    },
+    {
+      "id": "no-operational-authority",
+      "status": "PASS"
+    },
+    {
+      "id": "unqualified-air-and-unavailable-not-assigned",
+      "status": "PASS"
+    },
+    {
+      "id": "normal-selection-independent-verifier",
+      "status": "PASS"
+    },
+    {
+      "id": "actual-missing-process-fallback",
+      "status": "PASS"
+    },
+    {
+      "id": "fallback-not-claimed-optimal",
+      "status": "PASS"
+    },
+    {
+      "id": "fallback-independent-verifier",
+      "status": "PASS"
+    },
+    {
+      "id": "fallback-bounded",
+      "status": "PASS"
+    },
+    {
+      "id": "unknown-safety-no-assignment",
+      "status": "PASS"
+    },
+    {
+      "id": "workspaces-preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "engines-unchanged",
+      "status": "PASS"
+    }
+  ],
+  "normal_id": "decision-c613e51edf14452da1542d49365d953a",
+  "normal_elapsed_s": 1.0394987739855424,
+  "normal_assigned": 2,
+  "inventory": {
+    "critical_infrastructure": 0,
+    "fire_station": 0,
+    "healthcare": 0,
+    "hospital": 0,
+    "power_line": 0,
+    "railway": 0,
+    "residential": 0,
+    "school": 0,
+    "settlement": 1200
+  },
+  "missing": [
+    "hospital",
+    "school",
+    "fire_station",
+    "residential",
+    "healthcare",
+    "railway",
+    "power_line",
+    "critical_infrastructure"
+  ],
+  "fallback_elapsed_s": 0.13183487398782745,
+  "fallback_assigned": 2,
+  "no_new_physical_jobs": true,
+  "engine_pins": 145,
+  "qualification": "Engineering verification on existing uncalibrated native forecast; not efficacy, p95 or optimal firefighting"
+}

@@ -1,0 +1,14 @@
+{
+  "source": "snapshot-d25fdef778dc4873888bbcb1fe6ed49c",
+  "derived": "snapshot-bf4c298afc4342c086cd1712be237925",
+  "changes": [
+    {
+      "day": "2026-10-27",
+      "zones": 187,
+      "unknown": 4,
+      "geometry_day": "2026-10-26"
+    }
+  ],
+  "source_timestamps_unchanged": true,
+  "warning_products_unchanged": true
+}

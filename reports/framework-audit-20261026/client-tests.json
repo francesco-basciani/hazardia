@@ -1,0 +1,152 @@
+[
+  {
+    "path": "tests/browser/basemap-state.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS 17 basemap checks: preserve partial imagery, explicit offline only, nonblocking source status\n"
+  },
+  {
+    "path": "tests/browser/cloud-probability.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS 12 checks: distinct cloud colours, stronger transparent alpha, clear sky, toggles, probability interpolation and missing legacy data\nPASS 31 total weather-semantics checks: real probability/rain independence, neutral clouds, combination and absent data\n"
+  },
+  {
+    "path": "tests/browser/fire-comparison-status.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS 20 assertions: horizon, honest verdicts and sampled growth without invented interpolation\nPASS intervention status: authored counts, activation boundary, unknown time explicit, no input mutation\nPASS activation timing and strictly pre-action exhausted-front evidence; no missing-data inference\n"
+  },
+  {
+    "path": "tests/browser/i18n.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS 28 bilingual checks: Italian default, exact/composed messages, safety meaning, immutable IDs/numbers, dynamic locale formatters, fallback and all five entry points; 1654 catalogue entries\n"
+  },
+  {
+    "path": "tests/browser/layer-menu-model.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS zoom-boundary, studio preservation and catalogue category checks\n"
+  },
+  {
+    "path": "tests/browser/map-navigation.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS zoom bounds, preset15, pin preference, no-pin center and invalid zoom rejection\n"
+  },
+  {
+    "path": "tests/browser/map-symbols.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "{\"status\":\"PASS\",\"checks\":25,\"scope\":\"symbol meaning, actual style/legend identity, category separation, geometry and simulated contact semantics\"}\n"
+  },
+  {
+    "path": "tests/browser/monitor-clock.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS monitored time vs wall clock, missing/invalid time, future horizon, exact seconds, unchanged UTC instant and DST repeated-hour offset\nPASS compact clock keeps canonical UTC instant and detailed DST offset separately\nPASS dual clocks: second ticks independently of fixed/missing data; canonical instants preserved\n"
+  },
+  {
+    "path": "tests/browser/monitor-playback.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS shared playback: continuous clock, no weather-select dependency, pause/resume, reverse/seek, inactive view, no interpolation across gaps and empty horizon\n"
+  },
+  {
+    "path": "tests/browser/monitor-timeline.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS 19 shared-clock assertions: union of actual validity windows, independent horizons, no invented coverage, gaps, missing/invalid source, retained time\n"
+  },
+  {
+    "path": "tests/browser/playback-resume.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS 38 assertions: actual play/pause handlers, sync/async render, repeated resume, stale callbacks, pre-fix negative control\n"
+  },
+  {
+    "path": "tests/browser/rain-clarity.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS 18 checks: rain quantity vs probability, transparent dry cells, visible intensity, separate cloud/rain modes and coverage without overlays\n"
+  },
+  {
+    "path": "tests/browser/rain-series.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS 14 rain-series checks\n"
+  },
+  {
+    "path": "tests/browser/scheduled-tiles.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS7 native image adapter checks including Leaflet tileabort releasing admission\n"
+  },
+  {
+    "path": "tests/browser/studio-view-state.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS8: new navigation starts0, reload/history and valid calculation recovery preserve tab-local time\n"
+  },
+  {
+    "path": "tests/browser/territorial-math.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS7 solar/intersection checks; geometric screening only, no aviation qualification\n"
+  },
+  {
+    "path": "tests/browser/tile-queue.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS15 queue checks: limit, cancellation, fairness, release-once\n"
+  },
+  {
+    "path": "tests/browser/viewport-weather-state.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS 16 assertions: coverage, pending acquisition, retries, free cooldown, complete variables and per-view retention\n"
+  },
+  {
+    "path": "tests/browser/weather-render-plan.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS 6008 checks: exact bilinear equivalence, no extrapolation, changing values, geometry reuse, pan invalidation and separate wind plans\nPASS 6013 total checks including retained DOM nodes, changed values and missing-data clearing\nPASS 6023 total checks including independent cloud/rain compositing and dry-cell semantics\n"
+  },
+  {
+    "path": "tests/web/administrative-levels.test.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS administrative display levels: independent switches, lazy load, shared cache across maps, counts, safe labels, disposal, missing source and retry\n"
+  },
+  {
+    "path": "tests/web/observed-layer-model.test.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS18 display-filter checks (not physical qualification)\nPASS magnitude radius ordering, six exact colour boundaries, missing/nonfinite values, bounds and negative magnitudes; display scale only\nPASS aerial obstacles preset: all overhead voltages, supports, underground/unknown placement excluded; no flight clearance claim\nPASS seismic viewport refresh: empty/local vs uncovered, buffered cache area, freshness, filters and source boundaries\nPASS composite seismic catalogue: INGV retained at Italy edge, global-only elsewhere, spatial source priority without duplicates, source provenance, reuse and stale/missing-part rejection\nPASS immediate magnitude selection, missing values, event-type filtering and complete/truncated snapshot reuse\n"
+  },
+  {
+    "path": "tests/web/observed-layer-time.test.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS readable Italian/English dates, seconds, Rome timezone, DST repeated hour, midnight, missing values, immutable UTC inputs\n"
+  },
+  {
+    "path": "tests/web/quake-auto.test.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS automatic activation, no load button, immediate map/list filtering, complete-cache reuse, obsolete responses rejected, latest period wins and disabled-layer network silence; synthetic adapter test\n"
+  },
+  {
+    "path": "tests/web/tcip-layer.test.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "PASS TCIP descriptive share classes and missing/zero distinction\n"
+  },
+  {
+    "path": "tests/web/traffic-model.test.mjs",
+    "status": "PASS",
+    "code": 0,
+    "output": "{\"status\":\"PASS\",\"trials\":30,\"vehicles\":400,\"segments\":12000,\"step_and_positions_ms_p50\":0.010289999643961588,\"step_and_positions_ms_p95\":0.01867861032485962,\"scope\":\"pure model; canvas/map/frame latency measured separately\"}\n"
+  }
+]

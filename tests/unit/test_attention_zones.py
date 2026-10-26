@@ -43,4 +43,25 @@ class OfficialGeometryTests(unittest.TestCase):
   geo,row=self.fixtures();row['geometry']['coordinates']=[[[12,40],[13,40],[13,41],[12,41],[12,40]]]
   self.assertEqual(recover_official_shapes(geo,[row],'pinned'),0)
 
+
+class FutureGeometryTests(unittest.TestCase):
+ def test_future_effis_uses_only_recent_geometry_not_warning(self):
+  from hazardia.ingest.attention_worker import territorialize
+  from types import SimpleNamespace
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp);ring=[[10,40],[11,40],[11,41],[10,41],[10,40]]
+   zone=polygon(ring,id='z',name='Zona',source_geometry_valid=True,level=3,reasons={'warning':'red'})
+   cell=polygon(ring,fwi=12,dc=300)
+   (root/'zones.geojson').write_text(json.dumps(dict(features=[zone])))
+   source=dict(revision='pinned',products=[dict(day='2026-10-26',file='zones.geojson')])
+   for day,expected in [('2026-10-27','DPC_METEO_HYDRO_ZONE'),('2026-10-25','ZONE_GEOMETRY_UNAVAILABLE'),('2026-11-03','ZONE_GEOMETRY_UNAVAILABLE')]:
+    name='effis-'+day+'.geojson';(root/name).write_text(json.dumps(dict(features=[cell])))
+    result=territorialize(SimpleNamespace(folder=root),dict(day=day,file=name),source)
+    self.assertEqual(result['spatial_support'],expected)
+    features=json.loads((root/name).read_text())['features']
+    if features:
+     self.assertEqual(features[0]['properties']['level'],1)
+     self.assertNotIn('reasons',features[0]['properties'])
+     self.assertEqual(result['geometry_source_day'],'2026-10-26')
+
 if __name__=='__main__':unittest.main()

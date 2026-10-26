@@ -20,7 +20,7 @@ export function monitoringMap(initial,feedback){
  let catalog=initial,context=[],selected=null,failures=0,visible=true,labelsTimer,weatherRecord=null,weatherForecast=null,workbenchUI=null;
  const map=L.map('monitor-map',{preferCanvas:true,scrollWheelZoom:false,keyboard:true,worldCopyJump:false,zoomAnimation:false}).setView([42.35,13.38],8);
  const territoryHost=document.createElement('div');map.getContainer().parentElement.append(territoryHost);const territory=territorialLayers({api:async(path,body)=>{const r=await fetch(path,{method:body?'POST':'GET',headers:body?{'Content-Type':'application/json','X-Hazardia-Research':'1'}:{},body:body?JSON.stringify(body):undefined});const v=await r.json();if(!r.ok)throw Error(v.detail);return v;},host:territoryHost,monitor:true});territory.add(map);
- window.addEventListener('hazardia-map-resize',()=>map.invalidateSize({pan:false}));
+ window.addEventListener('hazardia-map-resize',()=>map.invalidateSize({pan:true,animate:false}));
  map.getContainer().dataset.zoom=String(map.getZoom());map.getContainer().dataset.center=JSON.stringify([map.getCenter().lat,map.getCenter().lng]);map.on('moveend zoomend',()=>{map.getContainer().dataset.zoom=String(map.getZoom());map.getContainer().dataset.center=JSON.stringify([map.getCenter().lat,map.getCenter().lng]);});
  map.setMinZoom(2);map.setMaxZoom(20);map.setMaxBounds([[-85,-180],[85,180]]);map.options.maxBoundsViscosity=1;const worldZoom=()=>map.setMinZoom(Math.max(2,Math.ceil(Math.log2(Math.max(256,map.getSize().x)/256))));worldZoom();map.on('resize',worldZoom);map.attributionControl.setPrefix('');compactMapCredits(map);
  map.createPane('monitorSatellite');map.getPane('monitorSatellite').style.zIndex=190;
@@ -93,5 +93,5 @@ export function monitoringMap(initial,feedback){
  fetch('/assets/map-context.json').then(r=>{if(!r.ok)throw Error();return r.json()}).then(v=>{context=v.features;const places=[...new Set(context.filter(f=>f.kind==='place').map(f=>f.name))];$('monitor-places').innerHTML=places.map(n=>'<option value="'+escape(n)+'"></option>').join('');renderLabels();}).catch(()=>{$('monitor-search-status').textContent='Nomi geografici non disponibili. Ricerca per coordinate attiva.';});
  $('monitor-simulated').addEventListener('change',draw);
  update(initial);applyBasemap();
- return {update,weather,decorate(){workbenchUI=monitorWorkbench(map);map.invalidateSize({pan:false});},visible(on){visible=on;workbenchUI?.visible(on);attention.visible(on);rain.visible(on);wind.visible(on);backgrounds.visible(on);requestAnimationFrame(()=>{map.invalidateSize({pan:false});if(on)renderLabels();});}};
+ return {update,weather,decorate(){workbenchUI=monitorWorkbench(map);map.invalidateSize({pan:true,animate:false});},visible(on){visible=on;workbenchUI?.visible(on);attention.visible(on);rain.visible(on);if(!on){wind.visible(false);backgrounds.visible(false);return;}requestAnimationFrame(()=>{if(!visible)return;map.invalidateSize({pan:true,animate:false});wind.visible(true);backgrounds.visible(true);renderLabels();});}};
 }

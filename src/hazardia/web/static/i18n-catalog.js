@@ -1,5 +1,16 @@
 /* Reviewed Italian → English interface messages. No remote translation service. */
 export const messages = {
+  "Caricamento del meteo per l’area visibile…": "Loading weather for the visible area…",
+  "Ingrandisci almeno a zoom 11 per caricare i dati territoriali dell’area visibile.": "Zoom in to at least level 11 to load territorial data for the visible area.",
+  "METEO E OSSERVAZIONI": "WEATHER AND OBSERVATIONS",
+  "Gli esempi storici usano ERA5. Le previsioni Open-Meteo distribuite sulla vista sono distinte dal radar DPC e dai pluviometri osservati. Date, copertura e dati mancanti sono riportati nei livelli; la validazione operativa resta incompleta.": "Historical examples use ERA5. Open-Meteo forecasts across the viewport are separate from observed DPC radar and rain gauges. Dates, coverage and missing data appear in each layer; operational validation remains incomplete.",
+  "Nel Monitoraggio cerca una località e apri Livelli. Attiva meteo, osservazioni e criticità; le opzioni si aprono a destra. La timeline esplora le ore disponibili: osservazioni, previsioni e risultati simulati restano distinti.": "In Monitoring, search for a place and open Layers. Enable weather, observations and warnings; options open on the right. The timeline explores available hours: observations, forecasts and simulated results remain distinct.",
+  "02 / PIANIFICA": "02 / PLAN",
+  "Prepara un piano d’intervento": "Prepare an intervention plan",
+  "In Simulazioni e risorse scegli Incendio. Inserisci inneschi e squadre con geometrie e orari di attivazione. Il pannello di ottimizzazione usa le risorse configurate e segnala dati o vincoli mancanti; non autorizza interventi reali.": "In Simulations and resources, choose Wildfire. Add ignitions and resources with geometries and activation times. The optimization panel uses configured resources and identifies missing data or constraints; it does not authorize real interventions.",
+  "Confronta gli scenari calcolati": "Compare calculated scenarios",
+  "Apri Confronto scenari e calcola le configurazioni modificate. Un solo player sincronizza incendio e meteo consumato dai risultati. Le azioni possono modificare la propagazione futura, ma non cancellano l’area già raggiunta. Le alluvioni non hanno ancora un confronto fisico con interventi.": "Open Scenario comparison and calculate modified configurations. One player synchronizes fire and the weather consumed by the results. Actions can change future spread but cannot erase the area already reached. Floods do not yet support physical comparisons with interventions.",
+  "Apri Confronto scenari →": "Open Scenario comparison →",
   "senza squadre": "no resources",
   "interventi:": "interventions:",
   "attivi:": "active:",

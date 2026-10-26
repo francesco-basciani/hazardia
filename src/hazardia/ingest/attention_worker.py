@@ -223,11 +223,15 @@ def zone_summary(cells,zones):
 
 def territorialize(acq,product,dpc_source):
     day=product['day'];file=acq.folder/product['file'];cells=json.loads(file.read_text());gridfile=acq.folder/('effis-grid-'+day+'.geojson');gridfile.write_text(file.read_text())
-    zone_product=next((p for p in dpc_source.get('products',[]) if p['day']==day),None)
+    # Reuse only recent published zone geometry, never its dated warning levels.
+    candidates=[p for p in dpc_source.get('products',[]) if 0<=(dt.date.fromisoformat(day)-dt.date.fromisoformat(p['day'])).days<=7]
+    zone_product=max(candidates,key=lambda p:p['day'],default=None)
+
     if zone_product:
+        product.pop('geometry_error',None)
         geo=zone_summary(cells,json.loads((acq.folder/zone_product['file']).read_text()))
         file.write_text(json.dumps(geo,separators=(',',':')))
-        product.update(spatial_support='DPC_METEO_HYDRO_ZONE',zones=len(geo['features']),unknown_zones=sum(f['properties']['level'] is None for f in geo['features']),aggregation='Maximum source cell within zone; not official fire-risk zoning',source_grid_file=gridfile.name)
+        product.update(spatial_support='DPC_METEO_HYDRO_ZONE',zones=len(geo['features']),unknown_zones=sum(f['properties']['level'] is None for f in geo['features']),aggregation='Maximum source cell within zone; not official fire-risk zoning',source_grid_file=gridfile.name,geometry_source_day=zone_product['day'],geometry_source_revision=dpc_source.get('revision'),geometry_time_policy='Published spatial partition reused; no DPC warning extended to the EFFIS forecast day')
     else:
         file.write_text(json.dumps(dict(type='FeatureCollection',features=[])))
         product.update(spatial_support='ZONE_GEOMETRY_UNAVAILABLE',geometry_error='No matching official zone geometry; raw grid retained in archive, no random polygons shown')

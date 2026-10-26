@@ -718,3 +718,11 @@ Implementati attivazione/filtri automatici, riuso sicuro del catalogo completo, 
 ## Squadre e propagazione · 26 ottobre 2026
 
 Corretto il filtro che nascondeva le squadre manuali nel Piano d’intervento; indicatori di attivazione e verifica nativa controllata quattro casi completati. Gate scientifici invariati. Riferimento: [rapporto](reports/FIRE-INTERVENTIONS-20261026.md).
+
+
+## Audit framework · 26 ottobre 2026
+
+Audit dei21controlli di catalogo e flussi principali completato con esito PARZIALE. Corretti archivi DPC/meteo pieni tramite conservazione lossless, EFFIS futuro senza estendere allerte, date e indicazioni UI/guida. WII/cavi/dati non connessi restano espliciti; nessun gate scientifico chiuso. [Rapporto](reports/FRAMEWORK-AUDIT-20261026.md).
+
+
+Correzione finale dello stesso audit: ritorno al Monitoraggio dopo il ripristino del layout, camera conservata e stato meteo visibile.30prove calde PASS:23etichette/centro invariato/0errori,p95144ms; niente nuovi dati fisici o qualifiche. Riferimento: `reports/FRAMEWORK-AUDIT-20261026.md`.

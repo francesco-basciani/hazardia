@@ -736,3 +736,11 @@ Base c85f142, correzione cartografica segnalata dall’utente. [Rapporto](../rep
 ## Squadre e propagazione · 26 ottobre 2026
 
 Evidenza fire-interventions-20261026: quattro esecuzioni reali pinned PROPAGATOR, seed1729/2realizzazioni/6h, stesso terreno/meteo storico/innesco; variazione localizzata presente e controllo lontano invariato. Ricevute native e preservazione, confronto grafico da array nativi. Autoverifica tecnica; nessun nuovo gate scientifico chiuso. Riferimento: [rapporto](../reports/FIRE-INTERVENTIONS-20261026.md).
+
+
+## Audit framework · 26 ottobre 2026
+
+Run framework-audit-20261026: conservazione lossless archivi verificata su hash decodificati, rilievi UI/API reali e regressioni374Python/25Node. Ottimizzatore normale e fallback indipendentemente verificati; nessun nuovo run fisico qualificante. DPC/EFFIS187/183, radar51%copertura; limiti WII_STORAGE_FULL/powerfallback espliciti. Autoverifica tecnica, gate fisici invariati. [Rapporto](../reports/FRAMEWORK-AUDIT-20261026.md).
+
+
+Correzione finale dello stesso audit: ritorno al Monitoraggio dopo il ripristino del layout, camera conservata e stato meteo visibile.30prove calde PASS:23etichette/centro invariato/0errori,p95144ms; niente nuovi dati fisici o qualifiche. Riferimento: `reports/FRAMEWORK-AUDIT-20261026.md`.

@@ -12,6 +12,7 @@ import uuid
 from zoneinfo import ZoneInfo
 from pathlib import Path
 from hazardia.io import HazardError,load
+from hazardia.ingest.archive_storage import stored_bytes,deduplicate
 
 class AttentionStore:
     def __init__(self,root,runtime,*,clock=time.time):
@@ -35,6 +36,7 @@ class AttentionStore:
                 temp=Path(str(target)+'.tmp');temp.write_bytes(packed);temp.replace(target)
             if gzip.decompress(target.read_bytes())!=raw:raise HazardError('CACHE_CORRUPT','Attention compaction differs')
             path.unlink()
+        deduplicate(p for p in self.root.glob("snapshot-*/*") if p.is_file())
     def state(self):
         path=self.root/'state.json'
         return load(path) if path.exists() else {}
@@ -85,12 +87,12 @@ class AttentionStore:
         def acquire():
             try:
                 now=self.clock()
-                if sum(p.stat().st_size for p in self.root.rglob('*') if p.is_file())>240*1024**2:
+                if stored_bytes(self.root)>240*1024**2:
                     self.compact()
                 with self.lock:
                     state=self.state();last=state.get('attempt_at')
                     if last is not None and -300<now-last<10800:return
-                    if sum(p.stat().st_size for p in self.root.rglob('*') if p.is_file())>256*1024**2:raise HazardError('CACHE_FULL','Attention archive cap256MiB reached')
+                    if stored_bytes(self.root)>256*1024**2:raise HazardError('CACHE_FULL','Attention archive cap256MiB reached')
                     self.write_state(dict(state,attempt_at=now,error=None))
                 folder=self.root/('snapshot-'+uuid.uuid4().hex);folder.mkdir()
                 config=load(self.runtime/'runtime-v2.json')
