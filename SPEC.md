@@ -592,3 +592,8 @@ Richiesta utente: zoom corrente e selettore di scale accanto a +/−/Centra. Nel
 ## Evidenza audit — 25 ottobre 2026
 
 Si applicano le soglie FR24–28 / QR11–14 esistenti, senza riduzioni. [Rapporto](reports/FRAMEWORK-AUDIT-20261025.md), run privato `framework-audit-20261025`: esito PARZIALE. 363 test core VM + 110 WII locali e 22 suite client PASS; UI zoom p95 196,7 ms, API p95 massimo 101,35 ms. DPC/EFFIS STALE per CACHE_FULL 256 MiB; vento fine pieno; rete elettrica solo fallback OSM parziale datato. Soak 30 min con 8 assenze listener e 3 cambi PID: continuità non qualificata. Cold-cache, compositore/Safari e nuovi replay fisici NOT RUN. Gate scientifici invariati. Il PASS di latenza non certifica disponibilità, completezza o aggiornamento del dato.
+
+
+## FR-QUAKE-AUTO-20261026
+
+Il livello terremoti si carica automaticamente all’attivazione e al cambio catalogo/periodo/magnitudo, senza pulsante manuale. La soglia filtra immediatamente i dati completi disponibili; acquisire automaticamente gli insiemi mancanti, preservando quote/freschezza/copertura. Risposte obsolete non sostituiscono l’ultima selezione. Date di origine, acquisizione e finestre nel formato leggibile locale con fuso Roma; UTC originali immutati. Evidenze `reports/QUAKE-AUTO-20261026.md`.

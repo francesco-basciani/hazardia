@@ -1,5 +1,10 @@
 /* Reviewed Italian → English interface messages. No remote translation service. */
 export const messages = {
+  "Acquisizione": "Acquired",
+  "Origine:": "Origin:",
+
+  "Attiva il livello: gli eventi si caricano automaticamente.": "Enable the layer: events load automatically.",
+  "Aggiornamento automatico degli eventi…": "Updating events automatically…",
   "Dati non ancora caricati. Carica l’area visibile.": "Data not loaded yet. Load the visible area.",
   "visibili nella vista": "visible in view",
   "nello snapshot.": "in snapshot.",

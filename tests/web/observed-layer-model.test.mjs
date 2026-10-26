@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 const source=await fs.readFile(new URL('../../src/hazardia/web/static/observed-layer-model.js',import.meta.url),'utf8');
-const {powerVisible,powerColor,quakeClasses,quakeStyle,quakeQueryBounds,quakeSnapshotCovers,quakeAcquisitionPlan,combineQuakeSnapshots}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const {powerVisible,powerColor,quakeClasses,quakeVisible,quakeStyle,quakeQueryBounds,quakeSnapshotCovers,quakeAcquisitionPlan,combineQuakeSnapshots}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
 const line={power_kind:'line',location:'overhead',max_voltage:132000};
 assert.equal(powerVisible(line),true);
 assert.equal(powerVisible(line,{minVoltage:220000}),false);
@@ -46,7 +46,10 @@ assert.deepEqual(quakeQueryBounds([13.3,42.3,13.6,42.45],true),[12,41,15,43]); /
 assert.equal(quakeSnapshotCovers({...snapshot,bounds:quakeQueryBounds(local,true)},local,opts,now),true);
 assert.equal(quakeSnapshotCovers(snapshot,local,{...opts,days:30},now),false);
 assert.equal(quakeSnapshotCovers(snapshot,local,{...opts,provider:'usgs'},now),false);
-assert.equal(quakeSnapshotCovers(snapshot,local,{...opts,min_magnitude:1},now),false);
+assert.equal(quakeSnapshotCovers(snapshot,local,{...opts,min_magnitude:1},now),true); // Complete broader catalogue supports immediate local filtering.
+assert.equal(quakeSnapshotCovers(snapshot,local,{...opts,min_magnitude:-1},now),false);
+assert.equal(quakeSnapshotCovers({...snapshot,quality:{...snapshot.quality,limit_reached:true}},local,{...opts,min_magnitude:1},now),false); // Truncated source cannot prove a complete narrower catalogue.
+assert.equal(quakeSnapshotCovers({...snapshot,quality:{...snapshot.quality,limit_reached:true}},local,opts,now),true);
 assert.equal(quakeSnapshotCovers(snapshot,local,opts,now+600000),false);
 assert.equal(quakeSnapshotCovers(snapshot,local,opts,now-600000),false);
 assert.equal(quakeSnapshotCovers({...snapshot,status:'ERROR'},local,opts,now),false);
@@ -72,3 +75,11 @@ console.log('PASS composite seismic catalogue: INGV retained at Italy edge, glob
 
 const shifted={...world,quality:{...world.quality,window_start:'2026-10-17T21:20:00Z',window_end:'2026-10-24T21:20:00Z'}};
 const envelope=combineQuakeSnapshots([italian,shifted]);assert.equal(envelope.quality.window_start,italian.quality.window_start);assert.equal(envelope.quality.window_end,shifted.quality.window_end);assert.equal(envelope.quality.window_semantics,'ENVELOPE_OF_SOURCE_WINDOWS');
+
+// Selection changes must filter both map and event list, without changing source records.
+const quake=(magnitude,event_type='earthquake')=>({magnitude,event_type});
+for(const threshold of [-1,0,1,2,3,4])for(const magnitude of [-1,0,.9,1,1.5,2,3,4,5])assert.equal(quakeVisible(quake(magnitude),threshold),magnitude>=threshold);
+for(const magnitude of [null,undefined,NaN,Infinity,'3'])assert.equal(quakeVisible(quake(magnitude),0),false);
+assert.equal(quakeVisible(quake(4,'explosion'),0),false);
+const original=quake(2);assert.equal(quakeVisible(original,3),false);assert.deepEqual(original,quake(2));
+console.log('PASS immediate magnitude selection, missing values, event-type filtering and complete/truncated snapshot reuse');

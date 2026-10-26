@@ -726,3 +726,8 @@ Run `map-pin-zoom-20261025`, baseline `302c49f`, Codex self-check. PASS4suite cl
 ## CITY-ANCHORS-20261025
 
 Base c85f142, correzione cartografica segnalata dall’utente. [Rapporto](../reports/CITY-ANCHORS-20261025.md), [confronti](../reports/city-anchors/verification.json): 6 ancore L’Aquila/Teramo misurate contro WebMercator a zoom 8/9/10, massimo 1,02 px / soglia 1,5 px. Screenshot finale zoom 9 entrambe in vista; 6023 controlli client PASS. Nessuna prova scientifica o revisione indipendente nuova.
+
+
+## QUAKE-AUTO-20261026
+
+[Rapporto](../reports/QUAKE-AUTO-20261026.md), run privato omonimo, base bd818df. Attivazione INGV senza conferma manuale e filtri193/0/137, cambio periodo/catalogo e date reali verificati nel browser. Test moduloUI controllato per risposta obsoleta/ultimo filtro/spento senza rete, test date IT/EN/DST e modello/composizione, i18n e10 test VM PASS. Nessuna evidenza scientifica o performance nuova dichiarata.

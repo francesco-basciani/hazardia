@@ -708,3 +708,8 @@ Follow-up: gestire archivi DPC/EFFIS e vento fine senza perdere evidenze o aumen
 ## Punti delle località — 25 ottobre 2026
 
 Corretto offset cartografico del pallino rispetto all’ancora nei renderer Monitoraggio/Simulazioni. 6 confronti WebMercator a zoom 8/9/10 entro 1,5 px; rapporto `reports/CITY-ANCHORS-20261025.md`. Dati e fisica invariati.
+
+
+## Terremoti automatici — 26 ottobre 2026
+
+Implementati attivazione/filtri automatici, riuso sicuro del catalogo completo, gestione dell’ultima selezione e date leggibili. Prove reali INGV e test controllati in `reports/QUAKE-AUTO-20261026.md`; quote, modelli e qualifiche invariati.

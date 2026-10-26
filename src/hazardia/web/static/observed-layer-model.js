@@ -10,6 +10,8 @@ export function powerVisible(p,{minVoltage=35000,unknown=false,cables=false,stat
  return v==null?unknown:v>=minVoltage;
 }
 
+export const quakeVisible=(p,minimum=0)=>p.event_type==='earthquake'&&Number.isFinite(p.magnitude)&&p.magnitude>=minimum;
+
 export const quakeClasses=[{min:-Infinity,label:'M < 1',color:'#75d5dd'},{min:1,label:'1 ≤ M < 2',color:'#48bca0'},{min:2,label:'2 ≤ M < 3',color:'#f1d25c'},{min:3,label:'3 ≤ M < 4',color:'#f39a48'},{min:4,label:'4 ≤ M < 5',color:'#ed605c'},{min:5,label:'M ≥ 5',color:'#c97ccf'}];
 export function quakeStyle(m){if(!Number.isFinite(m))return {radius:3,color:'#e8edf1',fillColor:'#8897a3',fillOpacity:.6,weight:1.2};const band=quakeClasses.filter(c=>m>=c.min).at(-1);return {radius:3+2*Math.max(0,Math.min(9,m)),color:'#f2f6fa',fillColor:band.color,fillOpacity:.65,weight:1.2};}
 
@@ -25,7 +27,7 @@ export function quakeSnapshotCovers(data,view,{provider,days,min_magnitude},now=
  if(!data||data.status!=='READY'||!data.bounds||!data.quality)return false;
  if(provider==='auto')return quakeAcquisitionPlan(view,{provider,days,min_magnitude}).every(leg=>(data.catalogues||[data]).some(part=>quakeSnapshotCovers(part,leg.view,leg.body,now)));
  const q=data.quality,age=now-Date.parse(data.acquired_at),duration=Date.parse(q.window_end)-Date.parse(q.window_start);
- return age>=0&&age<600000&&q.provider===provider&&q.min_magnitude===min_magnitude&&duration===days*86400000&&view.every((v,i)=>i<2?v>=data.bounds[i]-.0001:v<=data.bounds[i]+.0001);
+ return age>=0&&age<600000&&q.provider===provider&&q.min_magnitude<=min_magnitude&&(!q.limit_reached||q.min_magnitude===min_magnitude)&&duration===days*86400000&&view.every((v,i)=>i<2?v>=data.bounds[i]-.0001:v<=data.bounds[i]+.0001);
 }
 
 const italianCatalogue=[6,35,19,48];

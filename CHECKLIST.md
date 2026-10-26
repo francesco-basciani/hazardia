@@ -1471,3 +1471,12 @@ Run `map-pin-zoom-20261025`, baseline `302c49f`, reviewer Codex self-check; repo
 - [x] Coordinate esistenti L’Aquila/Teramo verificate nell’asset VM; causa nel rendering, non spostamento dei dati.
 - [x] Pallino ancorato alle coordinate in entrambi i renderer; 6 confronti a 3 zoom entro 1,5 px, screenshot zoom 9; `reports/city-anchors/verification.json`.
 - [x] 6023 controlli weather-render-plan PASS; nessun replay fisico o nuovo profiling dichiarato.
+
+
+## QUAKE-AUTO-20261026
+
+- [x] Attivazione senza pulsante manuale; dati reali INGV193, filtri immediati193/0/137 per M≥0/3/1 nel campione.
+- [x] Periodo/catalogo automatici; moduloUI testato con richieste obsolete e selezioni rapide, spento senza rete.
+- [x] Date pannello/cataloghi/lista/dettagli in formato locale e fuso Roma; test IT/EN, DST e UTC immutati.
+- [x] Suite modello, adapter, date e i18n PASS;10 test backend VM PASS. Rapporto `reports/QUAKE-AUTO-20261026.md`.
+- [ ] NOT RUN nuovo profiling/Safari/replay fisici; nessuna nuova qualifica operativa.

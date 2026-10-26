@@ -1,6 +1,6 @@
 {
   "schema": "hazardia-publication/1",
-  "source_git_sha": "bd818df5dce1273b3ad1a44a4bef8610c31eed0c",
+  "source_git_sha": "ecfab305f3dd49fcef348ec1b57947cc618f8251",
   "files": {
     ".gitignore": {
       "bytes": 608,
@@ -11,28 +11,28 @@
       "sha256": "f1f295f103a7453378ff9174c470da572224a70e410b8fc8d3fcba5e201e77aa"
     },
     "CHECKLIST.md": {
-      "bytes": 214603,
-      "sha256": "b42c331f88944e346bc9a195d8d196b9978a2424645f9e9ad93d41e7e77a63cf"
+      "bytes": 215169,
+      "sha256": "0254443da249b22cfdde6c07a993eff6764b8da9e43c6925815fa885a54fe71d"
     },
     "MEMORY.md": {
-      "bytes": 166496,
-      "sha256": "97cdb8b4853bdc7a5278bda2b8b160f2dc393d24f11aadea56b34e4cceefdef6"
+      "bytes": 167073,
+      "sha256": "099789f052e3fef024ff48eae298f81d08447eb17cbdee0fed8e1cef2e38a59c"
     },
     "NOTICE.md": {
       "bytes": 1310,
       "sha256": "cc42e923283ed4ff948109391ebf26bd9f7113c35484a131970e77ea47890229"
     },
     "PLAN.md": {
-      "bytes": 169602,
-      "sha256": "301a073e9f79dd1f52ffb58d6dd38a58e44a5a1f65e06e8159bb03bc4f04c96b"
+      "bytes": 169892,
+      "sha256": "69cedee5f88a9aca68b0b78d63cd508f64aafdb0413a89d2ca185c1e78970f43"
     },
     "README.md": {
       "bytes": 31300,
       "sha256": "f1db83092624f1851499b03ae386b535dc5bd841c9fed026268728108754b7fc"
     },
     "SPEC.md": {
-      "bytes": 109696,
-      "sha256": "2b0daddcf6928c2e951bf0c27fe3d9ca678f3df802addb1e6594a4f3dcbed08c"
+      "bytes": 110213,
+      "sha256": "e1294c62f6c30f85042093fabedef79fc33a2d17e625b55f56b362f5bec66061"
     },
     "docs/ADMINISTRATIVE-BOUNDARIES.md": {
       "bytes": 3439,
@@ -569,6 +569,10 @@
     "reports/PUBBLICAZIONE-GITHUB.md": {
       "bytes": 8076,
       "sha256": "6ae9c3837ee79ecee23ff5bc9f354cffaaa89c127cfb0f801abf7c606d8d484c"
+    },
+    "reports/QUAKE-AUTO-20261026.md": {
+      "bytes": 4094,
+      "sha256": "ca1e4493e51ff3931585df1bcb5d207187fbd73e0dbf7f99bef087b56e8eaae5"
     },
     "reports/QUAKE-SAFARI-20261025.md": {
       "bytes": 3247,
@@ -1443,8 +1447,8 @@
       "sha256": "65e9421a83eacc539224f44f3d903844ba46db6e4a3845f915b59bdd38763935"
     },
     "research/EVIDENCE.md": {
-      "bytes": 184271,
-      "sha256": "d1a87fcf88772de98aabe4e9b5c3e18999cd4f9e1352a84b0b8419de2309fbb0"
+      "bytes": 184708,
+      "sha256": "cf153f617cfb2da7894d96a04bac74c1f834c4de385bda2766df836027155e73"
     },
     "research/RESEARCH.md": {
       "bytes": 35880,
@@ -2035,8 +2039,8 @@
       "sha256": "eb69dde9ffb0649d882a9ce00624dfd2dcdd3c28400254b8ff736d9b8fa992ac"
     },
     "src/hazardia/web/static/i18n-catalog.js": {
-      "bytes": 122784,
-      "sha256": "10c43cbea2d552b568fd045d3e6cb9ffdd7128c48164245bfb8497125a82da1c"
+      "bytes": 123034,
+      "sha256": "e1f4de05fb373f7c8ab0780d24606555fe2d661dd724836105615978467c6d0f"
     },
     "src/hazardia/web/static/i18n.css": {
       "bytes": 1786,
@@ -2143,12 +2147,16 @@
       "sha256": "f375467b357e577e16ba157b31a2a74d9ff8f62aa7c36a63db724c98e2a2547e"
     },
     "src/hazardia/web/static/observed-layer-model.js": {
-      "bytes": 4342,
-      "sha256": "cfa4ff2f45a1fa97a7d22a532edc0fed74db1523b3219e1b07c5ef9f054203da"
+      "bytes": 4517,
+      "sha256": "73bc97064c25dd24d3ceef2878ec97e47192add060f1dccf20fc54d41cd63988"
+    },
+    "src/hazardia/web/static/observed-layer-time.js": {
+      "bytes": 458,
+      "sha256": "a417a0b11add088143d382f7e5aa13c470305cd1e30034a2d3cca7be15e584b0"
     },
     "src/hazardia/web/static/observed-layers.js": {
-      "bytes": 18371,
-      "sha256": "400b823e45524312f7e408e0b813616d9dd8d498eda88db03957d7105d2fb37f"
+      "bytes": 19280,
+      "sha256": "ac22c6df55102104dcc17e431cf0aa48983aa83cdacdbdc5accf94ea0507a2b8"
     },
     "src/hazardia/web/static/observed-rain.js": {
       "bytes": 7827,
@@ -2907,8 +2915,16 @@
       "sha256": "948b083946b64f5f1040ff5b363ff715bcdae4ca00868e33496a38b7eeed0789"
     },
     "tests/web/observed-layer-model.test.mjs": {
-      "bytes": 7643,
-      "sha256": "3a2cb8a133215e70b25048d92260070dbba9cb32d76e59eb613c6bc43ed2ed8b"
+      "bytes": 8864,
+      "sha256": "ef3aae1760f506be0635265e560d7ace8f51f4bbd9ce844b45c55f9bbf97d069"
+    },
+    "tests/web/observed-layer-time.test.mjs": {
+      "bytes": 1240,
+      "sha256": "fa71329a2d9888f60be1af8705c881af478e82f09cdfbcfe2e5cdb7cc261933d"
+    },
+    "tests/web/quake-auto.test.mjs": {
+      "bytes": 6494,
+      "sha256": "498d3a338e28e86878d748aa1e48b74aec59ed74326eefabb07a0d077f880c2b"
     },
     "tests/web/test_bootstrap.py": {
       "bytes": 1405,

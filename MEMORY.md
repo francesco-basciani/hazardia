@@ -664,3 +664,8 @@ Monitoraggio: select ZoomN2–20 entro limiti effettivi vicino +/−/Centra,15 r
 ## CITY-ANCHORS-20261025
 
 Utente segnala pallini L’Aquila/Teramo spostati. Dati corretti: il pallino pseudo-elemento dentro etichetta centrata introduceva offset a ovest dipendente dal nome. Monitoraggio e map-names ora usano ancora [0,11], dot assoluto [0,11] e testo a destra. 6 controlli WebMercator entro 1,5 px, report `reports/CITY-ANCHORS-20261025.md`. Audit precedente non copriva questa geometria visuale; nessun gate scientifico modificato.
+
+
+## QUAKE-AUTO-20261026
+
+Rimosso pulsante manuale terremoti; checkbox e selettori agiscono automaticamente. Mappa/lista filtrano subito la magnitudo sui dati completi; richieste mancanti serializzate con revisione per ignorare risposte superate. Riuso solo di snapshot freschi/coperti e non troncati quando cambia soglia; limiti provider invariati. Date leggibili IT/EN con secondi e CET/CEST in pannello/cataloghi/dettagli. Prove INGV193→0→137, test adapter/date/modello/i18n e10 backend PASS; `reports/QUAKE-AUTO-20261026.md`. Modifiche concorrenti WII/TCIP preservate.
