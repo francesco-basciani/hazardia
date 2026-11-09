@@ -1,0 +1,115 @@
+/* FIRE authoring console: one toolbar, one aggregate alert, compact scenario headers. */
+body.studio-console .studio-topbar{
+ height:48px!important;min-height:48px!important;flex-wrap:nowrap!important;
+ gap:6px!important;padding:6px 10px!important;overflow-x:auto;overflow-y:hidden;
+ background:#142735!important;scrollbar-width:thin;box-shadow:none!important;
+}
+body.studio-console .studio-topbar>*,body.studio-console .studio-topbar .planning-tabs{flex-shrink:0}
+body.studio-console .studio-topbar button,
+body.studio-console .studio-topbar #center-ignitions,
+body.studio-console .studio-topbar #save-scenarios{
+ height:34px!important;min-height:34px!important;box-sizing:border-box;
+ padding:7px 10px!important;font:600 11px/18px system-ui!important;
+ border:1px solid #405f70!important;border-radius:5px!important;
+ background:#1b3545!important;color:#e4edf3!important;margin:0!important;
+ white-space:nowrap;box-shadow:none!important;
+}
+body.studio-console .studio-topbar button:hover:not(:disabled){background:#2a4e5f!important;border-color:#7caaa9!important}
+body.studio-console .studio-topbar button:disabled{opacity:.4;cursor:default}
+body.studio-console .studio-topbar .planning-tabs{position:static!important;display:flex;gap:2px!important;padding:0!important;border:0!important;background:none!important;margin:0!important;max-width:none!important;min-width:0}
+body.studio-console .studio-topbar .planning-tabs button[aria-pressed=true]{background:#2b605f!important;border-color:#74b4a9!important;color:white!important}
+body.studio-console .studio-layers-toggle{order:0!important}
+body.studio-console .studio-examples-toggle{order:1!important}
+body.studio-console .studio-lab-slot{order:2;width:116px;min-width:116px}
+body.studio-console .studio-topbar .planning-tabs{order:3!important}
+body.studio-console #undo-edit{order:4!important}
+body.studio-console #redo-edit{order:5!important}
+body.studio-console .studio-topbar .studio-legend-toggle{order:6!important;margin-left:auto!important}
+body.studio-console .studio-topbar #center-ignitions{order:7!important}
+body.studio-console .studio-topbar #save-scenarios{order:8!important}
+body.studio-console .studio-topbar .case-badge{order:9;position:static;font:10px system-ui;color:#aac4d1;background:none;border:0;padding:0;white-space:nowrap}
+body.studio-console #calculation-status.studio-global-alert{position:fixed!important;inset:48px 0 auto!important;z-index:955;box-sizing:border-box;margin:0!important;padding:9px 16px!important;min-height:0;background:#493e29!important;border:0!important;border-bottom:1px solid #8d7448!important;border-radius:0!important;color:#ffe3ac!important;font:500 12px/1.6 system-ui!important;max-height:90px;overflow:auto;box-shadow:none!important}
+body.studio-console #calculation-status.studio-global-alert.pending{background:#1d4255!important;border-color:#507b8f!important;color:#d8f0ff!important}
+body.studio-console #calculation-status[hidden]{display:none!important}
+body.studio-console #scenario-maps{top:var(--studio-content-top,48px)!important}
+body.studio-console .studio-left,body.studio-console .studio-right,body.studio-console #inspector:not([hidden]){top:calc(var(--studio-content-top,48px) + 8px)!important}
+body.studio-console .scenario-map-card .scenario-map-heading{
+ display:grid!important;grid-template-columns:minmax(0,1fr) auto auto auto!important;
+ align-items:center!important;gap:4px 8px!important;padding:9px 12px!important;
+ left:12px!important;right:52px!important;top:8px!important;width:auto!important;
+ max-width:none!important;min-height:0!important;border:1px solid #426071!important;
+ border-radius:7px!important;box-shadow:0 2px 8px #08121b24!important;background:#142a38f5!important;
+}
+body.studio-console .scenario-map-heading>.scenario-role{display:none!important}
+body.studio-console .scenario-map-heading>strong{grid-column:1;grid-row:1;order:0!important;min-width:0!important;display:block;font:600 13px/1.4 system-ui!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#f3f8fa!important;padding:0;margin:0}
+body.studio-console .scenario-map-heading>.scenario-explanation{grid-column:1;grid-row:2;order:0!important;display:block!important;margin:0!important;padding:0!important;border:0!important;font:11px/1.4 system-ui!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#b7cfda!important}
+body.studio-console .scenario-map-heading>.scenario-area-badge{grid-column:2;grid-row:1/3;order:0!important;font-size:20px!important;padding:5px 8px!important;border-radius:5px!important}
+body.studio-console .scenario-map-heading>.scenario-area-badge::after{font-size:8px!important;margin-top:2px!important}
+body.studio-console .scenario-map-heading>button{grid-row:1!important;order:0!important;height:32px!important;min-height:32px!important;font:600 12px/18px system-ui!important;padding:6px 12px!important;border-radius:5px!important}
+body.studio-console .scenario-map-heading>span:not(.case-badge){grid-column:1/-1;grid-row:3;order:0!important;font:10px/1.4 system-ui!important;color:#a8c2d0!important;margin:0!important}
+body.studio-console .scenario-map-card.outdated .scenario-map-heading{border-left:1px solid #426071!important}
+body.studio-console .studio-right #undo-remove{display:none!important}
+@media(min-width:1001px){body.studio-console:has(.studio-left:not([hidden])) #scenario-maps>.scenario-map-card:nth-child(odd) .scenario-map-heading{left:252px!important;max-width:none!important}}
+@media(max-width:1100px){body.studio-console .studio-topbar .case-badge{display:none}}
+@media(max-width:700px){body.studio-console .scenario-map-heading>.scenario-area-badge{font-size:16px!important}body.studio-console .scenario-map-heading>button{padding:4px!important}body.studio-console .scenario-map-card .scenario-map-heading{gap:4px!important;padding:8px!important;right:46px!important}body.studio-console .studio-lab-slot{min-width:134px;width:134px}}
+body.studio-console .studio-lab-slot{width:146px;min-width:146px}
+@media(min-width:1001px){body.studio-console:has(.studio-left:not([hidden])) #scenario-maps{left:250px!important}body.studio-console:has(.studio-left:not([hidden])) #scenario-maps>.scenario-map-card:nth-child(odd) .scenario-map-heading{left:12px!important;max-width:none!important}}
+
+/* Separate navigation from execution. Both strips use the same control geometry. */
+body.studio-console .studio-runbar{position:fixed;inset:48px 0 auto;z-index:960;height:42px;box-sizing:border-box;display:flex;align-items:center;gap:6px;padding:4px 10px;background:#1b303e;border-bottom:1px solid #3a5362;overflow-x:auto;white-space:nowrap}
+body.studio-console .studio-runbar>strong{font:600 10px system-ui;text-transform:uppercase;letter-spacing:.07em;color:#acc4d0;margin-right:5px}
+body.studio-console .studio-runbar button{flex-shrink:0;min-height:32px;height:32px;border:1px solid #456474;border-radius:5px;padding:6px 12px;background:#203e4f;color:#eef5fa;font:600 11px/18px system-ui}
+body.studio-console .studio-runbar button:disabled{opacity:.4}
+body.studio-console .studio-runbar #play{background:#286d65;border-color:#75b7a8;min-width:100px}
+body.studio-console .studio-runbar #update-scenarios.needs-update{background:#755728;border-color:#dfb45d;color:#fff4da}
+body.studio-console .studio-runbar #undo-edit{margin-left:12px}
+body.studio-console .studio-runbar [hidden]{display:none!important}
+body.studio-console #calculation-status.studio-global-alert{top:90px!important}
+body.studio-console .scenario-map-heading>.scenario-area-badge{grid-row:1!important;height:32px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font:650 13px/18px system-ui!important;padding:6px 9px!important;min-width:67px;border:1px solid #658a80}
+body.studio-console .scenario-map-heading>.scenario-area-badge::after{display:none!important}
+body.studio-console .map .scenario-weather-legend{position:absolute!important;inset:auto 10px 12px auto!important;z-index:700;box-sizing:border-box;max-width:min(280px,calc(100% - 20px))!important;max-height:45%!important;margin:0!important;padding:7px 9px!important;background:#142a38ed!important;border:1px solid #416171;border-radius:6px!important;overflow:auto!important;pointer-events:auto;text-shadow:none!important;font:11px/1.45 system-ui!important;color:#e3edf3}
+body.studio-console .map .scenario-weather-legend>strong{display:block;font:600 9px/1.4 system-ui!important;color:#c7dce5}
+body.studio-console .map .scenario-weather-legend .scene-means-title{display:block!important;margin:5px 0!important;color:#b5d2d8!important;font:600 10px system-ui!important}
+body.studio-console .map .scenario-weather-legend .scene-weather-means{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:3px 12px;margin:7px 0 0!important}
+body.studio-console .scene-weather-means dt{font:10px/1.5 system-ui;color:#bcd2dd;max-width:155px}
+body.studio-console .scene-weather-means dd{font:600 11px/1.5 system-ui;color:#f1faf6;margin:0;text-align:right}
+body.studio-console .map .scenario-weather-legend .scenario-data-warning{font:10px/1.4 system-ui!important;margin-top:4px;color:#ffe0a4!important}
+body.studio-console .map .scenario-weather-legend[hidden]{display:none!important}
+body.studio-console .scenario-map-heading>span:not(.case-badge){grid-column:1/-1!important;grid-row:3!important}
+body.studio-console .map .scenario-weather-legend{right:52px!important;max-width:min(330px,calc(100% - 64px))!important;max-height:calc(100% - 108px)!important}
+body.studio-console .map .scenario-weather-legend .scene-means-title{display:none!important}
+body.studio-console .map .scenario-weather-legend .scene-weather-means{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto!important;gap:3px 7px;margin-top:5px!important}
+body.studio-console .scene-weather-means dt{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.studio-console .scene-weather-means dd{font-size:10px;white-space:nowrap}
+@media(min-width:1001px){body.studio-console #scenario-maps:has(>.scenario-map-card:nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:minmax(0,1fr)!important}}
+body.studio-console .map .scenario-weather-legend{bottom:36px!important;padding:5px 7px!important;max-height:calc(100% - 126px)!important}
+body.studio-console .map .scenario-weather-legend>strong{line-height:11px!important}
+body.studio-console .map .scenario-weather-legend .scenario-data-warning{font-size:9px!important;line-height:11px!important;margin-top:2px!important}
+body.studio-console .map .scenario-weather-legend .scene-weather-means{gap:2px 6px;margin-top:5px!important}
+body.studio-console .scene-weather-means dt,body.studio-console .scene-weather-means dd{line-height:12px!important}
+body.studio-console .studio-runbar #status.studio-job-status{position:static!important;inset:auto!important;order:20;margin:0 0 0 auto!important;padding:0 4px!important;background:none!important;color:#b7cfda!important;font:10px/1.5 system-ui!important;max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+body.studio-console .studio-runbar #status.error{color:#ffd2a4!important}
+body.studio-console .studio-right .studio-fire-key{position:static!important;inset:auto!important;display:flex;align-items:center;gap:6px;max-width:none;box-shadow:none;background:none;color:#d4e7ef;border:0;padding:10px 0;font:11px/1.5 system-ui}
+body.studio-console .studio-right .studio-fire-key[hidden]{display:none!important}
+
+/* Align actions with the area chip; keep explicit labels at every viewport size. */
+body.studio-console .scenario-map-card{container-type:inline-size}
+body.studio-console .scenario-map-card .scenario-map-heading>button{box-sizing:border-box!important;display:inline-flex!important;align-items:center;justify-content:center;align-self:start!important;grid-row:1!important;margin:0!important;min-width:60px!important;padding:6px 12px!important;background:#246b68!important;color:#fff!important;border:1px solid #7fc7bb!important;font:600 12px/18px system-ui!important;text-shadow:none!important;box-shadow:none!important;cursor:pointer}
+body.studio-console .scenario-map-card .scenario-map-heading>button.remove-scenario{min-width:70px!important;background:#44313b!important;color:#ffe9ee!important;border-color:#bd8a99!important}
+body.studio-console .scenario-map-card .scenario-map-heading>button:hover:not(:disabled){background:#2b756f!important;border-color:#b2ecde!important}
+body.studio-console .scenario-map-card .scenario-map-heading>button.remove-scenario:hover:not(:disabled){background:#6c3b4b!important;border-color:#f0bcc9!important}
+body.studio-console .scenario-map-card .scenario-map-heading>button:focus-visible{outline:2px solid #fff!important;outline-offset:3px}
+body.studio-console .scenario-map-card .scenario-map-heading>button:disabled{opacity:.45;cursor:default}
+body.studio-console .scenario-map-heading>.scenario-area-badge{align-self:start!important;margin:0!important;box-sizing:border-box!important}
+@container(max-width:480px){body.studio-console .scenario-map-card .scenario-map-heading{grid-template-columns:minmax(0,1fr) auto auto!important}body.studio-console .scenario-map-heading>strong{grid-column:1/3!important}body.studio-console .scenario-map-heading>.scenario-area-badge{grid-column:3!important}body.studio-console .scenario-map-card .scenario-map-heading>button{grid-row:2!important;grid-column:2!important}body.studio-console .scenario-map-card .scenario-map-heading>button.remove-scenario{grid-column:3!important}}
+
+/* Readable simulator controls and scenario summaries at normal desktop scale. */
+body.studio-console .studio-topbar button,
+body.studio-console .studio-topbar select,
+body.studio-console .studio-left button,
+body.studio-console .studio-right button{font-size:14px!important;min-height:38px}
+body.studio-console .scenario-map-card .scenario-map-heading>strong{font-size:18px!important}
+body.studio-console .scenario-map-card .scenario-map-heading>span:not(.case-badge),
+body.studio-console .scenario-map-card .scenario-map-heading>.scenario-explanation{font-size:13px!important;line-height:1.45!important}
+body.studio-console .scenario-map-card .scenario-map-heading>button{font-size:14px!important;min-height:36px}
+body.studio-console .scenario-area-badge{font-size:20px!important}

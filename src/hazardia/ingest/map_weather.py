@@ -1,12 +1,12 @@
 """Bounded global viewport display forecast. Never simulator forcing."""
-import collections,datetime as dt,gzip,hashlib,json,math,os,sqlite3,tempfile,threading,time,urllib.request,urllib.error
+import collections,datetime as dt,gzip,hashlib,json,math,os,shutil,sqlite3,tempfile,threading,time,urllib.request,urllib.error
 from pathlib import Path
 from urllib.parse import urlencode,parse_qs,urlsplit
 from hazardia.io import HazardError,load,loads,write_new,utcnow,timestamp
 from hazardia.ingest.wind import vector,finite
 VARS={'wind_speed_10m':'m/s','wind_direction_10m':'°','temperature_2m':'°C','precipitation':'mm'}
 EXTRA={'relative_humidity_2m':('%','humidity',0,100),'surface_pressure':('hPa','pressure',300,1200),'cloud_cover':('%','cloud',0,100),'wind_gusts_10m':('m/s','gusts',0,200),'shortwave_radiation':('W/m²','radiation',0,2000),'precipitation_probability':('%','rain_probability',0,100)}
-CAP=1024**2;TTL=10800;LIMIT=48;ARCHIVE_LIMIT=64*1024**2
+CAP=1024**2;TTL=10800;LIMIT=48;ARCHIVE_LIMIT=128*1024**2
 
 def grid(bounds):
     if not isinstance(bounds,list) or len(bounds)!=2 or any(not isinstance(p,list) or len(p)!=2 for p in bounds):raise HazardError('INVALID_INPUT','Two WGS84 bounds required')
@@ -164,6 +164,7 @@ class MapWeatherStore:
                 if last is not None and now-last<65:raise HazardError('WEATHER_THROTTLED','Attendi fino a65s per una nuova area; cache disponibile conservata')
                 if count>=LIMIT:raise HazardError('WEATHER_QUOTA','Budget giornaliero gratuito esaurito per nuove aree')
                 if self.storage_bytes()>ARCHIVE_LIMIT-3*CAP:raise HazardError('WEATHER_CACHE_FULL','Archivio meteo pieno; nessun download aggiuntivo')
+                if shutil.disk_usage(self.root).free<2*1024**3+3*CAP:raise HazardError('WEATHER_DISK_RESERVE','Riserva disco: preservare almeno 2 GiB liberi per il download meteo')
                 db.execute('INSERT INTO attempts VALUES(?)',(now,))
             request=urllib.request.Request(address,headers={'User-Agent':'HAZARDIA/0.1 https://github.com/francesco-basciani/hazardia','Accept-Encoding':'identity'})
             with self.opener(request,timeout=30) as response:

@@ -22,3 +22,13 @@ class CaseTests(unittest.TestCase):
    d=self.seed(root);d['scenarios'][0]['job_id']='../unsafe';(Path(root)/'web-assets/fire-cases/sample.json').write_text(json.dumps(d));cases=FireCases(root)
    with self.assertRaises(HazardError):cases.read('sample')
    self.assertFalse((cases.state/'sample/workspace.json').exists())
+
+ def test_saved_plan_metadata_is_opt_in_validated_and_returned(self):
+  from hazardia.decision.fire_priorities import DEFAULT_WEIGHTS
+  with tempfile.TemporaryDirectory() as root:
+   d=self.seed(root);body=dict(job_id='job-'+'a'*32,fleet=[dict(id='ground',category='waterline_action',available=True,arrival_minutes=15)],weights=DEFAULT_WEIGHTS,robust=.5,assumptions_confirmed=True)
+   d['planning']=dict(decision_id='decision-'+'b'*32,evaluation_id='decision-'+'c'*32,request=body,duration_note='Disponibilità ipotetica fino alla fine; barriera persistente.')
+   path=Path(root)/'web-assets/fire-cases/sample.json';path.write_text(json.dumps(d));self.assertEqual(FireCases(root).read('sample')['case']['planning'],d['planning'])
+   for key,value in [('decision_id','../escape'),('evaluation_id',7),('duration_note','x'*1201),('request',dict(body,fleet=[]))]:
+    bad=copy.deepcopy(d);bad['planning'][key]=value;path.write_text(json.dumps(bad))
+    with self.assertRaises(HazardError):FireCases(root).definition('sample')

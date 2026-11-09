@@ -28,3 +28,14 @@ export function screenSamplePlan(map,field,cols,rows,stepX,stepY,offset=.5,slot=
 export function plannedScalar(plan,values,i){
  if(!plan||!values)return null;const j=plan.base[i];if(j<0)return null;const nx=plan.nx,a=values[j],b=values[j+1],c=values[j+nx],d=values[j+nx+1];if(!Number.isFinite(a)||!Number.isFinite(b)||!Number.isFinite(c)||!Number.isFinite(d))return null;const k=i*4,w=plan.weights;return a*w[k]+b*w[k+1]+c*w[k+2]+d*w[k+3];
 }
+
+// Cartographic land mask only: never changes forecasts or physical inputs.
+export function landIndex(collection){
+ const polygons=[];
+ for(const f of collection.features||[]){const g=f.geometry;for(const rings of g?.type==='Polygon'?[g.coordinates]:g?.type==='MultiPolygon'?g.coordinates:[]){
+  const outer=rings[0];if(!outer?.length)continue;let west=Infinity,east=-Infinity,south=Infinity,north=-Infinity;
+  for(const [x,y] of outer){west=Math.min(west,x);east=Math.max(east,x);south=Math.min(south,y);north=Math.max(north,y);}polygons.push({rings,west,east,south,north});
+ }}
+ const inside=(ring,x,y)=>{let hit=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[i],b=ring[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])hit=!hit;}return hit;};
+ const cache=new Map();return (lat,lon)=>{const key=lat+','+lon;if(cache.has(key))return cache.get(key);const hit=polygons.some(p=>lon>=p.west&&lon<=p.east&&lat>=p.south&&lat<=p.north&&inside(p.rings[0],lon,lat)&&!p.rings.slice(1).some(r=>inside(r,lon,lat)));if(cache.size>=512)cache.clear();cache.set(key,hit);return hit;};
+}

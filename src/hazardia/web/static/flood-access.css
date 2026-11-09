@@ -1,0 +1,62 @@
+.flood-access {
+  margin: .55rem 0 .8rem;
+  border: 1px solid #9cb2c5;
+  border-radius: 8px;
+  background: #edf4f8;
+  color: #17364b;
+}
+.flood-access > summary { cursor: pointer; padding: .7rem 1rem; font-weight: 700; }
+.flood-access-body { padding: 0 1rem .75rem; min-width: 0; }
+.flood-access-body p { margin: .38rem 0; overflow-wrap: anywhere; }
+.flood-access-controls, .flood-access-inspector, .flood-access-links {
+  display: flex;
+  gap: .5rem 1rem;
+  flex-wrap: wrap;
+  align-items: end;
+}
+.flood-access-controls label, .flood-access-inspector label {
+  display: grid;
+  gap: .2rem;
+  min-width: 0;
+  font-weight: 600;
+}
+.flood-access select { max-width: 100%; min-height: 34px; }
+.flood-access-status { font-size: 1.12rem; font-weight: 700; }
+.flood-access-note { color: #314e61; }
+.flood-access-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1rem;
+  list-style: none;
+  padding: .35rem 0;
+  margin: .25rem 0;
+}
+.flood-access-legend li::before {
+  content: '';
+  display: inline-block;
+  width: 1.1rem;
+  height: .32rem;
+  margin: 0 .32rem .15rem 0;
+  border: 1px solid #426279;
+  background: var(--route-color);
+}
+.flood-access-body details { margin-top: .5rem; }
+.flood-access-body details > summary { cursor: pointer; font-weight: 600; }
+.flood-access-links a { color: #18597f; text-decoration: underline; }
+
+.flood-access-layout { min-width: 0; }
+@media (min-width: 1120px) {
+  .flood-access-layout:has(.flood-access[open]:not([hidden])) {
+    display: grid;
+    grid-template-columns: minmax(270px, 35%) minmax(0, 1fr);
+    gap: .75rem;
+    align-items: start;
+  }
+  .flood-access-layout:has(.flood-access[open]:not([hidden])) .flood-access { margin: 0; }
+  .flood-access-layout:has(.flood-access[open]:not([hidden])) .map-pair { margin-top: 0; }
+  .flood-access-controls label:nth-child(-n+2), .flood-access-inspector label { width: 100%; }
+  .flood-access-inspector select { width: 100%; }
+}
+.flood-access-controls label, .flood-access-inspector label { margin: 0; }
+.flood-access-controls label > select, .flood-access-inspector label > select { margin: 0; }
+.flood-access-legend { font-size: .8rem; }

@@ -5,7 +5,7 @@ const clockFormats=new Map();
 export function monitoredTime(at,now=Date.now(),timeZone='Europe/Rome',language='it-IT'){
  const selected=typeof at==='string'&&Number.isFinite(Date.parse(at))?new Date(at):null;
  const key=language+'|'+timeZone;if(!clockFormats.has(key))clockFormats.set(key,new Intl.DateTimeFormat(language,{timeZone,day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}));const format=v=>{const f=clockFormats.get(key),p=Object.fromEntries(f.formatToParts(v).filter(x=>['year','month','day','hour','minute','second'].includes(x.type)).map(x=>[x.type,Number(x.value)])),offset=Math.round((Date.UTC(p.year,p.month-1,p.day,p.hour,p.minute,p.second)-Math.floor(v.getTime()/1000)*1000)/60000),sign=offset>=0?'+':'−',hours=String(Math.floor(Math.abs(offset)/60)).padStart(2,'0'),minutes=String(Math.abs(offset)%60).padStart(2,'0');return f.format(v)+' UTC'+sign+hours+':'+minutes;};
- const nowDate=new Date(now),wallCompact=new Intl.DateTimeFormat(language,{timeZone,hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).format(nowDate);
+ const nowDate=new Date(now),wallCompact=new Intl.DateTimeFormat(language,{timeZone,day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).format(nowDate);
  return {nowAt:nowDate.toISOString(),wallCompact,at:selected?.toISOString()||null,future:!!selected&&selected.getTime()>now,selected:selected?format(selected):null,compact:selected?new Intl.DateTimeFormat(language,{timeZone,day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(selected):null,now:format(new Date(now)),timeZone};
 }
 export function monitorClock(mount){

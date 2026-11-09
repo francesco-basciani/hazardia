@@ -1,0 +1,19 @@
+[Unit]
+Description=WII existing local research service
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=120
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=hazardia
+WorkingDirectory=/home/hazardia/wii/app
+Environment=PYTHONPATH=src
+ExecStart=/home/hazardia/hazardia-runtime/wii-env/bin/python -m wii --runtime /home/hazardia/hazardia-runtime serve --port 8081
+Restart=on-failure
+RestartSec=15
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target

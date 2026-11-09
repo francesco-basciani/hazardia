@@ -221,7 +221,7 @@
             "hours": {
               "type": "integer",
               "minimum": 2,
-              "maximum": 12
+              "maximum": 48
             },
             "rain_mm": {
               "type": "array",
@@ -364,7 +364,7 @@
               "hours": {
                 "type": "integer",
                 "minimum": 2,
-                "maximum": 12
+                "maximum": 48
               },
               "rain_mm": {
                 "type": "array",

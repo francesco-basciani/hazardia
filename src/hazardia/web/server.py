@@ -16,7 +16,10 @@ from hazardia.web.rain_service import RainService
 from hazardia.web.radar_service import RadarService
 from hazardia.web.terrain_trial import TerrainTrial
 from hazardia.ingest.observed_rain import ObservedRainStore
+from hazardia.ingest.thermal import ThermalStore
+from hazardia.ingest.hydrometers import HydrometerStore
 from hazardia.web.notebook import Notebook
+from hazardia.web.fire_exports import FireExports
 from hazardia.web.fire_workspace import FireWorkspace
 from hazardia.web.fire_cases import FireCases
 from hazardia.web.fire_coverage import coverage as fire_coverage
@@ -37,6 +40,35 @@ class App:
         self.root=Path(root).resolve();self.store=JobStore(self.root/'jobs',(self.root/'runtime-fire-studio.json') if (self.root/'runtime-fire-studio.json').exists() else (self.root/'runtime-v2.json'));self.state=self.root/'web-state';self.state.mkdir(exist_ok=True);self.results={};self.lock=threading.Lock();self.pool=concurrent.futures.ThreadPoolExecutor(max_workers=2);self.capacity=threading.BoundedSemaphore(4);self.metrics=[];self.stop=threading.Event();self.replay=ResearchControl(self.state/"research-replay");self.osm_tiles=OSMTiles(self.state);self.orthophotos=CachedImagery(self.state,Orthophotos);self.regional_satellite=CachedImagery(self.state,RegionalSatellite);self.geocoder=Geocoder(self.state);self.notebook=Notebook(self.state/"notebook");self.fire_workspace=FireWorkspace(self.state/"fire-workspace");self.fire_cases=FireCases(self.root);self.attention=AttentionStore(self.state/"attention",self.root);self.weather=ForecastStore(self.state/"weather");self.weather_lock=threading.Lock();self.wind=WindStore(self.state/"regional-wind");self.wind_lock=threading.Lock();self.map_weather=MapWeatherStore(self.state/"map-weather");self.map_weather_lock=threading.Lock();from hazardia.web.dynamic_fire import DynamicFire;self.dynamic_fire=DynamicFire(self);self.territorial=TerritorialService(self)
         self.earthquakes=ObservedLayers(self.state,'earthquakes');self.power_network=ObservedLayers(self.state,'power');self.recent_imagery=RecentImagery(self.state);self.traffic=Traffic(self.state);self.rain=RainService(self);self.radar=RadarService(self);self.terrain_trial=TerrainTrial(self.state)
         self.observed_rain=ObservedRainStore(self.state/'observed-rain')
+        self.thermal=ThermalStore(self.state/'thermal-observations')
+        self.hydrometers=HydrometerStore(self.state/'hydrometer-observations')
+        # Optional add-on: no WII import, database or scheduler without explicit local configuration.
+        self.wii=None
+        wii_config=self.root/'wii-config.json'
+        if wii_config.exists():
+            enabled=load(wii_config)
+            if (not isinstance(enabled,dict) or type(enabled.get('enabled')) is not bool or
+                set(enabled)-{'enabled','mode','port'} or enabled.get('mode','client')!='client' or
+                ('port' in enabled and (type(enabled['port']) is not int or not 1024<=enabled['port']<=65535))):
+                raise HazardError('INVALID_INPUT','WII enabled boolean and optional client mode/loopback port required')
+            if enabled['enabled']:
+                from hazardia.web.wii_client import APIClient
+                self.wii=APIClient(enabled.get('port',8081))
+        # TCIP is a read-only optional consumer, never an embedded intelligence runtime.
+        self.tcip=None;self.tcip_configured=False;self.tcip_error=None
+        tcip_config=self.root/'tcip-config.json'
+        if tcip_config.exists():
+            try:
+                cfg=load(tcip_config)
+                if not isinstance(cfg,dict) or type(cfg.get('enabled')) is not bool or set(cfg)-{'enabled','mode','port'} or cfg.get('mode','client')!='client':
+                    raise ValueError('Invalid optional TCIP configuration')
+                self.tcip_configured=cfg['enabled']
+                if cfg['enabled']:
+                    from hazardia.web.tcip_client import APIClient
+                    self.tcip=APIClient(self.root,cfg.get('port',18010))
+            except (ValueError,HazardError,OSError):self.tcip_error='TCIP_CONFIG'
+        from hazardia.web.avalanche_refresh import start as start_avalanche_refresh
+        start_avalanche_refresh(self)
         threading.Thread(target=self.models,daemon=True).start()
     def catalog(self):return load(self.root/'web-assets/catalog.json')
     def models(self):
@@ -177,12 +209,13 @@ class App:
 class Handler(BaseHTTPRequestHandler):
     server_version='HAZARDIA-Research/0.1'
     def log_message(self,*args):pass
-    def send(self,status,value,content_type='application/json',etag=None,cache_age=None):
+    def send(self,status,value,content_type='application/json',etag=None,cache_age=None,filename=None):
         raw=json.dumps(value,allow_nan=False).encode() if content_type=='application/json' and not isinstance(value,bytes) else value
         if cache_age is not None:
             etag=etag or '"'+hashlib.sha256(raw).hexdigest()+'"'
             if status==200 and self.headers.get('If-None-Match')==etag:status=304;raw=b''
-        self.send_response(status);self.send_header('Content-Type',content_type);self.send_header('Content-Length',str(len(raw)));self.send_header('Cache-Control','private, max-age='+str(cache_age) if cache_age is not None else 'no-cache' if content_type=='application/json' else ('no-store' if self.path.startswith('/api/maps/ortho/') else 'no-cache' if not self.path.startswith('/assets/') else 'public, max-age=3600'));self.send_header('X-Content-Type-Options','nosniff');self.send_header('Referrer-Policy','same-origin');self.send_header('Content-Security-Policy',"default-src 'self'; img-src 'self' data: blob:; script-src 'self'"+(" 'wasm-unsafe-eval'" if urlsplit(self.path).path=='/map-lab.html' else '')+"; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; frame-ancestors "+("'self'" if urlsplit(self.path).path in ('/fire-studio.html','/traffic-studio.html') else "'none'")+("; worker-src 'self' blob:" if urlsplit(self.path).path=='/map-lab.html' else ''))
+        self.send_response(status);self.send_header('Content-Type',content_type);self.send_header('Content-Length',str(len(raw)));self.send_header('Cache-Control','no-store' if self.path.startswith('/api/tcip/') else 'private, max-age='+str(cache_age) if cache_age is not None else 'no-cache' if content_type=='application/json' else ('no-store' if self.path.startswith('/api/maps/ortho/') else 'no-cache' if not self.path.startswith('/assets/') else 'public, max-age=3600'));self.send_header('X-Content-Type-Options','nosniff');self.send_header('Referrer-Policy','same-origin');self.send_header('Content-Security-Policy',"default-src 'self'; img-src 'self' data: blob:; script-src 'self'"+(" 'wasm-unsafe-eval'" if urlsplit(self.path).path=='/map-lab.html' else '')+"; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; frame-ancestors "+("'self'" if urlsplit(self.path).path in ('/fire-studio.html','/traffic-studio.html','/flood-studio.html') else "'none'")+("; worker-src 'self' blob:" if urlsplit(self.path).path=='/map-lab.html' else ''))
+        if filename:self.send_header('Content-Disposition','attachment; filename="'+filename+'"')
         if etag:self.send_header('ETag',etag)
         self.end_headers()
         if self.command!='HEAD':self.wfile.write(raw)
@@ -202,6 +235,15 @@ class Handler(BaseHTTPRequestHandler):
                 if not 0<size<=65536:raise HazardError('PAYLOAD_LIMIT','Body must be1..65536bytes')
                 body=loads(self.rfile.read(size).decode())
                 if not isinstance(body,dict):raise HazardError('INVALID_INPUT','JSON object required')
+                if path=='/api/avalanche/trails/query':
+                    from hazardia.web.avalanche_trails import service
+                    if set(body)-{'bounds','refresh'} or type(body.get('refresh',False)) is not bool:raise HazardError('INVALID_INPUT','Only bounds and boolean refresh allowed')
+                    return self.send(202,service(app).query(body.get('bounds'),body.get('refresh',False)))
+                if path.startswith('/api/wii/'):
+                    return self.wii_response('POST',path,body)
+                if path=='/api/fire-exports':
+                    with app.lock:result=FireExports(app.state).create(body)
+                    return self.send(201,result)
                 if path=='/api/fire-workspace':
                     with app.lock:
                         case_id=parse_qs(urlsplit(self.path).query,keep_blank_values=True).get('case',[None])[0]
@@ -221,6 +263,10 @@ class Handler(BaseHTTPRequestHandler):
                 if path=='/api/monitoring/refresh':
                     if body:raise HazardError('INVALID_INPUT','Configured monitoring profile only')
                     return self.send(202,app.attention.refresh())
+                if path=='/api/monitoring/hydrometers/refresh':
+                    if body:raise HazardError('INVALID_INPUT','Configured public source only')
+                    return self.send(202,app.hydrometers.refresh())
+                if path=='/api/monitoring/thermal/refresh':return self.send(202,app.thermal.refresh(body))
                 if path=='/api/monitoring/observed-rain/refresh':
                     if body:raise HazardError('INVALID_INPUT','No source or time overrides accepted')
                     return self.send(202,app.observed_rain.refresh())
@@ -262,6 +308,28 @@ class Handler(BaseHTTPRequestHandler):
                     if choice not in ['ACKNOWLEDGE_RESEARCH','REJECT'] or result.get('status')!='VALIDATED_FOR_SIMULATION':raise HazardError('INVALID_INPUT','Review only a verified research proposal')
                     record=dict(id='review-'+uuid.uuid4().hex,decision_id=result['id'],choice=choice,at=utcnow(),operational_authority=False,meaning='Modeled research review only; no dispatch');write_new(app.state/(record['id']+'.json'),record);return self.send(201,record)
                 raise HazardError('NOT_FOUND','Unknown endpoint')
+            if path=='/api/avalanche/trails':
+                from hazardia.web.avalanche_trails import service
+                params=parse_qs(urlsplit(self.path).query);key=params.get('key',[None])[0];result=service(app).snapshot(key)
+                if params.get('download')==['1'] and result.get('status')=='READY':return self.send(200,result['data'],filename='hazardia-sentieri-valanghe-ODbL.geojson')
+                if params.get('download')==['1']:return self.send(409,dict(code='TRAIL_ASSESSMENT_NOT_READY',detail='Ricalcolo in corso o dati non disponibili'))
+                return self.send(200,result)
+            if path in ('/api/avalanche/layer','/api/avalanche/status'):
+                from hazardia.web.avalanche_layer import Snapshot
+                try:
+                    result=Snapshot(app.root).response()
+                    return self.send(200,result if path.endswith('/layer') else dict(metadata=result['metadata'],pipeline=result['pipeline'],version=result['version']))
+                except (OSError,ValueError,KeyError,TypeError):
+                    return self.send(503,dict(code='AVALANCHE_SNAPSHOT_UNAVAILABLE',detail='Snapshot absent or invalid; no values inferred'))
+            if path.startswith('/api/tcip/'):
+                return self.tcip_response(path)
+            if path.startswith('/api/wii/'):
+                return self.wii_response('GET',path)
+            if path in ('/wii.html','/wii.js','/wii.css') and not getattr(app,'wii',None):
+                return self.send(409,dict(code='WII_DISABLED',detail='Optional add-on disabled'))
+            if path in ('/wii.html','/wii.js','/wii.css') and getattr(app,'wii',None):
+                target=app.wii.base+path+('?' + urlsplit(self.path).query if urlsplit(self.path).query else '')
+                self.send_response(302);self.send_header('Location',target);self.send_header('Content-Length','0');self.end_headers();return
             if path=='/api/monitoring/recent-imagery':return self.send(200,app.recent_imagery.snapshot())
             preview=re.fullmatch(r'/api/monitoring/recent-imagery/([a-f0-9]{24}).jpg',path)
             if preview:return self.send(200,app.recent_imagery.image(preview[1]),'image/jpeg')
@@ -270,6 +338,8 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/traffic/config':return self.send(200,app.traffic.config())
             if path=='/api/traffic':return self.send(200,app.traffic.snapshot())
             if path.startswith('/api/territorial-context/'):return self.send(200,app.territorial.read(path.split('/')[-1]))
+            export=re.fullmatch(r'/api/fire-exports/([a-f0-9]{32})\.json',path)
+            if export:return self.send(200,FireExports(app.state).read(export[1]),filename=('hazardia-scenari-'+export[1][:8]+'.json') if parse_qs(urlsplit(self.path).query).get('download')==['1'] else None)
             if path=='/api/fire-cases':return self.send(200,dict(cases=app.fire_cases.catalog()))
             if path=='/api/fire-workspace':
                 with app.lock:
@@ -304,6 +374,8 @@ class Handler(BaseHTTPRequestHandler):
             if tile:
                 raw=app.orthophotos.tile(*map(int,tile.groups()));return self.send(200,raw,'image/jpeg',cache_age=app.orthophotos.cache.remaining('-'.join(tile.groups())))
             if path=='/api/monitoring':return self.send(200,app.attention.snapshot())
+            if path=='/api/monitoring/hydrometers':return self.send(200,app.hydrometers.snapshot())
+            if path=='/api/monitoring/thermal':return self.send(200,app.thermal.snapshot(parse_qs(urlsplit(self.path).query).get('region',['Europe'])[0]))
             if path=='/api/monitoring/observed-rain':return self.send(200,app.observed_rain.snapshot())
             if path.startswith('/api/monitoring/rain/'):return self.send(200,app.rain.read(path.split('/')[-1]))
             attention_layer=re.fullmatch(r'/api/monitoring/layers/(snapshot-[a-f0-9]{32})/((?:dpc|effis)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.geojson)',path)
@@ -347,6 +419,48 @@ class Handler(BaseHTTPRequestHandler):
         finally:
             with app.lock:
                 app.metrics.append(dict(path=path.split('/')[1:3],elapsed_ms=(time.monotonic()-tic)*1000,at=utcnow()));app.metrics[:]=app.metrics[-500:]
+
+    def tcip_response(self,path):
+        app=self.server.app;service=getattr(app,'tcip',None)
+        if path=='/api/tcip/status':
+            return self.send(200,dict(enabled=bool(service),configured=getattr(app,'tcip_configured',False),code=getattr(app,'tcip_error',None),mode='read_only_client',coupled_to_optimizer=False))
+        if service is None:return self.send(503 if getattr(app,'tcip_configured',False) else 409,dict(code='TCIP_UNAVAILABLE',detail='Optional TCIP integration is not configured'))
+        try:
+            query=parse_qs(urlsplit(self.path).query,keep_blank_values=True)
+            if path=='/api/tcip/local-rates' and not query:return self.send(200,service.local_catalog())
+            local_match=re.fullmatch(r'/api/tcip/local-rates/([a-f0-9]{20})',path)
+            if local_match and not query:return self.send(200,service.local_layer(local_match[1]))
+            if path=='/api/tcip/local-context' and set(query)=={'bbox','level','year'} and all(len(v)==1 for v in query.values()):
+                return self.send(200,service.local_context(query['bbox'][0],query['level'][0],query['year'][0]))
+            if path=='/api/tcip/local-lookup' and set(query)=={'q','year'} and all(len(v)==1 for v in query.values()):
+                return self.send(200,service.local_lookup(query['q'][0],query['year'][0]))
+            if path=='/api/tcip/population-rates' and not set(query)-{'crime','period'} and all(len(v)==1 for v in query.values()):
+                return self.send(200,service.population_rates(query.get('crime',['theft'])[0],query.get('period',['2023'])[0]))
+            if path=='/api/tcip/document-map' and not query:return self.send(200,service.document_map())
+            if path=='/api/tcip/layers' and not query:return self.send(200,service.catalog())
+            match=re.fullmatch(r'/api/tcip/layers/([a-f0-9-]{36})',path)
+            if match and not set(query)-{'years'} and (not query or len(query['years'])==1 and query['years'][0].isascii() and query['years'][0].isdigit()):
+                return self.send(200,service.layer(match[1],int(query['years'][0]) if query else None))
+            raise HazardError('INVALID_INPUT','Only a fixed TCIP release and optional years are supported')
+        except HazardError as exc:
+            return self.send(429 if exc.code=='TCIP_BUSY' else 400 if exc.code=='INVALID_INPUT' else 503,dict(code=exc.code,detail=str(exc),coupled_to_optimizer=False))
+
+    def wii_response(self,method,path,body=None):
+        service=getattr(self.server.app,'wii',None)
+        if service is None:
+            return self.send(200 if method=='GET' and path=='/api/wii/status' else 409,
+                             dict(enabled=False,code='WII_DISABLED'))
+        try:
+            download=re.fullmatch(r'/api/wii/inventory/exports/(wii-[a-f0-9]{32})\.sqlite',path)
+            if method=='GET' and download:return self.send(200,service.download_inventory(download[1]),'application/vnd.sqlite3')
+            status,result=service.route(method,path,urlsplit(self.path).query,body)
+            return self.send(status,result)
+        except HazardError as exc:
+            statuses={'WII_CONFLICT':409,'WII_NOT_FOUND':404,'WII_SOURCE_DISABLED':409,
+                      'WII_QUEUE_FULL':429,'WII_RATE_LIMIT':429,'WII_PAYLOAD_LIMIT':413,
+                      'WII_UNCALIBRATED':422,'WII_UNSUPPORTED_SCENARIO':422,
+                      'WII_DEPENDENCY':503,'WII_STORAGE_FULL':503}
+            return self.send(statuses.get(exc.code,400),dict(code=exc.code,detail=str(exc),retryable=exc.code in ('WII_RATE_LIMIT','WII_QUEUE_FULL')))
 
 def serve(root,port=8080):
     app=App(root);server=ThreadingHTTPServer(('127.0.0.1',port),Handler);server.app=app;server.daemon_threads=True

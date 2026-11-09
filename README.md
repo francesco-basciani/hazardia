@@ -215,3 +215,6 @@ Il [confine di scambio](docs/EXCHANGE-CONTRACTS.md) descrive prodotti grigliati 
 ## Audit framework · 26 ottobre 2026
 
 Controllo funzionale e aggiornamenti del26ottobre: rapporto con matrice dei livelli, correzioni, misure e problemi aperti. Esito PARZIALE: non tutte le fonti sono aggiornabili o complete. [Rapporto](reports/FRAMEWORK-AUDIT-20261026.md).
+## Scenario comparison artifacts
+
+The [wildfire and flood comparison package](reproducibility/scenario-comparisons/) contains the published metric records and a script to recompute the comparisons.

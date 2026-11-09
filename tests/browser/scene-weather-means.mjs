@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const {sceneWeatherMeans}=await import('data:text/javascript;base64,'+Buffer.from(readFileSync('src/hazardia/web/static/scene-weather-means.js','utf8')).toString('base64'));
+const bounds={south:42,north:43,west:13,east:14},keys=['temperature','humidity','precipitation','rain_probability','cloud','pressure','radiation','gusts','wind'];
+const values={temperature:15,humidity:80,precipitation:2,rain_probability:60,cloud:75,pressure:1010,radiation:300,gusts:12};let calls=0;
+const a=sceneWeatherMeans(bounds,keys,key=>{calls++;return values[key]},()=>[3,4],()=>true);
+for(const key of keys)assert(Math.abs(a[key].value-(key==='wind'?5:values[key]))<1e-8,key);assert.equal(calls,384*8);assert.equal(a.wind.covered,384);
+const sea=sceneWeatherMeans(bounds,keys,key=>values[key],()=>[0,-1],()=>false);for(const k of ['temperature','humidity','pressure','radiation'])assert.equal(sea[k].value,null);assert.equal(sea.cloud.covered,384);assert.equal(sea.wind.direction,0);
+const noMask=sceneWeatherMeans(bounds,['temperature','wind'],()=>99,()=>[1,0],null);assert(noMask.temperature.landPending);assert.equal(noMask.temperature.value,null);assert.equal(noMask.wind.value,1);
+const missing=sceneWeatherMeans(bounds,['rain_probability','precipitation'],key=>key==='precipitation'?0:NaN,()=>null,()=>true);assert.equal(missing.rain_probability.value,null);assert(missing.rain_probability.partial);assert.equal(missing.precipitation.value,0);
+const opposing=sceneWeatherMeans(bounds,['wind'],()=>null,(_lat,lon)=>lon<13.5?[1,0]:[-1,0],()=>true);assert(Math.abs(opposing.wind.value-1)<1e-8);assert.equal(opposing.wind.direction,null);
+const circular=sceneWeatherMeans(bounds,['wind'],()=>null,(_lat,lon)=>{const d=(lon<13.5?359:1)*Math.PI/180;return [-Math.sin(d),-Math.cos(d)]},()=>true);assert(Math.min(circular.wind.direction,360-circular.wind.direction)<1e-6);
+console.log('PASS 9 fields, 384-point bound, wind speed/direction, opposing/circular vectors, land/sea, missing mask, missing data versus zero rain');

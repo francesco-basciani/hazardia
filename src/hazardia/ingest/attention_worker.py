@@ -111,8 +111,30 @@ def official_shapes(archive,layer):
             rows.append(dict(type='Feature',geometry=dict(feature['geometry']),properties=dict(feature['properties'])))
     return rows
 
+def normalize_touching_rings(geometry):
+    """Accept only a valid polygonal decomposition with identical boundary.
+
+    Never buffer, smooth, move a coastline or accept a substantial area change.
+    Raw official bytes remain in the archive; this is an audited derived shape.
+    """
+    from shapely.validation import explain_validity,make_valid
+    if geometry.is_empty or geometry.is_valid or geometry.geom_type not in ('Polygon','MultiPolygon'):
+        return None
+    reason=explain_validity(geometry)
+    if not reason.startswith('Ring Self-intersection') or geometry.area<=0:return None
+    fixed=make_valid(geometry)
+    if fixed.is_empty or not fixed.is_valid or fixed.geom_type not in ('Polygon','MultiPolygon'):return None
+    if geometry.bounds!=fixed.bounds or not geometry.boundary.equals(fixed.boundary):return None
+    if not math.isclose(geometry.area,fixed.area,rel_tol=1e-12,abs_tol=1e-15):return None
+    return fixed,dict(method='GEOS_MAKE_VALID_IDENTICAL_BOUNDARY_V1',original_valid=False,
+                      original_reason=reason,boundary_equal=True,bounds_equal=True,
+                      area_relative_delta=abs(fixed.area-geometry.area)/geometry.area,
+                      area_absolute_delta=abs(fixed.area-geometry.area),
+                      original_wkb_sha256=hashlib.sha256(geometry.wkb).hexdigest(),
+                      normalized_wkb_sha256=hashlib.sha256(fixed.wkb).hexdigest())
+
 def recover_official_shapes(geo,rows,source):
-    """Only replace invalid footprints with a valid, matched official counterpart."""
+    """Use matched same-bulletin SHP; normalize only exactly preserved boundaries."""
     from shapely.geometry import shape,mapping
     from collections import Counter
     target=[f['properties']['name'] for f in geo['features']];names=[r['properties']['Nome_zona'] for r in rows]
@@ -126,9 +148,16 @@ def recover_official_shapes(geo,rows,source):
         original=shape(f['geometry'])
         if original.is_valid:continue
         p=f['properties'];row=by_name[p['name']];candidate=shape(row['geometry'])
-        if candidate.is_empty or not candidate.is_valid:continue
+        normalization=None
+        if not candidate.is_valid:
+            normalized=normalize_touching_rings(candidate)
+            if normalized is None:continue
+            candidate,normalization=normalized
+        if candidate.is_empty:continue
         if candidate.geom_type not in ('Polygon','MultiPolygon') or max(abs(a-b) for a,b in zip(original.bounds,candidate.bounds))>.002:continue
         p.update(topology_geometry_valid=False,geometry_source='OFFICIAL_SHP_SAME_BULLETIN',geometry_source_url=source,official_zone_code=row['properties']['Zona_all'])
+        if normalization:
+            p.update(geometry_source='OFFICIAL_SHP_NORMALIZED_SAME_BULLETIN',geometry_normalization=normalization,official_shp_geometry_valid=False)
         f['geometry']=mapping(candidate);recovered+=1
     return recovered
 
@@ -136,7 +165,8 @@ def geometry_coverage(geo):
     features=geo['features'];missing=[f['properties']['name'] for f in features if f['properties'].get('geometry_warning')]
     return dict(geometry_unavailable_zones=missing,geometry_qualified_zones=len(features)-len(missing),
                 bulletin_known_zones=sum(all(v is not None for v in f['properties']['levels'].values()) for f in features),
-                recovered_geometry_zones=sum(f['properties'].get('geometry_source')=='OFFICIAL_SHP_SAME_BULLETIN' for f in features))
+                recovered_geometry_zones=sum(f['properties'].get('geometry_source') in ('OFFICIAL_SHP_SAME_BULLETIN','OFFICIAL_SHP_NORMALIZED_SAME_BULLETIN') for f in features),
+                normalized_geometry_zones=sum(bool(f['properties'].get('geometry_normalization')) for f in features))
 
 def dpc(acq,profile):
     from shapely.geometry import shape,mapping
@@ -216,6 +246,8 @@ def zone_summary(cells,zones):
             summary[key+'_mean']=round(sum(w*v for w,v in values)/sum(w for w,v in values),3) if values else None
             summary[key+'_min']=min((v for w,v in values),default=None)
             summary[key+'_samples']=len(values);summary[dest]=classify(summary[key],thresholds)
+        for key in ['geometry_source','geometry_source_url','official_zone_code','geometry_normalization']:
+            if key in p:summary[key]=p[key]
         if not valid:summary['geometry_warning']='Unqualified source geometry; no zonal calculation'
         if not selected:summary['coverage_warning']='No qualified source cell centres within this zone; no risk classification'
         results.append(dict(type='Feature',geometry=zone['geometry'],properties=summary))

@@ -8,7 +8,7 @@ export function forecastPlayback({select,mount,getTimes,getCurrent,active=()=>tr
  note.className='forecast-interpolation-note';note.textContent='Ora comune a meteo, indici incendio e criticità. Ogni fonte conserva validità e passo propri; osservazioni datate, nessuna previsione inventata.';
  for(const [value,label] of [[1500,'1 h / 1,5 s'],[750,'1 h / 0,75 s'],[3000,'1 h / 3 s']]){const o=document.createElement('option');o.value=value;o.textContent=label;speed.append(o);}speedLabel.append(speed);bar.append(title,back,play,next,slider,out,speedLabel,note);mount.append(bar);
  let timer=null,internal=false,times=[],position=0,phase=null,previous=null,lastPaint=0;
- const playing=()=>{play.textContent=timer!==null?'Ⅱ Pausa':'▶ Riproduci';play.setAttribute('aria-label',timer!==null?'Pausa previsioni':'Riproduci previsioni');play.setAttribute('aria-pressed',String(timer!==null));};
+ const playing=()=>{const running=timer!==null,text=running?'Ⅱ Pausa':'▶ Riproduci',label=running?'Pausa previsioni':'Riproduci previsioni',pressed=String(running);if(play.textContent!==text)play.textContent=text;if(play.getAttribute('aria-label')!==label)play.setAttribute('aria-label',label);if(play.getAttribute('aria-pressed')!==pressed)play.setAttribute('aria-pressed',pressed);};
  function stop(){if(timer!==null)cancelAnimationFrame(timer);timer=null;previous=null;playing();}
  function sync(){
   const fresh=[...new Set(getTimes()||[])].filter(at=>Number.isFinite(Date.parse(at))).sort();

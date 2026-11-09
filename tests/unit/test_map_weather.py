@@ -65,6 +65,19 @@ class MapWeatherTests(unittest.TestCase):
    def get(*a,**k):raise OSError('offline')
    s=MapWeatherStore(root,opener=get);s.acquire(B);s.acquire([[12.,-17.],[17.,-11.]])
    self.assertEqual(s.snapshot()['quota']['attempts_today'],1);self.assertIn('WEATHER_THROTTLED',s.snapshot()['error']);self.assertIsNone(s.snapshot()['forecast'])
+ def test_disk_reserve_blocks_before_network_and_quota(self):
+  from unittest.mock import patch
+  from types import SimpleNamespace
+  with tempfile.TemporaryDirectory() as root:
+   calls=[]
+   s=MapWeatherStore(root,opener=lambda *a,**k:calls.append(1))
+   with patch('hazardia.ingest.map_weather.shutil.disk_usage',return_value=SimpleNamespace(free=2*1024**3)):
+    s.acquire(B)
+   self.assertEqual(calls,[])
+   self.assertEqual(s.snapshot()['quota']['attempts_today'],0)
+   self.assertIn('WEATHER_DISK_RESERVE',s.snapshot()['error'])
+   self.assertIsNone(s.snapshot()['forecast'])
+
  def test_daily_budget(self):
   with tempfile.TemporaryDirectory() as root:
    now=1792195000;s=MapWeatherStore(root,clock=lambda:now)

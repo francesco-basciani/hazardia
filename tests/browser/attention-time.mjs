@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const code=fs.readFileSync(new URL('../../src/hazardia/web/static/attention-time.js',import.meta.url),'utf8');
+const {productAt,validityState}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+const today={day:'2026-10-28',valid_from:'2026-10-27T23:00:00Z',valid_until:'2026-10-28T23:00:00Z'};
+const tomorrow={day:'2026-10-29',valid_from:today.valid_until,valid_until:'2026-10-29T23:00:00Z'};
+assert.equal(productAt([today,tomorrow],'2026-10-28T00:00:00+01:00'),today);
+assert.equal(productAt([today,tomorrow],'2026-10-29T00:00:00+01:00'),tomorrow);
+assert.equal(productAt([today,tomorrow],tomorrow.valid_until),null);
+assert.equal(productAt([today],'2026-10-29T12:00:00Z'),null);
+assert.equal(productAt([today],'2026-10-27T12:00:00Z'),null);
+assert.equal(productAt([today],'invalid'),null);
+assert.equal(productAt([],'2026-10-28T12:00:00Z'),null);
+assert.equal(validityState([today],'2026-10-28T12:00:00Z',()=>false).status,'STALE');
+assert.equal(validityState([today],'2026-10-28T12:00:00Z',()=>true).status,'FRESH');
+assert.equal(validityState([today],tomorrow.valid_until,()=>true).status,'UNAVAILABLE');
+// A longer EFFIS horizon must never supply a DPC bulletin or a zero-risk fallback.
+assert.equal(productAt([tomorrow],'2026-10-29T12:00:00Z'),tomorrow);
+assert.equal(productAt([today],'2026-10-29T12:00:00Z'),null);
+console.log('PASS 12 validity checks: local-midnight boundaries, missing, stale, separate horizons');

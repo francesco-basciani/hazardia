@@ -27,3 +27,16 @@ class CachedPowerTests(unittest.TestCase):
    root=Path(d);p=self.fixture(root);source=json.loads(p.read_text());source['elements'][0].pop('geometry');source['elements'][0]['nodes']=[10,11];source['elements'].extend([{'type':'node','id':10,'lat':42.3,'lon':13.3},{'type':'node','id':11,'lat':42.4,'lon':13.4}]);raw=json.dumps(source).encode();p.write_bytes(raw);m=root/'web-assets/priority-areas.json';meta=json.loads(m.read_text());meta['source_sha256']=hashlib.sha256(raw).hexdigest();m.write_text(json.dumps(meta))
    from hazardia.web.observed_layers import power_features
    value=cached_power_snapshot(root,[13,42,14,43]);features,quality=power_features(value['raw']);line=next(f for f in features if f['properties']['power_kind']=='line');self.assertEqual(line['geometry']['coordinates'],[[13.3,42.3],[13.4,42.4]]);self.assertEqual(len(features),2);self.assertEqual(quality['skipped_geometry'],0)
+
+ def test_newer_compressed_consultation_retains_original_time(self):
+  import gzip
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);self.fixture(root);folder=root/'web-state/observed-power';folder.mkdir(parents=True)
+   raw=json.dumps({'elements':[{'type':'node','id':100,'lat':42.35,'lon':13.35,'tags':{'power':'tower'}}]}).encode()
+   meta=folder/('a'*24+'.json');meta.with_suffix('.source.gz').write_bytes(gzip.compress(raw))
+   meta.write_text(json.dumps(dict(status='READY',bounds=[13.3,42.3,13.4,42.4],source='https://api.openstreetmap.org/api/0.6/map',acquired_at='2026-10-24T10:00:00Z',raw_sha256=hashlib.sha256(raw).hexdigest(),quality={})))
+   value=cached_power_snapshot(root,[13,42,14,43])
+   self.assertEqual(value['raw'],raw);self.assertEqual(value['quality']['source_snapshot_available_at'],'2026-10-24T10:00:00Z')
+   self.assertEqual(value['bounds'],[13.3,42.3,13.4,42.4]);self.assertTrue(value['quality']['fallback'])
+   meta.with_suffix('.source.gz').write_bytes(gzip.compress(raw+b' '))
+   self.assertEqual(cached_power_snapshot(root,[13,42,14,43])['quality']['source_mode'],'VERIFIED_LOCAL_OSM_SNAPSHOT_FALLBACK')

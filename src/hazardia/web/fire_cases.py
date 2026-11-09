@@ -18,6 +18,11 @@ class FireCases:
   if not value['source_url'].startswith('https://'):raise HazardError('INVALID_INPUT','Case source must use HTTPS')
   initial=value.get('initial_hour',0)
   if type(initial) not in [int,float] or not 0<=initial<=72:raise HazardError('INVALID_INPUT','Invalid initial playback hour')
+  if 'planning' in value:
+   from hazardia.decision.fire_ideal import validate_input
+   p=value['planning']
+   if not isinstance(p,dict) or set(p)!={'decision_id','evaluation_id','request','duration_note'} or not isinstance(p['decision_id'],str) or not re.fullmatch('decision-[a-f0-9]{32}',p['decision_id']) or not isinstance(p['evaluation_id'],str) or not re.fullmatch('decision-[a-f0-9]{32}',p['evaluation_id']) or not isinstance(p['duration_note'],str) or not 1<=len(p['duration_note'])<=1200:raise HazardError('INVALID_INPUT','Invalid saved planning example')
+   validate_input(p['request'])
   return value
  def catalog(self):
   return [dict(id=d['id'],title=d['title'],description=d['description']) for p in sorted(self.assets.glob('*.json'))[:20] for d in [self.definition(p.stem)]]
@@ -26,4 +31,4 @@ class FireCases:
   if not (store.directory/'workspace.json').exists():store.save(dict(revision=0,scenarios=definition['scenarios']))
   return store
  def read(self,ident):
-  definition=self.definition(ident);return dict(self.workspace(ident).read(),case={k:definition[k] for k in ['id','title','description','qualification','source_url']}|{'initial_hour':definition.get('initial_hour',0)})
+  definition=self.definition(ident);return dict(self.workspace(ident).read(),case={k:definition[k] for k in ['id','title','description','qualification','source_url']}|{'initial_hour':definition.get('initial_hour',0)}|({'planning':definition['planning']} if 'planning' in definition else {}))

@@ -33,7 +33,7 @@ export const numberFormatter=options=>formatter('NumberFormat',options);
 const originals=new WeakMap(),attributes=new WeakMap();
 export function sourceText(node){if(!node)return '';if(node.nodeType!==3&&node.childNodes)return [...node.childNodes].map(sourceText).join('');const item=originals.get(node);return item&&node.data===item.rendered?item.source:node.data??node.textContent;}
 export function sourceAttribute(node,key){if(!node)return '';const value=node.getAttribute(key),item=attributes.get(node)?.get(key);return item&&value===item.rendered?item.source:value;}
-const skip='script,style,code,pre,textarea,[contenteditable], [data-i18n-skip],.map-place-name,.region-name,.leaflet-control-attribution,.annotation-label';
+const skip='script,style,code,pre,textarea,[contenteditable], [data-i18n-skip],.map-place-name,.map-mountain-name,.region-name,.leaflet-control-attribution,.annotation-label';
 const translatableAttributes=['aria-label','aria-valuetext','title','placeholder','alt'];
 function ignored(node){return !!node?.closest?.(skip);}
 function text(node){if(!node.parentElement||ignored(node.parentElement))return;const source=sourceText(node);if(!source?.trim())return;const rendered=translate(source);originals.set(node,{source,rendered});if(node.data!==rendered)node.data=rendered;}
@@ -74,7 +74,7 @@ function install(){
  if(embedded)try{const preferred=localStorage.getItem(LANGUAGE_KEY);setLanguage(preferred,{persist:false});}catch{}
 }
 if(typeof document!=='undefined'&&document.head&&document.documentElement){
- for(const [rel,href,type] of [['icon','/favicon.svg','image/svg+xml'],['alternate icon','/favicon.ico','image/x-icon']]){if(document.querySelector('link[href="'+href+'"]'))continue;const icon=document.createElement('link');icon.rel=rel;icon.href=href;icon.type=type;document.head.append(icon);}
+ for(const [href,type,sizes] of [['/favicon.svg?v=20261104','image/svg+xml','any'],['/favicon.ico?v=20261104','image/x-icon','16x16 32x32 48x48'],['/favicon.png?v=20261104','image/png','48x48']]){if(document.querySelector('link[href="'+href+'"]'))continue;const icon=document.createElement('link');icon.rel='icon';icon.href=href;icon.type=type;icon.sizes=sizes;document.head.append(icon);}
  const link=document.createElement('link');link.rel='stylesheet';link.href='/i18n.css';document.head.append(link);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
 }

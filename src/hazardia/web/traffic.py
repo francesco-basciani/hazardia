@@ -15,7 +15,11 @@ def validate(c):
  return c
 
 def graph_from_xml(raw,bounds):
- root=ET.fromstring(raw);nodes={n.get('id'):[float(n.get('lon')),float(n.get('lat'))] for n in root.findall('node')};blocked=set();counts=dict(missing_oneway=0,excluded_access=0,excluded_conditional=0,excluded_restriction=0,incomplete_ways=0)
+ graph=graph_from_osm(ET.fromstring(raw),bounds)
+ return dict(graph,raw_sha256=hashlib.sha256(raw).hexdigest())
+
+def graph_from_osm(root,bounds,*,edge_limit=12000):
+ nodes={n.get('id'):[float(n.get('lon')),float(n.get('lat'))] for n in root.findall('node')};blocked=set();counts=dict(missing_oneway=0,excluded_access=0,excluded_conditional=0,excluded_restriction=0,incomplete_ways=0)
  # Conservative safe subset: do not approximate turn restrictions. Omit all referenced ways.
  for rel in root.findall('relation'):
   tags={t.get('k'):t.get('v') for t in rel.findall('tag')}
@@ -46,8 +50,8 @@ def graph_from_xml(raw,bounds):
    if length<.5:continue
    directions=[(b,a,q,p)] if one=='-1' else [(a,b,p,q)] if one in ('yes','1','true') else [(a,b,p,q),(b,a,q,p)]
    for u,v,P,Q in directions:edges.append(dict(id=f'{wid}:{i}:{u}',way=wid,u=u,v=v,a=P,b=Q,length=length,kind=kind,direction_assumed=one is None))
- if len(edges)>12000:raise HazardError('AREA_TOO_DENSE','More than12000 directed segments; choose smaller area')
- return dict(schema='visual-traffic-graph/2',edges=edges,bounds=bounds,counts=counts,at=utcnow(),source='https://api.openstreetmap.org/api/0.6/map',license='ODbL-1.0',raw_sha256=hashlib.sha256(raw).hexdigest(),missing=['OSM completeness','Live closures','Missing oneway assumed bidirectional','Unknown barriers and vehicle-specific dimensions','External restriction relations may be incomplete in map extract'],restriction_policy='Exclude all ways referenced by returned restriction relations and all conditional ways; no full turn-restriction solver',coupled_to_optimizer=False)
+ if len(edges)>edge_limit:raise HazardError('AREA_TOO_DENSE',f'More than {edge_limit} directed segments; choose smaller area')
+ return dict(schema='visual-traffic-graph/2',edges=edges,bounds=bounds,counts=counts,at=utcnow(),source='https://api.openstreetmap.org/api/0.6/map',license='ODbL-1.0',missing=['OSM completeness','Live closures','Missing oneway assumed bidirectional','Unknown barriers and vehicle-specific dimensions','External restriction relations may be incomplete in map extract'],restriction_policy='Exclude all ways referenced by returned restriction relations and all conditional ways; no full turn-restriction solver',coupled_to_optimizer=False)
 class Traffic:
  def __init__(self,state):
   self.root=Path(state)/'visual-traffic';self.root.mkdir(exist_ok=True);self.lock=threading.Lock();self.active=False;self.current=dict(status='IDLE')

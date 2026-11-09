@@ -125,6 +125,10 @@ export function regionalWind(map){
    const state=viewportWeatherState(s,b,{nextRequestAt});
    if(state.kind==='ready'){notice(record?'':'L’ora selezionata non è coperta dal nuovo campo meteo. Scegli un’ora disponibile.');legend();return;}
    const partial=!state.contains||!state.complete;
+   if(s.error?.startsWith('WEATHER_CACHE_FULL')){
+    notice('Meteo non aggiornabile · archivio locale pieno. Ultimi dati: '+(s.forecast?.available_at?clock(s.forecast.available_at):'non disponibili')+'.');
+    poll=setTimeout(()=>load(),65000);return;
+   }
    if(state.kind==='fetch'){
     notice((partial?'Copertura meteo incompleta · ':'')+'aggiornamento dell’intera vista…');
     nextRequestAt=Date.now()+65000;

@@ -40,7 +40,7 @@ class DecisionPolicy:
 
     @property
     def problem_fields(self):
-        return BASE_FIELDS | ({'policy'} if self.declaration_items else set())
+        return BASE_FIELDS | ({'policy'} if self.declaration_items else set()) | ({'ensemble'} if self.schema_version=='0.7.0' else set())
 
     @property
     def resource_fields(self):
@@ -55,12 +55,17 @@ FIRE_IDEAL = DecisionPolicy('FIRE_IDEAL_ASSIGNMENT','0.6.0','RESEARCH_IDEAL',
                            ('waterline_action','canadair','helicopter','heavy_action'),
                            'FIRE_SUPPRESSION',None,'IDEAL_ASSET_COVERAGE',True,2,True,True,
                            'weighted_priority_points')
-POLICIES = MappingProxyType({p.schema_version:p for p in (EXPOSURE,FIRE_IDEAL)})
+FIRE_PROBABILISTIC = DecisionPolicy('FIRE_PROBABILISTIC_RESEARCH','0.7.0','RESEARCH_PROBABILISTIC',
+                           (('domain','FIRE_PROBABILISTIC_RESEARCH'),('loss_unit','weighted_priority_points'),
+                            ('benefit_model','EXCLUSIVE_AREA_COVERAGE_PROXY')),
+                           FIRE_IDEAL.resource_categories,'FIRE_SUPPRESSION',None,
+                           'IDEAL_ASSET_COVERAGE',True,2,True,True,'weighted_priority_points')
+POLICIES = MappingProxyType({p.schema_version:p for p in (EXPOSURE,FIRE_IDEAL,FIRE_PROBABILISTIC)})
 
 
 def policy_for(problem):
     """Version selection cannot silently default an unknown policy to exposure."""
-    require(isinstance(problem,dict) and problem.get('schema_version') in ('0.5.0','0.6.0'),
+    require(isinstance(problem,dict) and problem.get('schema_version') in ('0.5.0','0.6.0','0.7.0'),
             'INVALID_INPUT','Strict decision_problem0.5.0 required')
     policy = POLICIES[problem['schema_version']]
     if policy.declaration_items:
@@ -71,6 +76,12 @@ def policy_for(problem):
 
 def validate_header(problem):
     # Match the old order/messages: shape/version, declaration, then mode.
+    if isinstance(problem,dict) and problem.get('schema_version')=='0.7.0':
+        require(set(problem)==FIRE_PROBABILISTIC.problem_fields and problem.get('kind')=='decision_problem',
+                'INVALID_INPUT','Strict probabilistic research decision_problem0.7.0 required')
+        policy=policy_for(problem)
+        require(problem['mode']==policy.mode,'INVALID_INPUT','Probabilistic research mode required')
+        return policy
     ideal = isinstance(problem,dict) and problem.get('schema_version') == '0.6.0'
     fields = FIRE_IDEAL.problem_fields if ideal else EXPOSURE.problem_fields
     require(isinstance(problem,dict) and set(problem) == fields and

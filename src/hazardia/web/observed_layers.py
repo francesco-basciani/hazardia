@@ -4,6 +4,7 @@ Bounded asynchronous acquisition, explicit source time/coverage and missing data
 import csv
 import datetime as dt
 import hashlib
+import gzip
 import io
 import json
 import math
@@ -84,6 +85,9 @@ class ObservedLayers:
     def __init__(self,state,kind,fetch=None):
         if kind not in ('earthquakes','power'):raise ValueError(kind)
         self.kind=kind;self.root=Path(state)/('observed-'+kind);self.root.mkdir(exist_ok=True)
+        if kind=='earthquakes':
+            from hazardia.web.quake_cache import QuakeCache
+            self.quakes=QuakeCache(self.root,fetch or self._fetch,earthquake_features)
         self.lock=threading.Lock();self.active=False;self.pending={};self.last=0;self.fetch=fetch or self._fetch
     @staticmethod
     def _fetch(url):
@@ -92,6 +96,7 @@ class ObservedLayers:
         if len(raw)>8*1024**2:raise ValueError('Source exceeds8MiB; narrow area')
         return raw
     def snapshot(self,key):
+        if self.kind=='earthquakes':return self.quakes.snapshot(key)
         if not re.fullmatch('[a-f0-9]{24}',key or ''):raise HazardError('INVALID_INPUT','Acquisition request id required')
         with self.lock:
             if key in self.pending:return dict(self.pending[key])
@@ -108,16 +113,15 @@ class ObservedLayers:
                 raise HazardError('INVALID_INPUT','Use1/7/30days, magnitude-1..9 and INGV/USGS')
             if provider=='ingv' and not (6<=b[0]<b[2]<=19 and 35<=b[1]<b[3]<=48):
                 raise HazardError('OUTSIDE_COVERAGE','INGV regional consultation: select Italy (6–19E,35–48N) or USGS global; small-event completeness is not global')
-            end=now.replace(minute=(now.minute//10)*10,second=0,microsecond=0);start=end-dt.timedelta(days=days)
-            query=dict(format='text',starttime=start.strftime('%Y-%m-%dT%H:%M:%S'),endtime=end.strftime('%Y-%m-%dT%H:%M:%S'),minlatitude=b[1],maxlatitude=b[3],minlongitude=b[0],maxlongitude=b[2],minmagnitude=mag,limit=1000,orderby='time')
-            url=SOURCES[provider]+'?'+urllib.parse.urlencode(query);ttl=600
+            return self.quakes.prepare(body,b,provider,days,mag)
+
         else:
             if b[2]-b[0]>3 or b[3]-b[1]>3 or (b[2]-b[0])*(b[3]-b[1])>6:
                 raise HazardError('AREA_TOO_LARGE','Power inventory: zoom to ≤3° per side and ≤6 square degrees; no complete world network cached')
             box=','.join(map(str,[b[1],b[0],b[3],b[2]]))
             query=f'[out:json][timeout:20];(way[power~"^(line|minor_line|cable|substation)$"]({box});node[power~"^(tower|pole|substation)$"]({box}););out meta geom 5001;'
             url=POWER_SOURCE+'?'+urllib.parse.urlencode({'data':query});ttl=86400
-        key=hashlib.sha256(json.dumps([self.kind,body,int(time.time()//ttl),*(['power/2-filtered-source-and-verified-fallback'] if self.kind=='power' else [])],sort_keys=True).encode()).hexdigest()[:24]
+        key=hashlib.sha256(json.dumps([self.kind,body,int(time.time()//ttl),*(['power/3-bounded-osm-api-fallback'] if self.kind=='power' else [])],sort_keys=True).encode()).hexdigest()[:24]
         path=self.root/(key+'.json')
         with self.lock:
             if path.exists():return json.loads(path.read_text())
@@ -128,6 +132,20 @@ class ObservedLayers:
             if n>=(24 if self.kind=='earthquakes' else 8):raise HazardError('SOURCE_QUOTA','Daily consultation acquisitions reached; existing cache remains available')
             if sum(p.stat().st_size for p in self.root.iterdir())>32*1024**2:raise HazardError('CACHE_FULL','32MiB consultation cache reached; no scientific files deleted')
             quota.write_text(str(n+1));self.active=True;self.last=time.time();self.pending[key]=dict(status='LOADING',request_id=key)
+        def publish(raw,features,quality,actual_bounds,actual_source):
+            if self.kind=='earthquakes':
+                quality.update(coverage='Regional Italian catalogue' if provider=='ingv' else 'Global catalogue; small earthquakes incomplete outside well-instrumented regions',window_start=start.isoformat(),window_end=end.isoformat(),min_magnitude=mag,provider=provider,license='INGV CC BY4.0 (open-data policy)' if provider=='ingv' else 'USGS public-domain data; contributor attribution retained',missing=['Felt intensity','Damage and site vulnerability','Detection completeness and catalogue revision history'])
+            else:quality.update(source_mode=quality.get('source_mode','Overpass power query'),license='ODbL-1.0 © OpenStreetMap contributors',missing=['Complete operator-certified network','Cable heights, sag and aerial clearance','Operating state and real-time outages','Voltage for untagged objects','Substation relations not acquired'])
+            value=dict(status='READY',request_id=key,type='FeatureCollection',features=features,bounds=actual_bounds,source=actual_source,acquired_at=utcnow(),raw_sha256=hashlib.sha256(raw).hexdigest(),quality=quality,kind=self.kind,coupled_to_optimizer=False)
+            packed=gzip.compress(raw,mtime=0) if self.kind=='power' else raw
+            suffix='.source.gz' if self.kind=='power' else '.source'
+            value['stored_source_file']=path.with_suffix(suffix).name
+            value['stored_source_encoding']='gzip' if self.kind=='power' else 'identity'
+            encoded=json.dumps(value,allow_nan=False).encode()
+            if sum(p.stat().st_size for p in self.root.iterdir())+len(packed)+len(encoded)>32*1024**2:raise ValueError('32MiB cache admission limit')
+            if self.kind=='power' and gzip.decompress(packed)!=raw:raise ValueError('Source compaction checksum failed')
+            path.with_suffix(suffix).write_bytes(packed);path.write_bytes(encoded)
+            return value
         def work():
             try:
                 actual_bounds=b;actual_source=url;fallback=None
@@ -137,20 +155,34 @@ class ObservedLayers:
                     features,quality=(earthquake_features(raw) if self.kind=='earthquakes' else power_features(raw))
                 except Exception as upstream:
                     if self.kind!='power':raise
-                    from hazardia.web.power_snapshot import cached_power_snapshot
-                    fallback=cached_power_snapshot(self.root.parent.parent,b)
-                    if fallback is None:raise
-                    raw=fallback['raw'];features,quality=power_features(raw);actual_bounds=fallback['bounds'];actual_source=fallback['source'];quality.update(fallback['quality'],upstream_error=str(upstream))
-                    def points(a):return [a] if isinstance(a[0],(int,float)) else [p for child in a for p in points(child)]
-                    features=[f for f in features if (lambda p:max(c[0] for c in p)>=actual_bounds[0] and min(c[0] for c in p)<=actual_bounds[2] and max(c[1] for c in p)>=actual_bounds[1] and min(c[1] for c in p)<=actual_bounds[3])(points(f['geometry']['coordinates']))]
-                    quality['unknown_voltage']=sum(not f['properties']['voltage_values'] for f in features)
-                if self.kind=='earthquakes':
-                    quality.update(coverage='Regional Italian catalogue' if provider=='ingv' else 'Global catalogue; small earthquakes incomplete outside well-instrumented regions',window_start=start.isoformat(),window_end=end.isoformat(),min_magnitude=mag,provider=provider,license='INGV CC BY4.0 (open-data policy)' if provider=='ingv' else 'USGS public-domain data; contributor attribution retained',missing=['Felt intensity','Damage and site vulnerability','Detection completeness and catalogue revision history'])
-                else:quality.update(source_mode=quality.get('source_mode','Overpass power query'),license='ODbL-1.0 © OpenStreetMap contributors',missing=['Complete operator-certified network','Cable heights, sag and aerial clearance','Operating state and real-time outages','Voltage for untagged objects','Substation relations not acquired'])
-                value=dict(status='READY',request_id=key,type='FeatureCollection',features=features,bounds=actual_bounds,source=actual_source,acquired_at=utcnow(),raw_sha256=hashlib.sha256(raw).hexdigest(),quality=quality,kind=self.kind,coupled_to_optimizer=False)
-                encoded=json.dumps(value,allow_nan=False).encode()
-                if sum(p.stat().st_size for p in self.root.iterdir())+len(raw)+len(encoded)>32*1024**2:raise ValueError('32MiB cache admission limit')
-                path.with_suffix('.source').write_bytes(raw);path.write_bytes(encoded)
+                    # One bounded alternate request for street-scale views only.
+                    # Count actual source attempts against the same daily budget.
+                    recovered=False
+                    if (b[2]-b[0])*(b[3]-b[1])<=.0004 and max(b[2]-b[0],b[3]-b[1])<=.03:
+                        with self.lock:
+                            count=int(quota.read_text())
+                            admitted=count<8
+                            if admitted:quota.write_text(str(count+1))
+                        if admitted:
+                            alternate='https://api.openstreetmap.org/api/0.6/map?'+urllib.parse.urlencode({'bbox':','.join(map(str,b))})
+                            try:
+                                raw=self.fetch(alternate)
+                                if len(raw)>8*1024**2:raise ValueError('Source response exceeds8MiB')
+                                features,quality=power_features(raw)
+                                actual_source=alternate
+                                quality.update(source_mode='OSM_API_BOUNDED_MAP_EXTRACT',upstream_error=str(upstream),transformation='Power-tag filtering of complete bounded OSM map response; no geometry interpolation')
+                                recovered=True
+                            except Exception as alternate_error:
+                                upstream=RuntimeError(str(upstream)+'; bounded OSM API: '+str(alternate_error))
+                    if not recovered:
+                        from hazardia.web.power_snapshot import cached_power_snapshot
+                        fallback=cached_power_snapshot(self.root.parent.parent,b)
+                        if fallback is None:raise
+                        raw=fallback['raw'];features,quality=power_features(raw);actual_bounds=fallback['bounds'];actual_source=fallback['source'];quality.update(fallback['quality'],upstream_error=str(upstream))
+                        def points(a):return [a] if isinstance(a[0],(int,float)) else [p for child in a for p in points(child)]
+                        features=[f for f in features if (lambda p:max(c[0] for c in p)>=actual_bounds[0] and min(c[0] for c in p)<=actual_bounds[2] and max(c[1] for c in p)>=actual_bounds[1] and min(c[1] for c in p)<=actual_bounds[3])(points(f['geometry']['coordinates']))]
+                        quality['unknown_voltage']=sum(not f['properties']['voltage_values'] for f in features)
+                value=publish(raw,features,quality,actual_bounds,actual_source)
             except Exception as e:value=dict(status='ERROR',request_id=key,detail=str(e),kind=self.kind)
             with self.lock:
                 self.pending[key]=value

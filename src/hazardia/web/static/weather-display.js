@@ -1,6 +1,6 @@
 import {numberFormatter} from "/i18n.js";
 // Display-only bilinear samples: denser labels never increase model resolution.
-import {sampleScalar,screenSamplePlan,plannedScalar} from '/weather-sampling.js';
+import {sampleScalar,screenSamplePlan,plannedScalar,landIndex} from '/weather-sampling.js';
 export const rainClasses=[
  {min:.1,color:[64,174,244],label:'0,1–1'},
  {min:1,color:[36,108,228],label:'1–2,5'},
@@ -31,8 +31,17 @@ export const weatherViews={probability_cloud:{label:'Probabilità pioggia e nuvo
 const numbers=numberFormatter({maximumFractionDigits:1});const n=v=>numbers.format(v);
 export function rainReading(v){return !Number.isFinite(v)?'n/d':v<.1?'<0,1 mm':n(v)+' mm';}
 const short={temperature:['','°C'],humidity:['UR','%'],gusts:['Raff.','m/s'],cloud:['Nubi','%'],rain_probability:['Prob. pioggia','%'],pressure:['','hPa'],radiation:['Sole','W/m²'],precipitation:['Pioggia','mm']};
+const terrestrialReadings=new Set(['temperature','humidity','pressure','radiation']);
+let landMask=null,landRequest=null,landFailed=false;
+const pendingLandLabels=new Map();
+function loadLandLabels(){
+ if(landRequest||landFailed)return;
+ landRequest=fetch('/assets/administrative-countries.json?v=admin-levels-20261024').then(async r=>{if(!r.ok)throw Error('Land mask unavailable');const d=await r.json();if(d.type!=='FeatureCollection'||!d.features?.length)throw Error('Invalid land mask');landMask=landIndex(d);}).catch(()=>{landFailed=true;}).finally(()=>{for(const [host,args] of pendingLandLabels)if(host.isConnected)weatherLabels(host,...args);pendingLandLabels.clear();});
+}
 export function weatherLabels(host,map,field,record,keys){
- if(!field||!record||!keys.length){host.replaceChildren();return;}
+ if(!field||!record||!keys.length){pendingLandLabels.delete(host);host.replaceChildren();return;}
+ if(typeof window!=='undefined'&&keys.some(k=>terrestrialReadings.has(k))&&!landMask&&!landFailed){pendingLandLabels.set(host,[map,field,record,keys]);loadLandLabels();}
+ host.dataset.landMask=landMask?'ready':landFailed?'unavailable':'loading';host.title=landFailed?'Etichette terrestri non disponibili: costa non caricata.':'';
  keys=keys.filter(k=>(!['precipitation','cloud'].includes(k)||keys.length===1)&&(k!=='rain_probability'||Array.isArray(record.rain_probability)));
  const rect=map.getContainer().getBoundingClientRect(),extraControls=map.getContainer().id==='monitor-map'?[...document.querySelectorAll('.monitor-workbench .monitor-map-toolbar,.monitor-workbench .monitor-dock:not([hidden]),.console-left:not([hidden]),.console-right:not([hidden]),.console-search')]:[...(document.querySelectorAll?.('.studio-left:not([hidden]),.studio-right:not([hidden]),#inspector:not([hidden])')||[])],controls=[...extraControls,...map.getContainer().querySelectorAll('.weather-focus,.weather-map-legend,.map-symbols,.map-navigation,.map-time-dock')].map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height),obstacles=[...map.getContainer().querySelectorAll('.map-place-name,.geo-label.place,.region-name,.weather-focus')].map(el=>el.getBoundingClientRect());
  let count=0;const rainOnly=keys.length===1&&keys[0]==='precipitation',size=map.getSize();let cols=Math.max(1,Math.floor(size.x/(rainOnly?260:190))),rows=Math.max(1,Math.floor(size.y/(keys.length>4?155:125)));if(cols*rows>32){const ratio=Math.sqrt(32/(cols*rows));cols=Math.max(1,Math.floor(cols*ratio));rows=Math.max(1,Math.floor(rows*ratio));}const cw=size.x/cols,ch=size.y/rows;
@@ -40,9 +49,10 @@ export function weatherLabels(host,map,field,record,keys){
  for(let row=0;row<rows;row++)for(let col=0;col<cols;col++){
   if(count>=32)break;const x=(col+.5)*cw;let y=(row+.5)*ch;if(controls.some(o=>x+78>o.left-rect.left&&x-78<o.right-rect.left&&y+32>o.top-rect.top&&y-32<o.bottom-rect.top))continue;if(map.getContainer().querySelector('.weather-focus')&&x>size.x-240&&y<100)continue;if(map.getContainer().querySelector('.weather-map-legend')&&x>size.x-300&&y>size.y-170)continue;if(map.getContainer().querySelector('.scenario-weather-legend')&&x>size.x-250&&y>size.y-120)continue;
   if(obstacles.some(o=>Math.abs((o.left+o.right)/2-rect.left-x)<115&&Math.abs((o.top+o.bottom)/2-rect.top-y)<45))y=Math.min(size.y-42,y+48);const p=map.containerPointToLatLng([x,y]);
-  const values=keys.map(k=>[k,sampleScalar(field,record,k,p.lat,p.lng)]);if(!values.some(([,v])=>Number.isFinite(v))||rainOnly&&values[0][1]<.1)continue;
-  let card=host.children[count];const signature=keys.join(',');if(!card){card=document.createElement('div');card.className='weather-site';host.append(card);host.dataset.createdLabels=String(Number(host.dataset.createdLabels||0)+1);}if(card.dataset.keys!==signature){card.replaceChildren(...keys.map(key=>{const line=document.createElement(key==='temperature'||key==='precipitation'||keys.length===1?'strong':'span');line.dataset.variable=key;return line;}));card.dataset.keys=signature;}card.style.left=x+'px';card.style.top=y+'px';card.dataset.lat=p.lat;card.dataset.lon=p.lng;card.dataset.at=record.at;
-  for(const [index,[key,v]] of values.entries()){const line=card.children[index],[label,unit]=short[key];line.dataset.variable=key;line.dataset.value=v;if(key==='temperature')line.style.color='rgb('+temperatureColor(v).map(c=>map.getContainer().classList?.contains('basemap-streets')?Math.round(c*.42):c).join(',')+')';line.textContent=key==='precipitation'?rainReading(v):(keys.length===1?'':label?label+' ':'')+(Number.isFinite(v)?n(v)+' '+unit:'n/d');}
+  const onLand=typeof window==='undefined'||landMask?.(p.lat,p.lng),pointKeys=keys.filter(k=>!terrestrialReadings.has(k)||onLand);if(!pointKeys.length)continue;
+  const values=pointKeys.map(k=>[k,sampleScalar(field,record,k,p.lat,p.lng)]);if(!values.some(([,v])=>Number.isFinite(v))||rainOnly&&values[0][1]<.1)continue;
+  let card=host.children[count];const signature=pointKeys.join(',');if(!card){card=document.createElement('div');card.className='weather-site';host.append(card);host.dataset.createdLabels=String(Number(host.dataset.createdLabels||0)+1);}if(card.dataset.keys!==signature){card.replaceChildren(...pointKeys.map(key=>{const line=document.createElement(key==='temperature'||key==='precipitation'||pointKeys.length===1?'strong':'span');line.dataset.variable=key;return line;}));card.dataset.keys=signature;}card.style.left=x+'px';card.style.top=y+'px';card.dataset.lat=p.lat;card.dataset.lon=p.lng;card.dataset.at=record.at;
+  for(const [index,[key,v]] of values.entries()){const line=card.children[index],[label,unit]=short[key];line.dataset.variable=key;line.dataset.value=v;if(key==='temperature')line.style.color='rgb('+temperatureColor(v).map(c=>map.getContainer().classList?.contains('basemap-streets')?Math.round(c*.42):c).join(',')+')';line.textContent=key==='precipitation'?rainReading(v):(pointKeys.length===1?'':label?label+' ':'')+(Number.isFinite(v)?n(v)+' '+unit:'n/d');}
   count++;
  }
  while(host.children.length>count)host.lastElementChild.remove();
@@ -54,3 +64,6 @@ export function windGain(speed){return speed<.1?0:Math.max(22,48/speed);}
 export function rainLegend(host){
  for(const [name,gradient,ticks] of [['Temperatura · °C','rgb(170,162,255) 0%,rgb(112,213,255) 33.33%,rgb(133,240,209) 50%,rgb(255,230,117) 66.67%,rgb(255,167,98) 83.33%,rgb(255,112,135) 100%','−20 · 0 · 10 · 20 · 30 · 40'],['Pioggia · mm nell’ora successiva','rgb(64,174,244) 0%,rgb(36,108,228) 9.09%,rgb(118,71,216) 24.24%,rgb(207,62,157) 49.49%,rgb(229,68,56) 100%','0,1 · 1 · 2,5 · 5 · ≥10'],['Nuvole · copertura %',cloudStops.map(([v,c])=>'rgba('+c.join(',')+','+cloudOpacity(v)+') '+v+'%').join(','),'0 · 25 · 50 · 75 · 100'],['Prob. pioggia · prossima ora',probabilityClasses.map(c=>'rgb('+c.color.join(',')+') '+c.min+'%').join(','),'0–100% · precipitazioni >0,1 mm · ensemble']]){const el=document.createElement('div');el.className='weather-color-key';const label=document.createElement('span'),ramp=document.createElement('i'),values=document.createElement('small');label.textContent=name;ramp.style.background='linear-gradient(90deg,'+gradient+')';values.textContent=ticks;el.append(label,ramp,values);host.append(el);}
 }
+
+// Read-only land classification shared with the scene temperature summary.
+export function weatherLandMask(){loadLandLabels();return {test:landMask,ready:landRequest,failed:landFailed};}

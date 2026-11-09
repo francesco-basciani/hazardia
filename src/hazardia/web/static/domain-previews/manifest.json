@@ -1,0 +1,118 @@
+{
+  "purpose": "Archived UI illustrations, never current observations or forecasts",
+  "attribution": "HAZARDIA UI; map sources \u00a9 OpenStreetMap contributors / ODbL; EOX Sentinel-2 cloudless / modified Copernicus Sentinel data, CC BY-NC-SA4.0; other original credits remain in the source screenshots",
+  "previews": [
+    {
+      "id": "fire",
+      "source_sha256": "de15d4596327b797d2e3e5b5bef1bc4ca48b98491a2646d5234c6aa608de6052",
+      "crop_fraction": [
+        0.52,
+        0.27,
+        0.97,
+        0.49
+      ],
+      "output_bytes": 40114,
+      "output_sha256": "db83b02aea13f730947ab523769ee43d9d6338003565d86e37c1b036a7e41dec",
+      "size": [
+        640,
+        300
+      ]
+    },
+    {
+      "id": "water",
+      "source_sha256": "d44f9ee8ef318744fade51de86c3fd572b43cbc593b7784fb7cc0a325993b964",
+      "crop_fraction": [
+        0.28,
+        0.12,
+        0.64,
+        0.68
+      ],
+      "output_bytes": 37836,
+      "output_sha256": "0893ebcdbda6d57a80b4376a29a78a97924a212506c59e223839443bd5339e8f",
+      "size": [
+        640,
+        300
+      ]
+    },
+    {
+      "id": "snow",
+      "source_sha256": "05ab0c2642ad8b4d15566abf26da47ea7b9a668c85ac5b9e77c39443853f537b",
+      "crop_fraction": [
+        0.02,
+        0.21,
+        0.59,
+        0.73
+      ],
+      "output_bytes": 58142,
+      "output_sha256": "2a2d1d6b75818cdd0b1271f5aacdef28ea608abe9e58c8011680b74c20bfb11a",
+      "size": [
+        640,
+        300
+      ]
+    },
+    {
+      "id": "seismic",
+      "source_sha256": "e463a6f4906a50d8366618490fb3eadb99a448c81dabfbdaa28fca0c0e010158",
+      "crop_fraction": [
+        0.21,
+        0.18,
+        0.7,
+        0.72
+      ],
+      "output_bytes": 62354,
+      "output_sha256": "6dd65196d077ecebb0d2cd0242fd9887b658cea01c6ff0a982c134bbf4c92e25",
+      "size": [
+        640,
+        300
+      ]
+    },
+    {
+      "id": "infrastructure",
+      "source_sha256": "a0beb8a08e041071bff6e6ae204e4a807c553b624e1a3379d90740f43b2ee482",
+      "crop_fraction": [
+        0.25,
+        0.26,
+        0.7,
+        0.79
+      ],
+      "output_bytes": 42584,
+      "output_sha256": "537dd66f5b6ff437849a68719e28dab09df829daa58f9d2448109c7f61858cea",
+      "size": [
+        640,
+        300
+      ]
+    },
+    {
+      "id": "mobility",
+      "source_sha256": "9a2efac5fad93557439d3997ab2eea37229f6a55ec1e92c7e9d614c3adf75e5a",
+      "crop_fraction": [
+        0.15,
+        0.2,
+        0.7,
+        0.8
+      ],
+      "output_bytes": 68760,
+      "output_sha256": "696f835347b1d31bba69b52b0593067cec8ad87db03a27d0b9f780cb195477fe",
+      "size": [
+        640,
+        300
+      ]
+    },
+    {
+      "id": "security",
+      "source_sha256": "2f392eddc8ed187e9a24705ad3c76e5e956e744609e3b19dc1331c9aca66f104",
+      "crop_fraction": [
+        0.04,
+        0.25,
+        0.58,
+        0.85
+      ],
+      "output_bytes": 48544,
+      "output_sha256": "39408a41ceda4d33ce1a4e6a50a2a6711022d57541a2be0a2b12eabfc3d481cc",
+      "size": [
+        640,
+        300
+      ]
+    }
+  ]
+}

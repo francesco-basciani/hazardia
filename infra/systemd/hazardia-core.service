@@ -1,0 +1,25 @@
+[Unit]
+Description=HAZARDIA local research dashboard
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=120
+StartLimitBurst=3
+
+[Service]
+Type=forking
+User=hazardia
+WorkingDirectory=/home/hazardia/hazardia-runtime/app
+Environment=PYTHONPATH=src
+ExecStart=/home/hazardia/hazardia-runtime/core-env/bin/python scripts/web_service.py start --runtime /home/hazardia/hazardia-runtime
+ExecStop=/home/hazardia/hazardia-runtime/core-env/bin/python scripts/web_service.py stop --runtime /home/hazardia/hazardia-runtime
+ExecStartPost=/home/hazardia/hazardia-runtime/core-env/bin/python scripts/wait_local_web.py --port 8080
+PIDFile=/home/hazardia/hazardia-runtime/web-server.pid
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=30
+TimeoutStopSec=30
+# Native children own their locks and evidence; dashboard restart must not kill them.
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

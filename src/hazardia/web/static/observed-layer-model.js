@@ -25,8 +25,9 @@ export function quakeQueryBounds(view,regional=false){
 }
 export function quakeSnapshotCovers(data,view,{provider,days,min_magnitude},now=Date.now()){
  if(!data||data.status!=='READY'||!data.bounds||!data.quality)return false;
- if(provider==='auto')return quakeAcquisitionPlan(view,{provider,days,min_magnitude}).every(leg=>(data.catalogues||[data]).some(part=>quakeSnapshotCovers(part,leg.view,leg.body,now)));
- const q=data.quality,age=now-Date.parse(data.acquired_at),duration=Date.parse(q.window_end)-Date.parse(q.window_start);
+ if(provider==='auto')return quakeAcquisitionPlan(view,{provider,days,min_magnitude}).every(leg=>(data.catalogues||[data]).some(part=>quakeSnapshotCovers(part,leg.view,leg.body,now))||(data.unavailable_catalogues||[]).some(p=>p.provider===leg.body.provider&&p.days===days&&p.min_magnitude<=min_magnitude&&p.until>now&&leg.view.every((v,i)=>i<2?v>=p.bounds[i]-.0001:v<=p.bounds[i]+.0001)));
+ const q=data.quality;if(q.requested_days!==undefined)return q.provider===provider&&q.min_magnitude<=min_magnitude&&q.requested_days===days&&Date.parse(q.next_refresh_at)>now&&view.every((v,i)=>i<2?v>=data.bounds[i]-.0001:v<=data.bounds[i]+.0001);
+ const age=now-Date.parse(data.acquired_at),duration=Date.parse(q.window_end)-Date.parse(q.window_start);
  return age>=0&&age<600000&&q.provider===provider&&q.min_magnitude<=min_magnitude&&(!q.limit_reached||q.min_magnitude===min_magnitude)&&duration===days*86400000&&view.every((v,i)=>i<2?v>=data.bounds[i]-.0001:v<=data.bounds[i]+.0001);
 }
 

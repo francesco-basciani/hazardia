@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {i18nURI} from './i18n-fixture.mjs';
+const i18n=await import(i18nURI);i18n.setLanguage('en',{persist:false});
+const reviewed=JSON.parse(readFileSync('reports/fire-history-20261105/translations.json','utf8'));
+for(const [it,en] of Object.entries(reviewed))assert.equal(i18n.t(it),en,it);
+assert.equal(i18n.t('Senza interventi'),'No interventions');
+assert.equal(i18n.t('↶ Annulla'),'↶ Undo');assert.equal(i18n.t('↷ Ripeti'),'↷ Redo');
+i18n.setLanguage('it',{persist:false});assert.equal(i18n.t('Senza interventi'),'Senza interventi');
+console.log('PASS '+Object.keys(reviewed).length+' reviewed messages including names, advanced panels, history and Italian fallback');

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HAZARDIA · Alluvione</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/vendor/leaflet.css">
+  <link rel="stylesheet" href="/fire-studio.css?v=nominal1">
+  <link rel="stylesheet" href="/studio-console.css">
+  <link rel="stylesheet" href="/studio-editing.css">
+  <link rel="stylesheet" href="/flood-studio.css?v=flood-extents-4">
+  <script src="/assets/vendor/leaflet.js" defer></script>
+  <script type="module" src="/flood-studio.js?v=flood-extents-1"></script>
+</head>
+<body class="studio-console flood-studio" data-workspace-mode="compare" data-i18n-skip>
+  <div class="studio-topbar" role="toolbar">
+    <button type="button" id="flood-menu" aria-controls="flood-left" aria-expanded="false"></button>
+    <button type="button" id="flood-example"></button>
+    <span class="studio-lab-slot" aria-hidden="true"></span>
+    <div class="planning-tabs" role="group">
+      <button type="button" id="flood-containment" aria-pressed="true"></button>
+      <button type="button" id="flood-rescue-tab" aria-pressed="false"></button>
+    </div>
+    <button type="button" class="studio-legend-toggle" id="flood-legend"></button>
+    <button type="button" id="center-ignitions"></button>
+  </div>
+  <div class="studio-runbar">
+    <button type="button" id="play" disabled></button>
+    <button type="button" id="flood-reset"></button>
+    <button type="button" id="flood-edit-site" disabled></button>
+    <button type="button" id="flood-differences" aria-pressed="true" hidden></button>
+    <button type="button" id="flood-jump-difference" hidden></button>
+    <span id="status" class="studio-job-status" role="status"></span>
+  </div>
+  <div id="scenario-maps"></div>
+  <ul id="flood-map-key" class="flood-map-key" aria-label="Legenda" hidden></ul>
+  <aside id="flood-left" class="studio-left" hidden>
+    <header class="studio-panel-head"><strong id="flood-left-title"></strong><button type="button" id="flood-close-left">×</button></header>
+    <div class="studio-panel-body" id="flood-left-content"></div>
+  </aside>
+  <aside id="flood-right" class="studio-right" hidden>
+    <header class="studio-panel-head"><strong id="flood-right-title"></strong><button type="button" id="flood-close-right">×</button></header>
+    <div class="studio-panel-body" id="flood-right-content"></div>
+  </aside>
+  <div class="timeline studio-timebar">
+    <button type="button" id="flood-prev"></button>
+    <input type="range" id="flood-time" min="0" max="0" step="60" value="0" disabled>
+    <button type="button" id="flood-next"></button>
+    <output id="flood-now" for="flood-time">+00:00</output>
+    <select id="flood-speed"><option value="1500">1 h / 1,5 s</option><option value="750">1 h / 0,75 s</option><option value="3000">1 h / 3 s</option></select>
+  </div>
+</body>
+</html>

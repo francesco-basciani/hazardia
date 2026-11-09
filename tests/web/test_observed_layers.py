@@ -56,4 +56,38 @@ class LayersTest(unittest.TestCase):
    service.last=0;list(Path(service.root).glob('*.quota'))[0].write_text('8')
    with self.assertRaises(HazardError):service.prepare({'bounds':[15,42,16,43]})
    self.assertEqual(service.prepare({'bounds':[13,42,14,43]})['status'],'READY')
+ def test_bounded_live_osm_fallback_keeps_provenance_and_budget(self):
+  with tempfile.TemporaryDirectory() as root:
+   calls=[]
+   def fetch(url):
+    calls.append(url)
+    if len(calls)==1:raise TimeoutError('Overpass unavailable')
+    return POWER
+   service=ObservedLayers(root,'power',fetch=fetch);body={'bounds':[13,42,13.02,42.01]}
+   value=self.wait(service,service.prepare(body))
+   self.assertEqual(value['status'],'READY');self.assertEqual(value['bounds'],body['bounds'])
+   self.assertTrue(value['source'].startswith('https://api.openstreetmap.org/api/0.6/map?'))
+   self.assertEqual(value['quality']['source_mode'],'OSM_API_BOUNDED_MAP_EXTRACT')
+   self.assertIn('Overpass unavailable',value['quality']['upstream_error'])
+   self.assertEqual(list(service.root.glob('*.quota'))[0].read_text(),'2')
+   self.assertFalse(value['coupled_to_optimizer'])
+   import gzip,hashlib
+   raw=gzip.decompress((service.root/value['stored_source_file']).read_bytes())
+   self.assertEqual(raw,POWER);self.assertEqual(hashlib.sha256(raw).hexdigest(),value['raw_sha256'])
+ def test_large_view_never_downloads_full_osm_map(self):
+  with tempfile.TemporaryDirectory() as root:
+   calls=[]
+   def fetch(url):calls.append(url);raise TimeoutError('source unavailable')
+   service=ObservedLayers(root,'power',fetch=fetch)
+   self.assertEqual(self.wait(service,service.prepare({'bounds':[13,42,14,43]}))['status'],'ERROR')
+   self.assertEqual(len(calls),1)
+ def test_alternate_respects_remaining_daily_budget(self):
+  with tempfile.TemporaryDirectory() as root:
+   calls=[]
+   def fetch(url):calls.append(url);raise TimeoutError('source unavailable')
+   service=ObservedLayers(root,'power',fetch=fetch)
+   import datetime
+   (service.root/(datetime.datetime.now(datetime.timezone.utc).date().isoformat()+'.quota')).write_text('7')
+   self.assertEqual(self.wait(service,service.prepare({'bounds':[13,42,13.02,42.01]}))['status'],'ERROR')
+   self.assertEqual(len(calls),1)
 if __name__=='__main__':unittest.main()

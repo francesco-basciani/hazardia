@@ -1,7 +1,7 @@
 import {withI18n} from "./i18n-fixture.mjs";
 import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
-const {propagationStatus,comparisonVerdict,growthReadout,interventionReadout,interventionTiming}=await import('data:text/javascript;base64,'+Buffer.from(withI18n(readFileSync('src/hazardia/web/static/fire-comparison-status.js','utf8'))).toString('base64'));
+const {propagationStatus,comparisonVerdict,growthReadout,interventionReadout,interventionTiming,interventionReceipt,lateInterventionReadout}=await import('data:text/javascript;base64,'+Buffer.from(withI18n(readFileSync('src/hazardia/web/static/fire-comparison-status.js','utf8'))).toString('base64'));
 const series={options:{duration_s:259200,realizations:8},frames:[{hour:1,queued_front_events:8,realizations_with_front:4},{hour:72,queued_front_events:2,realizations_with_front:3}]};
 assert.equal(propagationStatus(series,0),'');assert.equal(propagationStatus(series,1),'');
 assert.match(propagationStatus(series,72),/fine previsione 72 h.*3\/8/);
@@ -42,3 +42,13 @@ assert.doesNotMatch(interventionTiming({frames:[{hour:0,queued_front_events:2}]}
 assert.doesNotMatch(interventionTiming(null,30,1),/già esauriti/);
 assert.match(interventionTiming(null,undefined,1),/non disponibile/);
 console.log('PASS activation timing and strictly pre-action exhausted-front evidence; no missing-data inference');
+
+const receiptSeries={consumed_events:[{time:1800,resource_receipts:[{resource_id:'u1',affected_cells:44,initial_fuel_cells:44},{resource_id:'u2',affected_cells:3,initial_fuel_cells:0}]}]};
+assert.match(interventionReceipt(receiptSeries,{id:'u1',at_minutes:30}),/44 celle interessate.*non dimostra/);
+assert.match(interventionReceipt(receiptSeries,{id:'u2',at_minutes:30}),/Nessun combustibile iniziale/);
+assert.equal(interventionReceipt(receiptSeries,{id:'other',at_minutes:30}),'');
+assert.equal(interventionReceipt(null,{id:'u1',at_minutes:30}),'');
+assert.equal(lateInterventionReadout(null,resources),'');
+assert.match(lateInterventionReadout(stopped,resources),/1 intervento tardivo/);
+assert.equal(lateInterventionReadout(stopped,[{at_minutes:0}]),'');
+console.log('PASS per-unit receipt identity, missing/initial fuel interpretation and visible late-intervention warning');

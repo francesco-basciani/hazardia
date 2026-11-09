@@ -15,7 +15,36 @@ def validate(p):
     for records in [p['events'],p['scenarios'],p['resources'],p['options'],p['regions']]:require(len({r['id'] for r in records})==len(records),'INVALID_INPUT','Duplicate IDs')
     weather={w['id'] for w in p['scenarios']};weights=[w['weight'] for w in p['scenarios']]
     require(all(w is None for w in weights) or all(w is not None and isinstance(w,(int,float)) and 0<=w<=1 for w in weights) and abs(sum(weights)-1)<1e-9,'INVALID_INPUT','Scenario weights unknown or normalized')
-    for w in p['scenarios']:require(set(w)=={'id','weight','qualification'} and w['qualification']=='SYNTHETIC_RESEARCH','INVALID_INPUT','Stress scenarios explicitly synthetic')
+    if p['schema_version']=='0.7.0':
+        ensemble=p['ensemble']
+        require(isinstance(ensemble,dict) and set(ensemble)=={'schema','scenario_set_id','scenario_set_sha256',
+                'measure','complete_empirical_ensemble','unresolved_weight','calibration','weight_semantics','operational_authority','target_definition'},
+                'INVALID_INPUT','Strict traceable ensemble required')
+        require(ensemble['schema']=='hazardia.wii.decision-ensemble/0.1.0' and
+                isinstance(ensemble['scenario_set_id'],str) and ensemble['scenario_set_id'] and
+                isinstance(ensemble['scenario_set_sha256'],str) and len(ensemble['scenario_set_sha256'])==64 and
+                all(c in '0123456789abcdef' for c in ensemble['scenario_set_sha256']) and
+                ensemble['measure']=='JOINT_CONDITIONAL_INDEPENDENT_POISSON' and
+                ensemble['complete_empirical_ensemble'] is True and ensemble['unresolved_weight']==0 and
+                ensemble['calibration'] in ('EXPERIMENTAL_UNCALIBRATED','CALIBRATED_WITHIN_SCOPE') and
+                ensemble['target_definition'] in ('P_AT_LEAST_ONE_WILDFIRE_IGNITION_PER_CELL_INTERVAL',
+                    'P_REGISTERED_ORIGIN_PROXY_PER_CELL_INTERVAL','SYNTHETIC_PROCESS_FIXTURE') and
+                (ensemble['calibration']!='CALIBRATED_WITHIN_SCOPE' or ensemble['target_definition']=='P_AT_LEAST_ONE_WILDFIRE_IGNITION_PER_CELL_INTERVAL') and
+                ensemble['weight_semantics'] in ('MONTE_CARLO_OR_STRATUM_ESTIMATOR_WEIGHTS','SELF_NORMALIZED_IMPORTANCE_FINITE_SAMPLE_BIASED') and
+                ensemble['operational_authority'] is False and all(w is not None for w in weights),
+                'INVALID_INPUT','Incomplete/unknown/untraceable ensemble is not admissible')
+        for w in p['scenarios']:
+            require(set(w)=={'id','weight','qualification','member_sha256','state'} and
+                    w['qualification']=='PROBABILISTIC_RESEARCH' and
+                    type(w['weight']) in (int,float) and math.isfinite(w['weight']) and
+                    w['state'] in ('READY','NO_IGNITION') and len(w['member_sha256'])==64,
+                    'INVALID_INPUT','Probabilistic research member identity required')
+        no_event={w['id'] for w in p['scenarios'] if w['state']=='NO_IGNITION'}
+        require(all(all(e['exposure'].get(w)==0 for w in no_event) for e in p['events']) and
+                all(all(o['benefit'].get(w)==0 for w in no_event) for o in p['options']),
+                'INVALID_INPUT','No-ignition states must have zero fire consequence/benefit')
+    else:
+        for w in p['scenarios']:require(set(w)=={'id','weight','qualification'} and w['qualification']=='SYNTHETIC_RESEARCH','INVALID_INPUT','Stress scenarios explicitly synthetic')
     for r in p['resources']:
         require(set(r)==policy.resource_fields,'INVALID_INPUT','Resource wrapper fields');validate_record(r['record']);require(r['record']['kind']=='resource' and r['id']==r['record']['id'],'INVALID_INPUT','Resource identity')
         if policy.resource_categories:require(r['category'] in policy.resource_categories,'INVALID_INPUT','Unknown ideal resource category')

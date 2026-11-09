@@ -1,0 +1,23 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const code=fs.readFileSync('src/hazardia/web/static/tcip-document-map.js','utf8');
+const {documentFeatureCount}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+const feature={properties:{document_count:4,counts:{theft:3,robbery:2},publication_windows:{'90':{document_count:1,counts:{robbery:1}}}}};
+assert.equal(documentFeatureCount(feature,'all'),4);
+assert.equal(documentFeatureCount(feature,'all','90'),1);
+assert.equal(documentFeatureCount(feature,'theft','90'),0);
+assert.equal(documentFeatureCount(feature,'robbery','90'),1);
+assert.equal(documentFeatureCount(feature,'all','30'),0);
+console.log('PASS TCIP fixed publication-window selection and distinct article counts');
+const projected={properties:{...feature.properties,event_count:2,event_counts:{theft:1,robbery:1},event_windows:{'90':{event_count:1,counts:{theft:1}}}}};
+assert.equal(documentFeatureCount(projected,'all'),2);
+assert.equal(documentFeatureCount(projected,'theft','90'),1);
+assert.equal(documentFeatureCount(projected,'robbery','90'),0);
+assert.equal(documentFeatureCount(projected,'all','30'),0);
+
+const reviewed={properties:{event_count:8,event_counts:{theft:6,assault:2},reviewed_event_count:1,reviewed_counts:{theft:1,assault:1},dated_event_count:2,dated_counts:{theft:2},reviewed_publication_windows:{3650:{event_count:1,counts:{theft:1,assault:1}}}}};
+assert.equal(documentFeatureCount(reviewed,'all','all','reviewed'),1);
+assert.equal(documentFeatureCount(reviewed,'theft','all','reviewed'),1);
+assert.equal(documentFeatureCount(reviewed,'all','90','reviewed'),0);
+assert.equal(documentFeatureCount(reviewed,'all','3650','reviewed'),1);
+assert.equal(documentFeatureCount(reviewed,'all','all','dated'),2);

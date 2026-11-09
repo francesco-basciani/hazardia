@@ -44,6 +44,33 @@ class OfficialGeometryTests(unittest.TestCase):
   self.assertEqual(recover_official_shapes(geo,[row],'pinned'),0)
 
 
+class NormalizationTests(unittest.TestCase):
+ def test_touching_ring_normalization_preserves_exact_boundary(self):
+  from shapely.geometry import Polygon
+  from hazardia.ingest.attention_worker import normalize_touching_rings
+  original=Polygon([(0,0),(0,2),(1,1),(2,2),(2,0),(1,1),(0,0)])
+  normalized,receipt=normalize_touching_rings(original)
+  self.assertTrue(normalized.is_valid);self.assertTrue(original.boundary.equals(normalized.boundary))
+  self.assertEqual(original.bounds,normalized.bounds);self.assertAlmostEqual(original.area,normalized.area)
+  self.assertEqual(receipt['method'],'GEOS_MAKE_VALID_IDENTICAL_BOUNDARY_V1');self.assertFalse(receipt['original_valid'])
+ def test_crossing_ring_with_area_change_or_line_output_rejected(self):
+  from shapely.geometry import Polygon
+  from hazardia.ingest.attention_worker import normalize_touching_rings
+  self.assertIsNone(normalize_touching_rings(Polygon([(0,0),(2,2),(0,2),(2,0),(0,0)])))
+  self.assertIsNone(normalize_touching_rings(Polygon([(0,0),(1,0),(2,0),(0,0)])))
+ def test_modified_bounds_boundary_and_area_rejected(self):
+  from unittest.mock import patch
+  from shapely.geometry import Polygon
+  from hazardia.ingest.attention_worker import normalize_touching_rings
+  original=Polygon([(0,0),(0,2),(1,1),(2,2),(2,0),(1,1),(0,0)])
+  for candidate in [Polygon([(0,0),(0,2),(2,2),(2,0),(0,0)]),Polygon([(0,0),(0,3),(3,3),(3,0),(0,0)])]:
+   with patch('shapely.validation.make_valid',return_value=candidate):self.assertIsNone(normalize_touching_rings(original))
+ def test_valid_source_is_not_normalized(self):
+  from shapely.geometry import Polygon
+  from hazardia.ingest.attention_worker import normalize_touching_rings
+  self.assertIsNone(normalize_touching_rings(Polygon([(0,0),(1,0),(1,1),(0,1),(0,0)])))
+
+
 class FutureGeometryTests(unittest.TestCase):
  def test_future_effis_uses_only_recent_geometry_not_warning(self):
   from hazardia.ingest.attention_worker import territorialize

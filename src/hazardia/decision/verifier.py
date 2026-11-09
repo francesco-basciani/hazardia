@@ -6,7 +6,7 @@ from hazardia.decision.problem import validate
 def verify(problem,selection):
     try:validate(problem)
     except (HazardError,KeyError,TypeError,ValueError) as e:return dict(status='INVALID',rules=[dict(id='INPUT',detail=str(e))],operationally_approvable=False)
-    ideal=problem.get('schema_version')=='0.6.0'
+    ideal=problem.get('schema_version') in ('0.6.0','0.7.0')
     rules=[];byid={o['id']:o for o in problem['options']};resources={r['id']:r for r in problem['resources']};events={e['id']:e for e in problem['events']};s=problem['settings'];start=timestamp(problem['planning_at'])
     def fail(code,detail):rules.append(dict(id=code,detail=detail))
     if not isinstance(selection,list) or not all(isinstance(x,str) for x in selection) or len(set(selection))!=len(selection):return dict(status='INVALID',rules=[dict(id='DUPLICATE',detail='Selection must contain unique IDs')],operationally_approvable=False)
@@ -52,4 +52,4 @@ def losses(problem,selection):
     # Missing probabilities never turn into silently invented expected weights.
     expected=None if any(v is None for v in weights) else sum(w['weight']*values[w['id']] for w in problem['scenarios'])
     worst=max(values.values());lam=problem['settings']['lambda'];objective=worst if expected is None else lam*expected+(1-lam)*worst
-    return dict(by_scenario=values,expected=expected,worst=worst,cost=cost,objective=objective+problem['settings']['cost_weight']*cost,unit='weighted priority points, ideal coverage proxy; not people or physical benefit' if problem.get('schema_version')=='0.6.0' else 'synthetic remaining exposed people; configured research cost preference')
+    return dict(by_scenario=values,expected=expected,worst=worst,cost=cost,objective=objective+problem['settings']['cost_weight']*cost,unit='weighted priority points, ideal coverage proxy; not people or physical benefit' if problem.get('schema_version') in ('0.6.0','0.7.0') else 'synthetic remaining exposed people; configured research cost preference')

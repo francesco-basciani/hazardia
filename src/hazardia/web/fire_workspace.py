@@ -9,7 +9,8 @@ class FireWorkspace:
     def read(self):
         p=self.directory/'workspace.json'
         return load(p) if p.exists() else dict(revision=0,scenarios=[])
-    def save(self,body):
+    @staticmethod
+    def validate_body(body):
         if set(body)!={'revision','scenarios'} or type(body['revision']) is not int or not isinstance(body['scenarios'],list):raise HazardError('INVALID_INPUT','Invalid workspace')
         ids=[]
         for s in body['scenarios']:
@@ -22,6 +23,10 @@ class FireWorkspace:
             if s.get('preparation_id') is not None and (not isinstance(s['preparation_id'],str) or not re.fullmatch('prep-[a-f0-9]{32}',s['preparation_id'])):raise HazardError('INVALID_INPUT','Invalid preparation identifier')
             ids.append(s['id'])
         if len(ids)!=len(set(ids)):raise HazardError('INVALID_INPUT','Duplicate scenarios')
+        if len(json.dumps(body,allow_nan=False).encode())>60000:raise HazardError('PAYLOAD_LIMIT','Workspace byte budget reached')
+
+    def save(self,body):
+        self.validate_body(body)
         current=self.read()
         if current['revision']!=body['revision']:raise HazardError('STALE_CONTEXT','Workspace changed in another client; reload before saving')
         value=dict(body,revision=current['revision']+1);raw=json.dumps(value,allow_nan=False)

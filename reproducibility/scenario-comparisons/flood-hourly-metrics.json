@@ -1,0 +1,1039 @@
+{
+  "engines": [
+    "HMC",
+    "REFlEx"
+  ],
+  "hourly_samples": 48,
+  "rainfall": "synthetic",
+  "road_depth_threshold_m": 0.1,
+  "storage_capacity_m3": 240000.0,
+  "maximum_withdrawal_m3_s": 8.0,
+  "plans": [
+    {
+      "plan": "no_intervention",
+      "site": null,
+      "frames": [
+        {
+          "hour": 0,
+          "wet_cells": 0,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 1,
+          "wet_cells": 0,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 2,
+          "wet_cells": 0,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 3,
+          "wet_cells": 14,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 4,
+          "wet_cells": 96,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 5,
+          "wet_cells": 817,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 6,
+          "wet_cells": 988,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 7,
+          "wet_cells": 1164,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 8,
+          "wet_cells": 1165,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 9,
+          "wet_cells": 1171,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 10,
+          "wet_cells": 1183,
+          "segments_at_threshold": 39,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 11,
+          "wet_cells": 1188,
+          "segments_at_threshold": 108,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 12,
+          "wet_cells": 1191,
+          "segments_at_threshold": 114,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 13,
+          "wet_cells": 1197,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 14,
+          "wet_cells": 1199,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 15,
+          "wet_cells": 1200,
+          "segments_at_threshold": 122,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 16,
+          "wet_cells": 1201,
+          "segments_at_threshold": 135,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 17,
+          "wet_cells": 1200,
+          "segments_at_threshold": 135,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 18,
+          "wet_cells": 1200,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 19,
+          "wet_cells": 1199,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 20,
+          "wet_cells": 1197,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 21,
+          "wet_cells": 1197,
+          "segments_at_threshold": 118,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 22,
+          "wet_cells": 1197,
+          "segments_at_threshold": 118,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 23,
+          "wet_cells": 1194,
+          "segments_at_threshold": 118,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 24,
+          "wet_cells": 1192,
+          "segments_at_threshold": 118,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 25,
+          "wet_cells": 1191,
+          "segments_at_threshold": 116,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 26,
+          "wet_cells": 1189,
+          "segments_at_threshold": 110,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 27,
+          "wet_cells": 1188,
+          "segments_at_threshold": 69,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 28,
+          "wet_cells": 1185,
+          "segments_at_threshold": 67,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 29,
+          "wet_cells": 1184,
+          "segments_at_threshold": 67,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 30,
+          "wet_cells": 1183,
+          "segments_at_threshold": 67,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 31,
+          "wet_cells": 1183,
+          "segments_at_threshold": 65,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 32,
+          "wet_cells": 1181,
+          "segments_at_threshold": 39,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 33,
+          "wet_cells": 1180,
+          "segments_at_threshold": 39,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 34,
+          "wet_cells": 1178,
+          "segments_at_threshold": 37,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 35,
+          "wet_cells": 1175,
+          "segments_at_threshold": 37,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 36,
+          "wet_cells": 1175,
+          "segments_at_threshold": 2,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 37,
+          "wet_cells": 1173,
+          "segments_at_threshold": 2,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 38,
+          "wet_cells": 1172,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 39,
+          "wet_cells": 1171,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 40,
+          "wet_cells": 1171,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 41,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 42,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 43,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 44,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 45,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 46,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 47,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        }
+      ]
+    },
+    {
+      "plan": "continuous_withdrawal",
+      "site": 38,
+      "frames": [
+        {
+          "hour": 0,
+          "wet_cells": 0,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 1,
+          "wet_cells": 0,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 2,
+          "wet_cells": 0,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 3,
+          "wet_cells": 14,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 4,
+          "wet_cells": 96,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 5,
+          "wet_cells": 817,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 6,
+          "wet_cells": 988,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 7,
+          "wet_cells": 1164,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 8,
+          "wet_cells": 1165,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 9,
+          "wet_cells": 1171,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 10,
+          "wet_cells": 1183,
+          "segments_at_threshold": 39,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 11,
+          "wet_cells": 1188,
+          "segments_at_threshold": 108,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 12,
+          "wet_cells": 1191,
+          "segments_at_threshold": 114,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 13,
+          "wet_cells": 1197,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 14,
+          "wet_cells": 1199,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 15,
+          "wet_cells": 1200,
+          "segments_at_threshold": 122,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 16,
+          "wet_cells": 1201,
+          "segments_at_threshold": 135,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 17,
+          "wet_cells": 1200,
+          "segments_at_threshold": 135,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 18,
+          "wet_cells": 1200,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 19,
+          "wet_cells": 1199,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 20,
+          "wet_cells": 1197,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 21,
+          "wet_cells": 1197,
+          "segments_at_threshold": 118,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 22,
+          "wet_cells": 1197,
+          "segments_at_threshold": 118,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 23,
+          "wet_cells": 1194,
+          "segments_at_threshold": 118,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0.0
+        },
+        {
+          "hour": 24,
+          "wet_cells": 1186,
+          "segments_at_threshold": 85,
+          "withdrawal_m3_s": 8.0,
+          "storage_m3": 28800.0
+        },
+        {
+          "hour": 25,
+          "wet_cells": 1185,
+          "segments_at_threshold": 85,
+          "withdrawal_m3_s": 8.0,
+          "storage_m3": 57600.0
+        },
+        {
+          "hour": 26,
+          "wet_cells": 993,
+          "segments_at_threshold": 80,
+          "withdrawal_m3_s": 7.838700771331787,
+          "storage_m3": 85819.32277679443
+        },
+        {
+          "hour": 27,
+          "wet_cells": 992,
+          "segments_at_threshold": 39,
+          "withdrawal_m3_s": 7.096940040588379,
+          "storage_m3": 111368.3069229126
+        },
+        {
+          "hour": 28,
+          "wet_cells": 987,
+          "segments_at_threshold": 39,
+          "withdrawal_m3_s": 6.344735145568848,
+          "storage_m3": 134209.35344696045
+        },
+        {
+          "hour": 29,
+          "wet_cells": 986,
+          "segments_at_threshold": 39,
+          "withdrawal_m3_s": 5.601387023925781,
+          "storage_m3": 154374.34673309326
+        },
+        {
+          "hour": 30,
+          "wet_cells": 985,
+          "segments_at_threshold": 39,
+          "withdrawal_m3_s": 4.886826515197754,
+          "storage_m3": 171966.92218780518
+        },
+        {
+          "hour": 31,
+          "wet_cells": 984,
+          "segments_at_threshold": 7,
+          "withdrawal_m3_s": 4.219583988189697,
+          "storage_m3": 187157.4245452881
+        },
+        {
+          "hour": 32,
+          "wet_cells": 984,
+          "segments_at_threshold": 7,
+          "withdrawal_m3_s": 3.6146552562713623,
+          "storage_m3": 200170.183467865
+        },
+        {
+          "hour": 33,
+          "wet_cells": 983,
+          "segments_at_threshold": 5,
+          "withdrawal_m3_s": 3.0820512771606445,
+          "storage_m3": 211265.5680656433
+        },
+        {
+          "hour": 34,
+          "wet_cells": 983,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 2.626310110092163,
+          "storage_m3": 220720.2844619751
+        },
+        {
+          "hour": 35,
+          "wet_cells": 982,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 2.2468998432159424,
+          "storage_m3": 228809.1238975525
+        },
+        {
+          "hour": 36,
+          "wet_cells": 982,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 1.939089059829712,
+          "storage_m3": 235789.84451293945
+        },
+        {
+          "hour": 37,
+          "wet_cells": 1171,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 1.1694876352945964,
+          "storage_m3": 240000.0
+        },
+        {
+          "hour": 38,
+          "wet_cells": 1172,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0.0,
+          "storage_m3": 240000.0
+        },
+        {
+          "hour": 39,
+          "wet_cells": 1171,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0.0,
+          "storage_m3": 240000.0
+        },
+        {
+          "hour": 40,
+          "wet_cells": 1171,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0.0,
+          "storage_m3": 240000.0
+        },
+        {
+          "hour": 41,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0.0,
+          "storage_m3": 240000.0
+        },
+        {
+          "hour": 42,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0.0,
+          "storage_m3": 240000.0
+        },
+        {
+          "hour": 43,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0.0,
+          "storage_m3": 240000.0
+        },
+        {
+          "hour": 44,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0.0,
+          "storage_m3": 240000.0
+        },
+        {
+          "hour": 45,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0.0,
+          "storage_m3": 240000.0
+        },
+        {
+          "hour": 46,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0.0,
+          "storage_m3": 240000.0
+        },
+        {
+          "hour": 47,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0.0,
+          "storage_m3": 240000.0
+        }
+      ]
+    },
+    {
+      "plan": "scheduled_withdrawal",
+      "site": 24,
+      "frames": [
+        {
+          "hour": 0,
+          "wet_cells": 0,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0
+        },
+        {
+          "hour": 1,
+          "wet_cells": 0,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0
+        },
+        {
+          "hour": 2,
+          "wet_cells": 0,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0
+        },
+        {
+          "hour": 3,
+          "wet_cells": 14,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0
+        },
+        {
+          "hour": 4,
+          "wet_cells": 96,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0
+        },
+        {
+          "hour": 5,
+          "wet_cells": 817,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0
+        },
+        {
+          "hour": 6,
+          "wet_cells": 988,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0
+        },
+        {
+          "hour": 7,
+          "wet_cells": 1164,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0
+        },
+        {
+          "hour": 8,
+          "wet_cells": 1165,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0
+        },
+        {
+          "hour": 9,
+          "wet_cells": 1171,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 0
+        },
+        {
+          "hour": 10,
+          "wet_cells": 1025,
+          "segments_at_threshold": 2,
+          "withdrawal_m3_s": 3.2324635982513428,
+          "storage_m3": 11636.868953704834
+        },
+        {
+          "hour": 11,
+          "wet_cells": 1032,
+          "segments_at_threshold": 65,
+          "withdrawal_m3_s": 5.673686981201172,
+          "storage_m3": 32062.142086029053
+        },
+        {
+          "hour": 12,
+          "wet_cells": 1034,
+          "segments_at_threshold": 70,
+          "withdrawal_m3_s": 7.7415852546691895,
+          "storage_m3": 59931.849002838135
+        },
+        {
+          "hour": 13,
+          "wet_cells": 1197,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 59931.849002838135
+        },
+        {
+          "hour": 14,
+          "wet_cells": 1199,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 59931.849002838135
+        },
+        {
+          "hour": 15,
+          "wet_cells": 1200,
+          "segments_at_threshold": 122,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 59931.849002838135
+        },
+        {
+          "hour": 16,
+          "wet_cells": 1201,
+          "segments_at_threshold": 135,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 59931.849002838135
+        },
+        {
+          "hour": 17,
+          "wet_cells": 1200,
+          "segments_at_threshold": 135,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 59931.849002838135
+        },
+        {
+          "hour": 18,
+          "wet_cells": 1200,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 59931.849002838135
+        },
+        {
+          "hour": 19,
+          "wet_cells": 1199,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 59931.849002838135
+        },
+        {
+          "hour": 20,
+          "wet_cells": 1197,
+          "segments_at_threshold": 119,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 59931.849002838135
+        },
+        {
+          "hour": 21,
+          "wet_cells": 1193,
+          "segments_at_threshold": 74,
+          "withdrawal_m3_s": 8.0,
+          "storage_m3": 88731.84900283813
+        },
+        {
+          "hour": 22,
+          "wet_cells": 1038,
+          "segments_at_threshold": 74,
+          "withdrawal_m3_s": 7.948814868927002,
+          "storage_m3": 117347.58253097534
+        },
+        {
+          "hour": 23,
+          "wet_cells": 1036,
+          "segments_at_threshold": 74,
+          "withdrawal_m3_s": 7.411080837249756,
+          "storage_m3": 144027.47354507446
+        },
+        {
+          "hour": 24,
+          "wet_cells": 1035,
+          "segments_at_threshold": 74,
+          "withdrawal_m3_s": 6.843995571136475,
+          "storage_m3": 168665.85760116577
+        },
+        {
+          "hour": 25,
+          "wet_cells": 1033,
+          "segments_at_threshold": 72,
+          "withdrawal_m3_s": 6.2595086097717285,
+          "storage_m3": 191200.088596344
+        },
+        {
+          "hour": 26,
+          "wet_cells": 1032,
+          "segments_at_threshold": 67,
+          "withdrawal_m3_s": 5.673096179962158,
+          "storage_m3": 211623.23484420776
+        },
+        {
+          "hour": 27,
+          "wet_cells": 1188,
+          "segments_at_threshold": 69,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 211623.23484420776
+        },
+        {
+          "hour": 28,
+          "wet_cells": 1185,
+          "segments_at_threshold": 67,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 211623.23484420776
+        },
+        {
+          "hour": 29,
+          "wet_cells": 1184,
+          "segments_at_threshold": 67,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 211623.23484420776
+        },
+        {
+          "hour": 30,
+          "wet_cells": 1183,
+          "segments_at_threshold": 67,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 211623.23484420776
+        },
+        {
+          "hour": 31,
+          "wet_cells": 1183,
+          "segments_at_threshold": 65,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 211623.23484420776
+        },
+        {
+          "hour": 32,
+          "wet_cells": 1181,
+          "segments_at_threshold": 39,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 211623.23484420776
+        },
+        {
+          "hour": 33,
+          "wet_cells": 1022,
+          "segments_at_threshold": 2,
+          "withdrawal_m3_s": 2.4465370178222656,
+          "storage_m3": 220430.76810836792
+        },
+        {
+          "hour": 34,
+          "wet_cells": 1020,
+          "segments_at_threshold": 2,
+          "withdrawal_m3_s": 2.1520676612854004,
+          "storage_m3": 228178.21168899536
+        },
+        {
+          "hour": 35,
+          "wet_cells": 1019,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 1.8961365222930908,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 36,
+          "wet_cells": 1175,
+          "segments_at_threshold": 2,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 37,
+          "wet_cells": 1173,
+          "segments_at_threshold": 2,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 38,
+          "wet_cells": 1172,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 39,
+          "wet_cells": 1171,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 40,
+          "wet_cells": 1171,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 41,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 42,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 43,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 44,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 45,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 46,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        },
+        {
+          "hour": 47,
+          "wet_cells": 1170,
+          "segments_at_threshold": 0,
+          "withdrawal_m3_s": 0,
+          "storage_m3": 235004.3031692505
+        }
+      ]
+    }
+  ]
+}

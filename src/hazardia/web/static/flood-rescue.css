@@ -1,0 +1,18 @@
+.flood-rescue {margin: .6rem 0 1rem; border: 1px solid #9cb5c7; border-radius: 8px; background: #edf4f8; color: #14354b}
+.flood-rescue > summary {cursor: pointer; padding: .75rem 1rem; font-weight: 700}
+.flood-rescue > p {margin: 0 1rem .6rem}
+.flood-rescue section {padding: 0 1rem .8rem; display: grid; grid-template-columns: minmax(260px, 36%) minmax(0, 1fr); gap: .8rem}
+.flood-rescue-map {min-height: 410px; border: 1px solid #9cb5c7; border-radius: 7px; background: #d9e3e6}
+.flood-rescue-map:empty {display: none}
+.flood-rescue-time {display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .45rem}
+.flood-rescue-time input, .flood-rescue-time strong {grid-column: 1 / -1}
+.flood-rescue-time select {max-width: 100%; margin: 0}
+.flood-rescue-plans {display: grid; gap: .28rem}
+.flood-rescue-plans strong {display: block; background: #d8e8f0; border-radius: 5px; padding: .35rem .55rem}
+.flood-rescue-reason {font-weight: 650}
+.flood-rescue-missions {padding-left: 1.2rem; margin: .4rem 0}
+.flood-rescue-readout p {margin: .45rem 0}
+@media (max-width: 1020px) {
+  .flood-rescue section {grid-template-columns: minmax(0, 1fr)}
+  .flood-rescue-map {min-height: 340px}
+}

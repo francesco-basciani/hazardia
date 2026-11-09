@@ -12,3 +12,10 @@
 .basemap-streets .region-name{color:#344e60;text-shadow:0 0 3px #fff,0 1px 2px #fff;text-decoration:none;letter-spacing:1.5px}.basemap-streets .region-outline{stroke:#fff;stroke-width:3;stroke-opacity:.7}.basemap-streets .region-ink{stroke:#758b9d;stroke-width:1.1;stroke-opacity:.7}
 
 .leaflet-container .admin-name-countries{font-size:13px;letter-spacing:2px}.leaflet-container .admin-name-provinces{font-size:10px;letter-spacing:1px;text-decoration:none;color:#c2eaf0}
+
+/* Orography is distinct from weather values and inhabited-place labels. */
+.leaflet-container .map-mountain-name{background:transparent;border:0;font:italic 650 12px/23px system-ui;color:#57412b;text-shadow:-1px -1px 1px #fff,1px -1px 1px #fff,-1px 1px 1px #fff,1px 1px 1px #fff,0 0 3px #fff;white-space:nowrap;pointer-events:none!important}.mountain-options{padding:10px 0}.mountain-options label{display:flex;align-items:center;gap:8px;min-height:36px}.mountain-options input{width:17px;height:17px;accent-color:#398779}.mountain-options p{font-size:11px;line-height:1.6}
+.map-mountain-name span{display:block;max-width:230px;overflow:hidden;text-overflow:ellipsis}
+
+/* Keep elevation visible even when a long summit name is shortened. */
+.map-mountain-name>span{display:flex;align-items:center;max-width:none;overflow:visible}.map-mountain-name .mountain-label-name{flex:0 1 auto;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis}.map-mountain-name .mountain-label-elevation{flex:0 0 auto;max-width:none;overflow:visible;font-size:11px;font-style:normal;font-weight:650}

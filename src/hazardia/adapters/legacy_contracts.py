@@ -79,6 +79,9 @@ def validate_weather(weather, request):
     elif weather['data_kind']=='REANALYSIS':
         if weather['issued_at'] is not None or request['mode']!='RESEARCH_RETROSPECTIVE':
             raise HazardError('SOURCE_KIND','Reanalysis is not an issued predictive forecast')
+    elif weather['data_kind']=='SYNTHETIC':
+        if weather['issued_at'] is not None or request['hazard']!='FLOOD' or request['mode']!='RESEARCH_RETROSPECTIVE':
+            raise HazardError('SOURCE_KIND','Synthetic forcing is supported only for retrospective flood exercises')
     else:
         raise HazardError('SOURCE_KIND','Unsupported weather source class')
     times=[]
