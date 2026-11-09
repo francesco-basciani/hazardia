@@ -1,0 +1,67 @@
+{
+  "engine": "PROPAGATOR",
+  "hour": 12,
+  "realizations": 4,
+  "seed": 1729,
+  "interface_distance_m": 100,
+  "interface_clusters": 8,
+  "displayed_plans": [
+    {
+      "plan": "no_intervention",
+      "interface_m2": 7425,
+      "total_m2": 49275
+    },
+    {
+      "plan": "west_flank_reference",
+      "interface_m2": 1350,
+      "total_m2": 11250
+    },
+    {
+      "plan": "selected",
+      "interface_m2": 0,
+      "total_m2": 5850
+    }
+  ],
+  "candidate_search": [
+    {
+      "plan": "baseline",
+      "interface_m2": 7425,
+      "total_m2": 49275
+    },
+    {
+      "plan": "uncoordinated-120",
+      "interface_m2": 1350,
+      "total_m2": 11250
+    },
+    {
+      "plan": "uncoordinated-150",
+      "interface_m2": 0,
+      "total_m2": 6075
+    },
+    {
+      "plan": "combined-180-60",
+      "interface_m2": 0,
+      "total_m2": 5850
+    },
+    {
+      "plan": "combined-180-90",
+      "interface_m2": 0,
+      "total_m2": 5850
+    },
+    {
+      "plan": "combined-210-60",
+      "interface_m2": 0,
+      "total_m2": 5850
+    },
+    {
+      "plan": "combined-210-90",
+      "interface_m2": 0,
+      "total_m2": 5850
+    },
+    {
+      "plan": "fallback-no-air",
+      "interface_m2": 0,
+      "total_m2": 8325
+    }
+  ]
+}
